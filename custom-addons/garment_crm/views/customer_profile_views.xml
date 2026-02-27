@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================ -->
+    <!-- Customer Profile (extends res.partner)                        -->
+    <!-- ============================================================ -->
+
+    <!-- Inherit Partner Form to add Garment Buyer tab -->
+    <record id="view_partner_garment_buyer" model="ir.ui.view">
+        <field name="name">res.partner.garment.buyer</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_garment_orders" type="object"
+                        class="oe_stat_button" icon="fa-list-alt"
+                        invisible="garment_order_count == 0">
+                    <field name="garment_order_count" widget="statinfo" string="Đơn Hàng"/>
+                </button>
+                <button name="action_view_crm_leads" type="object"
+                        class="oe_stat_button" icon="fa-bullseye"
+                        invisible="crm_lead_count == 0">
+                    <field name="crm_lead_count" widget="statinfo" string="Lead/CH"/>
+                </button>
+                <button name="action_view_feedbacks" type="object"
+                        class="oe_stat_button" icon="fa-comments"
+                        invisible="feedback_count == 0">
+                    <field name="feedback_count" widget="statinfo" string="Phản Hồi"/>
+                </button>
+            </xpath>
+            <xpath expr="//page[last()]" position="after">
+                <page string="Hồ Sơ Buyer May Mặc" name="garment_buyer_profile">
+                    <group>
+                        <group string="Thông Tin Buyer">
+                            <field name="is_garment_buyer"/>
+                            <field name="buyer_code"/>
+                            <field name="buyer_type"/>
+                            <field name="product_interest"/>
+                            <field name="preferred_incoterm"/>
+                        </group>
+                        <group string="Quy Mô &amp; Doanh Thu">
+                            <field name="annual_volume"/>
+                            <field name="annual_revenue"/>
+                            <field name="payment_term_note"/>
+                            <field name="first_order_date"/>
+                            <field name="last_order_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Yêu Cầu Tuân Thủ">
+                            <field name="compliance_requirements"/>
+                        </group>
+                        <group string="Tiêu Chuẩn Chất Lượng">
+                            <field name="quality_standard"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Buyer List Action -->
+    <record id="action_garment_buyers" model="ir.actions.act_window">
+        <field name="name">Buyer Ngành May</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_garment_buyer', '=', True)]</field>
+        <field name="context">{'default_is_garment_buyer': True, 'default_customer_rank': 1}</field>
+    </record>
+</odoo>

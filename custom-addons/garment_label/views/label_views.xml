@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================ -->
+    <!-- Label / QR Code Views                                         -->
+    <!-- ============================================================ -->
+
+    <!-- TREE VIEW -->
+    <record id="view_label_list" model="ir.ui.view">
+        <field name="name">garment.label.list</field>
+        <field name="model">garment.label</field>
+        <field name="arch" type="xml">
+            <list decoration-success="state == 'applied'"
+                  decoration-info="state == 'printed'">
+                <field name="code"/>
+                <field name="label_type" widget="badge"/>
+                <field name="garment_order_id"/>
+                <field name="style_id"/>
+                <field name="color_id"/>
+                <field name="size_id"/>
+                <field name="quantity"/>
+                <field name="location"/>
+                <field name="print_count"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FORM VIEW -->
+    <record id="view_label_form" model="ir.ui.view">
+        <field name="name">garment.label.form</field>
+        <field name="model">garment.label</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_print" type="object"
+                            string="🖨 In Tem"
+                            class="btn-primary"
+                            invisible="state in ('applied', 'cancelled')"/>
+                    <button name="action_apply" type="object"
+                            string="✓ Đã Dán"
+                            class="btn-success"
+                            invisible="state != 'printed'"/>
+                    <button name="action_scan" type="object"
+                            string="📱 Quét QR"
+                            invisible="state in ('draft', 'cancelled')"/>
+                    <button name="action_cancel" type="object"
+                            string="Hủy"
+                            invisible="state in ('applied', 'cancelled')"/>
+                    <button name="action_reset_draft" type="object"
+                            string="↩ Quay Lại"
+                            invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,printed,applied"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="code" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Thông Tin Tem">
+                            <field name="label_type"/>
+                            <field name="quantity"/>
+                            <field name="qr_content" widget="char"/>
+                            <field name="description"/>
+                        </group>
+                        <group string="Liên Kết">
+                            <field name="garment_order_id"/>
+                            <field name="style_id"/>
+                            <field name="color_id"/>
+                            <field name="size_id"/>
+                            <field name="packing_list_id"/>
+                            <field name="pallet_id"/>
+                            <field name="carton_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Vị Trí">
+                            <field name="location"/>
+                            <field name="warehouse_zone"/>
+                        </group>
+                        <group string="Lịch Sử">
+                            <field name="print_count"/>
+                            <field name="last_print_date"/>
+                            <field name="last_scan_date"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- SEARCH VIEW -->
+    <record id="view_label_search" model="ir.ui.view">
+        <field name="name">garment.label.search</field>
+        <field name="model">garment.label</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code"/>
+                <field name="garment_order_id"/>
+                <field name="style_id"/>
+                <field name="location"/>
+                <separator/>
+                <filter name="filter_product" string="Tem Sản Phẩm"
+                        domain="[('label_type', '=', 'product')]"/>
+                <filter name="filter_carton" string="Tem Thùng"
+                        domain="[('label_type', '=', 'carton')]"/>
+                <filter name="filter_pallet" string="Tem Pallet"
+                        domain="[('label_type', '=', 'pallet')]"/>
+                <filter name="filter_printed" string="Đã In"
+                        domain="[('state', '=', 'printed')]"/>
+                <group>
+                    <filter name="group_type" string="Loại Tem"
+                            context="{'group_by': 'label_type'}"/>
+                    <filter name="group_state" string="Trạng Thái"
+                            context="{'group_by': 'state'}"/>
+                    <filter name="group_order" string="Đơn Hàng"
+                            context="{'group_by': 'garment_order_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ACTIONS -->
+    <record id="action_label_all" model="ir.actions.act_window">
+        <field name="name">Tất Cả Tem</field>
+        <field name="res_model">garment.label</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_label_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo tem QR đầu tiên!
+            </p>
+        </field>
+    </record>
+
+    <record id="action_label_product" model="ir.actions.act_window">
+        <field name="name">Tem Sản Phẩm</field>
+        <field name="res_model">garment.label</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('label_type', '=', 'product')]</field>
+        <field name="context">{'default_label_type': 'product'}</field>
+    </record>
+
+    <record id="action_label_carton" model="ir.actions.act_window">
+        <field name="name">Tem Thùng Hàng</field>
+        <field name="res_model">garment.label</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('label_type', '=', 'carton')]</field>
+        <field name="context">{'default_label_type': 'carton'}</field>
+    </record>
+
+    <record id="action_label_pallet" model="ir.actions.act_window">
+        <field name="name">Tem Pallet</field>
+        <field name="res_model">garment.label</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('label_type', '=', 'pallet')]</field>
+        <field name="context">{'default_label_type': 'pallet'}</field>
+    </record>
+</odoo>

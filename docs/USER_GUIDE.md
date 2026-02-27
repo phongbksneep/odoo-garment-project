@@ -2,7 +2,9 @@
 
 > **Phiên bản:** Odoo 19.0 | **Ngày cập nhật:** Tháng 2/2026
 > **Đối tượng:** Quản lý, trưởng phòng, nhân viên sử dụng hệ thống ERP
-> **Tổng số module:** 22 module chuyên biệt | **139 test cases** — 0 failures---
+> **Tổng số module:** 24 module chuyên biệt | **216 test cases** — 0 failures
+
+---
 
 ## 📑 Mục Lục
 
@@ -29,8 +31,10 @@
 21. [Module Garment Delivery — Giao Hàng](#21-module-garment-delivery--giao-hàng)
 22. [Module Garment Material — Nhập Nguyên Liệu](#22-module-garment-material--nhập-nguyên-liệu)
 23. [Module Garment Dashboard — Bảng Điều Khiển](#23-module-garment-dashboard--bảng-điều-khiển)
-24. [Phân quyền & Bảo mật](#24-phân-quyền--bảo-mật)
-25. [FAQ — Câu hỏi thường gặp](#25-faq--câu-hỏi-thường-gặp)
+24. [Module Garment CRM — Quan Hệ Khách Hàng](#24-module-garment-crm--quan-hệ-khách-hàng)
+25. [Module Garment Label — In Tem & Quản Lý Pallet](#25-module-garment-label--in-tem--quản-lý-pallet)
+26. [Phân quyền & Bảo mật](#26-phân-quyền--bảo-mật)
+27. [FAQ — Câu hỏi thường gặp](#27-faq--câu-hỏi-thường-gặp)
 
 ---
 
@@ -38,7 +42,7 @@
 
 ### 1.1 Tổng quan hệ thống
 
-Hệ thống ERP Công Ty May được xây dựng trên nền tảng **Odoo 19.0**, bao gồm **22 module chuyên biệt** quản lý toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm nhập nguyên liệu, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, giao hàng và dashboard tổng quan.
+Hệ thống ERP Công Ty May được xây dựng trên nền tảng **Odoo 19.0**, bao gồm **24 module chuyên biệt** quản lý toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm nhập nguyên liệu, CRM quan hệ khách hàng, in tem QR code, quản lý pallet/thùng hàng, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, giao hàng và dashboard tổng quan.
 
 ### 1.2 Đăng nhập
 
@@ -1756,7 +1760,137 @@ Mã màu:
 
 ---
 
-## 24. Phân Quyền & Bảo Mật
+## 24. Module Garment CRM — Quan Hệ Khách Hàng
+
+> **Menu:** Công Ty May → CRM
+
+### 24.1 Lead / Cơ Hội Kinh Doanh
+
+Quản lý toàn bộ pipeline bán hàng từ đầu mối (lead) đến chốt đơn.
+
+**Các giai đoạn:**
+
+| Giai Đoạn | Mô Tả |
+|-----------|-------|
+| Mới | Lead mới nhận được |
+| Đã Đánh Giá | Đã xác minh thông tin khách hàng |
+| Đã Gửi Báo Giá | Đã gửi quotation/proposal |
+| Đang Thương Lượng | Đàm phán giá, điều kiện |
+| Thành Công | Chốt đơn hàng |
+| Thất Bại | Khách không đặt hàng |
+
+**Cách tạo Lead:**
+1. Vào **CRM → Lead / Cơ Hội** → **Tạo Mới**
+2. Nhập tiêu đề, loại (Lead/Cơ Hội), khách hàng
+3. Thêm thông tin: sản phẩm quan tâm, số lượng dự kiến, doanh thu kỳ vọng
+4. Chọn nguồn (website, triển lãm, giới thiệu…), nhân viên phụ trách
+
+**Chuyển Lead → Cơ Hội:** Nhấn **→ Chuyển Cơ Hội** trên lead
+
+**Tạo Đơn Hàng từ CRM:** Khi cơ hội thành công → Nhấn **📋 Tạo Đơn Hàng** → Tự động tạo garment.order
+
+![CRM Lead](images/102_crm_lead_all.png)
+![CRM Lead Form](images/105_crm_lead_form_new.png)
+
+### 24.2 Phản Hồi / Khiếu Nại Khách Hàng
+
+Theo dõi feedback, khiếu nại, đề xuất từ khách hàng.
+
+| Loại | Mô Tả |
+|------|-------|
+| Phản Hồi | Ý kiến chung |
+| Khiếu Nại | Vấn đề cần giải quyết |
+| Đề Xuất | Góp ý cải thiện |
+| Khen Ngợi | Khách hàng hài lòng |
+
+**Luồng xử lý:** Mới → Đang Xử Lý (chỉ định người) → Đã Giải Quyết → Đã Đóng
+
+**Mức độ nghiêm trọng:** Thấp / Trung Bình / Cao / Nghiêm Trọng
+
+![Feedback Form](images/108_crm_feedback_form_new.png)
+![Feedback All](images/106_crm_feedback_all.png)
+
+### 24.3 Hồ Sơ Buyer / Khách Hàng
+
+Mở rộng thông tin khách hàng với các trường chuyên biệt ngành may:
+
+- **Loại Buyer:** Thương hiệu, nhà bán lẻ, nhà nhập khẩu, đại lý, bán sỉ
+- **Sản phẩm quan tâm, Incoterm ưa thích**
+- **SL đặt hàng/năm, doanh thu/năm**
+- **Yêu cầu tuân thủ** (BSCI, WRAP, Oeko-Tex…)
+- **Tiêu chuẩn chất lượng** (AQL, testing…)
+- **Nút thống kê:** Số đơn hàng, số lead, số phản hồi
+
+![Buyers](images/109_crm_buyers.png)
+
+---
+
+## 25. Module Garment Label — In Tem & Quản Lý Pallet
+
+> **Menu:** Công Ty May → Kho & Giao Hàng → Tem / QR Code, Quản Lý Thùng Hàng, Quản Lý Pallet
+
+### 25.1 In Tem / QR Code
+
+Hệ thống quản lý tem với QR code để theo dõi sản phẩm, thùng hàng, pallet và vị trí kho.
+
+**Loại tem:**
+
+| Loại | Prefix | Mô Tả |
+|------|--------|-------|
+| Tem Sản Phẩm | LP- | Dán trên sản phẩm, chứa thông tin style/màu/size |
+| Tem Thùng Hàng | LC- | Dán trên thùng carton, chứa nội dung thùng |
+| Tem Pallet | LT- | Dán trên pallet, chứa danh sách thùng |
+| Tem Vị Trí Kho | LL- | Đánh dấu vị trí kệ/kho |
+
+**Luồng:** Nháp → Đã In (🖨) → Đã Dán (✓)
+
+**Nội dung QR tự động:** Mã tem | Loại | Đơn hàng | Mã style | Màu | Size | SL
+
+**Quét QR:** Nhấn **📱 Quét QR** để cập nhật thời điểm quét cuối cùng
+
+![Label Form](images/112_label_form_new.png)
+![Label All](images/110_label_all.png)
+
+### 25.2 Quản Lý Thùng Hàng (Carton Box)
+
+Quản lý từng thùng hàng riêng lẻ, hỗ trợ đóng/tách/gộp thùng.
+
+**Luồng trạng thái:** Nháp → Đã Đóng → Trên Pallet → Đã Xuất
+
+**Chức năng chính:**
+- **Đóng thùng:** Nhập nội dung (style, màu, size, SL) → Đóng
+- **Xếp lên Pallet:** Chọn pallet → Nhấn **📦 Xếp Lên Pallet**
+- **Tách thùng:** Chia 1 thùng thành 2 (chia đều SL và trọng lượng)
+- **Gộp thùng:** Chọn nhiều thùng → Action **Gộp Thùng Hàng** (gộp SL + trọng lượng vào thùng đầu tiên)
+- **Tạo tem QR:** Nhấn **🏷 Tạo Tem QR** → Tự động tạo tem loại carton
+
+**CBM tự động:** Tính từ kích thước (Dài × Rộng × Cao / 1,000,000)
+
+![Carton Box Form](images/116_carton_box_form_new.png)
+![Carton Box All](images/115_carton_box_all.png)
+
+### 25.3 Quản Lý Pallet
+
+Quản lý pallet chứa nhiều thùng hàng, hỗ trợ gộp/tách pallet.
+
+**Luồng trạng thái:** Nháp → Đang Xếp → Đã Đóng → Đã Xuất
+
+**Chức năng chính:**
+- **Tạo pallet:** Chọn loại (Chuẩn/Euro/Đặc biệt), kích thước, trọng tải
+- **Xếp thùng:** Thêm thùng hàng vào pallet
+- **Đóng pallet:** Khi xếp đủ thùng → Nhấn **✓ Đóng Pallet**
+- **Tách pallet:** Chia 1 pallet thành 2 (chia đều số thùng)
+- **Gộp pallet:** Chọn nhiều pallet → Action **Gộp Pallet** (chuyển tất cả thùng về pallet đầu tiên)
+- **Xuất hàng:** Nhấn **📦 Xuất Hàng** khi pallet đã đóng
+
+**Tổng hợp tự động:** Số thùng, tổng số cái, tổng trọng lượng
+
+![Pallet Form](images/114_pallet_form_new.png)
+![Pallet All](images/113_pallet_all.png)
+
+---
+
+## 26. Phân Quyền & Bảo Mật
 
 Hệ thống có 2 nhóm quyền:
 
@@ -1772,7 +1906,7 @@ Hệ thống có 2 nhóm quyền:
 
 ---
 
-## 25. FAQ — Câu Hỏi Thường Gặp
+## 27. FAQ — Câu Hỏi Thường Gặp
 
 ### Q: Làm sao để thay đổi ngôn ngữ sang Tiếng Việt?
 **A:** Vào **Settings → Translations → Load a Translation** → Chọn `Vietnamese / Tiếng Việt` → Install.
@@ -1805,7 +1939,7 @@ Hệ thống có 2 nhóm quyền:
 **A:** Đơn hàng → Mẫu → Tính giá → Nhập NL → Kế hoạch → Cắt → May → Giặt → Hoàn thiện → QC → Đóng gói → Giao hàng → Kế toán
 
 ### Q: Mối liên kết giữa các module?
-**A:** Xem [Sơ đồ tổng quan](#2-sơ-đồ-tổng-quan--luồng-nghiệp-vụ) — tất cả module liên kết qua đơn hàng may (garment.order) và lệnh sản xuất (garment.production.order). Module nhập NL và dashboard tổng hợp dữ liệu từ toàn bộ hệ thống.
+**A:** Xem [Sơ đồ tổng quan](#2-sơ-đồ-tổng-quan--luồng-nghiệp-vụ) — tất cả module liên kết qua đơn hàng may (garment.order) và lệnh sản xuất (garment.production.order). Module CRM quản lý pipeline khách hàng, module label/pallet quản lý tem QR và đóng gói, dashboard tổng hợp dữ liệu từ toàn bộ hệ thống.
 
 ---
 

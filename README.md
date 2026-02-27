@@ -1,12 +1,12 @@
-# 🧵 Odoo 19 - Hệ Thống Quản Lý Công Ty May# 🧵 Odoo 19 - Hệ Thống Quản Lý Công Ty May# 🧵 Odoo 19 - Hệ Thống Quản Lý Công Ty May# 🧵 Odoo 19 - Hệ Thống Quản Lý Công Ty May# 🧵 Odoo 19 - Hệ Thống Quản Lý Công Ty May
+# 🧵 Odoo 19 - Hệ Thống Quản Lý Công Ty May# 🧵 Odoo 19 - Hệ Thống Quản Lý Công Ty May# 🧵 Odoo 19 - Hệ Thống Quản Lý Công Ty May# 🧵 Odoo 19 - Hệ Thống Quản Lý Công Ty May# 🧵 Odoo 19 - Hệ Thống Quản Lý Công Ty May# 🧵 Odoo 19 - Hệ Thống Quản Lý Công Ty May
 
 
 
-Dự án ERP sử dụng **Odoo 19.0 Community Edition** được tùy chỉnh cho ngành **may mặc (Garment Manufacturing)**, bao gồm **22 module chuyên biệt** bao phủ toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm nhập nguyên liệu, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, vận chuyển và dashboard tổng quan.
+Dự án ERP sử dụng **Odoo 19.0 Community Edition** được tùy chỉnh cho ngành **may mặc (Garment Manufacturing)**, bao gồm **24 module chuyên biệt** bao phủ toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm CRM khách hàng, nhập nguyên liệu, sản xuất, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, in tem/QR code, đóng tách pallet/thùng, vận chuyển và dashboard tổng quan.
 
 
 
-## 📋 Yêu cầuDự án ERP sử dụng **Odoo 19.0 Community Edition** được tùy chỉnh cho ngành **may mặc (Garment Manufacturing)**, bao gồm **20 module chuyên biệt** bao phủ toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm hoàn thiện, chấm công, kế toán, kho, giặt, gia công, vận chuyển.
+## 📋 Yêu cầuDự án ERP sử dụng **Odoo 19.0 Community Edition** được tùy chỉnh cho ngành **may mặc (Garment Manufacturing)**, bao gồm **22 module chuyên biệt** bao phủ toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm nhập nguyên liệu, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, vận chuyển và dashboard tổng quan.
 
 
 
@@ -14,7 +14,7 @@ Dự án ERP sử dụng **Odoo 19.0 Community Edition** được tùy chỉnh c
 
 - Hoặc: Python 3.10+, PostgreSQL 16+, Node.js 18+
 
-## 📋 Yêu cầuDự án ERP sử dụng **Odoo 19.0 Community Edition** được tùy chỉnh cho ngành **may mặc (Garment Manufacturing)**, bao gồm 14 module chuyên biệt bao phủ toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm xưởng giặt và gia công.
+## 📋 Yêu cầuDự án ERP sử dụng **Odoo 19.0 Community Edition** được tùy chỉnh cho ngành **may mặc (Garment Manufacturing)**, bao gồm **20 module chuyên biệt** bao phủ toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm hoàn thiện, chấm công, kế toán, kho, giặt, gia công, vận chuyển.
 
 ## 🚀 Cài đặt & Khởi động
 
@@ -22,19 +22,19 @@ Dự án ERP sử dụng **Odoo 19.0 Community Edition** được tùy chỉnh c
 
 ### Sử dụng Docker (Khuyến nghị)
 
-- Python 3.10+
+- **Docker & Docker Compose** (Khuyến nghị)
 
 ```bash
 
-cd odoo-garment-project- PostgreSQL 16+
+cd odoo-garment-project- Hoặc: Python 3.10+, PostgreSQL 16+, Node.js 18+
 
 docker compose up -d
 
-- Node.js 18+ (cho Odoo web assets)## 📋 Yêu cầuDự án ERP sử dụng **Odoo 19.0 Community Edition** được tùy chỉnh cho ngành **may mặc (Garment Manufacturing)**, bao gồm 12 module chuyên biệt bao phủ toàn bộ quy trình từ nhận đơn hàng đến xuất hàng.Dự án ERP sử dụng Odoo 19.0 được tùy chỉnh cho ngành may mặc (Garment Manufacturing).
+## 📋 Yêu cầuDự án ERP sử dụng **Odoo 19.0 Community Edition** được tùy chỉnh cho ngành **may mặc (Garment Manufacturing)**, bao gồm 14 module chuyên biệt bao phủ toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm xưởng giặt và gia công.
 
 # Truy cập: http://localhost:8069
 
-# Đăng nhập: admin / admin (database: garment_db)- Hoặc **Docker & Docker Compose** (Khuyến nghị)
+# Đăng nhập: admin / admin (database: garment_db)## 🚀 Cài đặt & Khởi động
 
 ```
 
@@ -42,7 +42,7 @@ docker compose up -d
 
 ### Cài đặt thủ công trên macOS
 
-## 🚀 Cài đặt & Khởi động
+### Sử dụng Docker (Khuyến nghị)
 
 ```bash
 
@@ -50,39 +50,39 @@ brew install postgresql@16- Python 3.10+
 
 brew services start postgresql@16
 
-createuser -s odoo### Sử dụng Docker (Khuyến nghị)
+createuser -s odoo```bash
 
 cd odoo-garment-project/odoo
 
-pip install -r requirements.txt- PostgreSQL 16+
+pip install -r requirements.txtcd odoo-garment-project- PostgreSQL 16+
 
 python odoo-bin -c ../odoo.conf
 
-``````bash
+```docker compose up -d
 
 
 
-## 📦 Custom Modules (22 Module)cd odoo-garment-project- Node.js 18+ (cho Odoo web assets)## 📋 Yêu cầu## 📋 Yêu cầu
+## 📦 Custom Modules (24 Module)- Node.js 18+ (cho Odoo web assets)## 📋 Yêu cầuDự án ERP sử dụng **Odoo 19.0 Community Edition** được tùy chỉnh cho ngành **may mặc (Garment Manufacturing)**, bao gồm 12 module chuyên biệt bao phủ toàn bộ quy trình từ nhận đơn hàng đến xuất hàng.Dự án ERP sử dụng Odoo 19.0 được tùy chỉnh cho ngành may mặc (Garment Manufacturing).
 
 
 
-### Pha 1 — Nền Tảng Cơ Sởdocker compose up -d
+### Pha 1 — Nền Tảng Cơ Sở# Truy cập: http://localhost:8069
 
 
 
-| Module | Mô tả | Tests |- Hoặc **Docker & Docker Compose** (Khuyến nghị)
+| Module | Mô tả | Tests |# Đăng nhập: admin / admin (database: garment_db)- Hoặc **Docker & Docker Compose** (Khuyến nghị)
 
 |--------|--------|:-----:|
 
-| `garment_base` | Module cơ sở: vải, phụ liệu, mẫu may, đơn hàng, ký hiệu giặt ủi | — |# Truy cập: http://localhost:8069
+| `garment_base` | Module cơ sở: vải, phụ liệu, mẫu may, đơn hàng, ký hiệu giặt ủi | — |```
 
 | `garment_production` | Sản xuất: chuyền may, lệnh SX, lệnh cắt, sản lượng, tiến độ | — |
 
-| `garment_quality` | Chất lượng: QC inline/endline/final, AQL, phân loại lỗi | — |# Đăng nhập: admin / admin (database: garment_db)
+| `garment_quality` | Chất lượng: QC inline/endline/final, AQL, phân loại lỗi | — |
 
 
 
-### Pha 2 — Module Chuyên Sâu```
+### Pha 2 — Module Chuyên Sâu### Cài đặt thủ công trên macOS
 
 
 
@@ -90,43 +90,43 @@ python odoo-bin -c ../odoo.conf
 
 |--------|--------|:-----:|
 
-| `garment_costing` | Tính giá thành FOB/CM/CMT, BOM integration | 8 ✅ |### Cài đặt thủ công trên macOS
+| `garment_costing` | Tính giá thành FOB/CM/CMT, BOM integration | 8 ✅ |```bash
 
 | `garment_sample` | Quản lý mẫu may: Proto, Fit, PP, TOP, revision | 12 ✅ |
 
-| `garment_cutting` | Cắt nâng cao: marker, trải vải, bó hàng | 9 ✅ |- Python 3.10+- Python 3.10+
+| `garment_cutting` | Cắt nâng cao: marker, trải vải, bó hàng | 9 ✅ |brew install postgresql@16- Python 3.10+
 
 | `garment_packing` | Đóng gói: packing list, carton, shipping | 10 ✅ |
 
-```bash
+brew services start postgresql@16
 
 ### Pha 3 — Báo Cáo & Phân Tích
 
-brew install postgresql@16### Cách 1: Sử dụng Docker (Khuyến nghị)
+createuser -s odoo### Sử dụng Docker (Khuyến nghị)
 
 | Module | Mô tả | Tests |
 
-|--------|--------|:-----:|brew services start postgresql@16
+|--------|--------|:-----:|cd odoo-garment-project/odoo
 
 | `garment_report` | Hiệu suất chuyền (SQL view), phân tích lỗi, wizard báo cáo | — |
 
-createuser -s odoo- PostgreSQL 16+- PostgreSQL 15+
+pip install -r requirements.txt- PostgreSQL 16+
 
 ### Pha 4 — Tối Ưu & Nâng Cao
 
-cd odoo-garment-project/odoo
+python odoo-bin -c ../odoo.conf
 
 | Module | Mô tả | Tests |
 
-|--------|--------|:-----:|pip install -r requirements.txt```bash
+|--------|--------|:-----:|``````bash
 
 | `garment_planning` | Kế hoạch SX: phân chuyền, auto-schedule | 8 ✅ |
 
-| `garment_maintenance` | Bảo trì máy may: lịch định kỳ, sửa chữa, downtime | 11 ✅ |python odoo-bin -c ../odoo.conf
+| `garment_maintenance` | Bảo trì máy may: lịch định kỳ, sửa chữa, downtime | 11 ✅ |
 
 | `garment_payroll` | Lương khoán: piece rate, sản lượng, BHXH/BHYT, thưởng | 9 ✅ |
 
-| `garment_compliance` | Tuân thủ: audit BSCI/WRAP/SA8000, CAP | 14 ✅ |```# Clone project- Node.js 18+ (cho Odoo web assets)- Node.js 18+ (cho Odoo web assets)
+| `garment_compliance` | Tuân thủ: audit BSCI/WRAP/SA8000, CAP | 14 ✅ |## 📦 Custom Modules (22 Module)cd odoo-garment-project- Node.js 18+ (cho Odoo web assets)## 📋 Yêu cầu## 📋 Yêu cầu
 
 
 
@@ -134,7 +134,7 @@ cd odoo-garment-project/odoo
 
 
 
-| Module | Mô tả | Tests |## 📦 Custom Modules (20 Module)cd odoo-garment-project
+| Module | Mô tả | Tests |### Pha 1 — Nền Tảng Cơ Sởdocker compose up -d
 
 |--------|--------|:-----:|
 
@@ -142,31 +142,31 @@ cd odoo-garment-project/odoo
 
 | `garment_subcontract` | Gia công: gửi/nhận gia công, quản lý đối tác | 18 ✅ |
 
-### Pha 1 — Nền Tảng Cơ Sở- Hoặc **Docker & Docker Compose** (Khuyến nghị)- Hoặc Docker & Docker Compose
+| Module | Mô tả | Tests |- Hoặc **Docker & Docker Compose** (Khuyến nghị)
 
 ### Pha 6 — Hoàn Thiện Hệ Thống
 
-
+|--------|--------|:-----:|
 
 | Module | Mô tả | Tests |
 
-|--------|--------|:-----:|| Module | Mô tả | Tests |# Khởi động
+|--------|--------|:-----:|| `garment_base` | Module cơ sở: vải, phụ liệu, mẫu may, đơn hàng, ký hiệu giặt ủi | — |# Truy cập: http://localhost:8069
 
 | `garment_finishing` | Tổ hoàn thiện: cắt chỉ, ủi, gấp, đóng tag, QC | 7 ✅ |
 
-| `garment_hr` | Nhân sự: chấm công, phòng ban, tay nghề, nghỉ phép | 16 ✅ ||--------|--------|:-----:|
+| `garment_hr` | Nhân sự: chấm công, phòng ban, tay nghề, nghỉ phép | 16 ✅ || `garment_production` | Sản xuất: chuyền may, lệnh SX, lệnh cắt, sản lượng, tiến độ | — |
 
 | `garment_accounting` | Kế toán VN: thuế GTGT, hóa đơn, công nợ, BHXH/BHYT | 9 ✅ |
 
-| `garment_warehouse` | Kho: NPL, bán thành phẩm, thành phẩm, xuất/nhập/chuyển | 15 ✅ || `garment_base` | Module cơ sở: vải, phụ liệu, mẫu may, đơn hàng, ký hiệu giặt ủi | — |docker compose up -d
+| `garment_warehouse` | Kho: NPL, bán thành phẩm, thành phẩm, xuất/nhập/chuyển | 15 ✅ || `garment_quality` | Chất lượng: QC inline/endline/final, AQL, phân loại lỗi | — |# Đăng nhập: admin / admin (database: garment_db)
 
 | `garment_delivery` | Giao hàng: phương tiện, tài xế, đơn giao hàng | 11 ✅ |
 
-| `garment_production` | Sản xuất: chuyền may, lệnh SX, lệnh cắt, sản lượng, tiến độ | — |
+
 
 ### Pha 7 — Nhập NL & Dashboard
 
-| `garment_quality` | Chất lượng: QC inline/endline/final, AQL, phân loại lỗi | — |
+### Pha 2 — Module Chuyên Sâu```
 
 | Module | Mô tả | Tests |
 
@@ -174,49 +174,268 @@ cd odoo-garment-project/odoo
 
 | `garment_material` | Nhập NL mua hàng, NL khách gửi (CMT), phân bổ NL cho SX | 16 ✅ |
 
-| `garment_dashboard` | Dashboard KPI, tổng quan đơn hàng, tiến độ SX, cảnh báo | 10 ✅ |### Pha 2 — Module Chuyên Sâu# Truy cập: http://localhost:8069## 🚀 Cài đặt & Khởi động## 🚀 Cài đặt
+| `garment_dashboard` | Dashboard KPI, tổng quan đơn hàng, tiến độ SX, cảnh báo | 10 ✅ || Module | Mô tả | Tests |## 🚀 Cài đặt & Khởi động
 
 
+
+### Pha 8 — CRM & Quản Lý Tem/Pallet|--------|--------|:-----:|
+
+
+
+| Module | Mô tả | Tests || `garment_costing` | Tính giá thành FOB/CM/CMT, BOM integration | 8 ✅ |### Cài đặt thủ công trên macOS
+
+|--------|--------|:-----:|
+
+| `garment_crm` | CRM: lead/opportunity, phản hồi khách hàng, hồ sơ buyer | 24 ✅ || `garment_sample` | Quản lý mẫu may: Proto, Fit, PP, TOP, revision | 12 ✅ |
+
+| `garment_label` | In tem QR code, quản lý pallet, đóng tách thùng/pallet | 33 ✅ |
+
+| `garment_cutting` | Cắt nâng cao: marker, trải vải, bó hàng | 9 ✅ |- Python 3.10+- Python 3.10+
 
 ### Module Phụ Trợ
 
+| `garment_packing` | Đóng gói: packing list, carton, shipping | 10 ✅ |
 
+| Module | Mô tả |
 
-| Module | Mô tả || Module | Mô tả | Tests |# Đăng nhập: admin / admin
+|--------|--------|```bash
 
-|--------|--------|
+| `garment_demo` | Dữ liệu mẫu cho toàn bộ hệ thống |
 
-| `garment_demo` | Dữ liệu mẫu cho toàn bộ hệ thống ||--------|--------|:-----:|
+### Pha 3 — Báo Cáo & Phân Tích
 
+> **Tổng cộng: 216 tests ✅ — 0 failed, 0 errors — 19 module có tests**
 
+brew install postgresql@16### Cách 1: Sử dụng Docker (Khuyến nghị)
 
-> **Tổng cộng: 139 post-tests ✅ — 0 failed, 0 errors — 17 module có tests**| `garment_costing` | Tính giá thành FOB/CM/CMT, BOM integration | 8 ✅ |```
+## 🔧 Cấu hình sau cài đặt
 
+| Module | Mô tả | Tests |
 
+1. Truy cập `http://localhost:8069`
 
-## 🔧 Cấu hình sau cài đặt| `garment_sample` | Quản lý mẫu may: Proto, Fit, PP, TOP, revision | 12 ✅ |
+2. Đăng nhập: `admin` / `admin` (database: `garment_db`)|--------|--------|:-----:|brew services start postgresql@16
 
+3. Vào **Apps** → Tìm "Garment" → Cài đặt các module
 
+4. Vào **Settings** → Cài ngôn ngữ Tiếng Việt (nếu cần)| `garment_report` | Hiệu suất chuyền (SQL view), phân tích lỗi, wizard báo cáo | — |
 
-1. Truy cập `http://localhost:8069`| `garment_cutting` | Cắt nâng cao: marker, trải vải, bó hàng | 9 ✅ |
+5. Cấu hình thông tin công ty
 
-2. Đăng nhập: `admin` / `admin` (database: `garment_db`)
+createuser -s odoo- PostgreSQL 16+- PostgreSQL 15+
 
-3. Vào **Apps** → Tìm "Garment" → Cài đặt các module| `garment_packing` | Đóng gói: packing list, carton, shipping | 10 ✅ |
+## 📁 Cấu trúc thư mục
 
-4. Vào **Settings** → Cài ngôn ngữ Tiếng Việt (nếu cần)
-
-5. Cấu hình thông tin công ty### Cách 2: Cài đặt thủ công trên macOS### Cách 1: Sử dụng Docker (Khuyến nghị)### Cách 1: Sử dụng Docker (Khuyến nghị)
-
-
-
-## 📁 Cấu trúc thư mục### Pha 3 — Báo Cáo & Phân Tích
-
-
+### Pha 4 — Tối Ưu & Nâng Cao
 
 ```
 
-odoo-garment-project/
+odoo-garment-project/cd odoo-garment-project/odoo
+
+├── odoo/                          # Odoo 19.0 source code
+
+├── custom-addons/                 # 24 module tùy chỉnh| Module | Mô tả | Tests |
+
+│   ├── garment_base/              # Vải, phụ liệu, style, đơn hàng
+
+│   ├── garment_production/        # Chuyền may, lệnh SX, sản lượng|--------|--------|:-----:|pip install -r requirements.txt```bash
+
+│   ├── garment_quality/           # QC, loại lỗi, AQL
+
+│   ├── garment_costing/           # Tính giá thành| `garment_planning` | Kế hoạch SX: phân chuyền, auto-schedule | 8 ✅ |
+
+│   ├── garment_sample/            # Quản lý mẫu
+
+│   ├── garment_cutting/           # Cắt nâng cao| `garment_maintenance` | Bảo trì máy may: lịch định kỳ, sửa chữa, downtime | 11 ✅ |python odoo-bin -c ../odoo.conf
+
+│   ├── garment_packing/           # Đóng gói & xuất hàng
+
+│   ├── garment_report/            # Báo cáo, SQL views| `garment_payroll` | Lương khoán: piece rate, sản lượng, BHXH/BHYT, thưởng | 9 ✅ |
+
+│   ├── garment_planning/          # Kế hoạch SX
+
+│   ├── garment_maintenance/       # Bảo trì máy| `garment_compliance` | Tuân thủ: audit BSCI/WRAP/SA8000, CAP | 14 ✅ |```# Clone project- Node.js 18+ (cho Odoo web assets)- Node.js 18+ (cho Odoo web assets)
+
+│   ├── garment_payroll/           # Lương khoán
+
+│   ├── garment_compliance/        # Tuân thủ
+
+│   ├── garment_washing/           # Xưởng giặt
+
+│   ├── garment_subcontract/       # Gia công### Pha 5 — Xưởng Giặt & Gia Công
+
+│   ├── garment_finishing/         # Hoàn thiện
+
+│   ├── garment_hr/                # Nhân sự & chấm công
+
+│   ├── garment_accounting/        # Kế toán VN
+
+│   ├── garment_warehouse/         # Quản lý kho| Module | Mô tả | Tests |## 📦 Custom Modules (20 Module)cd odoo-garment-project
+
+│   ├── garment_delivery/          # Giao hàng
+
+│   ├── garment_material/          # Nhập nguyên liệu|--------|--------|:-----:|
+
+│   ├── garment_dashboard/         # Dashboard tổng quan
+
+│   ├── garment_crm/               # CRM khách hàng| `garment_washing` | Xưởng giặt: hóa chất, công thức, đơn giặt | 24 ✅ |
+
+│   ├── garment_label/             # In tem & quản lý pallet
+
+│   └── garment_demo/              # Dữ liệu mẫu| `garment_subcontract` | Gia công: gửi/nhận gia công, quản lý đối tác | 18 ✅ |
+
+├── docker-compose.yml
+
+├── odoo.conf### Pha 1 — Nền Tảng Cơ Sở- Hoặc **Docker & Docker Compose** (Khuyến nghị)- Hoặc Docker & Docker Compose
+
+├── docs/
+
+│   ├── USER_GUIDE.md              # Hướng dẫn sử dụng (~1950 dòng)### Pha 6 — Hoàn Thiện Hệ Thống
+
+│   ├── QUICK_START.md             # Hướng dẫn nhanh
+
+│   └── images/                    # 100 screenshots
+
+├── PROJECT_PLAN.md
+
+└── README.md| Module | Mô tả | Tests |
+
+```
+
+|--------|--------|:-----:|| Module | Mô tả | Tests |# Khởi động
+
+## 🔄 Quy trình Nghiệp Vụ Chính
+
+| `garment_finishing` | Tổ hoàn thiện: cắt chỉ, ủi, gấp, đóng tag, QC | 7 ✅ |
+
+```
+
+CRM: Tiếp Nhận Lead → Đánh Giá → Chuyển Cơ Hội → Tạo Đơn Hàng| `garment_hr` | Nhân sự: chấm công, phòng ban, tay nghề, nghỉ phép | 16 ✅ ||--------|--------|:-----:|
+
+    ↓
+
+Nhận PO Khách Hàng → Làm Mẫu (Sample) → Tính Giá (Costing)| `garment_accounting` | Kế toán VN: thuế GTGT, hóa đơn, công nợ, BHXH/BHYT | 9 ✅ |
+
+    ↓
+
+Xác Nhận Đơn Hàng → Lên Kế Hoạch SX (Planning)| `garment_warehouse` | Kho: NPL, bán thành phẩm, thành phẩm, xuất/nhập/chuyển | 15 ✅ || `garment_base` | Module cơ sở: vải, phụ liệu, mẫu may, đơn hàng, ký hiệu giặt ủi | — |docker compose up -d
+
+    ↓
+
+Nhập Nguyên Liệu (Mua / Khách Gửi CMT) → Kiểm Tra QC NL → Phân Bổ NL| `garment_delivery` | Giao hàng: phương tiện, tài xế, đơn giao hàng | 11 ✅ |
+
+    ↓
+
+Lên Sơ Đồ Cắt (Marker) → Trải Vải → Cắt → Đánh Số Bó| `garment_production` | Sản xuất: chuyền may, lệnh SX, lệnh cắt, sản lượng, tiến độ | — |
+
+    ↓
+
+Phân Chuyền May → Sản Xuất → QC Inline → QC Endline### Pha 7 — Nhập NL & Dashboard
+
+    ↓                           ↓
+
+    ↓                     Gửi Gia Công (nếu cần)| `garment_quality` | Chất lượng: QC inline/endline/final, AQL, phân loại lỗi | — |
+
+    ↓                           ↓
+
+Hoàn Thiện (Cắt Chỉ, Ủi) → Xưởng Giặt → QC Final → AQL Inspection| Module | Mô tả | Tests |
+
+    ↓
+
+In Tem/QR Code → Đóng Gói (Packing List) → Đóng Thùng/Pallet|--------|--------|:-----:|
+
+    ↓
+
+Giao Hàng (Xe Tải / Container) → Xuất Hóa Đơn → Hoàn Thành| `garment_material` | Nhập NL mua hàng, NL khách gửi (CMT), phân bổ NL cho SX | 16 ✅ |
+
+    ↓
+
+Dashboard: Theo dõi KPI, tiến độ, cảnh báo trễ hạn| `garment_dashboard` | Dashboard KPI, tổng quan đơn hàng, tiến độ SX, cảnh báo | 10 ✅ |### Pha 2 — Module Chuyên Sâu# Truy cập: http://localhost:8069## 🚀 Cài đặt & Khởi động## 🚀 Cài đặt
+
+CRM: Thu thập phản hồi khách hàng → Đánh giá mức hài lòng
+
+```
+
+
+
+## 📊 Tính năng nổi bật### Module Phụ Trợ
+
+
+
+| Tính năng | Chi tiết |
+
+|-----------|----------|
+
+| **CRM khách hàng** | Lead/Opportunity pipeline, phản hồi/khiếu nại, hồ sơ buyer VIP || Module | Mô tả || Module | Mô tả | Tests |# Đăng nhập: admin / admin
+
+| **Quản lý vải & phụ liệu** | Theo loại, thành phần, khổ vải, định lượng, nhà cung cấp |
+
+| **Mẫu may / Style** | Tech pack, rập, SAM, ký hiệu giặt ủi, size & màu ||--------|--------|
+
+| **Đơn hàng may** | FOB/CIF, PO khách hàng, size-color matrix, tiến độ |
+
+| **Nhập nguyên liệu** | Mua hàng, khách gửi CMT, QC NL, phân bổ cho SX || `garment_demo` | Dữ liệu mẫu cho toàn bộ hệ thống ||--------|--------|:-----:|
+
+| **Kế hoạch sản xuất** | Phân chuyền tự động, năng suất/ngày, ước tính kết thúc |
+
+| **Sản xuất** | Chuyền may, lệnh SX, sản lượng ngày, hiệu suất |
+
+| **Cắt nâng cao** | Marker, trải vải, bó hàng, hao hụt |
+
+| **Kiểm tra chất lượng** | QC inline/endline/final, AQL, phân loại lỗi |> **Tổng cộng: 139 post-tests ✅ — 0 failed, 0 errors — 17 module có tests**| `garment_costing` | Tính giá thành FOB/CM/CMT, BOM integration | 8 ✅ |```
+
+| **Tính giá thành** | FOB/CM/CMT, chi phí vải/phụ liệu/nhân công/profit |
+
+| **Đóng gói** | Packing list, thùng carton, CBM, B/L |
+
+| **In tem / QR code** | Tem sản phẩm, tem thùng, tem pallet, quét QR xác minh |
+
+| **Quản lý pallet/thùng** | Đóng/tách pallet, gộp/tách thùng, theo dõi vị trí |## 🔧 Cấu hình sau cài đặt| `garment_sample` | Quản lý mẫu may: Proto, Fit, PP, TOP, revision | 12 ✅ |
+
+| **Bảo trì máy** | 10 loại máy, lịch bảo trì, sửa chữa, downtime |
+
+| **Nhân sự & chấm công** | Phòng ban/tổ, chấm công ngày, nghỉ phép, tay nghề |
+
+| **Lương khoán** | Đơn giá, sản lượng cá nhân, OT, BHXH/BHYT |
+
+| **Kế toán VN** | Hóa đơn GTGT, thuế 10%, công nợ KH/NCC |1. Truy cập `http://localhost:8069`| `garment_cutting` | Cắt nâng cao: marker, trải vải, bó hàng | 9 ✅ |
+
+| **Quản lý kho** | Kho NPL/BTP/TP, phiếu nhập/xuất/chuyển kho |
+
+| **Tuân thủ** | Audit BSCI/WRAP/SA8000/ISO, CAP, xếp hạng |2. Đăng nhập: `admin` / `admin` (database: `garment_db`)
+
+| **Xưởng giặt** | Hóa chất, công thức giặt, đơn giặt, QC giặt |
+
+| **Gia công** | Gửi/nhận gia công, theo dõi tiến độ, đánh giá đối tác |3. Vào **Apps** → Tìm "Garment" → Cài đặt các module| `garment_packing` | Đóng gói: packing list, carton, shipping | 10 ✅ |
+
+| **Giao hàng** | Phương tiện, tài xế, đơn giao hàng, theo dõi trạng thái |
+
+| **Dashboard** | KPI tổng quan, tiến độ SX, đơn trễ hạn, tỷ lệ lỗi |4. Vào **Settings** → Cài ngôn ngữ Tiếng Việt (nếu cần)
+
+
+
+## 📖 Tài liệu5. Cấu hình thông tin công ty### Cách 2: Cài đặt thủ công trên macOS### Cách 1: Sử dụng Docker (Khuyến nghị)### Cách 1: Sử dụng Docker (Khuyến nghị)
+
+
+
+- 📖 [Hướng dẫn sử dụng chi tiết](./docs/USER_GUIDE.md) — ~1950 dòng, 100 screenshots
+
+- 🚀 [Hướng dẫn nhanh](./docs/QUICK_START.md) — tóm tắt các thao tác chính
+
+- 📋 [Kế hoạch triển khai](./PROJECT_PLAN.md)## 📁 Cấu trúc thư mục### Pha 3 — Báo Cáo & Phân Tích
+
+- 📚 [Odoo 19 Documentation](https://www.odoo.com/documentation/19.0/)
+
+
+
+## 📄 License
+
+```
+
+- Odoo Community: LGPL-3.0
+
+- Custom Modules: LGPL-3.0odoo-garment-project/
+
 
 ├── odoo/                          # Odoo 19.0 source code| Module | Mô tả | Tests |
 

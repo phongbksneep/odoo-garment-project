@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Label sequences -->
+    <record id="seq_label_product" model="ir.sequence">
+        <field name="name">Garment Label - Product</field>
+        <field name="code">garment.label.product</field>
+        <field name="prefix">LP-%(year)s-</field>
+        <field name="padding">5</field>
+    </record>
+    <record id="seq_label_carton" model="ir.sequence">
+        <field name="name">Garment Label - Carton</field>
+        <field name="code">garment.label.carton</field>
+        <field name="prefix">LC-%(year)s-</field>
+        <field name="padding">5</field>
+    </record>
+    <record id="seq_label_pallet" model="ir.sequence">
+        <field name="name">Garment Label - Pallet</field>
+        <field name="code">garment.label.pallet</field>
+        <field name="prefix">LT-%(year)s-</field>
+        <field name="padding">5</field>
+    </record>
+    <record id="seq_label_location" model="ir.sequence">
+        <field name="name">Garment Label - Location</field>
+        <field name="code">garment.label.location</field>
+        <field name="prefix">LL-%(year)s-</field>
+        <field name="padding">5</field>
+    </record>
+
+    <!-- Pallet sequence -->
+    <record id="seq_pallet" model="ir.sequence">
+        <field name="name">Garment Pallet</field>
+        <field name="code">garment.pallet</field>
+        <field name="prefix">PLT-%(year)s-</field>
+        <field name="padding">4</field>
+    </record>
+
+    <!-- Carton Box sequence -->
+    <record id="seq_carton_box" model="ir.sequence">
+        <field name="name">Garment Carton Box</field>
+        <field name="code">garment.carton.box</field>
+        <field name="prefix">CTN-%(year)s-</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

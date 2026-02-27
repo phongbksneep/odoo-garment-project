@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================ -->
+    <!-- CRM Feedback / Complaint Views                                -->
+    <!-- ============================================================ -->
+
+    <!-- TREE VIEW -->
+    <record id="view_crm_feedback_list" model="ir.ui.view">
+        <field name="name">garment.crm.feedback.list</field>
+        <field name="model">garment.crm.feedback</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="severity == 'critical'"
+                  decoration-warning="severity == 'high'"
+                  decoration-success="state == 'resolved'">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="feedback_type" widget="badge"/>
+                <field name="partner_id"/>
+                <field name="garment_order_id"/>
+                <field name="category"/>
+                <field name="severity" widget="badge"/>
+                <field name="assigned_to"/>
+                <field name="date"/>
+                <field name="resolution_date"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FORM VIEW -->
+    <record id="view_crm_feedback_form" model="ir.ui.view">
+        <field name="name">garment.crm.feedback.form</field>
+        <field name="model">garment.crm.feedback</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_process" type="object"
+                            string="Bắt Đầu Xử Lý"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_resolve" type="object"
+                            string="✓ Đã Giải Quyết"
+                            class="btn-success"
+                            invisible="state != 'processing'"/>
+                    <button name="action_close" type="object"
+                            string="Đóng"
+                            invisible="state != 'resolved'"/>
+                    <button name="action_reopen" type="object"
+                            string="Mở Lại"
+                            invisible="state not in ('resolved', 'closed')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,processing,resolved,closed"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Nghiêm Trọng" bg_color="text-bg-danger"
+                            invisible="severity != 'critical'"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="code" readonly="1"/>
+                        </h1>
+                        <h2>
+                            <field name="name" placeholder="Tiêu đề phản hồi..."/>
+                        </h2>
+                    </div>
+                    <group>
+                        <group string="Thông Tin Phản Hồi">
+                            <field name="feedback_type"/>
+                            <field name="partner_id"/>
+                            <field name="garment_order_id"/>
+                            <field name="date"/>
+                            <field name="category"/>
+                            <field name="severity"/>
+                        </group>
+                        <group string="Xử Lý">
+                            <field name="assigned_to"/>
+                            <field name="resolution_date"/>
+                            <field name="follow_up_date"/>
+                            <field name="satisfaction_rating"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Nội Dung Chi Tiết">
+                            <field name="description"/>
+                        </page>
+                        <page string="Biện Pháp Xử Lý">
+                            <field name="resolution"/>
+                        </page>
+                        <page string="Theo Dõi">
+                            <group>
+                                <field name="follow_up_date"/>
+                                <field name="follow_up_notes"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- SEARCH VIEW -->
+    <record id="view_crm_feedback_search" model="ir.ui.view">
+        <field name="name">garment.crm.feedback.search</field>
+        <field name="model">garment.crm.feedback</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="partner_id"/>
+                <field name="assigned_to"/>
+                <separator/>
+                <filter name="filter_complaint" string="Khiếu Nại"
+                        domain="[('feedback_type', '=', 'complaint')]"/>
+                <filter name="filter_critical" string="Nghiêm Trọng"
+                        domain="[('severity', '=', 'critical')]"/>
+                <filter name="filter_open" string="Đang Mở"
+                        domain="[('state', 'in', ('draft', 'processing'))]"/>
+                <group>
+                    <filter name="group_type" string="Loại"
+                            context="{'group_by': 'feedback_type'}"/>
+                    <filter name="group_category" string="Danh Mục"
+                            context="{'group_by': 'category'}"/>
+                    <filter name="group_severity" string="Mức Độ"
+                            context="{'group_by': 'severity'}"/>
+                    <filter name="group_state" string="Trạng Thái"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- PIVOT -->
+    <record id="view_crm_feedback_pivot" model="ir.ui.view">
+        <field name="name">garment.crm.feedback.pivot</field>
+        <field name="model">garment.crm.feedback</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="category" type="row"/>
+                <field name="severity" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- GRAPH -->
+    <record id="view_crm_feedback_graph" model="ir.ui.view">
+        <field name="name">garment.crm.feedback.graph</field>
+        <field name="model">garment.crm.feedback</field>
+        <field name="arch" type="xml">
+            <graph type="bar">
+                <field name="category"/>
+                <field name="feedback_type" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- ACTIONS -->
+    <record id="action_crm_feedback_all" model="ir.actions.act_window">
+        <field name="name">Tất Cả Phản Hồi</field>
+        <field name="res_model">garment.crm.feedback</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="search_view_id" ref="view_crm_feedback_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Chưa có phản hồi nào!
+            </p>
+        </field>
+    </record>
+
+    <record id="action_crm_complaint" model="ir.actions.act_window">
+        <field name="name">Khiếu Nại</field>
+        <field name="res_model">garment.crm.feedback</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="domain">[('feedback_type', '=', 'complaint')]</field>
+        <field name="context">{'default_feedback_type': 'complaint'}</field>
+    </record>
+
+    <record id="action_crm_feedback_open" model="ir.actions.act_window">
+        <field name="name">Phản Hồi Đang Mở</field>
+        <field name="res_model">garment.crm.feedback</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state', 'in', ('draft', 'processing'))]</field>
+    </record>
+</odoo>

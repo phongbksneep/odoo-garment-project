@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================ -->
+    <!-- CRM Lead / Opportunity Views                                  -->
+    <!-- ============================================================ -->
+
+    <!-- TREE VIEW -->
+    <record id="view_crm_lead_list" model="ir.ui.view">
+        <field name="name">garment.crm.lead.list</field>
+        <field name="model">garment.crm.lead</field>
+        <field name="arch" type="xml">
+            <list decoration-success="stage == 'won'"
+                  decoration-danger="stage == 'lost'"
+                  decoration-info="lead_type == 'opportunity'">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="lead_type" widget="badge"/>
+                <field name="partner_id"/>
+                <field name="contact_name"/>
+                <field name="product_category"/>
+                <field name="expected_qty"/>
+                <field name="expected_revenue" sum="Total"/>
+                <field name="probability" widget="progressbar"/>
+                <field name="stage" widget="badge"/>
+                <field name="salesperson_id"/>
+                <field name="priority" widget="priority"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FORM VIEW -->
+    <record id="view_crm_lead_form" model="ir.ui.view">
+        <field name="name">garment.crm.lead.form</field>
+        <field name="model">garment.crm.lead</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_convert_opportunity" type="object"
+                            string="→ Chuyển Cơ Hội"
+                            class="btn-primary"
+                            invisible="lead_type != 'lead' or stage == 'lost'"/>
+                    <button name="action_qualify" type="object"
+                            string="Đánh Giá"
+                            invisible="stage != 'new'"/>
+                    <button name="action_propose" type="object"
+                            string="Gửi Báo Giá"
+                            invisible="stage != 'qualified'"/>
+                    <button name="action_negotiate" type="object"
+                            string="Thương Lượng"
+                            invisible="stage != 'proposal'"/>
+                    <button name="action_won" type="object"
+                            string="✓ Thành Công"
+                            class="btn-success"
+                            invisible="stage not in ('proposal', 'negotiation')"/>
+                    <button name="action_lost" type="object"
+                            string="✗ Thất Bại"
+                            class="btn-danger"
+                            invisible="stage in ('won', 'lost', 'new')"/>
+                    <button name="action_create_order" type="object"
+                            string="📋 Tạo Đơn Hàng"
+                            class="btn-primary"
+                            invisible="stage != 'won' or garment_order_id"/>
+                    <button name="action_reset" type="object"
+                            string="↩ Quay Lại"
+                            invisible="stage not in ('lost',)"/>
+                    <field name="stage" widget="statusbar"
+                           statusbar_visible="new,qualified,proposal,negotiation,won"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_create_order" type="object"
+                                class="oe_stat_button" icon="fa-file-text-o"
+                                invisible="not garment_order_id">
+                            <field name="garment_order_id" widget="statinfo" string="Đơn Hàng"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Thất Bại" bg_color="text-bg-danger"
+                            invisible="stage != 'lost'"/>
+                    <widget name="web_ribbon" title="Thành Công" bg_color="text-bg-success"
+                            invisible="stage != 'won'"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="code" readonly="1"/>
+                        </h1>
+                        <h2>
+                            <field name="name" placeholder="Tiêu đề lead / cơ hội..."/>
+                        </h2>
+                    </div>
+                    <group>
+                        <group string="Thông Tin Chung">
+                            <field name="lead_type"/>
+                            <field name="partner_id"/>
+                            <field name="company_name"/>
+                            <field name="contact_name"/>
+                            <field name="contact_email" widget="email"/>
+                            <field name="contact_phone" widget="phone"/>
+                            <field name="country_id"/>
+                        </group>
+                        <group string="Thông Tin Kinh Doanh">
+                            <field name="product_category"/>
+                            <field name="expected_qty"/>
+                            <field name="expected_revenue"/>
+                            <field name="currency_id"/>
+                            <field name="expected_close_date"/>
+                            <field name="probability" widget="progressbar"/>
+                            <field name="priority" widget="priority"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Phân Bổ">
+                            <field name="source"/>
+                            <field name="salesperson_id"/>
+                            <field name="team"/>
+                        </group>
+                        <group string="Kết Quả" invisible="stage != 'lost'">
+                            <field name="lost_reason"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Ghi Chú">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- SEARCH VIEW -->
+    <record id="view_crm_lead_search" model="ir.ui.view">
+        <field name="name">garment.crm.lead.search</field>
+        <field name="model">garment.crm.lead</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="partner_id"/>
+                <field name="contact_name"/>
+                <field name="salesperson_id"/>
+                <separator/>
+                <filter name="filter_lead" string="Lead"
+                        domain="[('lead_type', '=', 'lead')]"/>
+                <filter name="filter_opportunity" string="Cơ Hội"
+                        domain="[('lead_type', '=', 'opportunity')]"/>
+                <separator/>
+                <filter name="filter_new" string="Mới"
+                        domain="[('stage', '=', 'new')]"/>
+                <filter name="filter_won" string="Thành Công"
+                        domain="[('stage', '=', 'won')]"/>
+                <filter name="filter_lost" string="Thất Bại"
+                        domain="[('stage', '=', 'lost')]"/>
+                <group>
+                    <filter name="group_stage" string="Giai Đoạn"
+                            context="{'group_by': 'stage'}"/>
+                    <filter name="group_partner" string="Khách Hàng"
+                            context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_source" string="Nguồn"
+                            context="{'group_by': 'source'}"/>
+                    <filter name="group_salesperson" string="Nhân Viên"
+                            context="{'group_by': 'salesperson_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- PIVOT VIEW -->
+    <record id="view_crm_lead_pivot" model="ir.ui.view">
+        <field name="name">garment.crm.lead.pivot</field>
+        <field name="model">garment.crm.lead</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="stage" type="col"/>
+                <field name="source" type="row"/>
+                <field name="expected_revenue" type="measure"/>
+                <field name="expected_qty" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- GRAPH VIEW -->
+    <record id="view_crm_lead_graph" model="ir.ui.view">
+        <field name="name">garment.crm.lead.graph</field>
+        <field name="model">garment.crm.lead</field>
+        <field name="arch" type="xml">
+            <graph type="bar">
+                <field name="stage"/>
+                <field name="expected_revenue" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- ACTIONS                                                       -->
+    <!-- ============================================================ -->
+
+    <!-- All leads -->
+    <record id="action_crm_lead_all" model="ir.actions.act_window">
+        <field name="name">Tất Cả Lead / Cơ Hội</field>
+        <field name="res_model">garment.crm.lead</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="search_view_id" ref="view_crm_lead_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo Lead / Cơ Hội đầu tiên!
+            </p>
+        </field>
+    </record>
+
+    <!-- Leads only -->
+    <record id="action_crm_lead_leads" model="ir.actions.act_window">
+        <field name="name">Lead (Đầu Mối)</field>
+        <field name="res_model">garment.crm.lead</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="domain">[('lead_type', '=', 'lead')]</field>
+        <field name="context">{'default_lead_type': 'lead'}</field>
+    </record>
+
+    <!-- Opportunities only -->
+    <record id="action_crm_lead_opportunities" model="ir.actions.act_window">
+        <field name="name">Cơ Hội Kinh Doanh</field>
+        <field name="res_model">garment.crm.lead</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="domain">[('lead_type', '=', 'opportunity')]</field>
+        <field name="context">{'default_lead_type': 'opportunity'}</field>
+    </record>
+</odoo>

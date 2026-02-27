@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================ -->
+    <!-- Carton Box Management Views                                   -->
+    <!-- ============================================================ -->
+
+    <!-- TREE VIEW -->
+    <record id="view_carton_box_list" model="ir.ui.view">
+        <field name="name">garment.carton.box.list</field>
+        <field name="model">garment.carton.box</field>
+        <field name="arch" type="xml">
+            <list decoration-success="state == 'shipped'"
+                  decoration-info="state == 'on_pallet'">
+                <field name="name"/>
+                <field name="garment_order_id"/>
+                <field name="style_code"/>
+                <field name="color"/>
+                <field name="size"/>
+                <field name="quantity" sum="Total"/>
+                <field name="gross_weight" sum="Total"/>
+                <field name="cbm" sum="Total"/>
+                <field name="pallet_id"/>
+                <field name="location"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FORM VIEW -->
+    <record id="view_carton_box_form" model="ir.ui.view">
+        <field name="name">garment.carton.box.form</field>
+        <field name="model">garment.carton.box</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_pack" type="object"
+                            string="Đóng Thùng"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_put_on_pallet" type="object"
+                            string="📦 Xếp Lên Pallet"
+                            invisible="state != 'packed'"/>
+                    <button name="action_ship" type="object"
+                            string="Xuất Hàng"
+                            invisible="state not in ('packed', 'on_pallet')"/>
+                    <button name="action_split_carton" type="object"
+                            string="✂ Tách Thùng"
+                            invisible="state not in ('draft', 'packed')"/>
+                    <button name="action_generate_label" type="object"
+                            string="🏷 Tạo Tem QR"
+                            invisible="qr_label_id or state == 'cancelled'"/>
+                    <button name="action_cancel" type="object"
+                            string="Hủy"
+                            invisible="state in ('shipped', 'cancelled')"/>
+                    <button name="action_reset_draft" type="object"
+                            string="↩ Quay Lại"
+                            invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,packed,on_pallet,shipped"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-qrcode"
+                                type="object" name="action_generate_label"
+                                invisible="not qr_label_id">
+                            <field name="qr_label_id" widget="statinfo" string="Tem QR"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Nội Dung">
+                            <field name="garment_order_id"/>
+                            <field name="packing_list_id"/>
+                            <field name="style_code"/>
+                            <field name="color"/>
+                            <field name="size"/>
+                            <field name="quantity"/>
+                        </group>
+                        <group string="Kích Thước &amp; Trọng Lượng">
+                            <field name="length_cm"/>
+                            <field name="width_cm"/>
+                            <field name="height_cm"/>
+                            <field name="gross_weight"/>
+                            <field name="net_weight"/>
+                            <field name="cbm"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Pallet &amp; Vị Trí">
+                            <field name="pallet_id"/>
+                            <field name="location"/>
+                        </group>
+                        <group string="Ghi Chú">
+                            <field name="notes"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- SEARCH VIEW -->
+    <record id="view_carton_box_search" model="ir.ui.view">
+        <field name="name">garment.carton.box.search</field>
+        <field name="model">garment.carton.box</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="garment_order_id"/>
+                <field name="style_code"/>
+                <field name="pallet_id"/>
+                <separator/>
+                <filter name="filter_packed" string="Đã Đóng"
+                        domain="[('state', '=', 'packed')]"/>
+                <filter name="filter_on_pallet" string="Trên Pallet"
+                        domain="[('state', '=', 'on_pallet')]"/>
+                <filter name="filter_no_pallet" string="Chưa Xếp Pallet"
+                        domain="[('pallet_id', '=', False), ('state', '!=', 'cancelled')]"/>
+                <group>
+                    <filter name="group_state" string="Trạng Thái"
+                            context="{'group_by': 'state'}"/>
+                    <filter name="group_pallet" string="Pallet"
+                            context="{'group_by': 'pallet_id'}"/>
+                    <filter name="group_order" string="Đơn Hàng"
+                            context="{'group_by': 'garment_order_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ACTIONS -->
+    <record id="action_carton_box_all" model="ir.actions.act_window">
+        <field name="name">Tất Cả Thùng Hàng</field>
+        <field name="res_model">garment.carton.box</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_carton_box_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo thùng hàng đầu tiên!
+            </p>
+        </field>
+    </record>
+
+    <!-- Merge action (server action for multi-select) -->
+    <record id="action_merge_cartons_server" model="ir.actions.server">
+        <field name="name">Gộp Thùng Hàng</field>
+        <field name="model_id" ref="model_garment_carton_box"/>
+        <field name="binding_model_id" ref="model_garment_carton_box"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+if records:
+    action = records.action_merge_cartons()
+        </field>
+    </record>
+</odoo>

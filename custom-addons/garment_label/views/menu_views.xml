@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ===================== CẤP 2: Tem & Pallet (dưới Kho & Giao Hàng) ===================== -->
+    <menuitem id="menu_label_all"
+              name="Tem / QR Code"
+              parent="garment_base.menu_garment_warehouse_main"
+              action="action_label_all"
+              sequence="20"/>
+
+    <menuitem id="menu_label_product"
+              name="Tem Sản Phẩm"
+              parent="garment_base.menu_garment_warehouse_main"
+              action="action_label_product"
+              sequence="21"/>
+
+    <menuitem id="menu_carton_box"
+              name="Quản Lý Thùng Hàng"
+              parent="garment_base.menu_garment_warehouse_main"
+              action="action_carton_box_all"
+              sequence="25"/>
+
+    <menuitem id="menu_pallet"
+              name="Quản Lý Pallet"
+              parent="garment_base.menu_garment_warehouse_main"
+              action="action_pallet_all"
+              sequence="30"/>
+</odoo>

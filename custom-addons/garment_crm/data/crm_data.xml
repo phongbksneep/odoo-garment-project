@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Lead sequence -->
+    <record id="seq_garment_crm_lead" model="ir.sequence">
+        <field name="name">Garment CRM Lead</field>
+        <field name="code">garment.crm.lead</field>
+        <field name="prefix">LEAD-%(year)s-</field>
+        <field name="padding">4</field>
+    </record>
+
+    <!-- Feedback sequence -->
+    <record id="seq_garment_crm_feedback" model="ir.sequence">
+        <field name="name">Garment CRM Feedback</field>
+        <field name="code">garment.crm.feedback</field>
+        <field name="prefix">FB-%(year)s-</field>
+        <field name="padding">4</field>
+    </record>
+</odoo>

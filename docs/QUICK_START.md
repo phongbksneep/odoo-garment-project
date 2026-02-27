@@ -1,6 +1,6 @@
 # 🚀 Hướng Dẫn Nhanh — Hệ Thống Quản Lý Công Ty May
 
-> **Phiên bản:** Odoo 19.0 | **Cập nhật:** Tháng 2/2026 | **22 module** | **139 tests passed**
+> **Phiên bản:** Odoo 19.0 | **Cập nhật:** Tháng 2/2026 | **24 module** | **216 tests passed**
 >
 > 📖 Xem [Hướng dẫn chi tiết đầy đủ](USER_GUIDE.md) để tra cứu từng trường dữ liệu.
 
@@ -25,13 +25,14 @@ Toàn bộ chức năng nằm trong **8 nhóm menu** trên thanh ngang:
 | # | Menu | Chức Năng Chính |
 |---|------|----------------|
 | 1 | **Đơn Hàng** | Đơn hàng, Style, Mẫu (Sample), Vải, Phụ liệu, Tính giá |
-| 2 | **Sản Xuất** | Lệnh SX, Cắt, Sản lượng ngày, Chuyền may, Hoàn thiện, Kế hoạch, Bảo trì, Giặt, Gia công |
-| 3 | **Chất Lượng** | QC, Loại lỗi, Audits, CAP |
-| 4 | **Kho & Giao Hàng** | Nhập NL Mua Hàng, NL Khách Gửi (CMT), Phân bổ NL, Packing, Nhập/Xuất kho, Giao hàng, Phương tiện |
-| 5 | **Kế Toán** | Hóa đơn bán/mua, Thanh toán |
-| 6 | **Nhân Sự & Lương** | Chấm công, Nghỉ phép, Tay nghề, Lương khoán, Thưởng |
-| 7 | **Báo Cáo** | Dashboard KPI, Tổng quan đơn hàng, Tiến độ SX, Cảnh báo, Hiệu suất chuyền, Phân tích lỗi, Báo cáo SX |
-| 8 | **Cấu Hình** | Bảng màu, Size, Ký hiệu giặt, Công thức giặt |
+| 2 | **CRM** | Lead, Cơ hội kinh doanh, Buyer, Phản hồi/Khiếu nại |
+| 3 | **Sản Xuất** | Lệnh SX, Cắt, Sản lượng ngày, Chuyền may, Hoàn thiện, Kế hoạch, Bảo trì, Giặt, Gia công |
+| 4 | **Chất Lượng** | QC, Loại lỗi, Audits, CAP |
+| 5 | **Kho & Giao Hàng** | Nhập NL, Phân bổ NL, Tem QR, Thùng hàng, Pallet, Packing, Nhập/Xuất kho, Giao hàng |
+| 6 | **Kế Toán** | Hóa đơn bán/mua, Thanh toán |
+| 7 | **Nhân Sự & Lương** | Chấm công, Nghỉ phép, Tay nghề, Lương khoán, Thưởng |
+| 8 | **Báo Cáo** | Dashboard KPI, Tổng quan đơn hàng, Tiến độ SX, Cảnh báo, Hiệu suất chuyền |
+| 9 | **Cấu Hình** | Bảng màu, Size, Ký hiệu giặt, Công thức giặt |
 
 ![Menu Đơn Hàng](images/80_menu_don_hang.png)
 
@@ -57,7 +58,8 @@ Toàn bộ chức năng nằm trong **8 nhóm menu** trên thanh ngang:
 
 ```mermaid
 flowchart LR
-    A[📋 Nhận Đơn Hàng] --> B[✂️ Thiết Kế & Mẫu]
+    CRM[🤝 CRM Lead] --> A[📋 Nhận Đơn Hàng]
+    A --> B[✂️ Thiết Kế & Mẫu]
     B --> C[💰 Tính Giá Thành]
     C --> D[📅 Lập Kế Hoạch SX]
     D --> E[✂️ Cắt Vải]
@@ -65,15 +67,19 @@ flowchart LR
     F --> G[🧼 Giặt]
     G --> H[👔 Hoàn Thiện]
     H --> I[🔍 QC Kiểm Tra]
-    I --> J[📦 Đóng Gói]
-    J --> K[🚚 Giao Hàng]
-    K --> L[💵 Kế Toán]
+    I --> J[🏷️ In Tem/QR]
+    J --> K[📦 Đóng Gói & Pallet]
+    K --> L[🚚 Giao Hàng]
+    L --> M[💵 Kế Toán]
+    M --> FB[📝 Phản Hồi KH]
 
+    style CRM fill:#E91E63,color:#fff
     style A fill:#4CAF50,color:#fff
     style F fill:#2196F3,color:#fff
     style I fill:#FF9800,color:#fff
-    style K fill:#9C27B0,color:#fff
-    style L fill:#F44336,color:#fff
+    style L fill:#9C27B0,color:#fff
+    style M fill:#F44336,color:#fff
+    style FB fill:#E91E63,color:#fff
 ```
 
 ### 3.2 Sơ Đồ Liên Kết Module
@@ -82,6 +88,7 @@ flowchart LR
 graph TB
     BASE[🏭 garment_base\nĐơn Hàng, Style, Vải, Phụ Liệu]
 
+    CRM[🤝 garment_crm\nLead, Phản Hồi, Buyer] --> BASE
     BASE --> SAMPLE[🎨 garment_sample\nQuản lý mẫu]
     BASE --> COSTING[💰 garment_costing\nTính giá thành]
     BASE --> PLANNING[📅 garment_planning\nKế hoạch SX]
@@ -97,6 +104,9 @@ graph TB
     PRODUCTION --> SUBCONTRACT[🤝 garment_subcontract\nGia công]
     PRODUCTION --> PACKING[📦 garment_packing\nĐóng gói]
     PRODUCTION --> DAILY[📊 Sản lượng ngày]
+
+    PACKING --> LABEL[🏷️ garment_label\nIn Tem/QR, Pallet, Thùng]
+    LABEL --> DELIVERY
 
     DAILY --> PAYROLL[💰 garment_payroll\nTính lương]
     HR[👥 garment_hr\nChấm công, Nghỉ phép] --> PAYROLL
@@ -116,6 +126,8 @@ graph TB
     style ACCOUNTING fill:#F44336,color:#fff
     style DASHBOARD fill:#9C27B0,color:#fff
     style MATERIAL fill:#009688,color:#fff
+    style CRM fill:#E91E63,color:#fff
+    style LABEL fill:#FF5722,color:#fff
 ```
 
 ### 3.3 Luồng Chứng Từ
@@ -438,6 +450,36 @@ stateDiagram-v2
 
 ![Tiến độ SX](images/98_dashboard_production_progress.png)
 
+### 5.11 CRM — Quan Hệ Khách Hàng
+
+| Chức Năng | Menu | Mô Tả |
+|-----------|------|-------|
+| Lead / Cơ Hội | CRM → Lead / Cơ Hội | Pipeline bán hàng: Lead → Đánh giá → Báo giá → Thương lượng → Chốt |
+| Buyer / Khách Hàng | CRM → Buyer | Hồ sơ buyer ngành may, thống kê đơn hàng |
+| Phản Hồi / Khiếu Nại | CRM → Phản Hồi | Theo dõi feedback, complaint, đánh giá hài lòng |
+
+**Quick workflow CRM:**
+1. Tạo Lead → Đánh giá → Gửi báo giá → Chốt thành công
+2. Nhấn **📋 Tạo Đơn Hàng** → Tự động tạo đơn hàng may
+
+![CRM Lead](images/105_crm_lead_form_new.png)
+
+### 5.12 In Tem & Quản Lý Pallet
+
+| Chức Năng | Menu | Mô Tả |
+|-----------|------|-------|
+| Tem QR Code | Kho → Tem / QR Code | In tem sản phẩm, thùng, pallet, vị trí kho |
+| Thùng Hàng | Kho → Quản Lý Thùng | Đóng/tách/gộp thùng, tạo tem QR, xếp lên pallet |
+| Pallet | Kho → Quản Lý Pallet | Tạo/đóng/tách/gộp pallet, theo dõi xuất hàng |
+
+**Quick workflow:**
+1. Đóng thùng hàng (nhập nội dung, SL, kích thước)
+2. Tạo tem QR cho thùng (🏷 Tạo Tem QR)
+3. Xếp thùng lên pallet → Đóng pallet → Xuất hàng
+
+![Carton Box](images/116_carton_box_form_new.png)
+![Pallet](images/114_pallet_form_new.png)
+
 ---
 
 ## 6. Phân Quyền
@@ -464,6 +506,6 @@ stateDiagram-v2
 
 ---
 
-> 📖 **Tài liệu đầy đủ:** [USER_GUIDE.md](USER_GUIDE.md) — bao gồm giải thích chi tiết từng trường dữ liệu của tất cả 22 module.
+> 📖 **Tài liệu đầy đủ:** [USER_GUIDE.md](USER_GUIDE.md) — bao gồm giải thích chi tiết từng trường dữ liệu của tất cả 24 module.
 >
 > 📞 **Hỗ trợ:** Liên hệ đội phát triển | 📚 [Odoo Docs](https://www.odoo.com/documentation/19.0/)
