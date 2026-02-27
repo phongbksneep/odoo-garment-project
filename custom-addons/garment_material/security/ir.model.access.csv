@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_material_receipt,garment.material.receipt,model_garment_material_receipt,base.group_user,1,1,1,1
+access_material_receipt_line,garment.material.receipt.line,model_garment_material_receipt_line,base.group_user,1,1,1,1
+access_material_allocation,garment.material.allocation,model_garment_material_allocation,base.group_user,1,1,1,1
+access_material_allocation_line,garment.material.allocation.line,model_garment_material_allocation_line,base.group_user,1,1,1,1

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ==================== DASHBOARD KPI ==================== -->
+
+    <!-- KPI List View -->
+    <record id="view_garment_dashboard_list" model="ir.ui.view">
+        <field name="name">garment.dashboard.list</field>
+        <field name="model">garment.dashboard</field>
+        <field name="arch" type="xml">
+            <list string="Dashboard KPI" create="false" edit="false" delete="false">
+                <field name="name"/>
+                <field name="kpi_type"/>
+                <field name="value" string="Giá Trị"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- KPI Pivot View -->
+    <record id="view_garment_dashboard_pivot" model="ir.ui.view">
+        <field name="name">garment.dashboard.pivot</field>
+        <field name="model">garment.dashboard</field>
+        <field name="arch" type="xml">
+            <pivot string="Dashboard KPI">
+                <field name="kpi_type" type="row"/>
+                <field name="value" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- KPI Graph View -->
+    <record id="view_garment_dashboard_graph" model="ir.ui.view">
+        <field name="name">garment.dashboard.graph</field>
+        <field name="model">garment.dashboard</field>
+        <field name="arch" type="xml">
+            <graph string="Dashboard KPI" type="bar">
+                <field name="kpi_type"/>
+                <field name="value" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- KPI Action -->
+    <record id="action_garment_dashboard_kpi" model="ir.actions.act_window">
+        <field name="name">Tổng Quan KPI</field>
+        <field name="res_model">garment.dashboard</field>
+        <field name="view_mode">graph,pivot,list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Dashboard KPI Nhà Máy May
+            </p>
+        </field>
+    </record>
+
+    <!-- ==================== ORDER OVERVIEW ==================== -->
+
+    <!-- Order Overview List -->
+    <record id="view_order_overview_list" model="ir.ui.view">
+        <field name="name">garment.order.overview.list</field>
+        <field name="model">garment.order.overview</field>
+        <field name="arch" type="xml">
+            <list string="Tổng Quan Đơn Hàng" create="false" edit="false" delete="false"
+                  decoration-danger="is_late == True"
+                  decoration-success="state in ('shipped','done')">
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="style_id"/>
+                <field name="order_date"/>
+                <field name="delivery_date"/>
+                <field name="total_qty" sum="Tổng"/>
+                <field name="total_amount" sum="Tổng Tiền"/>
+                <field name="state" widget="badge"
+                       decoration-success="state in ('shipped','done')"
+                       decoration-info="state in ('sewing','cutting','finishing','qc')"
+                       decoration-warning="state in ('material','packing')"
+                       decoration-danger="state == 'cancelled'"/>
+                <field name="days_remaining"/>
+                <field name="is_late" widget="boolean"/>
+                <field name="production_count"/>
+                <field name="completion_rate" widget="progressbar"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Order Overview Search -->
+    <record id="view_order_overview_search" model="ir.ui.view">
+        <field name="name">garment.order.overview.search</field>
+        <field name="model">garment.order.overview</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Đơn Hàng">
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="style_id"/>
+                <separator/>
+                <filter name="filter_late" string="Trễ Hạn" domain="[('is_late','=',True)]"/>
+                <filter name="filter_active" string="Đang SX"
+                        domain="[('state','in',['material','cutting','sewing','finishing','qc','packing'])]"/>
+                <filter name="filter_done" string="Hoàn Thành"
+                        domain="[('state','in',['shipped','done'])]"/>
+                <separator/>
+                <group>
+                    <filter name="group_state" string="Trạng Thái" context="{'group_by': 'state'}"/>
+                    <filter name="group_customer" string="Khách Hàng" context="{'group_by': 'customer_id'}"/>
+                    <filter name="group_style" string="Mẫu May" context="{'group_by': 'style_id'}"/>
+                    <filter name="group_delivery" string="Ngày Giao" context="{'group_by': 'delivery_date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Order Overview Pivot -->
+    <record id="view_order_overview_pivot" model="ir.ui.view">
+        <field name="name">garment.order.overview.pivot</field>
+        <field name="model">garment.order.overview</field>
+        <field name="arch" type="xml">
+            <pivot string="Tổng Quan Đơn Hàng">
+                <field name="state" type="row"/>
+                <field name="total_qty" type="measure"/>
+                <field name="total_amount" type="measure"/>
+                <field name="production_count" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Order Overview Graph -->
+    <record id="view_order_overview_graph" model="ir.ui.view">
+        <field name="name">garment.order.overview.graph</field>
+        <field name="model">garment.order.overview</field>
+        <field name="arch" type="xml">
+            <graph string="Đơn Hàng Theo Trạng Thái" type="bar">
+                <field name="state"/>
+                <field name="total_qty" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Order Overview Action -->
+    <record id="action_order_overview" model="ir.actions.act_window">
+        <field name="name">Tổng Quan Đơn Hàng</field>
+        <field name="res_model">garment.order.overview</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="context">{'search_default_filter_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tổng quan tất cả đơn hàng
+            </p>
+        </field>
+    </record>
+
+    <!-- ==================== PRODUCTION PROGRESS ==================== -->
+
+    <!-- Production Progress List -->
+    <record id="view_production_progress_list" model="ir.ui.view">
+        <field name="name">garment.production.progress.list</field>
+        <field name="model">garment.production.progress</field>
+        <field name="arch" type="xml">
+            <list string="Tiến Độ Sản Xuất" create="false" edit="false" delete="false"
+                  decoration-success="completion_rate >= 100"
+                  decoration-warning="completion_rate >= 50 and completion_rate &lt; 100"
+                  decoration-danger="completion_rate &lt; 50 and state == 'in_progress'">
+                <field name="name"/>
+                <field name="garment_order_id"/>
+                <field name="customer_id"/>
+                <field name="style_id"/>
+                <field name="sewing_line_id"/>
+                <field name="planned_qty" sum="Tổng KH"/>
+                <field name="completed_qty" sum="Tổng HT"/>
+                <field name="remaining_qty" sum="Tổng Còn"/>
+                <field name="defect_qty" sum="Tổng Lỗi"/>
+                <field name="completion_rate" widget="progressbar"/>
+                <field name="defect_rate" string="% Lỗi"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="working_days"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'done'"
+                       decoration-info="state == 'in_progress'"
+                       decoration-warning="state == 'confirmed'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Production Progress Search -->
+    <record id="view_production_progress_search" model="ir.ui.view">
+        <field name="name">garment.production.progress.search</field>
+        <field name="model">garment.production.progress</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Lệnh SX">
+                <field name="name"/>
+                <field name="garment_order_id"/>
+                <field name="customer_id"/>
+                <field name="style_id"/>
+                <field name="sewing_line_id"/>
+                <separator/>
+                <filter name="filter_active" string="Đang SX" domain="[('state','=','in_progress')]"/>
+                <filter name="filter_done" string="Hoàn Thành" domain="[('state','=','done')]"/>
+                <filter name="filter_low" string="HT &lt; 50%" domain="[('completion_rate','&lt;',50)]"/>
+                <filter name="filter_high_defect" string="Lỗi &gt; 5%"
+                        domain="[('defect_rate','&gt;',5)]"/>
+                <separator/>
+                <group>
+                    <filter name="group_state" string="Trạng Thái" context="{'group_by': 'state'}"/>
+                    <filter name="group_line" string="Chuyền May" context="{'group_by': 'sewing_line_id'}"/>
+                    <filter name="group_customer" string="Khách Hàng" context="{'group_by': 'customer_id'}"/>
+                    <filter name="group_style" string="Mẫu May" context="{'group_by': 'style_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Production Progress Pivot -->
+    <record id="view_production_progress_pivot" model="ir.ui.view">
+        <field name="name">garment.production.progress.pivot</field>
+        <field name="model">garment.production.progress</field>
+        <field name="arch" type="xml">
+            <pivot string="Tiến Độ SX">
+                <field name="state" type="row"/>
+                <field name="sewing_line_id" type="col"/>
+                <field name="planned_qty" type="measure"/>
+                <field name="completed_qty" type="measure"/>
+                <field name="defect_qty" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Production Progress Graph -->
+    <record id="view_production_progress_graph" model="ir.ui.view">
+        <field name="name">garment.production.progress.graph</field>
+        <field name="model">garment.production.progress</field>
+        <field name="arch" type="xml">
+            <graph string="Tiến Độ SX" type="bar">
+                <field name="sewing_line_id"/>
+                <field name="completed_qty" type="measure"/>
+                <field name="planned_qty" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Production Progress Action -->
+    <record id="action_production_progress" model="ir.actions.act_window">
+        <field name="name">Tiến Độ Sản Xuất</field>
+        <field name="res_model">garment.production.progress</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="context">{'search_default_filter_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Theo dõi tiến độ sản xuất tất cả lệnh SX
+            </p>
+        </field>
+    </record>
+
+    <!-- ==================== QUICK ACTIONS ==================== -->
+
+    <!-- Late Orders Action -->
+    <record id="action_late_orders" model="ir.actions.act_window">
+        <field name="name">Đơn Hàng Trễ Hạn</field>
+        <field name="res_model">garment.order.overview</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="domain">[('is_late','=',True)]</field>
+    </record>
+
+    <!-- Low Completion Action -->
+    <record id="action_low_completion" model="ir.actions.act_window">
+        <field name="name">LSX Hoàn Thành Thấp (&lt; 50%)</field>
+        <field name="res_model">garment.production.progress</field>
+        <field name="view_mode">list,graph</field>
+        <field name="domain">[('completion_rate','&lt;',50),('state','=','in_progress')]</field>
+    </record>
+
+    <!-- High Defect Action -->
+    <record id="action_high_defect" model="ir.actions.act_window">
+        <field name="name">LSX Tỷ Lệ Lỗi Cao (&gt; 5%)</field>
+        <field name="res_model">garment.production.progress</field>
+        <field name="view_mode">list,graph</field>
+        <field name="domain">[('defect_rate','&gt;',5)]</field>
+    </record>
+
+</odoo>

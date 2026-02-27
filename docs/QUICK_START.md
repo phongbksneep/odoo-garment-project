@@ -1,6 +1,6 @@
 # 🚀 Hướng Dẫn Nhanh — Hệ Thống Quản Lý Công Ty May
 
-> **Phiên bản:** Odoo 19.0 | **Cập nhật:** Tháng 2/2026 | **20 module** | **181 tests passed**
+> **Phiên bản:** Odoo 19.0 | **Cập nhật:** Tháng 2/2026 | **22 module** | **139 tests passed**
 >
 > 📖 Xem [Hướng dẫn chi tiết đầy đủ](USER_GUIDE.md) để tra cứu từng trường dữ liệu.
 
@@ -27,10 +27,10 @@ Toàn bộ chức năng nằm trong **8 nhóm menu** trên thanh ngang:
 | 1 | **Đơn Hàng** | Đơn hàng, Style, Mẫu (Sample), Vải, Phụ liệu, Tính giá |
 | 2 | **Sản Xuất** | Lệnh SX, Cắt, Sản lượng ngày, Chuyền may, Hoàn thiện, Kế hoạch, Bảo trì, Giặt, Gia công |
 | 3 | **Chất Lượng** | QC, Loại lỗi, Audits, CAP |
-| 4 | **Kho & Giao Hàng** | Packing, Nhập/Xuất kho, Giao hàng, Phương tiện |
+| 4 | **Kho & Giao Hàng** | Nhập NL Mua Hàng, NL Khách Gửi (CMT), Phân bổ NL, Packing, Nhập/Xuất kho, Giao hàng, Phương tiện |
 | 5 | **Kế Toán** | Hóa đơn bán/mua, Thanh toán |
 | 6 | **Nhân Sự & Lương** | Chấm công, Nghỉ phép, Tay nghề, Lương khoán, Thưởng |
-| 7 | **Báo Cáo** | Hiệu suất chuyền, Phân tích lỗi, Báo cáo SX |
+| 7 | **Báo Cáo** | Dashboard KPI, Tổng quan đơn hàng, Tiến độ SX, Cảnh báo, Hiệu suất chuyền, Phân tích lỗi, Báo cáo SX |
 | 8 | **Cấu Hình** | Bảng màu, Size, Ký hiệu giặt, Công thức giặt |
 
 ![Menu Đơn Hàng](images/80_menu_don_hang.png)
@@ -105,11 +105,17 @@ graph TB
     COMPLIANCE[📋 garment_compliance\nTuân thủ] -.-> BASE
     REPORT[📊 garment_report\nBáo cáo] -.-> PRODUCTION
     REPORT -.-> QUALITY
+    MATERIAL[📥 garment_material\nNhập NL] --> WAREHOUSE
+    MATERIAL --> PRODUCTION
+    DASHBOARD[📊 garment_dashboard\nDashboard] -.-> PRODUCTION
+    DASHBOARD -.-> REPORT
 
     style BASE fill:#4CAF50,color:#fff
     style PRODUCTION fill:#2196F3,color:#fff
     style PAYROLL fill:#FF9800,color:#fff
     style ACCOUNTING fill:#F44336,color:#fff
+    style DASHBOARD fill:#9C27B0,color:#fff
+    style MATERIAL fill:#009688,color:#fff
 ```
 
 ### 3.3 Luồng Chứng Từ
@@ -394,6 +400,46 @@ stateDiagram-v2
 
 ---
 
+### 5.9 Nhập Nguyên Liệu
+
+**Đường dẫn:** `Công Ty May → Kho & Giao Hàng → Nhập NL Mua Hàng / NL Khách Gửi (CMT)`
+
+| Thao tác | Mô tả |
+|----------|-------|
+| **Nhập NL Mua Hàng** | Tạo phiếu nhập từ NCC, chọn loại = "Mua Hàng", điền NCC + chi tiết NL |
+| **NL Khách Gửi (CMT)** | Khách gửi NL để gia công, chọn loại = "Khách Gửi", điền khách hàng |
+| **Kiểm tra QC** | Xác nhận → Kiểm tra → QC Đạt → Nhập Kho |
+| **Phân bổ NL** | Cấp phát NL cho đơn hàng/lệnh SX (menu Phân Bổ NL Cho SX) |
+
+![Danh sách phiếu nhập NL](images/90_material_receipt_all.png)
+
+![Form nhập NL](images/93_material_receipt_form_new.png)
+
+![Phân bổ NL](images/94_material_allocation.png)
+
+---
+
+### 5.10 Dashboard — Bảng Điều Khiển
+
+**Đường dẫn:** `Công Ty May → Báo Cáo → Dashboard`
+
+| Báo cáo | Nội dung |
+|---------|---------|
+| **Tổng Quan KPI** | 17 chỉ số: đơn hàng, SX, QC, giao hàng, NL — biểu đồ tự động |
+| **Tổng Quan Đơn Hàng** | Trạng thái, tiến độ %, ngày còn lại, trễ hạn — màu đỏ khi trễ |
+| **Tiến Độ Sản Xuất** | % hoàn thành, SL lỗi, chuyền may, progressbar — xanh/vàng/đỏ |
+| **Đơn Trễ Hạn** | Cảnh báo đơn quá ngày giao |
+| **LSX Hoàn Thành Thấp** | LSX đang chạy nhưng < 50% |
+| **LSX Lỗi Cao** | LSX có tỷ lệ lỗi > 5% |
+
+![Dashboard KPI](images/96_dashboard_kpi_graph.png)
+
+![Tổng quan đơn hàng](images/97_dashboard_order_overview.png)
+
+![Tiến độ SX](images/98_dashboard_production_progress.png)
+
+---
+
 ## 6. Phân Quyền
 
 | Nhóm | Quyền |
@@ -414,10 +460,10 @@ stateDiagram-v2
 | Import hàng loạt? | Trên danh sách → ⚙️ → Import records → Upload CSV/Excel |
 | Hiệu suất chuyền = 0%? | Kiểm tra: chuyền có gắn CN không? Style có SAM không? Sản lượng ngày đã nhập chưa? |
 | Tính lương không ra tiền khoán? | Kiểm tra Worker Output + Piece Rate đã nhập → Nhấn **"Tính Lương"** |
-| Luồng nghiệp vụ chính? | Đơn hàng → Mẫu → Tính giá → Kế hoạch → Cắt → May → Giặt → Hoàn thiện → QC → Đóng gói → Giao hàng → Kế toán |
+| Luồng nghiệp vụ chính? | Đơn hàng → Mẫu → Tính giá → Nhập NL → Kế hoạch → Cắt → May → Giặt → Hoàn thiện → QC → Đóng gói → Giao hàng → Kế toán |
 
 ---
 
-> 📖 **Tài liệu đầy đủ:** [USER_GUIDE.md](USER_GUIDE.md) — bao gồm giải thích chi tiết từng trường dữ liệu của tất cả 20 module.
+> 📖 **Tài liệu đầy đủ:** [USER_GUIDE.md](USER_GUIDE.md) — bao gồm giải thích chi tiết từng trường dữ liệu của tất cả 22 module.
 >
 > 📞 **Hỗ trợ:** Liên hệ đội phát triển | 📚 [Odoo Docs](https://www.odoo.com/documentation/19.0/)

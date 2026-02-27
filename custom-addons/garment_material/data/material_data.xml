@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sequence: Phiếu nhập NL mua hàng -->
+        <record id="seq_material_receipt" model="ir.sequence">
+            <field name="name">Material Receipt</field>
+            <field name="code">garment.material.receipt</field>
+            <field name="prefix">MR-%(year)s-</field>
+            <field name="padding">5</field>
+        </record>
+
+        <!-- Sequence: Phiếu nhập NL khách gửi -->
+        <record id="seq_material_receipt_buyer" model="ir.sequence">
+            <field name="name">Material Receipt (Buyer-Supplied)</field>
+            <field name="code">garment.material.receipt.buyer</field>
+            <field name="prefix">BS-%(year)s-</field>
+            <field name="padding">5</field>
+        </record>
+
+        <!-- Sequence: Phiếu phân bổ NL -->
+        <record id="seq_material_allocation" model="ir.sequence">
+            <field name="name">Material Allocation</field>
+            <field name="code">garment.material.allocation</field>
+            <field name="prefix">MA-%(year)s-</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</odoo>

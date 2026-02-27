@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_garment_dashboard_user,garment.dashboard.user,model_garment_dashboard,base.group_user,1,0,0,0
+access_garment_order_overview_user,garment.order.overview.user,model_garment_order_overview,base.group_user,1,0,0,0
+access_garment_production_progress_user,garment.production.progress.user,model_garment_production_progress,base.group_user,1,0,0,0

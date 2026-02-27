@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ========================= ACTIONS ========================= -->
+
+    <!-- All material receipts -->
+    <record id="action_material_receipt_all" model="ir.actions.act_window">
+        <field name="name">Tất Cả Phiếu Nhập NL</field>
+        <field name="res_model">garment.material.receipt</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo phiếu nhập nguyên liệu đầu tiên
+            </p>
+        </field>
+    </record>
+
+    <!-- Purchase receipts only -->
+    <record id="action_material_receipt_purchase" model="ir.actions.act_window">
+        <field name="name">Nhập NL Mua Hàng</field>
+        <field name="res_model">garment.material.receipt</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('receipt_type', '=', 'purchase')]</field>
+        <field name="context">{'default_receipt_type': 'purchase'}</field>
+    </record>
+
+    <!-- Buyer-supplied receipts only -->
+    <record id="action_material_receipt_buyer" model="ir.actions.act_window">
+        <field name="name">NL Khách Gửi (CMT)</field>
+        <field name="res_model">garment.material.receipt</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('receipt_type', '=', 'buyer_supplied')]</field>
+        <field name="context">{'default_receipt_type': 'buyer_supplied'}</field>
+    </record>
+
+    <!-- ========================= LIST VIEW ========================= -->
+
+    <record id="view_material_receipt_list" model="ir.ui.view">
+        <field name="name">garment.material.receipt.list</field>
+        <field name="model">garment.material.receipt</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="is_late" decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="receipt_type" widget="badge"
+                       decoration-info="receipt_type == 'purchase'"
+                       decoration-success="receipt_type == 'buyer_supplied'"
+                       decoration-warning="receipt_type == 'return'"
+                       decoration-danger="receipt_type == 'subcontract'"/>
+                <field name="date"/>
+                <field name="supplier_id" optional="show"/>
+                <field name="buyer_id" optional="show"/>
+                <field name="garment_order_id" optional="show"/>
+                <field name="style_id" optional="hide"/>
+                <field name="po_number" optional="hide"/>
+                <field name="total_lines"/>
+                <field name="total_qty" sum="Total"/>
+                <field name="total_value" sum="Total" optional="show"/>
+                <field name="qc_status" widget="badge"
+                       decoration-warning="qc_status == 'pending'"
+                       decoration-success="qc_status == 'pass'"
+                       decoration-danger="qc_status == 'fail'"
+                       decoration-info="qc_status == 'partial'"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'confirmed'"
+                       decoration-warning="state == 'inspecting'"
+                       decoration-success="state == 'done'"
+                       decoration-danger="state == 'cancelled'"/>
+                <field name="is_late" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ========================= FORM VIEW ========================= -->
+
+    <record id="view_material_receipt_form" model="ir.ui.view">
+        <field name="name">garment.material.receipt.form</field>
+        <field name="model">garment.material.receipt</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" string="Xác Nhận"
+                            type="object" class="oe_highlight"
+                            invisible="state != 'draft'"/>
+                    <button name="action_inspect" string="Bắt Đầu Kiểm Tra"
+                            type="object" class="oe_highlight"
+                            invisible="state != 'confirmed'"/>
+                    <button name="action_pass_qc" string="QC Đạt"
+                            type="object" class="btn-success"
+                            invisible="state != 'inspecting'"/>
+                    <button name="action_fail_qc" string="QC Không Đạt"
+                            type="object" class="btn-danger"
+                            invisible="state != 'inspecting'"/>
+                    <button name="action_done" string="Nhập Kho"
+                            type="object" class="oe_highlight"
+                            invisible="state != 'inspecting'"/>
+                    <button name="action_cancel" string="Hủy"
+                            type="object"
+                            invisible="state in ('done', 'cancelled')"/>
+                    <button name="action_reset_draft" string="Về Nháp"
+                            type="object"
+                            invisible="state not in ('cancelled',)"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,inspecting,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Thông Tin Chung">
+                            <field name="receipt_type"/>
+                            <field name="date"/>
+                            <field name="expected_date"/>
+                            <field name="is_late" invisible="not expected_date"/>
+                            <field name="warehouse_type"/>
+                            <field name="responsible_id"/>
+                        </group>
+                        <group string="Đối Tác &amp; Đơn Hàng">
+                            <field name="supplier_id"
+                                   invisible="receipt_type not in ('purchase', 'subcontract')"
+                                   required="receipt_type == 'purchase'"/>
+                            <field name="buyer_id"
+                                   invisible="receipt_type != 'buyer_supplied'"
+                                   required="receipt_type == 'buyer_supplied'"/>
+                            <field name="garment_order_id"/>
+                            <field name="style_id"/>
+                            <field name="po_number"/>
+                            <field name="invoice_number"/>
+                            <field name="transport_info"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Chi Tiết Nguyên Liệu" name="lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="material_type"/>
+                                    <field name="fabric_id"
+                                           column_invisible="parent.receipt_type == 'return'"/>
+                                    <field name="description"/>
+                                    <field name="color_id"/>
+                                    <field name="lot_number"/>
+                                    <field name="unit"/>
+                                    <field name="quantity_ordered" optional="show"/>
+                                    <field name="quantity"/>
+                                    <field name="shortage" optional="show"/>
+                                    <field name="unit_price" optional="show"/>
+                                    <field name="value" sum="Tổng" optional="show"/>
+                                    <field name="width" optional="hide"/>
+                                    <field name="weight_gsm" optional="hide"/>
+                                    <field name="quantity_accepted" optional="hide"/>
+                                    <field name="quantity_rejected" optional="hide"/>
+                                    <field name="qc_result" optional="hide"/>
+                                    <field name="qc_notes" optional="hide"/>
+                                    <field name="notes" optional="hide"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer">
+                                <field name="total_lines"/>
+                                <field name="total_qty"/>
+                                <field name="total_value"/>
+                            </group>
+                        </page>
+                        <page string="QC &amp; Kiểm Tra" name="qc">
+                            <group>
+                                <field name="qc_status"/>
+                                <field name="qc_notes"/>
+                            </group>
+                        </page>
+                        <page string="Ghi Chú" name="notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ========================= SEARCH VIEW ========================= -->
+
+    <record id="view_material_receipt_search" model="ir.ui.view">
+        <field name="name">garment.material.receipt.search</field>
+        <field name="model">garment.material.receipt</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="supplier_id"/>
+                <field name="buyer_id"/>
+                <field name="garment_order_id"/>
+                <field name="po_number"/>
+                <filter name="purchase" string="Mua Hàng"
+                        domain="[('receipt_type', '=', 'purchase')]"/>
+                <filter name="buyer_supplied" string="Khách Gửi (CMT)"
+                        domain="[('receipt_type', '=', 'buyer_supplied')]"/>
+                <separator/>
+                <filter name="state_draft" string="Nháp"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter name="state_done" string="Đã Nhập Kho"
+                        domain="[('state', '=', 'done')]"/>
+                <filter name="late" string="Trễ Hạn"
+                        domain="[('is_late', '=', True)]"/>
+                <separator/>
+                <filter name="qc_pending" string="Chưa Kiểm QC"
+                        domain="[('qc_status', '=', 'pending')]"/>
+                <filter name="qc_fail" string="QC Không Đạt"
+                        domain="[('qc_status', '=', 'fail')]"/>
+                <group>
+                    <filter name="group_type" string="Loại Nhập"
+                            context="{'group_by': 'receipt_type'}"/>
+                    <filter name="group_supplier" string="NCC"
+                            context="{'group_by': 'supplier_id'}"/>
+                    <filter name="group_buyer" string="Khách Hàng"
+                            context="{'group_by': 'buyer_id'}"/>
+                    <filter name="group_order" string="Đơn Hàng"
+                            context="{'group_by': 'garment_order_id'}"/>
+                    <filter name="group_date" string="Ngày"
+                            context="{'group_by': 'date:month'}"/>
+                    <filter name="group_qc" string="Kết Quả QC"
+                            context="{'group_by': 'qc_status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ========================= PIVOT VIEW ========================= -->
+
+    <record id="view_material_receipt_pivot" model="ir.ui.view">
+        <field name="name">garment.material.receipt.pivot</field>
+        <field name="model">garment.material.receipt</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="receipt_type" type="col"/>
+                <field name="date" interval="month" type="row"/>
+                <field name="total_qty" type="measure"/>
+                <field name="total_value" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- ========================= GRAPH VIEW ========================= -->
+
+    <record id="view_material_receipt_graph" model="ir.ui.view">
+        <field name="name">garment.material.receipt.graph</field>
+        <field name="model">garment.material.receipt</field>
+        <field name="arch" type="xml">
+            <graph type="bar">
+                <field name="date" interval="month"/>
+                <field name="total_value" type="measure"/>
+                <field name="receipt_type" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+</odoo>

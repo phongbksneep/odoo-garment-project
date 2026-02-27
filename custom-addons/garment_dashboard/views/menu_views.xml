@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Dashboard menu items under Báo Cáo -->
+    <menuitem id="menu_dashboard_section"
+              name="Dashboard"
+              parent="garment_base.menu_garment_report_main"
+              sequence="1"/>
+
+    <menuitem id="menu_dashboard_kpi"
+              name="Tổng Quan KPI"
+              parent="menu_dashboard_section"
+              action="action_garment_dashboard_kpi"
+              sequence="1"/>
+
+    <menuitem id="menu_order_overview"
+              name="Tổng Quan Đơn Hàng"
+              parent="menu_dashboard_section"
+              action="action_order_overview"
+              sequence="2"/>
+
+    <menuitem id="menu_production_progress"
+              name="Tiến Độ Sản Xuất"
+              parent="menu_dashboard_section"
+              action="action_production_progress"
+              sequence="3"/>
+
+    <menuitem id="menu_late_orders"
+              name="Đơn Trễ Hạn"
+              parent="menu_dashboard_section"
+              action="action_late_orders"
+              sequence="4"/>
+
+    <menuitem id="menu_low_completion"
+              name="LSX Hoàn Thành Thấp"
+              parent="menu_dashboard_section"
+              action="action_low_completion"
+              sequence="5"/>
+
+    <menuitem id="menu_high_defect"
+              name="LSX Lỗi Cao"
+              parent="menu_dashboard_section"
+              action="action_high_defect"
+              sequence="6"/>
+
+</odoo>

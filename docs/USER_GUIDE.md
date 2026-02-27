@@ -2,7 +2,7 @@
 
 > **Phiên bản:** Odoo 19.0 | **Ngày cập nhật:** Tháng 2/2026
 > **Đối tượng:** Quản lý, trưởng phòng, nhân viên sử dụng hệ thống ERP
-> **Tổng số module:** 20 module chuyên biệt | **181 test cases** — 0 failures---
+> **Tổng số module:** 22 module chuyên biệt | **139 test cases** — 0 failures---
 
 ## 📑 Mục Lục
 
@@ -27,8 +27,10 @@
 19. [Module Garment Accounting — Kế Toán VN](#19-module-garment-accounting--kế-toán-vn)
 20. [Module Garment Warehouse — Quản Lý Kho](#20-module-garment-warehouse--quản-lý-kho)
 21. [Module Garment Delivery — Giao Hàng](#21-module-garment-delivery--giao-hàng)
-22. [Phân quyền & Bảo mật](#22-phân-quyền--bảo-mật)
-23. [FAQ — Câu hỏi thường gặp](#23-faq--câu-hỏi-thường-gặp)
+22. [Module Garment Material — Nhập Nguyên Liệu](#22-module-garment-material--nhập-nguyên-liệu)
+23. [Module Garment Dashboard — Bảng Điều Khiển](#23-module-garment-dashboard--bảng-điều-khiển)
+24. [Phân quyền & Bảo mật](#24-phân-quyền--bảo-mật)
+25. [FAQ — Câu hỏi thường gặp](#25-faq--câu-hỏi-thường-gặp)
 
 ---
 
@@ -36,7 +38,7 @@
 
 ### 1.1 Tổng quan hệ thống
 
-Hệ thống ERP Công Ty May được xây dựng trên nền tảng **Odoo 19.0**, bao gồm **20 module chuyên biệt** quản lý toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm hoàn thiện, chấm công, kế toán, kho, giặt, gia công và giao hàng.
+Hệ thống ERP Công Ty May được xây dựng trên nền tảng **Odoo 19.0**, bao gồm **22 module chuyên biệt** quản lý toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm nhập nguyên liệu, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, giao hàng và dashboard tổng quan.
 
 ### 1.2 Đăng nhập
 
@@ -1568,7 +1570,193 @@ stateDiagram-v2
 
 ---
 
-## 22. Phân Quyền & Bảo Mật
+## 22. Module Garment Material — Nhập Nguyên Liệu
+
+> **Module:** `garment_material` | **Chức năng:** Quản lý nhập nguyên liệu mua hàng và nguyên liệu khách gửi (CMT/buyer-supplied)
+
+### 22.1 Tổng quan
+
+Module Garment Material quản lý toàn bộ quy trình nhập nguyên liệu, bao gồm:
+- **Nhập NL Mua Hàng (Purchase):** Mua nguyên phụ liệu từ nhà cung cấp
+- **NL Khách Gửi (Buyer-Supplied / CMT):** Khách hàng gửi nguyên liệu để gia công
+- **NL Trả Về Từ SX:** Nguyên liệu thừa trả lại kho
+- **NL Từ Gia Công:** Nguyên liệu nhận từ đơn vị gia công
+- **Phân Bổ NL Cho SX:** Cấp phát nguyên liệu cho lệnh sản xuất
+
+### 22.2 Phiếu Nhập Nguyên Liệu
+
+**Menu:** Công Ty May → Kho & Giao Hàng → Nhập NL Mua Hàng / NL Khách Gửi (CMT) / Tất Cả Phiếu Nhập NL
+
+![Danh sách phiếu nhập NL](images/90_material_receipt_all.png)
+*Hình: Danh sách tất cả phiếu nhập nguyên liệu*
+
+![Phiếu nhập NL mua hàng](images/91_material_receipt_purchase.png)
+*Hình: Danh sách phiếu nhập NL mua hàng*
+
+![Phiếu NL khách gửi CMT](images/92_material_receipt_buyer.png)
+*Hình: Danh sách phiếu NL khách gửi (CMT)*
+
+#### Tạo phiếu nhập mới:
+
+1. Nhấn **"Mới"** → Chọn **Loại Nhập** (Mua Hàng / Khách Gửi / ...)
+2. Điền thông tin:
+   - **Nhà Cung Cấp** (bắt buộc nếu Mua Hàng)
+   - **Khách Hàng Gửi NL** (bắt buộc nếu Khách Gửi)
+   - **Đơn Hàng May** (liên kết đơn hàng)
+   - **Ngày Nhập / Ngày Dự Kiến** (tự tính trễ hạn)
+   - **Số PO / Hóa Đơn / Thông Tin Vận Chuyển**
+3. Thêm chi tiết nguyên liệu:
+   - Loại NL (Vải chính, Lót, Dựng, Chỉ, Khóa, Nút, Nhãn, ...)
+   - Vải/Phụ liệu, Màu sắc, Số lô
+   - SL Đặt / SL Nhận / Đơn giá → Tự tính **Thiếu hụt** và **Giá trị**
+
+![Form nhập NL mới](images/93_material_receipt_form_new.png)
+*Hình: Form tạo phiếu nhập nguyên liệu mới*
+
+#### Quy trình xử lý:
+
+```
+Nháp → Xác Nhận → Đang Kiểm Tra → Nhập Kho
+                                 ↘ QC Không Đạt (Hủy / Xử lý)
+```
+
+- **Xác nhận:** Phải có ít nhất 1 dòng chi tiết
+- **Đang Kiểm Tra:** Bắt đầu kiểm tra chất lượng (QC)
+- **QC Đạt / Không Đạt:** Đánh giá chất lượng nguyên liệu
+- **Nhập Kho:** Hoàn tất — chỉ được nhập khi QC đạt/đạt một phần
+- **Hủy:** Không thể hủy phiếu đã nhập kho
+
+#### Các loại nguyên liệu hỗ trợ:
+
+| Loại | Mô tả |
+|------|-------|
+| fabric | Vải chính |
+| lining | Vải lót |
+| interlining | Vải dựng |
+| thread | Chỉ may |
+| zipper | Khóa kéo |
+| button | Nút / Cúc |
+| label | Nhãn mác |
+| elastic | Thun / Chun |
+| packaging | Bao bì |
+| other | Khác |
+
+### 22.3 Phân Bổ Nguyên Liệu Cho Sản Xuất
+
+**Menu:** Công Ty May → Kho & Giao Hàng → Phân Bổ NL Cho SX
+
+![Phân bổ NL](images/94_material_allocation.png)
+*Hình: Danh sách phiếu phân bổ nguyên liệu*
+
+![Form phân bổ NL](images/95_material_allocation_form.png)
+*Hình: Form phân bổ nguyên liệu cho sản xuất*
+
+#### Cách phân bổ:
+
+1. Chọn **Đơn Hàng May** (bắt buộc) và **Lệnh SX** (tùy chọn)
+2. Thêm dòng chi tiết: loại NL, mô tả, SL yêu cầu / SL xuất, số lô, liên kết phiếu nhập
+3. Quy trình: **Nháp → Xác Nhận → Đã Xuất Kho**
+4. Không thể hủy phiếu đã xuất kho
+
+---
+
+## 23. Module Garment Dashboard — Bảng Điều Khiển
+
+> **Module:** `garment_dashboard` | **Chức năng:** Dashboard tổng quan KPI, tiến độ sản xuất, đơn hàng, cảnh báo
+
+### 23.1 Tổng quan
+
+Module Dashboard cung cấp cái nhìn tổng quan cho quản lý nhà máy:
+- **KPI Tổng Quan:** Số liệu tổng hợp từ toàn bộ hệ thống
+- **Tổng Quan Đơn Hàng:** Trạng thái, tiến độ, trễ hạn
+- **Tiến Độ Sản Xuất:** % hoàn thành, sản lượng, tỷ lệ lỗi
+- **Cảnh Báo:** Đơn trễ hạn, LSX hoàn thành thấp, tỷ lệ lỗi cao
+
+### 23.2 KPI Tổng Quan
+
+**Menu:** Công Ty May → Báo Cáo → Dashboard → Tổng Quan KPI
+
+![Dashboard KPI](images/96_dashboard_kpi_graph.png)
+*Hình: Biểu đồ KPI tổng quan nhà máy*
+
+17 chỉ số KPI tự động cập nhật:
+
+| KPI | Mô tả |
+|-----|-------|
+| Tổng Đơn Hàng | Số đơn hàng không bị hủy |
+| Đơn Đang SX | Đơn đang ở các giai đoạn sản xuất |
+| Đơn Hoàn Thành | Đơn đã giao / hoàn thành |
+| Đơn Trễ Hạn | Đơn quá hạn giao chưa hoàn thành |
+| Tổng LSX | Tổng lệnh sản xuất |
+| LSX Đang Chạy | Lệnh SX đang sản xuất |
+| LSX Hoàn Thành | Lệnh SX đã hoàn thành |
+| SL Kế Hoạch | Tổng số lượng kế hoạch |
+| SL Hoàn Thành | Tổng sản lượng hoàn thành |
+| SL Lỗi | Tổng số lỗi phát hiện |
+| Tổng QC | Tổng phiếu kiểm tra chất lượng |
+| QC Đạt / Không Đạt | Phân loại kết quả QC |
+| Tổng Giao Hàng | Phiếu giao hàng |
+| Đã Giao | Phiếu đã giao thành công |
+| Tổng Phiếu Nhập NL | Phiếu nhập nguyên liệu |
+| Phiếu NL Hoàn Thành | Phiếu NL đã nhập kho |
+
+### 23.3 Tổng Quan Đơn Hàng
+
+**Menu:** Công Ty May → Báo Cáo → Dashboard → Tổng Quan Đơn Hàng
+
+![Tổng quan đơn hàng](images/97_dashboard_order_overview.png)
+*Hình: Tổng quan đơn hàng — hiển thị trạng thái, tiến độ, trễ hạn*
+
+Thông tin hiển thị:
+- Số đơn hàng, khách hàng, mẫu may
+- Ngày đặt / Ngày giao / Số ngày còn lại
+- Tổng SL / Tổng tiền
+- **Trạng thái** (badge màu)
+- **Trễ hạn** (đơn quá ngày giao sẽ hiển thị đỏ)
+- **Số LSX** liên kết
+- **% Hoàn Thành** (thanh tiến trình)
+
+Bộ lọc: Trễ Hạn | Đang SX | Hoàn Thành | Nhóm theo Trạng Thái / Khách Hàng / Mẫu May / Tháng Giao
+
+### 23.4 Tiến Độ Sản Xuất
+
+**Menu:** Công Ty May → Báo Cáo → Dashboard → Tiến Độ Sản Xuất
+
+![Tiến độ sản xuất](images/98_dashboard_production_progress.png)
+*Hình: Tiến độ sản xuất — SL kế hoạch, hoàn thành, lỗi, % hoàn thành*
+
+Thông tin chi tiết mỗi lệnh SX:
+- SL Kế Hoạch / Hoàn Thành / Còn Lại / Lỗi
+- **% Hoàn Thành** (thanh progressbar) + **% Lỗi**
+- Chuyền may, ngày bắt đầu / kết thúc dự kiến
+- Số ngày sản xuất thực tế
+
+Mã màu:
+- 🟢 **Xanh:** Hoàn thành ≥ 100%
+- 🟡 **Vàng:** Hoàn thành 50–99%
+- 🔴 **Đỏ:** Hoàn thành < 50% (đang SX)
+
+### 23.5 Cảnh Báo & Phát Hiện Sớm
+
+**Menu:** Công Ty May → Báo Cáo → Dashboard → Đơn Trễ Hạn / LSX Hoàn Thành Thấp / LSX Lỗi Cao
+
+![Đơn trễ hạn](images/99_dashboard_late_orders.png)
+*Hình: Danh sách đơn hàng trễ hạn*
+
+![LSX hoàn thành thấp](images/100_dashboard_low_completion.png)
+*Hình: Lệnh SX có tỷ lệ hoàn thành dưới 50%*
+
+![LSX lỗi cao](images/101_dashboard_high_defect.png)
+*Hình: Lệnh SX có tỷ lệ lỗi trên 5%*
+
+3 báo cáo cảnh báo:
+- **Đơn Trễ Hạn:** Đơn hàng quá ngày giao mà chưa hoàn thành
+- **LSX Hoàn Thành Thấp:** Lệnh SX đang chạy nhưng % hoàn thành < 50%
+- **LSX Lỗi Cao:** Lệnh SX có tỷ lệ lỗi > 5% — cần kiểm tra chuyền may
+
+---
+
+## 24. Phân Quyền & Bảo Mật
 
 Hệ thống có 2 nhóm quyền:
 
@@ -1584,7 +1772,7 @@ Hệ thống có 2 nhóm quyền:
 
 ---
 
-## 23. FAQ — Câu Hỏi Thường Gặp
+## 25. FAQ — Câu Hỏi Thường Gặp
 
 ### Q: Làm sao để thay đổi ngôn ngữ sang Tiếng Việt?
 **A:** Vào **Settings → Translations → Load a Translation** → Chọn `Vietnamese / Tiếng Việt` → Install.
@@ -1614,10 +1802,10 @@ Hệ thống có 2 nhóm quyền:
 3. Bỏ filter "Apps" và tìm lại
 
 ### Q: Luồng nghiệp vụ chính là gì?
-**A:** Đơn hàng → Mẫu → Tính giá → Kế hoạch → Cắt → May → Giặt → Hoàn thiện → QC → Đóng gói → Giao hàng → Kế toán
+**A:** Đơn hàng → Mẫu → Tính giá → Nhập NL → Kế hoạch → Cắt → May → Giặt → Hoàn thiện → QC → Đóng gói → Giao hàng → Kế toán
 
 ### Q: Mối liên kết giữa các module?
-**A:** Xem [Sơ đồ tổng quan](#2-sơ-đồ-tổng-quan--luồng-nghiệp-vụ) — tất cả module liên kết qua đơn hàng may (garment.order) và lệnh sản xuất (garment.production.order).
+**A:** Xem [Sơ đồ tổng quan](#2-sơ-đồ-tổng-quan--luồng-nghiệp-vụ) — tất cả module liên kết qua đơn hàng may (garment.order) và lệnh sản xuất (garment.production.order). Module nhập NL và dashboard tổng hợp dữ liệu từ toàn bộ hệ thống.
 
 ---
 

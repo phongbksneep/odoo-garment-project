@@ -1,0 +1,121 @@
+.garment-dashboard-container {
+    padding: 16px;
+}
+
+.garment-kpi-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.garment-kpi-card {
+    flex: 1 1 200px;
+    min-width: 200px;
+    max-width: 280px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #714B67;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.garment-kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.garment-kpi-card .kpi-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #868e96;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.garment-kpi-card .kpi-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #212529;
+    line-height: 1.2;
+}
+
+.garment-kpi-card .kpi-subtitle {
+    font-size: 12px;
+    color: #868e96;
+    margin-top: 4px;
+}
+
+/* Color variants */
+.garment-kpi-card.kpi-primary {
+    border-left-color: #714B67;
+}
+
+.garment-kpi-card.kpi-success {
+    border-left-color: #00A09D;
+}
+
+.garment-kpi-card.kpi-warning {
+    border-left-color: #E4A900;
+}
+
+.garment-kpi-card.kpi-danger {
+    border-left-color: #DC3545;
+}
+
+.garment-kpi-card.kpi-info {
+    border-left-color: #17A2B8;
+}
+
+/* Section headers */
+.garment-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #495057;
+    margin: 24px 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+/* Order status badges */
+.garment-status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.garment-status-item {
+    text-align: center;
+    padding: 12px 8px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.garment-status-item .status-count {
+    font-size: 20px;
+    font-weight: 700;
+    color: #212529;
+}
+
+.garment-status-item .status-label {
+    font-size: 11px;
+    color: #868e96;
+    margin-top: 4px;
+}
+
+/* Progress bar in list */
+.garment-progress-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: #e9ecef;
+    overflow: hidden;
+}
+
+.garment-progress-bar .progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #00A09D, #00C9A7);
+    transition: width 0.5s ease;
+}
