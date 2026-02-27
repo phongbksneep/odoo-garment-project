@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- =============== SUBCONTRACT ORDER VIEWS =============== -->
+
+    <!-- List View -->
+    <record id="view_subcontract_order_list" model="ir.ui.view">
+        <field name="name">garment.subcontract.order.list</field>
+        <field name="model">garment.subcontract.order</field>
+        <field name="arch" type="xml">
+            <list decoration-info="state=='in_progress'" decoration-success="state=='done'" decoration-danger="is_overdue == True" decoration-muted="state=='cancelled'">
+                <field name="name"/>
+                <field name="direction"/>
+                <field name="work_type"/>
+                <field name="partner_id"/>
+                <field name="garment_order_id" optional="show"/>
+                <field name="total_qty"/>
+                <field name="total_received"/>
+                <field name="completion_rate" widget="progressbar"/>
+                <field name="date_expected"/>
+                <field name="total_cost" sum="Tổng"/>
+                <field name="is_overdue" column_invisible="True"/>
+                <field name="state" widget="badge"
+                    decoration-info="state=='in_progress'"
+                    decoration-success="state=='done'"
+                    decoration-warning="state in ('partial_received','qc')"
+                />
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_subcontract_order_form" model="ir.ui.view">
+        <field name="name">garment.subcontract.order.form</field>
+        <field name="model">garment.subcontract.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" string="Xác Nhận" type="object"
+                        invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_send" string="Đã Gửi Hàng" type="object"
+                        invisible="state != 'confirmed'" class="oe_highlight"/>
+                    <button name="action_in_progress" string="Đang Gia Công" type="object"
+                        invisible="state != 'sent'" class="oe_highlight"/>
+                    <button name="action_partial_received" string="Nhận Một Phần" type="object"
+                        invisible="state not in ('in_progress', 'partial_received')"/>
+                    <button name="action_received" string="Đã Nhận Đủ" type="object"
+                        invisible="state not in ('in_progress', 'partial_received')" class="oe_highlight"/>
+                    <button name="action_qc" string="Kiểm Tra" type="object"
+                        invisible="state != 'received'" class="oe_highlight"/>
+                    <button name="action_done" string="Hoàn Thành" type="object"
+                        invisible="state != 'qc'" class="oe_highlight"/>
+                    <button name="action_cancel" string="Hủy" type="object"
+                        invisible="state in ('done', 'cancelled')"/>
+                    <button name="action_reset_draft" string="Về Nháp" type="object"
+                        invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"
+                        statusbar_visible="draft,confirmed,sent,in_progress,received,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <widget name="web_ribbon" title="Trễ Hạn" bg_color="text-bg-danger"
+                        invisible="not is_overdue"/>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Thông Tin Chung">
+                            <field name="direction"/>
+                            <field name="work_type"/>
+                            <field name="partner_id"/>
+                            <field name="partner_po"/>
+                            <field name="style_id"/>
+                        </group>
+                        <group string="Liên Kết Nội Bộ">
+                            <field name="garment_order_id"/>
+                            <field name="production_order_id"/>
+                            <field name="is_overdue" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Thời Gian">
+                            <field name="date_order"/>
+                            <field name="date_sent"/>
+                            <field name="date_expected"/>
+                            <field name="date_received"/>
+                        </group>
+                        <group string="Chi Phí">
+                            <field name="currency_id"/>
+                            <field name="unit_price"/>
+                            <field name="total_cost"/>
+                            <field name="payment_status"/>
+                            <field name="amount_paid"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Chi Tiết Gia Công">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="description"/>
+                                    <field name="color_id"/>
+                                    <field name="size_id"/>
+                                    <field name="qty_ordered"/>
+                                    <field name="qty_received"/>
+                                    <field name="qty_rejected"/>
+                                    <field name="qty_accepted"/>
+                                    <field name="unit_price"/>
+                                    <field name="subtotal"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer">
+                                <field name="total_qty"/>
+                                <field name="total_received"/>
+                                <field name="total_rejected"/>
+                                <field name="completion_rate" widget="progressbar"/>
+                            </group>
+                        </page>
+                        <page string="Nguyên Liệu">
+                            <group>
+                                <field name="material_sent" placeholder="VD: 500m vải cotton trắng, 1000 cái nút, 200m chỉ..."/>
+                                <field name="material_returned"/>
+                            </group>
+                        </page>
+                        <page string="Kiểm Tra Chất Lượng" invisible="not qc_required">
+                            <group>
+                                <group>
+                                    <field name="qc_required"/>
+                                    <field name="qc_passed"/>
+                                </group>
+                                <group>
+                                    <field name="qc_notes"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_subcontract_order_search" model="ir.ui.view">
+        <field name="name">garment.subcontract.order.search</field>
+        <field name="model">garment.subcontract.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="garment_order_id"/>
+                <field name="work_type"/>
+                <filter name="outgoing" string="Gửi Gia Công" domain="[('direction', '=', 'outgoing')]"/>
+                <filter name="incoming" string="Nhận Gia Công" domain="[('direction', '=', 'incoming')]"/>
+                <separator/>
+                <filter name="in_progress" string="Đang GC" domain="[('state', '=', 'in_progress')]"/>
+                <filter name="overdue" string="Trễ Hạn" domain="[('is_overdue', '=', True)]"/>
+                <filter name="unpaid" string="Chưa TT" domain="[('payment_status', '=', 'unpaid')]"/>
+                <group>
+                    <filter name="group_direction" context="{'group_by': 'direction'}"/>
+                    <filter name="group_work" context="{'group_by': 'work_type'}"/>
+                    <filter name="group_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_subcontract_order" model="ir.actions.act_window">
+        <field name="name">Đơn Gia Công</field>
+        <field name="res_model">garment.subcontract.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo đơn gia công mới
+            </p>
+            <p>Quản lý gửi/nhận gia công may, giặt, thêu, in...</p>
+        </field>
+    </record>
+
+    <record id="action_subcontract_outgoing" model="ir.actions.act_window">
+        <field name="name">Gửi Gia Công</field>
+        <field name="res_model">garment.subcontract.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('direction', '=', 'outgoing')]</field>
+        <field name="context">{'default_direction': 'outgoing'}</field>
+    </record>
+
+    <record id="action_subcontract_incoming" model="ir.actions.act_window">
+        <field name="name">Nhận Gia Công</field>
+        <field name="res_model">garment.subcontract.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('direction', '=', 'incoming')]</field>
+        <field name="context">{'default_direction': 'incoming'}</field>
+    </record>
+</odoo>

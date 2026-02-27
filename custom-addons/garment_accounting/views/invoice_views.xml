@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ===== INVOICE VIEWS ===== -->
+    <record id="view_invoice_tree" model="ir.ui.view">
+        <field name="name">garment.invoice.tree</field>
+        <field name="model">garment.invoice</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="state == 'cancelled'"
+                  decoration-success="state == 'paid'">
+                <field name="name"/>
+                <field name="invoice_type"/>
+                <field name="partner_id"/>
+                <field name="garment_order_id" optional="show"/>
+                <field name="date"/>
+                <field name="subtotal" sum="Tiền Hàng"/>
+                <field name="tax_amount" sum="Thuế"/>
+                <field name="total_amount" sum="Tổng"/>
+                <field name="paid_amount" sum="Đã TT"/>
+                <field name="residual" sum="Còn Nợ"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_invoice_form" model="ir.ui.view">
+        <field name="name">garment.invoice.form</field>
+        <field name="model">garment.invoice</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Xác Nhận"
+                            invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_paid" type="object" string="Đã Thanh Toán"
+                            invisible="state != 'confirmed'" class="oe_highlight"/>
+                    <button name="action_cancel" type="object" string="Hủy"
+                            invisible="state in ('paid', 'cancelled')"/>
+                    <button name="action_reset_draft" type="object" string="Về Nháp"
+                            invisible="state not in ('confirmed', 'cancelled')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,paid"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="invoice_type"/>
+                            <field name="partner_id"/>
+                            <field name="garment_order_id"/>
+                            <field name="expense_type" invisible="invoice_type != 'purchase'"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="due_date"/>
+                            <field name="currency_id"/>
+                            <field name="tax_type"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Chi Tiết" name="lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="unit"/>
+                                    <field name="unit_price"/>
+                                    <field name="subtotal" sum="Tổng"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer">
+                                <field name="subtotal"/>
+                                <field name="tax_amount"/>
+                                <field name="total_amount" class="oe_subtotal_footer_separator"/>
+                            </group>
+                        </page>
+                        <page string="Thanh Toán" name="payments">
+                            <field name="payment_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="date"/>
+                                    <field name="payment_method"/>
+                                    <field name="amount" sum="Tổng"/>
+                                    <field name="state" widget="badge"/>
+                                </list>
+                            </field>
+                            <group>
+                                <field name="paid_amount"/>
+                                <field name="residual"/>
+                            </group>
+                        </page>
+                        <page string="Ghi Chú" name="notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_invoice_search" model="ir.ui.view">
+        <field name="name">garment.invoice.search</field>
+        <field name="model">garment.invoice</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="garment_order_id"/>
+                <filter name="filter_sale" string="Hóa Đơn Bán" domain="[('invoice_type', '=', 'sale')]"/>
+                <filter name="filter_purchase" string="Hóa Đơn Mua" domain="[('invoice_type', '=', 'purchase')]"/>
+                <separator/>
+                <filter name="filter_unpaid" string="Chưa Thanh Toán" domain="[('state', '=', 'confirmed')]"/>
+                <group>
+                    <filter name="group_type" string="Loại HĐ" context="{'group_by': 'invoice_type'}"/>
+                    <filter name="group_partner" string="Đối Tác" context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_month" string="Tháng" context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_invoice_sale" model="ir.actions.act_window">
+        <field name="name">Hóa Đơn Bán</field>
+        <field name="res_model">garment.invoice</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('invoice_type', '=', 'sale')]</field>
+        <field name="context">{'default_invoice_type': 'sale'}</field>
+        <field name="search_view_id" ref="view_invoice_search"/>
+    </record>
+
+    <record id="action_invoice_purchase" model="ir.actions.act_window">
+        <field name="name">Hóa Đơn Mua</field>
+        <field name="res_model">garment.invoice</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('invoice_type', '=', 'purchase')]</field>
+        <field name="context">{'default_invoice_type': 'purchase'}</field>
+        <field name="search_view_id" ref="view_invoice_search"/>
+    </record>
+
+    <record id="action_invoice_all" model="ir.actions.act_window">
+        <field name="name">Tất Cả Hóa Đơn</field>
+        <field name="res_model">garment.invoice</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_invoice_search"/>
+    </record>
+</odoo>

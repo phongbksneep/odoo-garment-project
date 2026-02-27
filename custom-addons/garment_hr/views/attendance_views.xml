@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ===== ATTENDANCE VIEWS ===== -->
+    <record id="view_attendance_tree" model="ir.ui.view">
+        <field name="name">garment.attendance.tree</field>
+        <field name="model">garment.attendance</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="status"/>
+                <field name="shift"/>
+                <field name="check_in" widget="float_time"/>
+                <field name="check_out" widget="float_time"/>
+                <field name="work_hours" widget="float_time"/>
+                <field name="overtime_hours" widget="float_time"/>
+                <field name="notes"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_attendance_search" model="ir.ui.view">
+        <field name="name">garment.attendance.search</field>
+        <field name="model">garment.attendance</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <filter name="filter_today" string="Hôm Nay" domain="[('date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter name="filter_present" string="Đi Làm" domain="[('status', '=', 'present')]"/>
+                <filter name="filter_absent" string="Vắng" domain="[('status', '=', 'absent')]"/>
+                <filter name="filter_late" string="Đi Muộn" domain="[('status', '=', 'late')]"/>
+                <separator/>
+                <group>
+                    <filter name="group_dept" string="Phòng Ban" context="{'group_by': 'department_id'}"/>
+                    <filter name="group_status" string="Trạng Thái" context="{'group_by': 'status'}"/>
+                    <filter name="group_date" string="Ngày" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_attendance" model="ir.actions.act_window">
+        <field name="name">Chấm Công</field>
+        <field name="res_model">garment.attendance</field>
+        <field name="view_mode">list</field>
+        <field name="search_view_id" ref="view_attendance_search"/>
+    </record>
+
+    <!-- ===== ATTENDANCE SUMMARY VIEWS ===== -->
+    <record id="view_attendance_summary_tree" model="ir.ui.view">
+        <field name="name">garment.attendance.summary.tree</field>
+        <field name="model">garment.attendance.summary</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="month"/>
+                <field name="year"/>
+                <field name="total_work_days"/>
+                <field name="present_days"/>
+                <field name="absent_days"/>
+                <field name="late_days"/>
+                <field name="total_ot_hours" widget="float_time"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_attendance_summary_form" model="ir.ui.view">
+        <field name="name">garment.attendance.summary.form</field>
+        <field name="model">garment.attendance.summary</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_calculate" type="object" string="Tổng Hợp Công"
+                            class="oe_highlight" invisible="state == 'confirmed'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="department_id"/>
+                            <field name="month"/>
+                            <field name="year"/>
+                        </group>
+                        <group>
+                            <field name="total_work_days"/>
+                            <field name="present_days"/>
+                            <field name="absent_days"/>
+                            <field name="late_days"/>
+                            <field name="half_days"/>
+                            <field name="total_ot_hours" widget="float_time"/>
+                            <field name="total_work_hours" widget="float_time"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_attendance_summary" model="ir.actions.act_window">
+        <field name="name">Tổng Hợp Công Tháng</field>
+        <field name="res_model">garment.attendance.summary</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

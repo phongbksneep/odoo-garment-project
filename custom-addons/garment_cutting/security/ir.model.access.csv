@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_garment_cutting_order_adv_user,garment.cutting.order.adv.user,model_garment_cutting_order_adv,garment_base.group_garment_user,1,1,1,0
+access_garment_cutting_order_adv_manager,garment.cutting.order.adv.manager,model_garment_cutting_order_adv,garment_base.group_garment_manager,1,1,1,1
+access_garment_cutting_layer_user,garment.cutting.layer.user,model_garment_cutting_layer,garment_base.group_garment_user,1,1,1,0
+access_garment_cutting_layer_manager,garment.cutting.layer.manager,model_garment_cutting_layer,garment_base.group_garment_manager,1,1,1,1
+access_garment_cutting_bundle_user,garment.cutting.bundle.user,model_garment_cutting_bundle,garment_base.group_garment_user,1,1,1,0
+access_garment_cutting_bundle_manager,garment.cutting.bundle.manager,model_garment_cutting_bundle,garment_base.group_garment_manager,1,1,1,1

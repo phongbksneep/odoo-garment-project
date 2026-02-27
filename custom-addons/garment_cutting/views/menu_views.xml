@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_garment_cutting_main"
+              name="Cắt Nâng Cao"
+              parent="garment_base.menu_garment_root"
+              sequence="16"/>
+
+    <menuitem id="menu_cutting_order_adv"
+              name="Lệnh Cắt Nâng Cao"
+              parent="menu_garment_cutting_main"
+              action="action_cutting_order_adv"
+              sequence="10"/>
+</odoo>

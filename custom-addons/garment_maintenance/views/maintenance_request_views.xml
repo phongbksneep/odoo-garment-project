@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================== -->
+    <!-- Maintenance Request Form -->
+    <!-- ================================================================== -->
+    <record id="view_maintenance_request_form" model="ir.ui.view">
+        <field name="name">garment.maintenance.request.form</field>
+        <field name="model">garment.maintenance.request</field>
+        <field name="arch" type="xml">
+            <form string="Yêu Cầu Bảo Trì">
+                <header>
+                    <button name="action_confirm" string="Tiếp Nhận" type="object"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_start" string="Bắt Đầu Xử Lý" type="object"
+                            class="btn-primary" invisible="state != 'confirmed'"/>
+                    <button name="action_done" string="Hoàn Thành" type="object"
+                            class="btn-success" invisible="state != 'in_progress'"/>
+                    <button name="action_cancel" string="Hủy" type="object"
+                            invisible="state in ('done', 'cancelled')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,in_progress,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="machine_id"/>
+                            <field name="request_type"/>
+                            <field name="priority" widget="priority"/>
+                            <field name="technician_id"/>
+                        </group>
+                        <group>
+                            <field name="request_date"/>
+                            <field name="scheduled_date"/>
+                            <field name="completion_date"/>
+                            <field name="downtime_hours"/>
+                            <field name="cost"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Chi Tiết">
+                            <group>
+                                <field name="description" placeholder="Mô tả sự cố..."/>
+                            </group>
+                            <group>
+                                <field name="action_taken" placeholder="Các bước xử lý..."/>
+                            </group>
+                            <group>
+                                <field name="spare_parts" placeholder="Phụ tùng đã sử dụng..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_maintenance_request_list" model="ir.ui.view">
+        <field name="name">garment.maintenance.request.list</field>
+        <field name="model">garment.maintenance.request</field>
+        <field name="arch" type="xml">
+            <list string="Yêu Cầu Bảo Trì"
+                  decoration-danger="priority == '3'"
+                  decoration-warning="priority == '2'">
+                <field name="name"/>
+                <field name="machine_id"/>
+                <field name="request_type"/>
+                <field name="priority"/>
+                <field name="request_date"/>
+                <field name="technician_id"/>
+                <field name="downtime_hours" sum="Tổng"/>
+                <field name="cost" sum="Tổng"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_maintenance_request_search" model="ir.ui.view">
+        <field name="name">garment.maintenance.request.search</field>
+        <field name="model">garment.maintenance.request</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Yêu Cầu">
+                <field name="name"/>
+                <field name="machine_id"/>
+                <filter string="Khẩn Cấp" name="urgent"
+                        domain="[('request_type', '=', 'breakdown')]"/>
+                <filter string="Đang Xử Lý" name="in_progress"
+                        domain="[('state', '=', 'in_progress')]"/>
+                <group>
+                    <filter string="Loại" name="group_type"
+                            context="{'group_by': 'request_type'}"/>
+                    <filter string="Máy" name="group_machine"
+                            context="{'group_by': 'machine_id'}"/>
+                    <filter string="Trạng Thái" name="group_state"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_maintenance_request" model="ir.actions.act_window">
+        <field name="name">Yêu Cầu Bảo Trì</field>
+        <field name="res_model">garment.maintenance.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo yêu cầu bảo trì mới
+            </p>
+        </field>
+    </record>
+</odoo>

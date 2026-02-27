@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_garment_payroll_main"
+              name="Lương Khoán"
+              parent="garment_base.menu_garment_root"
+              sequence="80"/>
+
+    <menuitem id="menu_piece_rate"
+              name="Đơn Giá Khoán"
+              parent="menu_garment_payroll_main"
+              action="action_piece_rate"
+              sequence="10"/>
+
+    <menuitem id="menu_worker_output"
+              name="Sản Lượng Công Nhân"
+              parent="menu_garment_payroll_main"
+              action="action_worker_output"
+              sequence="20"/>
+
+    <menuitem id="menu_wage_calculation"
+              name="Bảng Lương"
+              parent="menu_garment_payroll_main"
+              action="action_wage_calculation"
+              sequence="30"/>
+
+    <menuitem id="menu_bonus"
+              name="Phiếu Thưởng"
+              parent="menu_garment_payroll_main"
+              action="action_bonus"
+              sequence="40"/>
+</odoo>

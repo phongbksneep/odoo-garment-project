@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_move_user,garment.stock.move.user,model_garment_stock_move,garment_base.group_garment_user,1,1,1,0
+access_stock_move_manager,garment.stock.move.manager,model_garment_stock_move,garment_base.group_garment_manager,1,1,1,1
+access_stock_move_line_user,garment.stock.move.line.user,model_garment_stock_move_line,garment_base.group_garment_user,1,1,1,0
+access_stock_move_line_manager,garment.stock.move.line.manager,model_garment_stock_move_line,garment_base.group_garment_manager,1,1,1,1

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sequence cho Lệnh Giặt -->
+    <record id="seq_wash_order" model="ir.sequence">
+        <field name="name">Wash Order Sequence</field>
+        <field name="code">garment.wash.order</field>
+        <field name="prefix">WASH-%(year)s-</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Dữ liệu mẫu: Hóa Chất -->
+    <record id="chemical_detergent" model="garment.wash.chemical">
+        <field name="name">Chất Giặt Tổng Hợp</field>
+        <field name="code">DET-01</field>
+        <field name="chemical_type">detergent</field>
+        <field name="uom">kg</field>
+        <field name="unit_price">45000</field>
+        <field name="safety_note">Tránh tiếp xúc trực tiếp với da. Đeo găng tay khi sử dụng.</field>
+    </record>
+    <record id="chemical_softener" model="garment.wash.chemical">
+        <field name="name">Chất Làm Mềm Vải</field>
+        <field name="code">SOF-01</field>
+        <field name="chemical_type">softener</field>
+        <field name="uom">kg</field>
+        <field name="unit_price">55000</field>
+    </record>
+    <record id="chemical_enzyme_neutral" model="garment.wash.chemical">
+        <field name="name">Enzyme Trung Tính (Cellulase)</field>
+        <field name="code">ENZ-01</field>
+        <field name="chemical_type">enzyme</field>
+        <field name="uom">kg</field>
+        <field name="unit_price">120000</field>
+        <field name="safety_note">Bảo quản nơi khô ráo, thoáng mát. Nhiệt độ dưới 25°C.</field>
+    </record>
+    <record id="chemical_bleach" model="garment.wash.chemical">
+        <field name="name">Sodium Hypochlorite</field>
+        <field name="code">BLE-01</field>
+        <field name="chemical_type">bleach</field>
+        <field name="uom">liter</field>
+        <field name="unit_price">25000</field>
+        <field name="safety_note">Chất oxy hóa mạnh. Không trộn với axit. Đeo kính bảo hộ.</field>
+    </record>
+    <record id="chemical_acid" model="garment.wash.chemical">
+        <field name="name">Axit Acetic (Giấm)</field>
+        <field name="code">ACI-01</field>
+        <field name="chemical_type">acid</field>
+        <field name="uom">liter</field>
+        <field name="unit_price">15000</field>
+    </record>
+    <record id="chemical_silicon" model="garment.wash.chemical">
+        <field name="name">Silicon Micro-Emulsion</field>
+        <field name="code">SIL-01</field>
+        <field name="chemical_type">silicon</field>
+        <field name="uom">kg</field>
+        <field name="unit_price">85000</field>
+    </record>
+
+    <!-- Dữ liệu mẫu: Công Thức Giặt -->
+    <record id="recipe_normal_wash" model="garment.wash.recipe">
+        <field name="name">Giặt Thường - Cotton</field>
+        <field name="code">WR-NORMAL-01</field>
+        <field name="wash_type">normal</field>
+        <field name="fabric_type">cotton</field>
+        <field name="temperature">40</field>
+        <field name="duration_minutes">30</field>
+        <field name="water_ratio">10</field>
+    </record>
+    <record id="recipe_enzyme_wash" model="garment.wash.recipe">
+        <field name="name">Giặt Enzyme - Denim</field>
+        <field name="code">WR-ENZYME-01</field>
+        <field name="wash_type">enzyme</field>
+        <field name="fabric_type">denim</field>
+        <field name="temperature">55</field>
+        <field name="duration_minutes">45</field>
+        <field name="water_ratio">8</field>
+        <field name="ph_level">5.5</field>
+    </record>
+    <record id="recipe_softener" model="garment.wash.recipe">
+        <field name="name">Xả Mềm Tiêu Chuẩn</field>
+        <field name="code">WR-SOFT-01</field>
+        <field name="wash_type">softener</field>
+        <field name="fabric_type">cotton</field>
+        <field name="temperature">30</field>
+        <field name="duration_minutes">15</field>
+        <field name="water_ratio">12</field>
+    </record>
+
+    <!-- Bước cho công thức Giặt Thường -->
+    <record id="step_normal_prewash" model="garment.wash.recipe.step">
+        <field name="recipe_id" ref="recipe_normal_wash"/>
+        <field name="sequence">1</field>
+        <field name="name">Giặt Sơ</field>
+        <field name="step_type">pre_wash</field>
+        <field name="temperature">30</field>
+        <field name="duration_minutes">5</field>
+        <field name="water_liters">10</field>
+    </record>
+    <record id="step_normal_main" model="garment.wash.recipe.step">
+        <field name="recipe_id" ref="recipe_normal_wash"/>
+        <field name="sequence">2</field>
+        <field name="name">Giặt Chính</field>
+        <field name="step_type">main_wash</field>
+        <field name="chemical_id" ref="chemical_detergent"/>
+        <field name="chemical_dosage">3</field>
+        <field name="temperature">40</field>
+        <field name="duration_minutes">15</field>
+        <field name="water_liters">10</field>
+    </record>
+    <record id="step_normal_rinse" model="garment.wash.recipe.step">
+        <field name="recipe_id" ref="recipe_normal_wash"/>
+        <field name="sequence">3</field>
+        <field name="name">Xả Nước</field>
+        <field name="step_type">rinse</field>
+        <field name="temperature">25</field>
+        <field name="duration_minutes">5</field>
+        <field name="water_liters">10</field>
+    </record>
+    <record id="step_normal_softener" model="garment.wash.recipe.step">
+        <field name="recipe_id" ref="recipe_normal_wash"/>
+        <field name="sequence">4</field>
+        <field name="name">Xả Mềm</field>
+        <field name="step_type">softener</field>
+        <field name="chemical_id" ref="chemical_softener"/>
+        <field name="chemical_dosage">2</field>
+        <field name="temperature">25</field>
+        <field name="duration_minutes">5</field>
+        <field name="water_liters">8</field>
+    </record>
+</odoo>

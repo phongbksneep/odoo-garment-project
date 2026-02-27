@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================== -->
+    <!-- Packing List Form -->
+    <!-- ================================================================== -->
+    <record id="view_packing_list_form" model="ir.ui.view">
+        <field name="name">garment.packing.list.form</field>
+        <field name="model">garment.packing.list</field>
+        <field name="arch" type="xml">
+            <form string="Packing List">
+                <header>
+                    <button name="action_start_packing" string="Bắt Đầu Đóng Gói" type="object"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_packed" string="Hoàn Thành Đóng Gói" type="object"
+                            class="btn-primary" invisible="state != 'packing'"/>
+                    <button name="action_shipped" string="Đã Xuất Hàng" type="object"
+                            class="btn-primary" invisible="state != 'packed'"/>
+                    <button name="action_delivered" string="Đã Giao" type="object"
+                            class="btn-success" invisible="state != 'shipped'"/>
+                    <button name="action_cancel" string="Hủy" type="object"
+                            invisible="state in ('shipped', 'delivered', 'cancelled')"/>
+                    <button name="action_reset_draft" string="Đặt Lại" type="object"
+                            invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,packing,packed,shipped,delivered"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="garment_order_id"/>
+                            <field name="buyer_id"/>
+                            <field name="style_id"/>
+                            <field name="date"/>
+                            <field name="po_number"/>
+                        </group>
+                        <group>
+                            <field name="packing_type"/>
+                            <field name="ship_mode"/>
+                            <field name="destination_port"/>
+                            <field name="etd"/>
+                            <field name="eta"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="vessel_name"/>
+                            <field name="bl_number"/>
+                        </group>
+                        <group>
+                            <field name="container_no"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Chi Tiết Thùng Carton">
+                            <field name="carton_ids">
+                                <list editable="bottom">
+                                    <field name="carton_from"/>
+                                    <field name="carton_to"/>
+                                    <field name="carton_count"/>
+                                    <field name="size_id"/>
+                                    <field name="color_id"/>
+                                    <field name="pcs_per_carton"/>
+                                    <field name="total_pcs"/>
+                                    <field name="length_cm"/>
+                                    <field name="width_cm"/>
+                                    <field name="height_cm"/>
+                                    <field name="gross_weight"/>
+                                    <field name="net_weight"/>
+                                    <field name="cbm_per_carton"/>
+                                    <field name="barcode"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Tổng Hợp">
+                            <group>
+                                <group>
+                                    <field name="total_cartons"/>
+                                    <field name="total_pieces"/>
+                                </group>
+                                <group>
+                                    <field name="total_gross_weight"/>
+                                    <field name="total_net_weight"/>
+                                    <field name="total_cbm"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- List View -->
+    <!-- ================================================================== -->
+    <record id="view_packing_list_list" model="ir.ui.view">
+        <field name="name">garment.packing.list.list</field>
+        <field name="model">garment.packing.list</field>
+        <field name="arch" type="xml">
+            <list string="Packing List" decoration-info="state == 'draft'"
+                  decoration-success="state == 'delivered'">
+                <field name="name"/>
+                <field name="buyer_id"/>
+                <field name="style_id"/>
+                <field name="po_number"/>
+                <field name="total_cartons"/>
+                <field name="total_pieces"/>
+                <field name="total_cbm"/>
+                <field name="etd"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- Search View -->
+    <!-- ================================================================== -->
+    <record id="view_packing_list_search" model="ir.ui.view">
+        <field name="name">garment.packing.list.search</field>
+        <field name="model">garment.packing.list</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Packing List">
+                <field name="name"/>
+                <field name="buyer_id"/>
+                <field name="po_number"/>
+                <filter string="Đang Đóng Gói" name="packing" domain="[('state', '=', 'packing')]"/>
+                <filter string="Đã Xuất" name="shipped" domain="[('state', '=', 'shipped')]"/>
+                <group>
+                    <filter string="Buyer" name="group_buyer" context="{'group_by': 'buyer_id'}"/>
+                    <filter string="Ship Mode" name="group_ship" context="{'group_by': 'ship_mode'}"/>
+                    <filter string="Trạng Thái" name="group_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- Action -->
+    <!-- ================================================================== -->
+    <record id="action_packing_list" model="ir.actions.act_window">
+        <field name="name">Packing List</field>
+        <field name="res_model">garment.packing.list</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Tạo packing list mới</p>
+        </field>
+    </record>
+</odoo>

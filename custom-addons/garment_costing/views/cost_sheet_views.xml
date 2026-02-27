@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================== -->
+    <!-- Cost Sheet Form View -->
+    <!-- ================================================================== -->
+    <record id="view_cost_sheet_form" model="ir.ui.view">
+        <field name="name">garment.cost.sheet.form</field>
+        <field name="model">garment.cost.sheet</field>
+        <field name="arch" type="xml">
+            <form string="Bảng Tính Giá Thành">
+                <header>
+                    <button name="action_confirm" string="Xác Nhận" type="object"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_approve" string="Duyệt" type="object"
+                            class="btn-primary" invisible="state != 'confirmed'"/>
+                    <button name="action_revise" string="Sửa Đổi" type="object"
+                            invisible="state not in ('confirmed', 'approved')"/>
+                    <button name="action_cancel" string="Hủy" type="object"
+                            invisible="state in ('done', 'cancelled')"/>
+                    <button name="action_reset_draft" string="Đặt Lại Nháp" type="object"
+                            invisible="state not in ('cancelled', 'revised')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="style_id"/>
+                            <field name="buyer_id"/>
+                            <field name="garment_order_id"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="costing_type"/>
+                            <field name="order_qty"/>
+                            <field name="currency_id"/>
+                            <field name="revision"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <!-- Tab 1: CM Cost -->
+                        <page string="Chi Phí Gia Công (CM)">
+                            <group>
+                                <group>
+                                    <field name="smv"/>
+                                    <field name="target_efficiency"/>
+                                    <field name="cm_rate_per_minute"/>
+                                </group>
+                                <group>
+                                    <field name="cm_cost"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Tab 2: Fabric -->
+                        <page string="Chi Phí Vải" invisible="costing_type == 'cm'">
+                            <button name="action_load_from_bom" string="Load từ BOM"
+                                    type="object" class="btn-secondary mb-2"
+                                    invisible="state != 'draft'"/>
+                            <field name="fabric_line_ids" context="{'default_cost_type': 'fabric'}">
+                                <list editable="bottom">
+                                    <field name="cost_type" column_invisible="1"/>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="uom_id"/>
+                                    <field name="consumption"/>
+                                    <field name="unit_price"/>
+                                    <field name="wastage_pct"/>
+                                    <field name="amount_per_pc"/>
+                                    <field name="supplier_id"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer">
+                                <field name="fabric_cost_per_pc" class="oe_subtotal_footer_separator"/>
+                            </group>
+                        </page>
+
+                        <!-- Tab 3: Accessories -->
+                        <page string="Chi Phí Phụ Liệu" invisible="costing_type == 'cm'">
+                            <field name="accessory_line_ids" context="{'default_cost_type': 'accessory'}">
+                                <list editable="bottom">
+                                    <field name="cost_type" column_invisible="1"/>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="uom_id"/>
+                                    <field name="consumption"/>
+                                    <field name="unit_price"/>
+                                    <field name="wastage_pct"/>
+                                    <field name="amount_per_pc"/>
+                                    <field name="supplier_id"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer">
+                                <field name="accessory_cost_per_pc" class="oe_subtotal_footer_separator"/>
+                            </group>
+                        </page>
+
+                        <!-- Tab 4: Packing -->
+                        <page string="Chi Phí Đóng Gói" invisible="costing_type == 'cm'">
+                            <field name="packing_line_ids" context="{'default_cost_type': 'packing'}">
+                                <list editable="bottom">
+                                    <field name="cost_type" column_invisible="1"/>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="uom_id"/>
+                                    <field name="consumption"/>
+                                    <field name="unit_price"/>
+                                    <field name="wastage_pct"/>
+                                    <field name="amount_per_pc"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer">
+                                <field name="packing_cost_per_pc" class="oe_subtotal_footer_separator"/>
+                            </group>
+                        </page>
+
+                        <!-- Tab 5: Process Cost -->
+                        <page string="Chi Phí Gia Công Phụ">
+                            <group>
+                                <group>
+                                    <field name="washing_cost"/>
+                                    <field name="embroidery_cost"/>
+                                </group>
+                                <group>
+                                    <field name="printing_cost"/>
+                                    <field name="testing_cost"/>
+                                </group>
+                            </group>
+                            <group class="oe_subtotal_footer">
+                                <field name="total_process_cost" class="oe_subtotal_footer_separator"/>
+                            </group>
+                        </page>
+
+                        <!-- Tab 6: Commercial (FOB) -->
+                        <page string="Chi Phí Thương Mại" invisible="costing_type == 'cm'">
+                            <group>
+                                <group>
+                                    <field name="overhead_pct"/>
+                                    <field name="overhead_cost"/>
+                                    <field name="freight_cost"/>
+                                </group>
+                                <group>
+                                    <field name="commission_pct"/>
+                                    <field name="commission_cost"/>
+                                    <field name="profit_pct"/>
+                                    <field name="profit_cost"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Tab 7: Summary -->
+                        <page string="Tổng Hợp Giá Thành">
+                            <group>
+                                <group>
+                                    <field name="fabric_cost_per_pc"/>
+                                    <field name="accessory_cost_per_pc"/>
+                                    <field name="packing_cost_per_pc"/>
+                                    <field name="other_cost_per_pc"/>
+                                    <field name="total_material_cost" class="oe_subtotal_footer_separator"/>
+                                </group>
+                                <group>
+                                    <field name="cm_cost"/>
+                                    <field name="total_process_cost"/>
+                                    <field name="overhead_cost"/>
+                                    <field name="cost_price" class="oe_subtotal_footer_separator"/>
+                                    <field name="selling_price" class="oe_subtotal_footer_separator"/>
+                                    <field name="total_order_value" class="oe_subtotal_footer_separator"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Tab 8: Notes -->
+                        <page string="Ghi Chú">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- Cost Sheet List View -->
+    <!-- ================================================================== -->
+    <record id="view_cost_sheet_list" model="ir.ui.view">
+        <field name="name">garment.cost.sheet.list</field>
+        <field name="model">garment.cost.sheet</field>
+        <field name="arch" type="xml">
+            <list string="Bảng Tính Giá" decoration-info="state == 'draft'"
+                  decoration-success="state == 'approved'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="style_id"/>
+                <field name="buyer_id"/>
+                <field name="costing_type"/>
+                <field name="order_qty"/>
+                <field name="selling_price"/>
+                <field name="total_order_value"/>
+                <field name="revision"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- Cost Sheet Search View -->
+    <!-- ================================================================== -->
+    <record id="view_cost_sheet_search" model="ir.ui.view">
+        <field name="name">garment.cost.sheet.search</field>
+        <field name="model">garment.cost.sheet</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Bảng Giá">
+                <field name="name"/>
+                <field name="style_id"/>
+                <field name="buyer_id"/>
+                <filter string="FOB" name="fob" domain="[('costing_type', '=', 'fob')]"/>
+                <filter string="CM" name="cm" domain="[('costing_type', '=', 'cm')]"/>
+                <filter string="CMT" name="cmt" domain="[('costing_type', '=', 'cmt')]"/>
+                <separator/>
+                <filter string="Nháp" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Đã Duyệt" name="approved" domain="[('state', '=', 'approved')]"/>
+                <group>
+                    <filter string="Buyer" name="group_buyer" context="{'group_by': 'buyer_id'}"/>
+                    <filter string="Style" name="group_style" context="{'group_by': 'style_id'}"/>
+                    <filter string="Loại Giá" name="group_type" context="{'group_by': 'costing_type'}"/>
+                    <filter string="Trạng Thái" name="group_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- Action -->
+    <!-- ================================================================== -->
+    <record id="action_cost_sheet" model="ir.actions.act_window">
+        <field name="name">Bảng Tính Giá Thành</field>
+        <field name="res_model">garment.cost.sheet</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo bảng tính giá thành mới
+            </p>
+            <p>Tính giá FOB, CM, CMT cho sản phẩm may.</p>
+        </field>
+    </record>
+</odoo>

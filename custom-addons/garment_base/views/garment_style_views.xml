@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_garment_style_form" model="ir.ui.view">
+        <field name="name">garment.style.form</field>
+        <field name="model">garment.style</field>
+        <field name="arch" type="xml">
+            <form string="Mẫu May">
+                <header>
+                    <button name="action_design" string="Thiết Kế" type="object"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_sample" string="Làm Mẫu" type="object"
+                            class="btn-primary" invisible="state != 'design'"/>
+                    <button name="action_approve" string="Duyệt" type="object"
+                            class="btn-primary" invisible="state != 'sample'"/>
+                    <button name="action_production" string="Sản Xuất" type="object"
+                            class="btn-primary" invisible="state != 'approved'"/>
+                    <button name="action_discontinue" string="Ngừng SX" type="object"
+                            invisible="state not in ('approved', 'production')"/>
+                    <button name="action_reset_draft" string="Đặt Lại Nháp" type="object"
+                            invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,design,sample,approved,production"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <field name="image_front" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Tên Mẫu"/>
+                        </h1>
+                        <h3>
+                            <field name="code" placeholder="Mã Style"/>
+                        </h3>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="category"/>
+                            <field name="season"/>
+                            <field name="gender"/>
+                            <field name="difficulty_level"/>
+                            <field name="customer_id"/>
+                        </group>
+                        <group>
+                            <field name="fabric_consumption"/>
+                            <field name="sewing_time"/>
+                            <field name="sam"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Nguyên Phụ Liệu">
+                            <group>
+                                <field name="fabric_ids" widget="many2many_tags" nolabel="1"/>
+                            </group>
+                            <group>
+                                <field name="accessory_ids" widget="many2many_tags" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Size &amp; Màu">
+                            <group>
+                                <field name="size_ids" widget="many2many_tags" nolabel="1"/>
+                            </group>
+                            <group>
+                                <field name="color_ids" widget="many2many_tags" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Tài Liệu Kỹ Thuật">
+                            <group>
+                                <field name="tech_pack" filename="tech_pack_filename"/>
+                                <field name="tech_pack_filename" invisible="1"/>
+                                <field name="pattern_file" filename="pattern_filename"/>
+                                <field name="pattern_filename" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="image_back" widget="image"/>
+                            </group>
+                        </page>
+                        <page string="Mô Tả">
+                            <field name="description"/>
+                        </page>
+                        <page string="Ghi Chú Kỹ Thuật">
+                            <field name="notes"/>
+                        </page>
+                        <page string="Giặt Ủi (Wash Care)">
+                            <group>
+                                <field name="wash_care"/>
+                            </group>
+                            <group>
+                                <field name="wash_symbol_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_garment_style_list" model="ir.ui.view">
+        <field name="name">garment.style.list</field>
+        <field name="model">garment.style</field>
+        <field name="arch" type="xml">
+            <list string="Danh Sách Mẫu May" decoration-info="state == 'draft'"
+                  decoration-warning="state == 'sample'" decoration-success="state == 'approved'"
+                  decoration-muted="state == 'discontinued'">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="gender"/>
+                <field name="season"/>
+                <field name="sam"/>
+                <field name="difficulty_level"/>
+                <field name="customer_id"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="view_garment_style_kanban" model="ir.ui.view">
+        <field name="name">garment.style.kanban</field>
+        <field name="model">garment.style</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="category"/>
+                <field name="state"/>
+                <field name="image_front"/>
+                <templates>
+                    <t t-name="card">
+                        <field name="image_front" widget="image" options="{'size': [100, 100]}"/>
+                        <strong><field name="name"/></strong>
+                        <div><field name="code"/></div>
+                        <div><field name="category"/></div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_garment_style_search" model="ir.ui.view">
+        <field name="name">garment.style.search</field>
+        <field name="model">garment.style</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Mẫu May">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="customer_id"/>
+                <filter string="Nháp" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Đã Duyệt" name="approved" domain="[('state', '=', 'approved')]"/>
+                <filter string="Đang Sản Xuất" name="production" domain="[('state', '=', 'production')]"/>
+                <separator/>
+                <filter string="Nam" name="male" domain="[('gender', '=', 'male')]"/>
+                <filter string="Nữ" name="female" domain="[('gender', '=', 'female')]"/>
+                <group>
+                    <filter string="Loại SP" name="group_category" context="{'group_by': 'category'}"/>
+                    <filter string="Trạng Thái" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Khách Hàng" name="group_customer" context="{'group_by': 'customer_id'}"/>
+                    <filter string="Mùa" name="group_season" context="{'group_by': 'season'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_garment_style" model="ir.actions.act_window">
+        <field name="name">Mẫu May</field>
+        <field name="res_model">garment.style</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo mẫu may mới
+            </p>
+            <p>Quản lý các mẫu may / kiểu dáng sản phẩm.</p>
+        </field>
+    </record>
+</odoo>

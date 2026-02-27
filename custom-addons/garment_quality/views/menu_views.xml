@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_garment_quality_main"
+              name="Chất Lượng (QC)"
+              parent="garment_base.menu_garment_root"
+              sequence="25"/>
+
+    <menuitem id="menu_qc_inspection"
+              name="Phiếu Kiểm Tra QC"
+              parent="menu_garment_quality_main"
+              action="action_qc_inspection"
+              sequence="10"/>
+
+    <menuitem id="menu_defect_type"
+              name="Loại Lỗi"
+              parent="menu_garment_quality_main"
+              action="action_defect_type"
+              sequence="20"/>
+</odoo>

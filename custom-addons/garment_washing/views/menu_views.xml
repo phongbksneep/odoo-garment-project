@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- =============== MENU XƯỞNG GIẶT =============== -->
+    <menuitem id="menu_garment_washing_root"
+        name="Xưởng Giặt"
+        web_icon="garment_washing,static/description/icon.png"
+        sequence="55"/>
+
+    <menuitem id="menu_wash_orders"
+        name="Lệnh Giặt"
+        parent="menu_garment_washing_root"
+        sequence="10"/>
+
+    <menuitem id="menu_wash_order_all"
+        name="Tất Cả Lệnh Giặt"
+        parent="menu_wash_orders"
+        action="action_wash_order"
+        sequence="1"/>
+
+    <menuitem id="menu_wash_order_internal"
+        name="Giặt Nội Bộ"
+        parent="menu_wash_orders"
+        action="action_wash_order_internal"
+        sequence="2"/>
+
+    <menuitem id="menu_wash_order_external"
+        name="Nhận Giặt Gia Công"
+        parent="menu_wash_orders"
+        action="action_wash_order_external"
+        sequence="3"/>
+
+    <menuitem id="menu_wash_config"
+        name="Cấu Hình"
+        parent="menu_garment_washing_root"
+        sequence="90"/>
+
+    <menuitem id="menu_wash_recipe"
+        name="Công Thức Giặt"
+        parent="menu_wash_config"
+        action="action_wash_recipe"
+        sequence="1"/>
+
+    <menuitem id="menu_wash_chemical"
+        name="Hóa Chất"
+        parent="menu_wash_config"
+        action="action_wash_chemical"
+        sequence="2"/>
+</odoo>

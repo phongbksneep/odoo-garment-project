@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ===== FINISHING ORDER VIEWS ===== -->
+
+    <!-- Tree View -->
+    <record id="view_finishing_order_tree" model="ir.ui.view">
+        <field name="name">garment.finishing.order.tree</field>
+        <field name="model">garment.finishing.order</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="production_order_id"/>
+                <field name="style_id"/>
+                <field name="customer_id"/>
+                <field name="qty_received"/>
+                <field name="qty_folded"/>
+                <field name="completion_rate" widget="progressbar"/>
+                <field name="date_start"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'confirmed'"
+                       decoration-success="state == 'done'"
+                       decoration-warning="state == 'in_progress'"
+                       decoration-danger="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_finishing_order_form" model="ir.ui.view">
+        <field name="name">garment.finishing.order.form</field>
+        <field name="model">garment.finishing.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Xác Nhận"
+                            invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_start" type="object" string="Bắt Đầu"
+                            invisible="state != 'confirmed'" class="oe_highlight"/>
+                    <button name="action_done" type="object" string="Hoàn Thành"
+                            invisible="state != 'in_progress'" class="oe_highlight"/>
+                    <button name="action_cancel" type="object" string="Hủy"
+                            invisible="state in ('done', 'cancelled')"/>
+                    <button name="action_reset_draft" type="object" string="Về Nháp"
+                            invisible="state not in ('confirmed', 'cancelled')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,in_progress,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="production_order_id"/>
+                            <field name="garment_order_id"/>
+                            <field name="style_id"/>
+                            <field name="customer_id"/>
+                        </group>
+                        <group>
+                            <field name="sewing_line_id"/>
+                            <field name="qty_received"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="date_done"/>
+                        </group>
+                    </group>
+                    <group string="Tổng Kết Hoàn Thiện" col="6">
+                        <field name="qty_thread_cut"/>
+                        <field name="qty_pressed"/>
+                        <field name="qty_tagged"/>
+                        <field name="qty_folded"/>
+                        <field name="qty_passed_qc"/>
+                        <field name="qty_defect"/>
+                        <field name="completion_rate" widget="progressbar"/>
+                    </group>
+                    <notebook>
+                        <page string="Công Việc Hoàn Thiện" name="tasks">
+                            <field name="task_ids">
+                                <list editable="bottom">
+                                    <field name="date"/>
+                                    <field name="task_type"/>
+                                    <field name="employee_id"/>
+                                    <field name="qty_done"/>
+                                    <field name="qty_defect"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Ghi Chú" name="notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_finishing_order_search" model="ir.ui.view">
+        <field name="name">garment.finishing.order.search</field>
+        <field name="model">garment.finishing.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="production_order_id"/>
+                <field name="style_id"/>
+                <field name="customer_id"/>
+                <filter name="filter_draft" string="Nháp" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_in_progress" string="Đang Hoàn Thiện" domain="[('state', '=', 'in_progress')]"/>
+                <filter name="filter_done" string="Hoàn Thành" domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <group>
+                    <filter name="group_state" string="Trạng Thái" context="{'group_by': 'state'}"/>
+                    <filter name="group_style" string="Mã Hàng" context="{'group_by': 'style_id'}"/>
+                    <filter name="group_customer" string="Khách Hàng" context="{'group_by': 'customer_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_finishing_order" model="ir.actions.act_window">
+        <field name="name">Lệnh Hoàn Thiện</field>
+        <field name="res_model">garment.finishing.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_finishing_order_search"/>
+    </record>
+</odoo>

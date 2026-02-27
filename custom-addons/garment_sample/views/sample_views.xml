@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Action for sample comments (must be defined before form view that references it) -->
+    <record id="action_sample_comment" model="ir.actions.act_window">
+        <field name="name">Comments</field>
+        <field name="res_model">garment.sample.comment</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('sample_id', '=', active_id)]</field>
+        <field name="context">{'default_sample_id': active_id}</field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- Sample Form View -->
+    <!-- ================================================================== -->
+    <record id="view_sample_form" model="ir.ui.view">
+        <field name="name">garment.sample.form</field>
+        <field name="model">garment.sample</field>
+        <field name="arch" type="xml">
+            <form string="Quản Lý Mẫu">
+                <header>
+                    <button name="action_start" string="Bắt Đầu" type="object"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_submit" string="Gửi Buyer" type="object"
+                            class="btn-primary" invisible="state != 'in_progress'"/>
+                    <button name="action_approve" string="Duyệt" type="object"
+                            class="btn-success" invisible="state != 'submitted'"/>
+                    <button name="action_approve_with_comments" string="Duyệt (Có Sửa)" type="object"
+                            invisible="state != 'submitted'"/>
+                    <button name="action_reject" string="Từ Chối" type="object"
+                            class="btn-danger" invisible="state != 'submitted'"/>
+                    <button name="action_revise" string="Sửa Lại (Revision)" type="object"
+                            invisible="state not in ('rejected', 'approved_with_comments')"/>
+                    <button name="action_cancel" string="Hủy" type="object"
+                            invisible="state in ('approved', 'cancelled')"/>
+                    <button name="action_reset_draft" string="Đặt Lại" type="object"
+                            invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,in_progress,submitted,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-comments"
+                                name="%(garment_sample.action_sample_comment)d" type="action">
+                            <field name="comment_count" widget="statinfo" string="Comments"/>
+                        </button>
+                    </div>
+                    <field name="image_front" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="style_id"/>
+                            <field name="buyer_id"/>
+                            <field name="sample_type"/>
+                            <field name="quantity"/>
+                        </group>
+                        <group>
+                            <field name="request_date"/>
+                            <field name="required_date"/>
+                            <field name="submission_date"/>
+                            <field name="approval_date"/>
+                            <field name="revision"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="responsible_id"/>
+                            <field name="courier_info"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Size &amp; Màu">
+                            <group>
+                                <field name="size_ids" widget="many2many_tags"/>
+                                <field name="color_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                        <page string="Nguyên Liệu">
+                            <group>
+                                <field name="fabric_info"/>
+                                <field name="material_notes"/>
+                            </group>
+                        </page>
+                        <page string="Hình Ảnh">
+                            <group>
+                                <group>
+                                    <field name="image_back" widget="image"/>
+                                </group>
+                                <group>
+                                    <field name="image_detail" widget="image"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Comments / Feedback">
+                            <field name="comment_ids">
+                                <list editable="bottom">
+                                    <field name="date"/>
+                                    <field name="user_id"/>
+                                    <field name="comment_type"/>
+                                    <field name="comment"/>
+                                    <field name="revision"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- Sample List View -->
+    <!-- ================================================================== -->
+    <record id="view_sample_list" model="ir.ui.view">
+        <field name="name">garment.sample.list</field>
+        <field name="model">garment.sample</field>
+        <field name="arch" type="xml">
+            <list string="Danh Sách Mẫu" decoration-info="state == 'draft'"
+                  decoration-warning="state == 'submitted'"
+                  decoration-success="state == 'approved'"
+                  decoration-danger="state == 'rejected'">
+                <field name="name"/>
+                <field name="style_id"/>
+                <field name="buyer_id"/>
+                <field name="sample_type"/>
+                <field name="quantity"/>
+                <field name="required_date"/>
+                <field name="submission_date"/>
+                <field name="revision"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- Sample Search View -->
+    <!-- ================================================================== -->
+    <record id="view_sample_search" model="ir.ui.view">
+        <field name="name">garment.sample.search</field>
+        <field name="model">garment.sample</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Mẫu">
+                <field name="name"/>
+                <field name="style_id"/>
+                <field name="buyer_id"/>
+                <filter string="Proto" name="proto" domain="[('sample_type', '=', 'proto')]"/>
+                <filter string="Fit" name="fit" domain="[('sample_type', '=', 'fit')]"/>
+                <filter string="PP" name="pp" domain="[('sample_type', '=', 'pp')]"/>
+                <filter string="TOP" name="top" domain="[('sample_type', '=', 'top')]"/>
+                <separator/>
+                <filter string="Chờ Duyệt" name="submitted" domain="[('state', '=', 'submitted')]"/>
+                <filter string="Đã Duyệt" name="approved" domain="[('state', '=', 'approved')]"/>
+                <filter string="Bị Từ Chối" name="rejected" domain="[('state', '=', 'rejected')]"/>
+                <group>
+                    <filter string="Loại Mẫu" name="group_type" context="{'group_by': 'sample_type'}"/>
+                    <filter string="Buyer" name="group_buyer" context="{'group_by': 'buyer_id'}"/>
+                    <filter string="Style" name="group_style" context="{'group_by': 'style_id'}"/>
+                    <filter string="Trạng Thái" name="group_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- Actions -->
+    <!-- ================================================================== -->
+    <record id="action_sample" model="ir.actions.act_window">
+        <field name="name">Quản Lý Mẫu</field>
+        <field name="res_model">garment.sample</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Tạo mẫu mới</p>
+            <p>Quản lý các loại mẫu: Proto, Fit, PP, TOP, Shipment.</p>
+        </field>
+    </record>
+</odoo>

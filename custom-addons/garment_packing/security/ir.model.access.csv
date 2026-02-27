@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_garment_packing_list_user,garment.packing.list.user,model_garment_packing_list,garment_base.group_garment_user,1,1,1,0
+access_garment_packing_list_manager,garment.packing.list.manager,model_garment_packing_list,garment_base.group_garment_manager,1,1,1,1
+access_garment_carton_line_user,garment.carton.line.user,model_garment_carton_line,garment_base.group_garment_user,1,1,1,0
+access_garment_carton_line_manager,garment.carton.line.manager,model_garment_carton_line,garment_base.group_garment_manager,1,1,1,1

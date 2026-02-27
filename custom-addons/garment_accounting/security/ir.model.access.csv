@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_invoice_user,garment.invoice.user,model_garment_invoice,garment_base.group_garment_user,1,0,0,0
+access_invoice_manager,garment.invoice.manager,model_garment_invoice,garment_base.group_garment_manager,1,1,1,1
+access_invoice_line_user,garment.invoice.line.user,model_garment_invoice_line,garment_base.group_garment_user,1,0,0,0
+access_invoice_line_manager,garment.invoice.line.manager,model_garment_invoice_line,garment_base.group_garment_manager,1,1,1,1
+access_payment_user,garment.payment.user,model_garment_payment,garment_base.group_garment_user,1,0,0,0
+access_payment_manager,garment.payment.manager,model_garment_payment,garment_base.group_garment_manager,1,1,1,1

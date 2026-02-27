@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_garment_vehicle_user,garment.vehicle.user,model_garment_vehicle,base.group_user,1,1,1,0
+access_garment_vehicle_manager,garment.vehicle.manager,model_garment_vehicle,base.group_system,1,1,1,1
+access_garment_delivery_order_user,garment.delivery.order.user,model_garment_delivery_order,base.group_user,1,1,1,0
+access_garment_delivery_order_manager,garment.delivery.order.manager,model_garment_delivery_order,base.group_system,1,1,1,1
+access_garment_delivery_line_user,garment.delivery.line.user,model_garment_delivery_line,base.group_user,1,1,1,0
+access_garment_delivery_line_manager,garment.delivery.line.manager,model_garment_delivery_line,base.group_system,1,1,1,1

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================== -->
+    <!-- Production Plan Form -->
+    <!-- ================================================================== -->
+    <record id="view_production_plan_form" model="ir.ui.view">
+        <field name="name">garment.production.plan.form</field>
+        <field name="model">garment.production.plan</field>
+        <field name="arch" type="xml">
+            <form string="Kế Hoạch Sản Xuất">
+                <header>
+                    <button name="action_confirm" string="Xác Nhận" type="object"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_start" string="Bắt Đầu SX" type="object"
+                            class="btn-primary" invisible="state != 'confirmed'"/>
+                    <button name="action_auto_schedule" string="Tự Động Lập Lịch" type="object"
+                            class="btn-secondary" invisible="state not in ('draft', 'confirmed')"/>
+                    <button name="action_done" string="Hoàn Thành" type="object"
+                            class="btn-success" invisible="state != 'in_progress'"/>
+                    <button name="action_cancel" string="Hủy" type="object"
+                            invisible="state in ('done', 'cancelled')"/>
+                    <button name="action_reset_draft" string="Đặt Lại" type="object"
+                            invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,in_progress,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="garment_order_id"/>
+                            <field name="style_id"/>
+                            <field name="buyer_id"/>
+                            <field name="total_quantity"/>
+                            <field name="smv"/>
+                            <field name="priority"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="ship_date"/>
+                            <field name="total_planned"/>
+                            <field name="remaining_qty"
+                                   decoration-danger="remaining_qty &gt; 0"/>
+                            <field name="total_required_days"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Phân Bổ Chuyền">
+                            <field name="loading_ids">
+                                <list editable="bottom">
+                                    <field name="sewing_line_id"/>
+                                    <field name="worker_count"/>
+                                    <field name="smv" column_invisible="1"/>
+                                    <field name="target_efficiency"/>
+                                    <field name="daily_capacity"/>
+                                    <field name="planned_qty"/>
+                                    <field name="date_start"/>
+                                    <field name="date_end"/>
+                                    <field name="required_days"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_production_plan_list" model="ir.ui.view">
+        <field name="name">garment.production.plan.list</field>
+        <field name="model">garment.production.plan</field>
+        <field name="arch" type="xml">
+            <list string="Kế Hoạch Sản Xuất"
+                  decoration-info="state == 'draft'"
+                  decoration-warning="state == 'confirmed'"
+                  decoration-success="state == 'done'">
+                <field name="name"/>
+                <field name="style_id"/>
+                <field name="buyer_id"/>
+                <field name="total_quantity"/>
+                <field name="total_planned"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="ship_date"/>
+                <field name="priority"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_production_plan_search" model="ir.ui.view">
+        <field name="name">garment.production.plan.search</field>
+        <field name="model">garment.production.plan</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Kế Hoạch">
+                <field name="name"/>
+                <field name="style_id"/>
+                <field name="buyer_id"/>
+                <filter string="Đang SX" name="in_progress"
+                        domain="[('state', '=', 'in_progress')]"/>
+                <filter string="Ưu Tiên Cao" name="high_priority"
+                        domain="[('priority', 'in', ('2', '3'))]"/>
+                <group>
+                    <filter string="Buyer" name="group_buyer"
+                            context="{'group_by': 'buyer_id'}"/>
+                    <filter string="Trạng Thái" name="group_state"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_production_plan" model="ir.actions.act_window">
+        <field name="name">Kế Hoạch Sản Xuất</field>
+        <field name="res_model">garment.production.plan</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo kế hoạch sản xuất mới
+            </p>
+        </field>
+    </record>
+</odoo>

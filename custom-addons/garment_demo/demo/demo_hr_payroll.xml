@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ========================================= -->
+        <!-- CHẤM CÔNG (ATTENDANCE)                    -->
+        <!-- ========================================= -->
+        <!-- Chấm công Chuyền trưởng 1 - 5 ngày gần nhất -->
+        <record id="att_sew1_leader_d1" model="garment.attendance">
+            <field name="employee_id" ref="emp_sew1_leader"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="status">present</field>
+            <field name="check_in">7.5</field>
+            <field name="check_out">17.0</field>
+            <field name="shift">day</field>
+        </record>
+        <record id="att_sew1_leader_d2" model="garment.attendance">
+            <field name="employee_id" ref="emp_sew1_leader"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=4)).strftime('%Y-%m-%d')"/>
+            <field name="status">present</field>
+            <field name="check_in">7.5</field>
+            <field name="check_out">17.0</field>
+            <field name="shift">day</field>
+        </record>
+        <record id="att_sew1_leader_d3" model="garment.attendance">
+            <field name="employee_id" ref="emp_sew1_leader"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=3)).strftime('%Y-%m-%d')"/>
+            <field name="status">present</field>
+            <field name="check_in">7.5</field>
+            <field name="check_out">19.5</field>
+            <field name="overtime_hours">2.0</field>
+            <field name="shift">day</field>
+        </record>
+        <record id="att_sew1_leader_d4" model="garment.attendance">
+            <field name="employee_id" ref="emp_sew1_leader"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=2)).strftime('%Y-%m-%d')"/>
+            <field name="status">present</field>
+            <field name="check_in">7.5</field>
+            <field name="check_out">17.0</field>
+            <field name="shift">day</field>
+        </record>
+        <record id="att_sew1_leader_d5" model="garment.attendance">
+            <field name="employee_id" ref="emp_sew1_leader"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=1)).strftime('%Y-%m-%d')"/>
+            <field name="status">late</field>
+            <field name="check_in">8.25</field>
+            <field name="check_out">17.0</field>
+            <field name="shift">day</field>
+        </record>
+
+        <!-- Chấm công thợ may 1 -->
+        <record id="att_sew1_w1_d1" model="garment.attendance">
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="status">present</field>
+            <field name="check_in">7.5</field>
+            <field name="check_out">17.0</field>
+            <field name="shift">day</field>
+        </record>
+        <record id="att_sew1_w1_d2" model="garment.attendance">
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=4)).strftime('%Y-%m-%d')"/>
+            <field name="status">present</field>
+            <field name="check_in">7.5</field>
+            <field name="check_out">19.5</field>
+            <field name="overtime_hours">2.0</field>
+            <field name="shift">day</field>
+        </record>
+        <record id="att_sew1_w1_d3" model="garment.attendance">
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=3)).strftime('%Y-%m-%d')"/>
+            <field name="status">present</field>
+            <field name="check_in">7.5</field>
+            <field name="check_out">19.5</field>
+            <field name="overtime_hours">2.0</field>
+            <field name="shift">day</field>
+        </record>
+        <record id="att_sew1_w1_d4" model="garment.attendance">
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=2)).strftime('%Y-%m-%d')"/>
+            <field name="status">absent</field>
+            <field name="shift">day</field>
+        </record>
+        <record id="att_sew1_w1_d5" model="garment.attendance">
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=1)).strftime('%Y-%m-%d')"/>
+            <field name="status">present</field>
+            <field name="check_in">7.5</field>
+            <field name="check_out">17.0</field>
+            <field name="shift">day</field>
+        </record>
+
+        <!-- Chấm công QC -->
+        <record id="att_qc1_d1" model="garment.attendance">
+            <field name="employee_id" ref="emp_qc_1"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=3)).strftime('%Y-%m-%d')"/>
+            <field name="status">present</field>
+            <field name="check_in">7.5</field>
+            <field name="check_out">17.0</field>
+            <field name="shift">day</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- ĐƠN XIN NGHỈ PHÉP                        -->
+        <!-- ========================================= -->
+        <record id="leave_sew1_w1" model="garment.leave">
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="leave_type">personal</field>
+            <field name="date_from" eval="(DateTime.today() - timedelta(days=2)).strftime('%Y-%m-%d')"/>
+            <field name="date_to" eval="(DateTime.today() - timedelta(days=2)).strftime('%Y-%m-%d')"/>
+            <field name="reason">Việc gia đình cần giải quyết</field>
+            <field name="state">approved</field>
+        </record>
+        <record id="leave_driver_annual" model="garment.leave">
+            <field name="employee_id" ref="emp_driver_1"/>
+            <field name="leave_type">annual</field>
+            <field name="date_from" eval="(DateTime.today() + timedelta(days=10)).strftime('%Y-%m-%d')"/>
+            <field name="date_to" eval="(DateTime.today() + timedelta(days=12)).strftime('%Y-%m-%d')"/>
+            <field name="reason">Nghỉ phép năm - về quê</field>
+            <field name="state">submitted</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- BẢNG LƯƠNG (WAGE CALCULATION)             -->
+        <!-- ========================================= -->
+        <record id="wage_sew1_leader" model="garment.wage.calculation">
+            <field name="employee_id" ref="emp_sew1_leader"/>
+            <field name="month" eval="'%02d' % (DateTime.today().month)"/>
+            <field name="year" eval="DateTime.today().year"/>
+            <field name="base_salary">7500000</field>
+            <field name="working_days">26</field>
+            <field name="actual_days">25</field>
+            <field name="ot_rate">45000</field>
+            <field name="allowance_attendance">300000</field>
+            <field name="allowance_lunch">700000</field>
+            <field name="allowance_transport">300000</field>
+            <field name="insurance_base">7500000</field>
+            <field name="personal_deduction">11000000</field>
+            <field name="dependent_count">1</field>
+        </record>
+
+        <record id="wage_sew1_w1" model="garment.wage.calculation">
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="month" eval="'%02d' % (DateTime.today().month)"/>
+            <field name="year" eval="DateTime.today().year"/>
+            <field name="base_salary">6000000</field>
+            <field name="working_days">26</field>
+            <field name="actual_days">22</field>
+            <field name="ot_rate">40000</field>
+            <field name="allowance_lunch">700000</field>
+            <field name="allowance_transport">200000</field>
+            <field name="insurance_base">6000000</field>
+            <field name="personal_deduction">11000000</field>
+            <field name="dependent_count">2</field>
+        </record>
+
+        <record id="wage_qc_leader" model="garment.wage.calculation">
+            <field name="employee_id" ref="emp_qc_leader"/>
+            <field name="month" eval="'%02d' % (DateTime.today().month)"/>
+            <field name="year" eval="DateTime.today().year"/>
+            <field name="base_salary">8000000</field>
+            <field name="working_days">26</field>
+            <field name="actual_days">26</field>
+            <field name="ot_rate">50000</field>
+            <field name="allowance_attendance">500000</field>
+            <field name="allowance_lunch">700000</field>
+            <field name="allowance_transport">400000</field>
+            <field name="allowance_phone">200000</field>
+            <field name="insurance_base">8000000</field>
+            <field name="personal_deduction">11000000</field>
+            <field name="dependent_count">0</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- THƯỞNG QUÝ (BONUS)                        -->
+        <!-- ========================================= -->
+        <record id="bonus_q1" model="garment.bonus">
+            <field name="bonus_type">quarterly</field>
+            <field name="quarter">q1</field>
+            <field name="year" eval="DateTime.today().year"/>
+            <field name="reason">Thưởng Quý 1 - Hoàn thành tốt kế hoạch sản xuất</field>
+        </record>
+        <record id="bonus_q1_line1" model="garment.bonus.line">
+            <field name="bonus_id" ref="bonus_q1"/>
+            <field name="employee_id" ref="emp_sew1_leader"/>
+            <field name="amount">2000000</field>
+            <field name="rating">a</field>
+        </record>
+        <record id="bonus_q1_line2" model="garment.bonus.line">
+            <field name="bonus_id" ref="bonus_q1"/>
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="amount">1500000</field>
+            <field name="rating">b</field>
+        </record>
+        <record id="bonus_q1_line3" model="garment.bonus.line">
+            <field name="bonus_id" ref="bonus_q1"/>
+            <field name="employee_id" ref="emp_qc_leader"/>
+            <field name="amount">2500000</field>
+            <field name="rating">a</field>
+        </record>
+        <record id="bonus_q1_line4" model="garment.bonus.line">
+            <field name="bonus_id" ref="bonus_q1"/>
+            <field name="employee_id" ref="emp_cut_leader"/>
+            <field name="amount">1800000</field>
+            <field name="rating">a</field>
+        </record>
+
+    </data>
+</odoo>

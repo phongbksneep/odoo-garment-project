@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_garment_fabric_user,garment.fabric.user,model_garment_fabric,group_garment_user,1,0,0,0
+access_garment_fabric_manager,garment.fabric.manager,model_garment_fabric,group_garment_manager,1,1,1,1
+access_garment_accessory_user,garment.accessory.user,model_garment_accessory,group_garment_user,1,0,0,0
+access_garment_accessory_manager,garment.accessory.manager,model_garment_accessory,group_garment_manager,1,1,1,1
+access_garment_color_user,garment.color.user,model_garment_color,group_garment_user,1,0,0,0
+access_garment_color_manager,garment.color.manager,model_garment_color,group_garment_manager,1,1,1,1
+access_garment_size_user,garment.size.user,model_garment_size,group_garment_user,1,0,0,0
+access_garment_size_manager,garment.size.manager,model_garment_size,group_garment_manager,1,1,1,1
+access_garment_style_user,garment.style.user,model_garment_style,group_garment_user,1,0,0,0
+access_garment_style_manager,garment.style.manager,model_garment_style,group_garment_manager,1,1,1,1
+access_garment_order_user,garment.order.user,model_garment_order,group_garment_user,1,1,1,0
+access_garment_order_manager,garment.order.manager,model_garment_order,group_garment_manager,1,1,1,1
+access_garment_order_line_user,garment.order.line.user,model_garment_order_line,group_garment_user,1,1,1,0
+access_garment_order_line_manager,garment.order.line.manager,model_garment_order_line,group_garment_manager,1,1,1,1
+access_garment_wash_symbol_user,garment.wash.symbol.user,model_garment_wash_symbol,group_garment_user,1,0,0,0
+access_garment_wash_symbol_manager,garment.wash.symbol.manager,model_garment_wash_symbol,group_garment_manager,1,1,1,1

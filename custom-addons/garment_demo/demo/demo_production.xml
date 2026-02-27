@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ========================================= -->
+        <!-- ĐƠN HÀNG MAY #1 - Polo cho Global Fashion -->
+        <!-- ========================================= -->
+        <record id="order_polo_gf" model="garment.order">
+            <field name="customer_id" ref="partner_buyer_us"/>
+            <field name="customer_po">GF-PO-2025-001</field>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="unit_price">4.85</field>
+            <field name="payment_term">tt</field>
+            <field name="incoterm">fob</field>
+            <field name="destination_port">New York, USA</field>
+            <field name="shipping_mark">GLOBAL FASHION INC.\nPO# GF-PO-2025-001\nMADE IN VIETNAM</field>
+        </record>
+        <!-- Order Lines: Polo - Trắng & Navy, S/M/L/XL -->
+        <record id="ol_polo_wht_s" model="garment.order.line">
+            <field name="order_id" ref="order_polo_gf"/>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="size_id" ref="garment_base.size_s"/>
+            <field name="quantity">500</field>
+        </record>
+        <record id="ol_polo_wht_m" model="garment.order.line">
+            <field name="order_id" ref="order_polo_gf"/>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="size_id" ref="garment_base.size_m"/>
+            <field name="quantity">800</field>
+        </record>
+        <record id="ol_polo_wht_l" model="garment.order.line">
+            <field name="order_id" ref="order_polo_gf"/>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="size_id" ref="garment_base.size_l"/>
+            <field name="quantity">600</field>
+        </record>
+        <record id="ol_polo_wht_xl" model="garment.order.line">
+            <field name="order_id" ref="order_polo_gf"/>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="size_id" ref="garment_base.size_xl"/>
+            <field name="quantity">300</field>
+        </record>
+        <record id="ol_polo_nvy_s" model="garment.order.line">
+            <field name="order_id" ref="order_polo_gf"/>
+            <field name="color_id" ref="garment_base.color_navy"/>
+            <field name="size_id" ref="garment_base.size_s"/>
+            <field name="quantity">400</field>
+        </record>
+        <record id="ol_polo_nvy_m" model="garment.order.line">
+            <field name="order_id" ref="order_polo_gf"/>
+            <field name="color_id" ref="garment_base.color_navy"/>
+            <field name="size_id" ref="garment_base.size_m"/>
+            <field name="quantity">700</field>
+        </record>
+        <record id="ol_polo_nvy_l" model="garment.order.line">
+            <field name="order_id" ref="order_polo_gf"/>
+            <field name="color_id" ref="garment_base.color_navy"/>
+            <field name="size_id" ref="garment_base.size_l"/>
+            <field name="quantity">500</field>
+        </record>
+        <record id="ol_polo_nvy_xl" model="garment.order.line">
+            <field name="order_id" ref="order_polo_gf"/>
+            <field name="color_id" ref="garment_base.color_navy"/>
+            <field name="size_id" ref="garment_base.size_xl"/>
+            <field name="quantity">200</field>
+        </record>
+        <!-- Total: 4000 pcs -->
+
+        <!-- ========================================= -->
+        <!-- ĐƠN HÀNG MAY #2 - T-Shirt cho EuroStyle -->
+        <!-- ========================================= -->
+        <record id="order_tshirt_eu" model="garment.order">
+            <field name="customer_id" ref="partner_buyer_eu"/>
+            <field name="customer_po">ES-PO-2025-010</field>
+            <field name="style_id" ref="style_tshirt_basic"/>
+            <field name="unit_price">3.20</field>
+            <field name="payment_term">lc</field>
+            <field name="incoterm">fob</field>
+            <field name="destination_port">Hamburg, Germany</field>
+        </record>
+        <record id="ol_tee_blk_m" model="garment.order.line">
+            <field name="order_id" ref="order_tshirt_eu"/>
+            <field name="color_id" ref="garment_base.color_black"/>
+            <field name="size_id" ref="garment_base.size_m"/>
+            <field name="quantity">1000</field>
+        </record>
+        <record id="ol_tee_blk_l" model="garment.order.line">
+            <field name="order_id" ref="order_tshirt_eu"/>
+            <field name="color_id" ref="garment_base.color_black"/>
+            <field name="size_id" ref="garment_base.size_l"/>
+            <field name="quantity">1000</field>
+        </record>
+        <record id="ol_tee_gry_m" model="garment.order.line">
+            <field name="order_id" ref="order_tshirt_eu"/>
+            <field name="color_id" ref="garment_base.color_grey"/>
+            <field name="size_id" ref="garment_base.size_m"/>
+            <field name="quantity">800</field>
+        </record>
+        <record id="ol_tee_gry_l" model="garment.order.line">
+            <field name="order_id" ref="order_tshirt_eu"/>
+            <field name="color_id" ref="garment_base.color_grey"/>
+            <field name="size_id" ref="garment_base.size_l"/>
+            <field name="quantity">700</field>
+        </record>
+        <!-- Total: 3500 pcs -->
+
+        <!-- ========================================= -->
+        <!-- LỆNH SẢN XUẤT -->
+        <!-- ========================================= -->
+        <record id="prod_order_polo" model="garment.production.order">
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="planned_qty">4000</field>
+            <field name="start_date" eval="(DateTime.today() - timedelta(days=10)).strftime('%Y-%m-%d')"/>
+            <field name="end_date" eval="(DateTime.today() + timedelta(days=20)).strftime('%Y-%m-%d')"/>
+        </record>
+        <record id="prod_order_tshirt" model="garment.production.order">
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+            <field name="sewing_line_id" ref="line_sewing_2"/>
+            <field name="planned_qty">3500</field>
+            <field name="start_date" eval="(DateTime.today() - timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="end_date" eval="(DateTime.today() + timedelta(days=25)).strftime('%Y-%m-%d')"/>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- SẢN LƯỢNG HÀNG NGÀY (Chuyền May 1 - Polo) -->
+        <!-- ========================================= -->
+        <record id="output_polo_d1" model="garment.daily.output">
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=9)).strftime('%Y-%m-%d')"/>
+            <field name="shift">morning</field>
+            <field name="target_qty">400</field>
+            <field name="output_qty">350</field>
+        </record>
+        <record id="output_polo_d2" model="garment.daily.output">
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=8)).strftime('%Y-%m-%d')"/>
+            <field name="shift">morning</field>
+            <field name="target_qty">400</field>
+            <field name="output_qty">380</field>
+        </record>
+        <record id="output_polo_d3" model="garment.daily.output">
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=7)).strftime('%Y-%m-%d')"/>
+            <field name="shift">morning</field>
+            <field name="target_qty">400</field>
+            <field name="output_qty">420</field>
+        </record>
+        <record id="output_polo_d3_ot" model="garment.daily.output">
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=7)).strftime('%Y-%m-%d')"/>
+            <field name="shift">overtime</field>
+            <field name="target_qty">100</field>
+            <field name="output_qty">95</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- MẪU MAY (SAMPLE) -->
+        <!-- ========================================= -->
+        <record id="sample_polo_pp" model="garment.sample">
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="buyer_id" ref="partner_buyer_us"/>
+            <field name="sample_type">pp</field>
+            <field name="quantity">4</field>
+            <field name="required_date">2026-02-20</field>
+        </record>
+        <record id="sample_tshirt_fit" model="garment.sample">
+            <field name="style_id" ref="style_tshirt_basic"/>
+            <field name="buyer_id" ref="partner_buyer_eu"/>
+            <field name="sample_type">fit</field>
+            <field name="quantity">3</field>
+            <field name="required_date">2026-03-01</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- KẾ HOẠCH SẢN XUẤT -->
+        <!-- ========================================= -->
+        <record id="plan_polo" model="garment.production.plan">
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="buyer_id" ref="partner_buyer_us"/>
+            <field name="total_quantity">4000</field>
+            <field name="smv">15.5</field>
+            <field name="priority">2</field>
+            <field name="date_start" eval="(DateTime.today() - timedelta(days=12)).strftime('%Y-%m-%d')"/>
+            <field name="date_end" eval="(DateTime.today() + timedelta(days=18)).strftime('%Y-%m-%d')"/>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- BẢNG TÍNH GIÁ THÀNH -->
+        <!-- ========================================= -->
+        <record id="cost_polo" model="garment.cost.sheet">
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="buyer_id" ref="partner_buyer_us"/>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="costing_type">fob</field>
+            <field name="order_qty">4000</field>
+        </record>
+
+    </data>
+</odoo>

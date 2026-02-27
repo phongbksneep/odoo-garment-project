@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ========================================= -->
+        <!-- HÓA ĐƠN BÁN HÀNG (SALE INVOICE)         -->
+        <!-- ========================================= -->
+        <record id="inv_sale_polo" model="garment.invoice">
+            <field name="invoice_type">sale</field>
+            <field name="partner_id" ref="partner_buyer_us"/>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="tax_type">0</field>
+        </record>
+        <record id="inv_sale_polo_line1" model="garment.invoice.line">
+            <field name="invoice_id" ref="inv_sale_polo"/>
+            <field name="description">Classic Polo Shirt - White (S/M/L/XL) x 2,200 pcs @ $4.85</field>
+            <field name="quantity">2200</field>
+            <field name="unit">pcs</field>
+            <field name="unit_price">120000</field>
+        </record>
+        <record id="inv_sale_polo_line2" model="garment.invoice.line">
+            <field name="invoice_id" ref="inv_sale_polo"/>
+            <field name="description">Classic Polo Shirt - Navy (S/M/L/XL) x 1,800 pcs @ $4.85</field>
+            <field name="quantity">1800</field>
+            <field name="unit">pcs</field>
+            <field name="unit_price">120000</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- HÓA ĐƠN MUA HÀNG (PURCHASE INVOICES)     -->
+        <!-- ========================================= -->
+        <!-- Hóa đơn mua vải -->
+        <record id="inv_purchase_fabric" model="garment.invoice">
+            <field name="invoice_type">purchase</field>
+            <field name="partner_id" ref="partner_supplier_fabric"/>
+            <field name="tax_type">10</field>
+            <field name="expense_type">material</field>
+        </record>
+        <record id="inv_purchase_fabric_line1" model="garment.invoice.line">
+            <field name="invoice_id" ref="inv_purchase_fabric"/>
+            <field name="description">Cotton Jersey 160gsm - Trắng - 3,500m</field>
+            <field name="quantity">3500</field>
+            <field name="unit">m</field>
+            <field name="unit_price">65000</field>
+        </record>
+        <record id="inv_purchase_fabric_line2" model="garment.invoice.line">
+            <field name="invoice_id" ref="inv_purchase_fabric"/>
+            <field name="description">Cotton Jersey 160gsm - Navy - 2,800m</field>
+            <field name="quantity">2800</field>
+            <field name="unit">m</field>
+            <field name="unit_price">65000</field>
+        </record>
+
+        <!-- Hóa đơn mua phụ liệu -->
+        <record id="inv_purchase_acc" model="garment.invoice">
+            <field name="invoice_type">purchase</field>
+            <field name="partner_id" ref="partner_supplier_acc"/>
+            <field name="tax_type">10</field>
+            <field name="expense_type">material</field>
+        </record>
+        <record id="inv_purchase_acc_line1" model="garment.invoice.line">
+            <field name="invoice_id" ref="inv_purchase_acc"/>
+            <field name="description">Nút áo Polo 4 lỗ 11mm - 15,000 pcs</field>
+            <field name="quantity">15000</field>
+            <field name="unit">pcs</field>
+            <field name="unit_price">200</field>
+        </record>
+        <record id="inv_purchase_acc_line2" model="garment.invoice.line">
+            <field name="invoice_id" ref="inv_purchase_acc"/>
+            <field name="description">Nhãn mác + chỉ may</field>
+            <field name="quantity">1</field>
+            <field name="unit">set</field>
+            <field name="unit_price">3750000</field>
+        </record>
+
+        <!-- Hóa đơn gia công thêu -->
+        <record id="inv_purchase_subcontract" model="garment.invoice">
+            <field name="invoice_type">purchase</field>
+            <field name="partner_id" ref="partner_subcontract"/>
+            <field name="tax_type">10</field>
+            <field name="expense_type">subcontract</field>
+        </record>
+        <record id="inv_purchase_sub_line1" model="garment.invoice.line">
+            <field name="invoice_id" ref="inv_purchase_subcontract"/>
+            <field name="description">Thêu logo ngực áo Polo - 4,000 pcs</field>
+            <field name="quantity">4000</field>
+            <field name="unit">pcs</field>
+            <field name="unit_price">3000</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- THANH TOÁN (PAYMENTS)                     -->
+        <!-- ========================================= -->
+        <record id="payment_fabric" model="garment.payment">
+            <field name="payment_type">outbound</field>
+            <field name="payment_method">bank</field>
+            <field name="invoice_id" ref="inv_purchase_fabric"/>
+            <field name="partner_id" ref="partner_supplier_fabric"/>
+            <field name="amount">200000000</field>
+            <field name="reference">CK-VCB-2025-001 - Tạm ứng 50% tiền vải</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- ĐÓNG GÓI (PACKING LIST)                   -->
+        <!-- ========================================= -->
+        <record id="packing_polo" model="garment.packing.list">
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="buyer_id" ref="partner_buyer_us"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="po_number">GF-PO-2025-001</field>
+            <field name="destination_port">New York, USA</field>
+            <field name="ship_mode">sea</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- GIAO HÀNG (DELIVERY)                      -->
+        <!-- ========================================= -->
+        <record id="delivery_polo_batch1" model="garment.delivery.order">
+            <field name="delivery_type">customer</field>
+            <field name="partner_id" ref="partner_buyer_us"/>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="packing_list_id" ref="packing_polo"/>
+            <field name="vehicle_id" ref="vehicle_container"/>
+            <field name="driver_id" ref="emp_driver_1"/>
+            <field name="ship_from">Nhà Máy - Bình Dương</field>
+            <field name="ship_to">Cảng Cát Lái, HCM → New York, USA</field>
+            <field name="shipping_method">sea</field>
+            <field name="total_cartons">88</field>
+            <field name="total_pcs">2200</field>
+            <field name="gross_weight">1320</field>
+            <field name="net_weight">1100</field>
+            <field name="volume_cbm">7.5</field>
+            <field name="container_no">MSKU1234567</field>
+            <field name="seal_no">VN2025001</field>
+        </record>
+        <record id="delivery_polo_line1" model="garment.delivery.line">
+            <field name="delivery_id" ref="delivery_polo_batch1"/>
+            <field name="style_code">ST-POLO-001</field>
+            <field name="color">White</field>
+            <field name="size">S</field>
+            <field name="quantity">500</field>
+            <field name="carton_qty">10</field>
+            <field name="pcs_per_carton">50</field>
+            <field name="gross_weight">300</field>
+        </record>
+        <record id="delivery_polo_line2" model="garment.delivery.line">
+            <field name="delivery_id" ref="delivery_polo_batch1"/>
+            <field name="style_code">ST-POLO-001</field>
+            <field name="color">White</field>
+            <field name="size">M</field>
+            <field name="quantity">800</field>
+            <field name="carton_qty">16</field>
+            <field name="pcs_per_carton">50</field>
+            <field name="gross_weight">480</field>
+        </record>
+        <record id="delivery_polo_line3" model="garment.delivery.line">
+            <field name="delivery_id" ref="delivery_polo_batch1"/>
+            <field name="style_code">ST-POLO-001</field>
+            <field name="color">White</field>
+            <field name="size">L</field>
+            <field name="quantity">600</field>
+            <field name="carton_qty">12</field>
+            <field name="pcs_per_carton">50</field>
+            <field name="gross_weight">360</field>
+        </record>
+        <record id="delivery_polo_line4" model="garment.delivery.line">
+            <field name="delivery_id" ref="delivery_polo_batch1"/>
+            <field name="style_code">ST-POLO-001</field>
+            <field name="color">White</field>
+            <field name="size">XL</field>
+            <field name="quantity">300</field>
+            <field name="carton_qty">6</field>
+            <field name="pcs_per_carton">50</field>
+            <field name="gross_weight">180</field>
+        </record>
+
+        <!-- Giao hàng nội bộ đến xưởng gia công -->
+        <record id="delivery_subcontract" model="garment.delivery.order">
+            <field name="delivery_type">subcontract</field>
+            <field name="partner_id" ref="partner_subcontract"/>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="vehicle_id" ref="vehicle_truck_1"/>
+            <field name="driver_id" ref="emp_driver_2"/>
+            <field name="ship_from">Nhà Máy - Bình Dương</field>
+            <field name="ship_to">Xưởng Thêu Minh Tâm - KCN Sóng Thần, Bình Dương</field>
+            <field name="shipping_method">road</field>
+        </record>
+        <record id="delivery_sub_line1" model="garment.delivery.line">
+            <field name="delivery_id" ref="delivery_subcontract"/>
+            <field name="style_code">ST-POLO-001</field>
+            <field name="color">White + Navy</field>
+            <field name="size">Mixed</field>
+            <field name="quantity">4000</field>
+            <field name="carton_qty">20</field>
+            <field name="notes">BTP chưa thêu logo - giao để gia công thêu</field>
+        </record>
+
+    </data>
+</odoo>

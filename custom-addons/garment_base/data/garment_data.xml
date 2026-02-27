@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sequence cho Đơn Hàng May -->
+    <record id="seq_garment_order" model="ir.sequence">
+        <field name="name">Garment Order Sequence</field>
+        <field name="code">garment.order</field>
+        <field name="prefix">GO-%(year)s-</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Dữ liệu mẫu: Bảng Màu -->
+    <record id="color_white" model="garment.color">
+        <field name="name">Trắng</field>
+        <field name="code">WHT</field>
+        <field name="html_color">#FFFFFF</field>
+    </record>
+    <record id="color_black" model="garment.color">
+        <field name="name">Đen</field>
+        <field name="code">BLK</field>
+        <field name="html_color">#000000</field>
+    </record>
+    <record id="color_navy" model="garment.color">
+        <field name="name">Xanh Navy</field>
+        <field name="code">NVY</field>
+        <field name="html_color">#000080</field>
+    </record>
+    <record id="color_red" model="garment.color">
+        <field name="name">Đỏ</field>
+        <field name="code">RED</field>
+        <field name="html_color">#FF0000</field>
+    </record>
+    <record id="color_grey" model="garment.color">
+        <field name="name">Xám</field>
+        <field name="code">GRY</field>
+        <field name="html_color">#808080</field>
+    </record>
+    <record id="color_beige" model="garment.color">
+        <field name="name">Be</field>
+        <field name="code">BEI</field>
+        <field name="html_color">#F5F5DC</field>
+    </record>
+    <record id="color_khaki" model="garment.color">
+        <field name="name">Kaki</field>
+        <field name="code">KHK</field>
+        <field name="html_color">#C3B091</field>
+    </record>
+    <record id="color_blue" model="garment.color">
+        <field name="name">Xanh Dương</field>
+        <field name="code">BLU</field>
+        <field name="html_color">#0000FF</field>
+    </record>
+
+    <!-- Dữ liệu mẫu: Bảng Size -->
+    <record id="size_xs" model="garment.size">
+        <field name="name">XS</field>
+        <field name="code">XS</field>
+        <field name="size_type">letter</field>
+        <field name="sequence">1</field>
+    </record>
+    <record id="size_s" model="garment.size">
+        <field name="name">S</field>
+        <field name="code">S</field>
+        <field name="size_type">letter</field>
+        <field name="sequence">2</field>
+    </record>
+    <record id="size_m" model="garment.size">
+        <field name="name">M</field>
+        <field name="code">M</field>
+        <field name="size_type">letter</field>
+        <field name="sequence">3</field>
+    </record>
+    <record id="size_l" model="garment.size">
+        <field name="name">L</field>
+        <field name="code">L</field>
+        <field name="size_type">letter</field>
+        <field name="sequence">4</field>
+    </record>
+    <record id="size_xl" model="garment.size">
+        <field name="name">XL</field>
+        <field name="code">XL</field>
+        <field name="size_type">letter</field>
+        <field name="sequence">5</field>
+    </record>
+    <record id="size_xxl" model="garment.size">
+        <field name="name">XXL</field>
+        <field name="code">XXL</field>
+        <field name="size_type">letter</field>
+        <field name="sequence">6</field>
+    </record>
+
+    <!-- Dữ liệu mẫu: Ký Hiệu Giặt Ủi -->
+    <record id="wash_normal_30" model="garment.wash.symbol">
+        <field name="name">Giặt máy 30°C</field>
+        <field name="code">W30</field>
+        <field name="category">wash</field>
+        <field name="instruction">Giặt máy ở nhiệt độ tối đa 30°C</field>
+    </record>
+    <record id="wash_normal_40" model="garment.wash.symbol">
+        <field name="name">Giặt máy 40°C</field>
+        <field name="code">W40</field>
+        <field name="category">wash</field>
+        <field name="instruction">Giặt máy ở nhiệt độ tối đa 40°C</field>
+    </record>
+    <record id="wash_hand" model="garment.wash.symbol">
+        <field name="name">Giặt tay</field>
+        <field name="code">WH</field>
+        <field name="category">wash</field>
+        <field name="instruction">Chỉ giặt tay nhẹ nhàng</field>
+    </record>
+    <record id="wash_no_wash" model="garment.wash.symbol">
+        <field name="name">Không giặt</field>
+        <field name="code">WX</field>
+        <field name="category">wash</field>
+        <field name="instruction">Không giặt, chỉ giặt khô</field>
+    </record>
+    <record id="bleach_no" model="garment.wash.symbol">
+        <field name="name">Không tẩy</field>
+        <field name="code">BX</field>
+        <field name="category">bleach</field>
+        <field name="instruction">Không sử dụng chất tẩy</field>
+    </record>
+    <record id="bleach_ok" model="garment.wash.symbol">
+        <field name="name">Có thể tẩy</field>
+        <field name="code">BOK</field>
+        <field name="category">bleach</field>
+        <field name="instruction">Có thể sử dụng chất tẩy không chứa clo</field>
+    </record>
+    <record id="dry_tumble_low" model="garment.wash.symbol">
+        <field name="name">Sấy máy nhiệt thấp</field>
+        <field name="code">DL</field>
+        <field name="category">dry</field>
+        <field name="instruction">Có thể sấy máy ở nhiệt độ thấp</field>
+    </record>
+    <record id="dry_no_tumble" model="garment.wash.symbol">
+        <field name="name">Không sấy máy</field>
+        <field name="code">DX</field>
+        <field name="category">dry</field>
+        <field name="instruction">Không sấy máy, phơi tự nhiên</field>
+    </record>
+    <record id="dry_flat" model="garment.wash.symbol">
+        <field name="name">Phơi ngang</field>
+        <field name="code">DF</field>
+        <field name="category">dry</field>
+        <field name="instruction">Phơi ngang trên mặt phẳng</field>
+    </record>
+    <record id="iron_low" model="garment.wash.symbol">
+        <field name="name">Ủi nhiệt thấp (110°C)</field>
+        <field name="code">IL</field>
+        <field name="category">iron</field>
+        <field name="instruction">Ủi ở nhiệt độ tối đa 110°C (vải tổng hợp)</field>
+    </record>
+    <record id="iron_medium" model="garment.wash.symbol">
+        <field name="name">Ủi nhiệt TB (150°C)</field>
+        <field name="code">IM</field>
+        <field name="category">iron</field>
+        <field name="instruction">Ủi ở nhiệt độ tối đa 150°C (len, lụa)</field>
+    </record>
+    <record id="iron_high" model="garment.wash.symbol">
+        <field name="name">Ủi nhiệt cao (200°C)</field>
+        <field name="code">IH</field>
+        <field name="category">iron</field>
+        <field name="instruction">Ủi ở nhiệt độ tối đa 200°C (cotton, vải lanh)</field>
+    </record>
+    <record id="iron_no" model="garment.wash.symbol">
+        <field name="name">Không ủi</field>
+        <field name="code">IX</field>
+        <field name="category">iron</field>
+        <field name="instruction">Không ủi</field>
+    </record>
+    <record id="dryclean_ok" model="garment.wash.symbol">
+        <field name="name">Giặt khô được</field>
+        <field name="code">DC</field>
+        <field name="category">dryclean</field>
+        <field name="instruction">Có thể giặt khô</field>
+    </record>
+    <record id="dryclean_no" model="garment.wash.symbol">
+        <field name="name">Không giặt khô</field>
+        <field name="code">DXC</field>
+        <field name="category">dryclean</field>
+        <field name="instruction">Không giặt khô</field>
+    </record>
+</odoo>

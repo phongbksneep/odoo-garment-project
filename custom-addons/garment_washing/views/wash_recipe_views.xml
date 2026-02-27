@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- =============== WASH RECIPE VIEWS =============== -->
+
+    <!-- List View -->
+    <record id="view_wash_recipe_list" model="ir.ui.view">
+        <field name="name">garment.wash.recipe.list</field>
+        <field name="model">garment.wash.recipe</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="wash_type"/>
+                <field name="fabric_type"/>
+                <field name="temperature"/>
+                <field name="total_time"/>
+                <field name="total_chemical_cost"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_wash_recipe_form" model="ir.ui.view">
+        <field name="name">garment.wash.recipe.form</field>
+        <field name="model">garment.wash.recipe</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Tên Công Thức Giặt"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="wash_type"/>
+                            <field name="fabric_type"/>
+                        </group>
+                        <group>
+                            <field name="temperature"/>
+                            <field name="duration_minutes"/>
+                            <field name="water_ratio"/>
+                            <field name="ph_level"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Các Bước Thực Hiện">
+                            <field name="step_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="step_type"/>
+                                    <field name="chemical_id"/>
+                                    <field name="chemical_dosage"/>
+                                    <field name="temperature"/>
+                                    <field name="duration_minutes"/>
+                                    <field name="water_liters"/>
+                                    <field name="chemical_cost_per_kg"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer">
+                                <field name="total_time"/>
+                                <field name="total_chemical_cost"/>
+                            </group>
+                        </page>
+                        <page string="Hướng Dẫn Chi Tiết">
+                            <field name="instruction"/>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_wash_recipe_search" model="ir.ui.view">
+        <field name="name">garment.wash.recipe.search</field>
+        <field name="model">garment.wash.recipe</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="wash_type"/>
+                <field name="fabric_type"/>
+                <group>
+                    <filter name="group_wash_type" context="{'group_by': 'wash_type'}"/>
+                    <filter name="group_fabric" context="{'group_by': 'fabric_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_wash_recipe" model="ir.actions.act_window">
+        <field name="name">Công Thức Giặt</field>
+        <field name="res_model">garment.wash.recipe</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo công thức giặt mới
+            </p>
+            <p>Quản lý các công thức giặt: enzyme, stone wash, bleach wash, nhuộm...</p>
+        </field>
+    </record>
+</odoo>

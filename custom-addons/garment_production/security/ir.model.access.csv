@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sewing_line_user,garment.sewing.line.user,model_garment_sewing_line,garment_base.group_garment_user,1,0,0,0
+access_sewing_line_manager,garment.sewing.line.manager,model_garment_sewing_line,garment_base.group_garment_manager,1,1,1,1
+access_production_order_user,garment.production.order.user,model_garment_production_order,garment_base.group_garment_user,1,1,1,0
+access_production_order_manager,garment.production.order.manager,model_garment_production_order,garment_base.group_garment_manager,1,1,1,1
+access_cutting_order_user,garment.cutting.order.user,model_garment_cutting_order,garment_base.group_garment_user,1,1,1,0
+access_cutting_order_manager,garment.cutting.order.manager,model_garment_cutting_order,garment_base.group_garment_manager,1,1,1,1
+access_daily_output_user,garment.daily.output.user,model_garment_daily_output,garment_base.group_garment_user,1,1,1,0
+access_daily_output_manager,garment.daily.output.manager,model_garment_daily_output,garment_base.group_garment_manager,1,1,1,1

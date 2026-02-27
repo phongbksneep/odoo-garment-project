@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================== -->
+    <!-- Defect Analysis Views -->
+    <!-- ================================================================== -->
+    <record id="view_defect_analysis_list" model="ir.ui.view">
+        <field name="name">garment.defect.analysis.list</field>
+        <field name="model">garment.defect.analysis</field>
+        <field name="arch" type="xml">
+            <list string="Phân Tích Lỗi" create="0" edit="0"
+                  decoration-danger="defect_rate &gt; 5">
+                <field name="inspection_date"/>
+                <field name="style_id"/>
+                <field name="production_order_id"/>
+                <field name="defect_type_id"/>
+                <field name="total_inspected" sum="Tổng"/>
+                <field name="total_defects" sum="Tổng Lỗi"/>
+                <field name="defect_rate"/>
+                <field name="result"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_defect_analysis_search" model="ir.ui.view">
+        <field name="name">garment.defect.analysis.search</field>
+        <field name="model">garment.defect.analysis</field>
+        <field name="arch" type="xml">
+            <search string="Phân Tích Lỗi">
+                <field name="style_id"/>
+                <field name="defect_type_id"/>
+                <filter string="Tỷ Lệ Lỗi Cao (&gt;5%)" name="high_defect"
+                        domain="[('defect_rate', '&gt;', 5)]"/>
+                <filter string="Không Đạt" name="fail"
+                        domain="[('result', '=', 'fail')]"/>
+                <group>
+                    <filter string="Loại Lỗi" name="group_defect_type"
+                            context="{'group_by': 'defect_type_id'}"/>
+                    <filter string="Mã Hàng" name="group_style"
+                            context="{'group_by': 'style_id'}"/>
+                    <filter string="Ngày Kiểm" name="group_date"
+                            context="{'group_by': 'inspection_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="view_defect_analysis_pivot" model="ir.ui.view">
+        <field name="name">garment.defect.analysis.pivot</field>
+        <field name="model">garment.defect.analysis</field>
+        <field name="arch" type="xml">
+            <pivot string="Phân Tích Lỗi">
+                <field name="defect_type_id" type="row"/>
+                <field name="style_id" type="col"/>
+                <field name="total_defects" type="measure"/>
+                <field name="defect_rate" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View -->
+    <record id="view_defect_analysis_graph" model="ir.ui.view">
+        <field name="name">garment.defect.analysis.graph</field>
+        <field name="model">garment.defect.analysis</field>
+        <field name="arch" type="xml">
+            <graph string="Phân Tích Lỗi" type="pie">
+                <field name="defect_type_id"/>
+                <field name="total_defects" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_defect_analysis" model="ir.actions.act_window">
+        <field name="name">Phân Tích Lỗi</field>
+        <field name="res_model">garment.defect.analysis</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Chưa có dữ liệu QC để phân tích
+            </p>
+        </field>
+    </record>
+</odoo>

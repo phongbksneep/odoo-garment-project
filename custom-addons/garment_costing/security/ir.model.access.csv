@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_garment_cost_sheet_user,garment.cost.sheet.user,model_garment_cost_sheet,garment_base.group_garment_user,1,0,0,0
+access_garment_cost_sheet_manager,garment.cost.sheet.manager,model_garment_cost_sheet,garment_base.group_garment_manager,1,1,1,1
+access_garment_cost_line_user,garment.cost.line.user,model_garment_cost_line,garment_base.group_garment_user,1,0,0,0
+access_garment_cost_line_manager,garment.cost.line.manager,model_garment_cost_line,garment_base.group_garment_manager,1,1,1,1

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_attendance_user,garment.attendance.user,model_garment_attendance,garment_base.group_garment_user,1,1,1,0
+access_attendance_manager,garment.attendance.manager,model_garment_attendance,garment_base.group_garment_manager,1,1,1,1
+access_attendance_summary_user,garment.attendance.summary.user,model_garment_attendance_summary,garment_base.group_garment_user,1,1,1,0
+access_attendance_summary_manager,garment.attendance.summary.manager,model_garment_attendance_summary,garment_base.group_garment_manager,1,1,1,1
+access_employee_skill_user,garment.employee.skill.user,model_garment_employee_skill,garment_base.group_garment_user,1,1,1,0
+access_employee_skill_manager,garment.employee.skill.manager,model_garment_employee_skill,garment_base.group_garment_manager,1,1,1,1
+access_leave_user,garment.leave.user,model_garment_leave,garment_base.group_garment_user,1,1,1,0
+access_leave_manager,garment.leave.manager,model_garment_leave,garment_base.group_garment_manager,1,1,1,1

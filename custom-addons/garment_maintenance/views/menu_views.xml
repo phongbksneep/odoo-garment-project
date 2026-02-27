@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_garment_maintenance_main"
+              name="Bảo Trì Máy Móc"
+              parent="garment_base.menu_garment_root"
+              sequence="70"/>
+
+    <menuitem id="menu_machine"
+              name="Danh Sách Máy"
+              parent="menu_garment_maintenance_main"
+              action="action_machine"
+              sequence="10"/>
+
+    <menuitem id="menu_maintenance_request"
+              name="Yêu Cầu Bảo Trì"
+              parent="menu_garment_maintenance_main"
+              action="action_maintenance_request"
+              sequence="20"/>
+</odoo>

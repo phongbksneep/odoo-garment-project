@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_delivery_order_tree" model="ir.ui.view">
+        <field name="name">garment.delivery.order.tree</field>
+        <field name="model">garment.delivery.order</field>
+        <field name="arch" type="xml">
+            <list decoration-success="state == 'delivered'"
+                  decoration-info="state == 'in_transit'"
+                  decoration-danger="state == 'cancelled'">
+                <field name="name"/>
+                <field name="delivery_type"/>
+                <field name="date"/>
+                <field name="partner_id"/>
+                <field name="garment_order_id" optional="show"/>
+                <field name="vehicle_id" optional="show"/>
+                <field name="total_cartons" optional="show"/>
+                <field name="total_qty" sum="Tổng"/>
+                <field name="shipping_method"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_delivery_order_form" model="ir.ui.view">
+        <field name="name">garment.delivery.order.form</field>
+        <field name="model">garment.delivery.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Xác Nhận"
+                            invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_loading" type="object" string="Xếp Hàng"
+                            invisible="state != 'confirmed'" class="oe_highlight"/>
+                    <button name="action_in_transit" type="object" string="Xuất Phát"
+                            invisible="state != 'loading'" class="oe_highlight"/>
+                    <button name="action_delivered" type="object" string="Đã Giao"
+                            invisible="state != 'in_transit'" class="oe_highlight"/>
+                    <button name="action_cancel" type="object" string="Hủy"
+                            invisible="state in ('delivered', 'cancelled')"/>
+                    <button name="action_reset_draft" type="object" string="Về Nháp"
+                            invisible="state not in ('confirmed', 'cancelled')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,loading,in_transit,delivered"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Thông Tin Chung">
+                            <field name="delivery_type"/>
+                            <field name="date"/>
+                            <field name="expected_date"/>
+                            <field name="partner_id"/>
+                            <field name="garment_order_id"/>
+                            <field name="packing_list_id"/>
+                        </group>
+                        <group string="Vận Chuyển">
+                            <field name="vehicle_id"/>
+                            <field name="driver_id"/>
+                            <field name="shipping_method"/>
+                            <field name="ship_from"/>
+                            <field name="ship_to"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Chi Tiết Hàng Giao" name="lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="style_code"/>
+                                    <field name="color"/>
+                                    <field name="size"/>
+                                    <field name="quantity" sum="Tổng"/>
+                                    <field name="carton_qty" sum="Thùng"/>
+                                    <field name="pcs_per_carton"/>
+                                    <field name="gross_weight" sum="KG"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer">
+                                <field name="total_qty"/>
+                            </group>
+                        </page>
+                        <page string="Thông Tin Xuất Khẩu" name="export">
+                            <group>
+                                <group>
+                                    <field name="container_no"/>
+                                    <field name="seal_no"/>
+                                </group>
+                                <group>
+                                    <field name="bl_number"/>
+                                    <field name="invoice_number"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Trọng Lượng / Thể Tích" name="weight">
+                            <group>
+                                <group>
+                                    <field name="total_cartons"/>
+                                    <field name="total_pcs"/>
+                                </group>
+                                <group>
+                                    <field name="gross_weight"/>
+                                    <field name="net_weight"/>
+                                    <field name="volume_cbm"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Ghi Chú" name="notes">
+                            <field name="notes"/>
+                            <field name="proof_of_delivery" filename="proof_delivery"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_delivery_order_search" model="ir.ui.view">
+        <field name="name">garment.delivery.order.search</field>
+        <field name="model">garment.delivery.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="garment_order_id"/>
+                <filter name="filter_customer" string="Giao Khách"
+                        domain="[('delivery_type', '=', 'customer')]"/>
+                <filter name="filter_subcontract" string="Gia Công"
+                        domain="[('delivery_type', '=', 'subcontract')]"/>
+                <separator/>
+                <filter name="filter_transit" string="Đang Vận Chuyển"
+                        domain="[('state', '=', 'in_transit')]"/>
+                <filter name="filter_delivered" string="Đã Giao"
+                        domain="[('state', '=', 'delivered')]"/>
+                <group>
+                    <filter name="group_type" string="Loại"
+                            context="{'group_by': 'delivery_type'}"/>
+                    <filter name="group_partner" string="Khách Hàng"
+                            context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_month" string="Tháng"
+                            context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_delivery_order" model="ir.actions.act_window">
+        <field name="name">Phiếu Giao Hàng</field>
+        <field name="res_model">garment.delivery.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_delivery_order_search"/>
+    </record>
+
+    <record id="action_delivery_customer" model="ir.actions.act_window">
+        <field name="name">Giao Khách Hàng</field>
+        <field name="res_model">garment.delivery.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('delivery_type', '=', 'customer')]</field>
+        <field name="context">{'default_delivery_type': 'customer'}</field>
+    </record>
+</odoo>

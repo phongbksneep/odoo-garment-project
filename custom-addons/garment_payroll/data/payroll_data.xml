@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_wage_calculation" model="ir.sequence">
+            <field name="name">Garment Wage Calculation</field>
+            <field name="code">garment.wage.calculation</field>
+            <field name="prefix">WAGE/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_bonus" model="ir.sequence">
+            <field name="name">Garment Bonus Sequence</field>
+            <field name="code">garment.bonus</field>
+            <field name="prefix">BNS-%(year)s-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

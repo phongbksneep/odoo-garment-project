@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- =============== WASH ORDER VIEWS =============== -->
+
+    <!-- List View -->
+    <record id="view_wash_order_list" model="ir.ui.view">
+        <field name="name">garment.wash.order.list</field>
+        <field name="model">garment.wash.order</field>
+        <field name="arch" type="xml">
+            <list decoration-info="state=='washing'" decoration-success="state=='done'" decoration-muted="state=='cancelled'">
+                <field name="name"/>
+                <field name="order_type"/>
+                <field name="client_id" optional="show"/>
+                <field name="recipe_id"/>
+                <field name="wash_type"/>
+                <field name="qty_received"/>
+                <field name="qty_washed"/>
+                <field name="date_received"/>
+                <field name="planned_delivery_date"/>
+                <field name="state" widget="badge"
+                    decoration-info="state=='washing'"
+                    decoration-success="state in ('done','delivered')"
+                    decoration-warning="state=='qc'"
+                />
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_wash_order_form" model="ir.ui.view">
+        <field name="name">garment.wash.order.form</field>
+        <field name="model">garment.wash.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" string="Xác Nhận" type="object"
+                        invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_start_washing" string="Bắt Đầu Giặt" type="object"
+                        invisible="state != 'confirmed'" class="oe_highlight"/>
+                    <button name="action_qc" string="Kiểm Tra QC" type="object"
+                        invisible="state != 'washing'" class="oe_highlight"/>
+                    <button name="action_done" string="Hoàn Thành" type="object"
+                        invisible="state != 'qc'" class="oe_highlight"/>
+                    <button name="action_delivered" string="Đã Giao Lại" type="object"
+                        invisible="state != 'done'" class="oe_highlight"/>
+                    <button name="action_cancel" string="Hủy" type="object"
+                        invisible="state in ('delivered', 'cancelled')"/>
+                    <button name="action_reset_draft" string="Về Nháp" type="object"
+                        invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"
+                        statusbar_visible="draft,confirmed,washing,qc,done,delivered"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Thông Tin Chung">
+                            <field name="order_type"/>
+                            <field name="production_order_id"
+                                invisible="order_type != 'internal'"/>
+                            <field name="garment_order_id"
+                                invisible="order_type != 'internal'"/>
+                            <field name="client_id"
+                                invisible="order_type != 'external_in'"
+                                required="order_type == 'external_in'"/>
+                            <field name="client_po"
+                                invisible="order_type != 'external_in'"/>
+                            <field name="style_id"/>
+                        </group>
+                        <group string="Công Thức &amp; Quy Trình">
+                            <field name="recipe_id"/>
+                            <field name="wash_type"/>
+                            <field name="machine_name"/>
+                            <field name="machine_capacity_kg"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Số Lượng">
+                            <field name="qty_received"/>
+                            <field name="weight_kg"/>
+                            <field name="qty_washed"/>
+                            <field name="qty_rewash"/>
+                            <field name="qty_reject"/>
+                        </group>
+                        <group string="Thời Gian">
+                            <field name="date_received"/>
+                            <field name="planned_delivery_date"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="date_delivered"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Chi Phí">
+                            <group>
+                                <group>
+                                    <field name="unit_price"/>
+                                    <field name="chemical_cost"/>
+                                    <field name="total_cost"/>
+                                </group>
+                                <group>
+                                    <field name="wash_pass_rate" widget="progressbar"/>
+                                    <field name="rewash_rate"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Tài Nguyên Tiêu Thụ">
+                            <group>
+                                <group>
+                                    <field name="water_consumed"/>
+                                    <field name="energy_consumed"/>
+                                    <field name="steam_consumed"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Kiểm Tra Chất Lượng">
+                            <group>
+                                <group>
+                                    <field name="color_before"/>
+                                    <field name="color_after"/>
+                                    <field name="hand_feel"/>
+                                </group>
+                                <group>
+                                    <field name="shrinkage_length"/>
+                                    <field name="shrinkage_width"/>
+                                    <field name="qc_passed"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="qc_notes"/>
+                            </group>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_wash_order_search" model="ir.ui.view">
+        <field name="name">garment.wash.order.search</field>
+        <field name="model">garment.wash.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="client_id"/>
+                <field name="recipe_id"/>
+                <field name="production_order_id"/>
+                <filter name="internal" string="Nội Bộ" domain="[('order_type', '=', 'internal')]"/>
+                <filter name="external" string="Gia Công" domain="[('order_type', '=', 'external_in')]"/>
+                <separator/>
+                <filter name="in_progress" string="Đang Giặt" domain="[('state', '=', 'washing')]"/>
+                <filter name="done" string="Hoàn Thành" domain="[('state', '=', 'done')]"/>
+                <group>
+                    <filter name="group_type" context="{'group_by': 'order_type'}"/>
+                    <filter name="group_state" context="{'group_by': 'state'}"/>
+                    <filter name="group_recipe" context="{'group_by': 'recipe_id'}"/>
+                    <filter name="group_client" context="{'group_by': 'client_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_wash_order" model="ir.actions.act_window">
+        <field name="name">Lệnh Giặt</field>
+        <field name="res_model">garment.wash.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo lệnh giặt mới
+            </p>
+            <p>Quản lý lệnh giặt nội bộ và nhận giặt gia công từ bên ngoài.</p>
+        </field>
+    </record>
+
+    <!-- Filtered actions -->
+    <record id="action_wash_order_internal" model="ir.actions.act_window">
+        <field name="name">Giặt Nội Bộ</field>
+        <field name="res_model">garment.wash.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('order_type', '=', 'internal')]</field>
+        <field name="context">{'default_order_type': 'internal'}</field>
+    </record>
+    <record id="action_wash_order_external" model="ir.actions.act_window">
+        <field name="name">Nhận Giặt Gia Công</field>
+        <field name="res_model">garment.wash.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('order_type', '=', 'external_in')]</field>
+        <field name="context">{'default_order_type': 'external_in'}</field>
+    </record>
+</odoo>

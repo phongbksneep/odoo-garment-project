@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================== -->
+    <!-- Compliance Audit Form -->
+    <!-- ================================================================== -->
+    <record id="view_compliance_audit_form" model="ir.ui.view">
+        <field name="name">garment.compliance.audit.form</field>
+        <field name="model">garment.compliance.audit</field>
+        <field name="arch" type="xml">
+            <form string="Compliance Audit">
+                <header>
+                    <button name="action_start" string="Bắt Đầu Audit" type="object"
+                            class="btn-primary" invisible="state != 'scheduled'"/>
+                    <button name="action_complete" string="Hoàn Thành Audit" type="object"
+                            class="btn-primary" invisible="state != 'in_progress'"/>
+                    <button name="action_create_cap" string="Tạo CAP" type="object"
+                            class="btn-warning" invisible="state != 'cap_required'"/>
+                    <button name="action_close" string="Đóng Audit" type="object"
+                            class="btn-success" invisible="state not in ('completed', 'cap_required')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="scheduled,in_progress,completed,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="audit_type"/>
+                            <field name="audit_date"/>
+                            <field name="expiry_date"/>
+                            <field name="auditor"/>
+                        </group>
+                        <group>
+                            <field name="buyer_id"/>
+                            <field name="overall_rating"/>
+                            <field name="total_findings"/>
+                            <field name="critical_findings"
+                                   decoration-danger="critical_findings &gt; 0"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Phát Hiện (Findings)">
+                            <field name="finding_ids">
+                                <list editable="bottom">
+                                    <field name="category"/>
+                                    <field name="severity"/>
+                                    <field name="description"/>
+                                    <field name="evidence"/>
+                                    <field name="cap_id"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Kế Hoạch Khắc Phục (CAP)">
+                            <field name="cap_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="severity"/>
+                                    <field name="description"/>
+                                    <field name="responsible_id"/>
+                                    <field name="deadline"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Tài Liệu">
+                            <group>
+                                <field name="certificate_file" filename="certificate_filename"/>
+                                <field name="certificate_filename" invisible="1"/>
+                            </group>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_compliance_audit_list" model="ir.ui.view">
+        <field name="name">garment.compliance.audit.list</field>
+        <field name="model">garment.compliance.audit</field>
+        <field name="arch" type="xml">
+            <list string="Compliance Audits"
+                  decoration-danger="state == 'cap_required'"
+                  decoration-success="state == 'closed'">
+                <field name="name"/>
+                <field name="audit_type"/>
+                <field name="audit_date"/>
+                <field name="expiry_date"/>
+                <field name="auditor"/>
+                <field name="overall_rating"/>
+                <field name="total_findings"/>
+                <field name="critical_findings"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_compliance_audit_search" model="ir.ui.view">
+        <field name="name">garment.compliance.audit.search</field>
+        <field name="model">garment.compliance.audit</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Audit">
+                <field name="name"/>
+                <field name="audit_type"/>
+                <field name="auditor"/>
+                <filter string="Cần CAP" name="cap_required"
+                        domain="[('state', '=', 'cap_required')]"/>
+                <filter string="Sắp Hết Hạn" name="expiring"
+                        domain="[('expiry_date', '&lt;=', (context_today() + datetime.timedelta(days=90)).strftime('%%Y-%%m-%%d'))]"/>
+                <group>
+                    <filter string="Loại" name="group_type"
+                            context="{'group_by': 'audit_type'}"/>
+                    <filter string="Xếp Hạng" name="group_rating"
+                            context="{'group_by': 'overall_rating'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_compliance_audit" model="ir.actions.act_window">
+        <field name="name">Compliance Audits</field>
+        <field name="res_model">garment.compliance.audit</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo audit mới
+            </p>
+        </field>
+    </record>
+</odoo>

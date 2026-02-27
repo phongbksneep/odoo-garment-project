@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_finishing_order_user,garment.finishing.order.user,model_garment_finishing_order,garment_base.group_garment_user,1,1,1,0
+access_finishing_order_manager,garment.finishing.order.manager,model_garment_finishing_order,garment_base.group_garment_manager,1,1,1,1
+access_finishing_task_user,garment.finishing.task.user,model_garment_finishing_task,garment_base.group_garment_user,1,1,1,0
+access_finishing_task_manager,garment.finishing.task.manager,model_garment_finishing_task,garment_base.group_garment_manager,1,1,1,1

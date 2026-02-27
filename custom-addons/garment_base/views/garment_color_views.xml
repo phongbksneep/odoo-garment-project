@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_garment_color_form" model="ir.ui.view">
+        <field name="name">garment.color.form</field>
+        <field name="model">garment.color</field>
+        <field name="arch" type="xml">
+            <form string="Màu">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="html_color" widget="color"/>
+                            <field name="pantone_code"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_garment_color_list" model="ir.ui.view">
+        <field name="name">garment.color.list</field>
+        <field name="model">garment.color</field>
+        <field name="arch" type="xml">
+            <list string="Bảng Màu">
+                <field name="sequence" widget="handle"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="html_color" widget="color"/>
+                <field name="pantone_code"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_garment_color" model="ir.actions.act_window">
+        <field name="name">Bảng Màu</field>
+        <field name="res_model">garment.color</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

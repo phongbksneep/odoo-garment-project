@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu Sản Xuất -->
+    <menuitem id="menu_garment_production_main"
+              name="Sản Xuất"
+              parent="garment_base.menu_garment_root"
+              sequence="15"/>
+
+    <menuitem id="menu_production_order"
+              name="Lệnh Sản Xuất"
+              parent="menu_garment_production_main"
+              action="action_production_order"
+              sequence="10"/>
+
+    <menuitem id="menu_cutting_order"
+              name="Lệnh Cắt"
+              parent="menu_garment_production_main"
+              action="action_cutting_order"
+              sequence="20"/>
+
+    <menuitem id="menu_daily_output"
+              name="Sản Lượng Ngày"
+              parent="menu_garment_production_main"
+              action="action_daily_output"
+              sequence="30"/>
+
+    <menuitem id="menu_sewing_line"
+              name="Chuyền May"
+              parent="menu_garment_production_main"
+              action="action_sewing_line"
+              sequence="40"/>
+</odoo>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ========================================= -->
+        <!-- QC - KIỂM TRA CHẤT LƯỢNG                  -->
+        <!-- ========================================= -->
+        <record id="qc_inline_polo" model="garment.qc.inspection">
+            <field name="inspection_type">inline</field>
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="inspector_id" ref="emp_qc_1"/>
+            <field name="aql_level">2.5</field>
+            <field name="inspected_qty">200</field>
+            <field name="passed_qty">192</field>
+        </record>
+        <record id="qc_endline_polo" model="garment.qc.inspection">
+            <field name="inspection_type">endline</field>
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="inspector_id" ref="emp_qc_2"/>
+            <field name="aql_level">2.5</field>
+            <field name="inspected_qty">500</field>
+            <field name="passed_qty">485</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- HOÀN THIỆN (FINISHING)                     -->
+        <!-- ========================================= -->
+        <record id="finish_polo" model="garment.finishing.order">
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="sewing_line_id" ref="line_finishing"/>
+            <field name="qty_received">1200</field>
+        </record>
+        <record id="finish_task_thread" model="garment.finishing.task">
+            <field name="finishing_order_id" ref="finish_polo"/>
+            <field name="task_type">thread_cut</field>
+            <field name="employee_id" ref="emp_finish_1"/>
+            <field name="qty_done">1100</field>
+            <field name="qty_defect">5</field>
+        </record>
+        <record id="finish_task_press" model="garment.finishing.task">
+            <field name="finishing_order_id" ref="finish_polo"/>
+            <field name="task_type">pressing</field>
+            <field name="employee_id" ref="emp_iron_1"/>
+            <field name="qty_done">900</field>
+            <field name="qty_defect">3</field>
+        </record>
+        <record id="finish_task_tag" model="garment.finishing.task">
+            <field name="finishing_order_id" ref="finish_polo"/>
+            <field name="task_type">tagging</field>
+            <field name="employee_id" ref="emp_finish_leader"/>
+            <field name="qty_done">800</field>
+            <field name="qty_defect">0</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- BẢO TRÌ MÁY MÓC                          -->
+        <!-- ========================================= -->
+        <record id="maint_1kim_01" model="garment.maintenance.request">
+            <field name="machine_id" ref="machine_1kim_01"/>
+            <field name="request_type">preventive</field>
+            <field name="priority">1</field>
+            <field name="technician_id" ref="emp_mechanic"/>
+            <field name="description">Bảo trì định kỳ tháng 1/2025: thay dầu, kiểm tra motor, kiểm tra bộ phận cắt chỉ tự động</field>
+            <field name="action_taken">Đã thay dầu, vệ sinh bộ răng cưa, chỉnh sức căng chỉ</field>
+            <field name="cost">150000</field>
+            <field name="downtime_hours">1.5</field>
+        </record>
+        <record id="maint_overlock_breakdown" model="garment.maintenance.request">
+            <field name="machine_id" ref="machine_overlock_01"/>
+            <field name="request_type">breakdown</field>
+            <field name="priority">3</field>
+            <field name="technician_id" ref="emp_mechanic"/>
+            <field name="description">Máy vắt sổ bị gãy kim looper dưới, dừng sản xuất khẩn cấp</field>
+            <field name="action_taken">Đã thay looper mới, chỉnh lại timing</field>
+            <field name="spare_parts">Looper dưới MO-6814S: 1 cái</field>
+            <field name="cost">350000</field>
+            <field name="downtime_hours">3.0</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- KHO - NHẬP XUẤT                           -->
+        <!-- ========================================= -->
+        <!-- Nhập kho vải -->
+        <record id="stock_in_fabric" model="garment.stock.move">
+            <field name="move_type">in</field>
+            <field name="warehouse_type">material</field>
+            <field name="reason">purchase</field>
+            <field name="partner_id" ref="partner_supplier_fabric"/>
+        </record>
+        <record id="stock_in_fabric_line1" model="garment.stock.move.line">
+            <field name="move_id" ref="stock_in_fabric"/>
+            <field name="product_type">fabric</field>
+            <field name="description">Cotton Jersey 160gsm - Trắng</field>
+            <field name="fabric_id" ref="fabric_cotton_jersey"/>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="unit">m</field>
+            <field name="quantity">3500</field>
+            <field name="unit_price">65000</field>
+            <field name="lot_number">LOT-CTJ-2025-001</field>
+        </record>
+        <record id="stock_in_fabric_line2" model="garment.stock.move.line">
+            <field name="move_id" ref="stock_in_fabric"/>
+            <field name="product_type">fabric</field>
+            <field name="description">Cotton Jersey 160gsm - Navy</field>
+            <field name="fabric_id" ref="fabric_cotton_jersey"/>
+            <field name="color_id" ref="garment_base.color_navy"/>
+            <field name="unit">m</field>
+            <field name="quantity">2800</field>
+            <field name="unit_price">65000</field>
+            <field name="lot_number">LOT-CTJ-2025-002</field>
+        </record>
+
+        <!-- Nhập kho phụ liệu -->
+        <record id="stock_in_acc" model="garment.stock.move">
+            <field name="move_type">in</field>
+            <field name="warehouse_type">accessory</field>
+            <field name="reason">purchase</field>
+            <field name="partner_id" ref="partner_supplier_acc"/>
+        </record>
+        <record id="stock_in_acc_line1" model="garment.stock.move.line">
+            <field name="move_id" ref="stock_in_acc"/>
+            <field name="product_type">button</field>
+            <field name="description">Nút áo Polo 4 lỗ 11mm - Trắng</field>
+            <field name="unit">pcs</field>
+            <field name="quantity">15000</field>
+            <field name="unit_price">200</field>
+        </record>
+        <record id="stock_in_acc_line2" model="garment.stock.move.line">
+            <field name="move_id" ref="stock_in_acc"/>
+            <field name="product_type">label</field>
+            <field name="description">Nhãn mác Global Fashion - Polo</field>
+            <field name="unit">pcs</field>
+            <field name="quantity">5000</field>
+            <field name="unit_price">500</field>
+        </record>
+        <record id="stock_in_acc_line3" model="garment.stock.move.line">
+            <field name="move_id" ref="stock_in_acc"/>
+            <field name="product_type">thread</field>
+            <field name="description">Chỉ may Coats Epic 120 - Trắng</field>
+            <field name="unit">pcs</field>
+            <field name="quantity">50</field>
+            <field name="unit_price">25000</field>
+        </record>
+
+        <!-- Xuất kho thành phẩm -->
+        <record id="stock_out_finished" model="garment.stock.move">
+            <field name="move_type">out</field>
+            <field name="warehouse_type">finished</field>
+            <field name="reason">delivery</field>
+            <field name="partner_id" ref="partner_buyer_us"/>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+        </record>
+        <record id="stock_out_finished_line1" model="garment.stock.move.line">
+            <field name="move_id" ref="stock_out_finished"/>
+            <field name="product_type">finished</field>
+            <field name="description">Polo Classic - Trắng - S/M/L/XL</field>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="unit">pcs</field>
+            <field name="quantity">2200</field>
+            <field name="unit_price">120000</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- GIA CÔNG (SUBCONTRACT)                     -->
+        <!-- ========================================= -->
+        <record id="subcontract_embroidery" model="garment.subcontract.order">
+            <field name="direction">outgoing</field>
+            <field name="work_type">embroidery</field>
+            <field name="partner_id" ref="partner_subcontract"/>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="style_id" ref="style_polo_classic"/>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- COMPLIANCE AUDIT                          -->
+        <!-- ========================================= -->
+        <record id="audit_bsci" model="garment.compliance.audit">
+            <field name="audit_type">bsci</field>
+            <field name="audit_date" eval="(DateTime.today() - timedelta(days=60)).strftime('%Y-%m-%d')"/>
+            <field name="expiry_date" eval="(DateTime.today() + timedelta(days=305)).strftime('%Y-%m-%d')"/>
+            <field name="auditor">TÜV Rheinland</field>
+            <field name="overall_rating">b</field>
+        </record>
+
+    </data>
+</odoo>

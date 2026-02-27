@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_wash_symbol_list" model="ir.ui.view">
+        <field name="name">garment.wash.symbol.list</field>
+        <field name="model">garment.wash.symbol</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="instruction"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_wash_symbol_form" model="ir.ui.view">
+        <field name="name">garment.wash.symbol.form</field>
+        <field name="model">garment.wash.symbol</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="category"/>
+                        </group>
+                        <group>
+                            <field name="instruction"/>
+                            <field name="icon" widget="image" class="oe_avatar"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_wash_symbol" model="ir.actions.act_window">
+        <field name="name">Ký Hiệu Giặt Ủi</field>
+        <field name="res_model">garment.wash.symbol</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Thêm ký hiệu giặt ủi mới
+            </p>
+        </field>
+    </record>
+</odoo>

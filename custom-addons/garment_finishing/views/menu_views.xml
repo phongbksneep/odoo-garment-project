@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_garment_finishing_root"
+              name="Hoàn Thiện"
+              web_icon="garment_finishing,static/description/icon.png"
+              sequence="55"/>
+
+    <menuitem id="menu_finishing_order"
+              name="Lệnh Hoàn Thiện"
+              parent="menu_garment_finishing_root"
+              action="action_finishing_order"
+              sequence="10"/>
+</odoo>

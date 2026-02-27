@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================== -->
+    <!-- Wage Calculation Form -->
+    <!-- ================================================================== -->
+    <record id="view_wage_calculation_form" model="ir.ui.view">
+        <field name="name">garment.wage.calculation.form</field>
+        <field name="model">garment.wage.calculation</field>
+        <field name="arch" type="xml">
+            <form string="Tính Lương">
+                <header>
+                    <button name="action_calculate" string="Tính Lương" type="object"
+                            class="btn-primary" invisible="state not in ('draft',)"/>
+                    <button name="action_confirm" string="Xác Nhận" type="object"
+                            class="btn-primary" invisible="state != 'calculated'"/>
+                    <button name="action_pay" string="Đã Trả" type="object"
+                            class="btn-success" invisible="state != 'confirmed'"/>
+                    <button name="action_reset_draft" string="Đặt Lại" type="object"
+                            invisible="state not in ('calculated', 'confirmed')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,calculated,confirmed,paid"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="department_id"/>
+                            <field name="month"/>
+                            <field name="year"/>
+                        </group>
+                        <group>
+                            <field name="base_salary"/>
+                            <field name="working_days"/>
+                            <field name="actual_days"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Chi Tiết Lương">
+                            <group>
+                                <group string="Lương Cơ Bản">
+                                    <field name="base_amount"/>
+                                    <field name="attendance_days"/>
+                                    <field name="attendance_ot_hours"/>
+                                </group>
+                                <group string="Lương Khoán">
+                                    <field name="total_pieces"/>
+                                    <field name="piece_rate_amount"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Tăng Ca">
+                                    <field name="total_ot_hours"/>
+                                    <field name="ot_rate"/>
+                                    <field name="ot_amount"/>
+                                </group>
+                                <group string="Thưởng">
+                                    <field name="bonus_amount"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Phụ Cấp">
+                            <group>
+                                <group>
+                                    <field name="allowance_attendance"/>
+                                    <field name="allowance_lunch"/>
+                                    <field name="allowance_transport"/>
+                                </group>
+                                <group>
+                                    <field name="allowance_phone"/>
+                                    <field name="allowance"/>
+                                    <field name="total_allowance"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="BHXH &amp; Thuế TNCN">
+                            <group>
+                                <group string="Bảo Hiểm">
+                                    <field name="insurance_base"/>
+                                    <field name="bhxh_employee"/>
+                                    <field name="bhyt_employee"/>
+                                    <field name="bhtn_employee"/>
+                                    <field name="total_insurance"/>
+                                </group>
+                                <group string="Thuế TNCN">
+                                    <field name="personal_deduction"/>
+                                    <field name="dependent_count"/>
+                                    <field name="dependent_deduction"/>
+                                    <field name="taxable_income"/>
+                                    <field name="pit_amount"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="deduction"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    <group>
+                        <group>
+                            <field name="total_wage" class="oe_subtotal_footer_separator"/>
+                        </group>
+                        <group>
+                            <field name="net_pay" class="oe_subtotal_footer_separator"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_wage_calculation_list" model="ir.ui.view">
+        <field name="name">garment.wage.calculation.list</field>
+        <field name="model">garment.wage.calculation</field>
+        <field name="arch" type="xml">
+            <list string="Bảng Lương"
+                  decoration-info="state == 'draft'"
+                  decoration-success="state == 'paid'">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="month"/>
+                <field name="year"/>
+                <field name="base_amount" sum="Tổng"/>
+                <field name="piece_rate_amount" sum="Tổng"/>
+                <field name="ot_amount" sum="Tổng"/>
+                <field name="total_wage" sum="Tổng Thu Nhập"/>
+                <field name="net_pay" sum="Thực Lĩnh"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_wage_calculation_search" model="ir.ui.view">
+        <field name="name">garment.wage.calculation.search</field>
+        <field name="model">garment.wage.calculation</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Bảng Lương">
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <filter string="Nháp" name="draft"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter string="Đã Xác Nhận" name="confirmed"
+                        domain="[('state', '=', 'confirmed')]"/>
+                <group>
+                    <filter string="Phòng Ban" name="group_dept"
+                            context="{'group_by': 'department_id'}"/>
+                    <filter string="Tháng" name="group_month"
+                            context="{'group_by': 'month'}"/>
+                    <filter string="Trạng Thái" name="group_state"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_wage_calculation" model="ir.actions.act_window">
+        <field name="name">Bảng Lương</field>
+        <field name="res_model">garment.wage.calculation</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo bảng tính lương mới
+            </p>
+        </field>
+    </record>
+</odoo>

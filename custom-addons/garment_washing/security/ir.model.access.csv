@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wash_chemical_user,garment.wash.chemical.user,model_garment_wash_chemical,garment_base.group_garment_user,1,0,0,0
+access_wash_chemical_manager,garment.wash.chemical.manager,model_garment_wash_chemical,garment_base.group_garment_manager,1,1,1,1
+access_wash_recipe_user,garment.wash.recipe.user,model_garment_wash_recipe,garment_base.group_garment_user,1,0,0,0
+access_wash_recipe_manager,garment.wash.recipe.manager,model_garment_wash_recipe,garment_base.group_garment_manager,1,1,1,1
+access_wash_recipe_step_user,garment.wash.recipe.step.user,model_garment_wash_recipe_step,garment_base.group_garment_user,1,0,0,0
+access_wash_recipe_step_manager,garment.wash.recipe.step.manager,model_garment_wash_recipe_step,garment_base.group_garment_manager,1,1,1,1
+access_wash_order_user,garment.wash.order.user,model_garment_wash_order,garment_base.group_garment_user,1,1,1,0
+access_wash_order_manager,garment.wash.order.manager,model_garment_wash_order,garment_base.group_garment_manager,1,1,1,1

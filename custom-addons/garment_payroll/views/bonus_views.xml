@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ===== BONUS VIEWS ===== -->
+    <record id="view_bonus_tree" model="ir.ui.view">
+        <field name="name">garment.bonus.tree</field>
+        <field name="model">garment.bonus</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="bonus_type"/>
+                <field name="date"/>
+                <field name="quarter"/>
+                <field name="year"/>
+                <field name="total_amount" sum="Tổng"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'confirmed'"
+                       decoration-success="state == 'paid'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bonus_form" model="ir.ui.view">
+        <field name="name">garment.bonus.form</field>
+        <field name="model">garment.bonus</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Xác Nhận"
+                            invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_pay" type="object" string="Đã Chi"
+                            invisible="state != 'confirmed'" class="oe_highlight"/>
+                    <button name="action_reset_draft" type="object" string="Về Nháp"
+                            invisible="state not in ('confirmed',)"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,paid"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="bonus_type"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="quarter" invisible="bonus_type != 'quarterly'"/>
+                            <field name="year"/>
+                            <field name="total_amount"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Chi Tiết Thưởng" name="lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="employee_id"/>
+                                    <field name="department_id"/>
+                                    <field name="rating"/>
+                                    <field name="amount" sum="Tổng"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Ghi Chú" name="notes">
+                            <field name="reason"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bonus_search" model="ir.ui.view">
+        <field name="name">garment.bonus.search</field>
+        <field name="model">garment.bonus</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="bonus_type"/>
+                <filter name="filter_quarterly" string="Thưởng Quý" domain="[('bonus_type', '=', 'quarterly')]"/>
+                <filter name="filter_yearly" string="Thưởng Năm" domain="[('bonus_type', '=', 'yearly')]"/>
+                <filter name="filter_attendance" string="Chuyên Cần" domain="[('bonus_type', '=', 'attendance')]"/>
+                <group>
+                    <filter name="group_type" string="Loại Thưởng" context="{'group_by': 'bonus_type'}"/>
+                    <filter name="group_year" string="Năm" context="{'group_by': 'year'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_bonus" model="ir.actions.act_window">
+        <field name="name">Phiếu Thưởng</field>
+        <field name="res_model">garment.bonus</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_bonus_search"/>
+    </record>
+</odoo>

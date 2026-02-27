@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_garment_compliance_audit_user,garment.compliance.audit.user,model_garment_compliance_audit,garment_base.group_garment_user,1,0,0,0
+access_garment_compliance_audit_manager,garment.compliance.audit.manager,model_garment_compliance_audit,garment_base.group_garment_manager,1,1,1,1
+access_garment_audit_finding_user,garment.audit.finding.user,model_garment_audit_finding,garment_base.group_garment_user,1,0,0,0
+access_garment_audit_finding_manager,garment.audit.finding.manager,model_garment_audit_finding,garment_base.group_garment_manager,1,1,1,1
+access_garment_corrective_action_user,garment.corrective.action.user,model_garment_corrective_action,garment_base.group_garment_user,1,0,0,0
+access_garment_corrective_action_manager,garment.corrective.action.manager,model_garment_corrective_action,garment_base.group_garment_manager,1,1,1,1

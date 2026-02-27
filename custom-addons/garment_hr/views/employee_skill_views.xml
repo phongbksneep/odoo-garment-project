@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Skill Tree -->
+    <record id="view_employee_skill_tree" model="ir.ui.view">
+        <field name="name">garment.employee.skill.tree</field>
+        <field name="model">garment.employee.skill</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="employee_id"/>
+                <field name="skill_type"/>
+                <field name="level"/>
+                <field name="detail"/>
+                <field name="certified"/>
+                <field name="notes"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_employee_skill_search" model="ir.ui.view">
+        <field name="name">garment.employee.skill.search</field>
+        <field name="model">garment.employee.skill</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="skill_type"/>
+                <field name="level"/>
+                <group>
+                    <filter name="group_skill" string="Kỹ Năng" context="{'group_by': 'skill_type'}"/>
+                    <filter name="group_level" string="Trình Độ" context="{'group_by': 'level'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_employee_skill" model="ir.actions.act_window">
+        <field name="name">Tay Nghề Công Nhân</field>
+        <field name="res_model">garment.employee.skill</field>
+        <field name="view_mode">list</field>
+        <field name="search_view_id" ref="view_employee_skill_search"/>
+    </record>
+</odoo>

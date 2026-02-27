@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu chính -->
+    <menuitem id="menu_garment_root"
+              name="Công Ty May"
+              web_icon="garment_base,static/description/icon.png"
+              sequence="100"/>
+
+    <!-- Menu cấp 1 -->
+    <menuitem id="menu_garment_order_main"
+              name="Đơn Hàng"
+              parent="menu_garment_root"
+              sequence="10"/>
+
+    <menuitem id="menu_garment_style_main"
+              name="Mẫu May"
+              parent="menu_garment_root"
+              sequence="20"/>
+
+    <menuitem id="menu_garment_material_main"
+              name="Nguyên Phụ Liệu"
+              parent="menu_garment_root"
+              sequence="30"/>
+
+    <menuitem id="menu_garment_config"
+              name="Cấu Hình"
+              parent="menu_garment_root"
+              sequence="100"/>
+
+    <!-- Menu cấp 2: Đơn Hàng -->
+    <menuitem id="menu_garment_order"
+              name="Đơn Hàng May"
+              parent="menu_garment_order_main"
+              action="action_garment_order"
+              sequence="10"/>
+
+    <!-- Menu cấp 2: Mẫu May -->
+    <menuitem id="menu_garment_style"
+              name="Mẫu May / Style"
+              parent="menu_garment_style_main"
+              action="action_garment_style"
+              sequence="10"/>
+
+    <!-- Menu cấp 2: Nguyên Phụ Liệu -->
+    <menuitem id="menu_garment_fabric"
+              name="Vải"
+              parent="menu_garment_material_main"
+              action="action_garment_fabric"
+              sequence="10"/>
+
+    <menuitem id="menu_garment_accessory"
+              name="Phụ Liệu"
+              parent="menu_garment_material_main"
+              action="action_garment_accessory"
+              sequence="20"/>
+
+    <!-- Menu cấp 2: Cấu Hình -->
+    <menuitem id="menu_garment_color"
+              name="Bảng Màu"
+              parent="menu_garment_config"
+              action="action_garment_color"
+              sequence="10"/>
+
+    <menuitem id="menu_garment_size"
+              name="Bảng Size"
+              parent="menu_garment_config"
+              action="action_garment_size"
+              sequence="20"/>
+
+    <menuitem id="menu_garment_wash_symbol"
+              name="Ký Hiệu Giặt Ủi"
+              parent="menu_garment_config"
+              action="action_wash_symbol"
+              sequence="30"/>
+</odoo>

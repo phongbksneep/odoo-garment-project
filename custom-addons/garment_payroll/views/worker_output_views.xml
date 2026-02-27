@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================== -->
+    <!-- Worker Output Form -->
+    <!-- ================================================================== -->
+    <record id="view_worker_output_form" model="ir.ui.view">
+        <field name="name">garment.worker.output.form</field>
+        <field name="model">garment.worker.output</field>
+        <field name="arch" type="xml">
+            <form string="Sản Lượng Công Nhân">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="employee_id"/>
+                            <field name="sewing_line_id"/>
+                        </group>
+                        <group>
+                            <field name="style_id"/>
+                            <field name="piece_rate_id"/>
+                            <field name="operation"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="quantity"/>
+                            <field name="rate_per_piece"/>
+                            <field name="amount"/>
+                        </group>
+                        <group>
+                            <field name="overtime_hours"/>
+                        </group>
+                    </group>
+                    <field name="notes"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_worker_output_list" model="ir.ui.view">
+        <field name="name">garment.worker.output.list</field>
+        <field name="model">garment.worker.output</field>
+        <field name="arch" type="xml">
+            <list string="Sản Lượng Công Nhân" editable="bottom">
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="sewing_line_id"/>
+                <field name="style_id"/>
+                <field name="piece_rate_id"/>
+                <field name="quantity" sum="Tổng SL"/>
+                <field name="rate_per_piece"/>
+                <field name="amount" sum="Tổng Tiền"/>
+                <field name="overtime_hours" sum="Tổng OT"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_worker_output_search" model="ir.ui.view">
+        <field name="name">garment.worker.output.search</field>
+        <field name="model">garment.worker.output</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Sản Lượng">
+                <field name="employee_id"/>
+                <field name="style_id"/>
+                <filter string="Hôm Nay" name="today"
+                        domain="[('date', '=', context_today().strftime('%%Y-%%m-%%d'))]"/>
+                <group>
+                    <filter string="Công Nhân" name="group_employee"
+                            context="{'group_by': 'employee_id'}"/>
+                    <filter string="Chuyền" name="group_line"
+                            context="{'group_by': 'sewing_line_id'}"/>
+                    <filter string="Ngày" name="group_date"
+                            context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_worker_output" model="ir.actions.act_window">
+        <field name="name">Sản Lượng Công Nhân</field>
+        <field name="res_model">garment.worker.output</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Nhập sản lượng công nhân hàng ngày
+            </p>
+        </field>
+    </record>
+</odoo>

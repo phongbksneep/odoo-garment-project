@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_defect_type_user,garment.defect.type.user,model_garment_defect_type,garment_base.group_garment_user,1,0,0,0
+access_defect_type_manager,garment.defect.type.manager,model_garment_defect_type,garment_base.group_garment_manager,1,1,1,1
+access_qc_inspection_user,garment.qc.inspection.user,model_garment_qc_inspection,garment_base.group_garment_user,1,1,1,0
+access_qc_inspection_manager,garment.qc.inspection.manager,model_garment_qc_inspection,garment_base.group_garment_manager,1,1,1,1
+access_qc_defect_line_user,garment.qc.defect.line.user,model_garment_qc_defect_line,garment_base.group_garment_user,1,1,1,0
+access_qc_defect_line_manager,garment.qc.defect.line.manager,model_garment_qc_defect_line,garment_base.group_garment_manager,1,1,1,1

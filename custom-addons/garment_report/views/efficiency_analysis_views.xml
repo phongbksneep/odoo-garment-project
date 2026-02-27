@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================== -->
+    <!-- Efficiency Analysis Views -->
+    <!-- ================================================================== -->
+    <record id="view_efficiency_analysis_list" model="ir.ui.view">
+        <field name="name">garment.efficiency.analysis.list</field>
+        <field name="model">garment.efficiency.analysis</field>
+        <field name="arch" type="xml">
+            <list string="Phân Tích Hiệu Suất" create="0" edit="0"
+                  decoration-danger="efficiency &lt; 50"
+                  decoration-warning="efficiency &gt;= 50 and efficiency &lt; 70"
+                  decoration-success="efficiency &gt;= 70">
+                <field name="date"/>
+                <field name="sewing_line_id"/>
+                <field name="production_order_id"/>
+                <field name="style_id"/>
+                <field name="worker_count"/>
+                <field name="total_output" sum="Tổng"/>
+                <field name="smv"/>
+                <field name="working_minutes" sum="Tổng"/>
+                <field name="earned_minutes" sum="Tổng"/>
+                <field name="efficiency" widget="progressbar"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_efficiency_analysis_search" model="ir.ui.view">
+        <field name="name">garment.efficiency.analysis.search</field>
+        <field name="model">garment.efficiency.analysis</field>
+        <field name="arch" type="xml">
+            <search string="Phân Tích Hiệu Suất">
+                <field name="sewing_line_id"/>
+                <field name="production_order_id"/>
+                <field name="style_id"/>
+                <filter string="Hôm Nay" name="today"
+                        domain="[('date', '=', context_today().strftime('%%Y-%%m-%%d'))]"/>
+                <filter string="Tuần Này" name="this_week"
+                        domain="[('date', '>=', (context_today() - datetime.timedelta(days=context_today().weekday())).strftime('%%Y-%%m-%%d'))]"/>
+                <separator/>
+                <filter string="Hiệu Suất &lt; 50%" name="low_eff"
+                        domain="[('efficiency', '&lt;', 50)]"/>
+                <filter string="Hiệu Suất &gt;= 70%" name="high_eff"
+                        domain="[('efficiency', '&gt;=', 70)]"/>
+                <group>
+                    <filter string="Chuyền May" name="group_line"
+                            context="{'group_by': 'sewing_line_id'}"/>
+                    <filter string="Mã Hàng" name="group_style"
+                            context="{'group_by': 'style_id'}"/>
+                    <filter string="Ngày" name="group_date"
+                            context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="view_efficiency_analysis_pivot" model="ir.ui.view">
+        <field name="name">garment.efficiency.analysis.pivot</field>
+        <field name="model">garment.efficiency.analysis</field>
+        <field name="arch" type="xml">
+            <pivot string="Phân Tích Hiệu Suất">
+                <field name="sewing_line_id" type="row"/>
+                <field name="date" type="col" interval="week"/>
+                <field name="total_output" type="measure"/>
+                <field name="efficiency" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View -->
+    <record id="view_efficiency_analysis_graph" model="ir.ui.view">
+        <field name="name">garment.efficiency.analysis.graph</field>
+        <field name="model">garment.efficiency.analysis</field>
+        <field name="arch" type="xml">
+            <graph string="Hiệu Suất Chuyền" type="bar">
+                <field name="sewing_line_id"/>
+                <field name="efficiency" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_efficiency_analysis" model="ir.actions.act_window">
+        <field name="name">Phân Tích Hiệu Suất</field>
+        <field name="res_model">garment.efficiency.analysis</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="context">{'search_default_group_line': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Chưa có dữ liệu sản lượng để phân tích
+            </p>
+        </field>
+    </record>
+</odoo>

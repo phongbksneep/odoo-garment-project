@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_garment_machine_user,garment.machine.user,model_garment_machine,garment_base.group_garment_user,1,1,1,0
+access_garment_machine_manager,garment.machine.manager,model_garment_machine,garment_base.group_garment_manager,1,1,1,1
+access_garment_maintenance_request_user,garment.maintenance.request.user,model_garment_maintenance_request,garment_base.group_garment_user,1,1,1,0
+access_garment_maintenance_request_manager,garment.maintenance.request.manager,model_garment_maintenance_request,garment_base.group_garment_manager,1,1,1,1

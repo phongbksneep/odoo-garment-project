@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sequences -->
+    <record id="seq_garment_leave" model="ir.sequence">
+        <field name="name">Garment Leave Sequence</field>
+        <field name="code">garment.leave</field>
+        <field name="prefix">LV-%(year)s-</field>
+        <field name="padding">5</field>
+    </record>
+
+    <!-- Departments typical for garment factory -->
+    <record id="dept_cutting" model="hr.department">
+        <field name="name">Tổ Cắt</field>
+    </record>
+    <record id="dept_sewing_1" model="hr.department">
+        <field name="name">Chuyền May 1</field>
+    </record>
+    <record id="dept_sewing_2" model="hr.department">
+        <field name="name">Chuyền May 2</field>
+    </record>
+    <record id="dept_sewing_3" model="hr.department">
+        <field name="name">Chuyền May 3</field>
+    </record>
+    <record id="dept_finishing" model="hr.department">
+        <field name="name">Tổ Hoàn Thiện</field>
+    </record>
+    <record id="dept_qc" model="hr.department">
+        <field name="name">Tổ QC</field>
+    </record>
+    <record id="dept_pressing" model="hr.department">
+        <field name="name">Tổ Ủi</field>
+    </record>
+    <record id="dept_packing" model="hr.department">
+        <field name="name">Tổ Đóng Gói</field>
+    </record>
+    <record id="dept_washing" model="hr.department">
+        <field name="name">Xưởng Giặt</field>
+    </record>
+    <record id="dept_warehouse" model="hr.department">
+        <field name="name">Kho</field>
+    </record>
+    <record id="dept_transport" model="hr.department">
+        <field name="name">Tổ Lái Xe / Vận Chuyển</field>
+    </record>
+    <record id="dept_mechanic" model="hr.department">
+        <field name="name">Tổ Cơ Điện / Thợ Máy</field>
+    </record>
+    <record id="dept_accounting" model="hr.department">
+        <field name="name">Phòng Kế Toán</field>
+    </record>
+    <record id="dept_hr_admin" model="hr.department">
+        <field name="name">Phòng Hành Chính - Nhân Sự</field>
+    </record>
+    <record id="dept_sample" model="hr.department">
+        <field name="name">Phòng Mẫu</field>
+    </record>
+    <record id="dept_planning" model="hr.department">
+        <field name="name">Phòng Kế Hoạch</field>
+    </record>
+    <record id="dept_management" model="hr.department">
+        <field name="name">Ban Giám Đốc</field>
+    </record>
+</odoo>

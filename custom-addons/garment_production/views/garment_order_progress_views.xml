@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Form View: Add production progress to garment order -->
+    <record id="view_garment_order_form_progress" model="ir.ui.view">
+        <field name="name">garment.order.form.progress</field>
+        <field name="model">garment.order</field>
+        <field name="inherit_id" ref="garment_base.view_garment_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='total_amount']" position="after">
+                <field name="produced_qty"/>
+                <field name="progress" widget="progressbar"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit List View: Add progress column -->
+    <record id="view_garment_order_list_progress" model="ir.ui.view">
+        <field name="name">garment.order.list.progress</field>
+        <field name="model">garment.order</field>
+        <field name="inherit_id" ref="garment_base.view_garment_order_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='total_qty']" position="after">
+                <field name="produced_qty"/>
+                <field name="progress" widget="progressbar"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

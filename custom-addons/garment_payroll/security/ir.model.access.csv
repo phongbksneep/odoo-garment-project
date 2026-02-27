@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_garment_piece_rate_user,garment.piece.rate.user,model_garment_piece_rate,garment_base.group_garment_user,1,0,0,0
+access_garment_piece_rate_manager,garment.piece.rate.manager,model_garment_piece_rate,garment_base.group_garment_manager,1,1,1,1
+access_garment_worker_output_user,garment.worker.output.user,model_garment_worker_output,garment_base.group_garment_user,1,1,1,0
+access_garment_worker_output_manager,garment.worker.output.manager,model_garment_worker_output,garment_base.group_garment_manager,1,1,1,1
+access_garment_wage_calculation_user,garment.wage.calculation.user,model_garment_wage_calculation,garment_base.group_garment_user,1,0,0,0
+access_garment_wage_calculation_manager,garment.wage.calculation.manager,model_garment_wage_calculation,garment_base.group_garment_manager,1,1,1,1
+access_garment_bonus_user,garment.bonus.user,model_garment_bonus,garment_base.group_garment_user,1,0,0,0
+access_garment_bonus_manager,garment.bonus.manager,model_garment_bonus,garment_base.group_garment_manager,1,1,1,1
+access_garment_bonus_line_user,garment.bonus.line.user,model_garment_bonus_line,garment_base.group_garment_user,1,0,0,0
+access_garment_bonus_line_manager,garment.bonus.line.manager,model_garment_bonus_line,garment_base.group_garment_manager,1,1,1,1

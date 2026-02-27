@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_qc_inspection" model="ir.sequence">
+        <field name="name">QC Inspection Sequence</field>
+        <field name="code">garment.qc.inspection</field>
+        <field name="prefix">QC-%(year)s-</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Dữ liệu mẫu: Loại lỗi phổ biến -->
+    <record id="defect_broken_stitch" model="garment.defect.type">
+        <field name="name">Đứt Chỉ</field>
+        <field name="code">SEW-001</field>
+        <field name="category">sewing</field>
+        <field name="severity">major</field>
+        <field name="corrective_action">May lại mũi kim, kiểm tra sức căng chỉ</field>
+    </record>
+    <record id="defect_uneven_stitch" model="garment.defect.type">
+        <field name="name">Mũi Kim Không Đều</field>
+        <field name="code">SEW-002</field>
+        <field name="category">sewing</field>
+        <field name="severity">minor</field>
+    </record>
+    <record id="defect_puckering" model="garment.defect.type">
+        <field name="name">Nhăn / Dúm</field>
+        <field name="code">SEW-003</field>
+        <field name="category">sewing</field>
+        <field name="severity">major</field>
+    </record>
+    <record id="defect_skip_stitch" model="garment.defect.type">
+        <field name="name">Bỏ Mũi</field>
+        <field name="code">SEW-004</field>
+        <field name="category">sewing</field>
+        <field name="severity">major</field>
+    </record>
+    <record id="defect_oil_stain" model="garment.defect.type">
+        <field name="name">Vết Dầu Máy</field>
+        <field name="code">STN-001</field>
+        <field name="category">stain</field>
+        <field name="severity">major</field>
+    </record>
+    <record id="defect_fabric_hole" model="garment.defect.type">
+        <field name="name">Lỗ Vải / Rách</field>
+        <field name="code">FAB-001</field>
+        <field name="category">fabric</field>
+        <field name="severity">critical</field>
+    </record>
+    <record id="defect_color_shade" model="garment.defect.type">
+        <field name="name">Loang Màu / Sai Màu</field>
+        <field name="code">CLR-001</field>
+        <field name="category">color</field>
+        <field name="severity">critical</field>
+    </record>
+    <record id="defect_measurement" model="garment.defect.type">
+        <field name="name">Sai Số Đo</field>
+        <field name="code">MEA-001</field>
+        <field name="category">measurement</field>
+        <field name="severity">major</field>
+    </record>
+    <record id="defect_cutting_raw" model="garment.defect.type">
+        <field name="name">Cắt Lệch / Sai Rập</field>
+        <field name="code">CUT-001</field>
+        <field name="category">cutting</field>
+        <field name="severity">major</field>
+    </record>
+    <record id="defect_iron_mark" model="garment.defect.type">
+        <field name="name">Cháy Ủi / Vết Ủi</field>
+        <field name="code">PRS-001</field>
+        <field name="category">pressing</field>
+        <field name="severity">critical</field>
+    </record>
+</odoo>

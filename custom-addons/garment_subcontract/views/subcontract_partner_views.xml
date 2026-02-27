@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- =============== PARTNER SUBCONTRACT VIEWS =============== -->
+
+    <!-- Inherited Form - Add subcontract fields to partner -->
+    <record id="view_partner_subcontract_form" model="ir.ui.view">
+        <field name="name">res.partner.subcontract.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page string="Gia Công" name="subcontract_info">
+                    <group>
+                        <group>
+                            <field name="is_subcontractor"/>
+                            <field name="subcontract_type"
+                                invisible="not is_subcontractor"/>
+                            <field name="subcontract_capacity"
+                                invisible="not is_subcontractor"/>
+                            <field name="subcontract_rating"
+                                invisible="not is_subcontractor"/>
+                        </group>
+                        <group invisible="not is_subcontractor">
+                            <field name="subcontract_order_count"/>
+                            <field name="subcontract_note"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Action: Subcontractors list -->
+    <record id="action_subcontractors" model="ir.actions.act_window">
+        <field name="name">Đối Tác Gia Công</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_subcontractor', '=', True)]</field>
+        <field name="context">{'default_is_subcontractor': True}</field>
+    </record>
+</odoo>

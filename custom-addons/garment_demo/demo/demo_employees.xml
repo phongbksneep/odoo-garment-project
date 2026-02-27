@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ========================================= -->
+        <!-- NHÂN VIÊN THEO CÁC TỔ / PHÒNG BAN        -->
+        <!-- ========================================= -->
+
+        <!-- Ban Giám Đốc -->
+        <record id="emp_director" model="hr.employee">
+            <field name="name">Nguyễn Văn Hùng</field>
+            <field name="job_title">Giám Đốc Nhà Máy</field>
+            <field name="department_id" ref="garment_hr.dept_management"/>
+            <field name="work_phone">028-38001000</field>
+            <field name="work_email">hung.nv@garmentfactory.vn</field>
+        </record>
+
+        <!-- Phòng Kế Hoạch -->
+        <record id="emp_planner_1" model="hr.employee">
+            <field name="name">Trần Thị Lan</field>
+            <field name="job_title">Trưởng Phòng Kế Hoạch</field>
+            <field name="department_id" ref="garment_hr.dept_planning"/>
+            <field name="work_email">lan.tt@garmentfactory.vn</field>
+        </record>
+
+        <!-- Phòng Mẫu -->
+        <record id="emp_sample_1" model="hr.employee">
+            <field name="name">Lê Thị Mai</field>
+            <field name="job_title">Trưởng Phòng Mẫu</field>
+            <field name="department_id" ref="garment_hr.dept_sample"/>
+            <field name="work_email">mai.lt@garmentfactory.vn</field>
+        </record>
+        <record id="emp_sample_2" model="hr.employee">
+            <field name="name">Phạm Thị Hoa</field>
+            <field name="job_title">Thợ Mẫu</field>
+            <field name="department_id" ref="garment_hr.dept_sample"/>
+        </record>
+
+        <!-- Tổ Cắt -->
+        <record id="emp_cut_leader" model="hr.employee">
+            <field name="name">Nguyễn Văn Tuấn</field>
+            <field name="job_title">Tổ Trưởng Cắt</field>
+            <field name="department_id" ref="garment_hr.dept_cutting"/>
+        </record>
+        <record id="emp_cut_1" model="hr.employee">
+            <field name="name">Trần Văn Dũng</field>
+            <field name="job_title">Thợ Cắt</field>
+            <field name="department_id" ref="garment_hr.dept_cutting"/>
+        </record>
+        <record id="emp_cut_2" model="hr.employee">
+            <field name="name">Lê Văn Hải</field>
+            <field name="job_title">Thợ Trải Vải</field>
+            <field name="department_id" ref="garment_hr.dept_cutting"/>
+        </record>
+
+        <!-- Chuyền May 1 -->
+        <record id="emp_sew1_leader" model="hr.employee">
+            <field name="name">Phạm Thị Thanh</field>
+            <field name="job_title">Chuyền Trưởng 1</field>
+            <field name="department_id" ref="garment_hr.dept_sewing_1"/>
+        </record>
+        <record id="emp_sew1_worker1" model="hr.employee">
+            <field name="name">Nguyễn Thị Hương</field>
+            <field name="job_title">Thợ May</field>
+            <field name="department_id" ref="garment_hr.dept_sewing_1"/>
+        </record>
+        <record id="emp_sew1_worker2" model="hr.employee">
+            <field name="name">Trần Thị Ngọc</field>
+            <field name="job_title">Thợ May</field>
+            <field name="department_id" ref="garment_hr.dept_sewing_1"/>
+        </record>
+        <record id="emp_sew1_worker3" model="hr.employee">
+            <field name="name">Lê Thị Thu</field>
+            <field name="job_title">Thợ May</field>
+            <field name="department_id" ref="garment_hr.dept_sewing_1"/>
+        </record>
+
+        <!-- Chuyền May 2 -->
+        <record id="emp_sew2_leader" model="hr.employee">
+            <field name="name">Đỗ Thị Vân</field>
+            <field name="job_title">Chuyền Trưởng 2</field>
+            <field name="department_id" ref="garment_hr.dept_sewing_2"/>
+        </record>
+        <record id="emp_sew2_worker1" model="hr.employee">
+            <field name="name">Hoàng Thị Linh</field>
+            <field name="job_title">Thợ May</field>
+            <field name="department_id" ref="garment_hr.dept_sewing_2"/>
+        </record>
+
+        <!-- Tổ QC -->
+        <record id="emp_qc_leader" model="hr.employee">
+            <field name="name">Vũ Thị Hạnh</field>
+            <field name="job_title">Trưởng Tổ QC</field>
+            <field name="department_id" ref="garment_hr.dept_qc"/>
+        </record>
+        <record id="emp_qc_1" model="hr.employee">
+            <field name="name">Nguyễn Thị Bích</field>
+            <field name="job_title">QC Inline</field>
+            <field name="department_id" ref="garment_hr.dept_qc"/>
+        </record>
+        <record id="emp_qc_2" model="hr.employee">
+            <field name="name">Trần Thị Dung</field>
+            <field name="job_title">QC Final</field>
+            <field name="department_id" ref="garment_hr.dept_qc"/>
+        </record>
+
+        <!-- Tổ Hoàn Thiện -->
+        <record id="emp_finish_leader" model="hr.employee">
+            <field name="name">Phạm Thị Hạnh</field>
+            <field name="job_title">Tổ Trưởng Hoàn Thiện</field>
+            <field name="department_id" ref="garment_hr.dept_finishing"/>
+        </record>
+        <record id="emp_finish_1" model="hr.employee">
+            <field name="name">Lê Thị Hồng</field>
+            <field name="job_title">Thợ Hoàn Thiện</field>
+            <field name="department_id" ref="garment_hr.dept_finishing"/>
+        </record>
+
+        <!-- Tổ Ủi -->
+        <record id="emp_iron_leader" model="hr.employee">
+            <field name="name">Nguyễn Văn Long</field>
+            <field name="job_title">Tổ Trưởng Ủi</field>
+            <field name="department_id" ref="garment_hr.dept_pressing"/>
+        </record>
+        <record id="emp_iron_1" model="hr.employee">
+            <field name="name">Trần Văn Minh</field>
+            <field name="job_title">Thợ Ủi</field>
+            <field name="department_id" ref="garment_hr.dept_pressing"/>
+        </record>
+
+        <!-- Tổ Đóng Gói -->
+        <record id="emp_pack_leader" model="hr.employee">
+            <field name="name">Đặng Thị Yến</field>
+            <field name="job_title">Tổ Trưởng Đóng Gói</field>
+            <field name="department_id" ref="garment_hr.dept_packing"/>
+        </record>
+
+        <!-- Xưởng Giặt -->
+        <record id="emp_wash_leader" model="hr.employee">
+            <field name="name">Bùi Văn Thắng</field>
+            <field name="job_title">Trưởng Xưởng Giặt</field>
+            <field name="department_id" ref="garment_hr.dept_washing"/>
+        </record>
+
+        <!-- Kho -->
+        <record id="emp_warehouse" model="hr.employee">
+            <field name="name">Hoàng Văn Phúc</field>
+            <field name="job_title">Thủ Kho</field>
+            <field name="department_id" ref="garment_hr.dept_warehouse"/>
+        </record>
+
+        <!-- Tổ Cơ Điện -->
+        <record id="emp_mechanic" model="hr.employee">
+            <field name="name">Phan Văn Tùng</field>
+            <field name="job_title">Thợ Máy Trưởng</field>
+            <field name="department_id" ref="garment_hr.dept_mechanic"/>
+        </record>
+
+        <!-- Tổ Lái Xe -->
+        <record id="emp_driver_1" model="hr.employee">
+            <field name="name">Nguyễn Văn Tài</field>
+            <field name="job_title">Tài Xế</field>
+            <field name="department_id" ref="garment_hr.dept_transport"/>
+        </record>
+        <record id="emp_driver_2" model="hr.employee">
+            <field name="name">Lê Văn Đức</field>
+            <field name="job_title">Tài Xế</field>
+            <field name="department_id" ref="garment_hr.dept_transport"/>
+        </record>
+
+        <!-- Phòng Kế Toán -->
+        <record id="emp_accountant" model="hr.employee">
+            <field name="name">Trần Thị Thu Hà</field>
+            <field name="job_title">Kế Toán Trưởng</field>
+            <field name="department_id" ref="garment_hr.dept_accounting"/>
+        </record>
+
+        <!-- Phòng HC-NS -->
+        <record id="emp_hr_manager" model="hr.employee">
+            <field name="name">Nguyễn Thị Ánh</field>
+            <field name="job_title">Trưởng Phòng HC-NS</field>
+            <field name="department_id" ref="garment_hr.dept_hr_admin"/>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- KỸ NĂNG NHÂN VIÊN                         -->
+        <!-- ========================================= -->
+        <record id="skill_sew1_w1" model="garment.employee.skill">
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="skill_type">sewing</field>
+            <field name="level">advanced</field>
+            <field name="detail">Chuyên may áo polo, áo sơ mi</field>
+            <field name="certified" eval="True"/>
+        </record>
+        <record id="skill_sew1_w2" model="garment.employee.skill">
+            <field name="employee_id" ref="emp_sew1_worker2"/>
+            <field name="skill_type">sewing</field>
+            <field name="level">intermediate</field>
+            <field name="detail">May cơ bản, đang đào tạo nâng cao</field>
+        </record>
+        <record id="skill_cut_leader" model="garment.employee.skill">
+            <field name="employee_id" ref="emp_cut_leader"/>
+            <field name="skill_type">cutting</field>
+            <field name="level">expert</field>
+            <field name="detail">15 năm kinh nghiệm cắt, trải vải</field>
+            <field name="certified" eval="True"/>
+        </record>
+        <record id="skill_mechanic" model="garment.employee.skill">
+            <field name="employee_id" ref="emp_mechanic"/>
+            <field name="skill_type">mechanic</field>
+            <field name="level">expert</field>
+            <field name="detail">Sửa chữa tất cả loại máy Juki, Brother, Pegasus</field>
+            <field name="certified" eval="True"/>
+        </record>
+        <record id="skill_driver" model="garment.employee.skill">
+            <field name="employee_id" ref="emp_driver_1"/>
+            <field name="skill_type">driver</field>
+            <field name="level">advanced</field>
+            <field name="detail">Bằng C, có kinh nghiệm lái container</field>
+            <field name="certified" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

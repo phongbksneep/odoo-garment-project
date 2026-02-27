@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ========================================= -->
+        <!-- KHÁCH HÀNG / NHÀ CUNG CẤP -->
+        <!-- ========================================= -->
+        <record id="partner_buyer_us" model="res.partner">
+            <field name="name">Global Fashion Inc.</field>
+            <field name="email">order@globalfashion.com</field>
+            <field name="phone">+1-555-0100</field>
+            <field name="city">New York</field>
+            <field name="country_id" ref="base.us"/>
+            <field name="customer_rank">1</field>
+        </record>
+        <record id="partner_buyer_eu" model="res.partner">
+            <field name="name">EuroStyle GmbH</field>
+            <field name="email">buying@eurostyle.de</field>
+            <field name="phone">+49-30-12345</field>
+            <field name="city">Berlin</field>
+            <field name="country_id" ref="base.de"/>
+            <field name="customer_rank">1</field>
+        </record>
+        <record id="partner_buyer_jp" model="res.partner">
+            <field name="name">Tokyo Fashion Co., Ltd.</field>
+            <field name="email">import@tokyofashion.jp</field>
+            <field name="phone">+81-3-1234567</field>
+            <field name="city">Tokyo</field>
+            <field name="country_id" ref="base.jp"/>
+            <field name="customer_rank">1</field>
+        </record>
+
+        <record id="partner_supplier_fabric" model="res.partner">
+            <field name="name">Công Ty TNHH Vải Sợi Hòa Phát</field>
+            <field name="email">sales@hoaphattextile.vn</field>
+            <field name="phone">028-38765432</field>
+            <field name="city">Hồ Chí Minh</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="supplier_rank">1</field>
+        </record>
+        <record id="partner_supplier_acc" model="res.partner">
+            <field name="name">Phụ Liệu May Thành Đạt</field>
+            <field name="email">info@thanhdat-acc.vn</field>
+            <field name="phone">028-39001234</field>
+            <field name="city">Hồ Chí Minh</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="supplier_rank">1</field>
+        </record>
+        <record id="partner_subcontract" model="res.partner">
+            <field name="name">Xưởng Gia Công Minh Tâm</field>
+            <field name="email">contact@minhtam.vn</field>
+            <field name="phone">0274-3567890</field>
+            <field name="city">Bình Dương</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="supplier_rank">1</field>
+        </record>
+        <record id="partner_wash" model="res.partner">
+            <field name="name">Xưởng Giặt Công Nghiệp Phú Mỹ</field>
+            <field name="email">info@giatphumy.vn</field>
+            <field name="phone">0254-3456789</field>
+            <field name="city">Bà Rịa - Vũng Tàu</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="supplier_rank">1</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- VẢI (FABRIC) -->
+        <!-- ========================================= -->
+        <record id="fabric_cotton_jersey" model="garment.fabric">
+            <field name="name">Cotton Jersey 160gsm</field>
+            <field name="code">CTJ-160</field>
+            <field name="fabric_type">knit</field>
+            <field name="composition">100% Cotton</field>
+            <field name="width">160</field>
+            <field name="weight">160</field>
+            <field name="unit_price">65000</field>
+            <field name="shrinkage">3.5</field>
+        </record>
+        <record id="fabric_cotton_poplin" model="garment.fabric">
+            <field name="name">Cotton Poplin 130gsm</field>
+            <field name="code">CTP-130</field>
+            <field name="fabric_type">woven</field>
+            <field name="composition">100% Cotton</field>
+            <field name="width">150</field>
+            <field name="weight">130</field>
+            <field name="unit_price">72000</field>
+            <field name="shrinkage">2.5</field>
+        </record>
+        <record id="fabric_poly_cotton" model="garment.fabric">
+            <field name="name">TC 65/35 Twill 200gsm</field>
+            <field name="code">TC-200</field>
+            <field name="fabric_type">blend</field>
+            <field name="composition">65% Polyester, 35% Cotton</field>
+            <field name="width">150</field>
+            <field name="weight">200</field>
+            <field name="unit_price">55000</field>
+            <field name="shrinkage">1.5</field>
+        </record>
+        <record id="fabric_denim" model="garment.fabric">
+            <field name="name">Denim 12oz</field>
+            <field name="code">DNM-12</field>
+            <field name="fabric_type">denim</field>
+            <field name="composition">100% Cotton</field>
+            <field name="width">150</field>
+            <field name="weight">410</field>
+            <field name="unit_price">95000</field>
+            <field name="shrinkage">5.0</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- MẪU MAY (STYLE) -->
+        <!-- ========================================= -->
+        <record id="style_polo_classic" model="garment.style">
+            <field name="name">Classic Polo Shirt</field>
+            <field name="code">ST-POLO-001</field>
+            <field name="category">polo</field>
+            <field name="season">all</field>
+            <field name="gender">male</field>
+            <field name="fabric_consumption">1.65</field>
+            <field name="sewing_time">18</field>
+            <field name="sam">15.5</field>
+            <field name="difficulty_level">medium</field>
+        </record>
+        <record id="style_tshirt_basic" model="garment.style">
+            <field name="name">Basic T-Shirt Round Neck</field>
+            <field name="code">ST-TEE-001</field>
+            <field name="category">tshirt</field>
+            <field name="season">all</field>
+            <field name="gender">unisex</field>
+            <field name="fabric_consumption">1.35</field>
+            <field name="sewing_time">12</field>
+            <field name="sam">10.8</field>
+            <field name="difficulty_level">easy</field>
+        </record>
+        <record id="style_shirt_dress" model="garment.style">
+            <field name="name">Men's Dress Shirt</field>
+            <field name="code">ST-SHT-001</field>
+            <field name="category">shirt</field>
+            <field name="season">all</field>
+            <field name="gender">male</field>
+            <field name="fabric_consumption">2.10</field>
+            <field name="sewing_time">25</field>
+            <field name="sam">22.0</field>
+            <field name="difficulty_level">hard</field>
+        </record>
+        <record id="style_jacket_winter" model="garment.style">
+            <field name="name">Winter Padded Jacket</field>
+            <field name="code">ST-JKT-001</field>
+            <field name="category">jacket</field>
+            <field name="season">aw</field>
+            <field name="gender">unisex</field>
+            <field name="fabric_consumption">3.20</field>
+            <field name="sewing_time">45</field>
+            <field name="sam">40.0</field>
+            <field name="difficulty_level">very_hard</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- CHUYỀN MAY (SEWING LINES) -->
+        <!-- ========================================= -->
+        <record id="line_sewing_1" model="garment.sewing.line">
+            <field name="name">Chuyền May 1</field>
+            <field name="code">CM-01</field>
+            <field name="line_type">sewing</field>
+            <field name="machine_count">35</field>
+            <field name="capacity_per_day">800</field>
+            <field name="efficiency">82</field>
+        </record>
+        <record id="line_sewing_2" model="garment.sewing.line">
+            <field name="name">Chuyền May 2</field>
+            <field name="code">CM-02</field>
+            <field name="line_type">sewing</field>
+            <field name="machine_count">30</field>
+            <field name="capacity_per_day">700</field>
+            <field name="efficiency">78</field>
+        </record>
+        <record id="line_sewing_3" model="garment.sewing.line">
+            <field name="name">Chuyền May 3</field>
+            <field name="code">CM-03</field>
+            <field name="line_type">sewing</field>
+            <field name="machine_count">28</field>
+            <field name="capacity_per_day">650</field>
+            <field name="efficiency">80</field>
+        </record>
+        <record id="line_cutting" model="garment.sewing.line">
+            <field name="name">Tổ Cắt</field>
+            <field name="code">TC-01</field>
+            <field name="line_type">cutting</field>
+            <field name="machine_count">5</field>
+            <field name="capacity_per_day">3000</field>
+        </record>
+        <record id="line_finishing" model="garment.sewing.line">
+            <field name="name">Tổ Hoàn Thiện</field>
+            <field name="code">HT-01</field>
+            <field name="line_type">finishing</field>
+            <field name="machine_count">8</field>
+            <field name="capacity_per_day">1200</field>
+        </record>
+        <record id="line_ironing" model="garment.sewing.line">
+            <field name="name">Tổ Ủi</field>
+            <field name="code">UI-01</field>
+            <field name="line_type">ironing</field>
+            <field name="machine_count">10</field>
+            <field name="capacity_per_day">1500</field>
+        </record>
+        <record id="line_packing" model="garment.sewing.line">
+            <field name="name">Tổ Đóng Gói</field>
+            <field name="code">DG-01</field>
+            <field name="line_type">packing</field>
+            <field name="capacity_per_day">2000</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- MÁY MÓC (MACHINES) -->
+        <!-- ========================================= -->
+        <record id="machine_1kim_01" model="garment.machine">
+            <field name="name">1KIM-001</field>
+            <field name="machine_type">lockstitch</field>
+            <field name="brand">Juki</field>
+            <field name="model">DDL-8700</field>
+            <field name="serial_number">JK-2024-001</field>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="status">active</field>
+        </record>
+        <record id="machine_1kim_02" model="garment.machine">
+            <field name="name">1KIM-002</field>
+            <field name="machine_type">lockstitch</field>
+            <field name="brand">Juki</field>
+            <field name="model">DDL-8700</field>
+            <field name="serial_number">JK-2024-002</field>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="status">active</field>
+        </record>
+        <record id="machine_overlock_01" model="garment.machine">
+            <field name="name">VS-001</field>
+            <field name="machine_type">overlock</field>
+            <field name="brand">Juki</field>
+            <field name="model">MO-6814S</field>
+            <field name="serial_number">JK-2024-010</field>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="status">active</field>
+        </record>
+        <record id="machine_flatlock_01" model="garment.machine">
+            <field name="name">BANG-001</field>
+            <field name="machine_type">flatlock</field>
+            <field name="brand">Pegasus</field>
+            <field name="model">W500P</field>
+            <field name="serial_number">PG-2024-001</field>
+            <field name="sewing_line_id" ref="line_sewing_2"/>
+            <field name="status">active</field>
+        </record>
+        <record id="machine_cutting_01" model="garment.machine">
+            <field name="name">CAT-001</field>
+            <field name="machine_type">cutting</field>
+            <field name="brand">Eastman</field>
+            <field name="model">Brute</field>
+            <field name="serial_number">EM-2024-001</field>
+            <field name="sewing_line_id" ref="line_cutting"/>
+            <field name="status">active</field>
+        </record>
+        <record id="machine_pressing_01" model="garment.machine">
+            <field name="name">UI-001</field>
+            <field name="machine_type">pressing</field>
+            <field name="brand">Veit</field>
+            <field name="model">HD2002</field>
+            <field name="serial_number">VT-2024-001</field>
+            <field name="sewing_line_id" ref="line_ironing"/>
+            <field name="status">active</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- PHƯƠNG TIỆN VẬN CHUYỂN -->
+        <!-- ========================================= -->
+        <record id="vehicle_truck_1" model="garment.vehicle">
+            <field name="name">Xe Tải Hyundai 2.5T</field>
+            <field name="plate_number">51C-123.45</field>
+            <field name="vehicle_type">truck_small</field>
+            <field name="max_weight">2500</field>
+            <field name="state">available</field>
+        </record>
+        <record id="vehicle_truck_2" model="garment.vehicle">
+            <field name="name">Xe Tải Isuzu 5T</field>
+            <field name="plate_number">51C-678.90</field>
+            <field name="vehicle_type">truck_medium</field>
+            <field name="max_weight">5000</field>
+            <field name="state">available</field>
+        </record>
+        <record id="vehicle_container" model="garment.vehicle">
+            <field name="name">Container 40ft - Hải Phòng</field>
+            <field name="plate_number">51R-001.23</field>
+            <field name="vehicle_type">container_40</field>
+            <field name="max_weight">26000</field>
+            <field name="state">available</field>
+        </record>
+
+    </data>
+</odoo>

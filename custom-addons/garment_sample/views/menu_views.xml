@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_garment_sample_main"
+              name="Mẫu (Sample)"
+              parent="garment_base.menu_garment_root"
+              sequence="22"/>
+
+    <menuitem id="menu_sample"
+              name="Quản Lý Mẫu"
+              parent="menu_garment_sample_main"
+              action="action_sample"
+              sequence="10"/>
+</odoo>

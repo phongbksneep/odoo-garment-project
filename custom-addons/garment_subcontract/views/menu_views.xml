@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- =============== MENU GIA CÔNG =============== -->
+    <menuitem id="menu_garment_subcontract_root"
+        name="Gia Công"
+        web_icon="garment_subcontract,static/description/icon.png"
+        sequence="60"/>
+
+    <menuitem id="menu_sub_orders"
+        name="Đơn Gia Công"
+        parent="menu_garment_subcontract_root"
+        sequence="10"/>
+
+    <menuitem id="menu_sub_order_all"
+        name="Tất Cả Đơn GC"
+        parent="menu_sub_orders"
+        action="action_subcontract_order"
+        sequence="1"/>
+
+    <menuitem id="menu_sub_order_outgoing"
+        name="Gửi Gia Công"
+        parent="menu_sub_orders"
+        action="action_subcontract_outgoing"
+        sequence="2"/>
+
+    <menuitem id="menu_sub_order_incoming"
+        name="Nhận Gia Công"
+        parent="menu_sub_orders"
+        action="action_subcontract_incoming"
+        sequence="3"/>
+
+    <menuitem id="menu_sub_partners"
+        name="Đối Tác Gia Công"
+        parent="menu_garment_subcontract_root"
+        action="action_subcontractors"
+        sequence="20"/>
+</odoo>
