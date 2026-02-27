@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_garment_compliance_main"
-              name="Tuân Thủ (Compliance)"
-              parent="garment_base.menu_garment_root"
-              sequence="90"/>
-
     <menuitem id="menu_compliance_audit"
               name="Audits"
-              parent="menu_garment_compliance_main"
+              parent="garment_base.menu_garment_quality_main"
               action="action_compliance_audit"
-              sequence="10"/>
+              sequence="30"/>
 
     <menuitem id="menu_corrective_action"
               name="CAP (Khắc Phục)"
-              parent="menu_garment_compliance_main"
+              parent="garment_base.menu_garment_quality_main"
               action="action_corrective_action"
-              sequence="20"/>
+              sequence="40"/>
 </odoo>

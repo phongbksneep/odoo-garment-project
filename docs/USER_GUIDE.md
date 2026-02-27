@@ -1,10 +1,8 @@
 # 📖 Tài Liệu Hướng Dẫn Sử Dụng - Hệ Thống Quản Lý Công Ty May
 
-> **Phiên bản:** Odoo 19.0 | **Ngày cập nhật:** Tháng 6/2025  
-> **Đối tượng:** Quản lý, trưởng phòng, nhân viên sử dụng hệ thống ERP  
-> **Tổng số module:** 20 module chuyên biệt | **181 test cases** — 0 failures
-
----
+> **Phiên bản:** Odoo 19.0 | **Ngày cập nhật:** Tháng 2/2026
+> **Đối tượng:** Quản lý, trưởng phòng, nhân viên sử dụng hệ thống ERP
+> **Tổng số module:** 20 module chuyên biệt | **181 test cases** — 0 failures---
 
 ## 📑 Mục Lục
 
@@ -57,44 +55,40 @@ Hệ thống ERP Công Ty May được xây dựng trên nền tảng **Odoo 19.
 
 Sau khi đăng nhập, bạn sẽ thấy:
 
-- **Menu trên cùng:** Danh sách các module đã cài (Công Ty May, Xưởng Giặt, Gia Công, Nhân Sự, ...)
-- **Sidebar trái:** Menu phụ của module đang chọn
+- **App Launcher (Home):** Chỉ có **1 ứng dụng duy nhất** — **"Công Ty May"** chứa toàn bộ chức năng
+- **Thanh menu ngang:** Các nhóm chức năng chính bên trong app (Đơn Hàng, Sản Xuất, Chất Lượng, ...)
+- **Sidebar trái:** Menu phụ của nhóm đang chọn
 - **Vùng nội dung chính:** Hiển thị danh sách / form / biểu đồ
 
 ![Giao diện chính sau đăng nhập](images/02_home.png)
-*Hình 2: Giao diện chính sau khi đăng nhập*
+*Hình 2: Giao diện chính sau khi đăng nhập — chỉ hiển thị app "Công Ty May"*
 
 ### 1.4 Truy cập module Công Ty May
 
-Nhấn vào **"Công Ty May"** trên menu chính. Menu con gồm:
+Nhấn vào **"Công Ty May"** trên màn hình Home. Toàn bộ chức năng được tổ chức trong **8 nhóm menu** trên thanh ngang:
 
-| Menu | Mô tả |
-|------|--------|
-| **Đơn Hàng** | Quản lý đơn hàng may |
-| **Mẫu May** | Quản lý mẫu / style |
-| **Nguyên Phụ Liệu** | Vải, phụ liệu |
-| **Sản Xuất** | Chuyền may, lệnh SX, sản lượng |
-| **Chất Lượng** | QC, phiếu kiểm tra, loại lỗi |
-| **Kế Hoạch SX** | Lập kế hoạch, phân chuyền |
-| **Cắt** | Lệnh cắt nâng cao |
-| **Đóng Gói** | Packing list, carton |
-| **Bảo Trì** | Máy may, yêu cầu bảo trì |
-| **Lương Khoán** | Đơn giá, sản lượng, tính lương |
-| **Tuân Thủ** | Audit, CAP |
-| **Báo Cáo** | Hiệu suất, phân tích lỗi |
-| **Cấu Hình** | Bảng màu, bảng size, ký hiệu giặt |
+| # | Menu Nhóm | Chức Năng |
+|---|-----------|-----------|
+| 1 | **Đơn Hàng** | Đơn hàng may, Mẫu may/Style, Vải, Phụ liệu, Quản lý mẫu, Bảng tính giá thành |
+| 2 | **Sản Xuất** | Lệnh SX, Lệnh cắt, Lệnh cắt nâng cao, Sản lượng ngày, Chuyền may, Lệnh hoàn thiện, Kế hoạch SX, Line loading, Danh sách máy, Yêu cầu bảo trì, Lệnh giặt, Đơn gia công |
+| 3 | **Chất Lượng** | Phiếu kiểm tra QC, Loại lỗi, Audits, CAP (Khắc phục) |
+| 4 | **Kho & Giao Hàng** | Packing list, Nhập kho, Xuất kho, Tất cả phiếu kho, Phiếu giao hàng, Giao khách hàng, Phương tiện |
+| 5 | **Kế Toán** | Hóa đơn bán, Hóa đơn mua, Phiếu thanh toán, Tất cả hóa đơn |
+| 6 | **Nhân Sự & Lương** | Chấm công, Tổng hợp công tháng, Tay nghề, Đơn nghỉ phép, Đơn giá khoán, Sản lượng CN, Bảng lương, Phiếu thưởng |
+| 7 | **Báo Cáo** | Hiệu suất chuyền, Phân tích lỗi, Báo cáo sản xuất |
+| 8 | **Cấu Hình** | Bảng màu, Bảng size, Ký hiệu giặt, Công thức giặt, Hóa chất |
 
-Ngoài ra trên menu chính còn có:
+![Đơn Hàng menu](images/80_menu_don_hang.png)
+*Hình 2b: Menu "Đơn Hàng" — tất cả chức năng đặt hàng trong một nhóm*
 
-| Menu | Mô tả |
-|------|--------|
-| **Xưởng Giặt** | Hóa chất, công thức giặt, đơn giặt |
-| **Gia Công** | Gửi/nhận gia công, đối tác gia công |
-| **Hoàn Thiện** | Lệnh hoàn thiện: cắt chỉ, ủi, gấp, đóng tag |
-| **Nhân Sự May** | Chấm công, nghỉ phép, tay nghề |
-| **Kế Toán May** | Hóa đơn, thuế GTGT, công nợ |
-| **Kho Hàng** | Phiếu nhập/xuất/chuyển kho |
-| **Giao Hàng** | Phương tiện, đơn giao hàng |
+![Sản Xuất menu](images/81_menu_san_xuat.png)
+*Hình 2c: Menu "Sản Xuất" — bao gồm cả Giặt, Gia Công, Bảo Trì, Kế Hoạch*
+
+![Kho & Giao Hàng menu](images/83_menu_kho.png)
+*Hình 2d: Menu "Kho & Giao Hàng" — Packing, Kho và Giao Hàng gộp chung*
+
+![Cấu Hình menu](images/87_menu_cau_hinh.png)
+*Hình 2e: Menu "Cấu Hình" — Bảng màu, Bảng size, Ký hiệu giặt, Công thức, Hóa chất*
 
 ---
 
@@ -215,7 +209,7 @@ Module nền tảng quản lý tất cả dữ liệu chung của công ty may.
 
 ### 3.1 Quản lý Vải (Fabric)
 
-**Đường dẫn:** `Công Ty May → Nguyên Phụ Liệu → Vải`
+**Đường dẫn:** `Công Ty May → Đơn Hàng → Vải`
 
 #### Thêm mới loại vải:
 
@@ -224,6 +218,9 @@ Module nền tảng quản lý tất cả dữ liệu chung của công ty may.
 3. Tab **Nhà Cung Cấp:** Thêm nhà cung cấp vải
 4. Tab **Màu Có Sẵn:** Chọn màu vải có sẵn
 5. Nhấn **"Lưu"**
+
+![Danh sách Vải](images/05_fabrics.png)
+*Hình 2e: Danh sách quản lý vải*
 
 #### Bảng giải thích trường — Vải (garment.fabric):
 
@@ -244,7 +241,10 @@ Module nền tảng quản lý tất cả dữ liệu chung của công ty may.
 
 ### 3.2 Quản lý Phụ Liệu (Accessories)
 
-**Đường dẫn:** `Công Ty May → Nguyên Phụ Liệu → Phụ Liệu`
+**Đường dẫn:** `Công Ty May → Đơn Hàng → Phụ Liệu`
+
+![Danh sách Phụ Liệu](images/06_accessories.png)
+*Hình 2f: Danh sách quản lý phụ liệu*
 
 #### Bảng giải thích trường — Phụ Liệu (garment.accessory):
 
@@ -263,12 +263,12 @@ Module nền tảng quản lý tất cả dữ liệu chung của công ty may.
 
 ### 3.3 Quản lý Mẫu May / Style
 
-**Đường dẫn:** `Công Ty May → Mẫu May → Mẫu May / Style`
+**Đường dẫn:** `Công Ty May → Đơn Hàng → Mẫu May / Style`
 
 ![Danh sách Mã Hàng / Style](images/04_styles.png)
 *Hình 3: Danh sách mã hàng (Style) trong hệ thống*
 
-![Chi tiết Mẫu May](images/31_style_detail.png)
+![Chi tiết Mẫu May](images/51_style_detail.png)
 *Hình 4: Màn hình chi tiết mẫu may — form view đầy đủ*
 
 #### Bảng giải thích trường — Mẫu May (garment.style):
@@ -317,7 +317,7 @@ stateDiagram-v2
 ![Danh sách Đơn Hàng May](images/03_garment_orders.png)
 *Hình 5: Danh sách đơn hàng may*
 
-![Chi tiết Đơn Hàng](images/30_order_form_detail.png)
+![Chi tiết Đơn Hàng](images/50_order_detail.png)
 *Hình 6: Màn hình chi tiết đơn hàng — form view với đầy đủ thông tin*
 
 #### Bảng giải thích trường — Đơn Hàng (garment.order):
@@ -360,14 +360,17 @@ stateDiagram-v2
 
 Module quản lý sản xuất: chuyền may, lệnh sản xuất, sản lượng hàng ngày.
 
+![Sản Xuất menu](images/81_menu_san_xuat.png)
+*Hình 7b: Menu Sản Xuất — bao gồm cả Giặt, Gia Công, Bảo Trì, Kế Hoạch SX*
+
 ### 4.1 Chuyền May (Sewing Line)
 
 **Đường dẫn:** `Công Ty May → Sản Xuất → Chuyền May`
 
-![Danh sách Chuyền May](images/06_sewing_lines.png)
+![Danh sách Chuyền May](images/10_sewing_lines.png)
 *Hình 7: Danh sách chuyền may*
 
-![Chi tiết Chuyền May](images/52_sewing_line_detail.png)
+![Chi tiết Chuyền May](images/72_sewing_detail.png)
 *Hình 8: Form view chi tiết chuyền may*
 
 #### Bảng giải thích trường — Chuyền May (garment.sewing.line):
@@ -392,10 +395,10 @@ Module quản lý sản xuất: chuyền may, lệnh sản xuất, sản lượn
 
 **Đường dẫn:** `Công Ty May → Sản Xuất → Lệnh Sản Xuất`
 
-![Danh sách Lệnh SX](images/05_production_orders.png)
+![Danh sách Lệnh SX](images/07_production_orders.png)
 *Hình 9: Danh sách lệnh sản xuất*
 
-![Chi tiết Lệnh SX](images/32_production_detail.png)
+![Chi tiết Lệnh SX](images/52_production_detail.png)
 *Hình 10: Form view chi tiết lệnh sản xuất — hiển thị tiến độ, sản lượng*
 
 #### Bảng giải thích trường — Lệnh Sản Xuất (garment.production.order):
@@ -434,10 +437,10 @@ stateDiagram-v2
 
 **Đường dẫn:** `Công Ty May → Sản Xuất → Sản Lượng Hàng Ngày`
 
-![Sản Lượng Hàng Ngày](images/07_daily_output.png)
+![Sản Lượng Hàng Ngày](images/09_daily_output.png)
 *Hình 11: Danh sách sản lượng hàng ngày*
 
-![Chi tiết Sản Lượng](images/51_daily_output_detail.png)
+![Chi tiết Sản Lượng](images/71_output_detail.png)
 *Hình 12: Form view chi tiết sản lượng hàng ngày*
 
 #### Bảng giải thích trường — Sản Lượng (garment.daily.output):
@@ -465,12 +468,15 @@ Module quản lý kiểm tra chất lượng (QC) trong sản xuất.
 
 ### 5.1 Phiếu Kiểm Tra QC (QC Inspection)
 
-**Đường dẫn:** `Công Ty May → Chất Lượng → QC / Kiểm Tra`
+**Đường dẫn:** `Công Ty May → Chất Lượng → Phiếu Kiểm Tra QC`
 
-![Danh sách QC](images/09_qc_inspections.png)
+![Chất Lượng menu](images/82_menu_chat_luong.png)
+*Hình 12b: Menu Chất Lượng — QC, Audits và CAP gộp chung*
+
+![Danh sách QC](images/22_qc_inspections.png)
 *Hình 13: Danh sách phiếu kiểm tra QC*
 
-![Chi tiết QC](images/33_qc_detail.png)
+![Chi tiết QC](images/53_qc_detail.png)
 *Hình 14: Form view chi tiết phiếu QC — kết quả kiểm tra*
 
 #### Bảng giải thích trường — QC Inspection (garment.qc.inspection):
@@ -495,12 +501,12 @@ Module quản lý kiểm tra chất lượng (QC) trong sản xuất.
 
 ## 6. Module Garment Costing — Tính Giá Thành
 
-**Đường dẫn:** `Công Ty May → Kế Hoạch SX → Bảng Tính Giá Thành`
+**Đường dẫn:** `Công Ty May → Đơn Hàng → Bảng Tính Giá Thành`
 
 ![Danh sách Bảng Tính Giá](images/12_costing.png)
 *Hình 15: Danh sách bảng tính giá thành*
 
-![Chi tiết Bảng Tính Giá](images/36_costing_detail.png)
+![Chi tiết Bảng Tính Giá](images/56_costing_detail.png)
 *Hình 16: Form view bảng tính giá thành — breakdown chi phí*
 
 ### 6.1 Bảng Tính Giá Thành (Cost Sheet)
@@ -538,12 +544,12 @@ Module quản lý kiểm tra chất lượng (QC) trong sản xuất.
 
 ## 7. Module Garment Sample — Quản Lý Mẫu
 
-**Đường dẫn:** `Công Ty May → Mẫu May → Quản Lý Mẫu`
+**Đường dẫn:** `Công Ty May → Đơn Hàng → Quản Lý Mẫu`
 
 ![Danh sách Mẫu](images/11_samples.png)
 *Hình 17: Danh sách quản lý mẫu*
 
-![Chi tiết Mẫu](images/35_sample_detail.png)
+![Chi tiết Mẫu](images/55_sample_detail.png)
 *Hình 18: Form view chi tiết phiếu mẫu*
 
 ### 7.1 Phiếu Mẫu (Sample)
@@ -582,10 +588,16 @@ stateDiagram-v2
 
 ## 8. Module Garment Cutting — Cắt Nâng Cao
 
-**Đường dẫn:** `Công Ty May → Cắt → Lệnh Cắt`
+**Đường dẫn:** `Công Ty May → Sản Xuất → Lệnh Cắt`
 
 ![Lệnh Cắt](images/08_cutting_orders.png)
 *Hình 19: Danh sách lệnh cắt*
+
+![Lệnh Cắt Nâng Cao](images/13_cutting_advanced.png)
+*Hình 19b: Danh sách lệnh cắt nâng cao (module garment_cutting)*
+
+![Chi tiết Lệnh Cắt](images/57_cutting_detail.png)
+*Hình 19c: Form view chi tiết lệnh cắt nâng cao*
 
 ### 8.1 Lệnh Cắt (Cutting Order)
 
@@ -627,12 +639,12 @@ stateDiagram-v2
 
 ## 9. Module Garment Packing — Đóng Gói & Xuất Hàng
 
-**Đường dẫn:** `Công Ty May → Đóng Gói → Packing List`
+**Đường dẫn:** `Công Ty May → Kho & Giao Hàng → Packing List`
 
-![Packing List](images/14_packing.png)
+![Packing List](images/24_packing.png)
 *Hình 20: Danh sách packing list*
 
-![Chi tiết Packing](images/38_packing_detail.png)
+![Chi tiết Packing](images/60_packing_detail.png)
 *Hình 21: Form view chi tiết packing list*
 
 ### 9.1 Packing List
@@ -668,12 +680,15 @@ stateDiagram-v2
 
 ## 10. Module Garment Planning — Kế Hoạch Sản Xuất
 
-**Đường dẫn:** `Công Ty May → Kế Hoạch SX → Kế Hoạch Sản Xuất`
+**Đường dẫn:** `Công Ty May → Sản Xuất → Kế Hoạch Sản Xuất`
 
-![Kế Hoạch SX](images/13_planning.png)
+![Kế Hoạch SX](images/15_planning.png)
 *Hình 22: Danh sách kế hoạch sản xuất*
 
-![Chi tiết Kế Hoạch](images/37_planning_detail.png)
+![Line Loading](images/16_line_loading.png)
+*Hình 22b: Danh sách Line Loading — phân chuyền sản xuất*
+
+![Chi tiết Kế Hoạch](images/73_plan_detail.png)
 *Hình 23: Form view chi tiết kế hoạch sản xuất — phân chuyền*
 
 ### 10.1 Kế Hoạch Sản Xuất (Production Plan)
@@ -706,16 +721,16 @@ stateDiagram-v2
 
 ## 11. Module Garment Maintenance — Bảo Trì Máy
 
-**Đường dẫn:** `Công Ty May → Bảo Trì`
+**Đường dẫn:** `Công Ty May → Sản Xuất`
 
 ### 11.1 Quản Lý Máy Móc (Machine)
 
-**Đường dẫn:** `Công Ty May → Bảo Trì → Máy Móc`
+**Đường dẫn:** `Công Ty May → Sản Xuất → Danh Sách Máy`
 
-![Danh sách Máy](images/15_maintenance.png)
+![Danh sách Máy](images/17_machines.png)
 *Hình 24: Danh sách máy móc*
 
-![Chi tiết Máy](images/50_machine_detail.png)
+![Chi tiết Máy](images/70_machine_detail.png)
 *Hình 25: Form view chi tiết máy — thông số, bảo trì*
 
 #### Bảng giải thích trường — Máy Móc (garment.machine):
@@ -739,7 +754,10 @@ stateDiagram-v2
 
 ### 11.2 Yêu Cầu Bảo Trì (Maintenance Request)
 
-![Chi tiết Bảo Trì](images/39_maintenance_detail.png)
+![Danh sách Yêu Cầu Bảo Trì](images/18_maintenance.png)
+*Hình 25b: Danh sách yêu cầu bảo trì*
+
+![Chi tiết Bảo Trì](images/69_maint_req_detail.png)
 *Hình 26: Form view chi tiết yêu cầu bảo trì*
 
 #### Bảng giải thích trường — Yêu Cầu Bảo Trì (garment.maintenance.request):
@@ -767,14 +785,20 @@ stateDiagram-v2
 
 ## 12. Module Garment Payroll — Lương Khoán
 
-**Đường dẫn:** `Công Ty May → Lương Khoán`
+**Đường dẫn:** `Công Ty May → Nhân Sự & Lương`
 
 ### 12.1 Bảng Lương (Wage Calculation)
 
-![Bảng Lương](images/26_payroll.png)
+![Bảng Lương](images/38_wage.png)
 *Hình 27: Danh sách bảng lương tháng*
 
-![Chi tiết Bảng Lương](images/46_wage_detail.png)
+![Đơn Giá Khoán](images/36_piece_rate.png)
+*Hình 27b: Danh sách đơn giá khoán theo mã hàng*
+
+![Sản Lượng Công Nhân](images/37_worker_output.png)
+*Hình 27c: Danh sách sản lượng công nhân hàng ngày*
+
+![Chi tiết Bảng Lương](images/66_wage_detail.png)
 *Hình 28: Form view chi tiết bảng lương — tổng hợp thu nhập*
 
 #### Bảng giải thích trường — Bảng Lương (garment.wage.calculation):
@@ -828,10 +852,10 @@ stateDiagram-v2
 
 ### 12.2 Phiếu Thưởng (Bonus)
 
-![Danh sách Thưởng](images/27_bonus.png)
+![Danh sách Thưởng](images/39_bonus.png)
 *Hình 29: Danh sách phiếu thưởng*
 
-![Chi tiết Thưởng](images/47_bonus_detail.png)
+![Chi tiết Thưởng](images/67_bonus_detail.png)
 *Hình 30: Form view chi tiết phiếu thưởng — danh sách nhân viên*
 
 #### Bảng giải thích trường — Phiếu Thưởng (garment.bonus):
@@ -858,12 +882,12 @@ stateDiagram-v2
 
 ## 13. Module Garment Compliance — Tuân Thủ
 
-**Đường dẫn:** `Công Ty May → Tuân Thủ → Audit`
+**Đường dẫn:** `Công Ty May → Chất Lượng → Audits`
 
-![Danh sách Compliance](images/16_compliance.png)
+![Danh sách Compliance](images/23_compliance.png)
 *Hình 31: Danh sách audit compliance*
 
-![Chi tiết Audit](images/40_compliance_detail.png)
+![Chi tiết Audit](images/68_compliance_detail.png)
 *Hình 32: Form view chi tiết audit — phát hiện lỗi, CAP*
 
 ### 13.1 Audit Compliance (garment.compliance.audit)
@@ -912,7 +936,16 @@ stateDiagram-v2
 
 **Đường dẫn:** `Công Ty May → Báo Cáo`
 
+![Báo Cáo menu](images/86_menu_bao_cao.png)
+*Hình 32b: Menu Báo Cáo — hiệu suất chuyền, phân tích lỗi, báo cáo SX*
+
+![Báo cáo](images/40_report_efficiency.png)
+*Hình 33: Màn hình báo cáo & phân tích sản xuất*
+
 ### 14.1 Phân Tích Hiệu Suất (Efficiency Analysis)
+
+![Báo cáo Hiệu Suất](images/40_report_efficiency.png)
+*Hình 33: Báo cáo phân tích hiệu suất sản xuất*
 
 Pivot view & graph view phân tích:
 - Hiệu suất theo chuyền may
@@ -920,6 +953,9 @@ Pivot view & graph view phân tích:
 - So sánh năng suất thực tế vs mục tiêu
 
 ### 14.2 Phân Tích Lỗi (Defect Analysis)
+
+![Phân Tích Lỗi](images/41_report_defect.png)
+*Hình 33b: Báo cáo phân tích lỗi sản xuất*
 
 Thống kê lỗi:
 - Tỷ lệ lỗi theo loại (chỉ rối, bỏ mũi, vải lỗi, ...)
@@ -930,14 +966,14 @@ Thống kê lỗi:
 
 ## 15. Module Garment Washing — Xưởng Giặt
 
-**Đường dẫn:** Menu **"Xưởng Giặt"** trên thanh menu chính
+**Đường dẫn:** `Công Ty May → Sản Xuất → Lệnh Giặt`
 
 ### 15.1 Lệnh Giặt (Wash Order)
 
-![Lệnh Giặt](images/17_wash_orders.png)
+![Lệnh Giặt](images/19_wash_orders.png)
 *Hình 33: Danh sách lệnh giặt*
 
-![Chi tiết Lệnh Giặt](images/41_wash_order_detail.png)
+![Chi tiết Lệnh Giặt](images/58_wash_detail.png)
 *Hình 34: Form view chi tiết lệnh giặt — thông số giặt, QC*
 
 #### Bảng giải thích trường — Lệnh Giặt (garment.wash.order):
@@ -1006,10 +1042,10 @@ stateDiagram-v2
 
 ### 15.2 Công Thức Giặt (Wash Recipe)
 
-![Công Thức Giặt](images/18_wash_recipes.png)
+![Công Thức Giặt](images/20_wash_recipes.png)
 *Hình 35: Danh sách công thức giặt*
 
-![Chi tiết Công Thức](images/42_wash_recipe_detail.png)
+![Chi tiết Công Thức](images/20_wash_recipes.png)
 *Hình 36: Form view chi tiết công thức giặt — hóa chất, nhiệt độ*
 
 #### Bảng giải thích trường — Công Thức Giặt (garment.wash.recipe):
@@ -1030,12 +1066,12 @@ stateDiagram-v2
 
 ## 16. Module Garment Subcontract — Gia Công
 
-**Đường dẫn:** Menu **"Gia Công"** trên thanh menu chính
+**Đường dẫn:** `Công Ty May → Sản Xuất → Đơn Gia Công`
 
-![Đơn Gia Công](images/19_subcontract.png)
+![Đơn Gia Công](images/21_subcontract.png)
 *Hình 37: Danh sách đơn gia công*
 
-![Chi tiết Gia Công](images/43_subcontract_detail.png)
+![Chi tiết Gia Công](images/59_subcontract_detail.png)
 *Hình 38: Form view chi tiết đơn gia công — nguyên liệu, chi phí, QC*
 
 ### 16.1 Đơn Gia Công (Subcontract Order)
@@ -1097,12 +1133,12 @@ stateDiagram-v2
 
 ## 17. Module Garment Finishing — Hoàn Thiện
 
-**Đường dẫn:** Menu **"Hoàn Thiện"** trên thanh menu chính
+**Đường dẫn:** `Công Ty May → Sản Xuất → Lệnh Hoàn Thiện`
 
-![Lệnh Hoàn Thiện](images/10_finishing.png)
+![Lệnh Hoàn Thiện](images/14_finishing.png)
 *Hình 39: Danh sách lệnh hoàn thiện*
 
-![Chi tiết Hoàn Thiện](images/34_finishing_detail.png)
+![Chi tiết Hoàn Thiện](images/54_finishing_detail.png)
 *Hình 40: Form view chi tiết lệnh hoàn thiện — các công đoạn, QC*
 
 ### 17.1 Lệnh Hoàn Thiện (Finishing Order)
@@ -1148,20 +1184,26 @@ stateDiagram-v2
 
 ## 18. Module Garment HR — Nhân Sự & Chấm Công
 
-**Đường dẫn:** Menu **"Nhân Sự May"** trên thanh menu chính
+![Nhân Sự & Lương](images/85_menu_nhan_su.png)
+*Hình 40b: Menu Nhân Sự & Lương — chấm công, tay nghề, lương khoán gộp chung*
+
+**Đường dẫn:** `Công Ty May → Nhân Sự & Lương`
 
 ### 18.1 Phòng Ban / Tổ
 
-**Đường dẫn:** `Nhân Sự May → Phòng Ban`
+**Đường dẫn:** `Cấu Hình → Phòng Ban` (trong Cấu Hình)
 
 17 phòng ban/tổ tiêu biểu: Tổ Cắt, Chuyền 1-5 (Tổ May), Tổ Hoàn Thiện, Tổ QC, Tổ Giặt, Tổ Đóng Gói, Tổ Kho, Tổ Bảo Trì, Tổ Lái Xe, Phòng Kế Toán, Phòng Kế Hoạch, Phòng Nhân Sự, Phòng Kinh Doanh, Ban Giám Đốc.
 
 ### 18.2 Chấm Công (Attendance)
 
-**Đường dẫn:** `Nhân Sự May → Chấm Công`
+**Đường dẫn:** `Công Ty May → Nhân Sự & Lương → Chấm Công`
 
-![Bảng Chấm Công](images/21_attendance.png)
+![Bảng Chấm Công](images/32_attendance.png)
 *Hình 41: Danh sách chấm công*
+
+![Chi tiết Chấm Công](images/65_attendance_detail.png)
+*Hình 41b: Form view chi tiết chấm công*
 
 #### Bảng giải thích trường — Chấm Công (garment.attendance):
 
@@ -1181,7 +1223,10 @@ stateDiagram-v2
 
 ### 18.3 Tổng Hợp Công Tháng
 
-**Đường dẫn:** `Nhân Sự May → Tổng Hợp Công`
+**Đường dẫn:** `Công Ty May → Nhân Sự & Lương → Tổng Hợp Công Tháng`
+
+![Tổng Hợp Công Tháng](images/33_attendance_sum.png)
+*Hình 41c: Danh sách tổng hợp công tháng*
 
 | Trường | Ý Nghĩa |
 |--------|---------|
@@ -1199,7 +1244,7 @@ stateDiagram-v2
 
 ### 18.4 Nghỉ Phép (Leave)
 
-![Nghỉ Phép](images/22_leave.png)
+![Nghỉ Phép](images/35_leave.png)
 *Hình 42: Danh sách đơn nghỉ phép*
 
 #### Bảng giải thích trường — Nghỉ Phép (garment.leave):
@@ -1218,20 +1263,29 @@ stateDiagram-v2
 
 ### 18.5 Tay Nghề (Employee Skill)
 
+![Tay Nghề Công Nhân](images/34_skills.png)
+*Hình 42b: Danh sách tay nghề công nhân*
+
 Ghi nhận kỹ năng cho từng nhân viên: loại kỹ năng (may, cắt, QC, ủi, ...) và trình độ (basic, intermediate, advanced, expert).
 
 ---
 
 ## 19. Module Garment Accounting — Kế Toán VN
 
-**Đường dẫn:** Menu **"Kế Toán May"** trên thanh menu chính
+**Đường dẫn:** `Công Ty May → Kế Toán`
+
+![Kế Toán](images/84_menu_ke_toan.png)
+*Hình 43b: Menu Kế Toán — hóa đơn bán/mua, thanh toán*
 
 ### 19.1 Hóa Đơn (Invoice)
 
-![Hóa Đơn](images/24_accounting.png)
-*Hình 43: Danh sách hóa đơn bán/mua*
+![Hóa Đơn Bán](images/29_invoice_sale.png)
+*Hình 43: Danh sách hóa đơn bán*
 
-![Chi tiết Hóa Đơn](images/44_invoice_detail.png)
+![Hóa Đơn Mua](images/30_invoice_purchase.png)
+*Hình 43c: Danh sách hóa đơn mua*
+
+![Chi tiết Hóa Đơn](images/63_invoice_detail.png)
 *Hình 44: Form view chi tiết hóa đơn — thuế GTGT, công nợ*
 
 #### Bảng giải thích trường — Hóa Đơn (garment.invoice):
@@ -1269,10 +1323,10 @@ Ghi nhận kỹ năng cho từng nhân viên: loại kỹ năng (may, cắt, QC,
 
 ### 19.3 Phiếu Thanh Toán (Payment)
 
-![Thanh Toán](images/25_payment.png)
+![Thanh Toán](images/31_payments.png)
 *Hình 45: Danh sách phiếu thanh toán*
 
-![Chi tiết Thanh Toán](images/45_payment_detail.png)
+![Chi tiết Thanh Toán](images/64_payment_detail.png)
 *Hình 46: Form view chi tiết phiếu thanh toán*
 
 #### Bảng giải thích trường — Phiếu Thanh Toán (garment.payment):
@@ -1294,12 +1348,18 @@ Ghi nhận kỹ năng cho từng nhân viên: loại kỹ năng (may, cắt, QC,
 
 ## 20. Module Garment Warehouse — Quản Lý Kho
 
-**Đường dẫn:** Menu **"Kho Hàng"** trên thanh menu chính
+**Đường dẫn:** `Công Ty May → Kho & Giao Hàng`
 
-![Phiếu Kho](images/23_warehouse.png)
-*Hình 47: Danh sách phiếu kho*
+![Kho & Giao Hàng menu](images/83_menu_kho.png)
+*Hình 47b: Menu Kho & Giao Hàng — nhập/xuất kho, giao hàng gộp chung*
 
-![Chi tiết Phiếu Kho](images/49_stock_move_detail.png)
+![Phiếu Nhập Kho](images/25_warehouse_in.png)
+*Hình 47: Danh sách phiếu nhập kho*
+
+![Phiếu Xuất Kho](images/26_warehouse_out.png)
+*Hình 47c: Danh sách phiếu xuất kho*
+
+![Chi tiết Phiếu Kho](images/61_stock_detail.png)
 *Hình 48: Form view chi tiết phiếu kho — chi tiết hàng hóa*
 
 ### 20.1 Phiếu Kho (Stock Move)
@@ -1340,11 +1400,11 @@ Ghi nhận kỹ năng cho từng nhân viên: loại kỹ năng (may, cắt, QC,
 
 ## 21. Module Garment Delivery — Giao Hàng
 
-**Đường dẫn:** Menu **"Giao Hàng"** trên thanh menu chính
+**Đường dẫn:** `Công Ty May → Kho & Giao Hàng → Phiếu Giao Hàng`
 
 ### 21.1 Phương Tiện (Vehicle)
 
-![Phương Tiện](images/29_vehicles.png)
+![Phương Tiện](images/28_vehicles.png)
 *Hình 49: Danh sách phương tiện giao hàng*
 
 #### Bảng giải thích trường — Phương Tiện (garment.vehicle):
@@ -1361,10 +1421,10 @@ Ghi nhận kỹ năng cho từng nhân viên: loại kỹ năng (may, cắt, QC,
 
 ### 21.2 Đơn Giao Hàng (Delivery Order)
 
-![Đơn Giao Hàng](images/28_delivery.png)
+![Đơn Giao Hàng](images/27_delivery.png)
 *Hình 50: Danh sách đơn giao hàng*
 
-![Chi tiết Giao Hàng](images/48_delivery_detail.png)
+![Chi tiết Giao Hàng](images/62_delivery_detail.png)
 *Hình 51: Form view chi tiết đơn giao hàng — container, B/L*
 
 #### Bảng giải thích trường — Đơn Giao Hàng (garment.delivery.order):

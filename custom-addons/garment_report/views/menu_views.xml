@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_garment_report_main"
-              name="Báo Cáo &amp; Phân Tích"
-              parent="garment_base.menu_garment_root"
-              sequence="50"/>
-
     <menuitem id="menu_efficiency_analysis"
               name="Hiệu Suất Chuyền"
-              parent="menu_garment_report_main"
+              parent="garment_base.menu_garment_report_main"
               action="action_efficiency_analysis"
               sequence="10"/>
 
     <menuitem id="menu_defect_analysis"
               name="Phân Tích Lỗi"
-              parent="menu_garment_report_main"
+              parent="garment_base.menu_garment_report_main"
               action="action_defect_analysis"
               sequence="20"/>
 
     <menuitem id="menu_production_report_wizard"
               name="Báo Cáo Sản Xuất"
-              parent="menu_garment_report_main"
+              parent="garment_base.menu_garment_report_main"
               action="action_production_report_wizard"
               sequence="30"/>
 </odoo>

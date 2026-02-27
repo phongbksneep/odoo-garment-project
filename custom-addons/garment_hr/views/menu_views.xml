@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_garment_hr_root"
-              name="Nhân Sự May"
-              web_icon="garment_hr,static/description/icon.png"
-              sequence="60"/>
-
     <menuitem id="menu_attendance"
               name="Chấm Công"
-              parent="menu_garment_hr_root"
+              parent="garment_base.menu_garment_hr_main"
               action="action_attendance"
               sequence="10"/>
 
     <menuitem id="menu_attendance_summary"
               name="Tổng Hợp Công Tháng"
-              parent="menu_garment_hr_root"
+              parent="garment_base.menu_garment_hr_main"
               action="action_attendance_summary"
               sequence="20"/>
 
     <menuitem id="menu_employee_skill"
               name="Tay Nghề Công Nhân"
-              parent="menu_garment_hr_root"
+              parent="garment_base.menu_garment_hr_main"
               action="action_employee_skill"
-              sequence="30"/>
+              sequence="25"/>
 
     <menuitem id="menu_leave"
               name="Đơn Nghỉ Phép"
-              parent="menu_garment_hr_root"
+              parent="garment_base.menu_garment_hr_main"
               action="action_leave"
-              sequence="40"/>
+              sequence="28"/>
 </odoo>

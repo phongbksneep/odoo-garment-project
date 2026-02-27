@@ -1,60 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Menu chính -->
+    <!-- ===================== ROOT APP ===================== -->
     <menuitem id="menu_garment_root"
               name="Công Ty May"
               web_icon="garment_base,static/description/icon.png"
-              sequence="100"/>
+              sequence="10"/>
 
-    <!-- Menu cấp 1 -->
+    <!-- ===================== CẤP 1: NHÓM CHỨC NĂNG ===================== -->
+
+    <!-- 1. Đơn Hàng & Mẫu -->
     <menuitem id="menu_garment_order_main"
               name="Đơn Hàng"
               parent="menu_garment_root"
               sequence="10"/>
 
-    <menuitem id="menu_garment_style_main"
-              name="Mẫu May"
+    <!-- 2. Sản Xuất -->
+    <menuitem id="menu_garment_production_main"
+              name="Sản Xuất"
               parent="menu_garment_root"
               sequence="20"/>
 
-    <menuitem id="menu_garment_material_main"
-              name="Nguyên Phụ Liệu"
+    <!-- 3. Chất Lượng & Tuân Thủ -->
+    <menuitem id="menu_garment_quality_main"
+              name="Chất Lượng"
               parent="menu_garment_root"
               sequence="30"/>
 
+    <!-- 4. Kho & Giao Hàng -->
+    <menuitem id="menu_garment_warehouse_main"
+              name="Kho &amp; Giao Hàng"
+              parent="menu_garment_root"
+              sequence="40"/>
+
+    <!-- 5. Kế Toán -->
+    <menuitem id="menu_garment_accounting_main"
+              name="Kế Toán"
+              parent="menu_garment_root"
+              sequence="50"/>
+
+    <!-- 6. Nhân Sự & Lương -->
+    <menuitem id="menu_garment_hr_main"
+              name="Nhân Sự &amp; Lương"
+              parent="menu_garment_root"
+              sequence="60"/>
+
+    <!-- 7. Báo Cáo -->
+    <menuitem id="menu_garment_report_main"
+              name="Báo Cáo"
+              parent="menu_garment_root"
+              sequence="70"/>
+
+    <!-- 8. Cấu Hình -->
     <menuitem id="menu_garment_config"
               name="Cấu Hình"
               parent="menu_garment_root"
-              sequence="100"/>
+              sequence="90"/>
 
-    <!-- Menu cấp 2: Đơn Hàng -->
+    <!-- ===================== CẤP 2: ĐƠN HÀNG ===================== -->
     <menuitem id="menu_garment_order"
               name="Đơn Hàng May"
               parent="menu_garment_order_main"
               action="action_garment_order"
               sequence="10"/>
 
-    <!-- Menu cấp 2: Mẫu May -->
     <menuitem id="menu_garment_style"
               name="Mẫu May / Style"
-              parent="menu_garment_style_main"
+              parent="menu_garment_order_main"
               action="action_garment_style"
-              sequence="10"/>
+              sequence="20"/>
 
-    <!-- Menu cấp 2: Nguyên Phụ Liệu -->
     <menuitem id="menu_garment_fabric"
               name="Vải"
-              parent="menu_garment_material_main"
+              parent="menu_garment_order_main"
               action="action_garment_fabric"
-              sequence="10"/>
+              sequence="30"/>
 
     <menuitem id="menu_garment_accessory"
               name="Phụ Liệu"
-              parent="menu_garment_material_main"
+              parent="menu_garment_order_main"
               action="action_garment_accessory"
-              sequence="20"/>
+              sequence="40"/>
 
-    <!-- Menu cấp 2: Cấu Hình -->
+    <!-- ===================== CẤP 2: CẤU HÌNH ===================== -->
     <menuitem id="menu_garment_color"
               name="Bảng Màu"
               parent="menu_garment_config"

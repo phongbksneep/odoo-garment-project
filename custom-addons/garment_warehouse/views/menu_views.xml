@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_garment_warehouse_root"
-              name="Kho"
-              sequence="60"
-              web_icon="garment_warehouse,static/description/icon.png"/>
+    <menuitem id="menu_stock_in"
+              name="Nhập Kho"
+              parent="garment_base.menu_garment_warehouse_main"
+              action="action_stock_in"
+              sequence="20"/>
 
-    <menuitem id="menu_stock_in" name="Nhập Kho"
-              parent="menu_garment_warehouse_root"
-              action="action_stock_in" sequence="10"/>
+    <menuitem id="menu_stock_out"
+              name="Xuất Kho"
+              parent="garment_base.menu_garment_warehouse_main"
+              action="action_stock_out"
+              sequence="30"/>
 
-    <menuitem id="menu_stock_out" name="Xuất Kho"
-              parent="menu_garment_warehouse_root"
-              action="action_stock_out" sequence="20"/>
-
-    <menuitem id="menu_stock_all" name="Tất Cả Phiếu Kho"
-              parent="menu_garment_warehouse_root"
-              action="action_stock_all" sequence="30"/>
+    <menuitem id="menu_stock_all"
+              name="Tất Cả Phiếu Kho"
+              parent="garment_base.menu_garment_warehouse_main"
+              action="action_stock_all"
+              sequence="40"/>
 </odoo>

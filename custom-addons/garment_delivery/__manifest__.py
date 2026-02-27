@@ -26,6 +26,6 @@ Garment Delivery Management - Quản Lý Giao Hàng Vận Chuyển
         'views/menu_views.xml',
     ],
     'installable': True,
-    'application': True,
+    'application': False,
     'license': 'LGPL-3',
 }

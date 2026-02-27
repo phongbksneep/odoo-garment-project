@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_garment_packing_main"
-              name="Đóng Gói / Xuất Hàng"
-              parent="garment_base.menu_garment_root"
-              sequence="40"/>
-
     <menuitem id="menu_packing_list"
               name="Packing List"
-              parent="menu_garment_packing_main"
+              parent="garment_base.menu_garment_warehouse_main"
               action="action_packing_list"
               sequence="10"/>
 </odoo>

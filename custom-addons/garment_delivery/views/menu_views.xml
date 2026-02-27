@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_garment_delivery_root"
-              name="Giao Hàng"
-              sequence="70"
-              web_icon="garment_delivery,static/description/icon.png"/>
+    <menuitem id="menu_delivery_order"
+              name="Phiếu Giao Hàng"
+              parent="garment_base.menu_garment_warehouse_main"
+              action="action_delivery_order"
+              sequence="50"/>
 
-    <menuitem id="menu_delivery_order" name="Phiếu Giao Hàng"
-              parent="menu_garment_delivery_root"
-              action="action_delivery_order" sequence="10"/>
+    <menuitem id="menu_delivery_customer"
+              name="Giao Khách Hàng"
+              parent="garment_base.menu_garment_warehouse_main"
+              action="action_delivery_customer"
+              sequence="60"/>
 
-    <menuitem id="menu_delivery_customer" name="Giao Khách Hàng"
-              parent="menu_garment_delivery_root"
-              action="action_delivery_customer" sequence="20"/>
-
-    <menuitem id="menu_vehicle" name="Phương Tiện"
-              parent="menu_garment_delivery_root"
-              action="action_vehicle" sequence="30"/>
+    <menuitem id="menu_vehicle"
+              name="Phương Tiện"
+              parent="garment_base.menu_garment_warehouse_main"
+              action="action_vehicle"
+              sequence="70"/>
 </odoo>

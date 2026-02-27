@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_garment_planning_main"
-              name="Kế Hoạch Sản Xuất"
-              parent="garment_base.menu_garment_root"
-              sequence="60"/>
-
     <menuitem id="menu_production_plan"
-              name="Kế Hoạch"
-              parent="menu_garment_planning_main"
+              name="Kế Hoạch Sản Xuất"
+              parent="garment_base.menu_garment_production_main"
               action="action_production_plan"
-              sequence="10"/>
+              sequence="50"/>
 
     <menuitem id="menu_line_loading"
               name="Line Loading"
-              parent="menu_garment_planning_main"
+              parent="garment_base.menu_garment_production_main"
               action="action_line_loading"
-              sequence="20"/>
+              sequence="60"/>
 </odoo>
