@@ -517,28 +517,54 @@ Module quản lý kiểm tra chất lượng (QC) trong sản xuất.
 |--------|------|----------|---------|-----------------|
 | **Mã** | Char | ✅ | Mã tự động (CS-XXXXX) | `CS-2026-00001` |
 | **Mẫu May** | Many2one | ✅ | Style được tính giá | `Áo Polo nam` |
-| **Khách Hàng** | Many2one | | Buyer yêu cầu | `H&M Vietnam` |
-| **SL Đặt Hàng** | Integer | ✅ | Số lượng đơn hàng (ảnh hưởng giá NVL) | `10,000` |
-| **Tiền Tệ** | Many2one | | Loại tiền tính giá | `USD` |
-| **Chi Tiết Chi Phí** | One2many | | Các dòng cost breakdown | Bảng chi tiết |
-| **Tổng Chi Phí** | Float | 🔄 | Tổng giá thành / sản phẩm | `6.80` |
-| **Chi Phí NVL** | Float | 🔄 | Tổng chi phí nguyên vật liệu | `3.50` |
-| **Chi Phí GC** | Float | 🔄 | Tổng chi phí gia công | `2.00` |
-| **Chi Phí Khác** | Float | 🔄 | Tổng chi phí overhead | `1.30` |
-| **Đơn Giá FOB Đề Xuất** | Float | | Giá FOB đề nghị | `8.50` |
-| **Tỷ Lệ LN (%)** | Float | 🔄 | = (FOB - Cost) / FOB × 100 | `20.0%` |
-| **Trạng Thái** | Selection | | draft → confirmed → approved / cancelled | `approved` |
+| **Khách Hàng** | Many2one | ✅ | Buyer yêu cầu | `H&M Vietnam` |
+| **Đơn Hàng** | Many2one | | Đơn hàng may liên kết | `GO-2026-00001` |
+| **Ngày** | Date | ✅ | Ngày lập bảng giá | `2026-01-15` |
+| **Tiền Tệ** | Many2one | ✅ | Loại tiền tính giá | `USD` |
+| **Loại Tính Giá** | Selection | ✅ | fob (FOB), cm (CM — Cut & Make), cmt (CMT — Cut, Make & Trim) | `fob` |
+| **SL Đặt Hàng** | Integer | ✅ | Số lượng đơn hàng | `10,000` |
+| **Chi Phí Vải** | One2many | | Dòng chi phí vải (từ Cost Line, cost_type=fabric) | Bảng chi tiết |
+| **Chi Phí PL** | One2many | | Dòng chi phí phụ liệu (cost_type=accessory) | Bảng chi tiết |
+| **Chi Phí Đóng Gói** | One2many | | Dòng chi phí đóng gói (cost_type=packing) | Bảng chi tiết |
+| **Chi Phí Khác** | One2many | | Dòng chi phí khác (cost_type=other) | Bảng chi tiết |
+| **Tổng NVL/SP** | Monetary | 🔄 | = Vải + PL + Đóng Gói + Khác (per pc) | `3.50` |
+| **SMV** | Float | | Standard Minute Value — thời gian may 1 SP (phút) | `12.5` |
+| **Hiệu Suất Mục Tiêu (%)** | Float | | Target efficiency | `60.0` |
+| **Đơn Giá CM/Phút** | Monetary | | Giá gia công mỗi phút | `0.05` |
+| **Chi Phí CM/SP** | Monetary | 🔄 | = SMV ÷ (Efficiency/100) × CM Rate | `1.04` |
+| **Chi Phí Giặt/SP** | Monetary | | Washing cost per piece | `0.30` |
+| **Chi Phí Thêu/SP** | Monetary | | Embroidery cost per piece | `0.20` |
+| **Chi Phí In/SP** | Monetary | | Printing cost per piece | `0.00` |
+| **Chi Phí Test/SP** | Monetary | | Testing cost per piece | `0.10` |
+| **Tổng Gia Công/SP** | Monetary | 🔄 | = Giặt + Thêu + In + Test | `0.60` |
+| **Hoa Hồng (%)** | Float | | Commission % (chỉ cho FOB) | `3.0` |
+| **Freight/SP** | Monetary | | Inland freight per piece | `0.15` |
+| **Overhead (%)** | Float | | Overhead % | `5.0` |
+| **Lợi Nhuận (%)** | Float | | Profit margin % | `5.0` |
+| **Giá Thành/SP** | Monetary | 🔄 | Cost price per piece (tuỳ loại FOB/CM/CMT) | `5.29` |
+| **Giá Bán/SP** | Monetary | 🔄 | Selling price per piece (gồm overhead + profit) | `6.80` |
+| **Tổng Giá Trị Đơn Hàng** | Monetary | 🔄 | = Giá Bán × SL Đặt Hàng | `68,000` |
+| **Revision** | Integer | | Số lần sửa đổi bảng giá | `0` |
+| **Trạng Thái** | Selection | | draft → confirmed → approved → revised → cancelled | `approved` |
 
-### 6.2 Chi Tiết Chi Phí (Cost Line):
+> 💡 **Công thức tính giá:**
+> - **FOB:** Cost = NVL + CM + Gia Công + Overhead + Freight → Selling = Cost + Commission + Profit
+> - **CM:** Cost = CM only → Selling = CM + Overhead + Profit
+> - **CMT:** Cost = PL + CM + Gia Công → Selling = Cost + Overhead + Profit
+
+### 6.2 Chi Tiết Chi Phí (Cost Line — garment.cost.line):
 
 | Trường | Ý Nghĩa |
 |--------|---------|
-| **Hạng Mục** | fabric / accessory / embroidery / washing / printing / cm_cost / packing / transport / testing / overhead / other |
+| **Loại Chi Phí** | fabric (Vải) / accessory (Phụ Liệu) / packing (Đóng Gói) / other (Khác) |
+| **Sản Phẩm** | Sản phẩm liên kết (tuỳ chọn) |
 | **Mô Tả** | Mô tả chi tiết (VD: Vải Cotton Oxford 150cm) |
-| **Đơn Vị** | m / yard / kg / pcs / set / lot / other |
-| **Số Lượng** | Định mức cho 1 SP |
+| **ĐVT** | Đơn vị tính (từ danh mục UoM) |
+| **Định Mức/SP** | Lượng tiêu hao cho 1 sản phẩm |
 | **Đơn Giá** | Giá mua |
-| **Thành Tiền** | Tự tính = SL × Đơn Giá |
+| **Hao Hụt (%)** | Phần trăm hao hụt nguyên liệu |
+| **Thành Tiền/SP** | 🔄 = Định Mức × (1 + Hao Hụt%) × Đơn Giá |
+| **Nhà Cung Cấp** | NCC cung cấp nguyên liệu |
 
 ---
 
@@ -561,16 +587,35 @@ Module quản lý kiểm tra chất lượng (QC) trong sản xuất.
 | **Mã Mẫu** | Char | ✅ | Mã tự động (SM-XXXXX) | `SM-2026-00001` |
 | **Mẫu May (Style)** | Many2one | ✅ | Mẫu may liên quan | `Áo Polo nam` |
 | **Khách Hàng** | Many2one | ✅ | Buyer yêu cầu mẫu | `H&M Vietnam` |
-| **Loại Mẫu** | Selection | ✅ | proto (Mẫu Prototype), fit (Mẫu Size), pp (Mẫu PP / Pre-Production), top (Mẫu TOP / Approval), shipment (Mẫu Shipment), salesman (Mẫu Salesman), photo (Mẫu Chụp Hình) | `pp` |
-| **Ngày Yêu Cầu** | Date | ✅ | Ngày yêu cầu làm mẫu | `2026-01-10` |
-| **Hạn Giao Mẫu** | Date | | Deadline giao mẫu cho buyer | `2026-01-25` |
-| **Ngày Giao Thực Tế** | Date | | Ngày giao thực tế | `2026-01-23` |
-| **Số Lượng** | Integer | | Số SP mẫu cần làm | `6` |
-| **Màu** | Many2one | | Màu mẫu | `Navy` |
-| **Size** | Many2one | | Size mẫu | `M` |
-| **Kết Quả** | Selection | | approved / rejected / comments — phản hồi từ buyer | `approved` |
-| **Ghi Chú Buyer** | Text | | Comment từ buyer | `Adjust collar, approved.` |
-| **Trạng Thái** | Selection | | draft → in_progress → submitted → approved / rejected | `approved` |
+| **Loại Mẫu** | Selection | ✅ | proto (Mẫu Prototype), fit (Mẫu Fit), size_set (Mẫu Size Set), salesman (Mẫu Salesman), pp (Mẫu PP), top (Mẫu TOP), shipment (Mẫu Shipment), ad_hoc (Mẫu Ad-hoc) | `pp` |
+| **Số Lượng** | Integer | ✅ | Số SP mẫu cần làm | `6` |
+| **Sizes** | Many2many | | Các size mẫu | `S, M, L` |
+| **Màu** | Many2many | | Các màu mẫu | `Navy, White` |
+| **Ngày Yêu Cầu** | Date | | Ngày yêu cầu làm mẫu | `2026-01-10` |
+| **Hạn Giao Mẫu** | Date | ✅ | Deadline giao mẫu cho buyer | `2026-01-25` |
+| **Ngày Gửi Mẫu** | Date | | Ngày thực tế gửi mẫu | `2026-01-23` |
+| **Ngày Duyệt** | Date | | Ngày buyer duyệt | `2026-01-28` |
+| **Người Phụ Trách** | Many2one | | User chịu trách nhiệm | `Admin` |
+| **Thông Tin Vải** | Text | | Thông tin vải sử dụng | `Cotton Oxford 150cm` |
+| **Ghi Chú NVL** | Text | | Ghi chú nguyên vật liệu | |
+| **Ảnh Mặt Trước** | Binary | | Ảnh mẫu mặt trước | 📷 |
+| **Ảnh Mặt Sau** | Binary | | Ảnh mẫu mặt sau | 📷 |
+| **Ảnh Chi Tiết** | Binary | | Ảnh chi tiết mẫu | 📷 |
+| **Comments** | One2many | | Phản hồi từ buyer (model garment.sample.comment) | Bảng comment |
+| **Revision** | Integer | | Số lần chỉnh sửa | `0` |
+| **Courier / Tracking** | Char | | Thông tin vận chuyển mẫu | `DHL 1234567890` |
+| **Trạng Thái** | Selection | | draft → in_progress → submitted → approved / approved_with_comments / rejected / cancelled | `approved` |
+
+#### Bảng giải thích — Comment Mẫu (garment.sample.comment):
+
+| Trường | Kiểu | Ý Nghĩa | Giá trị / Ví dụ |
+|--------|------|---------|-----------------|
+| **Ngày** | Datetime | Ngày comment | `2026-01-28 10:00` |
+| **Người Viết** | Many2one | User tạo comment | `Admin` |
+| **Loại** | Selection | buyer (Buyer Comment), internal (Internal), correction (Cần Chỉnh Sửa) | `buyer` |
+| **Nội Dung** | Text | Nội dung phản hồi | `Adjust collar width` |
+| **Ảnh Đính Kèm** | Binary | Ảnh minh hoạ | 📷 |
+| **Revision** | Integer | Revision của mẫu lúc comment | `1` |
 
 #### Workflow mẫu:
 
@@ -580,9 +625,16 @@ stateDiagram-v2
     Nháp --> Đang_Làm: Bắt đầu
     Đang_Làm --> Đã_Gửi: Gửi buyer
     Đã_Gửi --> Duyệt: Buyer duyệt
+    Đã_Gửi --> Duyệt_Có_Sửa: Duyệt có chỉnh sửa
     Đã_Gửi --> Từ_Chối: Buyer từ chối
-    Từ_Chối --> Đang_Làm: Làm lại
+    Duyệt_Có_Sửa --> Đang_Làm: Làm lại (revision +1)
+    Từ_Chối --> Đang_Làm: Làm lại (revision +1)
+    Nháp --> Đã_Hủy: Hủy
+    Đang_Làm --> Đã_Hủy: Hủy
+    Đã_Gửi --> Đã_Hủy: Hủy
 ```
+
+> 💡 Trạng thái **Duyệt Có Chỉnh Sửa** (`approved_with_comments`): Buyer đồng ý nhưng yêu cầu sửa nhỏ trước khi sản xuất. Có thể "Làm lại" để tạo revision mới.
 
 ---
 
@@ -654,27 +706,62 @@ stateDiagram-v2
 | Trường | Kiểu | Bắt buộc | Ý Nghĩa | Giá trị / Ví dụ |
 |--------|------|----------|---------|-----------------|
 | **Mã** | Char | ✅ | Mã tự động (PL-XXXXX) | `PL-2026-00001` |
-| **Đơn Hàng May** | Many2one | ✅ | Đơn hàng đóng gói | `GO-2026-00001` |
-| **Mẫu May** | Many2one | 🔄 | Lấy từ đơn hàng | `Áo Polo nam` |
-| **Khách Hàng** | Many2one | 🔄 | Lấy từ đơn hàng | `H&M Vietnam` |
-| **Ngày** | Date | | Ngày đóng gói | `2026-02-28` |
+| **Đơn Hàng May** | Many2one | | Đơn hàng đóng gói | `GO-2026-00001` |
+| **Khách Hàng** | Many2one | ✅ | Buyer | `H&M Vietnam` |
+| **Mẫu May** | Many2one | | Style sản phẩm | `Áo Polo nam` |
+| **Ngày Đóng Gói** | Date | | Ngày đóng gói | `2026-02-28` |
+| **PO Number** | Char | | Số PO từ buyer | `PO-2026-ABC` |
+| **Cảng Đến** | Char | | Destination port | `Hamburg` |
+| **Phương Thức Vận Chuyển** | Selection | | sea (Đường Biển), air (Đường Hàng Không), courier (Chuyển Phát) | `sea` |
+| **ETD** | Date | | Ngày xuất hàng dự kiến | `2026-03-05` |
+| **ETA** | Date | | Ngày đến dự kiến | `2026-03-25` |
+| **Tàu / Chuyến Bay** | Char | | Tên tàu hoặc chuyến bay | `MAERSK SEALAND` |
+| **Số B/L** | Char | | Số vận đơn (Bill of Lading) | `BL-12345` |
+| **Số Container** | Char | | Số container | `MSKU1234567` |
+| **Loại Đóng Gói** | Selection | | solid (Solid Pack), ratio (Ratio Pack), assorted (Assorted Pack) | `ratio` |
 | **Dòng Carton** | One2many | | Chi tiết từng thùng | Bảng carton |
 | **Tổng Thùng** | Integer | 🔄 | Tổng số thùng carton | `250` |
 | **Tổng SL** | Integer | 🔄 | Tổng SP trong tất cả thùng | `10,000` |
-| **Tổng Trọng Lượng (kg)** | Float | 🔄 | Gross weight | `3,500` |
-| **Trạng Thái** | Selection | | draft → confirmed → done / cancelled | `done` |
+| **Tổng Trọng Lượng Gross (kg)** | Float | 🔄 | Gross weight | `3,500` |
+| **Tổng Trọng Lượng Net (kg)** | Float | 🔄 | Net weight | `2,800` |
+| **Tổng CBM (m³)** | Float | 🔄 | Tổng thể tích | `65.5` |
+| **Trạng Thái** | Selection | | draft → packing → packed → shipped → delivered / cancelled | `packed` |
 
-### 9.2 Chi Tiết Carton (Carton Line):
+#### Workflow Packing List:
+
+```mermaid
+stateDiagram-v2
+    [*] --> Nháp
+    Nháp --> Đang_Đóng_Gói: Bắt đầu đóng
+    Đang_Đóng_Gói --> Đã_Đóng: Hoàn thành đóng gói
+    Đã_Đóng --> Đã_Xuất: Xuất hàng
+    Đã_Xuất --> Đã_Giao: Giao xong
+    Nháp --> Đã_Hủy: Hủy
+    Đang_Đóng_Gói --> Đã_Hủy: Hủy
+    Đã_Đóng --> Đã_Hủy: Hủy
+```
+
+### 9.2 Chi Tiết Carton (Carton Line — garment.carton.line):
 
 | Trường | Ý Nghĩa |
 |--------|---------|
-| **Từ Thùng - Đến Thùng** | Dãy số thùng (VD: 1 → 50) |
+| **Từ Thùng** | Số thùng bắt đầu (VD: 1) |
+| **Đến Thùng** | Số thùng kết thúc (VD: 50) |
+| **Số Thùng** | 🔄 = Đến - Từ + 1 |
+| **Size** | Size SP trong thùng |
 | **Màu** | Màu SP trong thùng |
-| **Size** | Size SP |
 | **SL / Thùng** | Số SP trong mỗi thùng |
-| **Tổng SL** | Tự tính = Số thùng × SL/Thùng |
-| **Trọng Lượng (kg)** | Gross weight thùng |
-| **Kích Thước (cm)** | Dài × Rộng × Cao |
+| **Tổng SL** | 🔄 = Số Thùng × SL/Thùng |
+| **Dài (cm)** | Kích thước thùng — chiều dài |
+| **Rộng (cm)** | Kích thước thùng — chiều rộng |
+| **Cao (cm)** | Kích thước thùng — chiều cao |
+| **Gross Weight (kg)** | Trọng lượng gross 1 thùng |
+| **Net Weight (kg)** | Trọng lượng net 1 thùng |
+| **CBM / Thùng** | 🔄 = Dài × Rộng × Cao ÷ 1,000,000 |
+| **Tổng Gross** | 🔄 = Số Thùng × Gross Weight |
+| **Tổng Net** | 🔄 = Số Thùng × Net Weight |
+| **Tổng CBM** | 🔄 = Số Thùng × CBM/Thùng |
+| **Barcode** | Mã vạch thùng carton |
 
 ---
 
@@ -698,12 +785,19 @@ stateDiagram-v2
 | Trường | Kiểu | Bắt buộc | Ý Nghĩa | Giá trị / Ví dụ |
 |--------|------|----------|---------|-----------------|
 | **Mã** | Char | ✅ | Mã tự động (PP-XXXXX) | `PP-2026-00001` |
-| **Đơn Hàng** | Many2one | ✅ | Đơn hàng cần lập kế hoạch | `GO-2026-00001` |
-| **Mẫu May** | Many2one | 🔄 | Lấy từ đơn hàng | `Áo Polo nam` |
+| **Đơn Hàng** | Many2one | | Đơn hàng cần lập kế hoạch | `GO-2026-00001` |
+| **Mẫu May** | Many2one | ✅ | Style sản xuất | `Áo Polo nam` |
+| **Khách Hàng** | Many2one | | Buyer | `H&M Vietnam` |
+| **Tổng SL Đặt Hàng** | Integer | ✅ | Tổng số lượng cần sản xuất | `10,000` |
+| **SMV** | Float | ✅ | Standard Minute Value | `12.5` |
+| **Ưu Tiên** | Selection | | 0 (Thấp), 1 (Bình Thường), 2 (Cao), 3 (Khẩn Cấp) | `1` |
 | **Ngày Bắt Đầu** | Date | ✅ | Ngày bắt đầu SX | `2026-02-01` |
 | **Ngày Kết Thúc** | Date | ✅ | Ngày kết thúc SX | `2026-02-28` |
-| **Tổng SL** | Integer | 🔄 | Lấy từ đơn hàng | `10,000` |
+| **Ngày Xuất Hàng** | Date | | Ship date deadline | `2026-03-05` |
 | **Phân Chuyền** | One2many | | Phân bổ cho các chuyền | Bảng loading |
+| **Tổng SL Kế Hoạch** | Integer | 🔄 | Tổng SL đã phân bổ | `9,500` |
+| **SL Còn Lại** | Integer | 🔄 | = Tổng Đặt Hàng - Kế Hoạch | `500` |
+| **Tổng Ngày Cần** | Float | 🔄 | = Tổng SL ÷ Tổng Năng Suất | `18.5` |
 | **Trạng Thái** | Selection | | draft → confirmed → in_progress → done / cancelled | `confirmed` |
 
 ### 10.2 Phân Chuyền (Line Loading):

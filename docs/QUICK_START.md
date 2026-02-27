@@ -203,8 +203,11 @@ stateDiagram-v2
     Nháp --> Đang_Làm: Bắt đầu
     Đang_Làm --> Đã_Gửi: Gửi buyer
     Đã_Gửi --> Duyệt: Buyer duyệt
+    Đã_Gửi --> Duyệt_Có_Sửa: Duyệt có chỉnh sửa
     Đã_Gửi --> Từ_Chối: Buyer từ chối
-    Từ_Chối --> Đang_Làm: Làm lại
+    Duyệt_Có_Sửa --> Đang_Làm: Làm lại (revision +1)
+    Từ_Chối --> Đang_Làm: Làm lại (revision +1)
+    Nháp --> Đã_Hủy: Hủy
 ```
 
 ---
@@ -308,7 +311,7 @@ stateDiagram-v2
 
 | Thao tác | Cách thực hiện |
 |----------|---------------|
-| Tạo packing list | Packing List → **Tạo** → Chọn đơn hàng → Thêm dòng carton (thùng, màu, size, SL) → **Xác nhận** |
+| Tạo packing list | Packing List → **Tạo** → Chọn khách hàng, đơn hàng → Nhập thông tin vận chuyển (PO, cảng, ETD) → Thêm dòng carton (thùng, màu, size, SL) → **Bắt Đầu Đóng** → **Đã Đóng** → **Xuất Hàng** |
 | Nhập kho | Nhập Kho → **Tạo** → Loại = Nhập, chọn kho → Thêm dòng hàng → **Xác nhận** |
 | Xuất kho | Xuất Kho → **Tạo** → Loại = Xuất, chọn kho → Thêm dòng hàng → **Xác nhận** |
 | Tạo phiếu giao hàng | Phiếu Giao Hàng → **Tạo** → Chọn khách, đơn hàng, phương tiện → Nhập thông tin container/B/L → **Xác nhận** |
