@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="garment_inventory.BarcodeScanner">
+        <div class="garment-barcode-scanner">
+
+            <!-- Header -->
+            <div class="gbs-header">
+                <button class="gbs-back-btn" t-on-click="goBack" title="Quay lại">
+                    ← Quay Lại
+                </button>
+                <h2>📷 Quét Barcode / QR Code</h2>
+                <div class="gbs-inventory-info" t-if="inventoryName">
+                    Phiếu: <strong t-out="inventoryName"/>
+                </div>
+            </div>
+
+            <!-- Feedback banner -->
+            <div t-if="state.feedback"
+                 t-attf-class="gbs-feedback gbs-feedback-{{ state.feedbackType }}">
+                <t t-out="state.feedback"/>
+            </div>
+
+            <!-- Camera Section -->
+            <div class="gbs-camera-section">
+                <div t-if="!state.cameraActive and !state.cameraError" class="gbs-camera-placeholder">
+                    <div class="gbs-camera-icon">📷</div>
+                    <p>Bấm nút bên dưới để mở camera quét mã</p>
+                    <button class="btn btn-primary btn-lg gbs-start-btn"
+                            t-on-click="startCamera">
+                        🎥 Mở Camera Quét Mã
+                    </button>
+                </div>
+
+                <div t-if="state.cameraError" class="gbs-camera-error">
+                    <div class="gbs-error-icon">⚠️</div>
+                    <p t-out="state.cameraError"/>
+                    <button class="btn btn-outline-primary mt-2"
+                            t-on-click="startCamera">
+                        🔄 Thử Lại
+                    </button>
+                </div>
+
+                <div t-if="state.cameraActive" class="gbs-camera-live">
+                    <div class="gbs-video-wrapper">
+                        <video id="garment-scanner-video"
+                               autoplay="true" playsinline="true" muted="true"/>
+                        <div class="gbs-scan-overlay">
+                            <div class="gbs-scan-frame"/>
+                        </div>
+                        <div t-if="state.processing" class="gbs-processing-overlay">
+                            ⏳ Đang xử lý...
+                        </div>
+                    </div>
+                    <button class="btn btn-danger mt-2 gbs-stop-btn"
+                            t-on-click="stopCamera">
+                        ⏹ Tắt Camera
+                    </button>
+                </div>
+
+                <!-- Hidden canvas for frame capture -->
+                <canvas id="garment-scanner-canvas" class="d-none"/>
+            </div>
+
+            <!-- Manual Input Section -->
+            <div class="gbs-manual-section">
+                <h4>⌨️ Nhập Mã Thủ Công</h4>
+                <div class="gbs-manual-form">
+                    <input type="text"
+                           id="garment-manual-barcode-input"
+                           class="form-control gbs-barcode-input"
+                           placeholder="Nhập hoặc quét mã barcode/QR..."
+                           t-att-value="state.manualCode"
+                           t-on-input="onManualCodeInput"
+                           t-on-keydown="onManualKeydown"/>
+                    <input type="number"
+                           class="form-control gbs-qty-input"
+                           min="1" step="1"
+                           t-att-value="state.manualQty"
+                           t-on-input="onManualQtyInput"
+                           placeholder="SL"/>
+                    <button class="btn btn-success gbs-manual-btn"
+                            t-on-click="onManualScan"
+                            t-att-disabled="state.processing">
+                        ✅ Nhập
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scan Stats -->
+            <div class="gbs-stats">
+                <div class="gbs-stat-card">
+                    <span class="gbs-stat-number" t-out="state.scanCount"/>
+                    <span class="gbs-stat-label">Lần Quét</span>
+                </div>
+                <div class="gbs-stat-card">
+                    <span class="gbs-stat-number" t-out="state.scanHistory.length"/>
+                    <span class="gbs-stat-label">Mã Đã Quét</span>
+                </div>
+            </div>
+
+            <!-- Scan History -->
+            <div t-if="state.scanHistory.length > 0" class="gbs-history">
+                <h4>📋 Lịch Sử Quét</h4>
+                <div class="gbs-history-list">
+                    <div t-foreach="state.scanHistory" t-as="item" t-key="item.code + '_' + item.time"
+                         class="gbs-history-item">
+                        <div class="gbs-history-info">
+                            <span class="gbs-history-code" t-out="item.code"/>
+                            <span class="gbs-history-name" t-out="item.item_name"/>
+                        </div>
+                        <div class="gbs-history-meta">
+                            <span class="gbs-history-qty">SL: <t t-out="item.qty"/></span>
+                            <span class="gbs-history-time" t-out="item.time"/>
+                            <span t-if="item.is_new" class="badge text-bg-info">Mới</span>
+                            <span t-if="!item.is_new" class="badge text-bg-secondary">Cộng thêm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </t>
+
+</templates>

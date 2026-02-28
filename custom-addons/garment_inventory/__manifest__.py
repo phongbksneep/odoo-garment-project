@@ -25,6 +25,13 @@ Garment Inventory - Kiểm Kê Kho Hàng
         'views/inventory_views.xml',
         'views/menu_views.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'garment_inventory/static/src/css/barcode_scanner.css',
+            'garment_inventory/static/src/xml/barcode_scanner.xml',
+            'garment_inventory/static/src/js/barcode_scanner.js',
+        ],
+    },
     'installable': True,
     'application': False,
     'license': 'LGPL-3',

@@ -2071,14 +2071,46 @@ Mỗi phiên kiểm kê gồm nhiều dòng chi tiết:
 | **Trạng thái** | ✅ Khớp / ⚠️ Thừa / ❌ Thiếu (tự động) |
 | **Ghi chú** | Giải thích nguyên nhân lệch |
 
-### 26.4 Quét QR Code
+### 26.4 📷 Quét Barcode / QR Camera (Mới)
 
-Nhấn **📱 Quét QR** để mở wizard quét:
-- Quét mã QR của tem sản phẩm/nguyên liệu
+Tính năng quét barcode/QR code trực tiếp từ camera thiết bị, hỗ trợ kiểm kê nhanh:
+
+**Cách sử dụng:**
+
+1. Tạo phiên kiểm kê → nhấn **▶ Bắt Đầu Kiểm Kê**
+2. Nhấn nút **📷 Quét Camera** trên thanh header
+3. Trang Scanner mở ra → Nhấn **🎥 Mở Camera Quét Mã**
+4. Cho phép trình duyệt truy cập camera
+5. Đưa barcode/QR code vào khung quét — hệ thống tự động nhận diện
+6. Khi quét thành công: tiếng beep + hiển thị kết quả + tự động thêm vào phiếu kiểm kê
+7. Tiếp tục quét mã tiếp theo (không cần click gì thêm)
+
+**Các định dạng mã hỗ trợ:** QR Code, EAN-13, EAN-8, Code 128, Code 39, Code 93, UPC-A, UPC-E, ITF, Data Matrix
+
+**Tính năng:**
+
+| Tính năng | Mô tả |
+|-----------|-------|
+| **Quét tự động liên tục** | Camera liên tục detect, không cần nhấn nút |
+| **Beep khi quét thành công** | Phản hồi âm thanh rõ ràng |
+| **Cộng dồn số lượng** | Quét cùng mã 2 lần → SL tự cộng thêm |
+| **Lịch sử quét** | Hiển thị 20 mã quét gần nhất |
+| **Nhập thủ công** | Input mã + SL bằng tay khi cần |
+| **Liên kết tem QR** | Tự tìm tem garment.label, điền thông tin style/color/size |
+| **Responsive** | Tối ưu cho cả mobile và desktop |
+
+**Yêu cầu trình duyệt:** Chrome/Edge phiên bản 83+ (hỗ trợ BarcodeDetector API)
+
+> 💡 **Nếu trình duyệt không hỗ trợ camera**, vẫn có thể dùng ô **Nhập Mã Thủ Công** hoặc nút **⌨️ Nhập QR Thủ Công** (wizard cũ).
+
+### 26.5 Quét QR Thủ Công (Wizard)
+
+Nhấn **⌨️ Nhập QR Thủ Công** để mở wizard nhập mã:
+- Nhập mã QR bằng tay hoặc qua thiết bị quét USB
 - Hệ thống tự động tìm và tăng số lượng thực tế
 - Hỗ trợ quét liên tục nhiều mã
 
-### 26.5 Điều Chỉnh Kho Tự Động
+### 26.6 Điều Chỉnh Kho Tự Động
 
 Khi Manager xác nhận phiên kiểm kê:
 - Hệ thống tự động tạo phiếu điều chỉnh kho (garment.warehouse.move)

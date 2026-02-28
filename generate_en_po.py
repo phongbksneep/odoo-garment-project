@@ -1517,6 +1517,13 @@ TRANSLATIONS = {
     "Phải thêm ít nhất 1 dòng kiểm kê!": "Must add at least 1 count line!",
     "Không thể hủy phiếu kiểm kê đã xác nhận!": "Cannot cancel a confirmed count sheet!",
 
+    # === Barcode/QR Camera Scanner ===
+    "📷 Quét Barcode / QR Camera": "📷 Barcode / QR Camera Scanner",
+    "📷 Quét Camera": "📷 Camera Scan",
+    "⌨️ Nhập QR Thủ Công": "⌨️ Manual QR Input",
+    "Mã barcode trống!": "Barcode is empty!",
+    "Phiếu phải ở trạng thái Hoàn Thành trước khi xác nhận!": "Sheet must be in Done state before confirming!",
+
     # === Warehouse additional ===
     "Loại Phiếu": "Voucher Type",
     "Loại Nhập": "Receipt Type",

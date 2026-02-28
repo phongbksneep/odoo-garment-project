@@ -37,9 +37,13 @@
                             string="Bắt Đầu Kiểm Kê"
                             class="btn-primary"
                             invisible="state != 'draft'"/>
-                    <button name="action_scan_qr" type="object"
-                            string="📱 Quét QR Nhập Hàng"
+                    <button name="action_open_camera_scanner" type="object"
+                            string="📷 Quét Camera"
                             class="btn-warning"
+                            invisible="state != 'in_progress'"/>
+                    <button name="action_scan_qr" type="object"
+                            string="⌨️ Nhập QR Thủ Công"
+                            class="btn-secondary"
                             invisible="state != 'in_progress'"/>
                     <button name="action_done" type="object"
                             string="Hoàn Thành"

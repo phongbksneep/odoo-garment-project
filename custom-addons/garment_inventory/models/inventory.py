@@ -141,12 +141,7 @@ class GarmentInventory(models.Model):
         self.write({'state': 'draft'})
 
     def action_scan_qr(self):
-        """Action triggered by QR scan — searches for label and adds/updates
-        an inventory line. In real deployment, the QR scanner calls this
-        endpoint with the scanned data. For now we provide the action
-        placeholder."""
-        # Placeholder: in production, this would be called via RPC
-        # with the QR content from a scanning device or mobile app.
+        """Open the text-based QR scan wizard."""
         return {
             'type': 'ir.actions.act_window',
             'name': _('Quét QR Nhập Hàng'),
@@ -155,6 +150,92 @@ class GarmentInventory(models.Model):
             'target': 'new',
             'context': {'default_inventory_id': self.id},
         }
+
+    def action_open_camera_scanner(self):
+        """Open the camera-based barcode/QR scanner (OWL component)."""
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'garment_barcode_scanner',
+            'name': _('📷 Quét Barcode / QR Camera'),
+            'params': {
+                'inventory_id': self.id,
+                'inventory_name': self.name,
+            },
+        }
+
+    def process_barcode_scan(self, barcode, qty=1):
+        """Process a barcode/QR scan from the camera scanner (RPC).
+
+        Returns dict with scan result for the JS component.
+        """
+        self.ensure_one()
+        barcode = (barcode or '').strip()
+        if not barcode:
+            return {'success': False, 'message': _('Mã barcode trống!')}
+
+        # Try to find label by code or qr_content
+        label = self.env['garment.label'].search([
+            '|', ('code', '=', barcode), ('qr_content', '=', barcode)
+        ], limit=1)
+
+        vals = {
+            'inventory_id': self.id,
+            'actual_qty': qty,
+        }
+
+        if label:
+            vals.update({
+                'label_id': label.id,
+                'item_code': label.code,
+                'item_name': (
+                    label.style_id.name if label.style_id else label.code
+                ),
+                'style_code': (
+                    label.style_id.code if label.style_id else ''
+                ),
+                'color': label.color_id.name if label.color_id else '',
+                'size': label.size_id.name if label.size_id else '',
+                'garment_order_id': (
+                    label.garment_order_id.id
+                    if label.garment_order_id else False
+                ),
+                'location': label.location or '',
+            })
+            if label.label_type == 'carton':
+                vals['item_type'] = 'carton'
+            elif label.label_type in ('product',):
+                vals['item_type'] = 'product'
+            else:
+                vals['item_type'] = 'other'
+            label.action_scan()
+        else:
+            vals.update({
+                'item_code': barcode,
+                'item_name': barcode,
+                'item_type': 'other',
+            })
+
+        # Check if line already exists for this item code
+        existing = self.line_ids.filtered(
+            lambda l: l.item_code == vals.get('item_code')
+        )
+        if existing:
+            existing[0].actual_qty += qty
+            return {
+                'success': True,
+                'is_new': False,
+                'item_name': existing[0].item_name,
+                'total_qty': existing[0].actual_qty,
+            }
+        else:
+            line = self.env['garment.inventory.line'].create(vals)
+            return {
+                'success': True,
+                'is_new': True,
+                'item_name': line.item_name,
+                'total_qty': line.actual_qty,
+            }
 
     def _create_adjustment_move(self):
         """Create a stock adjustment move for differences found."""
