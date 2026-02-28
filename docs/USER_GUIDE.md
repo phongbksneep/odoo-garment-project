@@ -375,6 +375,7 @@ stateDiagram-v2
 | **Tổng Số Lượng** | Integer | 🔄 | Tự tính từ tổng các dòng chi tiết | `10,000` |
 | **Tổng Tiền** | Float | 🔄 | Tự tính = Tổng SL × Đơn giá | `85,000` |
 | **Đúng Hạn** | Boolean | 🔄 | Tự tính từ ngày giao so với hôm nay | ✅/❌ |
+| **Trễ Hạn** | Boolean | 🔄 | Tự tính: ngày giao đã qua & chưa hoàn thành/hủy | ✅/❌ |
 | **Số Ngày Còn Lại** | Integer | 🔄 | Tự tính số ngày đến deadline | `45` |
 | **Trạng Thái** | Selection | | 11 trạng thái: draft, confirmed, material, cutting, sewing, finishing, qc, packing, shipped, done, cancelled | `confirmed` |
 
@@ -386,9 +387,35 @@ stateDiagram-v2
 |--------|---------|
 | **Màu** | Màu sản phẩm trong đơn |
 | **Size** | Size sản phẩm |
-| **Số Lượng** | Số lượng đặt cho combo màu-size |
+| **Số Lượng** | Số lượng đặt cho combo màu-size (≥ 0) |
 | **Đơn Giá** | Lấy từ đơn giá FOB của đơn hàng |
 | **Thành Tiền** | Tự tính = Số lượng × Đơn giá |
+
+#### Quy tắc xác nhận & ràng buộc dữ liệu:
+
+| Quy tắc | Mô tả |
+|---------|-------|
+| **Xác nhận đơn hàng** | Phải có ít nhất 1 dòng chi tiết (Order Line) với tổng số lượng > 0 mới được xác nhận |
+| **Ngày giao hàng** | Ngày giao hàng không được trước ngày đặt hàng |
+| **Duy nhất Màu-Size** | Mỗi dòng chi tiết không được trùng combo Màu + Size trong cùng đơn hàng |
+| **Số lượng** | Số lượng trên mỗi dòng chi tiết phải ≥ 0 |
+
+#### Phát hiện đơn trễ hạn:
+
+- **Trễ Hạn (is_late):** Hệ thống tự động đánh dấu đơn hàng trễ hạn khi ngày giao hàng đã qua mà trạng thái chưa Hoàn thành hoặc Đã hủy.
+- **Ribbon "Trễ Hạn":** Đơn trễ hạn hiển thị ribbon đỏ "Trễ Hạn" trên form view.
+- **Số Ngày Còn Lại:** Hiển thị số ngày còn lại đến deadline, tô màu: 🟢 xanh (> 7 ngày), 🟡 vàng (0–7 ngày), 🔴 đỏ (< 0 ngày, đã trễ).
+- **Danh sách:** Dòng đơn trễ hạn được tô đỏ trong list view.
+
+#### Bộ lọc tìm kiếm đơn hàng:
+
+| Bộ lọc | Mô tả |
+|--------|-------|
+| **Trạng Thái** | Lọc theo Nháp, Đã Xác Nhận, Hoàn Thành, Đã Hủy |
+| **Trễ Hạn** | Lọc các đơn đã quá hạn giao hàng |
+| **Gấp (< 7 ngày)** | Lọc các đơn có deadline trong vòng 7 ngày tới |
+| **Giao Tháng Này** | Lọc đơn hàng giao trong tháng hiện tại |
+| **Nhóm theo** | Khách hàng, Trạng Thái, Mẫu May, Tháng Đặt, Tháng Giao |
 
 ---
 

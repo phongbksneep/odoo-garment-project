@@ -1,3 +1,6 @@
+from datetime import timedelta
+
+from odoo import fields
 from odoo.tests.common import TransactionCase, tagged
 
 
@@ -18,11 +21,19 @@ class TestGarmentDashboard(TransactionCase):
             'code': 'DASH-001',
             'category': 'shirt',
         })
+        cls.color = cls.env['garment.color'].create({'name': 'Dash Red', 'code': 'DRED'})
+        cls.size = cls.env['garment.size'].create({'name': 'Dash M', 'code': 'DM', 'size_type': 'letter'})
         cls.order = cls.env['garment.order'].create({
             'customer_id': cls.partner.id,
             'style_id': cls.style.id,
-            'delivery_date': '2025-12-31',
+            'delivery_date': fields.Date.today() + timedelta(days=30),
             'unit_price': 10.0,
+        })
+        cls.env['garment.order.line'].create({
+            'order_id': cls.order.id,
+            'color_id': cls.color.id,
+            'size_id': cls.size.id,
+            'quantity': 100,
         })
         cls.order.action_confirm()
 
@@ -75,8 +86,15 @@ class TestGarmentDashboard(TransactionCase):
         late_order = self.env['garment.order'].create({
             'customer_id': self.partner.id,
             'style_id': self.style.id,
-            'delivery_date': '2020-01-01',
+            'order_date': fields.Date.today() - timedelta(days=30),
+            'delivery_date': fields.Date.today() - timedelta(days=5),
             'unit_price': 5.0,
+        })
+        self.env['garment.order.line'].create({
+            'order_id': late_order.id,
+            'color_id': self.color.id,
+            'size_id': self.size.id,
+            'quantity': 100,
         })
         late_order.action_confirm()
         late_order.action_material()

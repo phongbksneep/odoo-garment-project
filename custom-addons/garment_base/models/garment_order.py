@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 
@@ -112,11 +112,16 @@ class GarmentOrder(models.Model):
     # --- Delivery Progress ---
     is_on_time = fields.Boolean(
         string='Đúng Hạn',
-        compute='_compute_is_on_time',
+        compute='_compute_delivery_status',
+    )
+    is_late = fields.Boolean(
+        string='Trễ Hạn',
+        compute='_compute_delivery_status',
+        search='_search_is_late',
     )
     days_remaining = fields.Integer(
         string='Số Ngày Còn Lại',
-        compute='_compute_is_on_time',
+        compute='_compute_delivery_status',
     )
 
     @api.model_create_multi
@@ -126,6 +131,21 @@ class GarmentOrder(models.Model):
                 vals['name'] = self.env['ir.sequence'].next_by_code('garment.order') or 'New'
         return super().create(vals_list)
 
+    # -------------------------------------------------------------------------
+    # Constraints
+    # -------------------------------------------------------------------------
+    @api.constrains('delivery_date', 'order_date')
+    def _check_delivery_date(self):
+        for order in self:
+            if order.delivery_date and order.order_date and order.delivery_date < order.order_date:
+                raise ValidationError(
+                    _('Ngày giao hàng (%s) không được trước ngày đặt hàng (%s).',
+                      order.delivery_date, order.order_date)
+                )
+
+    # -------------------------------------------------------------------------
+    # Compute
+    # -------------------------------------------------------------------------
     @api.depends('line_ids.quantity')
     def _compute_total_qty(self):
         for order in self:
@@ -136,18 +156,51 @@ class GarmentOrder(models.Model):
         for order in self:
             order.total_amount = sum(order.line_ids.mapped('subtotal'))
 
-    def _compute_is_on_time(self):
+    def _compute_delivery_status(self):
         today = fields.Date.today()
         for order in self:
             if order.delivery_date:
                 delta = (order.delivery_date - today).days
                 order.days_remaining = delta
                 order.is_on_time = delta >= 0 or order.state == 'done'
+                order.is_late = (
+                    delta < 0
+                    and order.state not in ('done', 'cancelled')
+                )
             else:
                 order.days_remaining = 0
                 order.is_on_time = True
+                order.is_late = False
 
+    def _search_is_late(self, operator, value):
+        today = fields.Date.today()
+        if (operator == '=' and value) or (operator == '!=' and not value):
+            return [
+                '&',
+                ('delivery_date', '<', today),
+                ('state', 'not in', ['done', 'cancelled']),
+            ]
+        return [
+            '|',
+            ('delivery_date', '>=', today),
+            ('delivery_date', '=', False),
+        ]
+
+    # -------------------------------------------------------------------------
+    # Actions
+    # -------------------------------------------------------------------------
     def action_confirm(self):
+        for order in self:
+            if not order.line_ids:
+                raise ValidationError(
+                    _('Đơn hàng %s chưa có chi tiết size/màu. '
+                      'Vui lòng thêm ít nhất 1 dòng trước khi xác nhận.',
+                      order.name)
+                )
+            if order.total_qty <= 0:
+                raise ValidationError(
+                    _('Tổng số lượng đơn hàng %s phải lớn hơn 0.', order.name)
+                )
         self.write({'state': 'confirmed'})
 
     def action_material(self):
@@ -219,6 +272,36 @@ class GarmentOrderLine(models.Model):
         store=True,
         digits='Product Price',
     )
+
+    _sql_constraints = [
+        ('unique_order_color_size',
+         'UNIQUE(order_id, color_id, size_id)',
+         'Mỗi kết hợp Màu/Size chỉ được nhập 1 lần trong đơn hàng.'),
+    ]
+
+    @api.constrains('order_id', 'color_id', 'size_id')
+    def _check_unique_color_size(self):
+        for line in self:
+            duplicate = self.search_count([
+                ('order_id', '=', line.order_id.id),
+                ('color_id', '=', line.color_id.id),
+                ('size_id', '=', line.size_id.id),
+                ('id', '!=', line.id),
+            ])
+            if duplicate:
+                raise ValidationError(
+                    _('Màu %s / Size %s đã tồn tại trong đơn hàng.',
+                      line.color_id.name, line.size_id.name)
+                )
+
+    @api.constrains('quantity')
+    def _check_quantity(self):
+        for line in self:
+            if line.quantity < 0:
+                raise ValidationError(
+                    _('Số lượng không được âm (dòng %s / %s).',
+                      line.color_id.name, line.size_id.name)
+                )
 
     @api.depends('quantity', 'unit_price')
     def _compute_subtotal(self):

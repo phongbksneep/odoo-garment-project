@@ -41,6 +41,7 @@ class TestAlertService(TransactionCase):
         self.env['garment.order'].create({
             'customer_id': self.partner.id,
             'style_id': self.style.id,
+            'order_date': fields.Date.today() - timedelta(days=30),
             'delivery_date': past_date,
         })
         # Should not raise an error

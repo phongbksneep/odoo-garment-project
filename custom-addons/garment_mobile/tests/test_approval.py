@@ -1,3 +1,6 @@
+from datetime import timedelta
+
+from odoo import fields
 from odoo.tests.common import TransactionCase, tagged
 from odoo.exceptions import UserError
 
@@ -21,7 +24,7 @@ class TestGarmentApproval(TransactionCase):
         cls.order = cls.env['garment.order'].create({
             'customer_id': cls.partner.id,
             'style_id': cls.style.id,
-            'delivery_date': '2025-12-31',
+            'delivery_date': fields.Date.today() + timedelta(days=30),
             'unit_price': 15.0,
         })
 
@@ -149,7 +152,7 @@ class TestGarmentApproval(TransactionCase):
         order2 = self.env['garment.order'].create({
             'customer_id': self.partner.id,
             'style_id': self.style.id,
-            'delivery_date': '2025-11-30',
+            'delivery_date': fields.Date.today() + timedelta(days=30),
             'unit_price': 20.0,
         })
         orders = self.order | order2
@@ -162,7 +165,7 @@ class TestGarmentApproval(TransactionCase):
         order2 = self.env['garment.order'].create({
             'customer_id': self.partner.id,
             'style_id': self.style.id,
-            'delivery_date': '2025-11-30',
+            'delivery_date': fields.Date.today() + timedelta(days=30),
             'unit_price': 20.0,
         })
         orders = self.order | order2

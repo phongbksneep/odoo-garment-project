@@ -33,11 +33,16 @@
                            statusbar_visible="draft,confirmed,cutting,sewing,finishing,qc,packing,shipped,done"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <widget name="web_ribbon" title="Trễ Hạn" bg_color="text-bg-danger"
+                            invisible="not is_late"/>
                     <div class="oe_title">
                         <h1>
                             <field name="name" readonly="1"/>
                         </h1>
                     </div>
+                    <field name="is_late" invisible="1"/>
                     <group>
                         <group>
                             <field name="customer_id"/>
@@ -53,7 +58,10 @@
                             <field name="payment_term"/>
                             <field name="total_qty"/>
                             <field name="total_amount"/>
-                            <field name="days_remaining"/>
+                            <field name="days_remaining"
+                                   decoration-danger="days_remaining &lt; 0"
+                                   decoration-warning="days_remaining &gt;= 0 and days_remaining &lt;= 7"
+                                   decoration-success="days_remaining &gt; 7"/>
                         </group>
                     </group>
                     <notebook>
@@ -92,16 +100,25 @@
             <list string="Đơn Hàng May" decoration-info="state == 'draft'"
                   decoration-warning="state in ('cutting', 'sewing')"
                   decoration-success="state == 'done'"
-                  decoration-danger="state == 'cancelled'">
+                  decoration-danger="state == 'cancelled' or is_late">
                 <field name="name"/>
                 <field name="customer_id"/>
-                <field name="customer_po"/>
+                <field name="customer_po" optional="show"/>
                 <field name="style_id"/>
                 <field name="order_date"/>
                 <field name="delivery_date"/>
-                <field name="total_qty"/>
-                <field name="total_amount"/>
-                <field name="state"/>
+                <field name="total_qty" sum="Tổng"/>
+                <field name="total_amount" sum="Tổng Tiền"/>
+                <field name="days_remaining"
+                       decoration-danger="days_remaining &lt; 0"
+                       decoration-warning="days_remaining &gt;= 0 and days_remaining &lt;= 7"
+                       decoration-success="days_remaining &gt; 7"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state in ('cutting', 'sewing', 'finishing')"
+                       decoration-success="state == 'done'"
+                       decoration-danger="state == 'cancelled'"/>
+                <field name="is_late" column_invisible="1"/>
             </list>
         </field>
     </record>
@@ -117,11 +134,19 @@
                 <field name="customer_po"/>
                 <field name="style_id"/>
                 <filter string="Nháp" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Đã Xác Nhận" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
                 <filter string="Đang Sản Xuất" name="production"
                         domain="[('state', 'in', ('cutting', 'sewing', 'finishing'))]"/>
                 <filter string="Hoàn Thành" name="done" domain="[('state', '=', 'done')]"/>
                 <separator/>
-                <filter string="Giao Hàng Tháng Này" name="delivery_this_month"
+                <filter string="Trễ Hạn" name="late"
+                        domain="[('is_late', '=', True)]"/>
+                <filter string="Gấp (&lt;7 ngày)" name="urgent"
+                        domain="[('delivery_date', '&gt;=', context_today().strftime('%%Y-%%m-%%d')),
+                                 ('delivery_date', '&lt;=', (context_today() + relativedelta(days=7)).strftime('%%Y-%%m-%%d')),
+                                 ('state', 'not in', ('done', 'cancelled'))]"/>
+                <separator/>
+                <filter string="Giao Tháng Này" name="delivery_this_month"
                         domain="[('delivery_date', '&gt;=', (context_today()).strftime('%%Y-%%m-01')),
                                  ('delivery_date', '&lt;', (context_today() + relativedelta(months=1)).strftime('%%Y-%%m-01'))]"/>
                 <group>
@@ -129,6 +154,7 @@
                     <filter string="Mẫu May" name="group_style" context="{'group_by': 'style_id'}"/>
                     <filter string="Trạng Thái" name="group_state" context="{'group_by': 'state'}"/>
                     <filter string="Tháng Giao" name="group_delivery" context="{'group_by': 'delivery_date:month'}"/>
+                    <filter string="Tháng Đặt" name="group_order_date" context="{'group_by': 'order_date:month'}"/>
                 </group>
             </search>
         </field>
