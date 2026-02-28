@@ -2,7 +2,7 @@
 
 > **Phiên bản:** Odoo 19.0 | **Ngày cập nhật:** Tháng 2/2026
 > **Đối tượng:** Quản lý, trưởng phòng, nhân viên sử dụng hệ thống ERP
-> **Tổng số module:** 25 module chuyên biệt | **230 test cases** — 0 failures
+> **Tổng số module:** 26 module chuyên biệt | **259 test cases** — 0 failures
 
 ---
 
@@ -34,8 +34,9 @@
 24. [Module Garment CRM — Quan Hệ Khách Hàng](#24-module-garment-crm--quan-hệ-khách-hàng)
 25. [Module Garment Label — In Tem & Quản Lý Pallet](#25-module-garment-label--in-tem--quản-lý-pallet)
 26. [Module Garment Inventory — Kiểm Kê Kho](#26-module-garment-inventory--kiểm-kê-kho)
-27. [Quản Lý Nhân Viên & Phân Quyền](#27-quản-lý-nhân-viên--phân-quyền)
-28. [FAQ — Câu hỏi thường gặp](#28-faq--câu-hỏi-thường-gặp)
+27. [Module Garment Print — In Ấn, Xuất Excel & Cảnh Báo Tự Động](#27-module-garment-print--in-ấn-xuất-excel--cảnh-báo-tự-động)
+28. [Quản Lý Nhân Viên & Phân Quyền](#28-quản-lý-nhân-viên--phân-quyền)
+29. [FAQ — Câu hỏi thường gặp](#29-faq--câu-hỏi-thường-gặp)
 
 ---
 
@@ -43,7 +44,7 @@
 
 ### 1.1 Tổng quan hệ thống
 
-Hệ thống ERP Công Ty May được xây dựng trên nền tảng **Odoo 19.0**, bao gồm **25 module chuyên biệt** quản lý toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm nhập nguyên liệu, CRM quan hệ khách hàng, in tem QR code, quản lý pallet/thùng hàng, kiểm kê kho, quản lý nhân viên, phân quyền 4 cấp, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, giao hàng và dashboard tổng quan.
+Hệ thống ERP Công Ty May được xây dựng trên nền tảng **Odoo 19.0**, bao gồm **26 module chuyên biệt** quản lý toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm nhập nguyên liệu, CRM quan hệ khách hàng, in tem QR code, quản lý pallet/thùng hàng, kiểm kê kho, quản lý nhân viên, phân quyền 4 cấp, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, giao hàng, in ấn PDF, xuất Excel, cảnh báo tự động và dashboard tổng quan.
 
 ### 1.2 Đăng nhập
 
@@ -2019,7 +2020,71 @@ Khi Manager xác nhận phiên kiểm kê:
 
 ---
 
-## 27. Quản Lý Nhân Viên & Phân Quyền
+## 27. Module Garment Print — In Ấn, Xuất Excel & Cảnh Báo Tự Động
+
+### 27.1 Tổng Quan
+
+Module `garment_print` cung cấp 3 tính năng ưu tiên cao:
+
+| Tính Năng | Mô Tả |
+|-----------|--------|
+| **Báo cáo PDF (QWeb)** | 5 báo cáo PDF chuyên nghiệp in trực tiếp từ hệ thống |
+| **Xuất Excel** | Bảng lương & Sản lượng xuất sang file .xlsx |
+| **Cảnh báo tự động** | 3 scheduled actions tự động cảnh báo qua Discuss |
+
+### 27.2 Báo Cáo PDF (QWeb Reports)
+
+> **Cách in:** Mở bản ghi → Nút **Print** → Chọn báo cáo tương ứng
+
+| Báo Cáo | Model | Mô Tả |
+|----------|-------|--------|
+| **Packing List** | `garment.packing.list` | Danh sách đóng gói với thùng carton, trọng lượng, CBM |
+| **Phiếu Giao Hàng** | `garment.delivery.order` | Phiếu giao hàng chi tiết theo style/màu/size |
+| **Hóa Đơn** | `garment.invoice` | Hóa đơn bán/mua hàng với thuế GTGT tự động |
+| **Phiếu Lương** | `garment.wage.calculation` | Phiếu lương cá nhân đầy đủ thu nhập/phụ cấp/khấu trừ |
+| **Phiếu Kiểm Tra QC** | `garment.qc.inspection` | Báo cáo kiểm tra chất lượng với tỷ lệ đạt/lỗi |
+
+Mỗi báo cáo được thiết kế song ngữ **Tiếng Việt / English**, có ô ký tên phù hợp quy trình thực tế.
+
+### 27.3 Xuất File Excel
+
+#### 27.3.1 Xuất Bảng Lương
+
+> **Menu:** Công Ty May → Nhân Sự → Xuất Bảng Lương Excel
+
+1. Chọn **Tháng** và **Năm**
+2. (Tùy chọn) Lọc theo **Phòng ban** — để trống = tất cả
+3. Nhấn **Xuất Excel**
+4. Tải file `.xlsx` về máy
+
+File Excel chứa 14 cột: STT, Mã NV, Họ Tên, Phòng Ban, Ngày Công, Lương CB, Lương Ngày Công, Tiền Khoán, Tiền Tăng Ca, Phụ Cấp, BHXH, Thuế TNCN, Tổng Thu Nhập, Thực Lĩnh. Có dòng tổng cộng cuối bảng.
+
+#### 27.3.2 Xuất Sản Lượng
+
+> **Menu:** Công Ty May → Sản Xuất → Xuất Sản Lượng Excel
+
+1. Chọn **Từ ngày** và **Đến ngày**
+2. (Tùy chọn) Lọc theo **Chuyền may** — để trống = tất cả
+3. Nhấn **Xuất Excel**
+4. Tải file `.xlsx` về máy
+
+### 27.4 Cảnh Báo Tự Động (Scheduled Actions)
+
+Hệ thống tự động kiểm tra và gửi cảnh báo qua kênh **Garment Alerts** trên Discuss:
+
+| Cảnh Báo | Tần Suất | Điều Kiện |
+|-----------|----------|-----------|
+| **Đơn hàng trễ hạn** | Hàng ngày | Đơn hàng quá ngày giao mà chưa hoàn thành |
+| **Tỷ lệ QC thấp** | Hàng ngày | Phiếu QC có tỷ lệ đạt < 90% trong 7 ngày qua |
+| **Giao hàng sắp đến** | Hàng ngày | Đơn hàng có ngày giao trong 3 ngày tới |
+
+Cảnh báo được gửi dạng bảng HTML chi tiết, dễ đọc trên cả desktop và mobile.
+
+> ⚙️ **Cấu hình:** Vào **Settings → Technical → Scheduled Actions** → Tìm "Garment" để điều chỉnh tần suất hoặc tắt/bật.
+
+---
+
+## 28. Quản Lý Nhân Viên & Phân Quyền
 
 ### 27.1 Quản Lý Nhân Viên May
 
@@ -2105,7 +2170,7 @@ Hệ thống phân quyền theo 4 cấp bậc, mỗi cấp kế thừa quyền t
 
 ---
 
-## 28. FAQ — Câu Hỏi Thường Gặp
+## 29. FAQ — Câu Hỏi Thường Gặp
 
 ### Q: Làm sao để thay đổi ngôn ngữ sang Tiếng Việt?
 **A:** Vào **Settings → Translations → Load a Translation** → Chọn `Vietnamese / Tiếng Việt` → Install.

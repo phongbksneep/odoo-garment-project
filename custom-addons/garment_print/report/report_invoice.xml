@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_invoice" model="ir.actions.report">
+        <field name="name">In Hóa Đơn</field>
+        <field name="model">garment.invoice</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">garment_print.report_invoice_document</field>
+        <field name="report_file">garment_print.report_invoice_document</field>
+        <field name="binding_model_id" ref="garment_accounting.model_garment_invoice"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Invoice_%s' % object.name</field>
+    </record>
+
+    <!-- Report Template -->
+    <template id="report_invoice_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-set="is_sale" t-value="doc.invoice_type == 'sale'"/>
+                        <h2 class="text-center mb-4">
+                            <t t-if="is_sale">HÓA ĐƠN BÁN HÀNG / SALES INVOICE</t>
+                            <t t-else="">HÓA ĐƠN MUA HÀNG / PURCHASE INVOICE</t>
+                        </h2>
+
+                        <!-- Header Info -->
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr><td><strong>Số HĐ / Invoice No:</strong></td><td><t t-esc="doc.name"/></td></tr>
+                                    <tr>
+                                        <td><strong><t t-if="is_sale">Khách hàng</t><t t-else="">Nhà cung cấp</t>:</strong></td>
+                                        <td><t t-esc="doc.partner_id.name if doc.partner_id else '-'"/></td>
+                                    </tr>
+                                    <tr t-if="doc.garment_order_id">
+                                        <td><strong>Đơn hàng / Order:</strong></td>
+                                        <td><t t-esc="doc.garment_order_id.name"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr><td><strong>Ngày / Date:</strong></td><td><t t-esc="doc.date" t-options="{'widget': 'date'}"/></td></tr>
+                                    <tr><td><strong>Hạn TT / Due Date:</strong></td><td><t t-esc="doc.due_date" t-options="{'widget': 'date'}"/></td></tr>
+                                    <tr><td><strong>Tiền tệ / Currency:</strong></td><td><t t-esc="doc.currency_id.name if doc.currency_id else 'VND'"/></td></tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Invoice Lines -->
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr style="background-color: #FF9800; color: white;">
+                                    <th>STT</th>
+                                    <th>Mô Tả / Description</th>
+                                    <th class="text-end">SL / Qty</th>
+                                    <th>ĐVT / Unit</th>
+                                    <th class="text-end">Đơn Giá / Price</th>
+                                    <th class="text-end">Thành Tiền / Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="stt" t-value="0"/>
+                                <t t-foreach="doc.line_ids" t-as="line">
+                                    <t t-set="stt" t-value="stt + 1"/>
+                                    <tr>
+                                        <td><t t-esc="stt"/></td>
+                                        <td><t t-esc="line.description or '-'"/></td>
+                                        <td class="text-end"><t t-esc="'%g' % line.quantity"/></td>
+                                        <td><t t-esc="dict(line._fields['unit'].selection).get(line.unit, '-')"/></td>
+                                        <td class="text-end"><t t-esc="'{:,.0f}'.format(line.unit_price)"/></td>
+                                        <td class="text-end"><t t-esc="'{:,.0f}'.format(line.subtotal)"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <!-- Totals -->
+                        <div class="row">
+                            <div class="col-6"></div>
+                            <div class="col-6">
+                                <table class="table table-sm table-bordered">
+                                    <tr>
+                                        <td><strong>Cộng tiền hàng / Subtotal:</strong></td>
+                                        <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.subtotal)"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Thuế / Tax (<t t-esc="dict(doc._fields['tax_type'].selection).get(doc.tax_type, '-')"/>):</strong></td>
+                                        <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.tax_amount)"/></td>
+                                    </tr>
+                                    <tr style="background-color: #FFF3E0; font-weight: bold; font-size: 1.1em;">
+                                        <td><strong>Tổng cộng / Total:</strong></td>
+                                        <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.total_amount)"/></td>
+                                    </tr>
+                                    <t t-if="doc.paid_amount > 0">
+                                        <tr>
+                                            <td><strong>Đã thanh toán / Paid:</strong></td>
+                                            <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.paid_amount)"/></td>
+                                        </tr>
+                                        <tr style="color: red; font-weight: bold;">
+                                            <td><strong>Còn lại / Balance:</strong></td>
+                                            <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.residual)"/></td>
+                                        </tr>
+                                    </t>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Signature -->
+                        <div class="row mt-5">
+                            <div class="col-4 text-center">
+                                <p>_________________________</p>
+                                <p><strong>Người Lập</strong></p>
+                                <p>Prepared by</p>
+                            </div>
+                            <div class="col-4 text-center">
+                                <p>_________________________</p>
+                                <p><strong>Kế Toán Trưởng</strong></p>
+                                <p>Chief Accountant</p>
+                            </div>
+                            <div class="col-4 text-center">
+                                <p>_________________________</p>
+                                <p><strong>Giám Đốc</strong></p>
+                                <p>Director</p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

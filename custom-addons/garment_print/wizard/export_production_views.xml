@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Wizard Form View -->
+    <record id="view_export_production_wizard_form" model="ir.ui.view">
+        <field name="name">garment.export.production.wizard.form</field>
+        <field name="model">garment.export.production.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Xuất Báo Cáo Sản Xuất / Export Production Report">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="sewing_line_ids" widget="many2many_tags"/>
+                    </group>
+                </group>
+                <group invisible="not file_data">
+                    <field name="file_name" invisible="1"/>
+                    <field name="file_data" filename="file_name"/>
+                </group>
+                <footer>
+                    <button name="action_export" string="Xuất Excel / Export" type="object" class="btn-primary"/>
+                    <button string="Đóng / Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open wizard -->
+    <record id="action_export_production_wizard" model="ir.actions.act_window">
+        <field name="name">Xuất Báo Cáo SX / Export Production</field>
+        <field name="res_model">garment.export.production.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu Item - add to Production menu -->
+    <menuitem id="menu_export_production"
+        name="Xuất Excel SX / Export Production"
+        parent="garment_base.menu_garment_production_main"
+        action="action_export_production_wizard"
+        sequence="90"/>
+</odoo>

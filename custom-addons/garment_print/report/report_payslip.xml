@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_payslip" model="ir.actions.report">
+        <field name="name">In Phiếu Lương</field>
+        <field name="model">garment.wage.calculation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">garment_print.report_payslip_document</field>
+        <field name="report_file">garment_print.report_payslip_document</field>
+        <field name="binding_model_id" ref="garment_payroll.model_garment_wage_calculation"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Payslip_%s_%s_%s' % (object.employee_id.name, object.month, object.year)</field>
+    </record>
+
+    <!-- Report Template -->
+    <template id="report_payslip_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center mb-2">PHIẾU LƯƠNG / PAYSLIP</h2>
+                        <h4 class="text-center mb-4">
+                            Tháng <t t-esc="doc.month"/>/<t t-esc="doc.year"/>
+                        </h4>
+
+                        <!-- Employee Info -->
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr><td><strong>Mã phiếu / Code:</strong></td><td><t t-esc="doc.name"/></td></tr>
+                                    <tr><td><strong>Nhân viên / Employee:</strong></td><td><t t-esc="doc.employee_id.name"/></td></tr>
+                                    <tr><td><strong>Phòng ban / Department:</strong></td><td><t t-esc="doc.department_id.name if doc.department_id else '-'"/></td></tr>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr><td><strong>Lương cơ bản / Base Salary:</strong></td><td class="text-end"><t t-esc="'{:,.0f}'.format(doc.base_salary)"/> đ</td></tr>
+                                    <tr><td><strong>Ngày công chuẩn / Std Days:</strong></td><td class="text-end"><t t-esc="doc.working_days"/></td></tr>
+                                    <tr><td><strong>Ngày công thực / Actual Days:</strong></td><td class="text-end"><t t-esc="doc.actual_days"/></td></tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Income -->
+                        <h5 style="color: #4CAF50;">I. THU NHẬP / INCOME</h5>
+                        <table class="table table-sm table-bordered mb-3">
+                            <tr>
+                                <td>1. Lương theo ngày công / Daily Wage</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.base_amount)"/> đ</td>
+                            </tr>
+                            <tr>
+                                <td>2. Tiền khoán sản phẩm / Piece Rate</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.piece_rate_amount)"/> đ</td>
+                            </tr>
+                            <tr>
+                                <td>3. Tiền tăng ca / Overtime (<t t-esc="doc.total_ot_hours"/> giờ)</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.ot_amount)"/> đ</td>
+                            </tr>
+                            <tr>
+                                <td>4. Thưởng / Bonus</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.bonus_amount)"/> đ</td>
+                            </tr>
+                        </table>
+
+                        <!-- Allowances -->
+                        <h5 style="color: #2196F3;">II. PHỤ CẤP / ALLOWANCES</h5>
+                        <table class="table table-sm table-bordered mb-3">
+                            <tr>
+                                <td>1. Phụ cấp chuyên cần / Attendance</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.allowance_attendance)"/> đ</td>
+                            </tr>
+                            <tr>
+                                <td>2. Tiền cơm / Lunch</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.allowance_lunch)"/> đ</td>
+                            </tr>
+                            <tr>
+                                <td>3. Phụ cấp đi lại / Transport</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.allowance_transport)"/> đ</td>
+                            </tr>
+                            <tr>
+                                <td>4. Phụ cấp điện thoại / Phone</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.allowance_phone)"/> đ</td>
+                            </tr>
+                            <tr>
+                                <td>5. Phụ cấp khác / Other</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.allowance)"/> đ</td>
+                            </tr>
+                            <tr style="font-weight: bold; background-color: #E3F2FD;">
+                                <td>Tổng phụ cấp / Total Allowances</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.total_allowance)"/> đ</td>
+                            </tr>
+                        </table>
+
+                        <!-- Deductions -->
+                        <h5 style="color: #F44336;">III. KHẤU TRỪ / DEDUCTIONS</h5>
+                        <table class="table table-sm table-bordered mb-3">
+                            <tr>
+                                <td>1. BHXH / Social Insurance (8%)</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.bhxh_employee)"/> đ</td>
+                            </tr>
+                            <tr>
+                                <td>2. BHYT / Health Insurance (1.5%)</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.bhyt_employee)"/> đ</td>
+                            </tr>
+                            <tr>
+                                <td>3. BHTN / Unemployment Insurance (1%)</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.bhtn_employee)"/> đ</td>
+                            </tr>
+                            <tr>
+                                <td>4. Thuế TNCN / Personal Income Tax</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.pit_amount)"/> đ</td>
+                            </tr>
+                            <tr>
+                                <td>5. Khấu trừ khác / Other Deductions</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.deduction)"/> đ</td>
+                            </tr>
+                            <tr style="font-weight: bold; background-color: #FFEBEE;">
+                                <td>Tổng khấu trừ / Total Deductions</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.total_insurance + doc.pit_amount + doc.deduction)"/> đ</td>
+                            </tr>
+                        </table>
+
+                        <!-- Summary -->
+                        <table class="table table-sm table-bordered">
+                            <tr style="font-weight: bold; font-size: 1.1em; background-color: #E8F5E9;">
+                                <td>Tổng thu nhập / Gross Income</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.total_wage)"/> đ</td>
+                            </tr>
+                            <tr style="font-weight: bold; font-size: 1.2em; background-color: #C8E6C9; color: #2E7D32;">
+                                <td>THỰC LĨNH / NET PAY</td>
+                                <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.net_pay)"/> đ</td>
+                            </tr>
+                        </table>
+
+                        <!-- Signature -->
+                        <div class="row mt-5">
+                            <div class="col-4 text-center">
+                                <p>_________________________</p>
+                                <p><strong>Người Lập</strong></p>
+                                <p>Prepared by</p>
+                            </div>
+                            <div class="col-4 text-center">
+                                <p>_________________________</p>
+                                <p><strong>Kế Toán</strong></p>
+                                <p>Accountant</p>
+                            </div>
+                            <div class="col-4 text-center">
+                                <p>_________________________</p>
+                                <p><strong>Người Nhận</strong></p>
+                                <p>Employee</p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

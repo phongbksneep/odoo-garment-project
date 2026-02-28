@@ -1,6 +1,6 @@
 # 🧵 Odoo 19 - Hệ Thống Quản Lý Công Ty May
 
-Dự án ERP sử dụng **Odoo 19.0 Community Edition** được tùy chỉnh cho ngành **may mặc (Garment Manufacturing)**, bao gồm **25 module chuyên biệt** bao phủ toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm CRM khách hàng, nhập nguyên liệu, sản xuất, kiểm kê kho, quản lý nhân viên, phân quyền 4 cấp, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, in tem/QR code, đóng tách pallet/thùng, vận chuyển và dashboard tổng quan.
+Dự án ERP sử dụng **Odoo 19.0 Community Edition** được tùy chỉnh cho ngành **may mặc (Garment Manufacturing)**, bao gồm **26 module chuyên biệt** bao phủ toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm CRM khách hàng, nhập nguyên liệu, sản xuất, kiểm kê kho, quản lý nhân viên, phân quyền 4 cấp, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, in tem/QR code, đóng tách pallet/thùng, vận chuyển, in ấn PDF, xuất Excel, cảnh báo tự động và dashboard tổng quan.
 
 ## 📋 Yêu cầu
 
@@ -29,7 +29,7 @@ pip install -r requirements.txt
 python odoo-bin -c ../odoo.conf
 ```
 
-## 📦 Custom Modules (25 Module) — 214 Tests ✅
+## 📦 Custom Modules (26 Module) — 259 Tests ✅
 
 ### Pha 1 — Nền Tảng Cơ Sở
 
@@ -95,13 +95,19 @@ python odoo-bin -c ../odoo.conf
 | `garment_label` | In tem QR code, quản lý pallet, đóng tách thùng/pallet | 39 ✅ |
 | `garment_inventory` | Kiểm kê kho: phiên kiểm kê, quét QR, điều chỉnh tự động | 21 ✅ |
 
+### Pha 9 — In Ấn, Xuất Excel & Cảnh Báo
+
+| Module | Mô tả | Tests |
+|--------|--------|:-----:|
+| `garment_print` | In PDF (QWeb): packing list, phiếu giao, hóa đơn, phiếu lương, QC; xuất Excel bảng lương & sản lượng; cảnh báo tự động qua Discuss | 29 ✅ |
+
 ### Module Phụ Trợ
 
 | Module | Mô tả |
 |--------|--------|
 | `garment_demo` | Dữ liệu mẫu cho toàn bộ hệ thống |
 
-> **Tổng cộng: 214 tests ✅ — 0 failed, 0 errors — 25 module**
+> **Tổng cộng: 259 tests ✅ — 0 failed, 0 errors — 26 module**
 
 ## 🔐 Phân Quyền 4 Cấp
 
@@ -125,7 +131,7 @@ python odoo-bin -c ../odoo.conf
 ```
 odoo-garment-project/
 ├── odoo/                          # Odoo 19.0 source code
-├── custom-addons/                 # 25 module tùy chỉnh
+├── custom-addons/                 # 26 module tùy chỉnh
 │   ├── garment_base/              # Vải, phụ liệu, style, đơn hàng
 │   ├── garment_production/        # Chuyền may, lệnh SX, sản lượng
 │   ├── garment_quality/           # QC, loại lỗi, AQL
