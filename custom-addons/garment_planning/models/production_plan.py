@@ -1,7 +1,10 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 from datetime import timedelta
+import logging
 import math
+
+_logger = logging.getLogger(__name__)
 
 
 class GarmentProductionPlan(models.Model):
@@ -181,3 +184,71 @@ class GarmentProductionPlan(models.Model):
                 'date_start': self.date_start,
                 'date_end': new_end,
             })
+
+    # -------------------------------------------------------------------------
+    # Cron: Deadline Auto-Alert
+    # -------------------------------------------------------------------------
+    @api.model
+    def _cron_check_deadline_alerts(self):
+        """Scheduled action: check production plans for deadline warnings.
+
+        Creates mail.activity for plans that are:
+        - Overdue (ship_date < today and not done/cancelled)
+        - Approaching deadline (ship_date within 3 days)
+        """
+        today = fields.Date.today()
+        warn_date = today + timedelta(days=3)
+        activity_type = self.env.ref('mail.mail_activity_data_warning', raise_if_not_found=False)
+        if not activity_type:
+            activity_type = self.env['mail.activity.type'].search([], limit=1)
+        if not activity_type:
+            _logger.warning('No activity type found for deadline alerts')
+            return
+
+        # Plans with ship_date that are active (not done/cancelled)
+        plans = self.search([
+            ('ship_date', '!=', False),
+            ('state', 'not in', ('done', 'cancelled')),
+            ('ship_date', '<=', warn_date),
+        ])
+
+        model_id = self.env['ir.model']._get_id(self._name)
+        for plan in plans:
+            # Skip if activity already exists for this plan today
+            existing = self.env['mail.activity'].search([
+                ('res_model_id', '=', model_id),
+                ('res_id', '=', plan.id),
+                ('activity_type_id', '=', activity_type.id),
+                ('date_deadline', '=', today),
+            ], limit=1)
+            if existing:
+                continue
+
+            days_left = (plan.ship_date - today).days
+            if days_left < 0:
+                summary = _('⚠️ QUÁ HẠN %s ngày!') % abs(days_left)
+                note = _(
+                    'Kế hoạch %s (Buyer: %s) đã quá hạn giao hàng %s ngày. '
+                    'Ship date: %s. Vui lòng xử lý ngay!'
+                ) % (plan.name, plan.buyer_id.name or '', abs(days_left),
+                     plan.ship_date)
+            else:
+                summary = _('⏰ Còn %s ngày đến hạn giao') % days_left
+                note = _(
+                    'Kế hoạch %s (Buyer: %s) sẽ đến hạn giao hàng trong %s ngày. '
+                    'Ship date: %s.'
+                ) % (plan.name, plan.buyer_id.name or '', days_left,
+                     plan.ship_date)
+
+            user_id = plan.create_uid.id or self.env.uid
+            plan.activity_schedule(
+                act_type_xmlid='mail.mail_activity_data_warning',
+                date_deadline=today,
+                summary=summary,
+                note=note,
+                user_id=user_id,
+            )
+            _logger.info(
+                'Deadline alert created for %s (ship_date=%s, days_left=%s)',
+                plan.name, plan.ship_date, days_left,
+            )

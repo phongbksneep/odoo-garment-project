@@ -16,5 +16,16 @@
             <field name="padding">5</field>
             <field name="company_id" eval="False"/>
         </record>
+
+        <!-- Cron: Daily Deadline Auto-Alert -->
+        <record id="ir_cron_deadline_alert" model="ir.cron">
+            <field name="name">Garment: Cảnh Báo Hạn Giao Hàng</field>
+            <field name="model_id" ref="model_garment_production_plan"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_check_deadline_alerts()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active">True</field>
+        </record>
     </data>
 </odoo>

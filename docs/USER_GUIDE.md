@@ -1061,6 +1061,29 @@ graph LR
 
 > 💡 **Mẹo:** Sử dụng Capacity Planning để **mô phỏng** trước nhiều kịch bản (tăng ca, thêm CN, đổi hiệu suất) rồi chọn phương án tối ưu nhất trước khi tạo kế hoạch SX thực tế.
 
+### 10.4 ⏰ Cảnh Báo Hạn Giao Hàng Tự Động (Deadline Auto-Alert)
+
+Hệ thống tự động kiểm tra hạn giao hàng (ship_date) của các kế hoạch sản xuất **mỗi ngày** và tạo cảnh báo (Activity) cho người phụ trách:
+
+**Điều kiện cảnh báo:**
+- Kế hoạch **quá hạn** (ship_date < hôm nay) → Activity: "⚠️ QUÁ HẠN X ngày!"
+- Kế hoạch **sắp đến hạn** (ship_date trong vòng 3 ngày) → Activity: "⏰ Còn X ngày đến hạn giao"
+
+**Đặc điểm:**
+- Chỉ cảnh báo kế hoạch đang hoạt động (không cảnh báo đã hoàn thành hoặc đã hủy)
+- Không tạo cảnh báo trùng lặp trong cùng ngày
+- Activity hiển thị trên chatter của kế hoạch và trong mục "Hoạt động" của người dùng
+- Cron job chạy tự động hàng ngày, không cần cấu hình thêm
+
+**Quản trị:**
+
+| Mục | Chi Tiết |
+|-----|----------|
+| **Tên Cron** | Garment: Cảnh Báo Hạn Giao Hàng |
+| **Tần Suất** | Mỗi ngày 1 lần |
+| **Đường dẫn quản lý** | Settings → Technical → Automation → Scheduled Actions |
+| **Ngưỡng cảnh báo** | 3 ngày trước ship_date |
+
 ---
 
 ## 11. Module Garment Maintenance — Bảo Trì Máy
