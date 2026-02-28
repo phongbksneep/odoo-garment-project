@@ -2,7 +2,7 @@
 
 > **Phiên bản:** Odoo 19.0 | **Ngày cập nhật:** Tháng 2/2026
 > **Đối tượng:** Quản lý, trưởng phòng, nhân viên sử dụng hệ thống ERP
-> **Tổng số module:** 26 module chuyên biệt | **259 test cases** — 0 failures
+> **Tổng số module:** 27 module chuyên biệt | **291 test cases** — 0 failures
 
 ---
 
@@ -36,7 +36,8 @@
 26. [Module Garment Inventory — Kiểm Kê Kho](#26-module-garment-inventory--kiểm-kê-kho)
 27. [Module Garment Print — In Ấn, Xuất Excel & Cảnh Báo Tự Động](#27-module-garment-print--in-ấn-xuất-excel--cảnh-báo-tự-động)
 28. [Quản Lý Nhân Viên & Phân Quyền](#28-quản-lý-nhân-viên--phân-quyền)
-29. [FAQ — Câu hỏi thường gặp](#29-faq--câu-hỏi-thường-gặp)
+29. [Module Garment Mobile — Responsive & Phê Duyệt](#29-module-garment-mobile--responsive--phê-duyệt)
+30. [FAQ — Câu hỏi thường gặp](#30-faq--câu-hỏi-thường-gặp)
 
 ---
 
@@ -44,7 +45,7 @@
 
 ### 1.1 Tổng quan hệ thống
 
-Hệ thống ERP Công Ty May được xây dựng trên nền tảng **Odoo 19.0**, bao gồm **26 module chuyên biệt** quản lý toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm nhập nguyên liệu, CRM quan hệ khách hàng, in tem QR code, quản lý pallet/thùng hàng, kiểm kê kho, quản lý nhân viên, phân quyền 4 cấp, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, giao hàng, in ấn PDF, xuất Excel, cảnh báo tự động và dashboard tổng quan.
+Hệ thống ERP Công Ty May được xây dựng trên nền tảng **Odoo 19.0**, bao gồm **27 module chuyên biệt** quản lý toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm nhập nguyên liệu, CRM quan hệ khách hàng, in tem QR code, quản lý pallet/thùng hàng, kiểm kê kho, quản lý nhân viên, phân quyền 4 cấp, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, giao hàng, in ấn PDF, xuất Excel, cảnh báo tự động, dashboard tổng quan, mobile-responsive UI và luồng phê duyệt đơn hàng.
 
 ### 1.2 Đăng nhập
 
@@ -2170,7 +2171,92 @@ Hệ thống phân quyền theo 4 cấp bậc, mỗi cấp kế thừa quyền t
 
 ---
 
-## 29. FAQ — Câu Hỏi Thường Gặp
+## 29. Module Garment Mobile — Responsive & Phê Duyệt
+
+> **Module:** `garment_mobile` | **Tests:** 32 ✅
+
+Module tối ưu giao diện cho **điện thoại và máy tính bảng**, đồng thời bổ sung **luồng phê duyệt đơn hàng** (Approval Workflow).
+
+### 29.1 Mobile Dashboard (OWL Component)
+
+Dashboard tối ưu cho mobile với công nghệ **OWL2** (Odoo Web Library):
+
+**Các KPI hiển thị:**
+- 📋 **Tổng đơn hàng** — tổng / hoàn thành
+- 🏭 **Đang sản xuất** — số đơn đang active
+- 🚨 **Đơn trễ hạn** — cần xử lý gấp
+- ✅ **Tỉ lệ đạt QC** — pass rate 7 ngày gần nhất
+- 📈 **Tiến độ SX** — thanh progress bar tổng thể
+- ⏳ **Chờ duyệt** — số đơn pending approval
+
+**Quick Actions (Hành Động Nhanh):**
+
+8 nút bấm nhanh cho phép truy cập 1-tap vào các chức năng chính:
+Đơn Hàng | Sản Xuất | Kiểm QC | Giao Hàng | Kho | Nhân Sự | Đóng Gói | Dashboard
+
+**Cảnh báo:**
+- 🚨 **Đơn hàng trễ hạn** — hiển thị top 5 đơn trễ nhất, số ngày trễ
+- 📅 **Giao hàng sắp tới** — đơn giao trong 3 ngày tới, đếm ngược
+
+**Truy cập:** Menu **Công Ty May → Báo Cáo → 📱 Mobile Dashboard**
+
+### 29.2 Luồng Phê Duyệt Đơn Hàng (Approval Workflow)
+
+Bổ sung luồng duyệt 4 trạng thái cho đơn hàng may:
+
+```
+Chưa Gửi Duyệt (draft) → Chờ Duyệt (pending) → Đã Duyệt (approved) ✅
+                                                 → Từ Chối (rejected) ❌ → Gửi lại
+```
+
+**Các nút thao tác:**
+| Nút | Trạng thái | Quyền |
+|-----|-----------|-------|
+| 📋 **Gửi Duyệt** | draft/rejected → pending | Tất cả user |
+| ✅ **Duyệt** | pending → approved (+ auto confirm đơn hàng) | Manager |
+| ❌ **Từ Chối** | pending → rejected (mở popup nhập lý do) | Manager |
+| 🔄 **Đặt Lại** | any → draft | Manager |
+
+**Wizard Từ Chối:**
+- Khi nhấn "Từ Chối", mở popup yêu cầu nhập lý do
+- Lý do từ chối hiển thị trong tab Phê Duyệt và chatter
+
+**Tab Phê Duyệt trên form Đơn Hàng:**
+- Trạng thái duyệt (badge màu)
+- Người gửi duyệt / Ngày gửi
+- Người duyệt / Ngày duyệt
+- Lý do từ chối (nếu bị từ chối)
+
+**Trên danh sách đơn hàng:**
+- Cột "Trạng Thái Duyệt" (badge)
+- Filter nhanh: Chờ Duyệt | Đã Duyệt | Từ Chối
+- Group by: Trạng Thái Duyệt
+
+### 29.3 Mobile Responsive CSS
+
+Toàn bộ giao diện garment được tối ưu cho mobile:
+
+| Tính năng | Chi tiết |
+|-----------|---------|
+| **Touch targets** | Tối thiểu 44px (theo Apple HIG) |
+| **Input font** | 16px trên input (ngăn iOS zoom) |
+| **Kanban** | 1 cột trên phone, 2 cột trên tablet |
+| **List view** | Ẩn cột ít quan trọng, cuộn ngang |
+| **Statusbar** | Cuộn ngang, overflow-x: auto |
+| **Dialogs** | Full-width trên phone, max-height 90vh |
+| **One2many** | Cuộn ngang, responsive |
+| **Dark mode** | Hỗ trợ prefers-color-scheme |
+| **Print** | Ẩn phần không cần khi in |
+
+**Breakpoints:**
+- 📱 Phone: < 767px (2 cột KPI, 1 cột kanban)
+- 📱 Small phone: < 374px (font nhỏ hơn)
+- 📋 Tablet: 768px - 1024px (3 cột KPI, 2 cột kanban)
+- 🖥️ Desktop: > 1024px (4 cột KPI, bố cục gốc)
+
+---
+
+## 30. FAQ — Câu Hỏi Thường Gặp
 
 ### Q: Làm sao để thay đổi ngôn ngữ sang Tiếng Việt?
 **A:** Vào **Settings → Translations → Load a Translation** → Chọn `Vietnamese / Tiếng Việt` → Install.
