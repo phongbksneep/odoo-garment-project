@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================= INVENTORY TREE ================= -->
+    <record id="view_garment_inventory_tree" model="ir.ui.view">
+        <field name="name">garment.inventory.tree</field>
+        <field name="model">garment.inventory</field>
+        <field name="arch" type="xml">
+            <list decoration-info="state=='draft'"
+                  decoration-warning="state=='in_progress'"
+                  decoration-success="state=='validated'"
+                  decoration-muted="state=='cancelled'">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="warehouse_type"/>
+                <field name="responsible_id" widget="many2one_avatar"/>
+                <field name="total_expected_qty" sum="Tổng"/>
+                <field name="total_actual_qty" sum="Tổng"/>
+                <field name="total_diff_qty" sum="Tổng"/>
+                <field name="diff_count"/>
+                <field name="state" widget="badge"
+                       decoration-info="state=='draft'"
+                       decoration-warning="state=='in_progress'"
+                       decoration-success="state in ('done','validated')"
+                       decoration-danger="state=='cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ================= INVENTORY FORM ================= -->
+    <record id="view_garment_inventory_form" model="ir.ui.view">
+        <field name="name">garment.inventory.form</field>
+        <field name="model">garment.inventory</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_start" type="object"
+                            string="Bắt Đầu Kiểm Kê"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_scan_qr" type="object"
+                            string="📱 Quét QR Nhập Hàng"
+                            class="btn-warning"
+                            invisible="state != 'in_progress'"/>
+                    <button name="action_done" type="object"
+                            string="Hoàn Thành"
+                            class="btn-primary"
+                            invisible="state != 'in_progress'"/>
+                    <button name="action_validate" type="object"
+                            string="Xác Nhận &amp; Điều Chỉnh"
+                            class="btn-success"
+                            invisible="state != 'done'"/>
+                    <button name="action_cancel" type="object"
+                            string="Hủy"
+                            invisible="state in ('validated','cancelled')"/>
+                    <button name="action_reset_draft" type="object"
+                            string="Đặt Lại Nháp"
+                            invisible="state not in ('cancelled',)"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,in_progress,done,validated"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="warehouse_type"/>
+                            <field name="garment_order_id"/>
+                        </group>
+                        <group>
+                            <field name="responsible_id"/>
+                            <field name="team_member_ids" widget="many2many_tags"/>
+                            <field name="adjustment_move_id"
+                                   invisible="not adjustment_move_id"/>
+                        </group>
+                    </group>
+
+                    <!-- Summary stats -->
+                    <group string="Tổng Kết">
+                        <group>
+                            <field name="total_expected_qty"/>
+                            <field name="total_actual_qty"/>
+                        </group>
+                        <group>
+                            <field name="total_diff_qty"/>
+                            <field name="diff_count"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Chi Tiết Kiểm Kê" name="lines">
+                            <field name="line_ids">
+                                <list editable="bottom"
+                                      decoration-danger="status=='deficit'"
+                                      decoration-success="status=='surplus'"
+                                      decoration-info="status=='ok'">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="item_type"/>
+                                    <field name="item_code"/>
+                                    <field name="item_name"/>
+                                    <field name="style_code" optional="show"/>
+                                    <field name="color" optional="show"/>
+                                    <field name="size" optional="show"/>
+                                    <field name="location" optional="show"/>
+                                    <field name="unit"/>
+                                    <field name="expected_qty"/>
+                                    <field name="actual_qty"/>
+                                    <field name="diff_qty"/>
+                                    <field name="diff_percent" optional="show"/>
+                                    <field name="status" widget="badge"
+                                           decoration-success="status=='ok'"
+                                           decoration-danger="status=='deficit'"
+                                           decoration-warning="status=='surplus'"/>
+                                    <field name="label_id" optional="hide"/>
+                                    <field name="garment_order_id" optional="hide"/>
+                                    <field name="notes" optional="hide"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Ghi Chú" name="notes">
+                            <field name="notes" placeholder="Ghi chú kiểm kê..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================= INVENTORY SEARCH ================= -->
+    <record id="view_garment_inventory_search" model="ir.ui.view">
+        <field name="name">garment.inventory.search</field>
+        <field name="model">garment.inventory</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="warehouse_type"/>
+                <field name="responsible_id"/>
+                <filter name="filter_draft" string="Nháp"
+                        domain="[('state','=','draft')]"/>
+                <filter name="filter_in_progress" string="Đang Kiểm"
+                        domain="[('state','=','in_progress')]"/>
+                <filter name="filter_done" string="Hoàn Thành"
+                        domain="[('state','=','done')]"/>
+                <filter name="filter_validated" string="Đã Xác Nhận"
+                        domain="[('state','=','validated')]"/>
+                <filter name="filter_has_diff" string="Có Chênh Lệch"
+                        domain="[('diff_count','>',0)]"/>
+                <separator/>
+                <group>
+                    <filter name="group_warehouse" string="Theo Kho"
+                            context="{'group_by':'warehouse_type'}"/>
+                    <filter name="group_state" string="Theo Trạng Thái"
+                            context="{'group_by':'state'}"/>
+                    <filter name="group_date" string="Theo Ngày"
+                            context="{'group_by':'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ================= SCAN WIZARD FORM ================= -->
+    <record id="view_garment_inventory_scan_wizard_form" model="ir.ui.view">
+        <field name="name">garment.inventory.scan.wizard.form</field>
+        <field name="model">garment.inventory.scan.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="inventory_id" readonly="1"/>
+                    <field name="qr_content" placeholder="Quét hoặc nhập mã QR..."/>
+                    <field name="actual_qty"/>
+                </group>
+                <footer>
+                    <button name="action_scan" type="object"
+                            string="✅ Quét &amp; Tiếp Tục"
+                            class="btn-primary"/>
+                    <button string="Đóng" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================= ACTIONS ================= -->
+    <record id="action_garment_inventory" model="ir.actions.act_window">
+        <field name="name">Kiểm Kê Kho</field>
+        <field name="res_model">garment.inventory</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo phiếu kiểm kê kho mới
+            </p>
+            <p>Kiểm kê tồn kho thực tế, quét QR để nhập nhanh, tạo phiếu điều chỉnh tự động.</p>
+        </field>
+    </record>
+
+    <record id="action_garment_inventory_validated" model="ir.actions.act_window">
+        <field name="name">Kiểm Kê Đã Xác Nhận</field>
+        <field name="res_model">garment.inventory</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state','=','validated')]</field>
+    </record>
+</odoo>

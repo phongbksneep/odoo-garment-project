@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend delivery order form to show pallets and labels -->
+    <record id="view_delivery_order_form_label" model="ir.ui.view">
+        <field name="name">garment.delivery.order.form.label</field>
+        <field name="model">garment.delivery.order</field>
+        <field name="inherit_id" ref="garment_delivery.view_delivery_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Pallet &amp; Tem QR" name="pallets_labels">
+                    <group>
+                        <group>
+                            <field name="pallet_ids" widget="many2many_tags"/>
+                            <button name="action_view_pallets" type="object"
+                                    string="📦 Xem Pallets"
+                                    class="btn-link"
+                                    icon="fa-cubes"
+                                    invisible="pallet_count == 0"/>
+                        </group>
+                        <group>
+                            <field name="pallet_count"/>
+                            <field name="label_count"/>
+                            <button name="action_view_labels" type="object"
+                                    string="🏷️ Xem Tem QR"
+                                    class="btn-link"
+                                    icon="fa-qrcode"
+                                    invisible="label_count == 0"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

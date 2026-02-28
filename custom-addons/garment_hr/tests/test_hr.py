@@ -1,7 +1,9 @@
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import ValidationError
+from odoo.tests import tagged
 
 
+@tagged('post_install', '-at_install')
 class TestGarmentAttendance(TransactionCase):
 
     @classmethod
@@ -48,6 +50,7 @@ class TestGarmentAttendance(TransactionCase):
                 })
 
 
+@tagged('post_install', '-at_install')
 class TestAttendanceSummary(TransactionCase):
 
     @classmethod
@@ -83,6 +86,7 @@ class TestAttendanceSummary(TransactionCase):
         self.assertGreater(summary.present_days, 0)
 
 
+@tagged('post_install', '-at_install')
 class TestGarmentLeave(TransactionCase):
 
     @classmethod
@@ -118,6 +122,7 @@ class TestGarmentLeave(TransactionCase):
             })
 
 
+@tagged('post_install', '-at_install')
 class TestEmployeeSkill(TransactionCase):
 
     def test_create_skill(self):
@@ -129,3 +134,106 @@ class TestEmployeeSkill(TransactionCase):
             'detail': 'May cổ áo sơ mi',
         })
         self.assertEqual(skill.level, 'advanced')
+
+
+@tagged('post_install', '-at_install')
+class TestGarmentEmployee(TransactionCase):
+    """Tests for garment-specific employee fields."""
+
+    def test_create_employee_with_garment_fields(self):
+        emp = self.env['hr.employee'].create({
+            'name': 'Nguyễn Văn A',
+            'employee_code': 'NV001',
+            'garment_role': 'worker',
+            'contract_type': 'definite',
+        })
+        self.assertEqual(emp.employee_code, 'NV001')
+        self.assertEqual(emp.garment_role, 'worker')
+        self.assertEqual(emp.contract_type, 'definite')
+
+    def test_team_leader_role(self):
+        emp = self.env['hr.employee'].create({
+            'name': 'Trần Thị B',
+            'employee_code': 'NV002',
+            'garment_role': 'team_leader',
+        })
+        self.assertEqual(emp.garment_role, 'team_leader')
+
+    def test_dept_manager_role(self):
+        emp = self.env['hr.employee'].create({
+            'name': 'Lê Văn C',
+            'employee_code': 'NV003',
+            'garment_role': 'dept_manager',
+        })
+        self.assertEqual(emp.garment_role, 'dept_manager')
+
+    def test_employee_skill_count(self):
+        emp = self.env['hr.employee'].create({
+            'name': 'NV Skills',
+            'employee_code': 'NV004',
+        })
+        self.env['garment.employee.skill'].create({
+            'employee_id': emp.id,
+            'skill_type': 'sewing',
+            'level': 'advanced',
+        })
+        self.env['garment.employee.skill'].create({
+            'employee_id': emp.id,
+            'skill_type': 'cutting',
+            'level': 'basic',
+        })
+        self.assertEqual(emp.skill_count, 2)
+
+    def test_employee_id_fields(self):
+        emp = self.env['hr.employee'].create({
+            'name': 'NV ID',
+            'employee_code': 'NV005',
+            'id_number': '012345678901',
+            'insurance_number': 'BH123456',
+            'tax_code': 'MST123456',
+            'bank_name': 'Vietcombank',
+            'bank_account': '0123456789',
+        })
+        self.assertEqual(emp.id_number, '012345678901')
+        self.assertEqual(emp.bank_name, 'Vietcombank')
+
+    def test_employee_emergency_contact(self):
+        emp = self.env['hr.employee'].create({
+            'name': 'NV Emergency',
+            'emergency_contact': 'Nguyễn Mẹ',
+            'emergency_phone': '0987654321',
+        })
+        self.assertEqual(emp.emergency_contact, 'Nguyễn Mẹ')
+
+
+@tagged('post_install', '-at_install')
+class TestSecurityGroups(TransactionCase):
+    """Tests for role-based permission groups."""
+
+    def test_groups_exist(self):
+        user_group = self.env.ref('garment_base.group_garment_user')
+        self.assertTrue(user_group)
+        tl_group = self.env.ref('garment_base.group_garment_team_leader')
+        self.assertTrue(tl_group)
+        dm_group = self.env.ref('garment_base.group_garment_dept_manager')
+        self.assertTrue(dm_group)
+        admin_group = self.env.ref('garment_base.group_garment_manager')
+        self.assertTrue(admin_group)
+
+    def test_group_hierarchy(self):
+        tl_group = self.env.ref('garment_base.group_garment_team_leader')
+        user_group = self.env.ref('garment_base.group_garment_user')
+        self.assertIn(user_group, tl_group.implied_ids)
+
+        dm_group = self.env.ref('garment_base.group_garment_dept_manager')
+        self.assertIn(tl_group, dm_group.implied_ids)
+
+        admin_group = self.env.ref('garment_base.group_garment_manager')
+        self.assertIn(dm_group, admin_group.implied_ids)
+
+    def test_admin_has_all_roles(self):
+        admin_group = self.env.ref('garment_base.group_garment_manager')
+        user_group = self.env.ref('garment_base.group_garment_user')
+        # Admin implies dept_manager which implies team_leader which implies user
+        all_implied = admin_group.all_implied_ids
+        self.assertIn(user_group, all_implied)

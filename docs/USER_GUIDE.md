@@ -2,7 +2,7 @@
 
 > **Phiên bản:** Odoo 19.0 | **Ngày cập nhật:** Tháng 2/2026
 > **Đối tượng:** Quản lý, trưởng phòng, nhân viên sử dụng hệ thống ERP
-> **Tổng số module:** 24 module chuyên biệt | **216 test cases** — 0 failures
+> **Tổng số module:** 25 module chuyên biệt | **214 test cases** — 0 failures
 
 ---
 
@@ -33,8 +33,9 @@
 23. [Module Garment Dashboard — Bảng Điều Khiển](#23-module-garment-dashboard--bảng-điều-khiển)
 24. [Module Garment CRM — Quan Hệ Khách Hàng](#24-module-garment-crm--quan-hệ-khách-hàng)
 25. [Module Garment Label — In Tem & Quản Lý Pallet](#25-module-garment-label--in-tem--quản-lý-pallet)
-26. [Phân quyền & Bảo mật](#26-phân-quyền--bảo-mật)
-27. [FAQ — Câu hỏi thường gặp](#27-faq--câu-hỏi-thường-gặp)
+26. [Module Garment Inventory — Kiểm Kê Kho](#26-module-garment-inventory--kiểm-kê-kho)
+27. [Quản Lý Nhân Viên & Phân Quyền](#27-quản-lý-nhân-viên--phân-quyền)
+28. [FAQ — Câu hỏi thường gặp](#28-faq--câu-hỏi-thường-gặp)
 
 ---
 
@@ -42,7 +43,7 @@
 
 ### 1.1 Tổng quan hệ thống
 
-Hệ thống ERP Công Ty May được xây dựng trên nền tảng **Odoo 19.0**, bao gồm **24 module chuyên biệt** quản lý toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm nhập nguyên liệu, CRM quan hệ khách hàng, in tem QR code, quản lý pallet/thùng hàng, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, giao hàng và dashboard tổng quan.
+Hệ thống ERP Công Ty May được xây dựng trên nền tảng **Odoo 19.0**, bao gồm **25 module chuyên biệt** quản lý toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm nhập nguyên liệu, CRM quan hệ khách hàng, in tem QR code, quản lý pallet/thùng hàng, kiểm kê kho, quản lý nhân viên, phân quyền 4 cấp, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, giao hàng và dashboard tổng quan.
 
 ### 1.2 Đăng nhập
 
@@ -1890,23 +1891,151 @@ Quản lý pallet chứa nhiều thùng hàng, hỗ trợ gộp/tách pallet.
 
 ---
 
-## 26. Phân Quyền & Bảo Mật
+## 26. Module Garment Inventory — Kiểm Kê Kho
 
-Hệ thống có 2 nhóm quyền:
+> **Menu:** Công Ty May → Kho & Giao Hàng → Kiểm Kê Kho
 
-| Nhóm | Quyền |
-|------|-------|
-| **Garment User** | Xem tất cả, tạo/sửa đơn hàng & sản lượng |
-| **Garment Manager** | Toàn quyền: tạo, sửa, xóa tất cả dữ liệu |
+### 26.1 Tổng Quan
+
+Module kiểm kê kho (Stocktaking) cho phép thực hiện kiểm kê định kỳ hoặc đột xuất tại các kho nguyên liệu, thành phẩm, phụ liệu. Hỗ trợ quét QR code để nhập số lượng thực tế nhanh chóng.
+
+### 26.2 Quy Trình Kiểm Kê
+
+| Bước | Trạng Thái | Mô Tả |
+|------|-----------|-------|
+| 1 | Nháp | Tạo phiên kiểm kê, chọn kho, thêm danh sách hàng |
+| 2 | Đang Kiểm Kê | Nhấn **▶ Bắt Đầu**, nhập số lượng thực tế |
+| 3 | Hoàn Thành | Nhấn **✓ Hoàn Thành** khi đã kiểm đủ |
+| 4 | Đã Xác Nhận | Manager duyệt, tự động tạo phiếu điều chỉnh kho |
+| 5 | Hủy | Hủy phiên kiểm kê |
+
+### 26.3 Chi Tiết Kiểm Kê (Inventory Lines)
+
+Mỗi phiên kiểm kê gồm nhiều dòng chi tiết:
+
+| Trường | Mô Tả |
+|--------|-------|
+| **Loại hàng** | Vải, Phụ liệu, Bao bì, Thành phẩm, Khác |
+| **Mã hàng / Tên hàng** | Mã nội bộ & tên mô tả |
+| **Tồn sổ sách** | Số lượng theo hệ thống |
+| **Tồn thực tế** | Số lượng đếm được |
+| **Chênh lệch** | = Thực tế - Sổ sách (tự động) |
+| **Trạng thái** | ✅ Khớp / ⚠️ Thừa / ❌ Thiếu (tự động) |
+| **Ghi chú** | Giải thích nguyên nhân lệch |
+
+### 26.4 Quét QR Code
+
+Nhấn **📱 Quét QR** để mở wizard quét:
+- Quét mã QR của tem sản phẩm/nguyên liệu
+- Hệ thống tự động tìm và tăng số lượng thực tế
+- Hỗ trợ quét liên tục nhiều mã
+
+### 26.5 Điều Chỉnh Kho Tự Động
+
+Khi Manager xác nhận phiên kiểm kê:
+- Hệ thống tự động tạo phiếu điều chỉnh kho (garment.warehouse.move)
+- Hàng thừa: Nhập thêm vào kho
+- Hàng thiếu: Xuất bớt khỏi kho
+- Ghi chú tự động: "Điều chỉnh kiểm kê: [mã phiên]"
+
+![Kiểm kê kho - Danh sách](images/117_inventory_all.png)
+*Hình: Danh sách các phiên kiểm kê kho*
+
+![Kiểm kê kho - Form mới](images/118_inventory_form_new.png)
+*Hình: Tạo phiên kiểm kê kho mới*
+
+![Kiểm kê đã xác nhận](images/119_inventory_validated.png)
+*Hình: Các phiên kiểm kê đã được xác nhận*
+
+---
+
+## 27. Quản Lý Nhân Viên & Phân Quyền
+
+### 27.1 Quản Lý Nhân Viên May
+
+> **Menu:** Công Ty May → Nhân Sự → Nhân Viên May
+
+Module HR được mở rộng với các trường chuyên biệt cho ngành may:
+
+| Trường | Mô Tả |
+|--------|-------|
+| **Mã nhân viên** | Mã nội bộ (NV-xxx) |
+| **Vai trò may** | Thợ may, Thợ cắt, QC, Tổ trưởng, Trưởng chuyền, Trưởng phòng, Kỹ thuật, Kho, Hoàn thiện, Giặt, Bảo trì, Khác |
+| **Loại hợp đồng** | Chính thức, Thử việc, Thời vụ, Khoán, Thực tập |
+| **Ngày vào làm** | Ngày bắt đầu công tác |
+| **Chuyền may** | Liên kết với chuyền sản xuất |
+| **CMND/CCCD, BHXH, MST** | Thông tin cá nhân |
+| **Ngân hàng & STK** | Thông tin lương |
+| **Liên hệ khẩn cấp** | Tên & SĐT người liên hệ |
+| **Kỹ năng** | Danh sách kỹ năng (may, cắt, QC, ủi…) với mức độ |
+
+**Các view đặc biệt:**
+- **Tổ Trưởng / Trưởng Chuyền:** Lọc nhanh nhân viên có vai trò lãnh đạo
+- **Theo Bộ Phận:** Nhóm nhân viên theo phòng ban
+
+![Danh sách nhân viên](images/120_employee_all.png)
+*Hình: Danh sách nhân viên may*
+
+![Form nhân viên](images/121_employee_form.png)
+*Hình: Thông tin chi tiết nhân viên với các trường chuyên biệt*
+
+![Tổ trưởng](images/122_employee_leaders.png)
+*Hình: Danh sách tổ trưởng / trưởng chuyền*
+
+![Theo bộ phận](images/123_employee_by_dept.png)
+*Hình: Nhân viên nhóm theo bộ phận*
+
+### 27.2 Kỹ Năng Nhân Viên
+
+> **Menu:** Công Ty May → Nhân Sự → Kỹ Năng Nhân Viên
+
+Theo dõi kỹ năng của từng nhân viên:
+
+| Loại kỹ năng | Mô Tả |
+|--------------|-------|
+| May | Kỹ năng may các loại đường may |
+| Cắt | Kỹ năng cắt vải |
+| QC | Kiểm tra chất lượng |
+| Ủi / Là | Ủi hoàn thiện sản phẩm |
+| Đóng gói | Kỹ năng đóng gói |
+| Khác | Kỹ năng đặc biệt khác |
+
+**Mức độ kỹ năng:** Cơ bản → Trung bình → Nâng cao → Chuyên gia
+
+![Kỹ năng nhân viên](images/126_employee_skills.png)
+*Hình: Danh sách kỹ năng nhân viên*
+
+### 27.3 Phân Quyền 4 Cấp
+
+Hệ thống phân quyền theo 4 cấp bậc, mỗi cấp kế thừa quyền từ cấp dưới:
+
+| Cấp | Nhóm Quyền | Quyền Hạn |
+|-----|-----------|-----------|
+| 1 | **Nhân Viên (User)** | Xem tất cả, tạo/sửa dữ liệu liên quan |
+| 2 | **Tổ Trưởng (Team Leader)** | + Quản lý nhóm/tổ, duyệt sản lượng |
+| 3 | **Trưởng Phòng (Dept Manager)** | + Quản lý phòng ban, duyệt nghỉ phép, xem báo cáo phòng |
+| 4 | **Quản Lý (Manager)** | Toàn quyền: tạo, sửa, xóa tất cả dữ liệu |
+
+**Record Rules (Quy tắc truy cập):**
+- Nhân viên: Chỉ xem đơn hàng liên quan
+- Tổ trưởng: Xem đơn hàng của chuyền mình
+- Trưởng phòng: Xem chấm công, nghỉ phép của phòng mình
+- Quản lý: Xem tất cả
 
 **Cách phân quyền:**
 1. Vào **Settings → Users & Companies → Users**
 2. Chọn user → Tab **Access Rights**
-3. Tìm mục **Công Ty May** → Chọn User hoặc Manager
+3. Tìm mục **Công Ty May** → Chọn cấp quyền phù hợp
+
+![Cài đặt người dùng](images/127_settings_users.png)
+*Hình: Quản lý người dùng*
+
+![Phân quyền](images/128_user_permissions.png)
+*Hình: Thiết lập quyền truy cập cho người dùng*
 
 ---
 
-## 27. FAQ — Câu Hỏi Thường Gặp
+## 28. FAQ — Câu Hỏi Thường Gặp
 
 ### Q: Làm sao để thay đổi ngôn ngữ sang Tiếng Việt?
 **A:** Vào **Settings → Translations → Load a Translation** → Chọn `Vietnamese / Tiếng Việt` → Install.
@@ -1939,7 +2068,7 @@ Hệ thống có 2 nhóm quyền:
 **A:** Đơn hàng → Mẫu → Tính giá → Nhập NL → Kế hoạch → Cắt → May → Giặt → Hoàn thiện → QC → Đóng gói → Giao hàng → Kế toán
 
 ### Q: Mối liên kết giữa các module?
-**A:** Xem [Sơ đồ tổng quan](#2-sơ-đồ-tổng-quan--luồng-nghiệp-vụ) — tất cả module liên kết qua đơn hàng may (garment.order) và lệnh sản xuất (garment.production.order). Module CRM quản lý pipeline khách hàng, module label/pallet quản lý tem QR và đóng gói, dashboard tổng hợp dữ liệu từ toàn bộ hệ thống.
+**A:** Xem [Sơ đồ tổng quan](#2-sơ-đồ-tổng-quan--luồng-nghiệp-vụ) — tất cả module liên kết qua đơn hàng may (garment.order) và lệnh sản xuất (garment.production.order). Module CRM quản lý pipeline khách hàng, module label/pallet quản lý tem QR và đóng gói, module inventory hỗ trợ kiểm kê kho, HR quản lý nhân viên với phân quyền 4 cấp, dashboard tổng hợp dữ liệu từ toàn bộ hệ thống.
 
 ---
 

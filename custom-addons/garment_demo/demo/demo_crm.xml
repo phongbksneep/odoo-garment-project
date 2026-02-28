@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Update existing partners with buyer profile (no noupdate) -->
+    <data>
+        <record id="partner_buyer_us" model="res.partner">
+            <field name="is_garment_buyer" eval="True"/>
+            <field name="buyer_code">BUY-US-001</field>
+            <field name="buyer_type">brand</field>
+            <field name="product_interest">shirt</field>
+            <field name="annual_volume">50000</field>
+            <field name="annual_revenue">250000</field>
+            <field name="payment_term_note">T/T 30% deposit, 70% before shipment</field>
+            <field name="preferred_incoterm">fob</field>
+            <field name="compliance_requirements">WRAP certified, Oeko-Tex Standard 100</field>
+            <field name="quality_standard">AQL 2.5, needle detection required</field>
+            <field name="first_order_date">2023-03-15</field>
+            <field name="last_order_date">2025-01-10</field>
+        </record>
+        <record id="partner_buyer_eu" model="res.partner">
+            <field name="is_garment_buyer" eval="True"/>
+            <field name="buyer_code">BUY-EU-001</field>
+            <field name="buyer_type">retailer</field>
+            <field name="product_interest">tshirt</field>
+            <field name="annual_volume">80000</field>
+            <field name="annual_revenue">320000</field>
+            <field name="payment_term_note">L/C at sight</field>
+            <field name="preferred_incoterm">cif</field>
+            <field name="compliance_requirements">BSCI, GOTS for organic styles</field>
+            <field name="quality_standard">AQL 1.5, lab test required (AATCC)</field>
+            <field name="first_order_date">2022-08-20</field>
+            <field name="last_order_date">2025-02-05</field>
+        </record>
+        <record id="partner_buyer_jp" model="res.partner">
+            <field name="is_garment_buyer" eval="True"/>
+            <field name="buyer_code">BUY-JP-001</field>
+            <field name="buyer_type">importer</field>
+            <field name="product_interest">jacket</field>
+            <field name="annual_volume">20000</field>
+            <field name="annual_revenue">180000</field>
+            <field name="payment_term_note">T/T 50% before production, 50% at BL</field>
+            <field name="preferred_incoterm">cfr</field>
+            <field name="compliance_requirements">JIS standards, Eco Mark Japan</field>
+            <field name="quality_standard">AQL 1.0, 100% inspection on first order</field>
+            <field name="first_order_date">2024-01-10</field>
+            <field name="last_order_date">2025-01-25</field>
+        </record>
+    </data>
+
+    <!-- New partners + CRM data (noupdate) -->
+    <data noupdate="1">
+
+        <!-- New buyer: Korean agent -->
+        <record id="partner_buyer_kr" model="res.partner">
+            <field name="name">Seoul Trading Corp.</field>
+            <field name="email">buying@seoultrading.kr</field>
+            <field name="phone">+82-2-555-1234</field>
+            <field name="city">Seoul</field>
+            <field name="country_id" ref="base.kr"/>
+            <field name="customer_rank">1</field>
+            <field name="is_garment_buyer" eval="True"/>
+            <field name="buyer_code">BUY-KR-001</field>
+            <field name="buyer_type">agent</field>
+            <field name="product_interest">uniform</field>
+            <field name="annual_volume">30000</field>
+            <field name="annual_revenue">150000</field>
+            <field name="payment_term_note">T/T 30 days after BL</field>
+            <field name="preferred_incoterm">fob</field>
+            <field name="compliance_requirements">KCs certification</field>
+            <field name="quality_standard">AQL 2.5</field>
+        </record>
+
+        <!-- New buyer: Australian wholesaler -->
+        <record id="partner_buyer_au" model="res.partner">
+            <field name="name">Aussie Apparel Wholesale</field>
+            <field name="email">orders@aussieapparel.com.au</field>
+            <field name="phone">+61-2-9876-5432</field>
+            <field name="city">Sydney</field>
+            <field name="country_id" ref="base.au"/>
+            <field name="customer_rank">1</field>
+            <field name="is_garment_buyer" eval="True"/>
+            <field name="buyer_code">BUY-AU-001</field>
+            <field name="buyer_type">wholesaler</field>
+            <field name="product_interest">sportswear</field>
+            <field name="annual_volume">15000</field>
+            <field name="annual_revenue">95000</field>
+            <field name="payment_term_note">L/C 60 days</field>
+            <field name="preferred_incoterm">cif</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- CRM LEADS / OPPORTUNITIES                 -->
+        <!-- ========================================= -->
+
+        <!-- Lead 1: Won - Polo order from Global Fashion -->
+        <record id="crm_lead_polo_gf" model="garment.crm.lead">
+            <field name="name">Đơn hàng Polo Shirt - Global Fashion SS2025</field>
+            <field name="lead_type">opportunity</field>
+            <field name="partner_id" ref="partner_buyer_us"/>
+            <field name="contact_name">Mr. John Smith</field>
+            <field name="contact_email">john@globalfashion.com</field>
+            <field name="contact_phone">+1-555-0101</field>
+            <field name="company_name">Global Fashion Inc.</field>
+            <field name="country_id" ref="base.us"/>
+            <field name="product_category">polo</field>
+            <field name="expected_qty">4000</field>
+            <field name="expected_revenue">19400</field>
+            <field name="expected_close_date">2025-01-15</field>
+            <field name="probability">100</field>
+            <field name="source">email</field>
+            <field name="team">export</field>
+            <field name="priority">2</field>
+            <field name="stage">won</field>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="notes">Khách hàng lâu năm, đơn hàng lặp lại mỗi mùa. Đã chốt giá $4.85/pc FOB.</field>
+        </record>
+
+        <!-- Lead 2: Won - T-Shirt order from EuroStyle -->
+        <record id="crm_lead_tshirt_eu" model="garment.crm.lead">
+            <field name="name">Basic T-Shirt Collection - EuroStyle AW2025</field>
+            <field name="lead_type">opportunity</field>
+            <field name="partner_id" ref="partner_buyer_eu"/>
+            <field name="contact_name">Ms. Anna Mueller</field>
+            <field name="contact_email">anna@eurostyle.de</field>
+            <field name="contact_phone">+49-30-12346</field>
+            <field name="company_name">EuroStyle GmbH</field>
+            <field name="country_id" ref="base.de"/>
+            <field name="product_category">tshirt</field>
+            <field name="expected_qty">5000</field>
+            <field name="expected_revenue">16000</field>
+            <field name="expected_close_date">2025-02-10</field>
+            <field name="probability">100</field>
+            <field name="source">exhibition</field>
+            <field name="team">export</field>
+            <field name="priority">2</field>
+            <field name="stage">won</field>
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+            <field name="notes">Gặp tại hội chợ MAGIC Las Vegas 2024. Buyer yêu cầu BSCI + lab test.</field>
+        </record>
+
+        <!-- Lead 3: Negotiation - Jacket for Tokyo Fashion -->
+        <record id="crm_lead_jacket_jp" model="garment.crm.lead">
+            <field name="name">Winter Jacket Collection - Tokyo Fashion FW2025</field>
+            <field name="lead_type">opportunity</field>
+            <field name="partner_id" ref="partner_buyer_jp"/>
+            <field name="contact_name">Mr. Takeshi Yamamoto</field>
+            <field name="contact_email">takeshi@tokyofashion.jp</field>
+            <field name="contact_phone">+81-3-1234568</field>
+            <field name="company_name">Tokyo Fashion Co., Ltd.</field>
+            <field name="country_id" ref="base.jp"/>
+            <field name="product_category">jacket</field>
+            <field name="expected_qty">3000</field>
+            <field name="expected_revenue">45000</field>
+            <field name="expected_close_date">2025-04-30</field>
+            <field name="probability">60</field>
+            <field name="source">referral</field>
+            <field name="team">export</field>
+            <field name="priority">3</field>
+            <field name="stage">negotiation</field>
+            <field name="notes">Đang đàm phán giá. Buyer yêu cầu 100% inspection đơn đầu. Cần gửi mẫu counter sample.</field>
+        </record>
+
+        <!-- Lead 4: Proposal - Uniform for Seoul Trading -->
+        <record id="crm_lead_uniform_kr" model="garment.crm.lead">
+            <field name="name">Corporate Uniform - Seoul Trading 2025</field>
+            <field name="lead_type">opportunity</field>
+            <field name="partner_id" ref="partner_buyer_kr"/>
+            <field name="contact_name">Ms. Kim Soo-yeon</field>
+            <field name="contact_email">sooyeon@seoultrading.kr</field>
+            <field name="contact_phone">+82-2-555-1235</field>
+            <field name="company_name">Seoul Trading Corp.</field>
+            <field name="country_id" ref="base.kr"/>
+            <field name="product_category">uniform</field>
+            <field name="expected_qty">10000</field>
+            <field name="expected_revenue">55000</field>
+            <field name="expected_close_date">2025-06-15</field>
+            <field name="probability">40</field>
+            <field name="source">website</field>
+            <field name="team">export</field>
+            <field name="priority">1</field>
+            <field name="stage">proposal</field>
+            <field name="notes">Agent Hàn Quốc mua cho nhiều công ty. Đã gửi báo giá, đang chờ phản hồi.</field>
+        </record>
+
+        <!-- Lead 5: Qualified - Sportswear from Australia -->
+        <record id="crm_lead_sport_au" model="garment.crm.lead">
+            <field name="name">Sportswear Collection - Aussie Apparel 2025</field>
+            <field name="lead_type">opportunity</field>
+            <field name="partner_id" ref="partner_buyer_au"/>
+            <field name="contact_name">Mr. James Cooper</field>
+            <field name="contact_email">james@aussieapparel.com.au</field>
+            <field name="contact_phone">+61-2-9876-5433</field>
+            <field name="company_name">Aussie Apparel Wholesale</field>
+            <field name="country_id" ref="base.au"/>
+            <field name="product_category">sportswear</field>
+            <field name="expected_qty">5000</field>
+            <field name="expected_revenue">30000</field>
+            <field name="expected_close_date">2025-07-31</field>
+            <field name="probability">25</field>
+            <field name="source">social</field>
+            <field name="team">export</field>
+            <field name="priority">1</field>
+            <field name="stage">qualified</field>
+            <field name="notes">Liên hệ qua LinkedIn. Cần gửi profile công ty + certification.</field>
+        </record>
+
+        <!-- Lead 6: New - Domestic inquiry -->
+        <record id="crm_lead_domestic" model="garment.crm.lead">
+            <field name="name">Đồng phục công sở - Công ty ABC Việt Nam</field>
+            <field name="lead_type">lead</field>
+            <field name="contact_name">Anh Minh</field>
+            <field name="contact_email">minh@abcvn.com</field>
+            <field name="contact_phone">0909-123-456</field>
+            <field name="company_name">Công ty TNHH ABC Việt Nam</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="product_category">uniform</field>
+            <field name="expected_qty">2000</field>
+            <field name="expected_revenue">8000</field>
+            <field name="expected_close_date">2025-05-15</field>
+            <field name="probability">15</field>
+            <field name="source">phone</field>
+            <field name="team">domestic</field>
+            <field name="priority">0</field>
+            <field name="stage">new</field>
+            <field name="notes">Khách nội địa, gọi điện hỏi giá đồng phục công ty 2000 bộ.</field>
+        </record>
+
+        <!-- Lead 7: Lost - Pants order -->
+        <record id="crm_lead_pants_lost" model="garment.crm.lead">
+            <field name="name">Casual Pants - Brand X USA</field>
+            <field name="lead_type">opportunity</field>
+            <field name="contact_name">Mr. David Wilson</field>
+            <field name="contact_email">david@brandx.com</field>
+            <field name="contact_phone">+1-555-0200</field>
+            <field name="company_name">Brand X Corp.</field>
+            <field name="country_id" ref="base.us"/>
+            <field name="product_category">pants</field>
+            <field name="expected_qty">8000</field>
+            <field name="expected_revenue">48000</field>
+            <field name="expected_close_date">2025-03-01</field>
+            <field name="probability">0</field>
+            <field name="source">exhibition</field>
+            <field name="team">export</field>
+            <field name="priority">2</field>
+            <field name="stage">lost</field>
+            <field name="lost_reason">price</field>
+            <field name="notes">&lt;p&gt;Gặp tại Texworld Paris. Chênh lệch giá 15% so với BD. Buyer chọn nhà máy Bangladesh.&lt;/p&gt;</field>
+        </record>
+
+        <!-- Lead 8: CMT opportunity -->
+        <record id="crm_lead_cmt" model="garment.crm.lead">
+            <field name="name">CMT Dress Production - Fashion Korea</field>
+            <field name="lead_type">opportunity</field>
+            <field name="partner_id" ref="partner_buyer_kr"/>
+            <field name="contact_name">Ms. Park Min-ji</field>
+            <field name="contact_email">minji@fashionkorea.kr</field>
+            <field name="contact_phone">+82-2-555-5678</field>
+            <field name="company_name">Fashion Korea Ltd.</field>
+            <field name="country_id" ref="base.kr"/>
+            <field name="product_category">dress</field>
+            <field name="expected_qty">6000</field>
+            <field name="expected_revenue">24000</field>
+            <field name="expected_close_date">2025-05-30</field>
+            <field name="probability">50</field>
+            <field name="source">agent</field>
+            <field name="team">cmt</field>
+            <field name="priority">2</field>
+            <field name="stage">negotiation</field>
+            <field name="notes">Gia công CMT, nguyên liệu buyer cung cấp. Đang thảo luận CM cost.</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- CRM FEEDBACK / COMPLAINTS                 -->
+        <!-- ========================================= -->
+
+        <!-- Feedback 1: Quality complaint - resolved -->
+        <record id="feedback_quality_gf" model="garment.crm.feedback">
+            <field name="name">Lỗi chỉ may cổ áo Polo - Đơn hàng GF-PO-2024-008</field>
+            <field name="feedback_type">complaint</field>
+            <field name="partner_id" ref="partner_buyer_us"/>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="date">2025-01-20</field>
+            <field name="category">quality</field>
+            <field name="severity">high</field>
+            <field name="description">&lt;p&gt;Buyer phát hiện 3% sản phẩm bị lỗi chỉ may cổ áo (bỏ mũi, lỏng chỉ). Yêu cầu kiểm tra lại toàn bộ lô hàng còn lại và đề xuất biện pháp khắc phục.&lt;/p&gt;</field>
+            <field name="assigned_to" ref="base.user_admin"/>
+            <field name="resolution">&lt;p&gt;- Đã kiểm tra 100% lô hàng còn lại&lt;br/&gt;- Thay kim máy may cổ áo&lt;br/&gt;- Bổ sung QC inline tại công đoạn may cổ&lt;br/&gt;- Gửi báo cáo CAP (Corrective Action Plan)&lt;/p&gt;</field>
+            <field name="resolution_date">2025-01-25</field>
+            <field name="satisfaction_rating">4</field>
+            <field name="state">closed</field>
+        </record>
+
+        <!-- Feedback 2: Delivery delay - processing -->
+        <record id="feedback_delivery_eu" model="garment.crm.feedback">
+            <field name="name">Chậm giao hàng 5 ngày - Đơn T-Shirt EuroStyle</field>
+            <field name="feedback_type">complaint</field>
+            <field name="partner_id" ref="partner_buyer_eu"/>
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+            <field name="date">2025-02-15</field>
+            <field name="category">delivery</field>
+            <field name="severity">medium</field>
+            <field name="description">&lt;p&gt;Đơn hàng T-Shirt bị chậm giao 5 ngày so với deadline do thiếu nguyên liệu phụ. Buyer yêu cầu giải trình và cam kết delivery đúng hạn cho các đơn tiếp theo.&lt;/p&gt;</field>
+            <field name="assigned_to" ref="base.user_admin"/>
+            <field name="state">processing</field>
+            <field name="follow_up_date">2025-03-01</field>
+            <field name="follow_up_notes">Cần gửi email update tiến độ hàng tuần cho buyer</field>
+        </record>
+
+        <!-- Feedback 3: Packaging suggestion -->
+        <record id="feedback_packaging_jp" model="garment.crm.feedback">
+            <field name="name">Đề xuất cải tiến đóng gói - Tokyo Fashion</field>
+            <field name="feedback_type">suggestion</field>
+            <field name="partner_id" ref="partner_buyer_jp"/>
+            <field name="date">2025-01-30</field>
+            <field name="category">packaging</field>
+            <field name="severity">low</field>
+            <field name="description">&lt;p&gt;Buyer đề xuất:&lt;br/&gt;1. Sử dụng bao PE tự hủy sinh học&lt;br/&gt;2. Gắn sticker warning bằng tiếng Nhật trên mỗi thùng&lt;br/&gt;3. Thay carton 5 lớp bằng 7 lớp cho đơn hàng jacket&lt;/p&gt;</field>
+            <field name="state">draft</field>
+        </record>
+
+        <!-- Feedback 4: Praise from buyer -->
+        <record id="feedback_praise_kr" model="garment.crm.feedback">
+            <field name="name">Khen ngợi chất lượng đồng phục pilot order</field>
+            <field name="feedback_type">praise</field>
+            <field name="partner_id" ref="partner_buyer_kr"/>
+            <field name="date">2025-02-10</field>
+            <field name="category">quality</field>
+            <field name="severity">low</field>
+            <field name="description">&lt;p&gt;Buyer Seoul Trading rất hài lòng với chất lượng đồng phục pilot order 500 bộ. Đánh giá cao: stitching quality, measurement accuracy, on-time delivery. Có khả năng tăng quantity đơn tiếp theo.&lt;/p&gt;</field>
+            <field name="satisfaction_rating">5</field>
+            <field name="state">closed</field>
+        </record>
+
+        <!-- Feedback 5: Communication issue -->
+        <record id="feedback_comm_au" model="garment.crm.feedback">
+            <field name="name">Phản hồi về tốc độ reply email chậm</field>
+            <field name="feedback_type">feedback</field>
+            <field name="partner_id" ref="partner_buyer_au"/>
+            <field name="date">2025-02-18</field>
+            <field name="category">communication</field>
+            <field name="severity">medium</field>
+            <field name="description">&lt;p&gt;Buyer phản hồi rằng thời gian trả lời email trung bình 2-3 ngày là quá lâu. Yêu cầu reply trong vòng 24h cho các email urgent.&lt;/p&gt;</field>
+            <field name="assigned_to" ref="base.user_admin"/>
+            <field name="state">processing</field>
+        </record>
+
+    </data>
+</odoo>

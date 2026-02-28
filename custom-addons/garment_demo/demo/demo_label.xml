@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ========================================= -->
+        <!-- TEM SẢN PHẨM (Product Labels)             -->
+        <!-- ========================================= -->
+
+        <!-- Labels for Polo order - White M -->
+        <record id="label_polo_wht_m_1" model="garment.label">
+            <field name="label_type">product</field>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="size_id" ref="garment_base.size_m"/>
+            <field name="quantity">1</field>
+            <field name="warehouse_zone">finished</field>
+            <field name="location">Kệ A1-01</field>
+            <field name="state">applied</field>
+            <field name="description">Classic Polo Shirt - White - M - PO GF-PO-2025-001</field>
+        </record>
+        <record id="label_polo_wht_m_2" model="garment.label">
+            <field name="label_type">product</field>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="size_id" ref="garment_base.size_m"/>
+            <field name="quantity">1</field>
+            <field name="warehouse_zone">finished</field>
+            <field name="location">Kệ A1-01</field>
+            <field name="state">applied</field>
+        </record>
+
+        <!-- Labels for Polo order - Navy L -->
+        <record id="label_polo_nvy_l_1" model="garment.label">
+            <field name="label_type">product</field>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="color_id" ref="garment_base.color_navy"/>
+            <field name="size_id" ref="garment_base.size_l"/>
+            <field name="quantity">1</field>
+            <field name="warehouse_zone">finished</field>
+            <field name="location">Kệ A1-02</field>
+            <field name="state">printed</field>
+        </record>
+
+        <!-- Labels for T-Shirt order - Black M -->
+        <record id="label_tshirt_blk_m_1" model="garment.label">
+            <field name="label_type">product</field>
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+            <field name="style_id" ref="style_tshirt_basic"/>
+            <field name="color_id" ref="garment_base.color_black"/>
+            <field name="size_id" ref="garment_base.size_m"/>
+            <field name="quantity">1</field>
+            <field name="warehouse_zone">finished</field>
+            <field name="location">Kệ B2-01</field>
+            <field name="state">applied</field>
+        </record>
+
+        <!-- Location labels -->
+        <record id="label_loc_npl" model="garment.label">
+            <field name="label_type">location</field>
+            <field name="quantity">1</field>
+            <field name="warehouse_zone">material</field>
+            <field name="location">Kho NPL - Dãy A</field>
+            <field name="state">applied</field>
+            <field name="description">Tem vị trí Kho Nguyên Phụ Liệu - Dãy A</field>
+        </record>
+        <record id="label_loc_tp" model="garment.label">
+            <field name="label_type">location</field>
+            <field name="quantity">1</field>
+            <field name="warehouse_zone">finished</field>
+            <field name="location">Kho TP - Kệ A1</field>
+            <field name="state">applied</field>
+            <field name="description">Tem vị trí Kho Thành Phẩm - Kệ A1</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- THÙNG HÀNG (Carton Boxes)                 -->
+        <!-- ========================================= -->
+
+        <!-- Carton boxes for Polo order -->
+        <record id="carton_polo_1" model="garment.carton.box">
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="style_code">ST-POLO-001</field>
+            <field name="color">White</field>
+            <field name="size">M</field>
+            <field name="quantity">50</field>
+            <field name="length_cm">60</field>
+            <field name="width_cm">40</field>
+            <field name="height_cm">35</field>
+            <field name="gross_weight">12.5</field>
+            <field name="net_weight">11.0</field>
+            <field name="location">Khu Xuất Hàng - Bay 1</field>
+            <field name="state">packed</field>
+        </record>
+        <record id="carton_polo_2" model="garment.carton.box">
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="style_code">ST-POLO-001</field>
+            <field name="color">White</field>
+            <field name="size">L</field>
+            <field name="quantity">50</field>
+            <field name="length_cm">60</field>
+            <field name="width_cm">40</field>
+            <field name="height_cm">35</field>
+            <field name="gross_weight">13.0</field>
+            <field name="net_weight">11.5</field>
+            <field name="location">Khu Xuất Hàng - Bay 1</field>
+            <field name="state">packed</field>
+        </record>
+        <record id="carton_polo_3" model="garment.carton.box">
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="style_code">ST-POLO-001</field>
+            <field name="color">Navy</field>
+            <field name="size">M</field>
+            <field name="quantity">50</field>
+            <field name="length_cm">60</field>
+            <field name="width_cm">40</field>
+            <field name="height_cm">35</field>
+            <field name="gross_weight">12.5</field>
+            <field name="net_weight">11.0</field>
+            <field name="location">Khu Xuất Hàng - Bay 1</field>
+            <field name="state">packed</field>
+        </record>
+        <record id="carton_polo_4" model="garment.carton.box">
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="style_code">ST-POLO-001</field>
+            <field name="color">Navy</field>
+            <field name="size">L</field>
+            <field name="quantity">40</field>
+            <field name="length_cm">60</field>
+            <field name="width_cm">40</field>
+            <field name="height_cm">35</field>
+            <field name="gross_weight">10.5</field>
+            <field name="net_weight">9.2</field>
+            <field name="location">Khu Xuất Hàng - Bay 1</field>
+            <field name="state">packed</field>
+        </record>
+
+        <!-- Carton boxes for T-Shirt order -->
+        <record id="carton_tshirt_1" model="garment.carton.box">
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+            <field name="style_code">ST-TEE-001</field>
+            <field name="color">Black</field>
+            <field name="size">M</field>
+            <field name="quantity">60</field>
+            <field name="length_cm">55</field>
+            <field name="width_cm">38</field>
+            <field name="height_cm">30</field>
+            <field name="gross_weight">10.8</field>
+            <field name="net_weight">9.6</field>
+            <field name="location">Kho TP - Kệ B2</field>
+            <field name="state">packed</field>
+        </record>
+        <record id="carton_tshirt_2" model="garment.carton.box">
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+            <field name="style_code">ST-TEE-001</field>
+            <field name="color">Black</field>
+            <field name="size">L</field>
+            <field name="quantity">60</field>
+            <field name="length_cm">55</field>
+            <field name="width_cm">38</field>
+            <field name="height_cm">30</field>
+            <field name="gross_weight">11.2</field>
+            <field name="net_weight">10.0</field>
+            <field name="location">Kho TP - Kệ B2</field>
+            <field name="state">packed</field>
+        </record>
+        <record id="carton_tshirt_3" model="garment.carton.box">
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+            <field name="style_code">ST-TEE-001</field>
+            <field name="color">Grey</field>
+            <field name="size">M</field>
+            <field name="quantity">50</field>
+            <field name="length_cm">55</field>
+            <field name="width_cm">38</field>
+            <field name="height_cm">30</field>
+            <field name="gross_weight">9.5</field>
+            <field name="net_weight">8.4</field>
+            <field name="location">Kho TP - Kệ B2</field>
+            <field name="state">packed</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- TEM THÙNG HÀNG (Carton Labels)            -->
+        <!-- ========================================= -->
+        <record id="label_carton_polo_1" model="garment.label">
+            <field name="label_type">carton</field>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="carton_id" ref="carton_polo_1"/>
+            <field name="quantity">50</field>
+            <field name="warehouse_zone">shipping</field>
+            <field name="location">Khu Xuất Hàng - Bay 1</field>
+            <field name="state">applied</field>
+            <field name="description">ST-POLO-001 | White | M | 50 pcs</field>
+        </record>
+        <record id="label_carton_polo_2" model="garment.label">
+            <field name="label_type">carton</field>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="carton_id" ref="carton_polo_2"/>
+            <field name="quantity">50</field>
+            <field name="warehouse_zone">shipping</field>
+            <field name="location">Khu Xuất Hàng - Bay 1</field>
+            <field name="state">applied</field>
+            <field name="description">ST-POLO-001 | White | L | 50 pcs</field>
+        </record>
+        <record id="label_carton_tshirt_1" model="garment.label">
+            <field name="label_type">carton</field>
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+            <field name="carton_id" ref="carton_tshirt_1"/>
+            <field name="quantity">60</field>
+            <field name="warehouse_zone">finished</field>
+            <field name="location">Kho TP - Kệ B2</field>
+            <field name="state">printed</field>
+            <field name="description">ST-TEE-001 | Black | M | 60 pcs</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- PALLET                                    -->
+        <!-- ========================================= -->
+
+        <!-- Pallet 1: Polo order - closed, ready to ship -->
+        <record id="pallet_polo_1" model="garment.pallet">
+            <field name="pallet_type">standard</field>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="length_cm">120</field>
+            <field name="width_cm">100</field>
+            <field name="height_cm">150</field>
+            <field name="max_weight">1000</field>
+            <field name="location">Khu Xuất Hàng - Bay 1</field>
+            <field name="warehouse_zone">shipping</field>
+            <field name="state">draft</field>
+            <field name="notes">Polo shirts - Global Fashion - Ready for container loading</field>
+        </record>
+
+        <!-- Pallet 2: T-Shirt order - open, still loading -->
+        <record id="pallet_tshirt_1" model="garment.pallet">
+            <field name="pallet_type">euro</field>
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+            <field name="length_cm">120</field>
+            <field name="width_cm">80</field>
+            <field name="height_cm">145</field>
+            <field name="max_weight">800</field>
+            <field name="location">Kho TP - Kệ B</field>
+            <field name="warehouse_zone">finished</field>
+            <field name="state">draft</field>
+            <field name="notes">T-Shirts EuroStyle - Đang xếp thêm thùng</field>
+        </record>
+
+        <!-- Pallet label -->
+        <record id="label_pallet_polo_1" model="garment.label">
+            <field name="label_type">pallet</field>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="pallet_id" ref="pallet_polo_1"/>
+            <field name="quantity">190</field>
+            <field name="warehouse_zone">shipping</field>
+            <field name="location">Khu Xuất Hàng - Bay 1</field>
+            <field name="state">applied</field>
+            <field name="description">Pallet #1 - Polo Classic - 4 cartons - 190 pcs</field>
+        </record>
+
+    </data>
+
+    <!-- Assign cartons to pallets (no noupdate so updates apply) -->
+    <data>
+        <record id="carton_polo_1" model="garment.carton.box">
+            <field name="pallet_id" ref="pallet_polo_1"/>
+            <field name="state">on_pallet</field>
+        </record>
+        <record id="carton_polo_2" model="garment.carton.box">
+            <field name="pallet_id" ref="pallet_polo_1"/>
+            <field name="state">on_pallet</field>
+        </record>
+        <record id="carton_polo_3" model="garment.carton.box">
+            <field name="pallet_id" ref="pallet_polo_1"/>
+            <field name="state">on_pallet</field>
+        </record>
+        <record id="carton_polo_4" model="garment.carton.box">
+            <field name="pallet_id" ref="pallet_polo_1"/>
+            <field name="state">on_pallet</field>
+        </record>
+        <record id="carton_tshirt_1" model="garment.carton.box">
+            <field name="pallet_id" ref="pallet_tshirt_1"/>
+            <field name="state">on_pallet</field>
+        </record>
+        <record id="carton_tshirt_2" model="garment.carton.box">
+            <field name="pallet_id" ref="pallet_tshirt_1"/>
+            <field name="state">on_pallet</field>
+        </record>
+        <!-- Update pallet states after cartons assigned -->
+        <record id="pallet_polo_1" model="garment.pallet">
+            <field name="state">closed</field>
+        </record>
+        <record id="pallet_tshirt_1" model="garment.pallet">
+            <field name="state">open</field>
+        </record>
+    </data>
+</odoo>

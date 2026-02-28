@@ -17,6 +17,7 @@ Quản lý in tem và pallet cho công ty may:
     'depends': [
         'garment_base',
         'garment_packing',
+        'garment_delivery',
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -24,6 +25,7 @@ Quản lý in tem và pallet cho công ty may:
         'views/label_views.xml',
         'views/pallet_views.xml',
         'views/carton_management_views.xml',
+        'views/delivery_integration_views.xml',
         'views/menu_views.xml',
     ],
     'installable': True,

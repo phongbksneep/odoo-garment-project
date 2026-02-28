@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_garment_inventory" model="ir.sequence">
+        <field name="name">Garment Inventory Sequence</field>
+        <field name="code">garment.inventory</field>
+        <field name="prefix">KK-%(year)s-</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

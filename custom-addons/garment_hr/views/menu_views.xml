@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- Employee Management -->
+    <menuitem id="menu_garment_employee"
+              name="Nhân Viên"
+              parent="garment_base.menu_garment_hr_main"
+              action="action_garment_employee"
+              sequence="5"/>
+
+    <menuitem id="menu_garment_employee_leaders"
+              name="Tổ Trưởng / Chuyền Trưởng"
+              parent="garment_base.menu_garment_hr_main"
+              action="action_garment_employee_leaders"
+              sequence="7"/>
+
+    <menuitem id="menu_garment_employee_by_dept"
+              name="Theo Phòng Ban"
+              parent="garment_base.menu_garment_hr_main"
+              action="action_garment_employee_by_dept"
+              sequence="8"/>
+
     <menuitem id="menu_attendance"
               name="Chấm Công"
               parent="garment_base.menu_garment_hr_main"

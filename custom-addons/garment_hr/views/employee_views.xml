@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============= EXTEND HR.EMPLOYEE FORM ============= -->
+    <record id="view_garment_employee_form_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.form.garment</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Thông Tin May" name="garment_info">
+                    <group>
+                        <group string="Thông Tin Công Việc">
+                            <field name="employee_code"/>
+                            <field name="garment_role"/>
+                            <field name="contract_type"/>
+                            <field name="join_date"/>
+                            <field name="sewing_line_id"/>
+                        </group>
+                        <group string="Giấy Tờ &amp; Ngân Hàng">
+                            <field name="id_number"/>
+                            <field name="insurance_number"/>
+                            <field name="tax_code"/>
+                            <field name="bank_name"/>
+                            <field name="bank_account"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Liên Hệ Khẩn Cấp">
+                            <field name="emergency_contact"/>
+                            <field name="emergency_phone"/>
+                        </group>
+                    </group>
+                    <group string="Tay Nghề">
+                        <field name="skill_ids" nolabel="1">
+                            <list editable="bottom">
+                                <field name="skill_type"/>
+                                <field name="level"/>
+                                <field name="detail"/>
+                                <field name="certified"/>
+                            </list>
+                        </field>
+                    </group>
+                    <group>
+                        <field name="notes_garment" placeholder="Ghi chú nhân viên..."/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ============= GARMENT EMPLOYEE LIST ============= -->
+    <record id="view_garment_employee_tree" model="ir.ui.view">
+        <field name="name">hr.employee.tree.garment</field>
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="employee_code"/>
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="garment_role"/>
+                <field name="job_title"/>
+                <field name="contract_type"/>
+                <field name="join_date"/>
+                <field name="sewing_line_id" optional="show"/>
+                <field name="work_phone" optional="show"/>
+                <field name="skill_count"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============= GARMENT EMPLOYEE SEARCH ============= -->
+    <record id="view_garment_employee_search" model="ir.ui.view">
+        <field name="name">hr.employee.search.garment</field>
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="employee_code"/>
+                <field name="department_id"/>
+                <field name="garment_role"/>
+                <filter name="filter_worker" string="Công Nhân"
+                        domain="[('garment_role','=','worker')]"/>
+                <filter name="filter_team_leader" string="Tổ Trưởng"
+                        domain="[('garment_role','=','team_leader')]"/>
+                <filter name="filter_line_leader" string="Chuyền Trưởng"
+                        domain="[('garment_role','=','line_leader')]"/>
+                <filter name="filter_manager" string="Trưởng Phòng"
+                        domain="[('garment_role','=','dept_manager')]"/>
+                <filter name="filter_qc" string="QC"
+                        domain="[('garment_role','=','qc')]"/>
+                <separator/>
+                <group>
+                    <filter name="group_dept" string="Theo Phòng Ban"
+                            context="{'group_by':'department_id'}"/>
+                    <filter name="group_role" string="Theo Chức Vụ"
+                            context="{'group_by':'garment_role'}"/>
+                    <filter name="group_contract" string="Theo Loại HĐ"
+                            context="{'group_by':'contract_type'}"/>
+                    <filter name="group_line" string="Theo Chuyền"
+                            context="{'group_by':'sewing_line_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============= ACTION ============= -->
+    <record id="action_garment_employee" model="ir.actions.act_window">
+        <field name="name">Nhân Viên</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_garment_employee_tree')})]"/>
+        <field name="search_view_id" ref="view_garment_employee_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Thêm nhân viên mới
+            </p>
+            <p>Quản lý nhân viên công ty may: thông tin cá nhân, chức vụ, tay nghề, chấm công.</p>
+        </field>
+    </record>
+
+    <record id="action_garment_employee_leaders" model="ir.actions.act_window">
+        <field name="name">Tổ Trưởng / Chuyền Trưởng</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="domain">[('garment_role','in',['team_leader','line_leader','supervisor'])]</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_garment_employee_tree')})]"/>
+        <field name="search_view_id" ref="view_garment_employee_search"/>
+    </record>
+
+    <record id="action_garment_employee_by_dept" model="ir.actions.act_window">
+        <field name="name">Nhân Viên Theo Phòng Ban</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="context">{'group_by': 'department_id'}</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_garment_employee_tree')})]"/>
+        <field name="search_view_id" ref="view_garment_employee_search"/>
+    </record>
+</odoo>

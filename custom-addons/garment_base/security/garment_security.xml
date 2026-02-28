@@ -7,19 +7,73 @@
         <field name="category_id" ref="base.module_category_manufacturing"/>
     </record>
 
-    <!-- Garment User Group -->
+    <!-- ======== ROLE HIERARCHY ======== -->
+    <!-- Level 1: User (Công Nhân / Nhân Viên) — read-only for most, write for own data -->
     <record id="group_garment_user" model="res.groups">
         <field name="name">User</field>
         <field name="sequence">10</field>
         <field name="privilege_id" ref="res_groups_privilege_garment"/>
     </record>
 
-    <!-- Garment Manager Group -->
+    <!-- Level 2: Team Leader (Tổ Trưởng / Chuyền Trưởng) — read/write own department -->
+    <record id="group_garment_team_leader" model="res.groups">
+        <field name="name">Team Leader</field>
+        <field name="sequence">15</field>
+        <field name="privilege_id" ref="res_groups_privilege_garment"/>
+        <field name="implied_ids" eval="[(4, ref('group_garment_user'))]"/>
+    </record>
+
+    <!-- Level 3: Department Manager (Trưởng Phòng) — full dept access + approve -->
+    <record id="group_garment_dept_manager" model="res.groups">
+        <field name="name">Department Manager</field>
+        <field name="sequence">18</field>
+        <field name="privilege_id" ref="res_groups_privilege_garment"/>
+        <field name="implied_ids" eval="[(4, ref('group_garment_team_leader'))]"/>
+    </record>
+
+    <!-- Level 4: Administrator (Quản Lý / Giám Đốc) — full system access -->
     <record id="group_garment_manager" model="res.groups">
         <field name="name">Administrator</field>
         <field name="sequence">20</field>
         <field name="privilege_id" ref="res_groups_privilege_garment"/>
-        <field name="implied_ids" eval="[(4, ref('group_garment_user'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_garment_dept_manager'))]"/>
         <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    <!-- ======== RECORD RULES ======== -->
+    <!-- User: Can read all orders (no write) -->
+    <record id="rule_garment_order_user_read" model="ir.rule">
+        <field name="name">Garment User: Read All Orders</field>
+        <field name="model_id" ref="model_garment_order"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('group_garment_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- Team Leader: Read/write orders (no delete) -->
+    <record id="rule_garment_order_team_leader" model="ir.rule">
+        <field name="name">Team Leader: Write Orders</field>
+        <field name="model_id" ref="model_garment_order"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('group_garment_team_leader'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- Manager: Full access to orders -->
+    <record id="rule_garment_order_manager" model="ir.rule">
+        <field name="name">Manager: Full Order Access</field>
+        <field name="model_id" ref="model_garment_order"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('group_garment_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
     </record>
 </odoo>

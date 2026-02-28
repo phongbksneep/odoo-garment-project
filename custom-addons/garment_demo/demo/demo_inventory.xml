@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ========================================= -->
+        <!-- PHIẾU KIỂM KÊ #1: Kho Thành Phẩm         -->
+        <!-- (Đã hoàn thành, có chênh lệch)            -->
+        <!-- ========================================= -->
+        <record id="inventory_finished_01" model="garment.inventory">
+            <field name="date">2025-02-20</field>
+            <field name="warehouse_type">finished</field>
+            <field name="responsible_id" ref="emp_warehouse"/>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="notes">Kiểm kê kho thành phẩm đơn hàng Polo Global Fashion. Phát hiện thiếu 5 áo White/M.</field>
+            <field name="state">validated</field>
+        </record>
+
+        <!-- Line 1: Polo White M - deficit -->
+        <record id="inv_line_polo_wm" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_finished_01"/>
+            <field name="item_type">product</field>
+            <field name="item_name">Classic Polo Shirt - White - M</field>
+            <field name="item_code">ST-POLO-001-WHT-M</field>
+            <field name="style_code">ST-POLO-001</field>
+            <field name="color">White</field>
+            <field name="size">M</field>
+            <field name="location">Kệ A1-01</field>
+            <field name="unit">pcs</field>
+            <field name="expected_qty">800</field>
+            <field name="actual_qty">795</field>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+        </record>
+
+        <!-- Line 2: Polo White L - ok -->
+        <record id="inv_line_polo_wl" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_finished_01"/>
+            <field name="item_type">product</field>
+            <field name="item_name">Classic Polo Shirt - White - L</field>
+            <field name="item_code">ST-POLO-001-WHT-L</field>
+            <field name="style_code">ST-POLO-001</field>
+            <field name="color">White</field>
+            <field name="size">L</field>
+            <field name="location">Kệ A1-02</field>
+            <field name="unit">pcs</field>
+            <field name="expected_qty">600</field>
+            <field name="actual_qty">600</field>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+        </record>
+
+        <!-- Line 3: Polo Navy M - surplus -->
+        <record id="inv_line_polo_nm" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_finished_01"/>
+            <field name="item_type">product</field>
+            <field name="item_name">Classic Polo Shirt - Navy - M</field>
+            <field name="item_code">ST-POLO-001-NVY-M</field>
+            <field name="style_code">ST-POLO-001</field>
+            <field name="color">Navy</field>
+            <field name="size">M</field>
+            <field name="location">Kệ A1-03</field>
+            <field name="unit">pcs</field>
+            <field name="expected_qty">700</field>
+            <field name="actual_qty">703</field>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+        </record>
+
+        <!-- Line 4: Polo Navy L - ok -->
+        <record id="inv_line_polo_nl" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_finished_01"/>
+            <field name="item_type">product</field>
+            <field name="item_name">Classic Polo Shirt - Navy - L</field>
+            <field name="item_code">ST-POLO-001-NVY-L</field>
+            <field name="style_code">ST-POLO-001</field>
+            <field name="color">Navy</field>
+            <field name="size">L</field>
+            <field name="location">Kệ A1-04</field>
+            <field name="unit">pcs</field>
+            <field name="expected_qty">500</field>
+            <field name="actual_qty">500</field>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- PHIẾU KIỂM KÊ #2: Kho Nguyên Phụ Liệu   -->
+        <!-- (Đang kiểm kê)                            -->
+        <!-- ========================================= -->
+        <record id="inventory_material_01" model="garment.inventory">
+            <field name="date">2025-02-25</field>
+            <field name="warehouse_type">material</field>
+            <field name="responsible_id" ref="emp_warehouse"/>
+            <field name="notes">Kiểm kê kho NPL định kỳ cuối tháng 2/2025</field>
+            <field name="state">in_progress</field>
+        </record>
+
+        <!-- Line 1: Cotton Jersey fabric - deficit -->
+        <record id="inv_line_fabric_ctj" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_material_01"/>
+            <field name="item_type">fabric</field>
+            <field name="item_name">Cotton Jersey 160gsm</field>
+            <field name="item_code">CTJ-160</field>
+            <field name="location">Dãy A - Kệ 1</field>
+            <field name="unit">mét</field>
+            <field name="expected_qty">2500</field>
+            <field name="actual_qty">2380</field>
+        </record>
+
+        <!-- Line 2: Cotton Poplin fabric - ok -->
+        <record id="inv_line_fabric_ctp" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_material_01"/>
+            <field name="item_type">fabric</field>
+            <field name="item_name">Cotton Poplin 130gsm</field>
+            <field name="item_code">CTP-130</field>
+            <field name="location">Dãy A - Kệ 2</field>
+            <field name="unit">mét</field>
+            <field name="expected_qty">1800</field>
+            <field name="actual_qty">1800</field>
+        </record>
+
+        <!-- Line 3: TC Twill fabric - surplus -->
+        <record id="inv_line_fabric_tc" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_material_01"/>
+            <field name="item_type">fabric</field>
+            <field name="item_name">TC 65/35 Twill 200gsm</field>
+            <field name="item_code">TC-200</field>
+            <field name="location">Dãy A - Kệ 3</field>
+            <field name="unit">mét</field>
+            <field name="expected_qty">3000</field>
+            <field name="actual_qty">3050</field>
+        </record>
+
+        <!-- Line 4: Denim fabric -->
+        <record id="inv_line_fabric_dnm" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_material_01"/>
+            <field name="item_type">fabric</field>
+            <field name="item_name">Denim 12oz</field>
+            <field name="item_code">DNM-12</field>
+            <field name="location">Dãy B - Kệ 1</field>
+            <field name="unit">mét</field>
+            <field name="expected_qty">1200</field>
+            <field name="actual_qty">1150</field>
+        </record>
+
+        <!-- Line 5: Buttons accessory -->
+        <record id="inv_line_button" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_material_01"/>
+            <field name="item_type">accessory</field>
+            <field name="item_name">Nút áo sơ mi 4 lỗ - Trắng</field>
+            <field name="item_code">BTN-4H-WHT</field>
+            <field name="location">Tủ Phụ Liệu - Ngăn 1</field>
+            <field name="unit">viên</field>
+            <field name="expected_qty">50000</field>
+            <field name="actual_qty">49200</field>
+        </record>
+
+        <!-- Line 6: Zipper -->
+        <record id="inv_line_zipper" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_material_01"/>
+            <field name="item_type">accessory</field>
+            <field name="item_name">Khóa kéo YKK #5 - Navy</field>
+            <field name="item_code">ZIP-YKK5-NVY</field>
+            <field name="location">Tủ Phụ Liệu - Ngăn 3</field>
+            <field name="unit">chiếc</field>
+            <field name="expected_qty">3000</field>
+            <field name="actual_qty">3000</field>
+        </record>
+
+        <!-- Line 7: Thread -->
+        <record id="inv_line_thread" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_material_01"/>
+            <field name="item_type">accessory</field>
+            <field name="item_name">Chỉ may Coats Epic 120 - Trắng</field>
+            <field name="item_code">THR-EP120-WHT</field>
+            <field name="location">Tủ Phụ Liệu - Ngăn 5</field>
+            <field name="unit">cuộn</field>
+            <field name="expected_qty">200</field>
+            <field name="actual_qty">185</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- PHIẾU KIỂM KÊ #3: Kho Bán Thành Phẩm     -->
+        <!-- (Nháp - chưa bắt đầu)                    -->
+        <!-- ========================================= -->
+        <record id="inventory_wip_01" model="garment.inventory">
+            <field name="date">2025-03-01</field>
+            <field name="warehouse_type">wip</field>
+            <field name="responsible_id" ref="emp_pack_leader"/>
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+            <field name="notes">Kiểm kê BTP đơn T-Shirt EuroStyle trước khi chuyển sang hoàn thiện</field>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="inv_line_wip_tee_1" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_wip_01"/>
+            <field name="item_type">wip</field>
+            <field name="item_name">T-Shirt Black M - BTP (đã may, chưa ủi)</field>
+            <field name="item_code">TEE-BTP-BLK-M</field>
+            <field name="style_code">ST-TEE-001</field>
+            <field name="color">Black</field>
+            <field name="size">M</field>
+            <field name="location">Chuyền May 1 - Cuối chuyền</field>
+            <field name="unit">pcs</field>
+            <field name="expected_qty">500</field>
+            <field name="actual_qty">0</field>
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+        </record>
+
+        <record id="inv_line_wip_tee_2" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_wip_01"/>
+            <field name="item_type">wip</field>
+            <field name="item_name">T-Shirt Black L - BTP (đã may, chưa ủi)</field>
+            <field name="item_code">TEE-BTP-BLK-L</field>
+            <field name="style_code">ST-TEE-001</field>
+            <field name="color">Black</field>
+            <field name="size">L</field>
+            <field name="location">Chuyền May 1 - Cuối chuyền</field>
+            <field name="unit">pcs</field>
+            <field name="expected_qty">500</field>
+            <field name="actual_qty">0</field>
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- PHIẾU KIỂM KÊ #4: Thùng Carton            -->
+        <!-- (Hoàn thành, chờ xác nhận)                -->
+        <!-- ========================================= -->
+        <record id="inventory_carton_01" model="garment.inventory">
+            <field name="date">2025-02-22</field>
+            <field name="warehouse_type">finished</field>
+            <field name="responsible_id" ref="emp_pack_leader"/>
+            <field name="notes">Kiểm kê thùng carton đóng gói - so sánh với packing list</field>
+            <field name="state">done</field>
+        </record>
+
+        <record id="inv_line_carton_1" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_carton_01"/>
+            <field name="item_type">carton</field>
+            <field name="item_name">Thùng carton 5 lớp 60x40x35</field>
+            <field name="item_code">CTN-5L-604035</field>
+            <field name="location">Kho Bao Bì</field>
+            <field name="unit">thùng</field>
+            <field name="expected_qty">500</field>
+            <field name="actual_qty">485</field>
+        </record>
+
+        <record id="inv_line_carton_2" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_carton_01"/>
+            <field name="item_type">carton</field>
+            <field name="item_name">Thùng carton 3 lớp 55x38x30</field>
+            <field name="item_code">CTN-3L-553830</field>
+            <field name="location">Kho Bao Bì</field>
+            <field name="unit">thùng</field>
+            <field name="expected_qty">300</field>
+            <field name="actual_qty">305</field>
+        </record>
+
+        <record id="inv_line_polybag" model="garment.inventory.line">
+            <field name="inventory_id" ref="inventory_carton_01"/>
+            <field name="item_type">accessory</field>
+            <field name="item_name">Bao PE trong 30x40cm</field>
+            <field name="item_code">PE-3040</field>
+            <field name="location">Kho Bao Bì</field>
+            <field name="unit">chiếc</field>
+            <field name="expected_qty">10000</field>
+            <field name="actual_qty">9800</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_garment_inventory_user,garment.inventory.user,model_garment_inventory,garment_base.group_garment_user,1,1,1,0
+access_garment_inventory_manager,garment.inventory.manager,model_garment_inventory,garment_base.group_garment_manager,1,1,1,1
+access_garment_inventory_line_user,garment.inventory.line.user,model_garment_inventory_line,garment_base.group_garment_user,1,1,1,0
+access_garment_inventory_line_manager,garment.inventory.line.manager,model_garment_inventory_line,garment_base.group_garment_manager,1,1,1,1
+access_garment_inventory_scan_wizard_user,garment.inventory.scan.wizard.user,model_garment_inventory_scan_wizard,garment_base.group_garment_user,1,1,1,0
+access_garment_inventory_scan_wizard_manager,garment.inventory.scan.wizard.manager,model_garment_inventory_scan_wizard,garment_base.group_garment_manager,1,1,1,1

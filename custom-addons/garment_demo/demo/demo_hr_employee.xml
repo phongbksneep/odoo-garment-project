@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- ========================================= -->
+        <!-- CẬP NHẬT THÔNG TIN GARMENT CHO NHÂN VIÊN -->
+        <!-- (Bổ sung garment_role, employee_code,     -->
+        <!--  contract_type, sewing_line, CCCD, v.v.)  -->
+        <!-- ========================================= -->
+
+        <!-- Ban Giám Đốc -->
+        <record id="emp_director" model="hr.employee">
+            <field name="employee_code">NV-001</field>
+            <field name="garment_role">director</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2010-03-01</field>
+            <field name="id_number">079085001234</field>
+            <field name="insurance_number">BH-2010-001</field>
+            <field name="tax_code">MST-001234567</field>
+            <field name="bank_name">Vietcombank</field>
+            <field name="bank_account">0071000123456</field>
+            <field name="emergency_contact">Nguyễn Thị Hoa (Vợ)</field>
+            <field name="emergency_phone">0912-345-678</field>
+        </record>
+
+        <!-- Phòng Kế Hoạch -->
+        <record id="emp_planner_1" model="hr.employee">
+            <field name="employee_code">NV-010</field>
+            <field name="garment_role">dept_manager</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2015-06-15</field>
+            <field name="id_number">079089002345</field>
+            <field name="insurance_number">BH-2015-010</field>
+            <field name="tax_code">MST-002345678</field>
+            <field name="bank_name">Techcombank</field>
+            <field name="bank_account">1903456789</field>
+            <field name="emergency_contact">Trần Văn Nam (Chồng)</field>
+            <field name="emergency_phone">0903-456-789</field>
+        </record>
+
+        <!-- Phòng Mẫu -->
+        <record id="emp_sample_1" model="hr.employee">
+            <field name="employee_code">NV-020</field>
+            <field name="garment_role">dept_manager</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2016-01-10</field>
+            <field name="id_number">079090003456</field>
+        </record>
+        <record id="emp_sample_2" model="hr.employee">
+            <field name="employee_code">NV-021</field>
+            <field name="garment_role">worker</field>
+            <field name="contract_type">definite</field>
+            <field name="join_date">2022-05-20</field>
+            <field name="id_number">079098004567</field>
+        </record>
+
+        <!-- Tổ Cắt -->
+        <record id="emp_cut_leader" model="hr.employee">
+            <field name="employee_code">NV-100</field>
+            <field name="garment_role">team_leader</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2013-09-01</field>
+            <field name="sewing_line_id" ref="line_cutting"/>
+            <field name="id_number">079086005678</field>
+            <field name="insurance_number">BH-2013-100</field>
+            <field name="bank_name">BIDV</field>
+            <field name="bank_account">3110056789</field>
+            <field name="emergency_contact">Lê Thị Hà (Vợ)</field>
+            <field name="emergency_phone">0978-567-890</field>
+        </record>
+        <record id="emp_cut_1" model="hr.employee">
+            <field name="employee_code">NV-101</field>
+            <field name="garment_role">worker</field>
+            <field name="contract_type">definite</field>
+            <field name="join_date">2020-03-15</field>
+            <field name="sewing_line_id" ref="line_cutting"/>
+            <field name="id_number">079095006789</field>
+        </record>
+        <record id="emp_cut_2" model="hr.employee">
+            <field name="employee_code">NV-102</field>
+            <field name="garment_role">worker</field>
+            <field name="contract_type">definite</field>
+            <field name="join_date">2021-07-01</field>
+            <field name="sewing_line_id" ref="line_cutting"/>
+            <field name="id_number">079096007890</field>
+        </record>
+
+        <!-- Chuyền May 1 -->
+        <record id="emp_sew1_leader" model="hr.employee">
+            <field name="employee_code">NV-200</field>
+            <field name="garment_role">line_leader</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2014-02-01</field>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="id_number">079088008901</field>
+            <field name="insurance_number">BH-2014-200</field>
+            <field name="bank_name">Vietinbank</field>
+            <field name="bank_account">1050012345</field>
+            <field name="emergency_contact">Phạm Văn Bình (Chồng)</field>
+            <field name="emergency_phone">0967-890-123</field>
+        </record>
+        <record id="emp_sew1_worker1" model="hr.employee">
+            <field name="employee_code">NV-201</field>
+            <field name="garment_role">worker</field>
+            <field name="contract_type">definite</field>
+            <field name="join_date">2019-04-15</field>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="id_number">079093009012</field>
+        </record>
+        <record id="emp_sew1_worker2" model="hr.employee">
+            <field name="employee_code">NV-202</field>
+            <field name="garment_role">worker</field>
+            <field name="contract_type">definite</field>
+            <field name="join_date">2020-08-10</field>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="id_number">079095010123</field>
+        </record>
+        <record id="emp_sew1_worker3" model="hr.employee">
+            <field name="employee_code">NV-203</field>
+            <field name="garment_role">worker</field>
+            <field name="contract_type">probation</field>
+            <field name="join_date">2025-01-06</field>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="id_number">079002011234</field>
+            <field name="notes_garment">Nhân viên mới, đang thử việc 2 tháng</field>
+        </record>
+
+        <!-- Chuyền May 2 -->
+        <record id="emp_sew2_leader" model="hr.employee">
+            <field name="employee_code">NV-210</field>
+            <field name="garment_role">line_leader</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2015-08-15</field>
+            <field name="sewing_line_id" ref="line_sewing_2"/>
+            <field name="id_number">079090012345</field>
+            <field name="insurance_number">BH-2015-210</field>
+            <field name="bank_name">Agribank</field>
+            <field name="bank_account">4600123456</field>
+        </record>
+        <record id="emp_sew2_worker1" model="hr.employee">
+            <field name="employee_code">NV-211</field>
+            <field name="garment_role">worker</field>
+            <field name="contract_type">seasonal</field>
+            <field name="join_date">2024-10-01</field>
+            <field name="sewing_line_id" ref="line_sewing_2"/>
+            <field name="id_number">079099013456</field>
+            <field name="notes_garment">Lao động thời vụ mùa cao điểm AW2025</field>
+        </record>
+
+        <!-- Tổ QC -->
+        <record id="emp_qc_leader" model="hr.employee">
+            <field name="employee_code">NV-300</field>
+            <field name="garment_role">supervisor</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2016-04-01</field>
+            <field name="id_number">079089014567</field>
+            <field name="insurance_number">BH-2016-300</field>
+            <field name="bank_name">MBBank</field>
+            <field name="bank_account">68001234567</field>
+        </record>
+        <record id="emp_qc_1" model="hr.employee">
+            <field name="employee_code">NV-301</field>
+            <field name="garment_role">qc</field>
+            <field name="contract_type">definite</field>
+            <field name="join_date">2021-02-15</field>
+            <field name="id_number">079096015678</field>
+        </record>
+        <record id="emp_qc_2" model="hr.employee">
+            <field name="employee_code">NV-302</field>
+            <field name="garment_role">qc</field>
+            <field name="contract_type">definite</field>
+            <field name="join_date">2022-06-01</field>
+            <field name="id_number">079097016789</field>
+        </record>
+
+        <!-- Tổ Hoàn Thiện -->
+        <record id="emp_finish_leader" model="hr.employee">
+            <field name="employee_code">NV-400</field>
+            <field name="garment_role">team_leader</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2017-01-10</field>
+            <field name="sewing_line_id" ref="line_finishing"/>
+            <field name="id_number">079091017890</field>
+        </record>
+        <record id="emp_finish_1" model="hr.employee">
+            <field name="employee_code">NV-401</field>
+            <field name="garment_role">worker</field>
+            <field name="contract_type">definite</field>
+            <field name="join_date">2023-03-20</field>
+            <field name="sewing_line_id" ref="line_finishing"/>
+            <field name="id_number">079000018901</field>
+        </record>
+
+        <!-- Tổ Ủi -->
+        <record id="emp_iron_leader" model="hr.employee">
+            <field name="employee_code">NV-500</field>
+            <field name="garment_role">team_leader</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2018-05-15</field>
+            <field name="sewing_line_id" ref="line_ironing"/>
+            <field name="id_number">079087019012</field>
+        </record>
+        <record id="emp_iron_1" model="hr.employee">
+            <field name="employee_code">NV-501</field>
+            <field name="garment_role">worker</field>
+            <field name="contract_type">definite</field>
+            <field name="join_date">2022-09-01</field>
+            <field name="sewing_line_id" ref="line_ironing"/>
+            <field name="id_number">079097020123</field>
+        </record>
+
+        <!-- Tổ Đóng Gói -->
+        <record id="emp_pack_leader" model="hr.employee">
+            <field name="employee_code">NV-600</field>
+            <field name="garment_role">team_leader</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2017-08-01</field>
+            <field name="sewing_line_id" ref="line_packing"/>
+            <field name="id_number">079090021234</field>
+            <field name="insurance_number">BH-2017-600</field>
+        </record>
+
+        <!-- Xưởng Giặt -->
+        <record id="emp_wash_leader" model="hr.employee">
+            <field name="employee_code">NV-700</field>
+            <field name="garment_role">team_leader</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2016-11-01</field>
+            <field name="id_number">079088022345</field>
+        </record>
+
+        <!-- Kho -->
+        <record id="emp_warehouse" model="hr.employee">
+            <field name="employee_code">NV-800</field>
+            <field name="garment_role">supervisor</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2015-03-01</field>
+            <field name="id_number">079087023456</field>
+            <field name="insurance_number">BH-2015-800</field>
+            <field name="bank_name">Sacombank</field>
+            <field name="bank_account">0601234567</field>
+        </record>
+
+        <!-- Tổ Cơ Điện -->
+        <record id="emp_mechanic" model="hr.employee">
+            <field name="employee_code">NV-900</field>
+            <field name="garment_role">mechanic</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2014-07-01</field>
+            <field name="id_number">079085024567</field>
+            <field name="insurance_number">BH-2014-900</field>
+        </record>
+
+        <!-- Tổ Lái Xe -->
+        <record id="emp_driver_1" model="hr.employee">
+            <field name="employee_code">NV-910</field>
+            <field name="garment_role">driver</field>
+            <field name="contract_type">definite</field>
+            <field name="join_date">2019-01-10</field>
+            <field name="id_number">079090025678</field>
+        </record>
+        <record id="emp_driver_2" model="hr.employee">
+            <field name="employee_code">NV-911</field>
+            <field name="garment_role">driver</field>
+            <field name="contract_type">definite</field>
+            <field name="join_date">2020-06-01</field>
+            <field name="id_number">079092026789</field>
+        </record>
+
+        <!-- Phòng Kế Toán -->
+        <record id="emp_accountant" model="hr.employee">
+            <field name="employee_code">NV-950</field>
+            <field name="garment_role">accountant</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2016-09-01</field>
+            <field name="id_number">079091027890</field>
+            <field name="insurance_number">BH-2016-950</field>
+            <field name="tax_code">MST-003456789</field>
+            <field name="bank_name">ACB</field>
+            <field name="bank_account">1234567890</field>
+        </record>
+
+        <!-- Phòng HC-NS -->
+        <record id="emp_hr_manager" model="hr.employee">
+            <field name="employee_code">NV-960</field>
+            <field name="garment_role">admin</field>
+            <field name="contract_type">indefinite</field>
+            <field name="join_date">2015-01-15</field>
+            <field name="id_number">079089028901</field>
+            <field name="insurance_number">BH-2015-960</field>
+            <field name="bank_name">VPBank</field>
+            <field name="bank_account">9876543210</field>
+            <field name="emergency_contact">Trần Văn An (Chồng)</field>
+            <field name="emergency_phone">0945-678-901</field>
+        </record>
+
+        <!-- ========================================= -->
+        <!-- BỔ SUNG KỸ NĂNG MỚI                      -->
+        <!-- ========================================= -->
+
+        <!-- QC skills -->
+        <record id="skill_qc_leader" model="garment.employee.skill">
+            <field name="employee_id" ref="emp_qc_leader"/>
+            <field name="skill_type">qc</field>
+            <field name="level">expert</field>
+            <field name="detail">QC inline, final inspection, AQL sampling. Có chứng chỉ ISO 9001.</field>
+            <field name="certified" eval="True"/>
+        </record>
+        <record id="skill_qc_1" model="garment.employee.skill">
+            <field name="employee_id" ref="emp_qc_1"/>
+            <field name="skill_type">qc</field>
+            <field name="level">intermediate</field>
+            <field name="detail">QC inline chuyền may, kiểm tra mũi chỉ, đường may</field>
+        </record>
+
+        <!-- Sewing line leader skills -->
+        <record id="skill_sew1_leader" model="garment.employee.skill">
+            <field name="employee_id" ref="emp_sew1_leader"/>
+            <field name="skill_type">sewing</field>
+            <field name="level">expert</field>
+            <field name="detail">May tất cả loại sản phẩm, quản lý chuyền 35 máy</field>
+            <field name="certified" eval="True"/>
+        </record>
+        <record id="skill_sew2_leader" model="garment.employee.skill">
+            <field name="employee_id" ref="emp_sew2_leader"/>
+            <field name="skill_type">sewing</field>
+            <field name="level">expert</field>
+            <field name="detail">Chuyên chuyền may hàng jacket, áo khoác phức tạp</field>
+            <field name="certified" eval="True"/>
+        </record>
+
+        <!-- Iron/finishing skills -->
+        <record id="skill_iron_leader" model="garment.employee.skill">
+            <field name="employee_id" ref="emp_iron_leader"/>
+            <field name="skill_type">pressing</field>
+            <field name="level">advanced</field>
+            <field name="detail">Ủi các loại vải, sử dụng máy ép form, bàn hút</field>
+            <field name="certified" eval="True"/>
+        </record>
+
+        <!-- Packing skill -->
+        <record id="skill_pack_leader" model="garment.employee.skill">
+            <field name="employee_id" ref="emp_pack_leader"/>
+            <field name="skill_type">packing</field>
+            <field name="level">advanced</field>
+            <field name="detail">Đóng gói, xếp thùng, kiểm carton, dán nhãn xuất khẩu</field>
+        </record>
+
+        <!-- Warehouse skill -->
+        <record id="skill_warehouse" model="garment.employee.skill">
+            <field name="employee_id" ref="emp_warehouse"/>
+            <field name="skill_type">other</field>
+            <field name="level">advanced</field>
+            <field name="detail">Quản lý kho, nhập xuất, kiểm kê, sử dụng hệ thống barcode/QR</field>
+            <field name="certified" eval="True"/>
+        </record>
+
+        <!-- New worker with multiple skills -->
+        <record id="skill_sew1_w3" model="garment.employee.skill">
+            <field name="employee_id" ref="emp_sew1_worker3"/>
+            <field name="skill_type">sewing</field>
+            <field name="level">beginner</field>
+            <field name="detail">Đang học may 1 kim cơ bản, 2 tháng đào tạo</field>
+        </record>
+
+    </data>
+</odoo>

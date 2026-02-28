@@ -1,6 +1,6 @@
 # 🚀 Hướng Dẫn Nhanh — Hệ Thống Quản Lý Công Ty May
 
-> **Phiên bản:** Odoo 19.0 | **Cập nhật:** Tháng 2/2026 | **24 module** | **216 tests passed**
+> **Phiên bản:** Odoo 19.0 | **Cập nhật:** Tháng 2/2026 | **25 module** | **214 tests passed**
 >
 > 📖 Xem [Hướng dẫn chi tiết đầy đủ](USER_GUIDE.md) để tra cứu từng trường dữ liệu.
 
@@ -28,9 +28,9 @@ Toàn bộ chức năng nằm trong **8 nhóm menu** trên thanh ngang:
 | 2 | **CRM** | Lead, Cơ hội kinh doanh, Buyer, Phản hồi/Khiếu nại |
 | 3 | **Sản Xuất** | Lệnh SX, Cắt, Sản lượng ngày, Chuyền may, Hoàn thiện, Kế hoạch, Bảo trì, Giặt, Gia công |
 | 4 | **Chất Lượng** | QC, Loại lỗi, Audits, CAP |
-| 5 | **Kho & Giao Hàng** | Nhập NL, Phân bổ NL, Tem QR, Thùng hàng, Pallet, Packing, Nhập/Xuất kho, Giao hàng |
+| 5 | **Kho & Giao Hàng** | Nhập NL, Phân bổ NL, Kiểm kê kho, Tem QR, Thùng hàng, Pallet, Packing, Nhập/Xuất kho, Giao hàng |
 | 6 | **Kế Toán** | Hóa đơn bán/mua, Thanh toán |
-| 7 | **Nhân Sự & Lương** | Chấm công, Nghỉ phép, Tay nghề, Lương khoán, Thưởng |
+| 7 | **Nhân Sự & Lương** | Nhân viên may, Tổ trưởng, Chấm công, Nghỉ phép, Kỹ năng, Lương khoán, Thưởng |
 | 8 | **Báo Cáo** | Dashboard KPI, Tổng quan đơn hàng, Tiến độ SX, Cảnh báo, Hiệu suất chuyền |
 | 9 | **Cấu Hình** | Bảng màu, Size, Ký hiệu giặt, Công thức giặt |
 
@@ -480,16 +480,58 @@ stateDiagram-v2
 ![Carton Box](images/116_carton_box_form_new.png)
 ![Pallet](images/114_pallet_form_new.png)
 
+### 5.13 Kiểm Kê Kho (Stocktaking)
+
+| Chức Năng | Menu | Mô Tả |
+|-----------|------|-------|
+| Phiên Kiểm Kê | Kho → Kiểm Kê Kho | Tạo phiên kiểm kê, nhập tồn thực tế, so sánh chênh lệch |
+| Quét QR | Trong phiên kiểm kê | Quét tem QR để nhập số lượng nhanh |
+| Xác Nhận | Manager duyệt | Tự động tạo phiếu điều chỉnh kho |
+
+**Quick workflow:**
+1. Tạo phiên kiểm kê → Chọn kho → Thêm danh sách hàng
+2. Nhấn **▶ Bắt Đầu** → Nhập số thực tế (hoặc quét QR)
+3. **✓ Hoàn Thành** → Manager **✓ Xác Nhận** → Tự động điều chỉnh kho
+
+| Trạng thái dòng | Ý nghĩa |
+|-----------------|---------|
+| ✅ Khớp | Tồn thực = Tồn sổ |
+| ⚠️ Thừa | Thực tế > Sổ sách |
+| ❌ Thiếu | Thực tế < Sổ sách |
+
+![Kiểm kê kho](images/117_inventory_all.png)
+![Form kiểm kê](images/118_inventory_form_new.png)
+
+### 5.14 Quản Lý Nhân Viên May
+
+| Chức Năng | Menu | Mô Tả |
+|-----------|------|-------|
+| Nhân Viên May | Nhân Sự → Nhân Viên May | Thông tin nhân viên + vai trò, kỹ năng, hợp đồng |
+| Tổ Trưởng | Nhân Sự → Tổ Trưởng | Danh sách nhân viên lãnh đạo |
+| Kỹ Năng | Nhân Sự → Kỹ Năng | Theo dõi kỹ năng từng người |
+
+**Các vai trò:** Thợ may, Thợ cắt, QC, Tổ trưởng, Trưởng chuyền, Trưởng phòng, Kỹ thuật, Kho, Hoàn thiện, Giặt, Bảo trì, Khác
+
+**Mức kỹ năng:** Cơ bản → Trung bình → Nâng cao → Chuyên gia
+
+![Nhân viên may](images/120_employee_all.png)
+![Form nhân viên](images/121_employee_form.png)
+![Kỹ năng](images/126_employee_skills.png)
+
 ---
 
-## 6. Phân Quyền
+## 6. Phân Quyền 4 Cấp
 
-| Nhóm | Quyền |
-|------|-------|
-| **Garment User** | Xem tất cả, tạo/sửa đơn hàng & sản lượng |
-| **Garment Manager** | Toàn quyền: tạo, sửa, xóa tất cả dữ liệu |
+| Cấp | Nhóm | Quyền |
+|-----|------|-------|
+| 1 | **Nhân Viên (User)** | Xem tất cả, tạo/sửa dữ liệu liên quan |
+| 2 | **Tổ Trưởng (Team Leader)** | + Quản lý nhóm/tổ, duyệt sản lượng |
+| 3 | **Trưởng Phòng (Dept Manager)** | + Quản lý phòng ban, duyệt nghỉ phép |
+| 4 | **Quản Lý (Manager)** | Toàn quyền: tạo, sửa, xóa tất cả |
 
-**Thiết lập:** Settings → Users → Chọn user → Tab Access Rights → Mục **Công Ty May** → Chọn User hoặc Manager.
+**Thiết lập:** Settings → Users → Chọn user → Tab Access Rights → Mục **Công Ty May** → Chọn cấp quyền phù hợp.
+
+![Phân quyền](images/128_user_permissions.png)
 
 ---
 
@@ -506,6 +548,6 @@ stateDiagram-v2
 
 ---
 
-> 📖 **Tài liệu đầy đủ:** [USER_GUIDE.md](USER_GUIDE.md) — bao gồm giải thích chi tiết từng trường dữ liệu của tất cả 24 module.
+> 📖 **Tài liệu đầy đủ:** [USER_GUIDE.md](USER_GUIDE.md) — bao gồm giải thích chi tiết từng trường dữ liệu của tất cả 25 module.
 >
 > 📞 **Hỗ trợ:** Liên hệ đội phát triển | 📚 [Odoo Docs](https://www.odoo.com/documentation/19.0/)
