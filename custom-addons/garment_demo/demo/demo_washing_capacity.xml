@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ============================================================ -->
+        <!-- HÓA CHẤT GIẶT (garment.wash.chemical)                       -->
+        <!-- ============================================================ -->
+
+        <record id="chem_detergent" model="garment.wash.chemical">
+            <field name="name">Bột Giặt Công Nghiệp Omo Pro</field>
+            <field name="code">CHE-DET-001</field>
+            <field name="chemical_type">detergent</field>
+            <field name="supplier_id" ref="partner_wash"/>
+            <field name="unit_price">45000</field>
+            <field name="uom">kg</field>
+            <field name="stock_qty">500</field>
+            <field name="min_stock">50</field>
+        </record>
+        <record id="chem_softener" model="garment.wash.chemical">
+            <field name="name">Chất Làm Mềm Vải Silicone</field>
+            <field name="code">CHE-SOF-001</field>
+            <field name="chemical_type">softener</field>
+            <field name="supplier_id" ref="partner_wash"/>
+            <field name="unit_price">65000</field>
+            <field name="uom">liter</field>
+            <field name="stock_qty">200</field>
+            <field name="min_stock">30</field>
+        </record>
+        <record id="chem_enzyme" model="garment.wash.chemical">
+            <field name="name">Enzyme Cellulase (Bio-polish)</field>
+            <field name="code">CHE-ENZ-001</field>
+            <field name="chemical_type">enzyme</field>
+            <field name="supplier_id" ref="partner_wash"/>
+            <field name="unit_price">180000</field>
+            <field name="uom">kg</field>
+            <field name="stock_qty">80</field>
+            <field name="min_stock">20</field>
+        </record>
+        <record id="chem_bleach" model="garment.wash.chemical">
+            <field name="name">Nước Javel Hypochlorite 12%</field>
+            <field name="code">CHE-BLE-001</field>
+            <field name="chemical_type">bleach</field>
+            <field name="supplier_id" ref="partner_wash"/>
+            <field name="unit_price">25000</field>
+            <field name="uom">liter</field>
+            <field name="stock_qty">300</field>
+            <field name="min_stock">50</field>
+        </record>
+        <record id="chem_acid" model="garment.wash.chemical">
+            <field name="name">Acid Acetic CH3COOH (để trung hòa)</field>
+            <field name="code">CHE-ACI-001</field>
+            <field name="chemical_type">acid</field>
+            <field name="supplier_id" ref="partner_wash"/>
+            <field name="unit_price">35000</field>
+            <field name="uom">liter</field>
+            <field name="stock_qty">150</field>
+            <field name="min_stock">30</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- CÔNG THỨC GIẶT (garment.wash.recipe)                         -->
+        <!-- ============================================================ -->
+
+        <record id="wash_recipe_normal" model="garment.wash.recipe">
+            <field name="name">Giặt Thường — Cotton Knit</field>
+            <field name="code">WR-NOR-001</field>
+            <field name="wash_type">normal</field>
+            <field name="fabric_type">cotton</field>
+            <field name="temperature">40</field>
+            <field name="duration_minutes">30</field>
+            <field name="water_ratio">10</field>
+            <field name="ph_level">7.0</field>
+        </record>
+        <record id="wash_recipe_enzyme" model="garment.wash.recipe">
+            <field name="name">Giặt Enzyme — Denim Wash</field>
+            <field name="code">WR-ENZ-001</field>
+            <field name="wash_type">enzyme</field>
+            <field name="fabric_type">denim</field>
+            <field name="temperature">55</field>
+            <field name="duration_minutes">45</field>
+            <field name="water_ratio">8</field>
+            <field name="ph_level">5.5</field>
+        </record>
+        <record id="wash_recipe_softener" model="garment.wash.recipe">
+            <field name="name">Giặt Mềm Silicone — T-Shirt</field>
+            <field name="code">WR-SOF-001</field>
+            <field name="wash_type">softener</field>
+            <field name="fabric_type">cotton</field>
+            <field name="temperature">35</field>
+            <field name="duration_minutes">25</field>
+            <field name="water_ratio">12</field>
+            <field name="ph_level">6.5</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- ĐƠN GIẶT (garment.wash.order)                               -->
+        <!-- ============================================================ -->
+
+        <record id="wash_order_polo" model="garment.wash.order">
+            <field name="order_type">internal</field>
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="recipe_id" ref="wash_recipe_normal"/>
+            <field name="qty_received">1200</field>
+            <field name="qty_washed">1100</field>
+            <field name="date_received" eval="(DateTime.today() - timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="unit_price">2500</field>
+        </record>
+        <record id="wash_order_tshirt" model="garment.wash.order">
+            <field name="order_type">internal</field>
+            <field name="production_order_id" ref="prod_order_tshirt"/>
+            <field name="style_id" ref="style_tshirt_basic"/>
+            <field name="recipe_id" ref="wash_recipe_softener"/>
+            <field name="qty_received">800</field>
+            <field name="qty_washed">0</field>
+            <field name="date_received" eval="(DateTime.today() - timedelta(days=2)).strftime('%Y-%m-%d')"/>
+            <field name="unit_price">3000</field>
+        </record>
+        <record id="wash_order_external" model="garment.wash.order">
+            <field name="order_type">external_in</field>
+            <field name="client_id" ref="partner_buyer_jp"/>
+            <field name="style_id" ref="style_jacket_winter"/>
+            <field name="recipe_id" ref="wash_recipe_enzyme"/>
+            <field name="qty_received">500</field>
+            <field name="qty_washed">500</field>
+            <field name="date_received" eval="(DateTime.today() - timedelta(days=10)).strftime('%Y-%m-%d')"/>
+            <field name="unit_price">5000</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- CAPACITY PLANNING (garment.capacity.planning)                -->
+        <!-- ============================================================ -->
+
+        <record id="cap_plan_polo" model="garment.capacity.planning">
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="sam">15.5</field>
+            <field name="total_quantity">4000</field>
+            <field name="working_minutes_per_day">480</field>
+            <field name="break_minutes">60</field>
+            <field name="overtime_minutes">120</field>
+            <field name="ship_date" eval="(DateTime.today() + timedelta(days=20)).strftime('%Y-%m-%d')"/>
+        </record>
+        <record id="cap_line_polo_cm1" model="garment.capacity.line">
+            <field name="planning_id" ref="cap_plan_polo"/>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="worker_count">35</field>
+            <field name="target_efficiency">75.0</field>
+        </record>
+        <record id="cap_line_polo_cm2" model="garment.capacity.line">
+            <field name="planning_id" ref="cap_plan_polo"/>
+            <field name="sewing_line_id" ref="line_sewing_2"/>
+            <field name="worker_count">30</field>
+            <field name="target_efficiency">70.0</field>
+        </record>
+
+        <record id="cap_plan_tshirt" model="garment.capacity.planning">
+            <field name="style_id" ref="style_tshirt_basic"/>
+            <field name="sam">10.8</field>
+            <field name="total_quantity">3500</field>
+            <field name="working_minutes_per_day">480</field>
+            <field name="break_minutes">60</field>
+            <field name="overtime_minutes">0</field>
+            <field name="ship_date" eval="(DateTime.today() + timedelta(days=25)).strftime('%Y-%m-%d')"/>
+        </record>
+        <record id="cap_line_tshirt_cm3" model="garment.capacity.line">
+            <field name="planning_id" ref="cap_plan_tshirt"/>
+            <field name="sewing_line_id" ref="line_sewing_3"/>
+            <field name="worker_count">28</field>
+            <field name="target_efficiency">80.0</field>
+        </record>
+
+    </data>
+</odoo>
