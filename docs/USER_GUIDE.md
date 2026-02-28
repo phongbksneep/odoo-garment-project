@@ -1329,6 +1329,33 @@ Thống kê lỗi:
 - Lỗi theo chuyền may
 - Trend lỗi theo thời gian
 
+### 14.3 Chi Phí vs Thực Tế (Cost vs Actual Analysis)
+
+**Đường dẫn:** `Công Ty May → Báo Cáo → Chi Phí vs Thực Tế`
+
+Báo cáo so sánh chi phí kế hoạch (từ Bảng Giá Thành) với sản lượng thực tế (từ Lệnh Sản Xuất), cho phép đánh giá hiệu quả chi phí theo từng mã hàng, khách hàng, chuyền may.
+
+#### Các chỉ số chính:
+
+| Chỉ Số | Ý Nghĩa |
+|--------|---------|
+| **SL Kế Hoạch** | Số lượng dự kiến (planned_qty) |
+| **SL Thực Tế** | Số lượng đã hoàn thành (completed_qty) |
+| **Tỷ Lệ Hoàn Thành (%)** | = Thực Tế / Kế Hoạch × 100 |
+| **Giá Thành / SP** | Cost per piece từ Bảng Giá Thành (approved) |
+| **Giá Bán / SP** | Selling price từ Bảng Giá Thành |
+| **Tổng CP Kế Hoạch** | = Giá Thành × SL Kế Hoạch |
+| **CP Thực Tế (Ước Tính)** | = Giá Thành × SL Thực Tế |
+| **Chênh Lệch CP** | = CP Kế Hoạch - CP Thực Tế |
+| **Chênh Lệch (%)** | = (Kế Hoạch - Thực Tế) / Kế Hoạch × 100 |
+| **Lợi Nhuận KH / Thực Tế** | = (Giá Bán - Giá Thành) × SL |
+
+#### Giao diện:
+
+- **Danh sách:** Hiển thị từng lệnh SX — tô đỏ nếu vượt ngân sách > 10%, vàng 0-10%, xanh nếu đạt
+- **Pivot:** Phân tích theo Mã Hàng, Khách Hàng, Chuyền May
+- **Biểu đồ:** Bar chart so sánh CP Kế Hoạch vs Thực Tế theo mã hàng
+
 ---
 
 ## 15. Module Garment Washing — Xưởng Giặt

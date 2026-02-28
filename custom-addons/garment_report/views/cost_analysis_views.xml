@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Cost Analysis List View -->
+    <record id="view_cost_analysis_list" model="ir.ui.view">
+        <field name="name">garment.cost.analysis.list</field>
+        <field name="model">garment.cost.analysis</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" delete="0"
+                  decoration-danger="variance_pct &gt; 10"
+                  decoration-warning="variance_pct &gt; 0 and variance_pct &lt;= 10"
+                  decoration-success="variance_pct &lt;= 0">
+                <field name="production_order_id"/>
+                <field name="style_id"/>
+                <field name="customer_id"/>
+                <field name="sewing_line_id" optional="hide"/>
+                <field name="state"/>
+                <field name="planned_qty" sum="Tổng"/>
+                <field name="completed_qty" sum="Tổng"/>
+                <field name="completion_rate" widget="progressbar"/>
+                <field name="cost_per_pc"/>
+                <field name="selling_price"/>
+                <field name="planned_total_cost" sum="Tổng"/>
+                <field name="actual_total_cost" sum="Tổng"/>
+                <field name="cost_variance" sum="Tổng"/>
+                <field name="variance_pct"/>
+                <field name="profit_planned" sum="Tổng" optional="show"/>
+                <field name="profit_actual" sum="Tổng" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Cost Analysis Pivot View -->
+    <record id="view_cost_analysis_pivot" model="ir.ui.view">
+        <field name="name">garment.cost.analysis.pivot</field>
+        <field name="model">garment.cost.analysis</field>
+        <field name="arch" type="xml">
+            <pivot string="Chi Phí vs Thực Tế">
+                <field name="style_id" type="row"/>
+                <field name="planned_total_cost" type="measure"/>
+                <field name="actual_total_cost" type="measure"/>
+                <field name="cost_variance" type="measure"/>
+                <field name="profit_planned" type="measure"/>
+                <field name="profit_actual" type="measure"/>
+                <field name="planned_qty" type="measure"/>
+                <field name="completed_qty" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Cost Analysis Graph View -->
+    <record id="view_cost_analysis_graph" model="ir.ui.view">
+        <field name="name">garment.cost.analysis.graph</field>
+        <field name="model">garment.cost.analysis</field>
+        <field name="arch" type="xml">
+            <graph string="Chi Phí vs Thực Tế" type="bar">
+                <field name="style_id"/>
+                <field name="planned_total_cost" type="measure"/>
+                <field name="actual_total_cost" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Cost Analysis Search View -->
+    <record id="view_cost_analysis_search" model="ir.ui.view">
+        <field name="name">garment.cost.analysis.search</field>
+        <field name="model">garment.cost.analysis</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="production_order_id"/>
+                <field name="style_id"/>
+                <field name="customer_id"/>
+                <filter string="Hoàn Thành" name="done"
+                        domain="[('state','=','done')]"/>
+                <filter string="Đang SX" name="in_progress"
+                        domain="[('state','=','in_progress')]"/>
+                <separator/>
+                <filter string="Vượt Ngân Sách" name="over_budget"
+                        domain="[('variance_pct','&gt;', 5)]"/>
+                <filter string="Đạt Ngân Sách" name="on_budget"
+                        domain="[('variance_pct','&lt;=', 5)]"/>
+                <group>
+                    <filter string="Mã Hàng" name="group_style"
+                            context="{'group_by': 'style_id'}"/>
+                    <filter string="Khách Hàng" name="group_customer"
+                            context="{'group_by': 'customer_id'}"/>
+                    <filter string="Chuyền May" name="group_line"
+                            context="{'group_by': 'sewing_line_id'}"/>
+                    <filter string="Trạng Thái" name="group_state"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_cost_analysis" model="ir.actions.act_window">
+        <field name="name">Chi Phí vs Thực Tế</field>
+        <field name="res_model">garment.cost.analysis</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Chưa có dữ liệu phân tích chi phí
+            </p>
+            <p>Báo cáo so sánh chi phí kế hoạch (từ Bảng Giá Thành) với sản lượng thực tế (từ Lệnh Sản Xuất).</p>
+        </field>
+    </record>
+</odoo>

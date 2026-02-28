@@ -5,3 +5,5 @@ access_garment_defect_analysis_user,garment.defect.analysis.user,model_garment_d
 access_garment_defect_analysis_manager,garment.defect.analysis.manager,model_garment_defect_analysis,garment_base.group_garment_manager,1,0,0,0
 access_garment_production_report_user,garment.production.report.user,model_garment_production_report,garment_base.group_garment_user,1,1,1,0
 access_garment_production_report_manager,garment.production.report.manager,model_garment_production_report,garment_base.group_garment_manager,1,1,1,1
+access_garment_cost_analysis_user,garment.cost.analysis.user,model_garment_cost_analysis,garment_base.group_garment_user,1,0,0,0
+access_garment_cost_analysis_manager,garment.cost.analysis.manager,model_garment_cost_analysis,garment_base.group_garment_manager,1,0,0,0
