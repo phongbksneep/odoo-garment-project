@@ -1924,10 +1924,22 @@ Ghi nhận kỹ năng cho từng nhân viên: loại kỹ năng (may, cắt, QC,
 | **Vải** | Many2one | Liên kết fabric (nếu là vải) | `FAB-001` |
 | **Màu** | Many2one | Màu hàng | `Navy` |
 | **Đơn Vị** | Selection | m / kg / yard / pcs / roll / box / set / other | `m` |
-| **Số Lượng** | Float | Số lượng nhập/xuất | `2,000` |
+| **Số Lượng** | Float | Số lượng nhập/xuất (**phải > 0**) | `2,000` |
 | **Đơn Giá** | Float | Giá đơn vị | `45,000` |
 | **Giá Trị** | Float | 🔄 = SL × Đơn giá | `90,000,000` |
 | **Số Lô** | Char | Lot number / mã lô | `LOT-2026-01` |
+
+> ⚠️ **Ràng buộc:** Số lượng trong dòng chi tiết phải lớn hơn 0.
+
+#### Bộ lọc & Nhóm (Search View):
+
+Phiếu kho hỗ trợ tìm kiếm và lọc phong phú:
+- **Tìm kiếm:** Mã phiếu, Đối tác, Đơn hàng may
+- **Lọc loại:** Nhập Kho, Xuất Kho, Chuyển Kho
+- **Lọc kho:** Kho NPL, Kho TP, Kho BTP
+- **Lọc trạng thái:** Nháp, Xác Nhận, Hoàn Thành
+- **Lọc thời gian:** Hôm Nay, Tháng Này
+- **Nhóm theo:** Loại Phiếu, Kho, Lý Do, Trạng Thái, Tháng
 
 ---
 
@@ -1952,6 +1964,13 @@ Ghi nhận kỹ năng cho từng nhân viên: loại kỹ năng (may, cắt, QC,
 | **Thể Tích Tối Đa (m³)** | Float | | Dung tích max | `20.0` |
 | **Trạng Thái** | Selection | | available (Sẵn Sàng), in_use (Đang Sử Dụng), maintenance (Bảo Trì), retired (Ngừng) | `available` |
 
+#### Bộ lọc & Nhóm (Search View):
+
+- **Tìm kiếm:** Tên, Biển Số, Tài Xế
+- **Lọc trạng thái:** Sẵn Sàng, Đang Dùng, Bảo Trì, Ngừng
+- **Lọc:** Hết Bảo Hiểm (bảo hiểm quá hạn)
+- **Nhóm theo:** Loại Xe, Trạng Thái, Tài Xế
+
 ### 21.2 Đơn Giao Hàng (Delivery Order)
 
 ![Đơn Giao Hàng](images/27_delivery.png)
@@ -1967,7 +1986,7 @@ Ghi nhận kỹ năng cho từng nhân viên: loại kỹ năng (may, cắt, QC,
 | **Số Phiếu** | Char | ✅ | Mã tự động (DL-XXXXX) | `DL-2026-00001` |
 | **Loại Giao** | Selection | ✅ | customer (Giao Cho Khách), subcontract (Giao Cho GC), internal (Nội Bộ), return (Trả Hàng) | `customer` |
 | **Ngày Giao** | Date | ✅ | Ngày giao hàng | `2026-03-15` |
-| **Ngày Dự Kiến Đến** | Date | | ETA | `2026-04-05` |
+| **Ngày Dự Kiến Đến** | Date | | ETA (**phải >= Ngày Giao**) | `2026-04-05` |
 | **KH / Đối Tác** | Many2one | ✅ | Nơi nhận hàng | `H&M Vietnam` |
 | **Đơn Hàng May** | Many2one | | Liên kết đơn hàng | `GO-2026-00001` |
 | **Packing List** | Many2one | | Liên kết packing list | `PL-2026-00001` |
@@ -1993,6 +2012,16 @@ Ghi nhận kỹ năng cho từng nhân viên: loại kỹ năng (may, cắt, QC,
 | **Tổng SL Giao** | Integer | 🔄 | Tổng từ dòng chi tiết | `10,000` |
 | **Ảnh Giao Hàng** | Binary | | Upload ảnh proof of delivery | Upload |
 | **Trạng Thái** | Selection | | draft → confirmed → loading → in_transit → delivered / cancelled | `delivered` |
+
+> ⚠️ **Ràng buộc:** Ngày dự kiến đến phải >= Ngày giao. Số lượng trong dòng chi tiết phải > 0.
+
+#### Bộ lọc & Nhóm (Search View):
+
+- **Tìm kiếm:** Số phiếu, Khách hàng, Đơn hàng, Phương tiện
+- **Lọc loại:** Giao Khách, Gia Công
+- **Lọc trạng thái:** Nháp, Đang Vận Chuyển, Đã Giao
+- **Lọc thời gian:** Hôm Nay, Tháng Này
+- **Nhóm theo:** Loại, Khách Hàng, Trạng Thái, Phương Thức, Tháng
 
 #### Workflow giao hàng:
 

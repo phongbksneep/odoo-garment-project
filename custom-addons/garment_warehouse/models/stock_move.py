@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class GarmentStockMove(models.Model):
@@ -193,3 +193,9 @@ class GarmentStockMoveLine(models.Model):
     def _compute_value(self):
         for line in self:
             line.value = line.quantity * line.unit_price
+
+    @api.constrains('quantity')
+    def _check_quantity(self):
+        for line in self:
+            if line.quantity <= 0:
+                raise ValidationError(_('Số lượng phải lớn hơn 0!'))

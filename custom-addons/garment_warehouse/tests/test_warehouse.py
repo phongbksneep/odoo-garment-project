@@ -1,5 +1,5 @@
 from odoo.tests import TransactionCase, tagged
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 @tagged('post_install', '-at_install')
@@ -122,3 +122,36 @@ class TestStockMoveTotals(TransactionCase):
         })
         line = move.line_ids[0]
         self.assertEqual(line.value, 30000000)
+
+
+@tagged('post_install', '-at_install')
+class TestStockMoveLineValidation(TransactionCase):
+    """Tests for stock move line quantity validation."""
+
+    def test_line_quantity_zero(self):
+        """Stock move line quantity must be > 0."""
+        with self.assertRaises(ValidationError):
+            self.env['garment.stock.move'].create({
+                'move_type': 'in',
+                'warehouse_type': 'material',
+                'reason': 'purchase',
+                'line_ids': [(0, 0, {
+                    'product_type': 'fabric',
+                    'description': 'Test',
+                    'quantity': 0,
+                })],
+            })
+
+    def test_line_quantity_negative(self):
+        """Stock move line quantity cannot be negative."""
+        with self.assertRaises(ValidationError):
+            self.env['garment.stock.move'].create({
+                'move_type': 'in',
+                'warehouse_type': 'material',
+                'reason': 'purchase',
+                'line_ids': [(0, 0, {
+                    'product_type': 'fabric',
+                    'description': 'Test',
+                    'quantity': -5,
+                })],
+            })

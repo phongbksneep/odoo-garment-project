@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class GarmentDeliveryOrder(models.Model):
@@ -28,6 +28,12 @@ class GarmentDeliveryOrder(models.Model):
         default=fields.Date.today,
     )
     expected_date = fields.Date(string='Ngày Dự Kiến Đến')
+
+    @api.constrains('date', 'expected_date')
+    def _check_dates(self):
+        for rec in self:
+            if rec.expected_date and rec.date and rec.expected_date < rec.date:
+                raise ValidationError(_('Ngày dự kiến đến phải >= ngày giao!'))
 
     partner_id = fields.Many2one(
         'res.partner',
@@ -158,3 +164,9 @@ class GarmentDeliveryLine(models.Model):
     pcs_per_carton = fields.Integer(string='Số Cái / Thùng')
     gross_weight = fields.Float(string='Trọng Lượng (Kg)')
     notes = fields.Char(string='Ghi Chú')
+
+    @api.constrains('quantity')
+    def _check_quantity(self):
+        for line in self:
+            if line.quantity <= 0:
+                raise ValidationError(_('Số lượng giao phải lớn hơn 0!'))

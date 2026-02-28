@@ -126,20 +126,32 @@
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="garment_order_id"/>
+                <field name="vehicle_id"/>
                 <filter name="filter_customer" string="Giao Khách"
                         domain="[('delivery_type', '=', 'customer')]"/>
                 <filter name="filter_subcontract" string="Gia Công"
                         domain="[('delivery_type', '=', 'subcontract')]"/>
                 <separator/>
+                <filter name="filter_draft" string="Nháp"
+                        domain="[('state', '=', 'draft')]"/>
                 <filter name="filter_transit" string="Đang Vận Chuyển"
                         domain="[('state', '=', 'in_transit')]"/>
                 <filter name="filter_delivered" string="Đã Giao"
                         domain="[('state', '=', 'delivered')]"/>
+                <separator/>
+                <filter name="filter_today" string="Hôm Nay"
+                        domain="[('date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter name="filter_this_month" string="Tháng Này"
+                        domain="[('date', '&gt;=', context_today().strftime('%Y-%m-01'))]"/>
                 <group>
                     <filter name="group_type" string="Loại"
                             context="{'group_by': 'delivery_type'}"/>
                     <filter name="group_partner" string="Khách Hàng"
                             context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_state" string="Trạng Thái"
+                            context="{'group_by': 'state'}"/>
+                    <filter name="group_method" string="Phương Thức"
+                            context="{'group_by': 'shipping_method'}"/>
                     <filter name="group_month" string="Tháng"
                             context="{'group_by': 'date:month'}"/>
                 </group>

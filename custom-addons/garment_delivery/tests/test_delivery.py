@@ -1,5 +1,5 @@
 from odoo.tests import TransactionCase, tagged
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 @tagged('post_install', '-at_install')
@@ -109,3 +109,67 @@ class TestDeliveryOrder(TransactionCase):
             ],
         })
         self.assertEqual(delivery.total_qty, 500)
+
+    def test_line_quantity_positive(self):
+        """Delivery line quantity must be > 0."""
+        with self.assertRaises(ValidationError):
+            self.env['garment.delivery.order'].create({
+                'delivery_type': 'customer',
+                'partner_id': self.partner.id,
+                'ship_to': 'Test',
+                'line_ids': [(0, 0, {
+                    'style_code': 'T01',
+                    'quantity': 0,
+                })],
+            })
+
+    def test_line_quantity_negative(self):
+        """Delivery line quantity cannot be negative."""
+        with self.assertRaises(ValidationError):
+            self.env['garment.delivery.order'].create({
+                'delivery_type': 'customer',
+                'partner_id': self.partner.id,
+                'ship_to': 'Test',
+                'line_ids': [(0, 0, {
+                    'style_code': 'T01',
+                    'quantity': -10,
+                })],
+            })
+
+    def test_expected_date_validation(self):
+        """Expected date must be >= delivery date."""
+        from datetime import date
+        with self.assertRaises(ValidationError):
+            self.env['garment.delivery.order'].create({
+                'delivery_type': 'customer',
+                'partner_id': self.partner.id,
+                'ship_to': 'Test',
+                'date': date(2026, 3, 15),
+                'expected_date': date(2026, 3, 10),
+            })
+
+    def test_expected_date_same_ok(self):
+        """Expected date = delivery date is valid."""
+        from datetime import date
+        delivery = self.env['garment.delivery.order'].create({
+            'delivery_type': 'customer',
+            'partner_id': self.partner.id,
+            'ship_to': 'Test',
+            'date': date(2026, 3, 15),
+            'expected_date': date(2026, 3, 15),
+        })
+        self.assertEqual(delivery.expected_date, date(2026, 3, 15))
+
+    def test_reset_draft_from_cancelled(self):
+        """Can reset to draft from cancelled state."""
+        delivery = self.env['garment.delivery.order'].create({
+            'delivery_type': 'customer',
+            'partner_id': self.partner.id,
+            'ship_to': 'Test',
+            'line_ids': [(0, 0, {'style_code': 'T01', 'quantity': 100})],
+        })
+        delivery.action_confirm()
+        delivery.action_cancel()
+        self.assertEqual(delivery.state, 'cancelled')
+        delivery.action_reset_draft()
+        self.assertEqual(delivery.state, 'draft')

@@ -62,6 +62,31 @@
         </field>
     </record>
 
+    <record id="view_vehicle_search" model="ir.ui.view">
+        <field name="name">garment.vehicle.search</field>
+        <field name="model">garment.vehicle</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Phương Tiện">
+                <field name="name"/>
+                <field name="plate_number"/>
+                <field name="driver_id"/>
+                <separator/>
+                <filter string="Sẵn Sàng" name="available" domain="[('state', '=', 'available')]"/>
+                <filter string="Đang Dùng" name="in_use" domain="[('state', '=', 'in_use')]"/>
+                <filter string="Bảo Trì" name="maintenance" domain="[('state', '=', 'maintenance')]"/>
+                <filter string="Ngừng" name="retired" domain="[('state', '=', 'retired')]"/>
+                <separator/>
+                <filter string="Hết Bảo Hiểm" name="insurance_expired"
+                        domain="[('insurance_expiry', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>
+                <group name="groupby">
+                    <filter string="Loại Xe" name="group_type" context="{'group_by': 'vehicle_type'}"/>
+                    <filter string="Trạng Thái" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Tài Xế" name="group_driver" context="{'group_by': 'driver_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="action_vehicle" model="ir.actions.act_window">
         <field name="name">Phương Tiện</field>
         <field name="res_model">garment.vehicle</field>
