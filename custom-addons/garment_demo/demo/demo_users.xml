@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ============================================================ -->
+        <!-- TÀI KHOẢN ĐĂNG NHẬP CHO NHÂN VIÊN                           -->
+        <!-- Mỗi user gán đúng nhóm quyền theo cấp bậc:                  -->
+        <!--   Level 4: Administrator (Giám đốc, HC-NS)                   -->
+        <!--   Level 3: Department Manager (Trưởng phòng)                 -->
+        <!--   Level 2: Team Leader (Tổ trưởng, Chuyền trưởng)            -->
+        <!--   Level 1: User (Nhân viên, Công nhân)                       -->
+        <!-- ============================================================ -->
+
+        <!-- ===================== LEVEL 4: ADMINISTRATOR ===================== -->
+
+        <!-- Giám Đốc Nhà Máy — Nguyễn Văn Hùng -->
+        <record id="user_director" model="res.users">
+            <field name="name">Nguyễn Văn Hùng</field>
+            <field name="login">hung.nv</field>
+            <field name="password">hung123</field>
+            <field name="email">hung.nv@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_manager')),
+            ]"/>
+        </record>
+        <!-- Link user to employee -->
+        <record id="emp_director" model="hr.employee">
+            <field name="user_id" ref="user_director"/>
+        </record>
+
+        <!-- Trưởng Phòng HC-NS — Nguyễn Thị Ánh -->
+        <record id="user_hr_manager" model="res.users">
+            <field name="name">Nguyễn Thị Ánh</field>
+            <field name="login">anh.nt</field>
+            <field name="password">anh123</field>
+            <field name="email">anh.nt@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_manager')),
+            ]"/>
+        </record>
+        <record id="emp_hr_manager" model="hr.employee">
+            <field name="user_id" ref="user_hr_manager"/>
+        </record>
+
+        <!-- ===================== LEVEL 3: DEPARTMENT MANAGER ===================== -->
+
+        <!-- Trưởng Phòng Kế Hoạch — Trần Thị Lan -->
+        <record id="user_planner" model="res.users">
+            <field name="name">Trần Thị Lan</field>
+            <field name="login">lan.tt</field>
+            <field name="password">lan123</field>
+            <field name="email">lan.tt@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_dept_manager')),
+            ]"/>
+        </record>
+        <record id="emp_planner_1" model="hr.employee">
+            <field name="user_id" ref="user_planner"/>
+        </record>
+
+        <!-- Trưởng Phòng Mẫu — Lê Thị Mai -->
+        <record id="user_sample_mgr" model="res.users">
+            <field name="name">Lê Thị Mai</field>
+            <field name="login">mai.lt</field>
+            <field name="password">mai123</field>
+            <field name="email">mai.lt@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_dept_manager')),
+            ]"/>
+        </record>
+        <record id="emp_sample_1" model="hr.employee">
+            <field name="user_id" ref="user_sample_mgr"/>
+        </record>
+
+        <!-- Kế Toán Trưởng — Trần Thị Thu Hà -->
+        <record id="user_accountant" model="res.users">
+            <field name="name">Trần Thị Thu Hà</field>
+            <field name="login">ha.ttt</field>
+            <field name="password">ha123</field>
+            <field name="email">ha.ttt@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_dept_manager')),
+            ]"/>
+        </record>
+        <record id="emp_accountant" model="hr.employee">
+            <field name="user_id" ref="user_accountant"/>
+        </record>
+
+        <!-- Thủ Kho — Hoàng Văn Phúc -->
+        <record id="user_warehouse" model="res.users">
+            <field name="name">Hoàng Văn Phúc</field>
+            <field name="login">phuc.hv</field>
+            <field name="password">phuc123</field>
+            <field name="email">phuc.hv@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_dept_manager')),
+            ]"/>
+        </record>
+        <record id="emp_warehouse" model="hr.employee">
+            <field name="user_id" ref="user_warehouse"/>
+        </record>
+
+        <!-- Trưởng Tổ QC — Vũ Thị Hạnh -->
+        <record id="user_qc_leader" model="res.users">
+            <field name="name">Vũ Thị Hạnh</field>
+            <field name="login">hanh.vt</field>
+            <field name="password">hanh123</field>
+            <field name="email">hanh.vt@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_dept_manager')),
+            ]"/>
+        </record>
+        <record id="emp_qc_leader" model="hr.employee">
+            <field name="user_id" ref="user_qc_leader"/>
+        </record>
+
+        <!-- ===================== LEVEL 2: TEAM LEADER ===================== -->
+
+        <!-- Tổ Trưởng Cắt — Nguyễn Văn Tuấn -->
+        <record id="user_cut_leader" model="res.users">
+            <field name="name">Nguyễn Văn Tuấn</field>
+            <field name="login">tuan.nv</field>
+            <field name="password">tuan123</field>
+            <field name="email">tuan.nv@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_team_leader')),
+            ]"/>
+        </record>
+        <record id="emp_cut_leader" model="hr.employee">
+            <field name="user_id" ref="user_cut_leader"/>
+        </record>
+
+        <!-- Chuyền Trưởng 1 — Phạm Thị Thanh -->
+        <record id="user_sew1_leader" model="res.users">
+            <field name="name">Phạm Thị Thanh</field>
+            <field name="login">thanh.pt</field>
+            <field name="password">thanh123</field>
+            <field name="email">thanh.pt@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_team_leader')),
+            ]"/>
+        </record>
+        <record id="emp_sew1_leader" model="hr.employee">
+            <field name="user_id" ref="user_sew1_leader"/>
+        </record>
+
+        <!-- Chuyền Trưởng 2 — Đỗ Thị Vân -->
+        <record id="user_sew2_leader" model="res.users">
+            <field name="name">Đỗ Thị Vân</field>
+            <field name="login">van.dt</field>
+            <field name="password">van123</field>
+            <field name="email">van.dt@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_team_leader')),
+            ]"/>
+        </record>
+        <record id="emp_sew2_leader" model="hr.employee">
+            <field name="user_id" ref="user_sew2_leader"/>
+        </record>
+
+        <!-- Tổ Trưởng Hoàn Thiện — Phạm Thị Hạnh -->
+        <record id="user_finish_leader" model="res.users">
+            <field name="name">Phạm Thị Hạnh</field>
+            <field name="login">hanh.pt</field>
+            <field name="password">hanhpt123</field>
+            <field name="email">hanh.pt@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_team_leader')),
+            ]"/>
+        </record>
+        <record id="emp_finish_leader" model="hr.employee">
+            <field name="user_id" ref="user_finish_leader"/>
+        </record>
+
+        <!-- Tổ Trưởng Ủi — Nguyễn Văn Long -->
+        <record id="user_iron_leader" model="res.users">
+            <field name="name">Nguyễn Văn Long</field>
+            <field name="login">long.nv</field>
+            <field name="password">long123</field>
+            <field name="email">long.nv@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_team_leader')),
+            ]"/>
+        </record>
+        <record id="emp_iron_leader" model="hr.employee">
+            <field name="user_id" ref="user_iron_leader"/>
+        </record>
+
+        <!-- Tổ Trưởng Đóng Gói — Đặng Thị Yến -->
+        <record id="user_pack_leader" model="res.users">
+            <field name="name">Đặng Thị Yến</field>
+            <field name="login">yen.dt</field>
+            <field name="password">yen123</field>
+            <field name="email">yen.dt@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_team_leader')),
+            ]"/>
+        </record>
+        <record id="emp_pack_leader" model="hr.employee">
+            <field name="user_id" ref="user_pack_leader"/>
+        </record>
+
+        <!-- Trưởng Xưởng Giặt — Bùi Văn Thắng -->
+        <record id="user_wash_leader" model="res.users">
+            <field name="name">Bùi Văn Thắng</field>
+            <field name="login">thang.bv</field>
+            <field name="password">thang123</field>
+            <field name="email">thang.bv@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_team_leader')),
+            ]"/>
+        </record>
+        <record id="emp_wash_leader" model="hr.employee">
+            <field name="user_id" ref="user_wash_leader"/>
+        </record>
+
+        <!-- ===================== LEVEL 1: USER (NHÂN VIÊN) ===================== -->
+
+        <!-- Thợ May — Nguyễn Thị Hương -->
+        <record id="user_sew1_worker1" model="res.users">
+            <field name="name">Nguyễn Thị Hương</field>
+            <field name="login">huong.nt</field>
+            <field name="password">huong123</field>
+            <field name="email">huong.nt@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_user')),
+            ]"/>
+        </record>
+        <record id="emp_sew1_worker1" model="hr.employee">
+            <field name="user_id" ref="user_sew1_worker1"/>
+        </record>
+
+        <!-- QC Inline — Nguyễn Thị Bích -->
+        <record id="user_qc_1" model="res.users">
+            <field name="name">Nguyễn Thị Bích</field>
+            <field name="login">bich.nt</field>
+            <field name="password">bich123</field>
+            <field name="email">bich.nt@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_user')),
+            ]"/>
+        </record>
+        <record id="emp_qc_1" model="hr.employee">
+            <field name="user_id" ref="user_qc_1"/>
+        </record>
+
+        <!-- Thợ Cắt — Trần Văn Dũng -->
+        <record id="user_cut_1" model="res.users">
+            <field name="name">Trần Văn Dũng</field>
+            <field name="login">dung.tv</field>
+            <field name="password">dung123</field>
+            <field name="email">dung.tv@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_user')),
+            ]"/>
+        </record>
+        <record id="emp_cut_1" model="hr.employee">
+            <field name="user_id" ref="user_cut_1"/>
+        </record>
+
+        <!-- Thợ Mẫu — Phạm Thị Hoa -->
+        <record id="user_sample_2" model="res.users">
+            <field name="name">Phạm Thị Hoa</field>
+            <field name="login">hoa.pt</field>
+            <field name="password">hoa123</field>
+            <field name="email">hoa.pt@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_user')),
+            ]"/>
+        </record>
+        <record id="emp_sample_2" model="hr.employee">
+            <field name="user_id" ref="user_sample_2"/>
+        </record>
+
+        <!-- Thợ Máy — Phan Văn Tùng -->
+        <record id="user_mechanic" model="res.users">
+            <field name="name">Phan Văn Tùng</field>
+            <field name="login">tung.pv</field>
+            <field name="password">tung123</field>
+            <field name="email">tung.pv@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_user')),
+            ]"/>
+        </record>
+        <record id="emp_mechanic" model="hr.employee">
+            <field name="user_id" ref="user_mechanic"/>
+        </record>
+
+        <!-- Tài Xế — Nguyễn Văn Tài -->
+        <record id="user_driver_1" model="res.users">
+            <field name="name">Nguyễn Văn Tài</field>
+            <field name="login">tai.nv</field>
+            <field name="password">tai123</field>
+            <field name="email">tai.nv@garmentfactory.vn</field>
+            <field name="group_ids" eval="[
+                (4, ref('base.group_user')),
+                (4, ref('garment_base.group_garment_user')),
+            ]"/>
+        </record>
+        <record id="emp_driver_1" model="hr.employee">
+            <field name="user_id" ref="user_driver_1"/>
+        </record>
+
+    </data>
+</odoo>

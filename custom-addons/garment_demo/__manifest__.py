@@ -46,6 +46,7 @@ Tạo dữ liệu mẫu cho tất cả module:
     'data': [
         'demo/demo_base.xml',
         'demo/demo_employees.xml',
+        'demo/demo_users.xml',
         'demo/demo_production.xml',
         'demo/demo_operations.xml',
         'demo/demo_hr_payroll.xml',
