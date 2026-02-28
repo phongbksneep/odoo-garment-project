@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class GarmentCrmLead(models.Model):
@@ -126,6 +126,81 @@ class GarmentCrmLead(models.Model):
     )
 
     notes = fields.Html(string='Ghi Chú')
+
+    # --- Computed ---
+    weighted_revenue = fields.Float(
+        string='Doanh Thu Kỳ Vọng',
+        compute='_compute_weighted_revenue',
+        store=True,
+        digits='Product Price',
+        help='Doanh thu dự kiến × Xác suất',
+    )
+    days_in_pipeline = fields.Integer(
+        string='Số Ngày Trong Pipeline',
+        compute='_compute_days_in_pipeline',
+    )
+    is_overdue = fields.Boolean(
+        string='Quá Hạn',
+        compute='_compute_is_overdue',
+        search='_search_is_overdue',
+    )
+
+    @api.depends('expected_revenue', 'probability')
+    def _compute_weighted_revenue(self):
+        for lead in self:
+            lead.weighted_revenue = (lead.expected_revenue or 0.0) * (lead.probability or 0.0) / 100.0
+
+    @api.depends_context('uid')
+    def _compute_days_in_pipeline(self):
+        today = fields.Date.today()
+        for lead in self:
+            if lead.create_date:
+                lead.days_in_pipeline = (today - lead.create_date.date()).days
+            else:
+                lead.days_in_pipeline = 0
+
+    @api.depends('expected_close_date', 'stage')
+    def _compute_is_overdue(self):
+        today = fields.Date.today()
+        for lead in self:
+            lead.is_overdue = (
+                lead.expected_close_date
+                and lead.expected_close_date < today
+                and lead.stage not in ('won', 'lost')
+            )
+
+    def _search_is_overdue(self, operator, value):
+        today = fields.Date.today()
+        if (operator == '=' and value) or (operator == '!=' and not value):
+            return [
+                '&',
+                ('expected_close_date', '<', today),
+                ('stage', 'not in', ['won', 'lost']),
+            ]
+        return [
+            '|',
+            ('expected_close_date', '>=', today),
+            ('expected_close_date', '=', False),
+        ]
+
+    # --- Constraints ---
+    @api.constrains('expected_qty')
+    def _check_expected_qty(self):
+        for lead in self:
+            if lead.expected_qty and lead.expected_qty < 0:
+                raise ValidationError(_('Số lượng dự kiến không được âm.'))
+
+    @api.constrains('expected_revenue')
+    def _check_expected_revenue(self):
+        for lead in self:
+            if lead.expected_revenue and lead.expected_revenue < 0:
+                raise ValidationError(_('Doanh thu dự kiến không được âm.'))
+
+    @api.constrains('probability')
+    def _check_probability(self):
+        for lead in self:
+            if lead.probability < 0 or lead.probability > 100:
+                raise ValidationError(_('Xác suất phải từ 0 đến 100.'))
 
     @api.model_create_multi
     def create(self, vals_list):

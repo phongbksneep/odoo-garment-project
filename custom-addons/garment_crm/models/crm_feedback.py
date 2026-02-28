@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class GarmentCrmFeedback(models.Model):
@@ -93,6 +93,69 @@ class GarmentCrmFeedback(models.Model):
         ('resolved', 'Đã Giải Quyết'),
         ('closed', 'Đã Đóng'),
     ], string='Trạng Thái', default='draft', tracking=True)
+
+    # --- Computed ---
+    days_open = fields.Integer(
+        string='Số Ngày Mở',
+        compute='_compute_days_open',
+    )
+    resolution_days = fields.Integer(
+        string='Thời Gian Xử Lý (Ngày)',
+        compute='_compute_resolution_days',
+    )
+    is_overdue = fields.Boolean(
+        string='Quá Hạn Theo Dõi',
+        compute='_compute_is_overdue',
+        search='_search_is_overdue',
+    )
+
+    @api.depends('date', 'state')
+    def _compute_days_open(self):
+        today = fields.Date.today()
+        for fb in self:
+            if fb.date and fb.state in ('draft', 'processing'):
+                fb.days_open = (today - fb.date).days
+            else:
+                fb.days_open = 0
+
+    @api.depends('date', 'resolution_date')
+    def _compute_resolution_days(self):
+        for fb in self:
+            if fb.date and fb.resolution_date:
+                fb.resolution_days = (fb.resolution_date - fb.date).days
+            else:
+                fb.resolution_days = 0
+
+    @api.depends('follow_up_date', 'state')
+    def _compute_is_overdue(self):
+        today = fields.Date.today()
+        for fb in self:
+            fb.is_overdue = (
+                fb.follow_up_date
+                and fb.follow_up_date < today
+                and fb.state in ('draft', 'processing')
+            )
+
+    def _search_is_overdue(self, operator, value):
+        today = fields.Date.today()
+        if (operator == '=' and value) or (operator == '!=' and not value):
+            return [
+                '&',
+                ('follow_up_date', '<', today),
+                ('state', 'in', ['draft', 'processing']),
+            ]
+        return [
+            '|',
+            ('follow_up_date', '>=', today),
+            ('follow_up_date', '=', False),
+        ]
+
+    # --- Constraints ---
+    @api.constrains('satisfaction_rating')
+    def _check_satisfaction_rating(self):
+        for fb in self:
+            if fb.satisfaction_rating and fb.satisfaction_rating not in ('1', '2', '3', '4', '5'):
+                raise ValidationError(_('Đánh giá hài lòng phải từ 1 đến 5.'))
 
     @api.model_create_multi
     def create(self, vals_list):

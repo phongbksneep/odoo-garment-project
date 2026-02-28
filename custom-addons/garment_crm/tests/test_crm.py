@@ -1,5 +1,8 @@
+from datetime import timedelta
+
+from odoo import fields
 from odoo.tests import TransactionCase, tagged
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 @tagged('post_install', '-at_install')
@@ -108,6 +111,72 @@ class TestCrmLead(TransactionCase):
         with self.assertRaises(UserError):
             lead.action_create_order()
 
+    # --- Constraint tests ---
+
+    def test_negative_qty_rejected(self):
+        with self.assertRaises(ValidationError):
+            self._create_lead(expected_qty=-100)
+
+    def test_negative_revenue_rejected(self):
+        with self.assertRaises(ValidationError):
+            self._create_lead(expected_revenue=-5000)
+
+    def test_probability_over_100_rejected(self):
+        with self.assertRaises(ValidationError):
+            self._create_lead(probability=150)
+
+    def test_probability_negative_rejected(self):
+        with self.assertRaises(ValidationError):
+            self._create_lead(probability=-10)
+
+    # --- Computed field tests ---
+
+    def test_weighted_revenue(self):
+        lead = self._create_lead(expected_revenue=10000, probability=30)
+        self.assertAlmostEqual(lead.weighted_revenue, 3000.0)
+
+    def test_weighted_revenue_zero_probability(self):
+        lead = self._create_lead(expected_revenue=10000, probability=0)
+        self.assertAlmostEqual(lead.weighted_revenue, 0.0)
+
+    def test_days_in_pipeline(self):
+        lead = self._create_lead()
+        self.assertEqual(lead.days_in_pipeline, 0)
+
+    def test_is_overdue_past_close_date(self):
+        lead = self._create_lead(
+            expected_close_date=fields.Date.today() - timedelta(days=5),
+        )
+        self.assertTrue(lead.is_overdue)
+
+    def test_is_not_overdue_won(self):
+        lead = self._create_lead(
+            expected_close_date=fields.Date.today() - timedelta(days=5),
+        )
+        lead.action_won()
+        self.assertFalse(lead.is_overdue)
+
+    def test_is_not_overdue_future(self):
+        lead = self._create_lead(
+            expected_close_date=fields.Date.today() + timedelta(days=10),
+        )
+        self.assertFalse(lead.is_overdue)
+
+    def test_search_is_overdue(self):
+        lead = self._create_lead(
+            name='Overdue Lead Test',
+            expected_close_date=fields.Date.today() - timedelta(days=5),
+        )
+        self.assertTrue(lead.is_overdue)
+        # Verify search domain directly
+        domain = [
+            ('expected_close_date', '<', fields.Date.today()),
+            ('stage', 'not in', ['won', 'lost']),
+            ('id', '=', lead.id),
+        ]
+        found = self.env['garment.crm.lead'].search(domain)
+        self.assertIn(lead.id, found.ids)
+
 
 @tagged('post_install', '-at_install')
 class TestCrmFeedback(TransactionCase):
@@ -172,6 +241,62 @@ class TestCrmFeedback(TransactionCase):
         fb.action_reopen()
         self.assertEqual(fb.state, 'processing')
         self.assertFalse(fb.resolution_date)
+
+    # --- Computed field tests ---
+
+    def test_days_open_for_open_feedback(self):
+        fb = self._create_feedback(
+            assigned_to=self.env.user.id,
+            date=fields.Date.today() - timedelta(days=10),
+        )
+        self.assertEqual(fb.days_open, 10)
+
+    def test_days_open_zero_for_resolved(self):
+        fb = self._create_feedback(
+            assigned_to=self.env.user.id,
+            date=fields.Date.today() - timedelta(days=5),
+        )
+        fb.action_process()
+        fb.write({'resolution': '<p>Done</p>'})
+        fb.action_resolve()
+        self.assertEqual(fb.days_open, 0)
+
+    def test_resolution_days(self):
+        fb = self._create_feedback(
+            assigned_to=self.env.user.id,
+            date=fields.Date.today() - timedelta(days=7),
+        )
+        fb.action_process()
+        fb.write({'resolution': '<p>Done</p>'})
+        fb.action_resolve()
+        self.assertEqual(fb.resolution_days, 7)
+
+    def test_is_overdue_follow_up(self):
+        fb = self._create_feedback(
+            follow_up_date=fields.Date.today() - timedelta(days=3),
+        )
+        self.assertTrue(fb.is_overdue)
+
+    def test_not_overdue_future_follow_up(self):
+        fb = self._create_feedback(
+            follow_up_date=fields.Date.today() + timedelta(days=3),
+        )
+        self.assertFalse(fb.is_overdue)
+
+    def test_search_is_overdue(self):
+        fb = self._create_feedback(
+            name='Overdue FB',
+            follow_up_date=fields.Date.today() - timedelta(days=3),
+        )
+        self.assertTrue(fb.is_overdue)
+        # Verify search domain directly
+        domain = [
+            ('follow_up_date', '<', fields.Date.today()),
+            ('state', 'in', ['draft', 'processing']),
+            ('id', '=', fb.id),
+        ]
+        found = self.env['garment.crm.feedback'].search(domain)
+        self.assertIn(fb.id, found.ids)
 
 
 @tagged('post_install', '-at_install')

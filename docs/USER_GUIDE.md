@@ -2192,6 +2192,32 @@ Quản lý toàn bộ pipeline bán hàng từ đầu mối (lead) đến chốt
 
 **Tạo Đơn Hàng từ CRM:** Khi cơ hội thành công → Nhấn **📋 Tạo Đơn Hàng** → Tự động tạo garment.order
 
+#### Trường tính toán tự động (Lead):
+
+| Trường | Mô Tả |
+|--------|-------|
+| **Doanh Thu Kỳ Vọng** | = Doanh thu dự kiến × Xác suất (%) — dùng để dự báo |
+| **Số Ngày Trong Pipeline** | Số ngày từ khi tạo lead đến nay |
+| **Quá Hạn** | Tự động đánh dấu khi ngày dự kiến chốt đã qua mà chưa thành công/thất bại |
+
+#### Quy tắc ràng buộc dữ liệu (Lead):
+
+| Quy tắc | Mô tả |
+|---------|-------|
+| **Số lượng dự kiến** | Không được âm |
+| **Doanh thu dự kiến** | Không được âm |
+| **Xác suất** | Phải từ 0 đến 100 |
+
+#### Bộ lọc tìm kiếm Lead:
+
+| Bộ lọc | Mô tả |
+|--------|-------|
+| **Lead / Cơ Hội** | Lọc theo loại |
+| **Mới / Đang Hoạt Động / Thành Công / Thất Bại** | Lọc theo giai đoạn |
+| **Quá Hạn Chốt** | Lead đã quá ngày dự kiến chốt |
+| **Giá Trị Cao (>$50k)** | Lead có doanh thu dự kiến > $50,000 |
+| **Nhóm theo** | Giai đoạn, Khách hàng, Nguồn, Nhân viên, Loại SP, Nhóm KD |
+
 ![CRM Lead](images/102_crm_lead_all.png)
 ![CRM Lead Form](images/105_crm_lead_form_new.png)
 
@@ -2209,6 +2235,24 @@ Theo dõi feedback, khiếu nại, đề xuất từ khách hàng.
 **Luồng xử lý:** Mới → Đang Xử Lý (chỉ định người) → Đã Giải Quyết → Đã Đóng
 
 **Mức độ nghiêm trọng:** Thấp / Trung Bình / Cao / Nghiêm Trọng
+
+#### Trường tính toán tự động (Phản Hồi):
+
+| Trường | Mô Tả |
+|--------|-------|
+| **Số Ngày Mở** | Số ngày từ ngày nhận đến nay (chỉ tính khi chưa giải quyết) |
+| **Thời Gian Xử Lý (Ngày)** | Số ngày từ ngày nhận đến ngày giải quyết |
+| **Quá Hạn Theo Dõi** | Tự động đánh dấu khi ngày theo dõi đã qua mà phản hồi chưa giải quyết |
+
+#### Bộ lọc tìm kiếm Phản Hồi:
+
+| Bộ lọc | Mô tả |
+|--------|-------|
+| **Khiếu Nại / Khen Ngợi / Đề Xuất** | Lọc theo loại phản hồi |
+| **Nghiêm Trọng** | Chỉ hiện severity = critical |
+| **Đang Mở** | Phản hồi ở trạng thái Mới hoặc Đang Xử Lý |
+| **Quá Hạn Theo Dõi** | Phản hồi đã quá ngày theo dõi |
+| **Nhóm theo** | Loại, Danh mục, Mức độ, Trạng thái |
 
 ![Feedback Form](images/108_crm_feedback_form_new.png)
 ![Feedback All](images/106_crm_feedback_all.png)

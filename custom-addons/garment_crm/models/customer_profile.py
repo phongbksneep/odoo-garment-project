@@ -73,16 +73,26 @@ class ResPartner(models.Model):
     )
 
     def _compute_garment_counts(self):
+        order_data = {}
+        lead_data = {}
+        feedback_data = {}
+        if self.ids:
+            for cid, count in self.env['garment.order']._read_group(
+                [('customer_id', 'in', self.ids)], ['customer_id'], ['__count'],
+            ):
+                order_data[cid.id] = count
+            for pid, count in self.env['garment.crm.lead']._read_group(
+                [('partner_id', 'in', self.ids)], ['partner_id'], ['__count'],
+            ):
+                lead_data[pid.id] = count
+            for pid, count in self.env['garment.crm.feedback']._read_group(
+                [('partner_id', 'in', self.ids)], ['partner_id'], ['__count'],
+            ):
+                feedback_data[pid.id] = count
         for partner in self:
-            partner.garment_order_count = self.env['garment.order'].search_count(
-                [('customer_id', '=', partner.id)]
-            )
-            partner.crm_lead_count = self.env['garment.crm.lead'].search_count(
-                [('partner_id', '=', partner.id)]
-            )
-            partner.feedback_count = self.env['garment.crm.feedback'].search_count(
-                [('partner_id', '=', partner.id)]
-            )
+            partner.garment_order_count = order_data.get(partner.id, 0)
+            partner.crm_lead_count = lead_data.get(partner.id, 0)
+            partner.feedback_count = feedback_data.get(partner.id, 0)
 
     def action_view_garment_orders(self):
         self.ensure_one()

@@ -9,19 +9,24 @@
         <field name="name">garment.crm.feedback.list</field>
         <field name="model">garment.crm.feedback</field>
         <field name="arch" type="xml">
-            <list decoration-danger="severity == 'critical'"
+            <list decoration-danger="severity == 'critical' or is_overdue"
                   decoration-warning="severity == 'high'"
                   decoration-success="state == 'resolved'">
+                <field name="is_overdue" column_invisible="1"/>
                 <field name="code"/>
                 <field name="name"/>
                 <field name="feedback_type" widget="badge"/>
                 <field name="partner_id"/>
-                <field name="garment_order_id"/>
+                <field name="garment_order_id" optional="show"/>
                 <field name="category"/>
                 <field name="severity" widget="badge"/>
                 <field name="assigned_to"/>
                 <field name="date"/>
-                <field name="resolution_date"/>
+                <field name="days_open" optional="show"
+                       decoration-danger="days_open &gt; 14"
+                       decoration-warning="days_open &gt; 7"/>
+                <field name="resolution_date" optional="hide"/>
+                <field name="resolution_days" optional="hide"/>
                 <field name="state" widget="badge"/>
             </list>
         </field>
@@ -74,6 +79,8 @@
                         <group string="Xử Lý">
                             <field name="assigned_to"/>
                             <field name="resolution_date"/>
+                            <field name="days_open"/>
+                            <field name="resolution_days"/>
                             <field name="follow_up_date"/>
                             <field name="satisfaction_rating"/>
                         </group>
@@ -115,6 +122,13 @@
                         domain="[('severity', '=', 'critical')]"/>
                 <filter name="filter_open" string="Đang Mở"
                         domain="[('state', 'in', ('draft', 'processing'))]"/>
+                <separator/>
+                <filter name="filter_overdue" string="Quá Hạn Theo Dõi"
+                        domain="[('is_overdue', '=', True)]"/>
+                <filter name="filter_praise" string="Khen Ngợi"
+                        domain="[('feedback_type', '=', 'praise')]"/>
+                <filter name="filter_suggestion" string="Đề Xuất"
+                        domain="[('feedback_type', '=', 'suggestion')]"/>
                 <group>
                     <filter name="group_type" string="Loại"
                             context="{'group_by': 'feedback_type'}"/>
