@@ -1,0 +1,644 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_delivery
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__plate_number
+msgid "Biển Số"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.constraint,message:garment_delivery.constraint_garment_vehicle_plate_unique
+msgid "Biển số xe phải là duy nhất!"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_vehicle__state__maintenance
+msgid "Bảo Trì"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model,name:garment_delivery.model_garment_delivery_line
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__line_ids
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+msgid "Chi Tiết Hàng Giao"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__delivery_type__internal
+msgid "Chuyển Nội Bộ"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__shipping_method__courier
+msgid "Chuyển Phát Nhanh"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_vehicle__vehicle_type__container_20
+msgid "Container 20ft"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_vehicle__vehicle_type__container_40
+msgid "Container 40ft"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__create_uid
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__create_uid
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__create_date
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__create_date
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__display_name
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__display_name
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__notes
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__notes
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__notes
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_vehicle_form
+msgid "Ghi Chú"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_search
+msgid "Gia Công"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__delivery_type__subcontract
+msgid "Giao Cho Gia Công"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__delivery_type__customer
+msgid "Giao Cho Khách Hàng"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_search
+msgid "Giao Khách"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.actions.act_window,name:garment_delivery.action_delivery_customer
+#: model:ir.ui.menu,name:garment_delivery.menu_delivery_customer
+msgid "Giao Khách Hàng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__insurance_expiry
+msgid "Hạn Bảo Hiểm"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+msgid "Hủy"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__id
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__id
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,help:garment_delivery.field_garment_delivery_order__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,help:garment_delivery.field_garment_delivery_order__message_has_error
+#: model:ir.model.fields,help:garment_delivery.field_garment_delivery_order__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+msgid "KG"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_vehicle__vehicle_type__other
+msgid "Khác"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_search
+msgid "Khách Hàng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__partner_id
+msgid "Khách Hàng / Đối Tác"
+msgstr ""
+
+#. module: garment_delivery
+#. odoo-python
+#: code:addons/garment_delivery/models/delivery_order.py:0
+msgid "Không thể hủy phiếu đã giao hàng!"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__write_uid
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__write_uid
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__write_date
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__write_date
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_search
+msgid "Loại"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__delivery_type
+msgid "Loại Giao Hàng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__vehicle_type
+msgid "Loại Xe"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__delivery_ids
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_vehicle_form
+msgid "Lịch Sử Giao Hàng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__color
+msgid "Màu"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__style_code
+msgid "Mã Hàng"
+msgstr ""
+
+#. module: garment_delivery
+#. odoo-python
+#: code:addons/garment_delivery/models/delivery_order.py:0
+msgid "New"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__expected_date
+msgid "Ngày Dự Kiến Đến"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__date
+msgid "Ngày Giao"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__registration_date
+msgid "Ngày Đăng Ký"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_vehicle__state__retired
+msgid "Ngừng Sử Dụng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__state__draft
+msgid "Nháp"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,help:garment_delivery.field_garment_delivery_order__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,help:garment_delivery.field_garment_delivery_order__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__ship_from
+msgid "Nơi Gửi"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__ship_to
+msgid "Nơi Nhận"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__packing_list_id
+msgid "Packing List"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__delivery_id
+msgid "Phiếu Giao"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.actions.act_window,name:garment_delivery.action_delivery_order
+#: model:ir.model,name:garment_delivery.model_garment_delivery_order
+#: model:ir.ui.menu,name:garment_delivery.menu_delivery_order
+msgid "Phiếu Giao Hàng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__shipping_method
+msgid "Phương Thức Vận Chuyển"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.actions.act_window,name:garment_delivery.action_vehicle
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__vehicle_id
+#: model:ir.ui.menu,name:garment_delivery.menu_vehicle
+msgid "Phương Tiện"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model,name:garment_delivery.model_garment_vehicle
+msgid "Phương Tiện Vận Chuyển"
+msgstr ""
+
+#. module: garment_delivery
+#. odoo-python
+#: code:addons/garment_delivery/models/delivery_order.py:0
+msgid "Phải có ít nhất 1 dòng chi tiết hàng giao!"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__size
+msgid "Size"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_vehicle__state__available
+msgid "Sẵn Sàng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__bl_number
+msgid "Số B/L"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__delivery_count
+msgid "Số Chuyến"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__container_no
+msgid "Số Container"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__pcs_per_carton
+msgid "Số Cái / Thùng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__invoice_number
+msgid "Số Invoice"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__quantity
+msgid "Số Lượng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__name
+msgid "Số Phiếu"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__seal_no
+msgid "Số Seal"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__carton_qty
+msgid "Số Thùng"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_search
+msgid "Tháng"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+msgid "Thông Tin Chung"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+msgid "Thông Tin Xuất Khẩu"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+msgid "Thùng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__volume_cbm
+msgid "Thể Tích (CBM)"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__max_volume
+msgid "Thể Tích Tối Đa (m³)"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__state
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__state
+msgid "Trạng Thái"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__delivery_type__return
+msgid "Trả Hàng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_line__gross_weight
+msgid "Trọng Lượng (Kg)"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+msgid "Trọng Lượng / Thể Tích"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__gross_weight
+msgid "Trọng Lượng Gross (Kg)"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__net_weight
+msgid "Trọng Lượng Net (Kg)"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__driver_id
+msgid "Tài Xế"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__driver_id
+msgid "Tài Xế Chính"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__name
+msgid "Tên Phương Tiện"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_vehicle__max_weight
+msgid "Tải Trọng Tối Đa (Kg)"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_tree
+msgid "Tổng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__total_qty
+msgid "Tổng SL Giao"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__total_pcs
+msgid "Tổng Số Cái"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__total_cartons
+msgid "Tổng Số Thùng"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+msgid "Vận Chuyển"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+msgid "Về Nháp"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,help:garment_delivery.field_garment_delivery_order__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_vehicle__vehicle_type__motorbike
+msgid "Xe Máy"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_vehicle__vehicle_type__truck_large
+msgid "Xe Tải Lớn (> 8T)"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_vehicle__vehicle_type__truck_small
+msgid "Xe Tải Nhỏ (< 2.5T)"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_vehicle__vehicle_type__truck_medium
+msgid "Xe Tải Trung (2.5 - 8T)"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_vehicle__vehicle_type__van
+msgid "Xe Van"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+msgid "Xuất Phát"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+msgid "Xác Nhận"
+msgstr ""
+
+#. module: garment_delivery
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+msgid "Xếp Hàng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_vehicle__state__in_use
+msgid "Đang Sử Dụng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__state__in_transit
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_search
+msgid "Đang Vận Chuyển"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__state__loading
+msgid "Đang Xếp Hàng"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__state__delivered
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_form
+#: model_terms:ir.ui.view,arch_db:garment_delivery.view_delivery_order_search
+msgid "Đã Giao"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__state__cancelled
+msgid "Đã Hủy"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__state__confirmed
+msgid "Đã Xác Nhận"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__garment_order_id
+msgid "Đơn Hàng May"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__shipping_method__sea
+msgid "Đường Biển"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__shipping_method__road
+msgid "Đường Bộ"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__shipping_method__air
+msgid "Đường Hàng Không"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields.selection,name:garment_delivery.selection__garment_delivery_order__shipping_method__rail
+msgid "Đường Sắt"
+msgstr ""
+
+#. module: garment_delivery
+#: model:ir.model.fields,field_description:garment_delivery.field_garment_delivery_order__proof_of_delivery
+msgid "Ảnh Giao Hàng"
+msgstr ""

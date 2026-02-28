@@ -83,4 +83,32 @@
             </xpath>
         </field>
     </record>
+
+    <!-- ================================================================== -->
+    <!-- Garment Payment: Add Account Payment integration -->
+    <!-- ================================================================== -->
+    <record id="view_payment_form_account_integration" model="ir.ui.view">
+        <field name="name">garment.payment.form.account.integration</field>
+        <field name="model">garment.payment</field>
+        <field name="inherit_id" ref="view_payment_form"/>
+        <field name="arch" type="xml">
+            <!-- Add Account Payment buttons in header -->
+            <xpath expr="//button[@name='action_cancel']" position="before">
+                <button name="action_create_account_payment" type="object"
+                        string="Tạo Phiếu Thu/Chi KT"
+                        class="btn-secondary"
+                        invisible="account_payment_id or state == 'draft'"
+                        icon="fa-money"/>
+                <button name="action_view_account_payment" type="object"
+                        string="Xem Phiếu KT"
+                        class="btn-link"
+                        invisible="not account_payment_id"
+                        icon="fa-external-link"/>
+            </xpath>
+            <!-- Add account_payment_id field -->
+            <xpath expr="//field[@name='reference']" position="after">
+                <field name="account_payment_id" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>

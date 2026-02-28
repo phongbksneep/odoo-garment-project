@@ -1,0 +1,777 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_subcontract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__res_partner__subcontract_rating__a
+msgid "A - Xuất Sắc"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__res_partner__subcontract_rating__b
+msgid "B - Tốt"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__res_partner__subcontract_rating__c
+msgid "C - Trung Bình"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__res_partner__subcontract_type__cmt
+msgid "CMT"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__work_type__cmt
+msgid "CMT (Cắt - May - Hoàn Thiện)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Chi Phí"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__line_ids
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Chi Tiết Gia Công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model,name:garment_subcontract.model_garment_subcontract_order_line
+msgid "Chi Tiết Đơn Gia Công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__material_sent
+msgid "Chi tiết vải, phụ liệu gửi cho đối tác gia công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_search
+msgid "Chưa TT"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__payment_status__unpaid
+msgid "Chưa Thanh Toán"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model,name:garment_subcontract.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__create_uid
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__create_date
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_partner__subcontract_capacity
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_users__subcontract_capacity
+msgid "Công Suất (pcs/ngày)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__work_type__cutting
+msgid "Cắt (Cutting Only)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__res_partner__subcontract_type__cutting
+msgid "Cắt (Cutting)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__res_partner__subcontract_rating__d
+msgid "D - Kém"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__display_name
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__display_name
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__notes
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__notes
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Ghi Chú"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_partner__subcontract_note
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_users__subcontract_note
+msgid "Ghi Chú Gia Công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__qc_notes
+msgid "Ghi Chú Kiểm Hàng"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_partner_subcontract_form
+msgid "Gia Công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__work_type__washing
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__res_partner__subcontract_type__washing
+msgid "Giặt (Washing)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.actions.act_window,name:garment_subcontract.action_subcontract_outgoing
+#: model:ir.ui.menu,name:garment_subcontract.menu_sub_order_outgoing
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_search
+msgid "Gửi Gia Công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__direction__outgoing
+msgid "Gửi Gia Công (Outsource)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__work_type__finishing
+msgid "Hoàn Thiện (Finishing)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__state__done
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Hoàn Thành"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Hủy"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__id
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__id
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__message_has_error
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__work_type__printing
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__res_partner__subcontract_type__printing
+msgid "In (Printing)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__work_type__other
+msgid "Khác"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__state__qc
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Kiểm Tra"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Kiểm Tra Chất Lượng"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__write_uid
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__write_date
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Liên Kết Nội Bộ"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__direction
+msgid "Loại"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__work_type
+msgid "Loại Công Việc"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_partner__subcontract_type
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_users__subcontract_type
+msgid "Loại Gia Công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_partner__is_subcontractor
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_users__is_subcontractor
+msgid "Là Đối Tác Gia Công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__production_order_id
+msgid "Lệnh Sản Xuất"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__work_type__sewing
+msgid "May (Sewing Only)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__res_partner__subcontract_type__sewing
+msgid "May (Sewing)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__color_id
+msgid "Màu"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__description
+msgid "Mô Tả Công Việc"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__style_id
+msgid "Mẫu May"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Nguyên Liệu"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__material_sent
+msgid "Nguyên Liệu Gửi Đi"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__material_returned
+msgid "Nguyên Liệu Trả Lại"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__material_returned
+msgid "Nguyên liệu dư trả lại sau gia công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__date_sent
+msgid "Ngày Giao Hàng/NL"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__date_expected
+msgid "Ngày Nhận Dự Kiến"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__date_received
+msgid "Ngày Nhận Thực Tế"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__date_sent
+msgid "Ngày gửi hàng hoặc nguyên liệu cho đối tác"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__date_order
+msgid "Ngày Đặt"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__state__draft
+msgid "Nháp"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.actions.act_window,name:garment_subcontract.action_subcontract_incoming
+#: model:ir.ui.menu,name:garment_subcontract.menu_sub_order_incoming
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_search
+msgid "Nhận Gia Công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__direction__incoming
+msgid "Nhận Gia Công (Insource)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__state__partial_received
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Nhận Một Phần"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_res_partner__subcontract_capacity
+#: model:ir.model.fields,help:garment_subcontract.field_res_users__subcontract_capacity
+msgid "Năng lực sản xuất ước tính mỗi ngày"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_res_partner__subcontract_note
+#: model:ir.model.fields,help:garment_subcontract.field_res_users__subcontract_note
+msgid "Năng lực, máy móc, chuyên môn, lịch sử hợp tác"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__partner_po
+msgid "PO Đối Tác"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__qc_passed
+msgid "QC Đạt"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.actions.act_window,help:garment_subcontract.action_subcontract_order
+msgid "Quản lý gửi/nhận gia công may, giặt, thêu, in..."
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__qty_rejected
+msgid "SL Lỗi/Từ Chối"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__qty_received
+msgid "SL Nhận Lại"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__qty_accepted
+msgid "SL Đạt"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__qty_ordered
+msgid "SL Đặt GC"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__size_id
+msgid "Size"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_partner__subcontract_order_count
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_users__subcontract_order_count
+msgid "Số Đơn GC"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__name
+msgid "Số Đơn Gia Công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__payment_status
+msgid "Thanh Toán"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__payment_status__partial
+msgid "Thanh Toán Một Phần"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__subtotal
+msgid "Thành Tiền"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__work_type__embroidery
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__res_partner__subcontract_type__embroidery
+msgid "Thêu (Embroidery)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Thông Tin Chung"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Thời Gian"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__completion_rate
+msgid "Tiến Độ (%)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__currency_id
+msgid "Tiền Tệ"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__state
+msgid "Trạng Thái"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__is_overdue
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_search
+msgid "Trễ Hạn"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.actions.act_window,help:garment_subcontract.action_subcontract_order
+msgid "Tạo đơn gia công mới"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.ui.menu,name:garment_subcontract.menu_sub_order_all
+msgid "Tất Cả Đơn GC"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_list
+msgid "Tổng"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__total_cost
+msgid "Tổng Chi Phí GC"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__total_qty
+msgid "Tổng SL Gia Công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__total_rejected
+msgid "Tổng SL Lỗi/Từ Chối"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__total_received
+msgid "Tổng SL Đã Nhận Lại"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "VD: 500m vải cotton trắng, 1000 cái nút, 200m chỉ..."
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Về Nháp"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Xác Nhận"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_partner__subcontract_rating
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_users__subcontract_rating
+msgid "Xếp Hạng GC"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__qc_required
+msgid "Yêu Cầu Kiểm Hàng"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__res_partner__subcontract_type__multi
+msgid "Đa Năng"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_search
+msgid "Đang GC"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__state__in_progress
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Đang Gia Công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_res_partner__is_subcontractor
+#: model:ir.model.fields,help:garment_subcontract.field_res_users__is_subcontractor
+msgid "Đánh dấu đối tác này là nhà gia công (subcontractor)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__state__sent
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Đã Gửi Hàng"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__state__cancelled
+msgid "Đã Hủy"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__state__received
+msgid "Đã Nhận Hàng"
+msgstr ""
+
+#. module: garment_subcontract
+#: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
+msgid "Đã Nhận Đủ"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__amount_paid
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__payment_status__paid
+msgid "Đã Thanh Toán"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__state__confirmed
+msgid "Đã Xác Nhận"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields.selection,name:garment_subcontract.selection__garment_subcontract_order__work_type__packing
+msgid "Đóng Gói (Packing)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.actions.act_window,name:garment_subcontract.action_subcontract_order
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__order_id
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_partner__subcontract_order_ids
+#: model:ir.model.fields,field_description:garment_subcontract.field_res_users__subcontract_order_ids
+#: model:ir.ui.menu,name:garment_subcontract.menu_sub_orders
+msgid "Đơn Gia Công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order_line__unit_price
+msgid "Đơn Giá"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__unit_price
+msgid "Đơn Giá GC (VNĐ/pcs)"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model,name:garment_subcontract.model_garment_subcontract_order
+msgid "Đơn Hàng Gia Công"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__garment_order_id
+msgid "Đơn Hàng May Gốc"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__garment_order_id
+msgid "Đơn hàng may nội bộ liên quan"
+msgstr ""
+
+#. module: garment_subcontract
+#: model:ir.actions.act_window,name:garment_subcontract.action_subcontractors
+#: model:ir.model.fields,field_description:garment_subcontract.field_garment_subcontract_order__partner_id
+#: model:ir.ui.menu,name:garment_subcontract.menu_sub_partners
+msgid "Đối Tác Gia Công"
+msgstr ""

@@ -1,0 +1,849 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_accounting
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__tax_type__0
+msgid "0% (Xuất Khẩu)"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__tax_type__10
+msgid "10%"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__message_needaction
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__message_attachment_count
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__account_move_id
+msgid "Bút Toán Kế Toán"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice_line__unit__set
+msgid "Bộ"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__expense_type__other
+msgid "Chi Phí Khác"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_form
+msgid "Chi Tiết"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model,name:garment_accounting.model_garment_invoice_line
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__line_ids
+msgid "Chi Tiết Hóa Đơn"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_payment__payment_type__outbound
+msgid "Chi Tiền"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_payment__payment_method__bank
+msgid "Chuyển Khoản"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_search
+msgid "Chưa Thanh Toán"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/odoo_integration.py:0
+msgid "Chưa có PO liên kết!"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/odoo_integration.py:0
+msgid "Chưa có Sale Order liên kết!"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/odoo_integration.py:0
+msgid "Chưa có bút toán liên kết!"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/odoo_integration.py:0
+msgid "Chưa có phiếu thu/chi kế toán liên kết!"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/odoo_integration.py:0
+msgid "Chưa có sổ nhật ký ngân hàng hoặc tiền mặt!"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_invoice__expense_type
+msgid "Chỉ áp dụng cho hóa đơn mua"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__create_uid
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice_line__create_uid
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__create_date
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice_line__create_date
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice_line__unit__pcs
+msgid "Cái"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__residual
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_tree
+msgid "Còn Nợ"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__display_name
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice_line__display_name
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_material_receipt__display_name
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_order__display_name
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__message_follower_ids
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__message_partner_ids
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_invoice__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__notes
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__notes
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_form
+msgid "Ghi Chú"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__expense_type__subcontract
+msgid "Gia Công"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__has_message
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/odoo_integration.py:0
+msgid "Hãy chọn nhà cung cấp trước!"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/odoo_integration.py:0
+msgid "Hãy xác nhận hóa đơn trước khi tạo bút toán!"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/odoo_integration.py:0
+msgid "Hãy xác nhận phiếu thanh toán trước!"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice_line__invoice_id
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__invoice_id
+msgid "Hóa Đơn"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.actions.act_window,name:garment_accounting.action_invoice_sale
+#: model:ir.ui.menu,name:garment_accounting.menu_invoice_sale
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_search
+msgid "Hóa Đơn Bán"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__invoice_type__sale
+msgid "Hóa Đơn Bán (Doanh Thu)"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model,name:garment_accounting.model_garment_invoice
+msgid "Hóa Đơn May Mặc"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.actions.act_window,name:garment_accounting.action_invoice_purchase
+#: model:ir.ui.menu,name:garment_accounting.menu_invoice_purchase
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_search
+msgid "Hóa Đơn Mua"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__invoice_type__purchase
+msgid "Hóa Đơn Mua (Chi Phí)"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/odoo_integration.py:0
+msgid "Hóa đơn này đã có bút toán: %s"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__due_date
+msgid "Hạn Thanh Toán"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_form
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_payment_form
+msgid "Hủy"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__id
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice_line__id
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_material_receipt__id
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_order__id
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_invoice__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_invoice__message_needaction
+#: model:ir.model.fields,help:garment_accounting.field_garment_payment__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_invoice__message_has_error
+#: model:ir.model.fields,help:garment_accounting.field_garment_invoice__message_has_sms_error
+#: model:ir.model.fields,help:garment_accounting.field_garment_payment__message_has_error
+#: model:ir.model.fields,help:garment_accounting.field_garment_payment__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__message_is_follower
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice_line__unit__kg
+msgid "Kg"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice_line__unit__other
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_payment__payment_method__other
+msgid "Khác"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__tax_type__none
+msgid "Không Thuế"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/garment_invoice.py:0
+msgid "Không thể hủy hóa đơn đã thanh toán!"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_payment__payment_method__lc
+msgid "L/C"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__write_uid
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice_line__write_uid
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__write_date
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice_line__write_date
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_invoice__garment_order_id
+msgid "Liên kết đơn hàng may (nếu có)"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_invoice__account_move_id
+msgid "Liên kết đến Account Move / Invoice của Odoo"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_payment__account_payment_id
+msgid "Liên kết đến Account Payment của Odoo"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_material_receipt__purchase_order_id
+msgid "Liên kết đến Purchase Order của Odoo"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_order__sale_order_id
+msgid "Liên kết đến Sale Order của Odoo"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__payment_type
+msgid "Loại"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__invoice_type
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_search
+msgid "Loại HĐ"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice_line__unit__lot
+msgid "Lô"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__expense_type__salary
+msgid "Lương"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__message_has_error
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__message_ids
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__account_move_name
+msgid "Mã Bút Toán"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_material_receipt__purchase_order_name
+msgid "Mã PO"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__account_payment_name
+msgid "Mã Phiếu KT"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_order__sale_order_name
+msgid "Mã SO"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice_line__unit__m
+msgid "Mét"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice_line__description
+msgid "Mô Tả"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/garment_invoice.py:0
+#: code:addons/garment_accounting/models/garment_payment.py:0
+msgid "New"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__expense_type__material
+msgid "Nguyên Phụ Liệu"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__date
+msgid "Ngày Hóa Đơn"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__date
+msgid "Ngày Thanh Toán"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__state__draft
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_payment__state__draft
+msgid "Nháp"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__message_needaction_counter
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__message_has_error_counter
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_invoice__message_needaction_counter
+#: model:ir.model.fields,help:garment_accounting.field_garment_payment__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_invoice__message_has_error_counter
+#: model:ir.model.fields,help:garment_accounting.field_garment_payment__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model,name:garment_accounting.model_garment_material_receipt
+msgid "Phiếu Nhập Nguyên Liệu"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.actions.act_window,name:garment_accounting.action_payment
+#: model:ir.model,name:garment_accounting.model_garment_payment
+#: model:ir.ui.menu,name:garment_accounting.menu_payment
+msgid "Phiếu Thanh Toán"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__account_payment_id
+msgid "Phiếu Thu/Chi Kế Toán"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/odoo_integration.py:0
+msgid "Phiếu nhập chưa có dòng chi tiết!"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/odoo_integration.py:0
+msgid "Phiếu nhập này đã có PO: %s"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/odoo_integration.py:0
+msgid "Phiếu này đã có thanh toán kế toán: %s"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__expense_type
+msgid "Phân Loại Chi Phí"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__payment_method
+msgid "Phương Thức"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/garment_invoice.py:0
+msgid "Phải có ít nhất 1 dòng chi tiết!"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__message_has_sms_error
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_invoice__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__name
+msgid "Số Hóa Đơn"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice_line__quantity
+msgid "Số Lượng"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__name
+msgid "Số Phiếu"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__reference
+msgid "Số Tham Chiếu / UNC"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__amount
+msgid "Số Tiền"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__payment_ids
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_form
+msgid "Thanh Toán"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__expense_type__equipment
+msgid "Thiết Bị / Máy Móc"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_payment__payment_type__inbound
+msgid "Thu Tiền"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__expense_type__rent
+msgid "Thuê Nhà Xưởng"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_tree
+msgid "Thuế"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__tax_type
+msgid "Thuế GTGT"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice_line__subtotal
+msgid "Thành Tiền"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice_line__unit__month
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_search
+msgid "Tháng"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__subtotal
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_tree
+msgid "Tiền Hàng"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_payment__payment_method__cash
+msgid "Tiền Mặt"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__tax_amount
+msgid "Tiền Thuế GTGT"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__currency_id
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__currency_id
+msgid "Tiền Tệ"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__state
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__state
+msgid "Trạng Thái"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_invoice__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_form_account_integration
+msgid "Tạo Bút Toán"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_material_receipt_form_po_integration
+msgid "Tạo PO Mua Hàng"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_payment_form_account_integration
+msgid "Tạo Phiếu Thu/Chi KT"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_garment_order_form_sale_integration
+msgid "Tạo Sale Order"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.actions.act_window,name:garment_accounting.action_invoice_all
+#: model:ir.ui.menu,name:garment_accounting.menu_invoice_all
+msgid "Tất Cả Hóa Đơn"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_form
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_tree
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_payment_tree
+msgid "Tổng"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__total_amount
+msgid "Tổng Thanh Toán"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__expense_type__transport
+msgid "Vận Chuyển"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_form
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_payment_form
+msgid "Về Nháp"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__website_message_ids
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,help:garment_accounting.field_garment_invoice__website_message_ids
+#: model:ir.model.fields,help:garment_accounting.field_garment_payment__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_form_account_integration
+msgid "Xem Bút Toán"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_material_receipt_form_po_integration
+msgid "Xem PO"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_payment_form_account_integration
+msgid "Xem Phiếu KT"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_garment_order_form_sale_integration
+msgid "Xem Sale Order"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_form
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_payment_form
+msgid "Xác Nhận"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice_line__unit__yard
+msgid "Yard"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__expense_type__utility
+msgid "Điện / Nước"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__state__cancelled
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_payment__state__cancelled
+msgid "Đã Hủy"
+msgstr ""
+
+#. module: garment_accounting
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_tree
+msgid "Đã TT"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__paid_amount
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__state__paid
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_form
+msgid "Đã Thanh Toán"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_invoice__state__confirmed
+#: model:ir.model.fields.selection,name:garment_accounting.selection__garment_payment__state__confirmed
+msgid "Đã Xác Nhận"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_order__sale_order_id
+msgid "Đơn Bán Hàng (SO)"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice_line__unit_price
+msgid "Đơn Giá"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model,name:garment_accounting.model_garment_order
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__garment_order_id
+msgid "Đơn Hàng May"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_material_receipt__purchase_order_id
+msgid "Đơn Mua Hàng (PO)"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice_line__unit
+msgid "Đơn Vị"
+msgstr ""
+
+#. module: garment_accounting
+#. odoo-python
+#: code:addons/garment_accounting/models/odoo_integration.py:0
+msgid "Đơn hàng này đã có Sale Order: %s"
+msgstr ""
+
+#. module: garment_accounting
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_invoice__partner_id
+#: model:ir.model.fields,field_description:garment_accounting.field_garment_payment__partner_id
+#: model_terms:ir.ui.view,arch_db:garment_accounting.view_invoice_search
+msgid "Đối Tác"
+msgstr ""

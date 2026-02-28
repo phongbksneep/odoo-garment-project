@@ -1,0 +1,1048 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_costing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__accessory_line_ids
+msgid "Accessories Cost"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__accessory_cost_per_pc
+msgid "Accessory Cost/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__message_needaction
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__active
+msgid "Active"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__activity_ids
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__activity_exception_decoration
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__activity_state
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__activity_type_icon
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__amount_per_pc
+msgid "Amount/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__message_attachment_count
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__bom_id
+msgid "BOM"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.actions.act_window,help:garment_costing.action_garment_bom
+msgid ""
+"BOM (Bill of Materials) ghi nhận định mức nguyên phụ liệu\n"
+"                cho từng mẫu hàng: vải, chỉ, nút, khóa, nhãn, bao bì..."
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__bom_id
+msgid "BOM / Định Mức"
+msgstr ""
+
+#. module: garment_costing
+#. odoo-python
+#: code:addons/garment_costing/models/garment_bom.py:0
+msgid "BOM phải có ít nhất 1 dòng chi tiết!"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_cost_sheet__bom_id
+msgid "BOM được sử dụng để tính chi phí nguyên phụ liệu"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__buyer_id
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_search
+msgid "Buyer"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_list
+msgid "Bảng Tính Giá"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.actions.act_window,name:garment_costing.action_cost_sheet
+#: model:ir.model,name:garment_costing.model_garment_cost_sheet
+#: model:ir.ui.menu,name:garment_costing.menu_cost_sheet
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+msgid "Bảng Tính Giá Thành"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__uom__set
+msgid "Bộ"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_search
+msgid "CM"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_cost_sheet__costing_type__cm
+msgid "CM (Cut & Make)"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__cm_cost
+msgid "CM Cost/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__cm_rate_per_minute
+msgid "CM Rate / Minute"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_search
+msgid "CMT"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_cost_sheet__costing_type__cmt
+msgid "CMT (Cut, Make & Trim)"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+msgid "Chi Phí Gia Công (CM)"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+msgid "Chi Phí Gia Công Phụ"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+msgid "Chi Phí Phụ Liệu"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+msgid "Chi Phí Thương Mại"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+msgid "Chi Phí Vải"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+msgid "Chi Phí Đóng Gói"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model,name:garment_costing.model_garment_bom_line
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__line_ids
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_form
+msgid "Chi Tiết BOM"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model,name:garment_costing.model_garment_cost_line
+msgid "Chi Tiết Chi Phí"
+msgstr ""
+
+#. module: garment_costing
+#. odoo-python
+#: code:addons/garment_costing/models/garment_bom.py:0
+msgid "Chỉ BOM đã xác nhận mới được duyệt!"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__material_type__thread
+msgid "Chỉ May"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_bom_line__fabric_id
+msgid "Chọn vải (nếu loại NL là vải)"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__commission_pct
+msgid "Commission (%)"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__commission_cost
+msgid "Commission/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__company_id
+msgid "Company"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__consumption
+msgid "Consumption/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__cost_price
+msgid "Cost Price/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__cost_sheet_id
+msgid "Cost Sheet"
+msgstr ""
+
+#. module: garment_costing
+#. odoo-python
+#: code:addons/garment_costing/models/cost_sheet.py:0
+msgid "Cost sheet is already cancelled."
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__costing_type
+msgid "Costing Type"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__create_uid
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__create_uid
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__create_uid
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__create_date
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__create_date
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__create_date
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__currency_id
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__uom__roll
+msgid "Cuộn"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__uom__cone
+msgid "Cuộn Chỉ"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__uom__pcs
+msgid "Cái"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__company_id
+msgid "Công Ty"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__date
+msgid "Date"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__description
+msgid "Description"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__display_name
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__display_name
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__display_name
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_form
+msgid "Duyệt"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__embroidery_cost
+msgid "Embroidery/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_search
+msgid "FOB"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_cost_sheet__costing_type__fob
+msgid "FOB (Free On Board)"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__fabric_line_ids
+msgid "Fabric Cost"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__fabric_cost_per_pc
+msgid "Fabric Cost/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__message_follower_ids
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__message_partner_ids
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_bom__activity_type_icon
+#: model:ir.model.fields,help:garment_costing.field_garment_cost_sheet__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__garment_order_id
+msgid "Garment Order"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__notes
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__notes
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_form
+msgid "Ghi Chú"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__wastage_pct
+msgid "Hao Hụt (%)"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__has_message
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_form
+msgid "Hủy"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__id
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__id
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__id
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__activity_exception_icon
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_bom__activity_exception_icon
+#: model:ir.model.fields,help:garment_costing.field_garment_cost_sheet__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_bom__message_needaction
+#: model:ir.model.fields,help:garment_costing.field_garment_cost_sheet__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_bom__message_has_error
+#: model:ir.model.fields,help:garment_costing.field_garment_bom__message_has_sms_error
+#: model:ir.model.fields,help:garment_costing.field_garment_cost_sheet__message_has_error
+#: model:ir.model.fields,help:garment_costing.field_garment_cost_sheet__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__freight_cost
+msgid "Inland Freight/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__message_is_follower
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__uom__kg
+msgid "Kg"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__material_type__other
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__uom__other
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_cost_line__cost_type__other
+msgid "Khác"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__material_type__zipper
+msgid "Khóa Kéo"
+msgstr ""
+
+#. module: garment_costing
+#. odoo-python
+#: code:addons/garment_costing/models/cost_sheet.py:0
+msgid "Không tìm thấy BOM cho mã hàng \"%s\". Hãy tạo BOM trước!"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__write_uid
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__write_uid
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__write_uid
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__write_date
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__write_date
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__write_date
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+msgid "Load từ BOM"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__cost_type
+msgid "Loại Chi Phí"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_search
+msgid "Loại Giá"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__material_type
+msgid "Loại NL"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__message_has_error
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__message_ids
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__material_type__interlining
+msgid "Mex / Keo Dựng"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__my_activity_date_deadline
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__color_id
+msgid "Màu"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__name
+msgid "Mã BOM"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_search
+msgid "Mã Hàng"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__style_id
+msgid "Mã Hàng / Style"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__uom__m
+msgid "Mét"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__description
+msgid "Mô Tả"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.constraint,message:garment_costing.constraint_garment_bom_bom_style_version_unique
+msgid "Mỗi Style chỉ có 1 BOM cho mỗi phiên bản!"
+msgstr ""
+
+#. module: garment_costing
+#. odoo-python
+#: code:addons/garment_costing/models/cost_sheet.py:0
+#: code:addons/garment_costing/models/garment_bom.py:0
+msgid "New"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__activity_date_deadline
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__activity_summary
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__activity_type_id
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__date
+msgid "Ngày Tạo"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__supplier_id
+msgid "Nhà Cung Cấp"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom__state__draft
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_cost_sheet__state__draft
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_search
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_search
+msgid "Nháp"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__material_type__label
+msgid "Nhãn Mác"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__notes
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__notes
+msgid "Notes"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__message_needaction_counter
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__message_has_error_counter
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_bom__message_needaction_counter
+#: model:ir.model.fields,help:garment_costing.field_garment_cost_sheet__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_bom__message_has_error_counter
+#: model:ir.model.fields,help:garment_costing.field_garment_cost_sheet__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__material_type__button
+msgid "Nút / Cúc"
+msgstr ""
+
+#. module: garment_costing
+#. odoo-python
+#: code:addons/garment_costing/models/cost_sheet.py:0
+msgid "Only confirmed cost sheets can be approved."
+msgstr ""
+
+#. module: garment_costing
+#. odoo-python
+#: code:addons/garment_costing/models/cost_sheet.py:0
+msgid "Only confirmed or approved cost sheets can be revised."
+msgstr ""
+
+#. module: garment_costing
+#. odoo-python
+#: code:addons/garment_costing/models/cost_sheet.py:0
+msgid "Only draft cost sheets can be confirmed."
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__order_qty
+msgid "Order Quantity"
+msgstr ""
+
+#. module: garment_costing
+#. odoo-python
+#: code:addons/garment_costing/models/cost_sheet.py:0
+msgid "Order quantity must be greater than zero."
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__other_line_ids
+msgid "Other Cost"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__other_cost_per_pc
+msgid "Other Cost/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__overhead_pct
+msgid "Overhead (%)"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__overhead_cost
+msgid "Overhead/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__packing_line_ids
+msgid "Packing Cost"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__packing_cost_per_pc
+msgid "Packing Cost/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__version
+msgid "Phiên Bản"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_cost_line__cost_type__accessory
+msgid "Phụ Liệu"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__printing_cost
+msgid "Printing/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__product_id
+msgid "Product"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__profit_pct
+msgid "Profit (%)"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__profit_cost
+msgid "Profit/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__name
+msgid "Reference"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__activity_user_id
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__revision
+msgid "Revision"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__message_has_sms_error
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__smv
+msgid "SMV (Standard Minute Value)"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__selling_price
+msgid "Selling Price/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__sequence
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_bom__activity_state
+#: model:ir.model.fields,help:garment_costing.field_garment_cost_sheet__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__style_id
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_search
+msgid "Style"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__supplier_id
+msgid "Supplier"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__product_id
+msgid "Sản Phẩm"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__total_lines
+msgid "Số Dòng"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_bom_line__consumption
+msgid "Số lượng nguyên liệu cần cho 1 sản phẩm"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+msgid "Sửa Đổi"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__target_efficiency
+msgid "Target Efficiency (%)"
+msgstr ""
+
+#. module: garment_costing
+#. odoo-python
+#: code:addons/garment_costing/models/cost_sheet.py:0
+msgid "Target efficiency must be between 0 and 100%%."
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__testing_cost
+msgid "Testing/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__material_type__elastic
+msgid "Thun / Dây"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__amount_per_pc
+msgid "Thành Tiền / SP"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_cost_sheet__smv
+msgid "Thời gian tiêu chuẩn để may 1 sản phẩm (phút)"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__total_material_cost
+msgid "Total Material/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__total_order_value
+msgid "Total Order Value"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__total_process_cost
+msgid "Total Process/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__state
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__state
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_search
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_search
+msgid "Trạng Thái"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_bom__activity_exception_decoration
+#: model:ir.model.fields,help:garment_costing.field_garment_cost_sheet__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_search
+msgid "Tìm BOM"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_search
+msgid "Tìm Bảng Giá"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.actions.act_window,help:garment_costing.action_cost_sheet
+msgid "Tính giá FOB, CM, CMT cho sản phẩm may."
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_form
+msgid "Tạo Phiên Bản Mới"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.actions.act_window,help:garment_costing.action_cost_sheet
+msgid "Tạo bảng tính giá thành mới"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.actions.act_window,help:garment_costing.action_garment_bom
+msgid "Tạo Định Mức BOM đầu tiên"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_form
+msgid "Tổng"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__total_material_cost
+msgid "Tổng CP NL / SP"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+msgid "Tổng Hợp Giá Thành"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__total_fabric_consumption
+msgid "Tổng ĐM Vải (m)"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__unit_price
+msgid "Unit Price"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__uom_id
+msgid "UoM"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__fabric_id
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_cost_line__cost_type__fabric
+msgid "Vải"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__material_type__fabric
+msgid "Vải Chính"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__material_type__lining
+msgid "Vải Lót"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_form
+msgid "Về Nháp"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__washing_cost
+msgid "Washing/Pc"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_line__wastage_pct
+msgid "Wastage (%)"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom__website_message_ids
+#: model:ir.model.fields,field_description:garment_costing.field_garment_cost_sheet__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_bom__website_message_ids
+#: model:ir.model.fields,help:garment_costing.field_garment_cost_sheet__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_form
+msgid "Xác Nhận"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__uom__yard
+msgid "Yard"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom__state__approved
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_cost_sheet__state__approved
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_search
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_search
+msgid "Đã Duyệt"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom__state__cancelled
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_cost_sheet__state__cancelled
+msgid "Đã Hủy"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_cost_sheet__state__revised
+msgid "Đã Sửa"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom__state__confirmed
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_cost_sheet__state__confirmed
+msgid "Đã Xác Nhận"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_bom_line__material_type__packing
+#: model:ir.model.fields.selection,name:garment_costing.selection__garment_cost_line__cost_type__packing
+msgid "Đóng Gói"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__unit_price
+msgid "Đơn Giá"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__uom
+msgid "Đơn Vị"
+msgstr ""
+
+#. module: garment_costing
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_cost_sheet_form
+msgid "Đặt Lại Nháp"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,field_description:garment_costing.field_garment_bom_line__consumption
+msgid "Định Mức / SP"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.actions.act_window,name:garment_costing.action_garment_bom
+#: model:ir.ui.menu,name:garment_costing.menu_bom
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_form
+#: model_terms:ir.ui.view,arch_db:garment_costing.view_garment_bom_list
+msgid "Định Mức BOM"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model,name:garment_costing.model_garment_bom
+msgid "Định Mức Nguyên Phụ Liệu (BOM)"
+msgstr ""
+
+#. module: garment_costing
+#: model:ir.model.fields,help:garment_costing.field_garment_cost_line__consumption
+msgid "Định mức tiêu hao trên 1 sản phẩm"
+msgstr ""

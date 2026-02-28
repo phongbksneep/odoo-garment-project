@@ -1,0 +1,1054 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_washing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__message_needaction
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__active
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__active
+msgid "Active"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__activity_ids
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__activity_exception_decoration
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__activity_state
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__activity_type_icon
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_chemical_form
+msgid "An Toàn"
+msgstr "Safety"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__message_attachment_count
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__chemical_type__acid
+msgid "Axit"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model,name:garment_washing.model_garment_wash_recipe_step
+msgid "Bước Trong Công Thức Giặt"
+msgstr "Wash Formula Step"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__date_start
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+msgid "Bắt Đầu Giặt"
+msgstr "Start Washing"
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+msgid "Chi Phí"
+msgstr "Costing"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__chemical_cost_per_kg
+msgid "Chi Phí HC/kg Hàng"
+msgstr "Chemical Cost/kg"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__chemical_cost
+msgid "Chi Phí Hóa Chất"
+msgstr "Chemical Cost"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__total_chemical_cost
+msgid "Chi Phí Hóa Chất/kg Hàng"
+msgstr "Chemical Cost/kg Goods"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__chemical_type__detergent
+msgid "Chất Giặt (Detergent)"
+msgstr "Detergent"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__chemical_type__softener
+msgid "Chất Làm Mềm (Softener)"
+msgstr "Softener"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__chemical_type__bleach
+msgid "Chất Tẩy (Bleach)"
+msgstr "Bleach"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__shrinkage_length
+msgid "Co Dọc (%)"
+msgstr "Lengthwise Shrinkage (%)"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__shrinkage_width
+msgid "Co Ngang (%)"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__fabric_type__cotton
+msgid "Cotton"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__create_uid
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__create_uid
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__create_uid
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__create_date
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__create_date
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__create_date
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__step_ids
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_recipe_form
+msgid "Các Bước Thực Hiện"
+msgstr "Steps to Execute"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__machine_capacity_kg
+msgid "Công Suất Máy (kg)"
+msgstr "Machine Capacity (kg)"
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+msgid "Công Thức & Quy Trình"
+msgstr "Formula & Process"
+
+#. module: garment_washing
+#: model:ir.actions.act_window,name:garment_washing.action_wash_recipe
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__recipe_id
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__recipe_id
+#: model:ir.ui.menu,name:garment_washing.menu_wash_recipe
+msgid "Công Thức Giặt"
+msgstr "Wash Formula"
+
+#. module: garment_washing
+#: model:ir.model,name:garment_washing.model_garment_wash_recipe
+msgid "Công Thức Giặt (Wash Recipe)"
+msgstr "Wash Recipe"
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_order__client_id
+msgid "Công ty gửi hàng đến để giặt gia công"
+msgstr "Company sending goods for wash subcontracting"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__hand_feel
+msgid "Cảm Giác Tay (Hand Feel)"
+msgstr "Hand Feel"
+
+#. module: garment_washing
+#: model:ir.ui.menu,name:garment_washing.menu_wash_config
+msgid "Cấu Hình Giặt"
+msgstr "Wash Configuration"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_order__hand_feel__stiff
+msgid "Cứng"
+msgstr "Stiff"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__fabric_type__denim
+msgid "Denim / Jeans"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__display_name
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__display_name
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__display_name
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__chemical_type__enzyme
+msgid "Enzyme"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__message_follower_ids
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__message_partner_ids
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_order__activity_type_icon
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_recipe__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__notes
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__notes
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_recipe_form
+msgid "Ghi Chú"
+msgstr "Notes"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__qc_notes
+msgid "Ghi Chú QC"
+msgstr "QC Notes"
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_search
+msgid "Gia Công"
+msgstr "Subcontract"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__wash_type__acid
+msgid "Giặt Axit (Acid Wash)"
+msgstr "Acid Wash"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe_step__step_type__main_wash
+msgid "Giặt Chính (Main Wash)"
+msgstr "Main Wash"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__wash_type__enzyme
+msgid "Giặt Enzyme (Enzyme Wash)"
+msgstr "Enzyme Wash"
+
+#. module: garment_washing
+#: model:ir.actions.act_window,name:garment_washing.action_wash_order_internal
+#: model:ir.ui.menu,name:garment_washing.menu_wash_order_internal
+msgid "Giặt Nội Bộ"
+msgstr "Internal Wash"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_order__order_type__internal
+msgid "Giặt Nội Bộ (Internal)"
+msgstr "Internal Wash"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe_step__step_type__pre_wash
+msgid "Giặt Sơ (Pre-Wash)"
+msgstr "Pre-Wash"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__wash_type__normal
+msgid "Giặt Thường (Normal Wash)"
+msgstr "Normal Wash"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__wash_type__bleach
+msgid "Giặt Tẩy (Bleach Wash)"
+msgstr "Bleach Wash"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__wash_type__stone
+msgid "Giặt Đá (Stone Wash)"
+msgstr "Stone Wash"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__uom__gram
+msgid "Gram"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_recipe_step__chemical_dosage
+msgid "Gram hóa chất trên mỗi kg hàng giặt"
+msgstr "Grams of chemical per kg of wash goods"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__has_message
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_order__state__done
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_search
+msgid "Hoàn Thành"
+msgstr "Done"
+
+#. module: garment_washing
+#: model:ir.ui.menu,name:garment_washing.menu_wash_chemical
+msgid "Hóa Chất"
+msgstr "Chemical"
+
+#. module: garment_washing
+#: model:ir.actions.act_window,name:garment_washing.action_wash_chemical
+#: model:ir.model,name:garment_washing.model_garment_wash_chemical
+msgid "Hóa Chất Giặt"
+msgstr "Washing Chemical"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__chemical_id
+msgid "Hóa Chất Sử Dụng"
+msgstr "Chemicals Used"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__steam_consumed
+msgid "Hơi Nước (kg steam)"
+msgstr "Steam (kg steam)"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__instruction
+msgid "Hướng Dẫn"
+msgstr "Instructions"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__instruction
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_recipe_form
+msgid "Hướng Dẫn Chi Tiết"
+msgstr "Detailed Instructions"
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_chemical__safety_note
+msgid "Hướng dẫn bảo quản, sử dụng an toàn hóa chất"
+msgstr "Chemical safety handling and storage instructions"
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+msgid "Hủy"
+msgstr "Cancel"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__id
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__id
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__id
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__activity_exception_icon
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_order__activity_exception_icon
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_recipe__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_order__message_needaction
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_recipe__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_order__message_has_error
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_order__message_has_sms_error
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_recipe__message_has_error
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_recipe__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__message_is_follower
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__chemical_type__other
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__fabric_type__other
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__wash_type__other
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe_step__step_type__other
+msgid "Khác"
+msgstr "Other"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__client_id
+msgid "Khách Hàng / Công Ty Gửi Giặt"
+msgstr "Customer / Company Sending Wash"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__uom__kg
+msgid "Kilogram"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__chemical_type__alkali
+msgid "Kiềm (Alkali)"
+msgstr "Alkali"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_order__state__qc
+msgid "Kiểm Tra"
+msgstr "Inspection"
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+msgid "Kiểm Tra Chất Lượng"
+msgstr "Quality Inspection"
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+msgid "Kiểm Tra QC"
+msgstr "QC Inspection"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__date_end
+msgid "Kết Thúc Giặt"
+msgstr "Wash Complete"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__write_uid
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__write_uid
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__write_uid
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__write_date
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__write_date
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__write_date
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__fabric_type__wool
+msgid "Len (Wool)"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__chemical_dosage
+msgid "Liều Lượng (g/kg hàng)"
+msgstr "Dosage (g/kg)"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__step_type
+msgid "Loại Bước"
+msgstr "Step Type"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__wash_type
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__wash_type
+msgid "Loại Giặt"
+msgstr "Washing Type"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__chemical_type
+msgid "Loại Hóa Chất"
+msgstr "Chemical Type"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__order_type
+msgid "Loại Lệnh"
+msgstr "Order Type"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__fabric_type
+msgid "Loại Vải Áp Dụng"
+msgstr "Applicable Fabric Types"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__uom__liter
+msgid "Lít"
+msgstr "Liter"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__safety_note
+msgid "Lưu Ý An Toàn"
+msgstr "Safety Notes"
+
+#. module: garment_washing
+#: model:ir.actions.act_window,name:garment_washing.action_wash_order
+#: model:ir.ui.menu,name:garment_washing.menu_wash_orders
+msgid "Lệnh Giặt"
+msgstr "Washing Order"
+
+#. module: garment_washing
+#: model:ir.model,name:garment_washing.model_garment_wash_order
+msgid "Lệnh Giặt (Wash Order)"
+msgstr "Wash Order"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__production_order_id
+msgid "Lệnh Sản Xuất"
+msgstr "Production Order"
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_order__production_order_id
+msgid "Lệnh sản xuất nội bộ liên quan (nếu giặt nội bộ)"
+msgstr "Related internal production order (if in-house wash)"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__fabric_type__silk
+msgid "Lụa (Silk)"
+msgstr "Silk"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__msds_file
+msgid "MSDS File"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__message_has_error
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__message_ids
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__uom__ml
+msgid "Mililit"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__my_activity_date_deadline
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__color_after
+msgid "Màu Sau Giặt"
+msgstr "Color After Wash"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__color_before
+msgid "Màu Trước Giặt"
+msgstr "Color Before Wash"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__machine_name
+msgid "Máy Giặt"
+msgstr "Washing Machine"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__code
+msgid "Mã"
+msgstr "Code"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__code
+msgid "Mã Công Thức"
+msgstr "Formula Code"
+
+#. module: garment_washing
+#: model:ir.model.constraint,message:garment_washing.constraint_garment_wash_recipe_code_unique
+msgid "Mã công thức phải là duy nhất!"
+msgstr "Formula code must be unique!"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__style_id
+msgid "Mẫu May"
+msgstr "Garment Sample"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_order__hand_feel__soft
+msgid "Mềm"
+msgstr "Soft"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__activity_date_deadline
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__activity_summary
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__activity_type_id
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__planned_delivery_date
+msgid "Ngày Giao Dự Kiến"
+msgstr "Expected Delivery Date"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__date_delivered
+msgid "Ngày Giao Lại"
+msgstr "Re-delivery Date"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__date_received
+msgid "Ngày Nhận Hàng"
+msgstr "Goods Received Date"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__temperature
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__temperature
+msgid "Nhiệt Độ (°C)"
+msgstr "Temperature (°C)"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__wash_type__garment_dye
+msgid "Nhuộm Hàng May (Garment Dye)"
+msgstr "Garment Dye"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__supplier_id
+msgid "Nhà Cung Cấp"
+msgstr "Supplier"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_order__state__draft
+msgid "Nháp"
+msgstr "Draft"
+
+#. module: garment_washing
+#: model:ir.actions.act_window,name:garment_washing.action_wash_order_external
+#: model:ir.ui.menu,name:garment_washing.menu_wash_order_external
+msgid "Nhận Giặt Gia Công"
+msgstr "Receive External Wash"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_order__order_type__external_in
+msgid "Nhận Giặt Gia Công (External In)"
+msgstr "Receive External Wash"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__chemical_type__resin
+msgid "Nhựa (Resin)"
+msgstr "Resin"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__message_needaction_counter
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__message_has_error_counter
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_order__message_needaction_counter
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_recipe__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_order__message_has_error_counter
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_recipe__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__fabric_type__nylon
+msgid "Nylon"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__water_liters
+msgid "Nước Sử Dụng (lít/kg)"
+msgstr "Water Usage (L/kg)"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__water_consumed
+msgid "Nước Tiêu Thụ (lít)"
+msgstr "Water Consumption (liters)"
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_search
+msgid "Nội Bộ"
+msgstr "Internal"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__wash_type__ozone
+msgid "Ozone Wash"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__client_po
+msgid "PO Khách Gửi Giặt"
+msgstr "Customer Wash PO"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__fabric_type__blend
+msgid "Pha (Blend)"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__wash_type__sand_blast
+msgid "Phun Cát (Sand Blast)"
+msgstr "Sand Blast"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__fabric_type__polyester
+msgid "Polyester"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__qc_passed
+msgid "QC Đạt"
+msgstr "QC Pass"
+
+#. module: garment_washing
+#: model_terms:ir.actions.act_window,help:garment_washing.action_wash_recipe
+msgid "Quản lý các công thức giặt: enzyme, stone wash, bleach wash, nhuộm..."
+msgstr "Manage wash formulas: enzyme, stone wash, bleach wash, dyeing..."
+
+#. module: garment_washing
+#: model_terms:ir.actions.act_window,help:garment_washing.action_wash_chemical
+msgid "Quản lý danh mục hóa chất sử dụng trong xưởng giặt."
+msgstr "Manage chemical catalog used in washing plant."
+
+#. module: garment_washing
+#: model_terms:ir.actions.act_window,help:garment_washing.action_wash_order
+msgid "Quản lý lệnh giặt nội bộ và nhận giặt gia công từ bên ngoài."
+msgstr "Manage internal wash orders and receive external wash subcontracting."
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__activity_user_id
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__qty_rewash
+msgid "SL Giặt Lại (Re-wash)"
+msgstr "Re-wash Qty"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__qty_washed
+msgid "SL Giặt Xong"
+msgstr "Washed Qty"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__qty_reject
+msgid "SL Loại Bỏ"
+msgstr "Rejected Qty"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__qty_received
+msgid "SL Nhận Giặt (pcs)"
+msgstr "Received Wash Qty (pcs)"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__message_has_sms_error
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__chemical_type__silicon
+msgid "Silicon"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__wash_type__silicon
+msgid "Silicon Wash"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_order__activity_state
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_recipe__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe_step__step_type__dry
+msgid "Sấy (Dry)"
+msgstr "Drying"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__is_low_stock
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_chemical_search
+msgid "Sắp Hết"
+msgstr "Low Stock"
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+msgid "Số Lượng"
+msgstr "Quantity"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__name
+msgid "Số Lệnh Giặt"
+msgstr "Wash Order Number"
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_recipe__water_ratio
+msgid "Số lít nước trên mỗi kg hàng"
+msgstr "Liters of water per kg of goods"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_chemical__chemical_type__dye
+msgid "Thuốc Nhuộm"
+msgstr "Dye"
+
+#. module: garment_washing
+#: model_terms:ir.actions.act_window,help:garment_washing.action_wash_chemical
+msgid "Thêm hóa chất giặt mới"
+msgstr "Add new washing chemical"
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+msgid "Thông Tin Chung"
+msgstr "General Information"
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+msgid "Thời Gian"
+msgstr "Duration"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__duration_minutes
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__duration_minutes
+msgid "Thời Gian (phút)"
+msgstr "Duration (min)"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__sequence
+msgid "Thứ Tự"
+msgstr "Sequence"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_order__hand_feel__medium
+msgid "Trung Bình"
+msgstr "Medium"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__state
+msgid "Trạng Thái"
+msgstr "Status"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__weight_kg
+msgid "Trọng Lượng (kg)"
+msgstr "Weight (kg)"
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_order__activity_exception_decoration
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_recipe__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+msgid "Tài Nguyên Tiêu Thụ"
+msgstr "Resource Consumption"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe_step__name
+msgid "Tên Bước"
+msgstr "Step Name"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__name
+msgid "Tên Công Thức"
+msgstr "Formula Name"
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_recipe_form
+msgid "Tên Công Thức Giặt"
+msgstr "Wash Formula Name"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__msds_filename
+msgid "Tên File MSDS"
+msgstr "MSDS File Name"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__name
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_chemical_form
+msgid "Tên Hóa Chất"
+msgstr "Chemical Name"
+
+#. module: garment_washing
+#: model_terms:ir.actions.act_window,help:garment_washing.action_wash_recipe
+msgid "Tạo công thức giặt mới"
+msgstr "Create new wash formula"
+
+#. module: garment_washing
+#: model_terms:ir.actions.act_window,help:garment_washing.action_wash_order
+msgid "Tạo lệnh giặt mới"
+msgstr "Create new wash order"
+
+#. module: garment_washing
+#: model:ir.ui.menu,name:garment_washing.menu_wash_order_all
+msgid "Tất Cả Lệnh Giặt"
+msgstr "All Wash Orders"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__stock_qty
+msgid "Tồn Kho (kg)"
+msgstr "Stock (kg)"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__min_stock
+msgid "Tồn Kho Tối Thiểu"
+msgstr "Minimum Stock"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__total_cost
+msgid "Tổng Chi Phí"
+msgstr "Total Cost"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__total_time
+msgid "Tổng Thời Gian (phút)"
+msgstr "Total Time (minutes)"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__rewash_rate
+msgid "Tỷ Lệ Giặt Lại (%)"
+msgstr "Re-wash Rate (%)"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__water_ratio
+msgid "Tỷ Lệ Nước (lít/kg)"
+msgstr "Water Ratio (L/kg)"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__wash_pass_rate
+msgid "Tỷ Lệ Đạt (%)"
+msgstr "Pass Rate (%)"
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+msgid "Về Nháp"
+msgstr "Reset to Draft"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__website_message_ids
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_washing
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_order__website_message_ids
+#: model:ir.model.fields,help:garment_washing.field_garment_wash_recipe__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+msgid "Xác Nhận"
+msgstr "Confirm"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe__wash_type__softener
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe_step__step_type__softener
+msgid "Xả Mềm (Softener)"
+msgstr "Softener Rinse"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_recipe_step__step_type__rinse
+msgid "Xả Nước (Rinse)"
+msgstr "Rinse"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_order__state__washing
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_search
+msgid "Đang Giặt"
+msgstr "Washing"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__energy_consumed
+msgid "Điện Tiêu Thụ (kWh)"
+msgstr "Electricity Consumption (kWh)"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_order__state__delivered
+#: model_terms:ir.ui.view,arch_db:garment_washing.view_wash_order_form
+msgid "Đã Giao Lại"
+msgstr "Re-delivered"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_order__state__cancelled
+msgid "Đã Hủy"
+msgstr "Cancelled"
+
+#. module: garment_washing
+#: model:ir.model.fields.selection,name:garment_washing.selection__garment_wash_order__state__confirmed
+msgid "Đã Xác Nhận"
+msgstr "Confirmed"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__unit_price
+msgid "Đơn Giá (VNĐ/kg)"
+msgstr "Unit Price (VND/kg)"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__unit_price
+msgid "Đơn Giá Giặt (VNĐ/pcs)"
+msgstr "Wash Price (VND/pcs)"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_order__garment_order_id
+msgid "Đơn Hàng May"
+msgstr "Garment Order"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_chemical__uom
+msgid "Đơn Vị Tính"
+msgstr "Unit of Measure"
+
+#. module: garment_washing
+#: model:ir.model.fields,field_description:garment_washing.field_garment_wash_recipe__ph_level
+msgid "Độ pH Yêu Cầu"
+msgstr "Required pH Level"

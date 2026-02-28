@@ -37,8 +37,14 @@
                             context="{'group_by': 'defect_type_id'}"/>
                     <filter string="Mã Hàng" name="group_style"
                             context="{'group_by': 'style_id'}"/>
-                    <filter string="Ngày Kiểm" name="group_date"
-                            context="{'group_by': 'inspection_date'}"/>
+                    <filter string="Ngày" name="group_date"
+                            context="{'group_by': 'inspection_date:day'}"/>
+                    <filter string="Tuần" name="group_week"
+                            context="{'group_by': 'inspection_date:week'}"/>
+                    <filter string="Tháng" name="group_month"
+                            context="{'group_by': 'inspection_date:month'}"/>
+                    <filter string="Quý" name="group_quarter"
+                            context="{'group_by': 'inspection_date:quarter'}"/>
                 </group>
             </search>
         </field>
@@ -58,13 +64,13 @@
         </field>
     </record>
 
-    <!-- Graph View – Trend line over time -->
+    <!-- Graph View – Trend line over time (default: week) -->
     <record id="view_defect_analysis_graph" model="ir.ui.view">
         <field name="name">garment.defect.analysis.graph</field>
         <field name="model">garment.defect.analysis</field>
         <field name="arch" type="xml">
             <graph string="Xu Hướng Tỷ Lệ Lỗi" type="line">
-                <field name="inspection_date" interval="day"/>
+                <field name="inspection_date" interval="week"/>
                 <field name="defect_type_id"/>
                 <field name="total_defects" type="measure"/>
             </graph>

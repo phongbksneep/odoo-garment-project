@@ -48,7 +48,13 @@
                     <filter string="Mã Hàng" name="group_style"
                             context="{'group_by': 'style_id'}"/>
                     <filter string="Ngày" name="group_date"
-                            context="{'group_by': 'date'}"/>
+                            context="{'group_by': 'date:day'}"/>
+                    <filter string="Tuần" name="group_week"
+                            context="{'group_by': 'date:week'}"/>
+                    <filter string="Tháng" name="group_month"
+                            context="{'group_by': 'date:month'}"/>
+                    <filter string="Quý" name="group_quarter"
+                            context="{'group_by': 'date:quarter'}"/>
                 </group>
             </search>
         </field>
@@ -68,16 +74,57 @@
         </field>
     </record>
 
-    <!-- Graph View – Trend line over time -->
+    <!-- Graph View – Trend line over time (default: week) -->
     <record id="view_efficiency_analysis_graph" model="ir.ui.view">
         <field name="name">garment.efficiency.analysis.graph</field>
         <field name="model">garment.efficiency.analysis</field>
         <field name="arch" type="xml">
             <graph string="Xu Hướng Hiệu Suất" type="line">
-                <field name="date" interval="day"/>
+                <field name="date" interval="week"/>
                 <field name="sewing_line_id"/>
                 <field name="efficiency" type="measure"/>
             </graph>
+        </field>
+    </record>
+
+    <!-- Graph View – Sản lượng theo tuần/tháng -->
+    <record id="view_output_trend_graph" model="ir.ui.view">
+        <field name="name">garment.efficiency.analysis.output.graph</field>
+        <field name="model">garment.efficiency.analysis</field>
+        <field name="arch" type="xml">
+            <graph string="Sản Lượng Theo Thời Gian" type="bar">
+                <field name="date" interval="week"/>
+                <field name="sewing_line_id"/>
+                <field name="total_output" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Pivot View – Sản lượng theo tuần/tháng -->
+    <record id="view_output_trend_pivot" model="ir.ui.view">
+        <field name="name">garment.efficiency.analysis.output.pivot</field>
+        <field name="model">garment.efficiency.analysis</field>
+        <field name="arch" type="xml">
+            <pivot string="Sản Lượng Theo Thời Gian">
+                <field name="sewing_line_id" type="row"/>
+                <field name="date" type="col" interval="week"/>
+                <field name="total_output" type="measure"/>
+                <field name="earned_minutes" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Action – Sản lượng theo thời gian -->
+    <record id="action_output_trend" model="ir.actions.act_window">
+        <field name="name">Sản Lượng Theo Thời Gian</field>
+        <field name="res_model">garment.efficiency.analysis</field>
+        <field name="view_mode">graph,pivot,list</field>
+        <field name="views">[(ref('view_output_trend_graph'), 'graph'), (ref('view_output_trend_pivot'), 'pivot'), (False, 'list')]</field>
+        <field name="context">{'search_default_group_week': 1, 'search_default_group_line': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Chưa có dữ liệu sản lượng để hiển thị xu hướng
+            </p>
         </field>
     </record>
 

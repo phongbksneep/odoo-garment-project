@@ -1,0 +1,330 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: garment_report
+#: model:ir.actions.act_window,name:garment_report.action_production_report_wizard
+#: model:ir.ui.menu,name:garment_report.menu_production_report_wizard
+#: model_terms:ir.ui.view,arch_db:garment_report.view_production_report_wizard_form
+msgid "Báo Cáo Sản Xuất"
+msgstr "Production Report"
+
+#. module: garment_report
+#. odoo-python
+#: code:addons/garment_report/report/production_report.py:0
+msgid "Báo Cáo Sản Xuất %s → %s"
+msgstr "Production Report %s → %s"
+
+#. module: garment_report
+#: model:ir.model.fields,help:garment_report.field_garment_production_report__sewing_line_ids
+msgid "Bỏ trống để lấy tất cả chuyền"
+msgstr "Leave empty to get all lines"
+
+#. module: garment_report
+#: model:ir.model.fields,help:garment_report.field_garment_production_report__style_ids
+msgid "Bỏ trống để lấy tất cả mã hàng"
+msgstr "Leave empty to get all styles"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_efficiency_analysis__sewing_line_id
+#: model:ir.model.fields,field_description:garment_report.field_garment_production_report__sewing_line_ids
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_search
+msgid "Chuyền May"
+msgstr "Sewing Line"
+
+#. module: garment_report
+#: model_terms:ir.actions.act_window,help:garment_report.action_defect_analysis
+msgid "Chưa có dữ liệu QC để phân tích"
+msgstr "No QC data for analysis"
+
+#. module: garment_report
+#: model_terms:ir.actions.act_window,help:garment_report.action_output_trend
+msgid "Chưa có dữ liệu sản lượng để hiển thị xu hướng"
+msgstr "No output data to display trend"
+
+#. module: garment_report
+#: model_terms:ir.actions.act_window,help:garment_report.action_efficiency_analysis
+msgid "Chưa có dữ liệu sản lượng để phân tích"
+msgstr "No output data for analysis"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_production_report__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_production_report__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_report
+#: model:ir.model,name:garment_report.model_garment_defect_analysis
+msgid "Defect Rate Analysis"
+msgstr ""
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_defect_analysis__display_name
+#: model:ir.model.fields,field_description:garment_report.field_garment_efficiency_analysis__display_name
+#: model:ir.model.fields,field_description:garment_report.field_garment_production_report__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_efficiency_analysis__efficiency
+msgid "Hiệu Suất (%)"
+msgstr "Efficiency (%)"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_search
+msgid "Hiệu Suất < 50%"
+msgstr "Efficiency < 50%"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_search
+msgid "Hiệu Suất >= 70%"
+msgstr "Efficiency >= 70%"
+
+#. module: garment_report
+#: model:ir.ui.menu,name:garment_report.menu_efficiency_analysis
+msgid "Hiệu Suất Chuyền"
+msgstr "Line Efficiency"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_graph_bar
+msgid "Hiệu Suất Theo Chuyền"
+msgstr "Efficiency by Line"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_search
+msgid "Hôm Nay"
+msgstr "Today"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_production_report_wizard_form
+msgid "Hủy"
+msgstr "Cancel"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_defect_analysis__id
+#: model:ir.model.fields,field_description:garment_report.field_garment_efficiency_analysis__id
+#: model:ir.model.fields,field_description:garment_report.field_garment_production_report__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_report
+#: model:ir.model.fields.selection,name:garment_report.selection__garment_defect_analysis__result__fail
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_search
+msgid "Không Đạt"
+msgstr "Fail"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_defect_analysis__result
+msgid "Kết Quả"
+msgstr "Result"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_production_report__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_production_report__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_defect_analysis__defect_type_id
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_search
+msgid "Loại Lỗi"
+msgstr "Defect Type"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_defect_analysis__production_order_id
+#: model:ir.model.fields,field_description:garment_report.field_garment_efficiency_analysis__production_order_id
+msgid "Lệnh SX"
+msgstr "Production Order"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_defect_analysis__style_id
+#: model:ir.model.fields,field_description:garment_report.field_garment_efficiency_analysis__style_id
+#: model:ir.model.fields,field_description:garment_report.field_garment_production_report__style_ids
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_search
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_search
+msgid "Mã Hàng"
+msgstr "Style"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_efficiency_analysis__date
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_search
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_search
+msgid "Ngày"
+msgstr "Date"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_defect_analysis__inspection_date
+msgid "Ngày Kiểm"
+msgstr "Inspection Date"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_graph_pie
+msgid "Phân Bổ Lỗi"
+msgstr "Defect Distribution"
+
+#. module: garment_report
+#: model:ir.actions.act_window,name:garment_report.action_efficiency_analysis
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_list
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_pivot
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_search
+msgid "Phân Tích Hiệu Suất"
+msgstr "Efficiency Analysis"
+
+#. module: garment_report
+#: model:ir.actions.act_window,name:garment_report.action_defect_analysis
+#: model:ir.ui.menu,name:garment_report.menu_defect_analysis
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_list
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_pivot
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_search
+msgid "Phân Tích Lỗi"
+msgstr "Defect Analysis"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_efficiency_analysis__earned_minutes
+msgid "Phút Kiếm Được"
+msgstr "Earned Minutes"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_efficiency_analysis__working_minutes
+msgid "Phút Làm Việc"
+msgstr "Working Minutes"
+
+#. module: garment_report
+#: model:ir.model,name:garment_report.model_garment_production_report
+msgid "Production Report Wizard"
+msgstr ""
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_search
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_search
+msgid "Quý"
+msgstr "Quarter"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_efficiency_analysis__smv
+msgid "SAM"
+msgstr ""
+
+#. module: garment_report
+#: model:ir.model,name:garment_report.model_garment_efficiency_analysis
+msgid "Sewing Line Efficiency Analysis"
+msgstr ""
+
+#. module: garment_report
+#: model:ir.actions.act_window,name:garment_report.action_output_trend
+#: model:ir.ui.menu,name:garment_report.menu_output_trend
+#: model_terms:ir.ui.view,arch_db:garment_report.view_output_trend_graph
+#: model_terms:ir.ui.view,arch_db:garment_report.view_output_trend_pivot
+msgid "Sản Lượng Theo Thời Gian"
+msgstr "Output Over Time"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_efficiency_analysis__worker_count
+msgid "Số Công Nhân"
+msgstr "Worker Count"
+
+#. module: garment_report
+#: model:ir.model.fields.selection,name:garment_report.selection__garment_defect_analysis__result__rework
+msgid "Sửa Lại"
+msgstr "Rework"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_search
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_search
+msgid "Tháng"
+msgstr "Month"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_search
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_search
+msgid "Tuần"
+msgstr "Week"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_search
+msgid "Tuần Này"
+msgstr "This Week"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_list
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_list
+msgid "Tổng"
+msgstr "Total"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_defect_analysis__total_inspected
+msgid "Tổng Kiểm Tra"
+msgstr "Total Inspections"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_defect_analysis__total_defects
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_list
+msgid "Tổng Lỗi"
+msgstr "Total Defects"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_efficiency_analysis__total_output
+msgid "Tổng Sản Lượng"
+msgstr "Total Output"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_production_report__date_from
+msgid "Từ Ngày"
+msgstr "From Date"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_defect_analysis__defect_rate
+msgid "Tỷ Lệ Lỗi (%)"
+msgstr "Defect Rate (%)"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_search
+msgid "Tỷ Lệ Lỗi Cao (>5%)"
+msgstr "High Defect Rate (>5%)"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_production_report_wizard_form
+msgid "Xem Báo Cáo"
+msgstr "View Report"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_efficiency_analysis_graph
+msgid "Xu Hướng Hiệu Suất"
+msgstr "Efficiency Trend"
+
+#. module: garment_report
+#: model_terms:ir.ui.view,arch_db:garment_report.view_defect_analysis_graph
+msgid "Xu Hướng Tỷ Lệ Lỗi"
+msgstr "Defect Rate Trend"
+
+#. module: garment_report
+#: model:ir.model.fields.selection,name:garment_report.selection__garment_defect_analysis__result__pass
+msgid "Đạt"
+msgstr "Pass"
+
+#. module: garment_report
+#: model:ir.model.fields,field_description:garment_report.field_garment_production_report__date_to
+msgid "Đến Ngày"
+msgstr "To Date"

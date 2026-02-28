@@ -1,0 +1,458 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_finishing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_finishing
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_form
+msgid "Bắt Đầu"
+msgstr "Start"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__sewing_line_id
+msgid "Chuyền Hoàn Thiện"
+msgstr "Finishing Line"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__create_uid
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_task__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__create_date
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_task__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_task__employee_id
+msgid "Công Nhân"
+msgstr "Worker"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_task__task_type
+msgid "Công Việc"
+msgstr "Task"
+
+#. module: garment_finishing
+#: model:ir.model,name:garment_finishing.model_garment_finishing_task
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__task_ids
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_form
+msgid "Công Việc Hoàn Thiện"
+msgstr "Finishing Task"
+
+#. module: garment_finishing
+#: model:ir.model.fields.selection,name:garment_finishing.selection__garment_finishing_task__task_type__thread_cut
+msgid "Cắt Chỉ"
+msgstr "Thread Trimming"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__display_name
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_task__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,help:garment_finishing.field_garment_finishing_order__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__notes
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_task__notes
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_form
+msgid "Ghi Chú"
+msgstr "Notes"
+
+#. module: garment_finishing
+#: model:ir.model.fields.selection,name:garment_finishing.selection__garment_finishing_task__task_type__folding
+msgid "Gấp Xếp"
+msgstr "Folding"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields.selection,name:garment_finishing.selection__garment_finishing_order__state__done
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_form
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_search
+msgid "Hoàn Thành"
+msgstr "Done"
+
+#. module: garment_finishing
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_form
+msgid "Hủy"
+msgstr "Cancel"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__id
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_task__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,help:garment_finishing.field_garment_finishing_order__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,help:garment_finishing.field_garment_finishing_order__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,help:garment_finishing.field_garment_finishing_order__message_has_error
+#: model:ir.model.fields,help:garment_finishing.field_garment_finishing_order__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__customer_id
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_search
+msgid "Khách Hàng"
+msgstr "Customer"
+
+#. module: garment_finishing
+#. odoo-python
+#: code:addons/garment_finishing/models/finishing_order.py:0
+msgid "Không thể hủy lệnh đã hoàn thành."
+msgstr "Cannot cancel a completed order."
+
+#. module: garment_finishing
+#: model:ir.model.fields.selection,name:garment_finishing.selection__garment_finishing_task__task_type__qc_check
+msgid "Kiểm Hàng"
+msgstr "Inspection"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__write_uid
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_task__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__write_date
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_task__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.actions.act_window,name:garment_finishing.action_finishing_order
+#: model:ir.model,name:garment_finishing.model_garment_finishing_order
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_task__finishing_order_id
+#: model:ir.ui.menu,name:garment_finishing.menu_finishing_order
+msgid "Lệnh Hoàn Thiện"
+msgstr "Finishing Order"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__production_order_id
+msgid "Lệnh Sản Xuất"
+msgstr "Production Order"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__qty_defect
+msgid "Lỗi Phát Hiện"
+msgstr "Detected Defects"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: garment_finishing
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_search
+msgid "Mã Hàng"
+msgstr "Style"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__style_id
+msgid "Mẫu May"
+msgstr "Garment Sample"
+
+#. module: garment_finishing
+#. odoo-python
+#: code:addons/garment_finishing/models/finishing_order.py:0
+msgid "New"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_task__date
+msgid "Ngày"
+msgstr "Date"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__date_start
+msgid "Ngày Bắt Đầu"
+msgstr "Start Date"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__date_done
+msgid "Ngày Hoàn Thành Thực Tế"
+msgstr "Actual Completion Date"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__date_end
+msgid "Ngày Kết Thúc Dự Kiến"
+msgstr "Planned End"
+
+#. module: garment_finishing
+#: model:ir.model.fields.selection,name:garment_finishing.selection__garment_finishing_order__state__draft
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_search
+msgid "Nháp"
+msgstr "Draft"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,help:garment_finishing.field_garment_finishing_order__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,help:garment_finishing.field_garment_finishing_order__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__qty_passed_qc
+msgid "QC Đạt"
+msgstr "QC Pass"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__qty_received
+msgid "SL Nhận Từ May"
+msgstr "Qty Received from Sewing"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,help:garment_finishing.field_garment_finishing_order__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_task__qty_done
+msgid "Số Lượng Hoàn Thành"
+msgstr "Completed Quantity"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_task__qty_defect
+msgid "Số Lượng Lỗi"
+msgstr "Defect Quantity"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__name
+msgid "Số Lệnh"
+msgstr "Order Number"
+
+#. module: garment_finishing
+#: model:ir.model.fields,help:garment_finishing.field_garment_finishing_order__qty_received
+msgid "Số lượng bán thành phẩm nhận từ chuyền may"
+msgstr "Semi-finished qty received from sewing line"
+
+#. module: garment_finishing
+#: model:ir.model.constraint,message:garment_finishing.constraint_garment_finishing_task_qty_positive
+msgid "Số lượng hoàn thành phải >= 0!"
+msgstr "Completed quantity must be >= 0!"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__state
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_search
+msgid "Trạng Thái"
+msgstr "Status"
+
+#. module: garment_finishing
+#: model:ir.model.fields,help:garment_finishing.field_garment_finishing_order__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: garment_finishing
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_form
+msgid "Tổng Kết Hoàn Thiện"
+msgstr "Finishing Summary"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__completion_rate
+msgid "Tỷ Lệ Hoàn Thành (%)"
+msgstr "Completion Rate (%)"
+
+#. module: garment_finishing
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_form
+msgid "Về Nháp"
+msgstr "Reset to Draft"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_finishing
+#: model:ir.model.fields,help:garment_finishing.field_garment_finishing_order__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_finishing
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_form
+msgid "Xác Nhận"
+msgstr "Confirm"
+
+#. module: garment_finishing
+#: model:ir.model.fields.selection,name:garment_finishing.selection__garment_finishing_order__state__in_progress
+#: model_terms:ir.ui.view,arch_db:garment_finishing.view_finishing_order_search
+msgid "Đang Hoàn Thiện"
+msgstr "Finishing"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__qty_thread_cut
+msgid "Đã Cắt Chỉ"
+msgstr "Thread Trimmed"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__qty_folded
+msgid "Đã Gấp Xếp"
+msgstr "Folded"
+
+#. module: garment_finishing
+#: model:ir.model.fields.selection,name:garment_finishing.selection__garment_finishing_order__state__cancelled
+msgid "Đã Hủy"
+msgstr "Cancelled"
+
+#. module: garment_finishing
+#: model:ir.model.fields.selection,name:garment_finishing.selection__garment_finishing_order__state__confirmed
+msgid "Đã Xác Nhận"
+msgstr "Confirmed"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__qty_tagged
+msgid "Đã Đóng Tag"
+msgstr "Tag Attached"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__qty_pressed
+msgid "Đã Ủi"
+msgstr "Ironed"
+
+#. module: garment_finishing
+#: model:ir.model.fields.selection,name:garment_finishing.selection__garment_finishing_task__task_type__tagging
+msgid "Đóng Tag / Nhãn"
+msgstr "Tag / Label Attachment"
+
+#. module: garment_finishing
+#: model:ir.model.fields,field_description:garment_finishing.field_garment_finishing_order__garment_order_id
+msgid "Đơn Hàng May"
+msgstr "Garment Order"
+
+#. module: garment_finishing
+#: model:ir.model.fields.selection,name:garment_finishing.selection__garment_finishing_task__task_type__pressing
+msgid "Ủi"
+msgstr "Ironing"

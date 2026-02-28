@@ -1,0 +1,1704 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__message_needaction
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__message_needaction
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__message_needaction
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_wash_symbol__active
+msgid "Active"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__activity_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__activity_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__activity_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__activity_exception_decoration
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__activity_exception_decoration
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__activity_exception_decoration
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__activity_state
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__activity_state
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__activity_state
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__activity_type_icon
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__activity_type_icon
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__activity_type_icon
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: garment_base
+#: model:res.groups,name:garment_base.group_garment_manager
+msgid "Administrator"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__message_attachment_count
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__message_attachment_count
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__message_attachment_count
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_accessory__accessory_type__packaging
+msgid "Bao Bì / Đóng Gói"
+msgstr "Packaging"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_wash_symbol__icon
+msgid "Biểu Tượng"
+msgstr "Icon"
+
+#. module: garment_base
+#: model:ir.ui.menu,name:garment_base.menu_garment_report_main
+msgid "Báo Cáo"
+msgstr "Report"
+
+#. module: garment_base
+#: model:ir.actions.act_window,name:garment_base.action_garment_color
+#: model:ir.model,name:garment_base.model_garment_color
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__color_ids
+#: model:ir.ui.menu,name:garment_base.menu_garment_color
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_color_list
+msgid "Bảng Màu"
+msgstr "Color Chart"
+
+#. module: garment_base
+#: model:ir.actions.act_window,name:garment_base.action_garment_size
+#: model:ir.model,name:garment_base.model_garment_size
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__size_ids
+#: model:ir.ui.menu,name:garment_base.menu_garment_size
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_size_list
+msgid "Bảng Size"
+msgstr "Size Chart"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__suit
+msgid "Bộ Vest"
+msgstr "Suit"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__incoterm__cfr
+msgid "CFR"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__incoterm__cif
+msgid "CIF"
+msgstr ""
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+msgid "Chi Tiết Size/Màu"
+msgstr "Size/Color Details"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__line_ids
+msgid "Chi Tiết Đơn Hàng"
+msgstr "Order Details"
+
+#. module: garment_base
+#: model:ir.model,name:garment_base.model_garment_order_line
+msgid "Chi Tiết Đơn Hàng May"
+msgstr "Garment Order Details"
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__width
+msgid "Chiều rộng khổ vải tính bằng cm"
+msgstr "Fabric width in cm"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+msgid "Chuẩn Bị NL"
+msgstr "Prepare Materials"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__state__material
+msgid "Chuẩn Bị Nguyên Liệu"
+msgstr "Prepare Materials"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__skirt
+msgid "Chân Váy"
+msgstr "Skirt"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__material
+msgid "Chất Liệu"
+msgstr "Material"
+
+#. module: garment_base
+#: model:ir.ui.menu,name:garment_base.menu_garment_quality_main
+msgid "Chất Lượng"
+msgstr "Quality"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_accessory__accessory_type__thread
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_accessory_search
+msgid "Chỉ May"
+msgstr "Sewing Thread"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_size__size_type__letter
+msgid "Chữ (S, M, L, XL...)"
+msgstr "Letter (S, M, L, XL...)"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_fabric__fabric_type__cotton
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_fabric_search
+msgid "Cotton"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__create_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_color__create_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__create_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__create_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_order_line__create_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__create_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__create_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_wash_symbol__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__create_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_color__create_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__create_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__create_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_order_line__create_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__create_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__create_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_wash_symbol__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.ui.menu,name:garment_base.menu_garment_root
+msgid "Công Ty May"
+msgstr "Garment Company"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__destination_port
+msgid "Cảng Đến"
+msgstr "Destination Port"
+
+#. module: garment_base
+#: model:ir.ui.menu,name:garment_base.menu_garment_config
+msgid "Cấu Hình"
+msgstr "Configuration"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+msgid "Cắt"
+msgstr "Cutting"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__payment_term__da
+msgid "D/A"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__payment_term__dp
+msgid "D/P"
+msgstr ""
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_list
+msgid "Danh Sách Mẫu May"
+msgstr "Garment Sample List"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_accessory_list
+msgid "Danh Sách Phụ Liệu"
+msgstr "Accessory List"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_fabric_list
+msgid "Danh Sách Vải"
+msgstr "Fabric List"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_fabric__fabric_type__denim
+msgid "Denim"
+msgstr ""
+
+#. module: garment_base
+#: model:res.groups,name:garment_base.group_garment_dept_manager
+msgid "Department Manager"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__display_name
+#: model:ir.model.fields,field_description:garment_base.field_garment_color__display_name
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__display_name
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__display_name
+#: model:ir.model.fields,field_description:garment_base.field_garment_order_line__display_name
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__display_name
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__display_name
+#: model:ir.model.fields,field_description:garment_base.field_garment_wash_symbol__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Duyệt"
+msgstr "Approve"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__length
+msgid "Dài (cm)"
+msgstr "Length (cm)"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__inseam
+msgid "Dài Đáy (cm)"
+msgstr "Rise (cm)"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__difficulty_level__easy
+msgid "Dễ"
+msgstr "Easy"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_fabric_search
+msgid "Dệt Kim"
+msgstr "Knit"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_fabric_search
+msgid "Dệt Thoi"
+msgstr "Woven"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__incoterm__exw
+msgid "EXW"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__waist
+msgid "Eo (cm)"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__incoterm__fob
+msgid "FOB"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__pattern_file
+msgid "File Rập / Pattern"
+msgstr "Pattern File"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__message_follower_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__message_follower_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__message_follower_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__message_partner_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__message_partner_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__message_partner_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_accessory__activity_type_icon
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__activity_type_icon
+#: model:ir.model.fields,help:garment_base.field_garment_order__activity_type_icon
+#: model:ir.model.fields,help:garment_base.field_garment_style__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: garment_base
+#: model:res.groups.privilege,name:garment_base.res_groups_privilege_garment
+msgid "Garment Manufacturing"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__notes
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__notes
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__notes
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_accessory_form
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_fabric_form
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+msgid "Ghi Chú"
+msgstr "Notes"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__notes
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Ghi Chú Kỹ Thuật"
+msgstr "Technical Notes"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_search
+msgid "Giao Hàng Tháng Này"
+msgstr "Deliveries This Month"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__unit_price
+msgid "Giá / Mét"
+msgstr "Price / Meter"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_wash_symbol__category__wash
+msgid "Giặt (Washing)"
+msgstr "Washing"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_wash_symbol__category__dryclean
+msgid "Giặt Khô (Dry Cleaning)"
+msgstr "Dry Cleaning"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Giặt Ủi (Wash Care)"
+msgstr "Wash Care"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__gender
+msgid "Giới Tính"
+msgstr "Gender"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__has_message
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__has_message
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__has_message
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__state__finishing
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+msgid "Hoàn Thiện"
+msgstr "Finishing"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__state__done
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_search
+msgid "Hoàn Thành"
+msgstr "Done"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__image_back
+msgid "Hình Mặt Sau"
+msgstr "Back View Image"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__image_front
+msgid "Hình Mặt Trước"
+msgstr "Front View Image"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__image
+msgid "Hình Ảnh"
+msgstr "Image"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__image
+msgid "Hình Ảnh Vải"
+msgstr "Fabric Image"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__hip
+msgid "Hông (cm)"
+msgstr "Hip (cm)"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_wash_symbol__instruction
+msgid "Hướng Dẫn"
+msgstr "Instructions"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__wash_care
+msgid "Hướng Dẫn Giặt Ủi"
+msgstr "Wash Care Instructions"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+msgid "Hủy"
+msgstr "Cancel"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__id
+#: model:ir.model.fields,field_description:garment_base.field_garment_color__id
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__id
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__id
+#: model:ir.model.fields,field_description:garment_base.field_garment_order_line__id
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__id
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__id
+#: model:ir.model.fields,field_description:garment_base.field_garment_wash_symbol__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__activity_exception_icon
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__activity_exception_icon
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__activity_exception_icon
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_accessory__activity_exception_icon
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__activity_exception_icon
+#: model:ir.model.fields,help:garment_base.field_garment_order__activity_exception_icon
+#: model:ir.model.fields,help:garment_base.field_garment_style__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_accessory__message_needaction
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__message_needaction
+#: model:ir.model.fields,help:garment_base.field_garment_order__message_needaction
+#: model:ir.model.fields,help:garment_base.field_garment_style__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_accessory__message_has_error
+#: model:ir.model.fields,help:garment_base.field_garment_accessory__message_has_sms_error
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__message_has_error
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__message_has_sms_error
+#: model:ir.model.fields,help:garment_base.field_garment_order__message_has_error
+#: model:ir.model.fields,help:garment_base.field_garment_order__message_has_sms_error
+#: model:ir.model.fields,help:garment_base.field_garment_style__message_has_error
+#: model:ir.model.fields,help:garment_base.field_garment_style__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__message_is_follower
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__message_is_follower
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__message_is_follower
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.ui.menu,name:garment_base.menu_garment_warehouse_main
+msgid "Kho & Giao Hàng"
+msgstr "Warehouse & Delivery"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_accessory__accessory_type__other
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_fabric__fabric_type__other
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__other
+msgid "Khác"
+msgstr "Other"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__customer_id
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__customer_id
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_search
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_search
+msgid "Khách Hàng"
+msgstr "Customer"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__difficulty_level__hard
+msgid "Khó"
+msgstr "Difficult"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_accessory__accessory_type__zipper
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_accessory_search
+msgid "Khóa Kéo"
+msgstr "Zipper"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__width
+msgid "Khổ Vải (cm)"
+msgstr "Fabric Width (cm)"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+msgid "Kiểm Tra CL"
+msgstr "Quality Check"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__state__qc
+msgid "Kiểm Tra Chất Lượng"
+msgstr "Quality Inspection"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__size
+msgid "Kích Thước"
+msgstr "Dimension"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__wash_symbol_ids
+msgid "Ký Hiệu Giặt"
+msgstr "Wash Care Symbol"
+
+#. module: garment_base
+#: model:ir.actions.act_window,name:garment_base.action_wash_symbol
+#: model:ir.ui.menu,name:garment_base.menu_garment_wash_symbol
+msgid "Ký Hiệu Giặt Ủi"
+msgstr "Wash & Iron Care Symbol"
+
+#. module: garment_base
+#: model:ir.model,name:garment_base.model_garment_wash_symbol
+msgid "Ký Hiệu Giặt Ủi (Wash Care Symbol)"
+msgstr "Wash Care Symbol"
+
+#. module: garment_base
+#: model:ir.ui.menu,name:garment_base.menu_garment_accounting_main
+msgid "Kế Toán"
+msgstr "Accounting"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__payment_term__lc
+msgid "L/C (Thư Tín Dụng)"
+msgstr "L/C (Letter of Credit)"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__write_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_color__write_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__write_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__write_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_order_line__write_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__write_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__write_uid
+#: model:ir.model.fields,field_description:garment_base.field_garment_wash_symbol__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__write_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_color__write_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__write_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__write_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_order_line__write_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__write_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__write_date
+#: model:ir.model.fields,field_description:garment_base.field_garment_wash_symbol__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_fabric__fabric_type__wool
+msgid "Len"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__accessory_type
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_accessory_search
+msgid "Loại Phụ Liệu"
+msgstr "Accessory Type"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_search
+msgid "Loại SP"
+msgstr "Product Type"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__size_type
+msgid "Loại Size"
+msgstr "Size Type"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__category
+msgid "Loại Sản Phẩm"
+msgstr "Product Type"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__fabric_type
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_fabric_search
+msgid "Loại Vải"
+msgstr "Fabric Type"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__state__sample
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Làm Mẫu"
+msgstr "Make Sample"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_fabric__fabric_type__silk
+msgid "Lụa"
+msgstr "Silk"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+msgid "May"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__message_has_error
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__message_has_error
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__message_has_error
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__message_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__message_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__message_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_accessory__accessory_type__padding
+msgid "Mex / Lót"
+msgstr "Interlining / Lining"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__my_activity_date_deadline
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__my_activity_date_deadline
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__my_activity_date_deadline
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order_line__color_id
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_color_form
+msgid "Màu"
+msgstr "Color"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__color_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__color_ids
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_accessory_form
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_fabric_form
+msgid "Màu Có Sẵn"
+msgstr "Available Colors"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_wash_symbol__code
+msgid "Mã"
+msgstr "Code"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_color__code
+msgid "Mã Màu"
+msgstr "Color Code"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_color__html_color
+msgid "Mã Màu HTML"
+msgstr "HTML Color Code"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__code
+msgid "Mã Mẫu (Style No.)"
+msgstr "Sample Code (Style No.)"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_color__pantone_code
+msgid "Mã Pantone"
+msgstr "Pantone Code"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__code
+msgid "Mã Phụ Liệu"
+msgstr "Accessory Code"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__code
+msgid "Mã Size"
+msgstr "Size Code"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Mã Style"
+msgstr "Style Code"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__code
+msgid "Mã Vải"
+msgstr "Fabric Code"
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_color__html_color
+msgid "Mã màu HEX, VD: #FF0000"
+msgstr "HEX color code, e.g.: #FF0000"
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_color__pantone_code
+msgid "Mã màu Pantone tiêu chuẩn"
+msgstr "Standard Pantone color code"
+
+#. module: garment_base
+#: model:ir.model.constraint,message:garment_base.constraint_garment_color_code_unique
+msgid "Mã màu phải là duy nhất!"
+msgstr "Color code must be unique!"
+
+#. module: garment_base
+#: model:ir.model.constraint,message:garment_base.constraint_garment_style_code_unique
+msgid "Mã mẫu (Style No.) phải là duy nhất!"
+msgstr "Sample code (Style No.) must be unique!"
+
+#. module: garment_base
+#: model:ir.model.constraint,message:garment_base.constraint_garment_accessory_code_unique
+msgid "Mã phụ liệu phải là duy nhất!"
+msgstr "Accessory code must be unique!"
+
+#. module: garment_base
+#: model:ir.model.constraint,message:garment_base.constraint_garment_size_code_unique
+msgid "Mã size phải là duy nhất!"
+msgstr "Size code must be unique!"
+
+#. module: garment_base
+#: model:ir.model.constraint,message:garment_base.constraint_garment_fabric_code_unique
+msgid "Mã vải phải là duy nhất!"
+msgstr "Fabric code must be unique!"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_accessory__accessory_type__hook
+msgid "Móc / Khuy"
+msgstr "Hook / Eye"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_accessory__accessory_type__hanger
+msgid "Móc Treo"
+msgstr "Hanger"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Mô Tả"
+msgstr "Description"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__description
+msgid "Mô Tả Chi Tiết"
+msgstr "Detailed Description"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__season
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_search
+msgid "Mùa"
+msgstr "Season"
+
+#. module: garment_base
+#: model:ir.actions.act_window,name:garment_base.action_garment_style
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__style_id
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_search
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Mẫu May"
+msgstr "Garment Sample"
+
+#. module: garment_base
+#: model:ir.model,name:garment_base.model_garment_style
+msgid "Mẫu May / Kiểu Dáng"
+msgstr "Garment Sample / Design"
+
+#. module: garment_base
+#: model:ir.ui.menu,name:garment_base.menu_garment_style
+msgid "Mẫu May / Style"
+msgstr "Garment Sample / Style"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__gender__male
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_search
+msgid "Nam"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__activity_date_deadline
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__activity_date_deadline
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__activity_date_deadline
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__activity_summary
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__activity_summary
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__activity_summary
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__activity_type_id
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__activity_type_id
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__activity_type_id
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Nguyên Phụ Liệu"
+msgstr "Material & Accessories"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__delivery_date
+msgid "Ngày Giao Hàng"
+msgstr "Delivery Date"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__order_date
+msgid "Ngày Đặt Hàng"
+msgstr "Order Date"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Ngừng SX"
+msgstr "Production Stopped"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__state__discontinued
+msgid "Ngừng Sản Xuất"
+msgstr "Production Stopped"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__chest
+msgid "Ngực (cm)"
+msgstr "Chest (cm)"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__supplier_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__supplier_ids
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_accessory_form
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_fabric_form
+msgid "Nhà Cung Cấp"
+msgstr "Supplier"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__state__draft
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__state__draft
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_search
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_search
+msgid "Nháp"
+msgstr "Draft"
+
+#. module: garment_base
+#: model:ir.ui.menu,name:garment_base.menu_garment_hr_main
+msgid "Nhân Sự & Lương"
+msgstr "HR & Payroll"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_accessory__accessory_type__label
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_accessory_search
+msgid "Nhãn Mác"
+msgstr "Care Label"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__message_needaction_counter
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__message_needaction_counter
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__message_needaction_counter
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__message_has_error_counter
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__message_has_error_counter
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__message_has_error_counter
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_accessory__message_needaction_counter
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__message_needaction_counter
+#: model:ir.model.fields,help:garment_base.field_garment_order__message_needaction_counter
+#: model:ir.model.fields,help:garment_base.field_garment_style__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_accessory__message_has_error_counter
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__message_has_error_counter
+#: model:ir.model.fields,help:garment_base.field_garment_order__message_has_error_counter
+#: model:ir.model.fields,help:garment_base.field_garment_style__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_accessory__accessory_type__button
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_accessory_search
+msgid "Nút / Cúc"
+msgstr "Button"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__gender__female
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_search
+msgid "Nữ"
+msgstr "Female"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__customer_po
+msgid "PO Khách Hàng"
+msgstr "Customer PO"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_wash_symbol__category
+msgid "Phân Loại"
+msgstr "Classification"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__payment_term
+msgid "Phương Thức Thanh Toán"
+msgstr "Payment Method"
+
+#. module: garment_base
+#: model:ir.actions.act_window,name:garment_base.action_garment_accessory
+#: model:ir.ui.menu,name:garment_base.menu_garment_accessory
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_accessory_form
+msgid "Phụ Liệu"
+msgstr "Accessories"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__accessory_ids
+msgid "Phụ Liệu Sử Dụng"
+msgstr "Accessories Used"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_fabric__fabric_type__polyester
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_fabric_search
+msgid "Polyester"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__season__all
+msgid "Quanh Năm"
+msgstr "Year-round"
+
+#. module: garment_base
+#: model:ir.model,name:garment_base.model_garment_accessory
+msgid "Quản lý Phụ Liệu"
+msgstr "Accessory Management"
+
+#. module: garment_base
+#: model:ir.model,name:garment_base.model_garment_fabric
+msgid "Quản lý Vải"
+msgstr "Fabric Management"
+
+#. module: garment_base
+#: model_terms:ir.actions.act_window,help:garment_base.action_garment_style
+msgid "Quản lý các mẫu may / kiểu dáng sản phẩm."
+msgstr "Manage garment samples / product designs."
+
+#. module: garment_base
+#: model_terms:ir.actions.act_window,help:garment_base.action_garment_fabric
+msgid "Quản lý danh mục vải sử dụng trong sản xuất may."
+msgstr "Manage fabric catalog used in garment production."
+
+#. module: garment_base
+#: model_terms:ir.actions.act_window,help:garment_base.action_garment_accessory
+msgid "Quản lý phụ liệu: nút, khóa kéo, chỉ, nhãn mác..."
+msgstr "Manage accessories: buttons, zippers, threads, labels..."
+
+#. module: garment_base
+#: model_terms:ir.actions.act_window,help:garment_base.action_garment_order
+msgid "Quản lý đơn hàng may từ tiếp nhận đến giao hàng."
+msgstr "Manage garment orders from receipt to delivery."
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__jeans
+msgid "Quần Jeans"
+msgstr "Jeans"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__shorts
+msgid "Quần Short"
+msgstr "Shorts"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__pants
+msgid "Quần Tây"
+msgstr "Dress Pants"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_accessory__accessory_type__lace
+msgid "Ren / Đăng Ten"
+msgstr "Lace"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__activity_user_id
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__activity_user_id
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__activity_user_id
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_accessory__accessory_type__ribbon
+msgid "Ruy Băng"
+msgstr "Ribbon"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__difficulty_level__very_hard
+msgid "Rất Khó"
+msgstr "Very Difficult"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__sam
+msgid "SAM (Standard Allowed Minutes)"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__message_has_sms_error
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__message_has_sms_error
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__message_has_sms_error
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_wash_symbol__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__shipping_mark
+msgid "Shipping Mark"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order_line__size_id
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_size_form
+msgid "Size"
+msgstr ""
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Size & Màu"
+msgstr "Size & Color"
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_accessory__activity_state
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__activity_state
+#: model:ir.model.fields,help:garment_base.field_garment_order__activity_state
+#: model:ir.model.fields,help:garment_base.field_garment_style__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__product_id
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__product_id
+msgid "Sản Phẩm Liên Kết"
+msgstr "Linked Product"
+
+#. module: garment_base
+#: model:ir.ui.menu,name:garment_base.menu_garment_production_main
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Sản Xuất"
+msgstr "Production"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_wash_symbol__category__dry
+msgid "Sấy (Drying)"
+msgstr "Drying"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_size__size_type__number
+msgid "Số (38, 39, 40...)"
+msgstr "Number (38, 39, 40...)"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order_line__quantity
+msgid "Số Lượng"
+msgstr "Quantity"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__days_remaining
+msgid "Số Ngày Còn Lại"
+msgstr "Days Remaining"
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_style__fabric_consumption
+msgid "Số mét vải cần cho 1 sản phẩm"
+msgstr "Meters of fabric needed per product"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__name
+msgid "Số Đơn Hàng"
+msgstr "Order Count"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__payment_term__tt
+msgid "T/T (Chuyển Khoản)"
+msgstr "T/T (Wire Transfer)"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__sleeve
+msgid "Tay (cm)"
+msgstr ""
+
+#. module: garment_base
+#: model:res.groups,name:garment_base.group_garment_team_leader
+msgid "Team Leader"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__tech_pack
+msgid "Tech Pack / Tài Liệu Kỹ Thuật"
+msgstr "Tech Pack / Technical Documents"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Thiết Kế"
+msgstr "Design"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__season__aw
+msgid "Thu Đông (AW)"
+msgstr "Autumn/Winter (AW)"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_accessory__accessory_type__elastic
+msgid "Thun / Dây Chun"
+msgstr "Elastic Band"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__composition
+msgid "Thành Phần"
+msgstr "Composition"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order_line__subtotal
+msgid "Thành Tiền"
+msgstr "Subtotal"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_search
+msgid "Tháng Giao"
+msgstr "Delivery Month"
+
+#. module: garment_base
+#: model_terms:ir.actions.act_window,help:garment_base.action_wash_symbol
+msgid "Thêm ký hiệu giặt ủi mới"
+msgstr "Add new wash care symbol"
+
+#. module: garment_base
+#: model_terms:ir.actions.act_window,help:garment_base.action_garment_fabric
+msgid "Thêm loại vải mới"
+msgstr "Add new fabric type"
+
+#. module: garment_base
+#: model_terms:ir.actions.act_window,help:garment_base.action_garment_accessory
+msgid "Thêm phụ liệu mới"
+msgstr "Add new accessory"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+msgid "Thông Tin Giao Hàng"
+msgstr "Delivery Information"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_accessory__accessory_type__tag
+msgid "Thẻ Bài"
+msgstr "Badge"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__lead_time
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__lead_time
+msgid "Thời Gian Giao (ngày)"
+msgstr "Delivery Time (days)"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__sewing_time
+msgid "Thời Gian May (phút/sp)"
+msgstr "Sewing Time (min/pcs)"
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_style__sam
+msgid "Thời gian chuẩn cho phép (phút)"
+msgstr "Standard allowed time (minutes)"
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_style__sewing_time
+msgid "Thời gian may trung bình cho 1 sản phẩm"
+msgstr "Average sewing time per product"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_color__sequence
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__sequence
+msgid "Thứ Tự"
+msgstr "Sequence"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__currency_id
+msgid "Tiền Tệ"
+msgstr "Currency"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__difficulty_level__medium
+msgid "Trung Bình"
+msgstr "Medium"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__state
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__state
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_search
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_search
+msgid "Trạng Thái"
+msgstr "Status"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__gender__kids
+msgid "Trẻ Em"
+msgstr "Children"
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__weight
+msgid "Trọng lượng vải trên mét vuông"
+msgstr "Fabric weight per square meter"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_size__size_type__age
+msgid "Tuổi (1-2, 3-4...)"
+msgstr "Age (1-2, 3-4...)"
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_accessory__activity_exception_decoration
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__activity_exception_decoration
+#: model:ir.model.fields,help:garment_base.field_garment_order__activity_exception_decoration
+#: model:ir.model.fields,help:garment_base.field_garment_style__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Tài Liệu Kỹ Thuật"
+msgstr "Technical Documents"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__pattern_filename
+msgid "Tên File Rập"
+msgstr "Pattern File Name"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__tech_pack_filename
+msgid "Tên File Tech Pack"
+msgstr "Tech Pack File Name"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_wash_symbol__name
+msgid "Tên Ký Hiệu"
+msgstr "Symbol Name"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_color__name
+msgid "Tên Màu"
+msgstr "Color Name"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__name
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Tên Mẫu"
+msgstr "Sample Name"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__name
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_accessory_form
+msgid "Tên Phụ Liệu"
+msgstr "Accessory Name"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__name
+msgid "Tên Size"
+msgstr "Size Name"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__name
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_fabric_form
+msgid "Tên Vải"
+msgstr "Fabric Name"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_search
+msgid "Tìm Mẫu May"
+msgstr "Search Garment Sample"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_accessory_search
+msgid "Tìm Phụ Liệu"
+msgstr "Search Accessories"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_fabric_search
+msgid "Tìm Vải"
+msgstr "Search Fabric"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_search
+msgid "Tìm Đơn Hàng"
+msgstr "Search Orders"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_size__size_type__custom
+msgid "Tùy Chỉnh"
+msgstr "Custom"
+
+#. module: garment_base
+#: model_terms:ir.actions.act_window,help:garment_base.action_garment_style
+msgid "Tạo mẫu may mới"
+msgstr "Create new garment sample"
+
+#. module: garment_base
+#: model_terms:ir.actions.act_window,help:garment_base.action_garment_order
+msgid "Tạo đơn hàng may mới"
+msgstr "Create new garment order"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_wash_symbol__category__bleach
+msgid "Tẩy (Bleaching)"
+msgstr "Bleaching"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__total_qty
+msgid "Tổng Số Lượng"
+msgstr "Total Quantity"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__total_amount
+msgid "Tổng Tiền"
+msgstr "Total Amount"
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__shrinkage
+msgid "Tỷ lệ co rút sau giặt"
+msgstr "Shrinkage rate after washing"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__gender__unisex
+msgid "Unisex"
+msgstr ""
+
+#. module: garment_base
+#: model:res.groups,name:garment_base.group_garment_user
+msgid "User"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_accessory__size
+msgid "VD: 15mm, 20cm..."
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__composition
+msgid "VD: 80% Cotton, 20% Polyester"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_wash_symbol__instruction
+msgid "VD: Giặt máy ở 30°C, Không tẩy, Ủi nhiệt độ thấp"
+msgstr "E.g.: Machine wash at 30°C, No bleach, Low heat iron"
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_style__wash_care
+msgid "VD: Giặt máy ở 30°C, không tẩy, ủi nhiệt độ trung bình"
+msgstr "E.g.: Machine wash at 30°C, no bleach, medium heat iron"
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_accessory__material
+msgid "VD: Nhựa, Kim Loại, Gỗ..."
+msgstr "E.g.: Plastic, Metal, Wood..."
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__shoulder
+msgid "Vai (cm)"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.actions.act_window,name:garment_base.action_garment_fabric
+#: model:ir.ui.menu,name:garment_base.menu_garment_fabric
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_fabric_form
+msgid "Vải"
+msgstr "Fabric"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_fabric__fabric_type__knit
+msgid "Vải Dệt Kim"
+msgstr "Knit Fabric"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_fabric__fabric_type__woven
+msgid "Vải Dệt Thoi"
+msgstr "Woven Fabric"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_fabric__fabric_type__linen
+msgid "Vải Lanh"
+msgstr "Linen Fabric"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_fabric__fabric_type__blend
+msgid "Vải Pha"
+msgstr "Blended Fabric"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__fabric_ids
+msgid "Vải Sử Dụng"
+msgstr "Fabric Usage"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_fabric__fabric_type__chiffon
+msgid "Vải Voan"
+msgstr "Chiffon Fabric"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__website_message_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__website_message_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__website_message_ids
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields,help:garment_base.field_garment_accessory__website_message_ids
+#: model:ir.model.fields,help:garment_base.field_garment_fabric__website_message_ids
+#: model:ir.model.fields,help:garment_base.field_garment_order__website_message_ids
+#: model:ir.model.fields,help:garment_base.field_garment_style__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__season__ss
+msgid "Xuân Hè (SS)"
+msgstr "Spring/Summer (SS)"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+msgid "Xác Nhận"
+msgstr "Confirm"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__jacket
+msgid "Áo Khoác / Jacket"
+msgstr "Jacket"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__polo
+msgid "Áo Polo"
+msgstr "Polo Shirt"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__shirt
+msgid "Áo Sơ Mi"
+msgstr "Shirt"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__tshirt
+msgid "Áo Thun / T-Shirt"
+msgstr "T-Shirt"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__blazer
+msgid "Áo Vest / Blazer"
+msgstr "Blazer"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__state__cutting
+msgid "Đang Cắt"
+msgstr "Cutting"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__state__sewing
+msgid "Đang May"
+msgstr "Sewing"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__state__production
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_search
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_search
+msgid "Đang Sản Xuất"
+msgstr "Producing"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__active
+#: model:ir.model.fields,field_description:garment_base.field_garment_color__active
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__active
+#: model:ir.model.fields,field_description:garment_base.field_garment_size__active
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__active
+msgid "Đang Sử Dụng"
+msgstr "In Use"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__state__design
+msgid "Đang Thiết Kế"
+msgstr "Designing"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__incoterm
+msgid "Điều Kiện Giao Hàng"
+msgstr "Incoterm"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__state__approved
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_search
+msgid "Đã Duyệt"
+msgstr "Approved"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__state__shipped
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+msgid "Đã Giao"
+msgstr "Delivered"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__state__cancelled
+msgid "Đã Hủy"
+msgstr "Cancelled"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__state__confirmed
+msgid "Đã Xác Nhận"
+msgstr "Confirmed"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_order__state__packing
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+msgid "Đóng Gói"
+msgstr "Packing"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__is_on_time
+msgid "Đúng Hạn"
+msgstr "On Time"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__unit_price
+#: model:ir.model.fields,field_description:garment_base.field_garment_order_line__unit_price
+msgid "Đơn Giá"
+msgstr "Unit Price"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order__unit_price
+msgid "Đơn Giá FOB"
+msgstr "FOB Unit Price"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_order_line__order_id
+#: model:ir.ui.menu,name:garment_base.menu_garment_order_main
+msgid "Đơn Hàng"
+msgstr "Order"
+
+#. module: garment_base
+#: model:ir.actions.act_window,name:garment_base.action_garment_order
+#: model:ir.model,name:garment_base.model_garment_order
+#: model:ir.ui.menu,name:garment_base.menu_garment_order
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_list
+msgid "Đơn Hàng May"
+msgstr "Garment Order"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__uom_id
+msgid "Đơn Vị Tính"
+msgstr "Unit of Measure"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__dress
+msgid "Đầm / Váy"
+msgstr "Dress / Skirt"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_accessory__min_order_qty
+msgid "Đặt Hàng Tối Thiểu"
+msgstr "Minimum Order"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__min_order_qty
+msgid "Đặt Hàng Tối Thiểu (m)"
+msgstr "Minimum Order (m)"
+
+#. module: garment_base
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_order_form
+#: model_terms:ir.ui.view,arch_db:garment_base.view_garment_style_form
+msgid "Đặt Lại Nháp"
+msgstr "Reset to Draft"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__weight
+msgid "Định Lượng (g/m²)"
+msgstr "Weight (g/m²)"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__fabric_consumption
+msgid "Định Mức Vải (m/sp)"
+msgstr "Fabric Consumption (m/pcs)"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__underwear
+msgid "Đồ Lót"
+msgstr "Underwear"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__sleepwear
+msgid "Đồ Ngủ"
+msgstr "Sleepwear"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__sportswear
+msgid "Đồ Thể Thao"
+msgstr "Sportswear"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__childwear
+msgid "Đồ Trẻ Em"
+msgstr "Children's Wear"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_style__category__uniform
+msgid "Đồng Phục"
+msgstr "Uniform"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_fabric__shrinkage
+msgid "Độ Co Rút (%)"
+msgstr "Shrinkage (%)"
+
+#. module: garment_base
+#: model:ir.model.fields,field_description:garment_base.field_garment_style__difficulty_level
+msgid "Độ Khó"
+msgstr "Difficulty"
+
+#. module: garment_base
+#: model:ir.model.fields.selection,name:garment_base.selection__garment_wash_symbol__category__iron
+msgid "Ủi (Ironing)"
+msgstr "Ironing"

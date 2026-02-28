@@ -310,3 +310,118 @@ class TestOdooIntegration(TransactionCase):
         self.assertTrue(receipt.purchase_order_id)
         po = receipt.purchase_order_id
         self.assertEqual(po.partner_id, self.supplier)
+
+    # -------------------------------------------------------------------------
+    # Payment → Account Payment Integration
+    # -------------------------------------------------------------------------
+    def test_payment_has_account_payment_field(self):
+        """garment.payment should have account_payment_id."""
+        payment = self.env['garment.payment'].create({
+            'payment_type': 'inbound',
+            'partner_id': self.customer.id,
+            'amount': 1000000,
+        })
+        self.assertFalse(payment.account_payment_id)
+
+    def test_create_account_payment_inbound(self):
+        """Create account.payment (inbound) from garment payment."""
+        payment = self.env['garment.payment'].create({
+            'payment_type': 'inbound',
+            'partner_id': self.customer.id,
+            'amount': 5000000,
+        })
+        payment.action_confirm()
+        result = payment.action_create_account_payment()
+        self.assertTrue(payment.account_payment_id)
+        self.assertEqual(payment.account_payment_id.payment_type, 'inbound')
+        self.assertEqual(payment.account_payment_id.partner_id, self.customer)
+        self.assertEqual(result['res_model'], 'account.payment')
+
+    def test_create_account_payment_outbound(self):
+        """Create account.payment (outbound) from garment payment."""
+        payment = self.env['garment.payment'].create({
+            'payment_type': 'outbound',
+            'partner_id': self.supplier.id,
+            'amount': 3000000,
+        })
+        payment.action_confirm()
+        result = payment.action_create_account_payment()
+        self.assertTrue(payment.account_payment_id)
+        self.assertEqual(payment.account_payment_id.payment_type, 'outbound')
+
+    def test_cannot_create_account_payment_draft(self):
+        """Cannot create account payment from draft garment payment."""
+        payment = self.env['garment.payment'].create({
+            'payment_type': 'inbound',
+            'partner_id': self.customer.id,
+            'amount': 1000000,
+        })
+        with self.assertRaises(UserError):
+            payment.action_create_account_payment()
+
+    def test_cannot_create_duplicate_account_payment(self):
+        """Cannot create account payment twice."""
+        payment = self.env['garment.payment'].create({
+            'payment_type': 'inbound',
+            'partner_id': self.customer.id,
+            'amount': 1000000,
+        })
+        payment.action_confirm()
+        payment.action_create_account_payment()
+        with self.assertRaises(UserError):
+            payment.action_create_account_payment()
+
+    def test_view_account_payment(self):
+        """View linked account payment."""
+        payment = self.env['garment.payment'].create({
+            'payment_type': 'inbound',
+            'partner_id': self.customer.id,
+            'amount': 1000000,
+        })
+        payment.action_confirm()
+        payment.action_create_account_payment()
+        result = payment.action_view_account_payment()
+        self.assertEqual(result['res_id'], payment.account_payment_id.id)
+
+    def test_view_account_payment_without_link_raises(self):
+        """Error when viewing non-existent account payment."""
+        payment = self.env['garment.payment'].create({
+            'payment_type': 'inbound',
+            'partner_id': self.customer.id,
+            'amount': 1000000,
+        })
+        with self.assertRaises(UserError):
+            payment.action_view_account_payment()
+
+    # -------------------------------------------------------------------------
+    # Tax Mapping Test
+    # -------------------------------------------------------------------------
+    def test_account_move_with_tax_mapping(self):
+        """Account move lines should include matching tax if available."""
+        inv = self.env['garment.invoice'].create({
+            'invoice_type': 'sale',
+            'partner_id': self.customer.id,
+            'tax_type': '10',
+        })
+        self.env['garment.invoice.line'].create({
+            'invoice_id': inv.id,
+            'description': 'Product with 10% VAT',
+            'quantity': 100,
+            'unit_price': 50000,
+        })
+        inv.action_confirm()
+
+        # Create a 10% sale tax for testing
+        tax_10 = self.env['account.tax'].create({
+            'name': 'GTGT 10%',
+            'amount': 10,
+            'type_tax_use': 'sale',
+        })
+
+        inv.action_create_account_move()
+        move = inv.account_move_id
+        invoice_lines = move.invoice_line_ids
+        self.assertTrue(invoice_lines)
+        # Tax should be mapped
+        for line in invoice_lines:
+            self.assertIn(tax_10, line.tax_ids)

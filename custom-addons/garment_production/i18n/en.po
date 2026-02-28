@@ -1,0 +1,799 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_production
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__message_needaction
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__message_needaction
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__active
+msgid "Active"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__activity_ids
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__activity_exception_decoration
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__activity_state
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__activity_type_icon
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__message_attachment_count
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__message_attachment_count
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_sewing_line__line_type__cutting
+msgid "Bàn Cắt"
+msgstr "Cutting Table"
+
+#. module: garment_production
+#: model_terms:ir.ui.view,arch_db:garment_production.view_cutting_order_form
+msgid "Bắt Đầu Cắt"
+msgstr "Start Cutting"
+
+#. module: garment_production
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_form
+msgid "Bắt Đầu SX"
+msgstr "Start Production"
+
+#. module: garment_production
+#: model_terms:ir.ui.view,arch_db:garment_production.view_daily_output_search
+msgid "Ca"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_daily_output__shift__afternoon
+msgid "Ca Chiều"
+msgstr "Afternoon Shift"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__shift
+msgid "Ca Làm Việc"
+msgstr "Work Shift"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_daily_output__shift__morning
+msgid "Ca Sáng"
+msgstr "Morning Shift"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_daily_output__shift__night
+msgid "Ca Tối"
+msgstr "Night Shift"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__fabric_length
+msgid "Chiều Dài Vải Sử Dụng (m)"
+msgstr "Fabric Length Used (m)"
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_cutting_order__fabric_width
+msgid "Chiều rộng khổ vải tính bằng cm"
+msgstr "Fabric width in cm"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_sewing_line__line_type__finishing
+msgid "Chuyền Hoàn Thiện"
+msgstr "Finishing Line"
+
+#. module: garment_production
+#: model:ir.actions.act_window,name:garment_production.action_sewing_line
+#: model:ir.model,name:garment_production.model_garment_sewing_line
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__sewing_line_id
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__sewing_line_id
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_sewing_line__line_type__sewing
+#: model:ir.ui.menu,name:garment_production.menu_sewing_line
+#: model_terms:ir.ui.view,arch_db:garment_production.view_daily_output_search
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_search
+#: model_terms:ir.ui.view,arch_db:garment_production.view_sewing_line_form
+#: model_terms:ir.ui.view,arch_db:garment_production.view_sewing_line_list
+msgid "Chuyền May"
+msgstr "Sewing Line"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__manager_id
+msgid "Chuyền Trưởng"
+msgstr "Line Leader"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_sewing_line__line_type__packing
+msgid "Chuyền Đóng Gói"
+msgstr "Packing Line"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_sewing_line__line_type__ironing
+msgid "Chuyền Ủi"
+msgstr "Ironing Line"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__create_uid
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__create_uid
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__create_uid
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__create_date
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__create_date
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__create_date
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__worker_ids
+#: model_terms:ir.ui.view,arch_db:garment_production.view_sewing_line_form
+msgid "Công Nhân"
+msgstr "Worker"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__display_name
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__display_name
+#: model:ir.model.fields,field_description:garment_production.field_garment_order__display_name
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__display_name
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__message_follower_ids
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__message_follower_ids
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__message_partner_ids
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__message_partner_ids
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_cutting_order__activity_type_icon
+#: model:ir.model.fields,help:garment_production.field_garment_production_order__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__notes
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__notes
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__notes
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_form
+#: model_terms:ir.ui.view,arch_db:garment_production.view_sewing_line_form
+msgid "Ghi Chú"
+msgstr "Notes"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__notes
+msgid "Ghi Chú / Nguyên Nhân"
+msgstr "Notes / Cause"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__working_hours
+msgid "Giờ Làm Việc"
+msgstr "Working Hours"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__waste_percentage
+msgid "Hao Hụt (%)"
+msgstr "Waste (%)"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__has_message
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__has_message
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__efficiency
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__efficiency
+msgid "Hiệu Suất (%)"
+msgstr "Efficiency (%)"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_cutting_order__state__done
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_production_order__state__done
+#: model_terms:ir.ui.view,arch_db:garment_production.view_cutting_order_form
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_form
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_search
+msgid "Hoàn Thành"
+msgstr "Done"
+
+#. module: garment_production
+#: model_terms:ir.ui.view,arch_db:garment_production.view_daily_output_search
+msgid "Hôm Nay"
+msgstr "Today"
+
+#. module: garment_production
+#: model_terms:ir.ui.view,arch_db:garment_production.view_cutting_order_form
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_form
+msgid "Hủy"
+msgstr "Cancel"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__id
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__id
+#: model:ir.model.fields,field_description:garment_production.field_garment_order__id
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__id
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__activity_exception_icon
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_cutting_order__activity_exception_icon
+#: model:ir.model.fields,help:garment_production.field_garment_production_order__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_cutting_order__message_needaction
+#: model:ir.model.fields,help:garment_production.field_garment_production_order__message_needaction
+#: model:ir.model.fields,help:garment_production.field_garment_sewing_line__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_cutting_order__message_has_error
+#: model:ir.model.fields,help:garment_production.field_garment_cutting_order__message_has_sms_error
+#: model:ir.model.fields,help:garment_production.field_garment_production_order__message_has_error
+#: model:ir.model.fields,help:garment_production.field_garment_production_order__message_has_sms_error
+#: model:ir.model.fields,help:garment_production.field_garment_sewing_line__message_has_error
+#: model:ir.model.fields,help:garment_production.field_garment_sewing_line__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__message_is_follower
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__message_is_follower
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__customer_id
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_search
+msgid "Khách Hàng"
+msgstr "Customer"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__fabric_width
+msgid "Khổ Vải (cm)"
+msgstr "Fabric Width (cm)"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__write_uid
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__write_uid
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__write_uid
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__write_date
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__write_date
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__write_date
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__line_type
+msgid "Loại Chuyền"
+msgstr "Line Type"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__fabric_id
+msgid "Loại Vải"
+msgstr "Fabric Type"
+
+#. module: garment_production
+#: model:ir.actions.act_window,name:garment_production.action_cutting_order
+#: model:ir.model,name:garment_production.model_garment_cutting_order
+#: model:ir.ui.menu,name:garment_production.menu_cutting_order
+#: model_terms:ir.ui.view,arch_db:garment_production.view_cutting_order_form
+#: model_terms:ir.ui.view,arch_db:garment_production.view_cutting_order_list
+msgid "Lệnh Cắt"
+msgstr "Cutting Order"
+
+#. module: garment_production
+#: model:ir.actions.act_window,name:garment_production.action_production_order
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__production_order_id
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__production_order_id
+#: model:ir.model.fields,field_description:garment_production.field_garment_order__production_order_ids
+#: model:ir.ui.menu,name:garment_production.menu_production_order
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_form
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_list
+msgid "Lệnh Sản Xuất"
+msgstr "Production Order"
+
+#. module: garment_production
+#: model:ir.model,name:garment_production.model_garment_production_order
+msgid "Lệnh Sản Xuất May"
+msgstr "Garment Production Order"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__message_has_error
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__message_has_error
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__message_ids
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__message_ids
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__my_activity_date_deadline
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__color_id
+msgid "Màu"
+msgstr "Color"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__code
+msgid "Mã Chuyền"
+msgstr "Line Code"
+
+#. module: garment_production
+#: model:ir.model.constraint,message:garment_production.constraint_garment_sewing_line_code_unique
+msgid "Mã chuyền phải là duy nhất!"
+msgstr "Line code must be unique!"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__style_id
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__style_id
+msgid "Mẫu May"
+msgstr "Garment Sample"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__target_qty
+msgid "Mục Tiêu (sp)"
+msgstr "Target (pcs)"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__activity_date_deadline
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__activity_summary
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__activity_type_id
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__date
+#: model_terms:ir.ui.view,arch_db:garment_production.view_daily_output_search
+msgid "Ngày"
+msgstr "Date"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__start_date
+msgid "Ngày Bắt Đầu"
+msgstr "Start Date"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__cutting_date
+msgid "Ngày Cắt"
+msgstr "Cutting Date"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__end_date
+msgid "Ngày Kết Thúc Dự Kiến"
+msgstr "Planned End"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__actual_end_date
+msgid "Ngày Kết Thúc Thực Tế"
+msgstr "Actual End Date"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__cutter_id
+msgid "Người Cắt"
+msgstr "Cutter"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_sewing_line__state__inactive
+msgid "Ngừng Hoạt Động"
+msgstr "Inactive"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_cutting_order__state__draft
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_production_order__state__draft
+msgid "Nháp"
+msgstr "Draft"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__message_needaction_counter
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__message_needaction_counter
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__message_has_error_counter
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__message_has_error_counter
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_cutting_order__message_needaction_counter
+#: model:ir.model.fields,help:garment_production.field_garment_production_order__message_needaction_counter
+#: model:ir.model.fields,help:garment_production.field_garment_sewing_line__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_cutting_order__message_has_error_counter
+#: model:ir.model.fields,help:garment_production.field_garment_production_order__message_has_error_counter
+#: model:ir.model.fields,help:garment_production.field_garment_sewing_line__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__capacity_per_day
+msgid "Năng Suất / Ngày (sp)"
+msgstr "Daily Output (pcs)"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__activity_user_id
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__sam
+msgid "SAM"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__message_has_sms_error
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__message_has_sms_error
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_cutting_order__activity_state
+#: model:ir.model.fields,help:garment_production.field_garment_production_order__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: garment_production
+#: model:ir.actions.act_window,name:garment_production.action_daily_output
+#: model:ir.model,name:garment_production.model_garment_daily_output
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__daily_output_ids
+#: model_terms:ir.ui.view,arch_db:garment_production.view_daily_output_list
+#: model_terms:ir.ui.view,arch_db:garment_production.view_daily_output_pivot
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_form
+msgid "Sản Lượng Hàng Ngày"
+msgstr "Daily Output"
+
+#. module: garment_production
+#: model:ir.ui.menu,name:garment_production.menu_daily_output
+#: model_terms:ir.ui.view,arch_db:garment_production.view_daily_output_form
+msgid "Sản Lượng Ngày"
+msgstr "Daily Output"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__output_qty
+msgid "Sản Lượng Đạt (sp)"
+msgstr "Pass Output (pcs)"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__worker_count
+msgid "Số CN Làm Việc"
+msgstr "Workers Present"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__worker_count
+msgid "Số Công Nhân"
+msgstr "Worker Count"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__planned_qty
+msgid "Số Lượng Cắt (sp)"
+msgstr "Cut Qty (pcs)"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__completed_qty
+msgid "Số Lượng Hoàn Thành"
+msgstr "Completed Quantity"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__planned_qty
+msgid "Số Lượng Kế Hoạch"
+msgstr "Planned Quantity"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__defect_qty
+msgid "Số Lượng Lỗi"
+msgstr "Defect Quantity"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__defect_qty
+msgid "Số Lượng Lỗi (sp)"
+msgstr "Defect Qty (pcs)"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__name
+msgid "Số Lệnh Cắt"
+msgstr "Cutting Order Number"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__name
+msgid "Số Lệnh SX"
+msgstr "Production Order Number"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__layers
+msgid "Số Lớp Vải"
+msgstr "Fabric Layers"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__machine_count
+msgid "Số Máy"
+msgstr "Machine Number"
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_daily_output__target_qty
+msgid "Số lượng mục tiêu trong ca"
+msgstr "Target quantity per shift"
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_cutting_order__layers
+msgid "Số lớp vải xếp chồng khi cắt"
+msgstr "Number of fabric layers stacked for cutting"
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_cutting_order__fabric_consumption
+msgid "Số mét vải cần cho 1 sản phẩm"
+msgstr "Meters of fabric needed per product"
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_sewing_line__capacity_per_day
+msgid "Số sản phẩm dự kiến hoàn thành trong 1 ngày"
+msgstr "Expected daily production output"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__rework_qty
+msgid "Sửa Lại (sp)"
+msgstr "Rework (pcs)"
+
+#. module: garment_production
+#: model_terms:ir.actions.act_window,help:garment_production.action_sewing_line
+msgid "Thêm chuyền may mới"
+msgstr "Add new sewing line"
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_production_order__sam
+msgid "Thời gian chuẩn cho phép (phút)"
+msgstr "Standard allowed time (minutes)"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_order__progress
+msgid "Tiến Độ (%)"
+msgstr "Progress (%)"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__state
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__state
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__state
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_search
+msgid "Trạng Thái"
+msgstr "Status"
+
+#. module: garment_production
+#: model_terms:ir.ui.view,arch_db:garment_production.view_daily_output_search
+msgid "Tuần Này"
+msgstr "This Week"
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_cutting_order__activity_exception_decoration
+#: model:ir.model.fields,help:garment_production.field_garment_production_order__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__name
+msgid "Tên Chuyền"
+msgstr "Line Name"
+
+#. module: garment_production
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_search
+msgid "Tìm Lệnh SX"
+msgstr "Search Production Order"
+
+#. module: garment_production
+#: model_terms:ir.ui.view,arch_db:garment_production.view_daily_output_search
+msgid "Tìm Sản Lượng"
+msgstr "Search Output"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_daily_output__shift__overtime
+msgid "Tăng Ca"
+msgstr "Overtime"
+
+#. module: garment_production
+#: model_terms:ir.actions.act_window,help:garment_production.action_cutting_order
+msgid "Tạo lệnh cắt mới"
+msgstr "Create new cutting order"
+
+#. module: garment_production
+#: model_terms:ir.actions.act_window,help:garment_production.action_production_order
+msgid "Tạo lệnh sản xuất mới"
+msgstr "Create new production order"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__total_fabric
+msgid "Tổng Vải Cần (m)"
+msgstr "Total Fabric Required (m)"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__completion_rate
+msgid "Tỷ Lệ Hoàn Thành (%)"
+msgstr "Completion Rate (%)"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_daily_output__defect_rate
+msgid "Tỷ Lệ Lỗi (%)"
+msgstr "Defect Rate (%)"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__location
+msgid "Vị Trí / Nhà Xưởng"
+msgstr "Location / Factory"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__website_message_ids
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__website_message_ids
+#: model:ir.model.fields,field_description:garment_production.field_garment_sewing_line__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_production
+#: model:ir.model.fields,help:garment_production.field_garment_cutting_order__website_message_ids
+#: model:ir.model.fields,help:garment_production.field_garment_production_order__website_message_ids
+#: model:ir.model.fields,help:garment_production.field_garment_sewing_line__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_production
+#: model_terms:ir.ui.view,arch_db:garment_production.view_daily_output_graph
+msgid "Xu Hướng Sản Lượng"
+msgstr "Output Trend"
+
+#. module: garment_production
+#: model_terms:ir.ui.view,arch_db:garment_production.view_cutting_order_form
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_form
+msgid "Xác Nhận"
+msgstr "Confirm"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_sewing_line__state__maintenance
+msgid "Đang Bảo Trì"
+msgstr "Under Maintenance"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_cutting_order__state__cutting
+msgid "Đang Cắt"
+msgstr "Cutting"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_sewing_line__state__active
+msgid "Đang Hoạt Động"
+msgstr "Active"
+
+#. module: garment_production
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_search
+msgid "Đang SX"
+msgstr "In Production"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_production_order__state__in_progress
+msgid "Đang Sản Xuất"
+msgstr "Producing"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_cutting_order__state__cancelled
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_production_order__state__cancelled
+msgid "Đã Hủy"
+msgstr "Cancelled"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_order__produced_qty
+msgid "Đã Sản Xuất"
+msgstr "Produced"
+
+#. module: garment_production
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_cutting_order__state__confirmed
+#: model:ir.model.fields.selection,name:garment_production.selection__garment_production_order__state__confirmed
+msgid "Đã Xác Nhận"
+msgstr "Confirmed"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__garment_order_id
+msgid "Đơn Hàng"
+msgstr "Order"
+
+#. module: garment_production
+#: model:ir.model,name:garment_production.model_garment_order
+#: model:ir.model.fields,field_description:garment_production.field_garment_production_order__garment_order_id
+msgid "Đơn Hàng May"
+msgstr "Garment Order"
+
+#. module: garment_production
+#: model_terms:ir.ui.view,arch_db:garment_production.view_production_order_form
+msgid "Đặt Lại"
+msgstr "Reset"
+
+#. module: garment_production
+#: model:ir.model.fields,field_description:garment_production.field_garment_cutting_order__fabric_consumption
+msgid "Định Mức Vải / SP (m)"
+msgstr "Fabric Consumption / Piece (m)"

@@ -2,6 +2,20 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
 
+def _get_garment_product(env, name='Garment Product', product_type='service', price=0):
+    """Find or create a generic garment product."""
+    product = env['product.product'].search(
+        [('name', '=', name)], limit=1,
+    )
+    if not product:
+        product = env['product.product'].create({
+            'name': name,
+            'type': product_type,
+            'list_price': price,
+        })
+    return product
+
+
 class GarmentOrderSaleIntegration(models.Model):
     """Extend garment.order to link with sale.order."""
     _inherit = 'garment.order'
@@ -24,45 +38,25 @@ class GarmentOrderSaleIntegration(models.Model):
         if self.sale_order_id:
             raise UserError(_('Đơn hàng này đã có Sale Order: %s') % self.sale_order_id.name)
 
+        product = _get_garment_product(self.env, price=self.unit_price or 0)
+
         # Build order lines
         order_lines = []
         for line in self.line_ids:
-            product = self.env.ref(
-                'garment_base.product_garment_service', raise_if_not_found=False
-            )
-            if not product:
-                # Create a generic garment product if not found
-                product = self.env['product.product'].search(
-                    [('name', '=', 'Garment Product')], limit=1,
-                )
-                if not product:
-                    product = self.env['product.product'].create({
-                        'name': 'Garment Product',
-                        'type': 'service',
-                        'list_price': self.unit_price or 0,
-                    })
+            color_name = line.color_id.name if hasattr(line, 'color_id') and line.color_id else ''
+            size_name = line.size_id.name if hasattr(line, 'size_id') and line.size_id else ''
             order_lines.append((0, 0, {
                 'product_id': product.id,
                 'name': '%s - %s - %s' % (
                     self.style_id.name or '',
-                    line.color_id.name if hasattr(line, 'color_id') and line.color_id else '',
-                    line.size_id.name if hasattr(line, 'size_id') and line.size_id else '',
+                    color_name,
+                    size_name,
                 ),
                 'product_uom_qty': line.quantity,
                 'price_unit': self.unit_price or 0,
             }))
 
         if not order_lines:
-            # No detail lines → create single line
-            product = self.env['product.product'].search(
-                [('name', '=', 'Garment Product')], limit=1,
-            )
-            if not product:
-                product = self.env['product.product'].create({
-                    'name': 'Garment Product',
-                    'type': 'service',
-                    'list_price': self.unit_price or 0,
-                })
             order_lines.append((0, 0, {
                 'product_id': product.id,
                 'name': '%s - %s' % (self.name, self.style_id.name or ''),
@@ -116,6 +110,16 @@ class GarmentInvoiceAccountIntegration(models.Model):
         string='Mã Bút Toán',
     )
 
+    def _find_tax_for_rate(self, rate, tax_use):
+        """Find an Odoo tax matching the given rate and type."""
+        if not rate:
+            return self.env['account.tax']
+        return self.env['account.tax'].search([
+            ('amount', '=', rate),
+            ('type_tax_use', '=', tax_use),
+            ('company_id', '=', self.env.company.id),
+        ], limit=1)
+
     def action_create_account_move(self):
         """Create an Account Move (Invoice/Bill) from garment invoice."""
         self.ensure_one()
@@ -127,24 +131,26 @@ class GarmentInvoiceAccountIntegration(models.Model):
             raise UserError(_('Hãy xác nhận hóa đơn trước khi tạo bút toán!'))
 
         move_type = 'out_invoice' if self.invoice_type == 'sale' else 'in_invoice'
+        tax_use = 'sale' if self.invoice_type == 'sale' else 'purchase'
+
+        # Map garment tax_type to Odoo tax
+        tax_rate = int(self.tax_type) if self.tax_type and self.tax_type != 'none' else 0
+        tax = self._find_tax_for_rate(tax_rate, tax_use)
+
+        product = _get_garment_product(self.env)
 
         # Build invoice lines
         move_lines = []
         for line in self.line_ids:
-            product = self.env['product.product'].search(
-                [('name', '=', 'Garment Product')], limit=1,
-            )
-            if not product:
-                product = self.env['product.product'].create({
-                    'name': 'Garment Product',
-                    'type': 'service',
-                })
-            move_lines.append((0, 0, {
+            line_vals = {
                 'product_id': product.id,
                 'name': line.description,
                 'quantity': line.quantity,
                 'price_unit': line.unit_price,
-            }))
+            }
+            if tax:
+                line_vals['tax_ids'] = [(6, 0, tax.ids)]
+            move_lines.append((0, 0, line_vals))
 
         move_vals = {
             'move_type': move_type,
@@ -217,13 +223,12 @@ class GarmentMaterialReceiptPurchaseIntegration(models.Model):
                     'name': line.description,
                     'type': 'consu',
                 })
-            uom = product.uom_id
             po_lines.append((0, 0, {
                 'product_id': product.id,
                 'name': line.description,
                 'product_qty': line.quantity,
-                'product_uom_id': uom.id,
-                'price_unit': line.unit_price if hasattr(line, 'unit_price') and line.unit_price else 0,
+                'product_uom_id': product.uom_id.id,
+                'price_unit': line.unit_price or 0,
             }))
 
         if not po_lines:
@@ -253,6 +258,83 @@ class GarmentMaterialReceiptPurchaseIntegration(models.Model):
             'type': 'ir.actions.act_window',
             'res_model': 'purchase.order',
             'res_id': self.purchase_order_id.id,
+            'view_mode': 'form',
+            'target': 'current',
+        }
+
+
+class GarmentPaymentAccountIntegration(models.Model):
+    """Extend garment.payment to link with account.payment."""
+    _inherit = 'garment.payment'
+
+    account_payment_id = fields.Many2one(
+        'account.payment',
+        string='Phiếu Thu/Chi Kế Toán',
+        help='Liên kết đến Account Payment của Odoo',
+        copy=False,
+        tracking=True,
+    )
+    account_payment_name = fields.Char(
+        related='account_payment_id.name',
+        string='Mã Phiếu KT',
+    )
+
+    def action_create_account_payment(self):
+        """Create an Account Payment from garment payment."""
+        self.ensure_one()
+        if self.account_payment_id:
+            raise UserError(
+                _('Phiếu này đã có thanh toán kế toán: %s') % self.account_payment_id.name
+            )
+        if self.state == 'draft':
+            raise UserError(_('Hãy xác nhận phiếu thanh toán trước!'))
+
+        # Map garment payment_type → Odoo payment_type
+        payment_type = 'inbound' if self.payment_type == 'inbound' else 'outbound'
+
+        # Find a bank journal
+        journal = self.env['account.journal'].search(
+            [('type', '=', 'bank'), ('company_id', '=', self.env.company.id)],
+            limit=1,
+        )
+        if not journal:
+            journal = self.env['account.journal'].search(
+                [('type', '=', 'cash'), ('company_id', '=', self.env.company.id)],
+                limit=1,
+            )
+        if not journal:
+            raise UserError(_('Chưa có sổ nhật ký ngân hàng hoặc tiền mặt!'))
+
+        payment_vals = {
+            'payment_type': payment_type,
+            'partner_type': 'customer' if payment_type == 'inbound' else 'supplier',
+            'partner_id': self.partner_id.id,
+            'amount': self.amount,
+            'date': self.date,
+            'journal_id': journal.id,
+            'memo': '%s - %s' % (self.name, self.reference or ''),
+        }
+
+        payment = self.env['account.payment'].create(payment_vals)
+        self.account_payment_id = payment.id
+
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'account.payment',
+            'res_id': payment.id,
+            'view_mode': 'form',
+            'target': 'current',
+        }
+
+    def action_view_account_payment(self):
+        """Open linked Account Payment."""
+        self.ensure_one()
+        if not self.account_payment_id:
+            raise UserError(_('Chưa có phiếu thu/chi kế toán liên kết!'))
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'account.payment',
+            'res_id': self.account_payment_id.id,
             'view_mode': 'form',
             'target': 'current',
         }

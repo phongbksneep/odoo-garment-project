@@ -1,0 +1,1116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_print
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: garment_print
+#: model:ir.actions.report,print_report_name:garment_print.action_report_delivery_order
+msgid "'DeliveryOrder_%s' % object.name"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.report,print_report_name:garment_print.action_report_invoice
+msgid "'Invoice_%s' % object.name"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.report,print_report_name:garment_print.action_report_packing_list
+msgid "'PackingList_%s' % object.name"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.report,print_report_name:garment_print.action_report_payslip
+msgid ""
+"'Payslip_%s_%s_%s' % (object.employee_id.name, object.month, object.year)"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.report,print_report_name:garment_print.action_report_qc_inspection
+msgid "'QCInspection_%s' % object.name"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "1. BHXH / Social Insurance (8%)"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "1. Lương theo ngày công / Daily Wage"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "1. Phụ cấp chuyên cần / Attendance"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "2. BHYT / Health Insurance (1.5%)"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "2. Tiền cơm / Lunch"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "2. Tiền khoán sản phẩm / Piece Rate"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "3. BHTN / Unemployment Insurance (1%)"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "3. Phụ cấp đi lại / Transport"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "3. Tiền tăng ca / Overtime ("
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "4. Phụ cấp điện thoại / Phone"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "4. Thuế TNCN / Personal Income Tax"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "4. Thưởng / Bonus"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "5. Khấu trừ khác / Other Deductions"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "5. Phụ cấp khác / Other"
+msgstr ""
+
+#. module: garment_print
+#. odoo-python
+#: code:addons/garment_print/models/alert_service.py:0
+msgid "<h3>⚠️ Cảnh Báo Đơn Hàng Trễ Hạn — %s</h3>"
+msgstr ""
+
+#. module: garment_print
+#. odoo-python
+#: code:addons/garment_print/models/alert_service.py:0
+msgid "<h3>📅 Đơn Hàng Sắp Đến Hạn Giao (3 ngày tới)</h3>"
+msgstr ""
+
+#. module: garment_print
+#. odoo-python
+#: code:addons/garment_print/models/alert_service.py:0
+msgid "<h3>🔍 Cảnh Báo QC Tỷ Lệ Lỗi Cao (7 ngày qua)</h3>"
+msgstr ""
+
+#. module: garment_print
+#. odoo-python
+#: code:addons/garment_print/models/alert_service.py:0
+msgid "<p>Tổng: <b>%d phiếu QC có tỷ lệ đạt &lt; 90%%</b></p>"
+msgstr ""
+
+#. module: garment_print
+#. odoo-python
+#: code:addons/garment_print/models/alert_service.py:0
+msgid "<p>Tổng: <b>%d đơn hàng trễ hạn</b></p>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<span style=\"color: #F44336;\">🔴 Nghiêm trọng / Critical</span>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<span style=\"color: #FF9800;\">⚠ Nặng / Major</span>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<span style=\"color: #FFC107;\">⚠ Nhẹ / Minor</span>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid ""
+"<span style=\"color: green; font-weight: bold; font-size: 1.2em;\">✅ ĐẠT / "
+"PASS</span>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid ""
+"<span style=\"color: red; font-weight: bold; font-size: 1.2em;\">❌ KHÔNG ĐẠT"
+" / FAIL</span>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>AQL Level:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>B/L No:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>Buyer:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>Container No:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "<strong>Còn lại / Balance:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "<strong>Cộng tiền hàng / Subtotal:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>Destination:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>ETD:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>Giám Đốc</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "<strong>Hạn TT / Due Date:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "<strong>Invoice No:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>KCS / Inspector:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>KCS / Inspector</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "<strong>Kho</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "<strong>Khách hàng / Partner:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "<strong>Kế Toán Trưởng</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "<strong>Kế Toán</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>LSX / Prod Order:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "<strong>Loại / Type:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>Loại kiểm tra / Type:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "<strong>Lương cơ bản / Base Salary:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>Lỗi Nghiêm Trọng / Critical</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>Lỗi Nhẹ / Minor</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>Lỗi Nặng / Major</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>Mã hàng / Style:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "<strong>Mã phiếu / Code:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>Mã phiếu / Report No:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "<strong>Ngày / Date:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "<strong>Ngày công chuẩn / Std Days:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "<strong>Ngày công thực / Actual Days:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>Ngày kiểm / Date:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "<strong>Người Gửi</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "<strong>Người Lập</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "<strong>Người Nhận</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "<strong>Nhân viên / Employee:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>Notes:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "<strong>Nơi gửi / From:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "<strong>Nơi nhận / To:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>Order Ref:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>PO Number:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>Packing Date:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>Packing List No:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "<strong>Phòng ban / Department:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "<strong>Phương thức / Method:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>Quản Đốc</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "<strong>Seal No:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>Ship Mode:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>Style:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "<strong>Số HĐ / Invoice No:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "<strong>Số phiếu / D.O. No:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "<strong>Tiền tệ / Currency:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "<strong>Trưởng Phòng</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>Trưởng QC</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "<strong>Tài Xế</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "<strong>Tài xế / Driver:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "<strong>Tổng cộng / Total:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "<strong>Xe / Vehicle:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "<strong>Đã thanh toán / Paid:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "<strong>Đơn hàng / Order:</strong>"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "Accountant"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "CBM/Ctn"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "Carton"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "Carton Details"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "Chi Tiết Giao Hàng / Delivery Details"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "Chi Tiết Lỗi / Defect Details"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "Chief Accountant"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_production_wizard__sewing_line_ids
+msgid "Chuyền May"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "Color"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_payroll_wizard__create_uid
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_production_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_payroll_wizard__create_date
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_production_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "Director"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_alert_service__display_name
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_payroll_wizard__display_name
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_production_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "Driver"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "Employee"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_payroll_wizard__file_data
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_production_wizard__file_data
+msgid "File Excel"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "G.W. (kg)"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "G.W./Ctn"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model,name:garment_print.model_garment_alert_service
+msgid "Garment Alert Service"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.server,name:garment_print.cron_check_upcoming_deliveries_ir_actions_server
+msgid "Garment: Cảnh báo giao hàng sắp tới / Upcoming Deliveries"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.server,name:garment_print.cron_check_qc_fail_rate_ir_actions_server
+msgid "Garment: Kiểm tra tỷ lệ lỗi QC / Check QC Fail Rate"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.server,name:garment_print.cron_check_late_orders_ir_actions_server
+msgid "Garment: Kiểm tra đơn hàng trễ / Check Late Orders"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "HÓA ĐƠN BÁN HÀNG / SALES INVOICE"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "HÓA ĐƠN MUA HÀNG / PURCHASE INVOICE"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "I. THU NHẬP / INCOME"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_alert_service__id
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_payroll_wizard__id
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_production_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "II. PHỤ CẤP / ALLOWANCES"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "III. KHẤU TRỪ / DEDUCTIONS"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.report,name:garment_print.action_report_invoice
+msgid "In Hóa Đơn"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.report,name:garment_print.action_report_packing_list
+msgid "In Packing List"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.report,name:garment_print.action_report_delivery_order
+msgid "In Phiếu Giao Hàng"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.report,name:garment_print.action_report_qc_inspection
+msgid "In Phiếu Kiểm Tra QC"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.report,name:garment_print.action_report_payslip
+msgid "In Phiếu Lương"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "Khách hàng"
+msgstr ""
+
+#. module: garment_print
+#. odoo-python
+#: code:addons/garment_print/wizard/export_payroll_wizard.py:0
+msgid "Không tìm thấy dữ liệu lương cho tháng %s/%d!"
+msgstr ""
+
+#. module: garment_print
+#. odoo-python
+#: code:addons/garment_print/wizard/export_production_wizard.py:0
+msgid "Không tìm thấy dữ liệu sản lượng trong khoảng thời gian này!"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "Kết Quả / Result"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "Kết Quả Kiểm Tra / Inspection Result"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_payroll_wizard__write_uid
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_production_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_payroll_wizard__write_date
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_production_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "Loại Lỗi / Defect Type"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "Lỗi / Failed"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "Màu / Color"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "Mã Hàng / Style"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "Mô Tả / Description"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "Mức Độ / Severity"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "N.W./Ctn"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "Nhà cung cấp"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "No. Ctns"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_payroll_wizard__year
+msgid "Năm"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "PACKING LIST"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "PHIẾU GIAO HÀNG / DELIVERY ORDER"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "PHIẾU KIỂM TRA CHẤT LƯỢNG / QC INSPECTION REPORT"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "PHIẾU LƯƠNG / PAYSLIP"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "Pcs/Ctn"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_payroll_wizard__department_ids
+msgid "Phòng Ban"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "Prepared by"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "Production Manager"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "QC Manager"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "Receiver"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "SL / Qty"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "SL Kiểm / Inspected"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "STT"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "Sender"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "Size"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "Số Lượng / Qty"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "Số Thùng / Ctns"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "THỰC LĨNH / NET PAY"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "TOTAL:"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "Thuế / Tax ("
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "Thành Tiền / Amount"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_payroll_wizard__month
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "Tháng"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields.selection,name:garment_print.selection__garment_export_payroll_wizard__month__01
+msgid "Tháng 1"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields.selection,name:garment_print.selection__garment_export_payroll_wizard__month__10
+msgid "Tháng 10"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields.selection,name:garment_print.selection__garment_export_payroll_wizard__month__11
+msgid "Tháng 11"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields.selection,name:garment_print.selection__garment_export_payroll_wizard__month__12
+msgid "Tháng 12"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields.selection,name:garment_print.selection__garment_export_payroll_wizard__month__02
+msgid "Tháng 2"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields.selection,name:garment_print.selection__garment_export_payroll_wizard__month__03
+msgid "Tháng 3"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields.selection,name:garment_print.selection__garment_export_payroll_wizard__month__04
+msgid "Tháng 4"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields.selection,name:garment_print.selection__garment_export_payroll_wizard__month__05
+msgid "Tháng 5"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields.selection,name:garment_print.selection__garment_export_payroll_wizard__month__06
+msgid "Tháng 6"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields.selection,name:garment_print.selection__garment_export_payroll_wizard__month__07
+msgid "Tháng 7"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields.selection,name:garment_print.selection__garment_export_payroll_wizard__month__08
+msgid "Tháng 8"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields.selection,name:garment_print.selection__garment_export_payroll_wizard__month__09
+msgid "Tháng 9"
+msgstr ""
+
+#. module: garment_print
+#. odoo-python
+#: code:addons/garment_print/wizard/export_payroll_wizard.py:0
+#: code:addons/garment_print/wizard/export_production_wizard.py:0
+msgid "Thư viện xlsxwriter chưa được cài đặt!"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "Total Pcs"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_payroll_wizard__file_name
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_production_wizard__file_name
+msgid "Tên File"
+msgstr ""
+
+#. module: garment_print
+#. odoo-python
+#: code:addons/garment_print/wizard/export_production_wizard.py:0
+msgid "Tải Báo Cáo Sản Xuất Excel"
+msgstr ""
+
+#. module: garment_print
+#. odoo-python
+#: code:addons/garment_print/wizard/export_payroll_wizard.py:0
+msgid "Tải Bảng Lương Excel"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "TỔNG CỘNG / TOTAL:"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "Tổng khấu trừ / Total Deductions"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "Tổng lỗi / Total Defects:"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "Tổng phụ cấp / Total Allowances"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "Tổng thu nhập / Gross Income"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_production_wizard__date_from
+msgid "Từ Ngày"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "Tỷ Lệ Đạt / Pass Rate"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+msgid "Warehouse"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.act_window,name:garment_print.action_export_production_wizard
+msgid "Xuất Báo Cáo SX / Export Production"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.view_export_production_wizard_form
+msgid "Xuất Báo Cáo Sản Xuất / Export Production Report"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model,name:garment_print.model_garment_export_production_wizard
+msgid "Xuất Báo Cáo Sản Xuất Excel"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.actions.act_window,name:garment_print.action_export_payroll_wizard
+#: model_terms:ir.ui.view,arch_db:garment_print.view_export_payroll_wizard_form
+msgid "Xuất Bảng Lương / Export Payroll"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model,name:garment_print.model_garment_export_payroll_wizard
+msgid "Xuất Bảng Lương Excel"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.view_export_payroll_wizard_form
+#: model_terms:ir.ui.view,arch_db:garment_print.view_export_production_wizard_form
+msgid "Xuất Excel / Export"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.ui.menu,name:garment_print.menu_export_payroll
+msgid "Xuất Excel Lương / Export Payroll"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.ui.menu,name:garment_print.menu_export_production
+msgid "Xuất Excel SX / Export Production"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "_________________________"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "ctns"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_payslip_document
+msgid "giờ)"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "kg"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "m³"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_delivery_order_document
+#: model_terms:ir.ui.view,arch_db:garment_print.report_packing_list_document
+msgid "pcs"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "ĐVT / Unit"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.view_export_payroll_wizard_form
+#: model_terms:ir.ui.view,arch_db:garment_print.view_export_production_wizard_form
+msgid "Đóng / Close"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_invoice_document
+msgid "Đơn Giá / Price"
+msgstr ""
+
+#. module: garment_print
+#: model_terms:ir.ui.view,arch_db:garment_print.report_qc_inspection_document
+msgid "Đạt / Passed"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,field_description:garment_print.field_garment_export_production_wizard__date_to
+msgid "Đến Ngày"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,help:garment_print.field_garment_export_production_wizard__sewing_line_ids
+msgid "Để trống = tất cả chuyền"
+msgstr ""
+
+#. module: garment_print
+#: model:ir.model.fields,help:garment_print.field_garment_export_payroll_wizard__department_ids
+msgid "Để trống = tất cả phòng ban"
+msgstr ""
+
+#. module: garment_print
+#. odoo-python
+#: code:addons/garment_print/models/alert_service.py:0
+msgid "⚠️ %d Đơn Hàng Trễ Hạn — %s"
+msgstr ""
+
+#. module: garment_print
+#. odoo-python
+#: code:addons/garment_print/models/alert_service.py:0
+msgid "📅 %d Đơn Hàng Sắp Đến Hạn (3 ngày)"
+msgstr ""
+
+#. module: garment_print
+#. odoo-python
+#: code:addons/garment_print/models/alert_service.py:0
+msgid "🔍 %d Phiếu QC Tỷ Lệ Lỗi Cao (7 ngày)"
+msgstr ""

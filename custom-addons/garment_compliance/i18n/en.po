@@ -1,0 +1,799 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_compliance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__overall_rating__a
+msgid "A - Xuất Sắc"
+msgstr "A - Excellent"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__message_needaction
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__activity_ids
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__activity_exception_decoration
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__activity_state
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__activity_type_icon
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__category__health_safety
+msgid "An Toàn & Sức Khỏe"
+msgstr "Safety & Health"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__message_attachment_count
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_audit_finding__audit_id
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__audit_id
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_search
+msgid "Audit"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model,name:garment_compliance.model_garment_audit_finding
+msgid "Audit Finding"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__auditor
+msgid "Auditor / Tổ Chức"
+msgstr "Auditor / Organization"
+
+#. module: garment_compliance
+#: model:ir.ui.menu,name:garment_compliance.menu_compliance_audit
+msgid "Audits"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__overall_rating__b
+msgid "B - Tốt"
+msgstr "B - Good"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__audit_type__bsci
+msgid "BSCI"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__buyer_id
+msgid "Buyer (nếu có)"
+msgstr "Buyer (if any)"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__audit_type__buyer
+msgid "Buyer Audit"
+msgstr ""
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_form
+msgid "Bắt Đầu"
+msgstr "Start"
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_form
+msgid "Bắt Đầu Audit"
+msgstr "Start Audit"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_audit_finding__evidence
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_form
+msgid "Bằng Chứng"
+msgstr "Evidence"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__evidence_file
+msgid "Bằng Chứng Khắc Phục"
+msgstr "Corrective Evidence"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__overall_rating__c
+msgid "C - Đạt"
+msgstr "C - Pass"
+
+#. module: garment_compliance
+#: model:ir.ui.menu,name:garment_compliance.menu_corrective_action
+msgid "CAP (Khắc Phục)"
+msgstr "CAP (Corrective Action)"
+
+#. module: garment_compliance
+#. odoo-python
+#: code:addons/garment_compliance/models/compliance_audit.py:0
+msgid "CAP - %s"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_audit_finding__cap_id
+msgid "CAP Liên Quan"
+msgstr "Related CAP"
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_form
+msgid "Chi Tiết"
+msgstr "Details"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__finding_ids
+msgid "Chi Tiết Phát Hiện"
+msgstr "Finding Details"
+
+#. module: garment_compliance
+#: model_terms:ir.actions.act_window,help:garment_compliance.action_corrective_action
+msgid "Chưa có CAP nào"
+msgstr "No CAP yet"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__certificate_file
+msgid "Chứng Chỉ / Báo Cáo"
+msgstr "Certificate / Report"
+
+#. module: garment_compliance
+#: model:ir.model,name:garment_compliance.model_garment_compliance_audit
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_form
+msgid "Compliance Audit"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.actions.act_window,name:garment_compliance.action_compliance_audit
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_list
+msgid "Compliance Audits"
+msgstr ""
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_form
+msgid "Corrective Action Plan"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model,name:garment_compliance.model_garment_corrective_action
+msgid "Corrective Action Plan (CAP)"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.actions.act_window,name:garment_compliance.action_corrective_action
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_list
+msgid "Corrective Actions"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_audit_finding__create_uid
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__create_uid
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_audit_finding__create_date
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__create_date
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__category__building
+msgid "Cơ Sở Vật Chất"
+msgstr "Facilities"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__state__cap_required
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_search
+msgid "Cần CAP"
+msgstr "Needs CAP"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__overall_rating__d
+msgid "D - Cần Cải Thiện"
+msgstr "D - Needs Improvement"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_audit_finding__display_name
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__display_name
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__overall_rating__e
+msgid "E - Không Đạt"
+msgstr "E - Fail"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__message_follower_ids
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__message_partner_ids
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,help:garment_compliance.field_garment_compliance_audit__activity_type_icon
+#: model:ir.model.fields,help:garment_compliance.field_garment_corrective_action__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__audit_type__gots
+msgid "GOTS"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__notes
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_form
+msgid "Ghi Chú"
+msgstr "Notes"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__has_message
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__state__completed
+msgid "Hoàn Thành"
+msgstr "Done"
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_form
+msgid "Hoàn Thành Audit"
+msgstr "Complete Audit"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__corrective_action
+msgid "Hành Động Khắc Phục"
+msgstr "Corrective Action"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__preventive_action
+msgid "Hành Động Phòng Ngừa"
+msgstr "Preventive Action"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__category__chemical
+msgid "Hóa Chất"
+msgstr "Chemical"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__deadline
+msgid "Hạn Hoàn Thành"
+msgstr "Completion Deadline"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_audit_finding__category
+msgid "Hạng Mục"
+msgstr "Category"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__category__management
+msgid "Hệ Thống Quản Lý"
+msgstr "Management System"
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_form
+msgid "Hủy"
+msgstr "Cancel"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_audit_finding__id
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__id
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__audit_type__iso14001
+msgid "ISO 14001"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__audit_type__iso9001
+msgid "ISO 9001"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__activity_exception_icon
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,help:garment_compliance.field_garment_compliance_audit__activity_exception_icon
+#: model:ir.model.fields,help:garment_compliance.field_garment_corrective_action__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,help:garment_compliance.field_garment_compliance_audit__message_needaction
+#: model:ir.model.fields,help:garment_compliance.field_garment_corrective_action__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,help:garment_compliance.field_garment_compliance_audit__message_has_error
+#: model:ir.model.fields,help:garment_compliance.field_garment_compliance_audit__message_has_sms_error
+#: model:ir.model.fields,help:garment_compliance.field_garment_corrective_action__message_has_error
+#: model:ir.model.fields,help:garment_compliance.field_garment_corrective_action__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__message_is_follower
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__category__other
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__audit_type__other
+msgid "Khác"
+msgstr "Other"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__cap_ids
+msgid "Kế Hoạch Khắc Phục"
+msgstr "Corrective Action Plan"
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_form
+msgid "Kế Hoạch Khắc Phục (CAP)"
+msgstr "Corrective Action Plan (CAP)"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__category__labor
+msgid "Lao Động"
+msgstr "Labor"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__category__child_labor
+msgid "Lao Động Trẻ Em"
+msgstr "Child Labor"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_audit_finding__write_uid
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__write_uid
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_audit_finding__write_date
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__write_date
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_search
+msgid "Loại"
+msgstr "Type"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__audit_type
+msgid "Loại Audit"
+msgstr "Audit Type"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__critical_findings
+msgid "Lỗi Nghiêm Trọng"
+msgstr "Critical Defect"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_corrective_action__severity__major
+msgid "Lớn"
+msgstr "Large"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__severity__major
+msgid "Lớn (Major)"
+msgstr "Major"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__message_has_error
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__message_ids
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__my_activity_date_deadline
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_audit_finding__description
+msgid "Mô Tả"
+msgstr "Description"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__description
+msgid "Mô Tả Vấn Đề"
+msgstr "Problem Description"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__category__environment
+msgid "Môi Trường"
+msgstr "Environment"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_corrective_action__state__open
+msgid "Mở"
+msgstr "Open"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_audit_finding__severity
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__severity
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_search
+msgid "Mức Độ"
+msgstr "Level"
+
+#. module: garment_compliance
+#. odoo-python
+#: code:addons/garment_compliance/models/compliance_audit.py:0
+#: code:addons/garment_compliance/models/corrective_action.py:0
+msgid "New"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__activity_date_deadline
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__activity_summary
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__activity_type_id
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_corrective_action__severity__critical
+msgid "Nghiêm Trọng"
+msgstr "Critical"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__severity__critical
+msgid "Nghiêm Trọng (Critical)"
+msgstr "Critical"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__root_cause
+msgid "Nguyên Nhân Gốc"
+msgstr "Root Cause"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__audit_date
+msgid "Ngày Audit"
+msgstr "Audit Date"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__completion_date
+msgid "Ngày Hoàn Thành"
+msgstr "Completion Date"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__expiry_date
+msgid "Ngày Hết Hạn"
+msgstr "Expiry Date"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__responsible_id
+msgid "Người Phụ Trách"
+msgstr "Responsible"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_corrective_action__severity__minor
+msgid "Nhỏ"
+msgstr "Small"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__severity__minor
+msgid "Nhỏ (Minor)"
+msgstr "Minor"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__message_needaction_counter
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__message_has_error_counter
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,help:garment_compliance.field_garment_compliance_audit__message_needaction_counter
+#: model:ir.model.fields,help:garment_compliance.field_garment_corrective_action__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,help:garment_compliance.field_garment_compliance_audit__message_has_error_counter
+#: model:ir.model.fields,help:garment_compliance.field_garment_corrective_action__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__audit_type__internal
+msgid "Nội Bộ"
+msgstr "Internal"
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_form
+msgid "Nộp"
+msgstr "Submit"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__audit_type__oeko_tex
+msgid "OEKO-TEX"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__category__fire_safety
+msgid "PCCC"
+msgstr ""
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_form
+msgid "Phát Hiện (Findings)"
+msgstr "Findings"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__finding_id
+msgid "Phát Hiện Liên Quan"
+msgstr "Related Findings"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__category__discrimination
+msgid "Phân Biệt Đối Xử"
+msgstr "Discrimination"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__severity__observation
+msgid "Quan Sát (Observation)"
+msgstr "Observation"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__is_overdue
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_form
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_search
+msgid "Quá Hạn"
+msgstr "Overdue"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__name
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__name
+msgid "Reference"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__activity_user_id
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__audit_type__sa8000
+msgid "SA8000"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__audit_type__sedex
+msgid "SEDEX/SMETA"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__message_has_sms_error
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,help:garment_compliance.field_garment_compliance_audit__activity_state
+#: model:ir.model.fields,help:garment_compliance.field_garment_corrective_action__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_search
+msgid "Sắp Hết Hạn"
+msgstr "Expiring Soon"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_audit_finding__category__wages
+msgid "Tiền Lương & Giờ Làm"
+msgstr "Wages & Working Hours"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__state
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__state
+msgid "Trạng Thái"
+msgstr "Status"
+
+#. module: garment_compliance
+#: model:ir.model.fields,help:garment_compliance.field_garment_compliance_audit__activity_exception_decoration
+#: model:ir.model.fields,help:garment_compliance.field_garment_corrective_action__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_form
+msgid "Tài Liệu"
+msgstr "Documents"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__certificate_filename
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__evidence_filename
+msgid "Tên File"
+msgstr "File Name"
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_search
+msgid "Tìm Audit"
+msgstr "Search Audit"
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_search
+msgid "Tìm CAP"
+msgstr "Search CAP"
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_form
+msgid "Tạo CAP"
+msgstr "Create CAP"
+
+#. module: garment_compliance
+#: model_terms:ir.actions.act_window,help:garment_compliance.action_compliance_audit
+msgid "Tạo audit mới"
+msgstr "Create new audit"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__total_findings
+msgid "Tổng Phát Hiện"
+msgstr "Total Findings"
+
+#. module: garment_compliance
+#. odoo-python
+#: code:addons/garment_compliance/models/corrective_action.py:0
+msgid "Vui lòng mô tả hành động khắc phục trước khi nộp."
+msgstr "Please describe corrective action before submitting."
+
+#. module: garment_compliance
+#. odoo-python
+#: code:addons/garment_compliance/models/compliance_audit.py:0
+msgid ""
+"Vui lòng đóng tất cả CAP trước khi đóng audit. Còn %d CAP chưa hoàn thành."
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__audit_type__wrap
+msgid "WRAP"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__website_message_ids
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_corrective_action__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_compliance
+#: model:ir.model.fields,help:garment_compliance.field_garment_compliance_audit__website_message_ids
+#: model:ir.model.fields,help:garment_compliance.field_garment_corrective_action__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_form
+msgid "Xác Minh"
+msgstr "Verify"
+
+#. module: garment_compliance
+#: model:ir.model.fields,field_description:garment_compliance.field_garment_compliance_audit__overall_rating
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_search
+msgid "Xếp Hạng"
+msgstr "Ranking"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__state__in_progress
+msgid "Đang Audit"
+msgstr "Auditing"
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_corrective_action_search
+msgid "Đang Mở"
+msgstr "Open"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_corrective_action__state__in_progress
+msgid "Đang Xử Lý"
+msgstr "In Progress"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_corrective_action__state__cancelled
+msgid "Đã Hủy"
+msgstr "Cancelled"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__state__scheduled
+msgid "Đã Lên Lịch"
+msgstr "Scheduled"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_corrective_action__state__submitted
+msgid "Đã Nộp"
+msgstr "Submitted"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_corrective_action__state__done
+msgid "Đã Xác Minh"
+msgstr "Verified"
+
+#. module: garment_compliance
+#: model:ir.model.fields.selection,name:garment_compliance.selection__garment_compliance_audit__state__closed
+msgid "Đã Đóng"
+msgstr "Closed"
+
+#. module: garment_compliance
+#: model_terms:ir.ui.view,arch_db:garment_compliance.view_compliance_audit_form
+msgid "Đóng Audit"
+msgstr "Close Audit"

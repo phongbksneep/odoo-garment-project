@@ -1,0 +1,574 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_inventory
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__diff_percent
+msgid "% Chênh Lệch"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory_line__item_type__wip
+msgid "Bán Thành Phẩm"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_form
+msgid "Bắt Đầu Kiểm Kê"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model,name:garment_inventory.model_garment_inventory_line
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__line_ids
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_form
+msgid "Chi Tiết Kiểm Kê"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__diff_qty
+msgid "Chênh Lệch"
+msgstr ""
+
+#. module: garment_inventory
+#. odoo-python
+#: code:addons/garment_inventory/models/inventory.py:0
+msgid "Chênh lệch: %+.2f"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__create_uid
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__create_uid
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_scan_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__create_date
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__create_date
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_scan_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_search
+msgid "Có Chênh Lệch"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__display_name
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__display_name
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_scan_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__notes
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__notes
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_form
+msgid "Ghi Chú"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_form
+msgid "Ghi chú kiểm kê..."
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory__state__done
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_form
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_search
+msgid "Hoàn Thành"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_form
+msgid "Hủy"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__id
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__id
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_scan_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,help:garment_inventory.field_garment_inventory__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,help:garment_inventory.field_garment_inventory__message_has_error
+#: model:ir.model.fields,help:garment_inventory.field_garment_inventory__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory__warehouse_type__wip
+msgid "Kho Bán Thành Phẩm"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__warehouse_type
+msgid "Kho Kiểm Kê"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory__warehouse_type__material
+msgid "Kho Nguyên Phụ Liệu"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory__warehouse_type__accessory
+msgid "Kho Phụ Liệu"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory__warehouse_type__finished
+msgid "Kho Thành Phẩm"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory_line__item_type__other
+msgid "Khác"
+msgstr ""
+
+#. module: garment_inventory
+#. odoo-python
+#: code:addons/garment_inventory/models/inventory.py:0
+msgid "Không thể hủy phiếu kiểm kê đã xác nhận!"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory_line__status__ok
+msgid "Khớp"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.actions.act_window,name:garment_inventory.action_garment_inventory
+#: model:ir.ui.menu,name:garment_inventory.menu_inventory
+msgid "Kiểm Kê Kho"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.actions.act_window,name:garment_inventory.action_garment_inventory_validated
+#: model:ir.ui.menu,name:garment_inventory.menu_inventory_validated
+msgid "Kiểm Kê Đã Xác Nhận"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.actions.act_window,help:garment_inventory.action_garment_inventory
+msgid ""
+"Kiểm kê tồn kho thực tế, quét QR để nhập nhanh, tạo phiếu điều chỉnh tự "
+"động."
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__status
+msgid "Kết Quả"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__write_uid
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__write_uid
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_scan_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__write_date
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__write_date
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_scan_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__item_type
+msgid "Loại Hàng"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__color
+msgid "Màu"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__item_code
+msgid "Mã Hàng"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__style_code
+msgid "Mã Style"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__date
+msgid "Ngày Kiểm Kê"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__responsible_id
+msgid "Người Phụ Trách"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory__state__draft
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_search
+msgid "Nháp"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__team_member_ids
+msgid "Nhóm Kiểm Kê"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,help:garment_inventory.field_garment_inventory__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,help:garment_inventory.field_garment_inventory__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_scan_wizard__qr_content
+msgid "Nội Dung QR"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__inventory_id
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_scan_wizard__inventory_id
+msgid "Phiếu Kiểm Kê"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model,name:garment_inventory.model_garment_inventory
+msgid "Phiếu Kiểm Kê Kho"
+msgstr ""
+
+#. module: garment_inventory
+#. odoo-python
+#: code:addons/garment_inventory/models/inventory.py:0
+msgid "Phiếu phải ở trạng thái Hoàn Thành trước khi xác nhận!"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__adjustment_move_id
+msgid "Phiếu Điều Chỉnh"
+msgstr ""
+
+#. module: garment_inventory
+#. odoo-python
+#: code:addons/garment_inventory/models/inventory.py:0
+msgid "Phải thêm ít nhất 1 dòng kiểm kê!"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory_line__item_type__accessory
+msgid "Phụ Liệu"
+msgstr ""
+
+#. module: garment_inventory
+#. odoo-python
+#: code:addons/garment_inventory/models/inventory.py:0
+msgid "Quét QR Nhập Hàng"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,help:garment_inventory.field_garment_inventory_scan_wizard__qr_content
+msgid "Quét hoặc nhập mã QR code"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_scan_wizard_form
+msgid "Quét hoặc nhập mã QR..."
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__expected_qty
+msgid "SL Sổ Sách"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__actual_qty
+msgid "SL Thực Tế"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__size
+msgid "Size"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__diff_count
+msgid "Số Dòng Chênh Lệch"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_scan_wizard__actual_qty
+msgid "Số Lượng Thực Tế"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__name
+msgid "Số Phiếu"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__label_id
+msgid "Tem QR (nếu quét)"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_search
+msgid "Theo Kho"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_search
+msgid "Theo Ngày"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_search
+msgid "Theo Trạng Thái"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory_line__status__deficit
+msgid "Thiếu"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory_line__item_type__product
+msgid "Thành Phẩm"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory_line__item_type__carton
+msgid "Thùng Hàng"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory_line__status__surplus
+msgid "Thừa"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory__warehouse_type__all
+msgid "Toàn Bộ Kho"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__state
+msgid "Trạng Thái"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__item_name
+msgid "Tên Hàng"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.actions.act_window,help:garment_inventory.action_garment_inventory
+msgid "Tạo phiếu kiểm kê kho mới"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_tree
+msgid "Tổng"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__total_diff_qty
+msgid "Tổng Chênh Lệch"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_form
+msgid "Tổng Kết"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__total_expected_qty
+msgid "Tổng SL Sổ Sách"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__total_actual_qty
+msgid "Tổng SL Thực Tế"
+msgstr ""
+
+#. module: garment_inventory
+#. odoo-python
+#: code:addons/garment_inventory/models/inventory.py:0
+msgid "Vui lòng nhập mã QR!"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory_line__item_type__fabric
+msgid "Vải"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__location
+msgid "Vị Trí Kho"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,help:garment_inventory.field_garment_inventory__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model,name:garment_inventory.model_garment_inventory_scan_wizard
+msgid "Wizard Quét QR Kiểm Kê"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_form
+msgid "Xác Nhận & Điều Chỉnh"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_search
+msgid "Đang Kiểm"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory__state__in_progress
+msgid "Đang Kiểm Kê"
+msgstr ""
+
+#. module: garment_inventory
+#. odoo-python
+#: code:addons/garment_inventory/models/inventory.py:0
+msgid "Điều chỉnh từ kiểm kê %s"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory__state__cancelled
+msgid "Đã Hủy"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields.selection,name:garment_inventory.selection__garment_inventory__state__validated
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_search
+msgid "Đã Xác Nhận"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_scan_wizard_form
+msgid "Đóng"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__garment_order_id
+msgid "Đơn Hàng"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory__garment_order_id
+msgid "Đơn Hàng (nếu kiểm theo ĐH)"
+msgstr ""
+
+#. module: garment_inventory
+#: model:ir.model.fields,field_description:garment_inventory.field_garment_inventory_line__unit
+msgid "Đơn Vị"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_form
+msgid "Đặt Lại Nháp"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_scan_wizard_form
+msgid "✅ Quét & Tiếp Tục"
+msgstr ""
+
+#. module: garment_inventory
+#: model_terms:ir.ui.view,arch_db:garment_inventory.view_garment_inventory_form
+msgid "📱 Quét QR Nhập Hàng"
+msgstr ""

@@ -12,6 +12,12 @@
               action="action_defect_analysis"
               sequence="20"/>
 
+    <menuitem id="menu_output_trend"
+              name="Sản Lượng Theo Thời Gian"
+              parent="garment_base.menu_garment_report_main"
+              action="action_output_trend"
+              sequence="25"/>
+
     <menuitem id="menu_production_report_wizard"
               name="Báo Cáo Sản Xuất"
               parent="garment_base.menu_garment_report_main"

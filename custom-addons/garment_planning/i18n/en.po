@@ -1,0 +1,503 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_planning
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__buyer_id
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_search
+msgid "Buyer"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields.selection,name:garment_planning.selection__garment_production_plan__priority__1
+msgid "Bình Thường"
+msgstr "Normal"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__date_start
+msgid "Bắt Đầu"
+msgstr "Start"
+
+#. module: garment_planning
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_form
+msgid "Bắt Đầu SX"
+msgstr "Start Production"
+
+#. module: garment_planning
+#: model:ir.model.fields.selection,name:garment_planning.selection__garment_production_plan__priority__2
+msgid "Cao"
+msgstr ""
+
+#. module: garment_planning
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_line_loading_search
+msgid "Chuyền"
+msgstr "Line"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__sewing_line_id
+msgid "Chuyền May"
+msgstr "Sewing Line"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__create_uid
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__create_date
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__display_name
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,help:garment_planning.field_garment_production_plan__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__garment_order_id
+msgid "Garment Order"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__notes
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__notes
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_form
+msgid "Ghi Chú"
+msgstr "Notes"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__target_efficiency
+msgid "Hiệu Suất Mục Tiêu (%)"
+msgstr "Target Efficiency (%)"
+
+#. module: garment_planning
+#: model:ir.model.fields.selection,name:garment_planning.selection__garment_production_plan__state__done
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_form
+msgid "Hoàn Thành"
+msgstr "Done"
+
+#. module: garment_planning
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_form
+msgid "Hủy"
+msgstr "Cancel"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__id
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,help:garment_planning.field_garment_production_plan__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,help:garment_planning.field_garment_production_plan__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,help:garment_planning.field_garment_production_plan__message_has_error
+#: model:ir.model.fields,help:garment_planning.field_garment_production_plan__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields.selection,name:garment_planning.selection__garment_production_plan__priority__3
+msgid "Khẩn Cấp"
+msgstr "Urgent"
+
+#. module: garment_planning
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_line_loading_search
+msgid "Kế Hoạch"
+msgstr "Planning"
+
+#. module: garment_planning
+#: model:ir.actions.act_window,name:garment_planning.action_production_plan
+#: model:ir.ui.menu,name:garment_planning.menu_production_plan
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_form
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_list
+msgid "Kế Hoạch Sản Xuất"
+msgstr "Production Plan"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__date_end
+msgid "Kết Thúc"
+msgstr "End"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__write_uid
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__write_date
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.actions.act_window,name:garment_planning.action_line_loading
+#: model:ir.ui.menu,name:garment_planning.menu_line_loading
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_line_loading_list
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_line_loading_pivot
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_line_loading_search
+msgid "Line Loading"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model,name:garment_planning.model_garment_line_loading
+msgid "Line Loading / Assignment"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: garment_planning
+#. odoo-python
+#: code:addons/garment_planning/models/production_plan.py:0
+msgid "New"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__date_start
+msgid "Ngày Bắt Đầu"
+msgstr "Start Date"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__date_end
+msgid "Ngày Kết Thúc"
+msgstr "End Date"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__ship_date
+msgid "Ngày Xuất Hàng"
+msgstr "Shipping Date"
+
+#. module: garment_planning
+#. odoo-python
+#: code:addons/garment_planning/models/production_plan.py:0
+msgid "Ngày kết thúc phải sau ngày bắt đầu."
+msgstr "End date must be after start date."
+
+#. module: garment_planning
+#: model:ir.model.fields.selection,name:garment_planning.selection__garment_production_plan__state__draft
+msgid "Nháp"
+msgstr "Draft"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,help:garment_planning.field_garment_production_plan__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,help:garment_planning.field_garment_production_plan__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__daily_capacity
+msgid "Năng Suất/Ngày"
+msgstr "Daily Output"
+
+#. module: garment_planning
+#. odoo-python
+#: code:addons/garment_planning/models/production_plan.py:0
+msgid "Năng suất chuyền phải > 0."
+msgstr "Line capacity must be > 0."
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__loading_ids
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_form
+msgid "Phân Bổ Chuyền"
+msgstr "Line Allocation"
+
+#. module: garment_planning
+#: model:ir.model,name:garment_planning.model_garment_production_plan
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__plan_id
+msgid "Production Plan"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__name
+msgid "Reference"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__remaining_qty
+msgid "SL Còn Lại"
+msgstr "Remaining Qty"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__planned_qty
+msgid "SL Kế Hoạch"
+msgstr "Planned Qty"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__smv
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__smv
+msgid "SMV"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,help:garment_planning.field_garment_production_plan__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__style_id
+msgid "Style"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__worker_count
+msgid "Số Công Nhân"
+msgstr "Worker Count"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_line_loading__required_days
+msgid "Số Ngày Cần"
+msgstr "Days Needed"
+
+#. module: garment_planning
+#: model:ir.model.fields.selection,name:garment_planning.selection__garment_production_plan__priority__0
+msgid "Thấp"
+msgstr "Low"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__state
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_search
+msgid "Trạng Thái"
+msgstr "Status"
+
+#. module: garment_planning
+#: model:ir.model.fields,help:garment_planning.field_garment_production_plan__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: garment_planning
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_search
+msgid "Tìm Kế Hoạch"
+msgstr "Search Planning"
+
+#. module: garment_planning
+#: model_terms:ir.actions.act_window,help:garment_planning.action_production_plan
+msgid "Tạo kế hoạch sản xuất mới"
+msgstr "Create new production plan"
+
+#. module: garment_planning
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_line_loading_list
+msgid "Tổng"
+msgstr "Total"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__total_required_days
+msgid "Tổng Ngày Cần"
+msgstr "Total Days Needed"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__total_planned
+msgid "Tổng SL Kế Hoạch"
+msgstr "Total Planned Qty"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__total_quantity
+msgid "Tổng SL Đặt Hàng"
+msgstr "Total Ordered Qty"
+
+#. module: garment_planning
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_form
+msgid "Tự Động Lập Lịch"
+msgstr "Auto Schedule"
+
+#. module: garment_planning
+#. odoo-python
+#: code:addons/garment_planning/models/production_plan.py:0
+msgid "Vui lòng phân bổ chuyền trước khi xác nhận."
+msgstr "Please allocate a line before confirming."
+
+#. module: garment_planning
+#. odoo-python
+#: code:addons/garment_planning/models/production_plan.py:0
+msgid "Vui lòng thêm chuyền trước khi lập lịch."
+msgstr "Please add a line before scheduling."
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_planning
+#: model:ir.model.fields,help:garment_planning.field_garment_production_plan__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_planning
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_form
+msgid "Xác Nhận"
+msgstr "Confirm"
+
+#. module: garment_planning
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_search
+msgid "Đang SX"
+msgstr "In Production"
+
+#. module: garment_planning
+#: model:ir.model.fields.selection,name:garment_planning.selection__garment_production_plan__state__in_progress
+msgid "Đang Sản Xuất"
+msgstr "Producing"
+
+#. module: garment_planning
+#: model:ir.model.fields.selection,name:garment_planning.selection__garment_production_plan__state__cancelled
+msgid "Đã Hủy"
+msgstr "Cancelled"
+
+#. module: garment_planning
+#: model:ir.model.fields.selection,name:garment_planning.selection__garment_production_plan__state__confirmed
+msgid "Đã Xác Nhận"
+msgstr "Confirmed"
+
+#. module: garment_planning
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_form
+msgid "Đặt Lại"
+msgstr "Reset"
+
+#. module: garment_planning
+#: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__priority
+msgid "Ưu Tiên"
+msgstr "Priority"
+
+#. module: garment_planning
+#: model_terms:ir.ui.view,arch_db:garment_planning.view_production_plan_search
+msgid "Ưu Tiên Cao"
+msgstr "High Priority"
