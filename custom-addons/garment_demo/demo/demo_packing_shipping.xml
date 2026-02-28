@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ============================================================ -->
+        <!-- LỆNH CẮT CƠ BẢN (garment.cutting.order)                    -->
+        <!-- ============================================================ -->
+
+        <record id="cutting_order_polo_wht" model="garment.cutting.order">
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="fabric_id" ref="fabric_cotton_jersey"/>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="planned_qty">2400</field>
+            <field name="layers">40</field>
+            <field name="fabric_length">120.0</field>
+            <field name="waste_percentage">4.5</field>
+            <field name="cutter_id" ref="emp_cut_leader"/>
+            <field name="state">done</field>
+            <field name="notes">Cắt Polo White - Đợt 1</field>
+        </record>
+
+        <record id="cutting_order_polo_nvy" model="garment.cutting.order">
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="fabric_id" ref="fabric_cotton_jersey"/>
+            <field name="color_id" ref="garment_base.color_navy"/>
+            <field name="planned_qty">2000</field>
+            <field name="layers">35</field>
+            <field name="fabric_length">100.0</field>
+            <field name="waste_percentage">5.0</field>
+            <field name="cutter_id" ref="emp_cut_1"/>
+            <field name="state">cutting</field>
+            <field name="notes">Cắt Polo Navy - Đang thực hiện</field>
+        </record>
+
+        <record id="cutting_order_tshirt_blk" model="garment.cutting.order">
+            <field name="production_order_id" ref="prod_order_tshirt"/>
+            <field name="fabric_id" ref="fabric_poly_cotton"/>
+            <field name="color_id" ref="garment_base.color_black"/>
+            <field name="planned_qty">1500</field>
+            <field name="layers">30</field>
+            <field name="fabric_length">80.0</field>
+            <field name="waste_percentage">4.0</field>
+            <field name="cutter_id" ref="emp_cut_2"/>
+            <field name="state">confirmed</field>
+            <field name="notes">Cắt T-Shirt đen cho đơn EU</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- CHỨNG NHẬN XUẤT XỨ (garment.certificate.origin)             -->
+        <!-- ============================================================ -->
+
+        <record id="co_polo_form_d" model="garment.certificate.origin">
+            <field name="packing_list_id" ref="packing_polo"/>
+            <field name="co_type">eur1</field>
+            <field name="exporter_name">Công Ty TNHH May Mặc Garment Factory</field>
+            <field name="exporter_address">KCN Bình Dương, Thủ Dầu Một, Bình Dương, Việt Nam</field>
+            <field name="importer_name">Global Fashion Inc.</field>
+            <field name="importer_address">123 Fashion Ave, New York, NY 10001, USA</field>
+            <field name="country_of_origin">Vietnam</field>
+            <field name="destination_country">United States</field>
+            <field name="transport_means">Tàu Biển - COSCO SHIPPING</field>
+            <field name="port_of_loading">Cảng Cát Lái, TP.HCM</field>
+            <field name="issuing_authority">Phòng Thương Mại &amp; Công Nghiệp Việt Nam (VCCI)</field>
+            <field name="reference_no">VN-CO-2025-0001</field>
+            <field name="invoice_number">INV-2025-0001</field>
+            <field name="state">issued</field>
+            <field name="notes">C/O cho đơn Polo xuất đi Mỹ - EVFTA EUR.1</field>
+        </record>
+
+        <record id="co_polo_line1" model="garment.certificate.origin.line">
+            <field name="certificate_id" ref="co_polo_form_d"/>
+            <field name="sequence">10</field>
+            <field name="description">Men's Cotton Polo Shirt - White (S/M/L/XL)</field>
+            <field name="hs_code">6105.10.00</field>
+            <field name="quantity">2400</field>
+            <field name="uom">PCS</field>
+            <field name="weight">720.0</field>
+            <field name="fob_value">26400.00</field>
+            <field name="origin_criteria">pe</field>
+        </record>
+
+        <record id="co_polo_line2" model="garment.certificate.origin.line">
+            <field name="certificate_id" ref="co_polo_form_d"/>
+            <field name="sequence">20</field>
+            <field name="description">Men's Cotton Polo Shirt - Navy (S/M/L/XL)</field>
+            <field name="hs_code">6105.10.00</field>
+            <field name="quantity">2000</field>
+            <field name="uom">PCS</field>
+            <field name="weight">600.0</field>
+            <field name="fob_value">22000.00</field>
+            <field name="origin_criteria">pe</field>
+        </record>
+
+        <!-- C/O thứ hai - cho đơn T-Shirt EU -->
+        <record id="co_tshirt_rcep" model="garment.certificate.origin">
+            <field name="packing_list_id" ref="packing_polo"/>
+            <field name="co_type">rcep</field>
+            <field name="exporter_name">Công Ty TNHH May Mặc Garment Factory</field>
+            <field name="exporter_address">KCN Bình Dương, Thủ Dầu Một, Bình Dương, Việt Nam</field>
+            <field name="importer_name">Euro Style GmbH</field>
+            <field name="importer_address">Modezentrum 45, 40213 Düsseldorf, Germany</field>
+            <field name="country_of_origin">Vietnam</field>
+            <field name="destination_country">Germany</field>
+            <field name="transport_means">Tàu Biển - MSC</field>
+            <field name="port_of_loading">Cảng Cát Lái, TP.HCM</field>
+            <field name="issuing_authority">Phòng Thương Mại &amp; Công Nghiệp Việt Nam (VCCI)</field>
+            <field name="reference_no">VN-CO-2025-0002</field>
+            <field name="invoice_number">INV-2025-0002</field>
+            <field name="state">draft</field>
+            <field name="notes">C/O cho đơn T-Shirt xuất đi Đức - RCEP</field>
+        </record>
+
+        <record id="co_tshirt_line1" model="garment.certificate.origin.line">
+            <field name="certificate_id" ref="co_tshirt_rcep"/>
+            <field name="sequence">10</field>
+            <field name="description">Men's Basic T-Shirt - Black (M/L)</field>
+            <field name="hs_code">6109.10.00</field>
+            <field name="quantity">1500</field>
+            <field name="uom">PCS</field>
+            <field name="weight">375.0</field>
+            <field name="fob_value">12750.00</field>
+            <field name="origin_criteria">rvc</field>
+        </record>
+
+        <record id="co_tshirt_line2" model="garment.certificate.origin.line">
+            <field name="certificate_id" ref="co_tshirt_rcep"/>
+            <field name="sequence">20</field>
+            <field name="description">Men's Basic T-Shirt - Grey (M/L)</field>
+            <field name="hs_code">6109.10.00</field>
+            <field name="quantity">1500</field>
+            <field name="uom">PCS</field>
+            <field name="weight">375.0</field>
+            <field name="fob_value">12750.00</field>
+            <field name="origin_criteria">rvc</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- SHIPPING INSTRUCTION (garment.shipping.instruction)          -->
+        <!-- ============================================================ -->
+
+        <record id="si_polo_us" model="garment.shipping.instruction">
+            <field name="packing_list_id" ref="packing_polo"/>
+            <field name="shipper_name">Công Ty TNHH May Mặc Garment Factory</field>
+            <field name="shipper_address">KCN Bình Dương, Thủ Dầu Một, Bình Dương, Việt Nam
+Tel: +84-274-3812345 | Fax: +84-274-3812346</field>
+            <field name="consignee_name">Global Fashion Inc.</field>
+            <field name="consignee_address">123 Fashion Ave, New York, NY 10001, USA
+Tel: +1-212-555-0100</field>
+            <field name="notify_party">Same as Consignee
+Global Fashion Inc.
+123 Fashion Ave, New York, NY 10001, USA</field>
+            <field name="port_of_loading">Cảng Cát Lái, TP.HCM</field>
+            <field name="cargo_description">88 CARTONS OF MEN'S POLO SHIRTS
+STYLE: Classic Polo - 100% Cotton Jersey
+COLORS: White, Navy
+SIZES: S/M/L/XL
+TOTAL: 4,400 PCS
+HS CODE: 6105.10.00</field>
+            <field name="payment_term">lc</field>
+            <field name="incoterm">fob</field>
+            <field name="lc_number">LC-2025-GF-0001</field>
+            <field name="doc_commercial_invoice" eval="True"/>
+            <field name="doc_packing_list" eval="True"/>
+            <field name="doc_bill_of_lading" eval="True"/>
+            <field name="doc_certificate_of_origin" eval="True"/>
+            <field name="doc_fumigation" eval="True"/>
+            <field name="doc_inspection" eval="True"/>
+            <field name="special_instructions">- Container phải sạch, khô, không mùi
+- Hàng xếp theo thứ tự: White trước, Navy sau
+- Dán nhãn MADE IN VIETNAM rõ ràng
+- Kiểm tra seal container trước khi đóng</field>
+            <field name="state">confirmed</field>
+            <field name="notes">SI cho lô hàng Polo xuất sang Mỹ via FOB Cát Lái</field>
+        </record>
+
+        <record id="si_tshirt_eu" model="garment.shipping.instruction">
+            <field name="packing_list_id" ref="packing_polo"/>
+            <field name="shipper_name">Công Ty TNHH May Mặc Garment Factory</field>
+            <field name="shipper_address">KCN Bình Dương, Thủ Dầu Một, Bình Dương, Việt Nam
+Tel: +84-274-3812345</field>
+            <field name="consignee_name">Euro Style GmbH</field>
+            <field name="consignee_address">Modezentrum 45, 40213 Düsseldorf, Germany
+Tel: +49-211-555-0200</field>
+            <field name="notify_party">Euro Style GmbH - Import Department
+Modezentrum 45, 40213 Düsseldorf, Germany</field>
+            <field name="port_of_loading">Cảng Cát Lái, TP.HCM</field>
+            <field name="cargo_description">60 CARTONS OF MEN'S BASIC T-SHIRTS
+STYLE: Basic Tee - 65% Polyester / 35% Cotton
+COLORS: Black, Grey
+SIZES: M/L
+TOTAL: 3,000 PCS
+HS CODE: 6109.10.00</field>
+            <field name="payment_term">tt</field>
+            <field name="incoterm">cif</field>
+            <field name="doc_commercial_invoice" eval="True"/>
+            <field name="doc_packing_list" eval="True"/>
+            <field name="doc_bill_of_lading" eval="True"/>
+            <field name="doc_certificate_of_origin" eval="True"/>
+            <field name="doc_fumigation" eval="False"/>
+            <field name="doc_inspection" eval="False"/>
+            <field name="special_instructions">- Giao hàng CIF Hamburg
+- Bảo hiểm hàng hóa 110% giá trị CIF
+- Thời gian vận chuyển dự kiến 25-30 ngày</field>
+            <field name="state">draft</field>
+            <field name="notes">SI cho lô hàng T-Shirt xuất Đức via CIF Hamburg</field>
+        </record>
+
+    </data>
+</odoo>
