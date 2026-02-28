@@ -39,6 +39,22 @@
         </field>
     </record>
 
+    <!-- Search View -->
+    <record id="view_garment_color_search" model="ir.ui.view">
+        <field name="name">garment.color.search</field>
+        <field name="model">garment.color</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Màu">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="pantone_code"/>
+                <separator/>
+                <filter string="Đang Dùng" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Lưu Trữ" name="archived" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
     <!-- Action -->
     <record id="action_garment_color" model="ir.actions.act_window">
         <field name="name">Bảng Màu</field>

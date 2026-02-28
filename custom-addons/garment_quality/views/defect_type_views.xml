@@ -42,6 +42,34 @@
         </field>
     </record>
 
+    <record id="view_defect_type_search" model="ir.ui.view">
+        <field name="name">garment.defect.type.search</field>
+        <field name="model">garment.defect.type</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Loại Lỗi">
+                <field name="name"/>
+                <field name="code"/>
+                <separator/>
+                <filter string="Lỗi Vải" name="fabric" domain="[('category', '=', 'fabric')]"/>
+                <filter string="Lỗi May" name="sewing" domain="[('category', '=', 'sewing')]"/>
+                <filter string="Lỗi Cắt" name="cutting" domain="[('category', '=', 'cutting')]"/>
+                <filter string="Lỗi Ủi" name="pressing" domain="[('category', '=', 'pressing')]"/>
+                <filter string="Lỗi Hoàn Thiện" name="finishing" domain="[('category', '=', 'finishing')]"/>
+                <separator/>
+                <filter string="Nhẹ" name="minor" domain="[('severity', '=', 'minor')]"/>
+                <filter string="Nặng" name="major" domain="[('severity', '=', 'major')]"/>
+                <filter string="Nghiêm Trọng" name="critical" domain="[('severity', '=', 'critical')]"/>
+                <separator/>
+                <filter string="Đang Dùng" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Lưu Trữ" name="archived" domain="[('active', '=', False)]"/>
+                <group name="groupby">
+                    <filter string="Phân Loại" name="group_category" context="{'group_by': 'category'}"/>
+                    <filter string="Mức Độ" name="group_severity" context="{'group_by': 'severity'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="action_defect_type" model="ir.actions.act_window">
         <field name="name">Loại Lỗi</field>
         <field name="res_model">garment.defect.type</field>

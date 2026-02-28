@@ -11,4 +11,11 @@
               parent="garment_base.menu_garment_quality_main"
               action="action_defect_type"
               sequence="20"/>
+
+    <!-- Loại Lỗi cũng hiển thị trong Cấu Hình để dễ quản lý -->
+    <menuitem id="menu_defect_type_config"
+              name="Loại Lỗi"
+              parent="garment_base.menu_garment_config"
+              action="action_defect_type"
+              sequence="40"/>
 </odoo>

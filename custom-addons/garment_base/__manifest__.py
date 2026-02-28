@@ -38,6 +38,7 @@
         'views/garment_order_views.xml',
         'views/wash_symbol_views.xml',
         'views/audit_log_views.xml',
+        'views/res_config_settings_views.xml',
         'views/menu_views.xml',
     ],
     'demo': [],

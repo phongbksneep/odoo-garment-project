@@ -39,6 +39,30 @@
         </field>
     </record>
 
+    <!-- Search View -->
+    <record id="view_wash_symbol_search" model="ir.ui.view">
+        <field name="name">garment.wash.symbol.search</field>
+        <field name="model">garment.wash.symbol</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Ký Hiệu">
+                <field name="name"/>
+                <field name="code"/>
+                <separator/>
+                <filter string="Giặt" name="wash" domain="[('category', '=', 'wash')]"/>
+                <filter string="Tẩy" name="bleach" domain="[('category', '=', 'bleach')]"/>
+                <filter string="Sấy" name="dry" domain="[('category', '=', 'dry')]"/>
+                <filter string="Ủi" name="iron" domain="[('category', '=', 'iron')]"/>
+                <filter string="Giặt Khô" name="dryclean" domain="[('category', '=', 'dryclean')]"/>
+                <separator/>
+                <filter string="Đang Dùng" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Lưu Trữ" name="archived" domain="[('active', '=', False)]"/>
+                <group name="groupby">
+                    <filter string="Phân Loại" name="group_category" context="{'group_by': 'category'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <!-- Action -->
     <record id="action_wash_symbol" model="ir.actions.act_window">
         <field name="name">Ký Hiệu Giặt Ủi</field>

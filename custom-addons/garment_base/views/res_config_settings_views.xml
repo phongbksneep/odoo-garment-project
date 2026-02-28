@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_garment" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.garment</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Công Ty May" string="Công Ty May" data-key="garment_base">
+                    <block title="Sản Xuất" name="garment_production_settings">
+                        <setting string="Thời Gian Làm Việc" help="Số phút làm việc mỗi ngày, dùng tính hiệu suất chuyền">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="garment_working_minutes_per_day" class="col-lg-4 o_light_label"/>
+                                    <field name="garment_working_minutes_per_day" class="col-lg-2"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Mục Tiêu Hiệu Suất" help="Mục tiêu hiệu suất mặc định cho chuyền may">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="garment_default_efficiency_target" class="col-lg-4 o_light_label"/>
+                                    <field name="garment_default_efficiency_target" class="col-lg-2"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="Chất Lượng" name="garment_quality_settings">
+                        <setting string="Mức AQL Mặc Định" help="Mức kiểm tra chất lượng tiêu chuẩn">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="garment_default_aql_level" class="col-lg-4 o_light_label"/>
+                                    <field name="garment_default_aql_level" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Ngưỡng Hao Hụt Vải" help="Tỷ lệ hao hụt vải để hiển thị cảnh báo trên báo cáo">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="garment_fabric_loss_warning_pct" class="col-lg-4 o_light_label"/>
+                                    <field name="garment_fabric_loss_warning_pct" class="col-lg-2"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="garment_fabric_loss_critical_pct" class="col-lg-4 o_light_label"/>
+                                    <field name="garment_fabric_loss_critical_pct" class="col-lg-2"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="Chung" name="garment_general_settings">
+                        <setting string="Tên Viết Tắt Công Ty" help="Hiển thị trên báo cáo, tem nhãn">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="garment_company_short_name" class="col-lg-4 o_light_label"/>
+                                    <field name="garment_company_short_name" class="col-lg-4"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_garment_config_settings" model="ir.actions.act_window">
+        <field name="name">Cài Đặt Chung</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">main</field>
+        <field name="context">{'module': 'garment_base'}</field>
+    </record>
+</odoo>

@@ -47,6 +47,29 @@
         </field>
     </record>
 
+    <!-- Search View -->
+    <record id="view_garment_size_search" model="ir.ui.view">
+        <field name="name">garment.size.search</field>
+        <field name="model">garment.size</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Size">
+                <field name="name"/>
+                <field name="code"/>
+                <separator/>
+                <filter string="Chữ" name="letter" domain="[('size_type', '=', 'letter')]"/>
+                <filter string="Số" name="number" domain="[('size_type', '=', 'number')]"/>
+                <filter string="Tuổi" name="age" domain="[('size_type', '=', 'age')]"/>
+                <filter string="Tùy Chỉnh" name="custom" domain="[('size_type', '=', 'custom')]"/>
+                <separator/>
+                <filter string="Đang Dùng" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Lưu Trữ" name="archived" domain="[('active', '=', False)]"/>
+                <group name="groupby">
+                    <filter string="Loại Size" name="group_size_type" context="{'group_by': 'size_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <!-- Action -->
     <record id="action_garment_size" model="ir.actions.act_window">
         <field name="name">Bảng Size</field>

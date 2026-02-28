@@ -87,7 +87,7 @@ Nhấn vào **"Công Ty May"** trên màn hình Home. Toàn bộ chức năng đ
 | 6 | **Kế Toán** | Hóa đơn bán, Hóa đơn mua, Phiếu thanh toán, Tất cả hóa đơn |
 | 7 | **Nhân Sự & Lương** | Nhân viên may, Tổ trưởng, Chấm công, Tổng hợp công tháng, Kỹ năng, Đơn nghỉ phép, Đơn giá khoán, Sản lượng CN, Bảng lương, Phiếu thưởng |
 | 8 | **Báo Cáo** | Dashboard KPI, Tổng quan đơn hàng, Tiến độ SX, Đơn trễ hạn, Hiệu suất chuyền, Phân tích lỗi, Báo cáo sản xuất |
-| 9 | **Cấu Hình** | Bảng màu, Bảng size, Ký hiệu giặt, Công thức giặt, Hóa chất |
+| 9 | **Cấu Hình** | Cài đặt chung, Bảng màu, Bảng size, Ký hiệu giặt, Loại lỗi, Công thức giặt, Hóa chất, Nhật ký kiểm soát |
 
 ![Đơn Hàng menu](images/80_menu_don_hang.png)
 *Hình 2b: Menu "Đơn Hàng" — tất cả chức năng đặt hàng trong một nhóm*
@@ -99,7 +99,7 @@ Nhấn vào **"Công Ty May"** trên màn hình Home. Toàn bộ chức năng đ
 *Hình 2d: Menu "Kho & Giao Hàng" — Packing, Kho và Giao Hàng gộp chung*
 
 ![Cấu Hình menu](images/87_menu_cau_hinh.png)
-*Hình 2e: Menu "Cấu Hình" — Bảng màu, Bảng size, Ký hiệu giặt, Công thức, Hóa chất*
+*Hình 2e: Menu "Cấu Hình" — Cài đặt chung, Bảng màu, Bảng size, Ký hiệu giặt, Loại lỗi, Công thức giặt, Hóa chất, Nhật ký*
 
 ---
 
@@ -2752,7 +2752,65 @@ Tính năng Audit Log ghi nhận chi tiết mọi thay đổi trên dữ liệu 
 
 ---
 
-## 31. FAQ — Câu Hỏi Thường Gặp
+## 31. Cấu Hình Hệ Thống
+
+**Đường dẫn:** `Công Ty May → Cấu Hình`
+
+Menu Cấu Hình tập trung tất cả danh mục dùng chung và cài đặt hệ thống.
+
+### 31.1 ⚙️ Cài Đặt Chung
+
+**Đường dẫn:** `Cấu Hình → ⚙️ Cài Đặt Chung` (chỉ Administrator)
+
+Trang cài đặt tập trung cho toàn bộ hệ thống may. Tìm mục **"Công Ty May"** trong trang Settings.
+
+| Nhóm | Trường | Mặc Định | Ý Nghĩa |
+|------|--------|----------|---------|
+| **Sản Xuất** | Số Phút Làm Việc / Ngày | 480 | Dùng tính hiệu suất chuyền (480 = 8 giờ) |
+| **Sản Xuất** | Mục Tiêu Hiệu Suất (%) | 80.0 | Hiệu suất mặc định kỳ vọng cho chuyền may |
+| **Chất Lượng** | Mức AQL Mặc Định | AQL II | Mức kiểm tra chất lượng: I (ít), II (chuẩn), III (nhiều) |
+| **Chất Lượng** | Ngưỡng Cảnh Báo Hao Hụt Vải (%) | 2.0 | Từ mức này trở lên → cảnh báo vàng |
+| **Chất Lượng** | Ngưỡng Nguy Hiểm Hao Hụt Vải (%) | 5.0 | Từ mức này trở lên → cảnh báo đỏ |
+| **Chung** | Tên Viết Tắt Công Ty | *(trống)* | Hiển thị trên báo cáo, tem nhãn (VD: GMC) |
+
+### 31.2 Bảng Màu
+
+**Đường dẫn:** `Cấu Hình → Bảng Màu`
+
+Danh mục tất cả màu sắc sử dụng trong sản xuất. Hỗ trợ **tìm kiếm** theo tên, mã, mã Pantone và **lọc** theo trạng thái Đang Dùng / Lưu Trữ.
+
+### 31.3 Bảng Size
+
+**Đường dẫn:** `Cấu Hình → Bảng Size`
+
+Danh mục size với số đo chi tiết (ngực, eo, hông, dài, vai, tay). Hỗ trợ:
+- **Lọc** theo loại size: Chữ (S/M/L), Số (38/39/40), Tuổi, Tùy Chỉnh
+- **Nhóm** theo Loại Size
+
+### 31.4 Ký Hiệu Giặt Ủi
+
+**Đường dẫn:** `Cấu Hình → Ký Hiệu Giặt Ủi`
+
+Ký hiệu chăm sóc quần áo theo 5 phân loại: Giặt, Tẩy, Sấy, Ủi, Giặt Khô. Hỗ trợ **lọc** và **nhóm** theo phân loại.
+
+### 31.5 Loại Lỗi
+
+**Đường dẫn:** `Cấu Hình → Loại Lỗi` (cũng có trong menu Chất Lượng)
+
+Danh mục loại lỗi may với 9 phân loại và 3 mức độ nghiêm trọng. Hỗ trợ:
+- **Lọc** theo phân loại: Lỗi Vải, May, Cắt, Ủi, Hoàn Thiện
+- **Lọc** theo mức độ: Nhẹ, Nặng, Nghiêm Trọng
+- **Nhóm** theo Phân Loại hoặc Mức Độ
+
+### 31.6 Cấu Hình Giặt
+
+**Đường dẫn:** `Cấu Hình → Cấu Hình Giặt`
+
+Sub-menu chứa Công Thức Giặt và Hóa Chất — xem chi tiết ở mục 15 (Xưởng Giặt).
+
+---
+
+## 32. FAQ — Câu Hỏi Thường Gặp
 
 ### Q: Làm sao để thay đổi ngôn ngữ sang Tiếng Việt?
 **A:** Vào **Settings → Translations → Load a Translation** → Chọn `Vietnamese / Tiếng Việt` → Install.

@@ -6,3 +6,4 @@ from . import garment_color
 from . import garment_size
 from . import garment_order
 from . import wash_symbol
+from . import res_config_settings

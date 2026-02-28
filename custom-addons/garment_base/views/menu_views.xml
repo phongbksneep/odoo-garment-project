@@ -82,6 +82,13 @@
               sequence="40"/>
 
     <!-- ===================== CẤP 2: CẤU HÌNH ===================== -->
+    <menuitem id="menu_garment_settings"
+              name="⚙️ Cài Đặt Chung"
+              parent="menu_garment_config"
+              action="action_garment_config_settings"
+              groups="group_garment_manager"
+              sequence="1"/>
+
     <menuitem id="menu_garment_color"
               name="Bảng Màu"
               parent="menu_garment_config"
