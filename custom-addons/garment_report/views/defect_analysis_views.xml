@@ -27,11 +27,16 @@
         <field name="arch" type="xml">
             <search string="Phân Tích Lỗi">
                 <field name="style_id"/>
+                <field name="production_order_id"/>
                 <field name="defect_type_id"/>
                 <filter string="Tỷ Lệ Lỗi Cao (&gt;5%)" name="high_defect"
                         domain="[('defect_rate', '&gt;', 5)]"/>
                 <filter string="Không Đạt" name="fail"
                         domain="[('result', '=', 'fail')]"/>
+                <filter string="Sửa Lại" name="rework"
+                        domain="[('result', '=', 'rework')]"/>
+                <filter string="Đạt" name="pass"
+                        domain="[('result', '=', 'pass')]"/>
                 <group>
                     <filter string="Loại Lỗi" name="group_defect_type"
                             context="{'group_by': 'defect_type_id'}"/>

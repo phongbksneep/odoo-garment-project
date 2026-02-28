@@ -1351,6 +1351,8 @@ Pivot view & graph view phân tích:
 - Hiệu suất theo mẫu may
 - So sánh năng suất thực tế vs mục tiêu
 
+> 💡 **Wizard Báo Cáo Sản Xuất** (`Báo Cáo → Báo Cáo Sản Xuất`): Cho phép lọc theo khoảng thời gian, chuyền may, **và mã hàng** để tạo báo cáo hiệu suất tùy chỉnh. Hệ thống kiểm tra "Từ Ngày" phải ≤ "Đến Ngày".
+
 ### 14.2 Phân Tích Lỗi (Defect Analysis)
 
 ![Phân Tích Lỗi](images/41_report_defect.png)
@@ -1360,6 +1362,11 @@ Thống kê lỗi:
 - Tỷ lệ lỗi theo loại (chỉ rối, bỏ mũi, vải lỗi, ...)
 - Lỗi theo chuyền may
 - Trend lỗi theo thời gian
+
+#### Bộ lọc & Nhóm:
+- **Lọc:** Tỷ Lệ Lỗi Cao (>5%), Không Đạt, Sửa Lại, Đạt
+- **Nhóm:** Loại Lỗi, Mã Hàng, Ngày/Tuần/Tháng/Quý
+- **Tìm kiếm:** Theo Mã Hàng, Lệnh SX, Loại Lỗi
 
 ### 14.3 Chi Phí vs Thực Tế (Cost vs Actual Analysis)
 

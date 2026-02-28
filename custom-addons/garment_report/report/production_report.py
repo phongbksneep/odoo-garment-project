@@ -1,4 +1,5 @@
 from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class GarmentProductionReport(models.TransientModel):
@@ -27,6 +28,12 @@ class GarmentProductionReport(models.TransientModel):
         help='Bỏ trống để lấy tất cả mã hàng',
     )
 
+    @api.constrains('date_from', 'date_to')
+    def _check_dates(self):
+        for rec in self:
+            if rec.date_from > rec.date_to:
+                raise ValidationError(_('"Từ Ngày" phải trước hoặc bằng "Đến Ngày".'))
+
     def action_generate_report(self):
         """Open efficiency analysis view filtered by wizard params."""
         self.ensure_one()
@@ -37,6 +44,10 @@ class GarmentProductionReport(models.TransientModel):
         if self.sewing_line_ids:
             domain.append(
                 ('sewing_line_id', 'in', self.sewing_line_ids.ids)
+            )
+        if self.style_ids:
+            domain.append(
+                ('style_id', 'in', self.style_ids.ids)
             )
         return {
             'type': 'ir.actions.act_window',
