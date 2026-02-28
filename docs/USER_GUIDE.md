@@ -2,7 +2,7 @@
 
 > **Phiên bản:** Odoo 19.0 | **Ngày cập nhật:** Tháng 2/2026
 > **Đối tượng:** Quản lý, trưởng phòng, nhân viên sử dụng hệ thống ERP
-> **Tổng số module:** 25 module chuyên biệt | **214 test cases** — 0 failures
+> **Tổng số module:** 25 module chuyên biệt | **230 test cases** — 0 failures
 
 ---
 
@@ -72,18 +72,19 @@ Sau khi đăng nhập, bạn sẽ thấy:
 
 ### 1.4 Truy cập module Công Ty May
 
-Nhấn vào **"Công Ty May"** trên màn hình Home. Toàn bộ chức năng được tổ chức trong **8 nhóm menu** trên thanh ngang:
+Nhấn vào **"Công Ty May"** trên màn hình Home. Toàn bộ chức năng được tổ chức trong **9 nhóm menu** trên thanh ngang:
 
 | # | Menu Nhóm | Chức Năng |
 |---|-----------|-----------|
 | 1 | **Đơn Hàng** | Đơn hàng may, Mẫu may/Style, Vải, Phụ liệu, Quản lý mẫu, Bảng tính giá thành |
-| 2 | **Sản Xuất** | Lệnh SX, Lệnh cắt, Lệnh cắt nâng cao, Sản lượng ngày, Chuyền may, Lệnh hoàn thiện, Kế hoạch SX, Line loading, Danh sách máy, Yêu cầu bảo trì, Lệnh giặt, Đơn gia công |
-| 3 | **Chất Lượng** | Phiếu kiểm tra QC, Loại lỗi, Audits, CAP (Khắc phục) |
-| 4 | **Kho & Giao Hàng** | Packing list, Nhập kho, Xuất kho, Tất cả phiếu kho, Phiếu giao hàng, Giao khách hàng, Phương tiện |
-| 5 | **Kế Toán** | Hóa đơn bán, Hóa đơn mua, Phiếu thanh toán, Tất cả hóa đơn |
-| 6 | **Nhân Sự & Lương** | Chấm công, Tổng hợp công tháng, Tay nghề, Đơn nghỉ phép, Đơn giá khoán, Sản lượng CN, Bảng lương, Phiếu thưởng |
-| 7 | **Báo Cáo** | Hiệu suất chuyền, Phân tích lỗi, Báo cáo sản xuất |
-| 8 | **Cấu Hình** | Bảng màu, Bảng size, Ký hiệu giặt, Công thức giặt, Hóa chất |
+| 2 | **CRM** | Lead / Cơ hội, Buyer / Khách hàng, Phản hồi / Khiếu nại |
+| 3 | **Sản Xuất** | Lệnh SX, Lệnh cắt, Lệnh cắt nâng cao, Sản lượng ngày, Chuyền may, Lệnh hoàn thiện, Kế hoạch SX, Line loading, Danh sách máy, Yêu cầu bảo trì, Lệnh giặt, Đơn gia công |
+| 4 | **Chất Lượng** | Phiếu kiểm tra QC, Loại lỗi, Audits, CAP (Khắc phục) |
+| 5 | **Kho & Giao Hàng** | Nhập NL Mua Hàng, NL Khách Gửi (CMT), Phân bổ NL, Kiểm kê kho, Tem/QR Code, Thùng hàng, Pallet, Packing list, Nhập kho, Xuất kho, Phiếu giao hàng, Phương tiện |
+| 6 | **Kế Toán** | Hóa đơn bán, Hóa đơn mua, Phiếu thanh toán, Tất cả hóa đơn |
+| 7 | **Nhân Sự & Lương** | Nhân viên may, Tổ trưởng, Chấm công, Tổng hợp công tháng, Kỹ năng, Đơn nghỉ phép, Đơn giá khoán, Sản lượng CN, Bảng lương, Phiếu thưởng |
+| 8 | **Báo Cáo** | Dashboard KPI, Tổng quan đơn hàng, Tiến độ SX, Đơn trễ hạn, Hiệu suất chuyền, Phân tích lỗi, Báo cáo sản xuất |
+| 9 | **Cấu Hình** | Bảng màu, Bảng size, Ký hiệu giặt, Công thức giặt, Hóa chất |
 
 ![Đơn Hàng menu](images/80_menu_don_hang.png)
 *Hình 2b: Menu "Đơn Hàng" — tất cả chức năng đặt hàng trong một nhóm*
@@ -105,23 +106,28 @@ Nhấn vào **"Công Ty May"** trên màn hình Home. Toàn bộ chức năng đ
 
 ```mermaid
 flowchart LR
-    A[📋 Nhận Đơn Hàng\ngarment_base] --> B[✂️ Thiết Kế & Mẫu\ngarment_sample]
+    CRM[🤝 CRM Lead\ngarment_crm] --> A[📋 Nhận Đơn Hàng\ngarment_base]
+    A --> B[✂️ Thiết Kế & Mẫu\ngarment_sample]
     B --> C[💰 Tính Giá Thành\ngarment_costing]
     C --> D[📅 Lập Kế Hoạch SX\ngarment_planning]
-    D --> E[✂️ Cắt Vải\ngarment_cutting]
+    D --> D2[📥 Nhập Nguyên Liệu\ngarment_material]
+    D2 --> E[✂️ Cắt Vải\ngarment_cutting]
     E --> F[🧵 May\ngarment_production]
     F --> G[🧼 Giặt\ngarment_washing]
     G --> H[👔 Hoàn Thiện\ngarment_finishing]
     H --> I[🔍 QC Kiểm Tra\ngarment_quality]
-    I --> J[📦 Đóng Gói\ngarment_packing]
-    J --> K[🚚 Giao Hàng\ngarment_delivery]
-    K --> L[💵 Kế Toán / Thu Tiền\ngarment_accounting]
+    I --> J[🏷️ In Tem / QR\ngarment_label]
+    J --> K[📦 Đóng Gói\ngarment_packing]
+    K --> L[🚚 Giao Hàng\ngarment_delivery]
+    L --> M[💵 Kế Toán / Thu Tiền\ngarment_accounting]
 
+    style CRM fill:#E91E63,color:#fff
     style A fill:#4CAF50,color:#fff
+    style D2 fill:#009688,color:#fff
     style F fill:#2196F3,color:#fff
     style I fill:#FF9800,color:#fff
-    style K fill:#9C27B0,color:#fff
-    style L fill:#F44336,color:#fff
+    style L fill:#9C27B0,color:#fff
+    style M fill:#F44336,color:#fff
 ```
 
 ### 2.2 Sơ Đồ Liên Kết Giữa Các Module
@@ -130,6 +136,7 @@ flowchart LR
 graph TB
     BASE[🏭 garment_base\nĐơn Hàng, Mẫu May, Vải, Phụ Liệu]
 
+    CRM[🤝 garment_crm\nLead, Phản Hồi, Buyer] --> BASE
     BASE --> SAMPLE[🎨 garment_sample\nQuản lý mẫu]
     BASE --> COSTING[💰 garment_costing\nTính giá thành]
     BASE --> PLANNING[📅 garment_planning\nKế hoạch SX]
@@ -146,18 +153,30 @@ graph TB
     PRODUCTION --> PACKING[📦 garment_packing\nĐóng gói]
     PRODUCTION --> DAILY[📊 Sản lượng hàng ngày]
 
+    PACKING --> LABEL[🏷️ garment_label\nIn Tem/QR, Pallet, Thùng]
+    LABEL --> DELIVERY
+
     DAILY --> PAYROLL[💰 garment_payroll\nTính lương]
-    HR[👥 garment_hr\nChấm công, Nghỉ phép] --> PAYROLL
+    HR[👥 garment_hr\nNhân viên, Chấm công, Nghỉ phép] --> PAYROLL
 
     MAINTENANCE[🔧 garment_maintenance\nBảo trì máy] --> PRODUCTION
     COMPLIANCE[📋 garment_compliance\nTuân thủ] -.-> BASE
     REPORT[📊 garment_report\nBáo cáo] -.-> PRODUCTION
     REPORT -.-> QUALITY
+    MATERIAL[📥 garment_material\nNhập NL, Phân bổ] --> WAREHOUSE
+    MATERIAL --> PRODUCTION
+    INVENTORY[📋 garment_inventory\nKiểm kê kho] --> WAREHOUSE
+    DASHBOARD[📊 garment_dashboard\nDashboard KPI] -.-> PRODUCTION
+    DASHBOARD -.-> REPORT
 
     style BASE fill:#4CAF50,color:#fff
     style PRODUCTION fill:#2196F3,color:#fff
     style PAYROLL fill:#FF9800,color:#fff
     style ACCOUNTING fill:#F44336,color:#fff
+    style MATERIAL fill:#009688,color:#fff
+    style CRM fill:#E91E63,color:#fff
+    style LABEL fill:#FF5722,color:#fff
+    style DASHBOARD fill:#9C27B0,color:#fff
 ```
 
 ### 2.3 Luồng Chứng Từ — Document Flow
@@ -178,6 +197,10 @@ flowchart TB
     DL --> INV[💵 Hóa Đơn\nInvoice]
     INV --> PAY[💳 Phiếu Thanh Toán\nPayment]
 
+    MR[📥 Phiếu Nhập NL\nMaterial Receipt] --> PO
+    MR --> MA[📤 Phân Bổ NL\nMaterial Allocation]
+    MA --> PROD
+
     SM_IN[📥 Phiếu Nhập Kho] --> PO
     PO --> SM_OUT[📤 Phiếu Xuất Kho]
 
@@ -188,6 +211,7 @@ flowchart TB
     style PROD fill:#2196F3,color:#fff
     style INV fill:#F44336,color:#fff
     style WAGE fill:#FF9800,color:#fff
+    style MR fill:#009688,color:#fff
 ```
 
 ### 2.4 Trạng Thái Đơn Hàng (Order Lifecycle)
@@ -257,14 +281,16 @@ Module nền tảng quản lý tất cả dữ liệu chung của công ty may.
 
 | Trường | Kiểu | Ý Nghĩa | Ví dụ |
 |--------|------|---------|-------|
-| **Tên** | Char | Tên phụ liệu | `Nút nhựa 4 lỗ 15mm` |
-| **Mã** | Char | Mã nội bộ | `ACC-001` |
-| **Loại** | Selection | button (Nút/Cúc), zipper (Khóa Kéo), thread (Chỉ May), label (Nhãn Mác), elastic (Thun), lace (Ren), ribbon (Ruy Băng), hook_eye (Móc/Khuy), interlining (Mex/Lót), packaging (Bao Bì), hanger (Móc Treo), tag (Thẻ Bài), other (Khác) | `button` |
-| **Đơn Vị Tính** | Selection | pcs (Cái), m (Mét), roll (Cuộn), kg (Kg), set (Bộ), box (Hộp), other (Khác) | `pcs` |
+| **Tên Phụ Liệu** | Char | Tên phụ liệu (bắt buộc) | `Nút nhựa 4 lỗ 15mm` |
+| **Mã Phụ Liệu** | Char | Mã nội bộ duy nhất (bắt buộc) | `ACC-001` |
+| **Loại Phụ Liệu** | Selection | button (Nút/Cúc), zipper (Khóa Kéo), thread (Chỉ May), label (Nhãn Mác), elastic (Thun/Dây Chun), lace (Ren/Đăng Ten), ribbon (Ruy Băng), hook (Móc/Khuy), padding (Mex/Lót), packaging (Bao Bì/Đóng Gói), hanger (Móc Treo), tag (Thẻ Bài), other (Khác) | `button` |
+| **Đơn Vị Tính** | Many2one → uom.uom | Đơn vị tính từ danh mục UoM (bắt buộc) | `Cái` |
+| **Màu Có Sẵn** | Many2many → garment.color | Danh sách màu sắc có sẵn cho phụ liệu | `Trắng, Đen, Đỏ` |
 | **Kích Thước** | Char | Kích thước chi tiết | `15mm` |
 | **Chất Liệu** | Char | Vật liệu phụ liệu | `Nhựa ABS` |
+| **Nhà Cung Cấp** | Many2many → res.partner | Danh sách nhà cung cấp phụ liệu | `Công ty ABC, Công ty XYZ` |
+| **Sản Phẩm Liên Kết** | Many2one → product.product | Liên kết sản phẩm Odoo để quản lý tồn kho | `[ACC-001] Nút nhựa 4 lỗ` |
 | **Giá** | Float | Đơn giá mua | `500` |
-| **Nhà Cung Cấp** | Many2one → res.partner | Nhà cung cấp phụ liệu | `Công ty ABC` |
 
 ---
 
@@ -660,39 +686,76 @@ stateDiagram-v2
 
 ### 8.1 Lệnh Cắt (Cutting Order)
 
-#### Bảng giải thích trường — Lệnh Cắt (garment.cutting.order - module cutting):
+#### Bảng giải thích trường — Lệnh Cắt Nâng Cao (garment.cutting.order.adv):
 
 | Trường | Kiểu | Ý Nghĩa | Giá trị / Ví dụ |
 |--------|------|---------|-----------------|
 | **Số Lệnh Cắt** | Char | Mã tự động | `CO-2026-00001` |
-| **Đơn Hàng May** | Many2one | Liên kết đơn hàng | `GO-2026-00001` |
-| **Mẫu May** | Many2one | Style cắt | `Áo Polo nam` |
+| **Lệnh Sản Xuất** | Many2one | Liên kết lệnh SX (bắt buộc) | `PO-2026-00001` |
+| **Đơn Hàng May** | Many2one | Tự lấy từ lệnh SX (related) | `GO-2026-00001` |
+| **Mẫu May** | Many2one | Tự lấy từ lệnh SX (related) | `Áo Polo nam` |
+| **Ngày Cắt** | Date | Ngày thực hiện cắt (bắt buộc) | `2026-02-01` |
+| **Chiều Dài Sơ Đồ (m)** | Float | Marker Length — chiều dài sơ đồ cắt | `12.50` |
+| **Chiều Rộng Sơ Đồ (cm)** | Float | Marker Width | `150` |
+| **Hiệu Suất Sơ Đồ (%)** | Float | Marker Efficiency — tỷ lệ sử dụng vải (0–100%) | `85.5` |
 | **Vải** | Many2one | Vải sử dụng | `Cotton Oxford` |
-| **Ngày Cắt** | Date | Ngày thực hiện cắt | `2026-02-01` |
-| **SL Kế Hoạch** | Integer | Số SP cần cắt | `5,000` |
-| **SL Thực Tế** | Integer | Tự tính từ bundle | `4,980` |
-| **Hao Hụt (%)** | Float | Tự tính % hao hụt vải | `2.5%` |
+| **Màu Vải** | Char | Màu sắc lô vải cắt | `Trắng` |
 | **Lớp Trải** | One2many | Chi tiết các lớp trải vải | Bảng lớp |
+| **Tổng Lớp Trải** | Integer | Tự tính từ số lớp (computed) | `80` |
+| **Tổng Vải Sử Dụng (m)** | Float | Tự tính = tổng length các lớp (computed) | `1,000` |
 | **Bundle** | One2many | Chi tiết các bó cắt | Bảng bundle |
-| **Trạng Thái** | Selection | draft → confirmed → in_progress → done / cancelled | `done` |
+| **Tổng Bundle** | Integer | Tự tính (computed) | `25` |
+| **Tổng SP Cắt** | Integer | Tự tính từ bundle quantity (computed) | `4,980` |
+| **SP Lỗi** | Integer | Số SP lỗi khi cắt | `5` |
+| **Hao Hụt (kg)** | Float | Trọng lượng vải thừa | `2.5` |
+| **Thợ Cắt** | Many2one → hr.employee | Người thực hiện cắt | `Nguyễn Văn Cắt` |
+| **Bàn Cắt** | Char | Số bàn cắt | `Bàn 3` |
+| **Trạng Thái** | Selection | draft → spreading → cutting → numbering → done / cancelled | `done` |
 
-### 8.2 Lớp Trải Vải (Cutting Layer):
+### 8.2 Lớp Trải Vải (Cutting Layer — garment.cutting.layer):
 
-| Trường | Ý Nghĩa |
-|--------|---------|
-| **Số Lớp** | Số lớp vải trải (VD: 80 lớp) |
-| **Chiều Dài Trải (m)** | Chiều dài sơ đồ (VD: 12.5m) |
-| **Tổng Vải (m)** | Tự tính = Số lớp × Chiều dài |
-| **Màu** | Màu vải |
+| Trường | Kiểu | Ý Nghĩa | Ví dụ |
+|--------|------|---------|-------|
+| **Số Thứ Tự** | Integer | Sequence — số thứ tự lớp trải | `10` |
+| **Số Cuộn Vải** | Char | Roll No. — mã cuộn vải sử dụng | `ROLL-001` |
+| **Lô Vải** | Many2one → stock.lot | Lot vải trong kho Odoo | `LOT-2026-001` |
+| **Chiều Dài (m)** | Float | Chiều dài vải trải trong lớp (bắt buộc) | `12.50` |
+| **Shade / Lô Màu** | Char | Số lô màu của cuộn vải | `Shade A` |
+| **Lỗi Phát Hiện** | Integer | Số lỗi vải phát hiện trong lớp | `2` |
+| **Điểm Nối** | Integer | Số điểm nối (splice) trong lớp | `1` |
+| **Ghi Chú** | Char | Ghi chú thêm | `Vải tốt` |
 
-### 8.3 Bundle:
+### 8.3 Bó Hàng (Bundle — garment.cutting.bundle):
 
-| Trường | Ý Nghĩa |
-|--------|---------|
-| **Số Bundle** | Mã bundle (VD: #001) |
-| **Size** | Size cắt |
-| **Số Lượng** | Số SP trong bundle |
-| **Trạng Thái** | Chưa giao / Đã giao chuyền |
+| Trường | Kiểu | Ý Nghĩa | Ví dụ |
+|--------|------|---------|-------|
+| **Số Bundle** | Char | Mã bó hàng (unique trong lệnh cắt, bắt buộc) | `B-001` |
+| **Size** | Many2one → garment.size | Size cắt (bắt buộc) | `M` |
+| **Màu** | Many2one → garment.color | Màu sắc | `Trắng` |
+| **Số Lượng (SP)** | Integer | Số sản phẩm trong bó (bắt buộc) | `40` |
+| **Từ Lớp** | Integer | Lớp trải bắt đầu | `1` |
+| **Đến Lớp** | Integer | Lớp trải kết thúc | `40` |
+| **Đã Phát Chuyền** | Boolean | Đã phát xuống chuyền may chưa | ✅/❌ |
+| **Ngày Phát** | Date | Ngày phát cho chuyền may | `2026-02-02` |
+| **Chuyền May** | Many2one → garment.sewing.line | Chuyền may nhận bó hàng | `Chuyền 1` |
+| **Ghi Chú** | Char | Ghi chú | `Bó đầu tiên` |
+
+#### Workflow lệnh cắt:
+
+```mermaid
+stateDiagram-v2
+    [*] --> Nháp
+    Nháp --> Đang_Trải_Vải: Bắt đầu trải
+    Đang_Trải_Vải --> Đang_Cắt: Bắt đầu cắt
+    Đang_Cắt --> Đánh_Số_Bó_Hàng: Đánh số / Bó
+    Đánh_Số_Bó_Hàng --> Hoàn_Thành: Hoàn thành
+    Nháp --> Đã_Hủy: Hủy
+    Đang_Trải_Vải --> Đã_Hủy: Hủy
+    Đang_Cắt --> Đã_Hủy: Hủy
+    Đánh_Số_Bó_Hàng --> Đã_Hủy: Hủy
+```
+
+> 💡 **Quy trình cắt:** Nháp → Trải vải (thêm lớp trải) → Cắt → Đánh số / Bó hàng (tạo bundle) → Hoàn thành. Không thể hoàn thành nếu chưa có bundle.
 
 ---
 
@@ -1620,9 +1683,16 @@ Module Garment Material quản lý toàn bộ quy trình nhập nguyên liệu, 
 
 #### Quy trình xử lý:
 
-```
-Nháp → Xác Nhận → Đang Kiểm Tra → Nhập Kho
-                                 ↘ QC Không Đạt (Hủy / Xử lý)
+```mermaid
+stateDiagram-v2
+    [*] --> Nháp
+    Nháp --> Xác_Nhận: Xác nhận (phải có chi tiết)
+    Xác_Nhận --> Đang_Kiểm_Tra: Bắt đầu QC
+    Đang_Kiểm_Tra --> Nhập_Kho: QC Đạt → Nhập kho
+    Đang_Kiểm_Tra --> QC_Không_Đạt: QC Không Đạt
+    QC_Không_Đạt --> Đã_Hủy: Hủy / Xử lý
+    Nháp --> Đã_Hủy: Hủy
+    Xác_Nhận --> Đã_Hủy: Hủy
 ```
 
 - **Xác nhận:** Phải có ít nhất 1 dòng chi tiết

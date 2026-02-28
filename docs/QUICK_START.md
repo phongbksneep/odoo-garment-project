@@ -1,6 +1,6 @@
 # 🚀 Hướng Dẫn Nhanh — Hệ Thống Quản Lý Công Ty May
 
-> **Phiên bản:** Odoo 19.0 | **Cập nhật:** Tháng 2/2026 | **25 module** | **214 tests passed**
+> **Phiên bản:** Odoo 19.0 | **Cập nhật:** Tháng 2/2026 | **25 module** | **230 tests passed**
 >
 > 📖 Xem [Hướng dẫn chi tiết đầy đủ](USER_GUIDE.md) để tra cứu từng trường dữ liệu.
 
@@ -20,7 +20,7 @@
 
 ## 2. Cấu Trúc Menu
 
-Toàn bộ chức năng nằm trong **8 nhóm menu** trên thanh ngang:
+Toàn bộ chức năng nằm trong **9 nhóm menu** trên thanh ngang:
 
 | # | Menu | Chức Năng Chính |
 |---|------|----------------|
@@ -62,7 +62,8 @@ flowchart LR
     A --> B[✂️ Thiết Kế & Mẫu]
     B --> C[💰 Tính Giá Thành]
     C --> D[📅 Lập Kế Hoạch SX]
-    D --> E[✂️ Cắt Vải]
+    D --> D2[📥 Nhập Nguyên Liệu]
+    D2 --> E[✂️ Cắt Vải]
     E --> F[🧵 May]
     F --> G[🧼 Giặt]
     G --> H[👔 Hoàn Thiện]
@@ -75,6 +76,7 @@ flowchart LR
 
     style CRM fill:#E91E63,color:#fff
     style A fill:#4CAF50,color:#fff
+    style D2 fill:#009688,color:#fff
     style F fill:#2196F3,color:#fff
     style I fill:#FF9800,color:#fff
     style L fill:#9C27B0,color:#fff
@@ -117,6 +119,7 @@ graph TB
     REPORT -.-> QUALITY
     MATERIAL[📥 garment_material\nNhập NL] --> WAREHOUSE
     MATERIAL --> PRODUCTION
+    INVENTORY[📋 garment_inventory\nKiểm kê kho] --> WAREHOUSE
     DASHBOARD[📊 garment_dashboard\nDashboard] -.-> PRODUCTION
     DASHBOARD -.-> REPORT
 
@@ -148,6 +151,10 @@ flowchart TB
     DL --> INV[💵 Hóa Đơn]
     INV --> PAY[💳 Phiếu Thanh Toán]
 
+    MR[📥 Phiếu Nhập NL] --> PO
+    MR --> MA[📤 Phân Bổ NL]
+    MA --> PROD
+
     SM_IN[📥 Phiếu Nhập Kho] --> PO
     PO --> SM_OUT[📤 Phiếu Xuất Kho]
 
@@ -158,6 +165,7 @@ flowchart TB
     style PROD fill:#2196F3,color:#fff
     style INV fill:#F44336,color:#fff
     style WAGE fill:#FF9800,color:#fff
+    style MR fill:#009688,color:#fff
 ```
 
 ---
@@ -238,7 +246,7 @@ stateDiagram-v2
 |----------|---------------|
 | Tạo lệnh SX | Lệnh Sản Xuất → **Tạo** → Chọn đơn hàng, chuyền may → SL kế hoạch → **Xác nhận** |
 | Nhập sản lượng ngày | Sản Lượng Ngày → **Tạo** → Chọn lệnh SX, ngày, ca → Nhập SL đạt, SL lỗi → **Lưu** |
-| Tạo lệnh cắt | Lệnh Cắt → **Tạo** → Chọn đơn hàng, vải → Thêm lớp trải + bundle → **Xác nhận** |
+| Tạo lệnh cắt | Lệnh Cắt → **Tạo** → Chọn lệnh SX, vải → **Trải Vải** (thêm lớp) → **Cắt** → **Đánh Số** (tạo bundle) → **Hoàn Thành** |
 | Lệnh hoàn thiện | Lệnh Hoàn Thiện → **Tạo** → Chọn lệnh SX → Nhập các task (cắt chỉ, ủi, gấp) → **Lưu** |
 | Kế hoạch SX | Kế Hoạch SX → **Tạo** → Chọn đơn hàng → Phân chuyền (Line Loading) → **Xác nhận** |
 | Quản lý chuyền | Chuyền May → **Tạo** → Tên, mã, loại, chuyền trưởng, CN → **Lưu** |
