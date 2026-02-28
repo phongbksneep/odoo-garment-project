@@ -25,6 +25,10 @@ class GarmentInvoice(models.Model):
         string='Đối Tác',
         required=True,
     )
+    partner_tax_code = fields.Char(
+        string='Mã Số Thuế',
+        help='MST đối tác (bắt buộc trên hóa đơn GTGT theo NĐ 123/2020)',
+    )
     garment_order_id = fields.Many2one(
         'garment.order',
         string='Đơn Hàng May',
@@ -37,6 +41,19 @@ class GarmentInvoice(models.Model):
     )
     due_date = fields.Date(
         string='Hạn Thanh Toán',
+    )
+    payment_term = fields.Selection([
+        ('immediate', 'Thanh Toán Ngay'),
+        ('cod', 'COD - Giao Hàng Thu Tiền'),
+        ('30days', '30 Ngày'),
+        ('60days', '60 Ngày'),
+        ('90days', '90 Ngày'),
+        ('lc', 'L/C - Thư Tín Dụng'),
+        ('tt', 'T/T - Điện Chuyển Tiền'),
+        ('dp', 'D/P - Nhờ Thu'),
+        ('other', 'Khác'),
+    ], string='Điều Khoản TT',
+       help='Điều khoản thanh toán phổ biến trong ngành may xuất khẩu',
     )
     currency_id = fields.Many2one(
         'res.currency',
@@ -90,6 +107,25 @@ class GarmentInvoice(models.Model):
         digits=(14, 0),
     )
 
+    payment_status = fields.Selection([
+        ('not_paid', 'Chưa Thanh Toán'),
+        ('partial', 'Thanh Toán Một Phần'),
+        ('paid', 'Đã Thanh Toán Đủ'),
+    ], string='Tình Trạng TT',
+       compute='_compute_paid',
+       store=True,
+    )
+    is_overdue = fields.Boolean(
+        string='Quá Hạn TT',
+        compute='_compute_is_overdue',
+        store=True,
+    )
+    overdue_days = fields.Integer(
+        string='Số Ngày Quá Hạn',
+        compute='_compute_is_overdue',
+        store=True,
+    )
+
     payment_ids = fields.One2many(
         'garment.payment',
         'invoice_id',
@@ -119,6 +155,17 @@ class GarmentInvoice(models.Model):
 
     notes = fields.Text(string='Ghi Chú')
 
+    @api.constrains('due_date', 'date')
+    def _check_due_date(self):
+        for rec in self:
+            if rec.due_date and rec.date and rec.due_date < rec.date:
+                raise ValidationError(_('Hạn thanh toán phải sau ngày hóa đơn.'))
+
+    @api.onchange('partner_id')
+    def _onchange_partner_id(self):
+        if self.partner_id and self.partner_id.vat:
+            self.partner_tax_code = self.partner_id.vat
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
@@ -136,13 +183,31 @@ class GarmentInvoice(models.Model):
             rec.tax_amount = rec.subtotal * rate
             rec.total_amount = rec.subtotal + rec.tax_amount
 
-    @api.depends('payment_ids.amount', 'total_amount')
+    @api.depends('payment_ids.amount', 'payment_ids.state', 'total_amount')
     def _compute_paid(self):
         for rec in self:
             rec.paid_amount = sum(rec.payment_ids.filtered(
                 lambda p: p.state == 'confirmed'
             ).mapped('amount'))
             rec.residual = rec.total_amount - rec.paid_amount
+            if rec.total_amount <= 0 or rec.paid_amount <= 0:
+                rec.payment_status = 'not_paid'
+            elif rec.paid_amount >= rec.total_amount:
+                rec.payment_status = 'paid'
+            else:
+                rec.payment_status = 'partial'
+
+    @api.depends('due_date', 'state', 'residual')
+    def _compute_is_overdue(self):
+        today = fields.Date.today()
+        for rec in self:
+            if rec.due_date and rec.state == 'confirmed' and rec.residual > 0:
+                delta = (today - rec.due_date).days
+                rec.is_overdue = delta > 0
+                rec.overdue_days = max(delta, 0)
+            else:
+                rec.is_overdue = False
+                rec.overdue_days = 0
 
     def action_confirm(self):
         for rec in self:
@@ -205,6 +270,18 @@ class GarmentInvoiceLine(models.Model):
         store=True,
         digits=(14, 0),
     )
+
+    @api.constrains('quantity')
+    def _check_quantity(self):
+        for line in self:
+            if line.quantity <= 0:
+                raise ValidationError(_('Số lượng phải lớn hơn 0.'))
+
+    @api.constrains('unit_price')
+    def _check_unit_price(self):
+        for line in self:
+            if line.unit_price < 0:
+                raise ValidationError(_('Đơn giá không được âm.'))
 
     @api.depends('quantity', 'unit_price')
     def _compute_subtotal(self):

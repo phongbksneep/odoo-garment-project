@@ -5,18 +5,27 @@
         <field name="name">garment.invoice.tree</field>
         <field name="model">garment.invoice</field>
         <field name="arch" type="xml">
-            <list decoration-danger="state == 'cancelled'"
+            <list decoration-danger="is_overdue"
+                  decoration-muted="state == 'cancelled'"
                   decoration-success="state == 'paid'">
                 <field name="name"/>
                 <field name="invoice_type"/>
                 <field name="partner_id"/>
+                <field name="partner_tax_code" optional="hide"/>
                 <field name="garment_order_id" optional="show"/>
                 <field name="date"/>
+                <field name="due_date" optional="show"/>
+                <field name="tax_type" optional="hide"/>
                 <field name="subtotal" sum="Tiền Hàng"/>
                 <field name="tax_amount" sum="Thuế"/>
                 <field name="total_amount" sum="Tổng"/>
                 <field name="paid_amount" sum="Đã TT"/>
                 <field name="residual" sum="Còn Nợ"/>
+                <field name="payment_status" widget="badge"
+                       decoration-danger="payment_status == 'not_paid'"
+                       decoration-warning="payment_status == 'partial'"
+                       decoration-success="payment_status == 'paid'"/>
+                <field name="is_overdue" column_invisible="True"/>
                 <field name="state" widget="badge"/>
             </list>
         </field>
@@ -40,6 +49,13 @@
                            statusbar_visible="draft,confirmed,paid"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-clock-o"
+                                invisible="not is_overdue">
+                            <field name="overdue_days" widget="statinfo"
+                                   string="Ngày Quá Hạn"/>
+                        </button>
+                    </div>
                     <div class="oe_title">
                         <h1><field name="name"/></h1>
                     </div>
@@ -47,12 +63,14 @@
                         <group>
                             <field name="invoice_type"/>
                             <field name="partner_id"/>
+                            <field name="partner_tax_code"/>
                             <field name="garment_order_id"/>
                             <field name="expense_type" invisible="invoice_type != 'purchase'"/>
                         </group>
                         <group>
                             <field name="date"/>
                             <field name="due_date"/>
+                            <field name="payment_term"/>
                             <field name="currency_id"/>
                             <field name="tax_type"/>
                         </group>
@@ -88,6 +106,8 @@
                             <group>
                                 <field name="paid_amount"/>
                                 <field name="residual"/>
+                                <field name="payment_status"/>
+                                <field name="is_overdue" invisible="not is_overdue"/>
                             </group>
                         </page>
                         <page string="Ghi Chú" name="notes">
@@ -107,14 +127,25 @@
             <search>
                 <field name="name"/>
                 <field name="partner_id"/>
+                <field name="partner_tax_code"/>
                 <field name="garment_order_id"/>
                 <filter name="filter_sale" string="Hóa Đơn Bán" domain="[('invoice_type', '=', 'sale')]"/>
                 <filter name="filter_purchase" string="Hóa Đơn Mua" domain="[('invoice_type', '=', 'purchase')]"/>
                 <separator/>
-                <filter name="filter_unpaid" string="Chưa Thanh Toán" domain="[('state', '=', 'confirmed')]"/>
+                <filter name="filter_unpaid" string="Chưa Thanh Toán" domain="[('state', '=', 'confirmed'), ('payment_status', '!=', 'paid')]"/>
+                <filter name="filter_overdue" string="Quá Hạn" domain="[('is_overdue', '=', True)]"/>
+                <filter name="filter_partial" string="TT Một Phần" domain="[('payment_status', '=', 'partial')]"/>
+                <separator/>
+                <filter name="filter_this_month" string="Tháng Này"
+                        domain="[('date', '&gt;=', (context_today() - relativedelta(day=1)).strftime('%%Y-%%m-%%d')),
+                                 ('date', '&lt;=', context_today().strftime('%%Y-%%m-%%d'))]"/>
+                <filter name="filter_export" string="Xuất Khẩu (VAT 0%%)" domain="[('tax_type', '=', '0')]"/>
                 <group>
                     <filter name="group_type" string="Loại HĐ" context="{'group_by': 'invoice_type'}"/>
                     <filter name="group_partner" string="Đối Tác" context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_tax" string="Thuế GTGT" context="{'group_by': 'tax_type'}"/>
+                    <filter name="group_expense" string="Loại Chi Phí" context="{'group_by': 'expense_type'}"/>
+                    <filter name="group_payment_status" string="Tình Trạng TT" context="{'group_by': 'payment_status'}"/>
                     <filter name="group_month" string="Tháng" context="{'group_by': 'date:month'}"/>
                 </group>
             </search>

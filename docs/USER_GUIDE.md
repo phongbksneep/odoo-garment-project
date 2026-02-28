@@ -1783,13 +1783,13 @@ Ghi nhận kỹ năng cho từng nhân viên: loại kỹ năng (may, cắt, QC,
 ### 19.1 Hóa Đơn (Invoice)
 
 ![Hóa Đơn Bán](images/29_invoice_sale.png)
-*Hình 43: Danh sách hóa đơn bán*
+*Hình 43: Danh sách hóa đơn bán — highlight đỏ nếu quá hạn, badge tình trạng TT*
 
 ![Hóa Đơn Mua](images/30_invoice_purchase.png)
 *Hình 43c: Danh sách hóa đơn mua*
 
 ![Chi tiết Hóa Đơn](images/63_invoice_detail.png)
-*Hình 44: Form view chi tiết hóa đơn — thuế GTGT, công nợ*
+*Hình 44: Form view chi tiết hóa đơn — thuế GTGT, công nợ, stat button quá hạn*
 
 #### Bảng giải thích trường — Hóa Đơn (garment.invoice):
 
@@ -1798,9 +1798,11 @@ Ghi nhận kỹ năng cho từng nhân viên: loại kỹ năng (may, cắt, QC,
 | **Số Hóa Đơn** | Char | ✅ | Mã tự động (INV-S/P-XXXXX) | `INV-S-2026-00001` |
 | **Loại HĐ** | Selection | ✅ | sale (Hóa Đơn Bán), purchase (Hóa Đơn Mua) | `sale` |
 | **Đối Tác** | Many2one | ✅ | Khách hàng / Nhà cung cấp | `H&M Vietnam` |
+| **Mã Số Thuế** | Char | | MST đối tác — tự lấy từ partner.vat (NĐ 123/2020) | `0312345678` |
 | **Đơn Hàng May** | Many2one | | Liên kết đơn hàng (nếu có) | `GO-2026-00001` |
 | **Ngày Hóa Đơn** | Date | ✅ | Ngày phát hành HĐ | `2026-03-01` |
-| **Hạn Thanh Toán** | Date | | Deadline thanh toán | `2026-04-01` |
+| **Hạn Thanh Toán** | Date | | Deadline TT (⚠️ phải ≥ ngày HĐ) | `2026-04-01` |
+| **Điều Khoản TT** | Selection | | immediate / cod / 30days / 60days / 90days / lc / tt / dp / other | `lc` |
 | **Tiền Tệ** | Many2one | | USD / VND / EUR | `USD` |
 | ---- | ---- | ---- | **THUẾ GTGT** | ---- |
 | **Thuế GTGT** | Selection | | 0 (0% - Xuất Khẩu), 5 (5%), 8 (8%), 10 (10%), none (Không Thuế) | `0` |
@@ -1808,26 +1810,38 @@ Ghi nhận kỹ năng cho từng nhân viên: loại kỹ năng (may, cắt, QC,
 | **Tiền Thuế GTGT** | Float | 🔄 | = Tiền Hàng × % thuế | `0` |
 | **Tổng Thanh Toán** | Float | 🔄 | = Tiền Hàng + Thuế | `85,000` |
 | ---- | ---- | ---- | **CÔNG NỢ** | ---- |
-| **Đã Thanh Toán** | Float | 🔄 | Tổng từ phiếu thanh toán | `50,000` |
+| **Đã Thanh Toán** | Float | 🔄 | Tổng từ phiếu thanh toán xác nhận | `50,000` |
 | **Còn Nợ** | Float | 🔄 | = Tổng TT - Đã TT | `35,000` |
+| **Tình Trạng TT** | Selection | 🔄 | not_paid / partial / paid — badge có màu | `partial` |
+| **Quá Hạn TT** | Boolean | 🔄 | True nếu confirmed + quá hạn + còn nợ | `True` |
+| **Số Ngày Quá Hạn** | Integer | 🔄 | Số ngày quá hạn (stat button trên form) | `15` |
 | ---- | ---- | ---- | **PHÂN LOẠI** | ---- |
 | **Phân Loại Chi Phí** | Selection | | material / subcontract / transport / salary / utility / rent / equipment / other — chỉ cho HĐ mua | `material` |
 | **Trạng Thái** | Selection | | draft → confirmed → paid / cancelled | `confirmed` |
 
+#### Ràng buộc dữ liệu (Validation):
+- Hạn thanh toán phải sau hoặc bằng ngày hóa đơn
+- Phải có ít nhất 1 dòng chi tiết mới được xác nhận
+- Không thể hủy hóa đơn đã thanh toán
+
+#### Bộ lọc & Nhóm (Search):
+- **Lọc:** Hóa Đơn Bán / Mua, Chưa TT, Quá Hạn, TT Một Phần, Tháng Này, Xuất Khẩu (VAT 0%)
+- **Nhóm:** Loại HĐ, Đối Tác, Thuế GTGT, Loại Chi Phí, Tình Trạng TT, Tháng
+
 ### 19.2 Chi Tiết Hóa Đơn (Invoice Line):
 
-| Trường | Ý Nghĩa |
-|--------|---------|
-| **Mô Tả** | Tên hàng hóa / dịch vụ |
-| **Số Lượng** | SL (mặc định = 1) |
-| **Đơn Vị** | pcs / m / kg / yard / set / lot / month / other |
-| **Đơn Giá** | Giá đơn vị |
-| **Thành Tiền** | 🔄 = SL × Đơn Giá |
+| Trường | Ý Nghĩa | Validation |
+|--------|---------|------------|
+| **Mô Tả** | Tên hàng hóa / dịch vụ | Bắt buộc |
+| **Số Lượng** | SL (mặc định = 1) | ⚠️ Phải > 0 |
+| **Đơn Vị** | pcs / m / kg / yard / set / lot / month / other | |
+| **Đơn Giá** | Giá đơn vị | ⚠️ Không được âm (= 0 cho hàng tặng) |
+| **Thành Tiền** | 🔄 = SL × Đơn Giá | |
 
 ### 19.3 Phiếu Thanh Toán (Payment)
 
 ![Thanh Toán](images/31_payments.png)
-*Hình 45: Danh sách phiếu thanh toán*
+*Hình 45: Danh sách phiếu thanh toán — màu xanh nếu confirmed, bộ lọc thu/chi*
 
 ![Chi tiết Thanh Toán](images/64_payment_detail.png)
 *Hình 46: Form view chi tiết phiếu thanh toán*
@@ -1836,16 +1850,25 @@ Ghi nhận kỹ năng cho từng nhân viên: loại kỹ năng (may, cắt, QC,
 
 | Trường | Kiểu | Bắt buộc | Ý Nghĩa | Giá trị / Ví dụ |
 |--------|------|----------|---------|-----------------|
-| **Số Phiếu** | Char | ✅ | Mã tự động (PM-XXXXX) | `PM-2026-00001` |
+| **Số Phiếu** | Char | ✅ | Mã tự động (PAY-XXXXX) | `PAY-2026-00001` |
 | **Hóa Đơn** | Many2one | | Liên kết hóa đơn | `INV-S-2026-00001` |
 | **Đối Tác** | Many2one | ✅ | Bên nhận/trả tiền | `H&M Vietnam` |
 | **Loại** | Selection | ✅ | inbound (Thu Tiền), outbound (Chi Tiền) | `inbound` |
 | **Phương Thức** | Selection | | cash (Tiền Mặt), bank (Chuyển Khoản), lc (L/C), other | `bank` |
 | **Ngày Thanh Toán** | Date | ✅ | Ngày thực hiện | `2026-03-15` |
-| **Số Tiền** | Float | ✅ | Giá trị thanh toán | `50,000` |
+| **Số Tiền** | Float | ✅ | Giá trị thanh toán (⚠️ phải > 0) | `50,000` |
 | **Tiền Tệ** | Many2one | | USD / VND | `USD` |
 | **Số Tham Chiếu / UNC** | Char | | Mã ủy nhiệm chi / tham chiếu | `UNC-VCB-123456` |
 | **Trạng Thái** | Selection | | draft → confirmed / cancelled | `confirmed` |
+
+#### Ràng buộc dữ liệu (Validation):
+- Số tiền thanh toán phải > 0
+- Không được thanh toán vượt quá số còn nợ của hóa đơn (overpayment check)
+- Thanh toán không gắn hóa đơn (advance payment) vẫn được phép
+
+#### Bộ lọc & Nhóm (Search):
+- **Lọc:** Thu Tiền / Chi Tiền, Đã Xác Nhận, Nháp, Tiền Mặt, Chuyển Khoản
+- **Nhóm:** Thu/Chi, Phương Thức, Đối Tác, Tháng
 
 ---
 

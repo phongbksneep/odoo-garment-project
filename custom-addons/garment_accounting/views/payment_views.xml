@@ -5,14 +5,17 @@
         <field name="name">garment.payment.tree</field>
         <field name="model">garment.payment</field>
         <field name="arch" type="xml">
-            <list>
+            <list decoration-muted="state == 'cancelled'"
+                  decoration-success="state == 'confirmed'">
                 <field name="name"/>
                 <field name="payment_type"/>
                 <field name="partner_id"/>
-                <field name="invoice_id"/>
+                <field name="invoice_id" optional="show"/>
                 <field name="date"/>
                 <field name="payment_method"/>
+                <field name="reference" optional="hide"/>
                 <field name="amount" sum="Tổng"/>
+                <field name="currency_id" optional="hide"/>
                 <field name="state" widget="badge"/>
             </list>
         </field>
@@ -59,9 +62,37 @@
         </field>
     </record>
 
+    <record id="view_payment_search" model="ir.ui.view">
+        <field name="name">garment.payment.search</field>
+        <field name="model">garment.payment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="invoice_id"/>
+                <field name="reference"/>
+                <filter name="filter_inbound" string="Thu Tiền" domain="[('payment_type', '=', 'inbound')]"/>
+                <filter name="filter_outbound" string="Chi Tiền" domain="[('payment_type', '=', 'outbound')]"/>
+                <separator/>
+                <filter name="filter_confirmed" string="Đã Xác Nhận" domain="[('state', '=', 'confirmed')]"/>
+                <filter name="filter_draft" string="Nháp" domain="[('state', '=', 'draft')]"/>
+                <separator/>
+                <filter name="filter_cash" string="Tiền Mặt" domain="[('payment_method', '=', 'cash')]"/>
+                <filter name="filter_bank" string="Chuyển Khoản" domain="[('payment_method', '=', 'bank')]"/>
+                <group>
+                    <filter name="group_type" string="Thu/Chi" context="{'group_by': 'payment_type'}"/>
+                    <filter name="group_method" string="Phương Thức" context="{'group_by': 'payment_method'}"/>
+                    <filter name="group_partner" string="Đối Tác" context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_month" string="Tháng" context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="action_payment" model="ir.actions.act_window">
         <field name="name">Phiếu Thanh Toán</field>
         <field name="res_model">garment.payment</field>
         <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_payment_search"/>
     </record>
 </odoo>

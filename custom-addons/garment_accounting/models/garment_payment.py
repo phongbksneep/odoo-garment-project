@@ -1,4 +1,5 @@
 from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class GarmentPayment(models.Model):
@@ -59,6 +60,12 @@ class GarmentPayment(models.Model):
         ('cancelled', 'Đã Hủy'),
     ], string='Trạng Thái', default='draft', tracking=True)
 
+    @api.constrains('amount')
+    def _check_amount(self):
+        for rec in self:
+            if rec.amount <= 0:
+                raise ValidationError(_('Số tiền thanh toán phải lớn hơn 0.'))
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
@@ -68,6 +75,12 @@ class GarmentPayment(models.Model):
         return super().create(vals_list)
 
     def action_confirm(self):
+        for rec in self:
+            if rec.invoice_id and rec.invoice_id.residual < rec.amount:
+                raise ValidationError(
+                    _('Số tiền thanh toán (%s) vượt quá số còn nợ (%s) của hóa đơn %s.')
+                    % (rec.amount, rec.invoice_id.residual, rec.invoice_id.name)
+                )
         self.write({'state': 'confirmed'})
 
     def action_cancel(self):
