@@ -19,6 +19,7 @@ Garment Report & Analytics
         'garment_production',
         'garment_quality',
         'garment_costing',
+        'garment_cutting',
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -26,6 +27,7 @@ Garment Report & Analytics
         'views/efficiency_analysis_views.xml',
         'views/defect_analysis_views.xml',
         'views/cost_analysis_views.xml',
+        'views/fabric_loss_views.xml',
         'views/menu_views.xml',
     ],
     'installable': True,

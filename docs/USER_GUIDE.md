@@ -1358,6 +1358,43 @@ Báo cáo so sánh chi phí kế hoạch (từ Bảng Giá Thành) với sản l
 
 ---
 
+### 14.4 Hao Hụt Vải (Fabric Loss Analysis)
+
+**Đường dẫn:** `Công Ty May → Báo Cáo → Hao Hụt Vải`
+
+Báo cáo phân tích hao hụt vải so sánh lượng vải kế hoạch (chiều dài sơ đồ × số lớp trải) với lượng vải thực tế sử dụng, giúp kiểm soát chi phí nguyên liệu và cải thiện hiệu suất cắt.
+
+#### Các chỉ số chính:
+
+| Chỉ Số | Ý Nghĩa |
+|--------|---------|
+| **Vải Kế Hoạch (m)** | = Dài sơ đồ × Số lớp trải |
+| **Vải Thực Tế (m)** | Tổng chiều dài các lớp trải thực tế |
+| **Chênh Lệch Vải (m)** | = Thực tế - Kế hoạch (dương = hao hụt) |
+| **Hao Hụt (%)** | = Chênh Lệch / Kế Hoạch × 100 |
+| **SL Cắt** | Tổng SP cắt được |
+| **SL Lỗi Cắt** | SP lỗi từ quá trình cắt |
+| **Phế Liệu (kg)** | Vải vụn thải ra |
+| **Tỷ Lệ Cắt Đạt (%)** | = (SL Cắt - SL Lỗi) / SL Cắt × 100 |
+| **Vải / SP (m)** | = Vải Thực Tế / SL Cắt |
+| **Hiệu Suất Sơ Đồ (%)** | Marker efficiency từ lệnh cắt |
+| **Lỗi Vải (Lớp)** | Tổng lỗi phát hiện trên các lớp trải |
+| **Mối Nối** | Tổng mối nối vải (splice) |
+
+#### Giao diện:
+
+- **Danh sách:** Tô đỏ nếu hao hụt > 5%, vàng 2-5%, xanh ≤ 2%
+- **Pivot:** Phân tích theo Mã Hàng, Vải, Thợ Cắt
+- **Biểu đồ:** Bar chart chênh lệch vải theo mã hàng
+
+#### Mẹo sử dụng:
+
+- Dùng bộ lọc "Hao Hụt Cao (>5%)" để nhanh chóng tìm các lệnh cắt cần xem xét
+- Nhóm theo "Thợ Cắt" để đánh giá năng suất cá nhân
+- Nhóm theo "Vải" để xác định loại vải hay bị hao hụt
+
+---
+
 ## 15. Module Garment Washing — Xưởng Giặt
 
 **Đường dẫn:** `Công Ty May → Sản Xuất → Lệnh Giặt`

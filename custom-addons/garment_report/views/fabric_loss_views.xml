@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================ -->
+    <!--                  FABRIC LOSS ANALYSIS VIEWS                   -->
+    <!-- ============================================================ -->
+
+    <!-- List View -->
+    <record id="view_fabric_loss_analysis_list" model="ir.ui.view">
+        <field name="name">garment.fabric.loss.analysis.list</field>
+        <field name="model">garment.fabric.loss.analysis</field>
+        <field name="arch" type="xml">
+            <list string="Phân Tích Hao Hụt Vải"
+                  decoration-danger="loss_pct &gt; 5"
+                  decoration-warning="loss_pct &gt; 2 and loss_pct &lt;= 5"
+                  decoration-success="loss_pct &lt;= 2"
+                  default_order="loss_pct desc">
+                <field name="cutting_order_id"/>
+                <field name="date"/>
+                <field name="style_id"/>
+                <field name="fabric_id"/>
+                <field name="marker_length"/>
+                <field name="marker_efficiency"/>
+                <field name="total_layers"/>
+                <field name="planned_fabric" sum="Tổng KH"/>
+                <field name="actual_fabric" sum="Tổng TT"/>
+                <field name="fabric_variance" sum="Tổng CL"/>
+                <field name="loss_pct" avg="TB Hao Hụt"/>
+                <field name="total_pieces_cut" sum="Tổng SP"/>
+                <field name="defective_pieces" sum="Tổng Lỗi"/>
+                <field name="wastage_kg" sum="Tổng KG"/>
+                <field name="good_cut_rate" avg="TB Đạt"/>
+                <field name="fabric_per_piece"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="view_fabric_loss_analysis_pivot" model="ir.ui.view">
+        <field name="name">garment.fabric.loss.analysis.pivot</field>
+        <field name="model">garment.fabric.loss.analysis</field>
+        <field name="arch" type="xml">
+            <pivot string="Hao Hụt Vải">
+                <field name="style_id" type="row"/>
+                <field name="planned_fabric" type="measure"/>
+                <field name="actual_fabric" type="measure"/>
+                <field name="fabric_variance" type="measure"/>
+                <field name="wastage_kg" type="measure"/>
+                <field name="total_pieces_cut" type="measure"/>
+                <field name="defective_pieces" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View -->
+    <record id="view_fabric_loss_analysis_graph" model="ir.ui.view">
+        <field name="name">garment.fabric.loss.analysis.graph</field>
+        <field name="model">garment.fabric.loss.analysis</field>
+        <field name="arch" type="xml">
+            <graph string="Hao Hụt Vải" type="bar">
+                <field name="style_id"/>
+                <field name="fabric_variance" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_fabric_loss_analysis_search" model="ir.ui.view">
+        <field name="name">garment.fabric.loss.analysis.search</field>
+        <field name="model">garment.fabric.loss.analysis</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Kiếm Hao Hụt Vải">
+                <field name="cutting_order_id"/>
+                <field name="style_id"/>
+                <field name="fabric_id"/>
+                <field name="production_order_id"/>
+                <separator/>
+                <filter name="filter_high_loss" string="Hao Hụt Cao (&gt;5%)"
+                        domain="[('loss_pct', '&gt;', 5)]"/>
+                <filter name="filter_moderate_loss" string="Hao Hụt TB (2-5%)"
+                        domain="[('loss_pct', '&gt;', 2), ('loss_pct', '&lt;=', 5)]"/>
+                <filter name="filter_low_loss" string="Hao Hụt Thấp (&lt;=2%)"
+                        domain="[('loss_pct', '&lt;=', 2)]"/>
+                <separator/>
+                <filter name="filter_done" string="Hoàn Thành"
+                        domain="[('state', '=', 'done')]"/>
+                <filter name="filter_this_month" string="Tháng Này"
+                        domain="[('date', '&gt;=', (context_today() - relativedelta(day=1)).strftime('%%Y-%%m-%%d'))]"/>
+                <group>
+                    <filter name="group_style" string="Mã Hàng"
+                            context="{'group_by': 'style_id'}"/>
+                    <filter name="group_fabric" string="Vải"
+                            context="{'group_by': 'fabric_id'}"/>
+                    <filter name="group_date" string="Ngày Cắt"
+                            context="{'group_by': 'date:month'}"/>
+                    <filter name="group_cutter" string="Thợ Cắt"
+                            context="{'group_by': 'cutter_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_fabric_loss_analysis" model="ir.actions.act_window">
+        <field name="name">Hao Hụt Vải</field>
+        <field name="res_model">garment.fabric.loss.analysis</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="search_view_id" ref="view_fabric_loss_analysis_search"/>
+        <field name="context">{'search_default_filter_done': 1}</field>
+    </record>
+
+</odoo>

@@ -29,4 +29,10 @@
               parent="garment_base.menu_garment_report_main"
               action="action_cost_analysis"
               sequence="35"/>
+
+    <menuitem id="menu_fabric_loss_analysis"
+              name="Hao Hụt Vải"
+              parent="garment_base.menu_garment_report_main"
+              action="action_fabric_loss_analysis"
+              sequence="40"/>
 </odoo>
