@@ -124,9 +124,9 @@
                 <field name="style_id"/>
                 <field name="sam"/>
                 <field name="total_quantity"/>
-                <field name="total_workers"/>
-                <field name="total_daily_output"/>
-                <field name="required_days"/>
+                <field name="total_workers" sum="Tổng CN"/>
+                <field name="total_daily_output" sum="Tổng SL/Ngày"/>
+                <field name="required_days" avg="Avg"/>
                 <field name="ship_date"/>
                 <field name="can_meet_deadline" widget="boolean"/>
                 <field name="state"/>

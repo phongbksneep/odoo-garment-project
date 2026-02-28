@@ -43,7 +43,9 @@
         <field name="name">garment.daily.output.list</field>
         <field name="model">garment.daily.output</field>
         <field name="arch" type="xml">
-            <list string="Sản Lượng Hàng Ngày">
+            <list string="Sản Lượng Hàng Ngày"
+                  decoration-danger="defect_rate &gt; 5"
+                  decoration-warning="efficiency &lt; 80 and efficiency &gt; 0">
                 <field name="date"/>
                 <field name="production_order_id"/>
                 <field name="sewing_line_id"/>
@@ -51,9 +53,9 @@
                 <field name="target_qty" sum="Tổng MT"/>
                 <field name="output_qty" sum="Tổng SL"/>
                 <field name="defect_qty" sum="Tổng Lỗi"/>
-                <field name="efficiency"/>
-                <field name="defect_rate"/>
-                <field name="pieces_per_hour"/>
+                <field name="efficiency" avg="Avg"/>
+                <field name="defect_rate" avg="Avg"/>
+                <field name="pieces_per_hour" avg="Avg"/>
             </list>
         </field>
     </record>
@@ -108,5 +110,6 @@
         <field name="name">Sản Lượng Hàng Ngày</field>
         <field name="res_model">garment.daily.output</field>
         <field name="view_mode">list,graph,pivot,form</field>
+        <field name="context">{'search_default_today': 1}</field>
     </record>
 </odoo>

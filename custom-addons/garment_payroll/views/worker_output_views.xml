@@ -83,6 +83,7 @@
         <field name="name">Sản Lượng Công Nhân</field>
         <field name="res_model">garment.worker.output</field>
         <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_today': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Nhập sản lượng công nhân hàng ngày

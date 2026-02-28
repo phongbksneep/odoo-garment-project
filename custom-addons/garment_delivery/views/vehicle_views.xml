@@ -5,14 +5,19 @@
         <field name="name">garment.vehicle.tree</field>
         <field name="model">garment.vehicle</field>
         <field name="arch" type="xml">
-            <list>
+            <list decoration-muted="state == 'retired'"
+                  decoration-warning="state == 'maintenance'">
                 <field name="name"/>
                 <field name="plate_number"/>
                 <field name="vehicle_type"/>
                 <field name="driver_id"/>
                 <field name="max_weight"/>
                 <field name="delivery_count"/>
-                <field name="state" widget="badge"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'available'"
+                       decoration-info="state == 'in_use'"
+                       decoration-warning="state == 'maintenance'"
+                       decoration-danger="state == 'retired'"/>
             </list>
         </field>
     </record>

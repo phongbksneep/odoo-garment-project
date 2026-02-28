@@ -17,9 +17,9 @@
                 <field name="style_id"/>
                 <field name="color_id"/>
                 <field name="size_id"/>
-                <field name="quantity"/>
+                <field name="quantity" sum="Tổng"/>
                 <field name="location"/>
-                <field name="print_count"/>
+                <field name="print_count" sum="Tổng In"/>
                 <field name="state" widget="badge"/>
             </list>
         </field>

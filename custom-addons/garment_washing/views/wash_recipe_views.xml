@@ -86,8 +86,8 @@
                 <field name="wash_type"/>
                 <field name="fabric_type"/>
                 <group>
-                    <filter name="group_wash_type" context="{'group_by': 'wash_type'}"/>
-                    <filter name="group_fabric" context="{'group_by': 'fabric_type'}"/>
+                    <filter string="Loại Giặt" name="group_wash_type" context="{'group_by': 'wash_type'}"/>
+                    <filter string="Loại Vải" name="group_fabric" context="{'group_by': 'fabric_type'}"/>
                 </group>
             </search>
         </field>

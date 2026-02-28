@@ -13,8 +13,8 @@
                 <field name="work_type"/>
                 <field name="partner_id"/>
                 <field name="garment_order_id" optional="show"/>
-                <field name="total_qty"/>
-                <field name="total_received"/>
+                <field name="total_qty" sum="Tổng ĐH"/>
+                <field name="total_received" sum="Tổng Nhận"/>
                 <field name="completion_rate" widget="progressbar"/>
                 <field name="date_expected"/>
                 <field name="total_cost" sum="Tổng"/>
@@ -160,10 +160,10 @@
                 <filter name="overdue" string="Trễ Hạn" domain="[('is_overdue', '=', True)]"/>
                 <filter name="unpaid" string="Chưa TT" domain="[('payment_status', '=', 'unpaid')]"/>
                 <group>
-                    <filter name="group_direction" context="{'group_by': 'direction'}"/>
-                    <filter name="group_work" context="{'group_by': 'work_type'}"/>
-                    <filter name="group_partner" context="{'group_by': 'partner_id'}"/>
-                    <filter name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Chiều" name="group_direction" context="{'group_by': 'direction'}"/>
+                    <filter string="Loại GC" name="group_work" context="{'group_by': 'work_type'}"/>
+                    <filter string="Nhà GC" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Trạng Thái" name="group_state" context="{'group_by': 'state'}"/>
                 </group>
             </search>
         </field>
