@@ -1395,6 +1395,44 @@ Báo cáo phân tích hao hụt vải so sánh lượng vải kế hoạch (chi�
 
 ---
 
+### 14.5 Phân Tích Downtime (Downtime Analytics)
+
+**Đường dẫn:** `Công Ty May → Báo Cáo → Phân Tích Downtime`
+
+Báo cáo phân tích thời gian dừng máy từ các yêu cầu bảo trì, giúp đánh giá độ tin cậy thiết bị, hiệu quả kỹ thuật viên, và chi phí bảo trì.
+
+#### Các chỉ số chính:
+
+| Chỉ Số | Ý Nghĩa |
+|--------|---------|
+| **Thời Gian Dừng (h)** | Số giờ máy không hoạt động |
+| **Thời Gian Sửa (h)** | = Ngày hoàn thành - Ngày yêu cầu (MTTR) |
+| **Chi Phí** | Chi phí sửa chữa / bảo trì |
+| **Là Hỏng Máy** | 1 nếu breakdown, 0 nếu bảo trì/sửa chữa |
+| **Loại Máy** | Lockstitch, Overlock, Flatlock, v.v. |
+| **Loại Yêu Cầu** | Bảo Trì Định Kỳ / Sửa Chữa / Hỏng Máy |
+| **Độ Ưu Tiên** | Thấp / Bình Thường / Cao / Khẩn Cấp |
+
+#### Giao diện:
+
+- **Danh sách:** Tô đỏ với breakdown, vàng với ưu tiên cao/khẩn cấp. Tổng cộng downtime và chi phí
+- **Pivot:** Phân tích theo Máy, Loại Máy, Kỹ Thuật Viên, Chuyền May
+- **Biểu đồ:** Bar chart downtime theo loại máy
+
+#### Bộ lọc & nhóm:
+
+- **Lọc:** Hỏng Máy / Sửa Chữa / Bảo Trì Định Kỳ, Hoàn Thành, Khẩn Cấp, Tháng Này
+- **Nhóm:** Máy, Loại Máy, Kỹ Thuật Viên, Loại Yêu Cầu, Chuyền May, Tháng
+
+#### Mẹo sử dụng:
+
+- Nhóm theo "Máy" để xác định máy hay hỏng nhất (tính MTBF)
+- Nhóm theo "Kỹ Thuật Viên" để đánh giá thời gian sửa trung bình (MTTR)
+- Lọc "Hỏng Máy" + nhóm theo "Loại Máy" để xác định thiết bị cần thay thế
+- Dùng Pivot view để so sánh chi phí bảo trì giữa các chuyền
+
+---
+
 ## 15. Module Garment Washing — Xưởng Giặt
 
 **Đường dẫn:** `Công Ty May → Sản Xuất → Lệnh Giặt`

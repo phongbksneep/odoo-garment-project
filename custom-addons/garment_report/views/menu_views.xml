@@ -35,4 +35,10 @@
               parent="garment_base.menu_garment_report_main"
               action="action_fabric_loss_analysis"
               sequence="40"/>
+
+    <menuitem id="menu_downtime_analysis"
+              name="Phân Tích Downtime"
+              parent="garment_base.menu_garment_report_main"
+              action="action_downtime_analysis"
+              sequence="45"/>
 </odoo>

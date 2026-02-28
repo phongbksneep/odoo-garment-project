@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================ -->
+    <!--                  DOWNTIME ANALYSIS VIEWS                      -->
+    <!-- ============================================================ -->
+
+    <!-- List View -->
+    <record id="view_downtime_analysis_list" model="ir.ui.view">
+        <field name="name">garment.downtime.analysis.list</field>
+        <field name="model">garment.downtime.analysis</field>
+        <field name="arch" type="xml">
+            <list string="Phân Tích Downtime"
+                  decoration-danger="request_type == 'breakdown'"
+                  decoration-warning="priority in ('2', '3')"
+                  default_order="downtime_hours desc">
+                <field name="request_id"/>
+                <field name="request_date"/>
+                <field name="machine_id"/>
+                <field name="machine_type"/>
+                <field name="sewing_line_id" optional="show"/>
+                <field name="request_type"/>
+                <field name="priority"/>
+                <field name="technician_id"/>
+                <field name="downtime_hours" sum="Tổng Dừng"/>
+                <field name="repair_hours" sum="Tổng Sửa" optional="show"/>
+                <field name="cost" sum="Tổng CP"/>
+                <field name="completion_date" optional="hide"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="view_downtime_analysis_pivot" model="ir.ui.view">
+        <field name="name">garment.downtime.analysis.pivot</field>
+        <field name="model">garment.downtime.analysis</field>
+        <field name="arch" type="xml">
+            <pivot string="Downtime Pivot">
+                <field name="machine_id" type="row"/>
+                <field name="downtime_hours" type="measure"/>
+                <field name="repair_hours" type="measure"/>
+                <field name="cost" type="measure"/>
+                <field name="is_breakdown" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View -->
+    <record id="view_downtime_analysis_graph" model="ir.ui.view">
+        <field name="name">garment.downtime.analysis.graph</field>
+        <field name="model">garment.downtime.analysis</field>
+        <field name="arch" type="xml">
+            <graph string="Downtime" type="bar">
+                <field name="machine_type"/>
+                <field name="downtime_hours" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_downtime_analysis_search" model="ir.ui.view">
+        <field name="name">garment.downtime.analysis.search</field>
+        <field name="model">garment.downtime.analysis</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Kiếm Downtime">
+                <field name="machine_id"/>
+                <field name="technician_id"/>
+                <field name="request_id"/>
+                <separator/>
+                <filter name="filter_breakdown" string="Hỏng Máy"
+                        domain="[('request_type', '=', 'breakdown')]"/>
+                <filter name="filter_corrective" string="Sửa Chữa"
+                        domain="[('request_type', '=', 'corrective')]"/>
+                <filter name="filter_preventive" string="Bảo Trì Định Kỳ"
+                        domain="[('request_type', '=', 'preventive')]"/>
+                <separator/>
+                <filter name="filter_done" string="Hoàn Thành"
+                        domain="[('state', '=', 'done')]"/>
+                <filter name="filter_urgent" string="Khẩn Cấp"
+                        domain="[('priority', 'in', ['2', '3'])]"/>
+                <filter name="filter_this_month" string="Tháng Này"
+                        domain="[('request_date', '&gt;=', (context_today() - relativedelta(day=1)).strftime('%%Y-%%m-%%d'))]"/>
+                <group>
+                    <filter name="group_machine" string="Máy"
+                            context="{'group_by': 'machine_id'}"/>
+                    <filter name="group_machine_type" string="Loại Máy"
+                            context="{'group_by': 'machine_type'}"/>
+                    <filter name="group_technician" string="Kỹ Thuật Viên"
+                            context="{'group_by': 'technician_id'}"/>
+                    <filter name="group_type" string="Loại Yêu Cầu"
+                            context="{'group_by': 'request_type'}"/>
+                    <filter name="group_line" string="Chuyền May"
+                            context="{'group_by': 'sewing_line_id'}"/>
+                    <filter name="group_month" string="Tháng"
+                            context="{'group_by': 'request_date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_downtime_analysis" model="ir.actions.act_window">
+        <field name="name">Phân Tích Downtime</field>
+        <field name="res_model">garment.downtime.analysis</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="search_view_id" ref="view_downtime_analysis_search"/>
+        <field name="context">{'search_default_filter_breakdown': 1}</field>
+    </record>
+
+</odoo>
