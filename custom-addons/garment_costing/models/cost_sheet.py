@@ -39,6 +39,11 @@ class GarmentCostSheet(models.Model):
         'garment.order',
         string='Garment Order',
     )
+    bom_id = fields.Many2one(
+        'garment.bom',
+        string='BOM / Định Mức',
+        help='BOM được sử dụng để tính chi phí nguyên phụ liệu',
+    )
     date = fields.Date(
         string='Date',
         default=fields.Date.today,
@@ -401,14 +406,21 @@ class GarmentCostSheet(models.Model):
         self.write({'state': 'draft'})
 
     def action_load_from_bom(self):
-        """Load material lines from BOM linked to product/style."""
+        """Load material lines from garment BOM linked to style."""
         self.ensure_one()
-        bom = self.env['mrp.bom'].search([
-            ('product_tmpl_id.name', 'ilike', self.style_id.name),
-        ], limit=1)
+        bom = self.env['garment.bom'].search([
+            ('style_id', '=', self.style_id.id),
+            ('state', '=', 'approved'),
+        ], order='version desc', limit=1)
+        if not bom:
+            # Fall back to confirmed BOM
+            bom = self.env['garment.bom'].search([
+                ('style_id', '=', self.style_id.id),
+                ('state', '=', 'confirmed'),
+            ], order='version desc', limit=1)
         if not bom:
             raise UserError(
-                _('No BOM found for style "%s". Please create a BOM first.')
+                _('Không tìm thấy BOM cho mã hàng "%s". Hãy tạo BOM trước!')
                 % self.style_id.name
             )
         # Clear existing lines
@@ -416,24 +428,31 @@ class GarmentCostSheet(models.Model):
             ('cost_sheet_id', '=', self.id),
         ]).unlink()
 
-        for bom_line in bom.bom_line_ids:
-            cost_type = self._guess_cost_type(bom_line.product_id)
-            self.env['garment.cost.line'].create({
+        type_mapping = {
+            'fabric': 'fabric',
+            'lining': 'fabric',
+            'interlining': 'accessory',
+            'thread': 'accessory',
+            'zipper': 'accessory',
+            'button': 'accessory',
+            'label': 'accessory',
+            'elastic': 'accessory',
+            'packing': 'packing',
+            'other': 'other',
+        }
+
+        for bom_line in bom.line_ids:
+            cost_type = type_mapping.get(bom_line.material_type, 'other')
+            vals = {
                 'cost_sheet_id': self.id,
                 'cost_type': cost_type,
-                'product_id': bom_line.product_id.id,
-                'description': bom_line.product_id.name,
-                'uom_id': bom_line.product_uom_id.id,
-                'consumption': bom_line.product_qty,
-                'unit_price': bom_line.product_id.standard_price,
-                'wastage_pct': 3.0,
-            })
-
-    def _guess_cost_type(self, product):
-        """Guess cost type from product category name."""
-        categ_name = (product.categ_id.complete_name or '').lower()
-        if any(kw in categ_name for kw in ('fabric', 'vải', 'cloth')):
-            return 'fabric'
-        if any(kw in categ_name for kw in ('pack', 'đóng gói', 'carton', 'poly')):
-            return 'packing'
-        return 'accessory'
+                'description': bom_line.description,
+                'consumption': bom_line.consumption,
+                'unit_price': bom_line.unit_price,
+                'wastage_pct': bom_line.wastage_pct,
+                'supplier_id': bom_line.supplier_id.id,
+            }
+            if bom_line.product_id:
+                vals['product_id'] = bom_line.product_id.id
+                vals['uom_id'] = bom_line.product_id.uom_id.id
+            self.env['garment.cost.line'].create(vals)

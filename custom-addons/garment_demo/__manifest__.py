@@ -58,6 +58,7 @@ Tạo dữ liệu mẫu cho tất cả module:
         'demo/demo_hr_employee.xml',
         'demo/demo_extras.xml',
         'demo/demo_extras2.xml',
+        'demo/demo_bom.xml',
     ],
     'installable': True,
     'application': False,

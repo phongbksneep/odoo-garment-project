@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <menuitem id="menu_bom"
+              name="Định Mức BOM"
+              parent="garment_base.menu_garment_order_main"
+              action="action_garment_bom"
+              sequence="45"/>
+
     <menuitem id="menu_cost_sheet"
               name="Bảng Tính Giá Thành"
               parent="garment_base.menu_garment_order_main"

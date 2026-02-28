@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================== -->
+    <!-- BOM Form View -->
+    <!-- ================================================================== -->
+    <record id="view_garment_bom_form" model="ir.ui.view">
+        <field name="name">garment.bom.form</field>
+        <field name="model">garment.bom</field>
+        <field name="arch" type="xml">
+            <form string="Định Mức BOM">
+                <header>
+                    <button name="action_confirm" string="Xác Nhận" type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_approve" string="Duyệt" type="object"
+                            class="btn-primary"
+                            invisible="state != 'confirmed'"/>
+                    <button name="action_new_version" string="Tạo Phiên Bản Mới" type="object"
+                            invisible="state not in ('confirmed', 'approved')"/>
+                    <button name="action_cancel" string="Hủy" type="object"
+                            invisible="state in ('cancelled',)"/>
+                    <button name="action_reset_draft" string="Về Nháp" type="object"
+                            invisible="state not in ('confirmed', 'cancelled')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="style_id"/>
+                            <field name="version"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="total_fabric_consumption"/>
+                            <field name="total_material_cost"/>
+                            <field name="total_lines"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Chi Tiết BOM" name="lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="material_type"/>
+                                    <field name="description"/>
+                                    <field name="product_id" optional="show"/>
+                                    <field name="fabric_id" optional="hide"/>
+                                    <field name="color_id" optional="hide"/>
+                                    <field name="uom"/>
+                                    <field name="consumption"/>
+                                    <field name="wastage_pct"/>
+                                    <field name="unit_price"/>
+                                    <field name="amount_per_pc" sum="Tổng"/>
+                                    <field name="supplier_id" optional="hide"/>
+                                    <field name="notes" optional="hide"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Ghi Chú" name="notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- BOM List View -->
+    <!-- ================================================================== -->
+    <record id="view_garment_bom_list" model="ir.ui.view">
+        <field name="name">garment.bom.list</field>
+        <field name="model">garment.bom</field>
+        <field name="arch" type="xml">
+            <list string="Định Mức BOM"
+                  decoration-muted="state == 'cancelled'"
+                  decoration-success="state == 'approved'">
+                <field name="name"/>
+                <field name="style_id"/>
+                <field name="version"/>
+                <field name="date"/>
+                <field name="total_lines"/>
+                <field name="total_fabric_consumption"/>
+                <field name="total_material_cost"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'approved'"
+                       decoration-info="state == 'confirmed'"
+                       decoration-warning="state == 'draft'"
+                       decoration-danger="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- BOM Search View -->
+    <!-- ================================================================== -->
+    <record id="view_garment_bom_search" model="ir.ui.view">
+        <field name="name">garment.bom.search</field>
+        <field name="model">garment.bom</field>
+        <field name="arch" type="xml">
+            <search string="Tìm BOM">
+                <field name="name"/>
+                <field name="style_id"/>
+                <filter string="Đã Duyệt" name="approved" domain="[('state','=','approved')]"/>
+                <filter string="Nháp" name="draft" domain="[('state','=','draft')]"/>
+                <separator/>
+                <group>
+                    <filter string="Mã Hàng" name="group_style" context="{'group_by': 'style_id'}"/>
+                    <filter string="Trạng Thái" name="group_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- BOM Action -->
+    <!-- ================================================================== -->
+    <record id="action_garment_bom" model="ir.actions.act_window">
+        <field name="name">Định Mức BOM</field>
+        <field name="res_model">garment.bom</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_approved': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo Định Mức BOM đầu tiên
+            </p>
+            <p>
+                BOM (Bill of Materials) ghi nhận định mức nguyên phụ liệu
+                cho từng mẫu hàng: vải, chỉ, nút, khóa, nhãn, bao bì...
+            </p>
+        </field>
+    </record>
+</odoo>

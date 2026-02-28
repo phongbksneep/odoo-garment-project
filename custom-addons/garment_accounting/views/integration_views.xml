@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================== -->
+    <!-- Garment Order: Add Sale Order integration -->
+    <!-- ================================================================== -->
+    <record id="view_garment_order_form_sale_integration" model="ir.ui.view">
+        <field name="name">garment.order.form.sale.integration</field>
+        <field name="model">garment.order</field>
+        <field name="inherit_id" ref="garment_base.view_garment_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Add SO buttons in header -->
+            <xpath expr="//button[@name='action_cancel']" position="before">
+                <button name="action_create_sale_order" type="object"
+                        string="Tạo Sale Order"
+                        class="btn-secondary"
+                        invisible="sale_order_id"
+                        icon="fa-shopping-cart"/>
+                <button name="action_view_sale_order" type="object"
+                        string="Xem Sale Order"
+                        class="btn-link"
+                        invisible="not sale_order_id"
+                        icon="fa-external-link"/>
+            </xpath>
+            <!-- Add SO field in the form -->
+            <xpath expr="//field[@name='total_amount']" position="after">
+                <field name="sale_order_id" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- Garment Invoice: Add Account Move integration -->
+    <!-- ================================================================== -->
+    <record id="view_invoice_form_account_integration" model="ir.ui.view">
+        <field name="name">garment.invoice.form.account.integration</field>
+        <field name="model">garment.invoice</field>
+        <field name="inherit_id" ref="view_invoice_form"/>
+        <field name="arch" type="xml">
+            <!-- Add Account Move buttons in header -->
+            <xpath expr="//button[@name='action_cancel']" position="before">
+                <button name="action_create_account_move" type="object"
+                        string="Tạo Bút Toán"
+                        class="btn-secondary"
+                        invisible="account_move_id or state == 'draft'"
+                        icon="fa-book"/>
+                <button name="action_view_account_move" type="object"
+                        string="Xem Bút Toán"
+                        class="btn-link"
+                        invisible="not account_move_id"
+                        icon="fa-external-link"/>
+            </xpath>
+            <!-- Add account_move_id field -->
+            <xpath expr="//field[@name='tax_type']" position="after">
+                <field name="account_move_id" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- Material Receipt: Add Purchase Order integration -->
+    <!-- ================================================================== -->
+    <record id="view_material_receipt_form_po_integration" model="ir.ui.view">
+        <field name="name">garment.material.receipt.form.po.integration</field>
+        <field name="model">garment.material.receipt</field>
+        <field name="inherit_id" ref="garment_material.view_material_receipt_form"/>
+        <field name="arch" type="xml">
+            <!-- Add PO buttons in header -->
+            <xpath expr="//field[@name='state']" position="before">
+                <button name="action_create_purchase_order" type="object"
+                        string="Tạo PO Mua Hàng"
+                        class="btn-secondary"
+                        invisible="purchase_order_id or receipt_type != 'purchase'"
+                        icon="fa-truck"/>
+                <button name="action_view_purchase_order" type="object"
+                        string="Xem PO"
+                        class="btn-link"
+                        invisible="not purchase_order_id"
+                        icon="fa-external-link"/>
+            </xpath>
+            <!-- Add PO field -->
+            <xpath expr="//field[@name='supplier_id']" position="after">
+                <field name="purchase_order_id" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

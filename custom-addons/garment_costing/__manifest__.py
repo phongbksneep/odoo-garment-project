@@ -26,6 +26,7 @@
     'data': [
         'security/ir.model.access.csv',
         'data/costing_data.xml',
+        'views/bom_views.xml',
         'views/cost_sheet_views.xml',
         'views/menu_views.xml',
     ],

@@ -68,14 +68,28 @@
         </field>
     </record>
 
-    <!-- Graph View -->
+    <!-- Graph View – Trend line over time -->
     <record id="view_efficiency_analysis_graph" model="ir.ui.view">
         <field name="name">garment.efficiency.analysis.graph</field>
         <field name="model">garment.efficiency.analysis</field>
         <field name="arch" type="xml">
-            <graph string="Hiệu Suất Chuyền" type="bar">
+            <graph string="Xu Hướng Hiệu Suất" type="line">
+                <field name="date" interval="day"/>
                 <field name="sewing_line_id"/>
                 <field name="efficiency" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Graph View – Bar chart by sewing line -->
+    <record id="view_efficiency_analysis_graph_bar" model="ir.ui.view">
+        <field name="name">garment.efficiency.analysis.graph.bar</field>
+        <field name="model">garment.efficiency.analysis</field>
+        <field name="arch" type="xml">
+            <graph string="Hiệu Suất Theo Chuyền" type="bar">
+                <field name="sewing_line_id"/>
+                <field name="efficiency" type="measure"/>
+                <field name="total_output" type="measure"/>
             </graph>
         </field>
     </record>

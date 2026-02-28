@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ============================================================ -->
+        <!-- BOM for Polo Classic -->
+        <!-- ============================================================ -->
+        <record id="bom_polo_classic" model="garment.bom">
+            <field name="style_id" ref="garment_demo.style_polo_classic"/>
+            <field name="version">1</field>
+            <field name="state">approved</field>
+        </record>
+        <record id="bom_line_polo_fabric" model="garment.bom.line">
+            <field name="bom_id" ref="bom_polo_classic"/>
+            <field name="material_type">fabric</field>
+            <field name="description">Vải Pique Cotton TC-220</field>
+            <field name="uom">m</field>
+            <field name="consumption">1.35</field>
+            <field name="wastage_pct">3.0</field>
+            <field name="unit_price">58000</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="bom_line_polo_interlining" model="garment.bom.line">
+            <field name="bom_id" ref="bom_polo_classic"/>
+            <field name="material_type">interlining</field>
+            <field name="description">Mex Cổ Áo Polo</field>
+            <field name="uom">m</field>
+            <field name="consumption">0.08</field>
+            <field name="wastage_pct">5.0</field>
+            <field name="unit_price">15000</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="bom_line_polo_button" model="garment.bom.line">
+            <field name="bom_id" ref="bom_polo_classic"/>
+            <field name="material_type">button</field>
+            <field name="description">Nút Áo Polo 4 Lỗ</field>
+            <field name="uom">pcs</field>
+            <field name="consumption">3</field>
+            <field name="wastage_pct">2.0</field>
+            <field name="unit_price">600</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="bom_line_polo_thread" model="garment.bom.line">
+            <field name="bom_id" ref="bom_polo_classic"/>
+            <field name="material_type">thread</field>
+            <field name="description">Chỉ May Polyester 40/2</field>
+            <field name="uom">cone</field>
+            <field name="consumption">0.015</field>
+            <field name="wastage_pct">5.0</field>
+            <field name="unit_price">22000</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="bom_line_polo_label" model="garment.bom.line">
+            <field name="bom_id" ref="bom_polo_classic"/>
+            <field name="material_type">label</field>
+            <field name="description">Nhãn Chính + Size + Care Label</field>
+            <field name="uom">set</field>
+            <field name="consumption">1</field>
+            <field name="wastage_pct">2.0</field>
+            <field name="unit_price">1200</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="bom_line_polo_packing" model="garment.bom.line">
+            <field name="bom_id" ref="bom_polo_classic"/>
+            <field name="material_type">packing</field>
+            <field name="description">Polybag + Thẻ Tag + Carton</field>
+            <field name="uom">set</field>
+            <field name="consumption">1</field>
+            <field name="wastage_pct">0</field>
+            <field name="unit_price">2500</field>
+            <field name="sequence">6</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- BOM for T-Shirt Basic -->
+        <!-- ============================================================ -->
+        <record id="bom_tshirt_basic" model="garment.bom">
+            <field name="style_id" ref="garment_demo.style_tshirt_basic"/>
+            <field name="version">1</field>
+            <field name="state">approved</field>
+        </record>
+        <record id="bom_line_tshirt_fabric" model="garment.bom.line">
+            <field name="bom_id" ref="bom_tshirt_basic"/>
+            <field name="material_type">fabric</field>
+            <field name="description">Vải Cotton Single Jersey 180GSM</field>
+            <field name="uom">m</field>
+            <field name="consumption">1.2</field>
+            <field name="wastage_pct">3.0</field>
+            <field name="unit_price">45000</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="bom_line_tshirt_thread" model="garment.bom.line">
+            <field name="bom_id" ref="bom_tshirt_basic"/>
+            <field name="material_type">thread</field>
+            <field name="description">Chỉ May + Chỉ Vắt Sổ</field>
+            <field name="uom">cone</field>
+            <field name="consumption">0.02</field>
+            <field name="wastage_pct">5.0</field>
+            <field name="unit_price">22000</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="bom_line_tshirt_label" model="garment.bom.line">
+            <field name="bom_id" ref="bom_tshirt_basic"/>
+            <field name="material_type">label</field>
+            <field name="description">Nhãn In + Size Label</field>
+            <field name="uom">set</field>
+            <field name="consumption">1</field>
+            <field name="wastage_pct">2.0</field>
+            <field name="unit_price">800</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="bom_line_tshirt_packing" model="garment.bom.line">
+            <field name="bom_id" ref="bom_tshirt_basic"/>
+            <field name="material_type">packing</field>
+            <field name="description">Polybag + Sticker</field>
+            <field name="uom">set</field>
+            <field name="consumption">1</field>
+            <field name="wastage_pct">0</field>
+            <field name="unit_price">1500</field>
+            <field name="sequence">4</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- BOM for Shirt Dress -->
+        <!-- ============================================================ -->
+        <record id="bom_shirt_dress" model="garment.bom">
+            <field name="style_id" ref="garment_demo.style_shirt_dress"/>
+            <field name="version">1</field>
+            <field name="state">confirmed</field>
+        </record>
+        <record id="bom_line_shirt_fabric" model="garment.bom.line">
+            <field name="bom_id" ref="bom_shirt_dress"/>
+            <field name="material_type">fabric</field>
+            <field name="description">Vải Cotton Poplin 120GSM</field>
+            <field name="uom">m</field>
+            <field name="consumption">1.65</field>
+            <field name="wastage_pct">3.0</field>
+            <field name="unit_price">65000</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="bom_line_shirt_lining" model="garment.bom.line">
+            <field name="bom_id" ref="bom_shirt_dress"/>
+            <field name="material_type">lining</field>
+            <field name="description">Vải Lót Tay</field>
+            <field name="uom">m</field>
+            <field name="consumption">0.3</field>
+            <field name="wastage_pct">3.0</field>
+            <field name="unit_price">25000</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="bom_line_shirt_interlining" model="garment.bom.line">
+            <field name="bom_id" ref="bom_shirt_dress"/>
+            <field name="material_type">interlining</field>
+            <field name="description">Mex Cổ + Manchette + Nẹp</field>
+            <field name="uom">m</field>
+            <field name="consumption">0.25</field>
+            <field name="wastage_pct">5.0</field>
+            <field name="unit_price">12000</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="bom_line_shirt_button" model="garment.bom.line">
+            <field name="bom_id" ref="bom_shirt_dress"/>
+            <field name="material_type">button</field>
+            <field name="description">Nút Sừng 4 Lỗ 20L</field>
+            <field name="uom">pcs</field>
+            <field name="consumption">9</field>
+            <field name="wastage_pct">2.0</field>
+            <field name="unit_price">1200</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="bom_line_shirt_thread" model="garment.bom.line">
+            <field name="bom_id" ref="bom_shirt_dress"/>
+            <field name="material_type">thread</field>
+            <field name="description">Chỉ May Cotton 60/2</field>
+            <field name="uom">cone</field>
+            <field name="consumption">0.025</field>
+            <field name="wastage_pct">5.0</field>
+            <field name="unit_price">28000</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="bom_line_shirt_label" model="garment.bom.line">
+            <field name="bom_id" ref="bom_shirt_dress"/>
+            <field name="material_type">label</field>
+            <field name="description">Nhãn Dệt + Size + Care + Hang Tag</field>
+            <field name="uom">set</field>
+            <field name="consumption">1</field>
+            <field name="wastage_pct">2.0</field>
+            <field name="unit_price">2500</field>
+            <field name="sequence">6</field>
+        </record>
+        <record id="bom_line_shirt_packing" model="garment.bom.line">
+            <field name="bom_id" ref="bom_shirt_dress"/>
+            <field name="material_type">packing</field>
+            <field name="description">Polybag + Collar Insert + Butterfly + Carton</field>
+            <field name="uom">set</field>
+            <field name="consumption">1</field>
+            <field name="wastage_pct">0</field>
+            <field name="unit_price">4500</field>
+            <field name="sequence">7</field>
+        </record>
+    </data>
+</odoo>

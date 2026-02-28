@@ -74,9 +74,37 @@
         </field>
     </record>
 
+    <!-- Pivot View -->
+    <record id="view_daily_output_pivot" model="ir.ui.view">
+        <field name="name">garment.daily.output.pivot</field>
+        <field name="model">garment.daily.output</field>
+        <field name="arch" type="xml">
+            <pivot string="Sản Lượng Hàng Ngày">
+                <field name="sewing_line_id" type="row"/>
+                <field name="date" type="col" interval="week"/>
+                <field name="output_qty" type="measure"/>
+                <field name="defect_qty" type="measure"/>
+                <field name="efficiency" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View – Trend line over time -->
+    <record id="view_daily_output_graph" model="ir.ui.view">
+        <field name="name">garment.daily.output.graph</field>
+        <field name="model">garment.daily.output</field>
+        <field name="arch" type="xml">
+            <graph string="Xu Hướng Sản Lượng" type="line">
+                <field name="date" interval="day"/>
+                <field name="sewing_line_id"/>
+                <field name="output_qty" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
     <record id="action_daily_output" model="ir.actions.act_window">
         <field name="name">Sản Lượng Hàng Ngày</field>
         <field name="res_model">garment.daily.output</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,graph,pivot,form</field>
     </record>
 </odoo>

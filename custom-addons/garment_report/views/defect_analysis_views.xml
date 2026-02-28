@@ -51,19 +51,32 @@
         <field name="arch" type="xml">
             <pivot string="Phân Tích Lỗi">
                 <field name="defect_type_id" type="row"/>
-                <field name="style_id" type="col"/>
+                <field name="inspection_date" type="col" interval="week"/>
                 <field name="total_defects" type="measure"/>
                 <field name="defect_rate" type="measure"/>
             </pivot>
         </field>
     </record>
 
-    <!-- Graph View -->
+    <!-- Graph View – Trend line over time -->
     <record id="view_defect_analysis_graph" model="ir.ui.view">
         <field name="name">garment.defect.analysis.graph</field>
         <field name="model">garment.defect.analysis</field>
         <field name="arch" type="xml">
-            <graph string="Phân Tích Lỗi" type="pie">
+            <graph string="Xu Hướng Tỷ Lệ Lỗi" type="line">
+                <field name="inspection_date" interval="day"/>
+                <field name="defect_type_id"/>
+                <field name="total_defects" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Graph View – Pie chart by defect type -->
+    <record id="view_defect_analysis_graph_pie" model="ir.ui.view">
+        <field name="name">garment.defect.analysis.graph.pie</field>
+        <field name="model">garment.defect.analysis</field>
+        <field name="arch" type="xml">
+            <graph string="Phân Bổ Lỗi" type="pie">
                 <field name="defect_type_id"/>
                 <field name="total_defects" type="measure"/>
             </graph>
