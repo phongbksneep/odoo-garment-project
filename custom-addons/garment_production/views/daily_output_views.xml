@@ -28,6 +28,7 @@
                         <group>
                             <field name="efficiency"/>
                             <field name="defect_rate"/>
+                            <field name="pieces_per_hour"/>
                         </group>
                     </group>
                     <group>
@@ -47,11 +48,12 @@
                 <field name="production_order_id"/>
                 <field name="sewing_line_id"/>
                 <field name="shift"/>
-                <field name="target_qty"/>
-                <field name="output_qty"/>
-                <field name="defect_qty"/>
+                <field name="target_qty" sum="Tổng MT"/>
+                <field name="output_qty" sum="Tổng SL"/>
+                <field name="defect_qty" sum="Tổng Lỗi"/>
                 <field name="efficiency"/>
                 <field name="defect_rate"/>
+                <field name="pieces_per_hour"/>
             </list>
         </field>
     </record>

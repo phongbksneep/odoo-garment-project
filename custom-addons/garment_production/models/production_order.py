@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class GarmentProductionOrder(models.Model):
@@ -71,6 +71,16 @@ class GarmentProductionOrder(models.Model):
     actual_end_date = fields.Date(
         string='Ngày Kết Thúc Thực Tế',
     )
+    is_overdue = fields.Boolean(
+        string='Quá Hạn',
+        compute='_compute_is_overdue',
+        store=True,
+    )
+    delay_days = fields.Integer(
+        string='Số Ngày Trễ',
+        compute='_compute_is_overdue',
+        store=True,
+    )
     sam = fields.Float(
         string='SAM',
         related='style_id.sam',
@@ -89,6 +99,18 @@ class GarmentProductionOrder(models.Model):
     ], string='Trạng Thái', default='draft', tracking=True)
 
     notes = fields.Html(string='Ghi Chú')
+
+    @api.constrains('planned_qty')
+    def _check_planned_qty(self):
+        for order in self:
+            if order.planned_qty <= 0:
+                raise ValidationError('Số lượng kế hoạch phải lớn hơn 0.')
+
+    @api.constrains('start_date', 'end_date')
+    def _check_dates(self):
+        for order in self:
+            if order.start_date and order.end_date and order.end_date < order.start_date:
+                raise ValidationError('Ngày kết thúc dự kiến phải sau ngày bắt đầu.')
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -115,14 +137,31 @@ class GarmentProductionOrder(models.Model):
             else:
                 order.completion_rate = 0.0
 
+    @api.depends('end_date', 'state', 'actual_end_date')
+    def _compute_is_overdue(self):
+        today = fields.Date.today()
+        for order in self:
+            if order.end_date and order.state in ('confirmed', 'in_progress'):
+                delta = (today - order.end_date).days
+                order.is_overdue = delta > 0
+                order.delay_days = max(delta, 0)
+            elif order.end_date and order.state == 'done' and order.actual_end_date:
+                delta = (order.actual_end_date - order.end_date).days
+                order.is_overdue = delta > 0
+                order.delay_days = max(delta, 0)
+            else:
+                order.is_overdue = False
+                order.delay_days = 0
+
     def action_confirm(self):
         self.write({'state': 'confirmed'})
 
     def action_start(self):
-        self.write({
-            'state': 'in_progress',
-            'start_date': fields.Date.today(),
-        })
+        for order in self:
+            vals = {'state': 'in_progress'}
+            if not order.start_date:
+                vals['start_date'] = fields.Date.today()
+            order.write(vals)
 
     def action_done(self):
         self.write({
@@ -131,6 +170,9 @@ class GarmentProductionOrder(models.Model):
         })
 
     def action_cancel(self):
+        for order in self:
+            if order.state == 'done':
+                raise UserError('Không thể hủy lệnh sản xuất đã hoàn thành.')
         self.write({'state': 'cancelled'})
 
     def action_reset_draft(self):

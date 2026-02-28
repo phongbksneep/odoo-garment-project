@@ -1,5 +1,7 @@
+from odoo import fields
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import UserError
+from datetime import timedelta
 
 
 class TestFinishingOrder(TransactionCase):
@@ -111,3 +113,36 @@ class TestFinishingOrder(TransactionCase):
         fo.action_done()
         with self.assertRaises(UserError):
             fo.action_cancel()
+
+    def test_quality_pass_rate(self):
+        fo = self.env['garment.finishing.order'].create({
+            'production_order_id': self.prod_order.id,
+            'qty_received': 200,
+        })
+        self.env['garment.finishing.task'].create({
+            'finishing_order_id': fo.id,
+            'task_type': 'qc_check',
+            'qty_done': 180,
+        })
+        self.assertAlmostEqual(fo.quality_pass_rate, 90.0)
+
+    def test_is_overdue(self):
+        fo = self.env['garment.finishing.order'].create({
+            'production_order_id': self.prod_order.id,
+            'qty_received': 100,
+            'date_end': fields.Date.today() - timedelta(days=2),
+        })
+        fo.action_confirm()
+        fo.action_start()
+        self.assertTrue(fo.is_overdue)
+
+    def test_not_overdue_done(self):
+        fo = self.env['garment.finishing.order'].create({
+            'production_order_id': self.prod_order.id,
+            'qty_received': 100,
+            'date_end': fields.Date.today() - timedelta(days=2),
+        })
+        fo.action_confirm()
+        fo.action_start()
+        fo.action_done()
+        self.assertFalse(fo.is_overdue)

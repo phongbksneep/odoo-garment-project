@@ -91,6 +91,16 @@ class GarmentFinishingOrder(models.Model):
         compute='_compute_completion',
         store=True,
     )
+    quality_pass_rate = fields.Float(
+        string='Tỷ Lệ QC Đạt (%)',
+        compute='_compute_quality_pass_rate',
+        store=True,
+    )
+    is_overdue = fields.Boolean(
+        string='Quá Hạn',
+        compute='_compute_is_overdue',
+        store=True,
+    )
 
     state = fields.Selection([
         ('draft', 'Nháp'),
@@ -134,6 +144,24 @@ class GarmentFinishingOrder(models.Model):
                     order.qty_folded / order.qty_received) * 100
             else:
                 order.completion_rate = 0.0
+
+    @api.depends('qty_received', 'qty_passed_qc')
+    def _compute_quality_pass_rate(self):
+        for order in self:
+            if order.qty_received > 0:
+                order.quality_pass_rate = (
+                    order.qty_passed_qc / order.qty_received) * 100
+            else:
+                order.quality_pass_rate = 0.0
+
+    @api.depends('date_end', 'state')
+    def _compute_is_overdue(self):
+        today = fields.Date.today()
+        for order in self:
+            if order.date_end and order.state in ('confirmed', 'in_progress'):
+                order.is_overdue = today > order.date_end
+            else:
+                order.is_overdue = False
 
     def action_confirm(self):
         self.write({'state': 'confirmed'})

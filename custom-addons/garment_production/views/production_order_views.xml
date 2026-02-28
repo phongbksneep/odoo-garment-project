@@ -44,6 +44,10 @@
                             <field name="end_date"/>
                             <field name="actual_end_date"/>
                         </group>
+                        <group>
+                            <field name="is_overdue"/>
+                            <field name="delay_days" invisible="not is_overdue"/>
+                        </group>
                     </group>
                     <notebook>
                         <page string="Sản Lượng Hàng Ngày">
@@ -59,6 +63,7 @@
                                     <field name="working_hours"/>
                                     <field name="efficiency"/>
                                     <field name="defect_rate"/>
+                                    <field name="pieces_per_hour"/>
                                     <field name="notes"/>
                                 </list>
                             </field>
@@ -79,18 +84,23 @@
         <field name="arch" type="xml">
             <list string="Lệnh Sản Xuất" decoration-info="state == 'draft'"
                   decoration-warning="state == 'in_progress'"
-                  decoration-success="state == 'done'">
+                  decoration-success="state == 'done'"
+                  decoration-danger="is_overdue == True">
                 <field name="name"/>
                 <field name="garment_order_id"/>
                 <field name="style_id"/>
                 <field name="customer_id"/>
                 <field name="sewing_line_id"/>
-                <field name="planned_qty"/>
-                <field name="completed_qty"/>
+                <field name="planned_qty" sum="Tổng KH"/>
+                <field name="completed_qty" sum="Tổng HT"/>
+                <field name="defect_qty" sum="Tổng Lỗi"/>
                 <field name="completion_rate" widget="progressbar"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
-                <field name="state"/>
+                <field name="is_overdue" column_invisible="True"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'"
+                       decoration-warning="state in ('confirmed', 'in_progress')"
+                       decoration-success="state == 'done'"/>
             </list>
         </field>
     </record>
@@ -106,10 +116,15 @@
                 <field name="sewing_line_id"/>
                 <filter string="Đang SX" name="in_progress" domain="[('state', '=', 'in_progress')]"/>
                 <filter string="Hoàn Thành" name="done" domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <filter string="Quá Hạn" name="overdue" domain="[('is_overdue', '=', True)]"/>
+                <filter string="Tháng Này" name="this_month" domain="[('start_date', '&gt;=', (context_today() - relativedelta(day=1)).strftime('%%Y-%%m-%%d')), ('start_date', '&lt;=', (context_today() + relativedelta(day=31)).strftime('%%Y-%%m-%%d'))]"/>
                 <group>
                     <filter string="Chuyền May" name="group_line" context="{'group_by': 'sewing_line_id'}"/>
                     <filter string="Khách Hàng" name="group_customer" context="{'group_by': 'customer_id'}"/>
                     <filter string="Trạng Thái" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Đơn Hàng" name="group_order" context="{'group_by': 'garment_order_id'}"/>
+                    <filter string="Mẫu May" name="group_style" context="{'group_by': 'style_id'}"/>
                 </group>
             </search>
         </field>

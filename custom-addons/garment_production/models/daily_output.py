@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class GarmentDailyOutput(models.Model):
@@ -63,9 +64,25 @@ class GarmentDailyOutput(models.Model):
         compute='_compute_defect_rate',
         store=True,
     )
+    pieces_per_hour = fields.Float(
+        string='SP/Giờ/CN',
+        compute='_compute_pieces_per_hour',
+        store=True,
+        digits=(12, 2),
+    )
     notes = fields.Text(
         string='Ghi Chú / Nguyên Nhân',
     )
+
+    @api.constrains('output_qty', 'defect_qty', 'rework_qty')
+    def _check_quantities(self):
+        for record in self:
+            if record.output_qty < 0:
+                raise ValidationError('Sản lượng đạt không được âm.')
+            if record.defect_qty < 0:
+                raise ValidationError('Số lượng lỗi không được âm.')
+            if record.rework_qty < 0:
+                raise ValidationError('Số lượng sửa lại không được âm.')
 
     @api.depends('target_qty', 'output_qty')
     def _compute_efficiency(self):
@@ -83,3 +100,12 @@ class GarmentDailyOutput(models.Model):
                 record.defect_rate = (record.defect_qty / total) * 100
             else:
                 record.defect_rate = 0.0
+
+    @api.depends('output_qty', 'worker_count', 'working_hours')
+    def _compute_pieces_per_hour(self):
+        for record in self:
+            total_hours = record.worker_count * record.working_hours
+            if total_hours > 0:
+                record.pieces_per_hour = record.output_qty / total_hours
+            else:
+                record.pieces_per_hour = 0.0

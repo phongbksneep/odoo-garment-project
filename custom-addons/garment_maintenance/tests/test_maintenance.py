@@ -1,5 +1,7 @@
+from odoo import fields
 from odoo.tests import TransactionCase, tagged
 from odoo.exceptions import UserError
+from datetime import timedelta
 
 
 @tagged('post_install', '-at_install')
@@ -137,6 +139,38 @@ class TestMaintenance(TransactionCase):
         )
         req.action_confirm()
         self.assertEqual(machine.status, 'maintenance')
+
+    def test_is_overdue(self):
+        machine = self._create_machine()
+        req = self._create_request(
+            machine,
+            scheduled_date=fields.Date.today() - timedelta(days=3),
+        )
+        req.action_confirm()
+        self.assertTrue(req.is_overdue)
+
+    def test_not_overdue_when_done(self):
+        machine = self._create_machine()
+        req = self._create_request(
+            machine,
+            scheduled_date=fields.Date.today() - timedelta(days=1),
+        )
+        req.action_confirm()
+        req.action_start()
+        req.action_done()
+        self.assertFalse(req.is_overdue)
+
+    def test_resolution_hours(self):
+        machine = self._create_machine()
+        req = self._create_request(machine)
+        req.action_confirm()
+        req.action_start()
+        # Simulate request_date 24h ago
+        req.write({
+            'request_date': fields.Datetime.now() - timedelta(hours=24),
+        })
+        req.action_done()
+        self.assertGreater(req.resolution_hours, 23.0)
 
         req.action_start()
         req.action_done()

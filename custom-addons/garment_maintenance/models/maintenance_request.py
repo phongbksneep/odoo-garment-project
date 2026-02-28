@@ -68,6 +68,39 @@ class GarmentMaintenanceRequest(models.Model):
         ('cancelled', 'Đã Hủy'),
     ], string='Trạng Thái', default='draft', tracking=True)
 
+    is_overdue = fields.Boolean(
+        string='Quá Hạn',
+        compute='_compute_is_overdue',
+        store=True,
+    )
+    resolution_hours = fields.Float(
+        string='Thời Gian Xử Lý (giờ)',
+        compute='_compute_resolution_hours',
+        store=True,
+        digits=(10, 1),
+    )
+
+    # -------------------------------------------------------------------------
+    # Computed
+    # -------------------------------------------------------------------------
+    @api.depends('scheduled_date', 'state')
+    def _compute_is_overdue(self):
+        today = fields.Date.today()
+        for req in self:
+            if req.scheduled_date and req.state in ('draft', 'confirmed', 'in_progress'):
+                req.is_overdue = today > req.scheduled_date
+            else:
+                req.is_overdue = False
+
+    @api.depends('request_date', 'completion_date')
+    def _compute_resolution_hours(self):
+        for req in self:
+            if req.request_date and req.completion_date:
+                delta = req.completion_date - req.request_date
+                req.resolution_hours = delta.total_seconds() / 3600.0
+            else:
+                req.resolution_hours = 0.0
+
     # -------------------------------------------------------------------------
     # CRUD
     # -------------------------------------------------------------------------

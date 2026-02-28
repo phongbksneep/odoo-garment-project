@@ -473,13 +473,15 @@ Module quản lý sản xuất: chuyền may, lệnh sản xuất, sản lượn
 | **Mẫu May** | Many2one | 🔄 | Lấy từ đơn hàng may (related) | `Áo Polo nam` |
 | **Khách Hàng** | Many2one | 🔄 | Lấy từ đơn hàng (related) | `H&M Vietnam` |
 | **Chuyền May** | Many2one | | Phân chuyền may thực hiện | `Chuyền May 1` |
-| **SL Kế Hoạch** | Integer | ✅ | Số lượng cần sản xuất | `5,000` |
+| **SL Kế Hoạch** | Integer | ✅ | Số lượng cần sản xuất (> 0) | `5,000` |
 | **SL Hoàn Thành** | Integer | 🔄 | Tự tính từ sản lượng ngày | `3,200` |
 | **SL Lỗi** | Integer | 🔄 | Tự tính từ sản lượng ngày | `45` |
 | **Tỷ Lệ Hoàn Thành (%)** | Float | 🔄 | = SL Hoàn Thành / SL Kế Hoạch × 100 | `64.0%` |
 | **Ngày Bắt Đầu** | Date | | Tự set khi chuyển trạng thái | `2026-02-01` |
-| **Ngày Kết Thúc Dự Kiến** | Date | | Deadline cho lệnh SX | `2026-02-28` |
+| **Ngày Kết Thúc Dự Kiến** | Date | | Deadline cho lệnh SX (phải ≥ Ngày Bắt Đầu) | `2026-02-28` |
 | **Ngày Kết Thúc Thực Tế** | Date | | Tự set khi hoàn thành | `2026-02-26` |
+| **Quá Hạn** | Boolean | 🔄 | Tự tính — True nếu quá hạn (đang SX và vượt deadline) | `True` |
+| **Số Ngày Trễ** | Integer | 🔄 | Tự tính — số ngày trễ so với deadline | `3` |
 | **SAM** | Float | 🔄 | Lấy từ mẫu may (related) | `15.5` |
 | **Trạng Thái** | Selection | | draft → confirmed → in_progress → done / cancelled | `in_progress` |
 
@@ -515,13 +517,14 @@ stateDiagram-v2
 | **Ngày** | Date | ✅ | Ngày nhập sản lượng | `2026-02-15` |
 | **Ca Làm Việc** | Selection | ✅ | morning (Ca Sáng), afternoon (Ca Chiều), night (Ca Tối), overtime (Tăng Ca) | `morning` |
 | **Mục Tiêu (sp)** | Integer | | SL mục tiêu trong ca | `200` |
-| **Sản Lượng Đạt (sp)** | Integer | ✅ | SL thực tế hoàn thành | `185` |
-| **Số Lượng Lỗi (sp)** | Integer | | SL lỗi phát hiện | `8` |
-| **Sửa Lại (sp)** | Integer | | SL sửa chữa (rework) | `5` |
+| **Sản Lượng Đạt (sp)** | Integer | ✅ | SL thực tế hoàn thành (≥ 0) | `185` |
+| **Số Lượng Lỗi (sp)** | Integer | | SL lỗi phát hiện (≥ 0) | `8` |
+| **Sửa Lại (sp)** | Integer | | SL sửa chữa (rework, ≥ 0) | `5` |
 | **Số CN Làm Việc** | Integer | | Số công nhân trong ca | `35` |
 | **Giờ Làm Việc** | Float | | Giờ làm việc thực tế | `8.0` |
 | **Hiệu Suất (%)** | Float | 🔄 | = SL Đạt / Mục Tiêu × 100 | `92.5%` |
 | **Tỷ Lệ Lỗi (%)** | Float | 🔄 | = Lỗi / (Đạt + Lỗi) × 100 | `4.1%` |
+| **SP/Giờ/CN** | Float | 🔄 | = SL Đạt / (Số CN × Giờ LV) | `0.66` |
 
 ---
 
@@ -1171,6 +1174,8 @@ Hệ thống tự động kiểm tra hạn giao hàng (ship_date) của các k�
 | **Phụ Tùng Sử Dụng** | Text | | Liệt kê phụ tùng | `Bộ cần chỉ Juki` |
 | **Chi Phí** | Float | | Chi phí sửa chữa | `500,000` |
 | **Thời Gian Dừng (giờ)** | Float | | Tổng giờ máy dừng | `5.5` |
+| **Quá Hạn** | Boolean | 🔄 | True nếu vượt Ngày Dự Kiến (chưa xong) | `True` |
+| **Thời Gian Xử Lý (giờ)** | Float | 🔄 | Tự tính = Ngày HT − Ngày YC (giờ) | `29.5` |
 | **Trạng Thái** | Selection | | draft → confirmed → in_progress → done / cancelled | `done` |
 
 > ⚡ Khi xác nhận yêu cầu **breakdown**, máy tự động chuyển trạng thái **"Hư Hỏng"**. Khi hoàn thành, máy chuyển lại **"Đang Hoạt Động"**.
@@ -1661,6 +1666,8 @@ stateDiagram-v2
 | **QC Đạt** | Integer | 🔄 | Tổng từ task type=qc_check | `4,800` |
 | **Lỗi Phát Hiện** | Integer | 🔄 | Tổng lỗi tất cả task | `50` |
 | **Tỷ Lệ HT (%)** | Float | 🔄 | = Gấp Xếp / SL Nhận × 100 | `97.0%` |
+| **Tỷ Lệ QC Đạt (%)** | Float | 🔄 | = QC Đạt / SL Nhận × 100 | `96.0%` |
+| **Quá Hạn** | Boolean | 🔄 | True nếu vượt deadline (đang xử lý) | `False` |
 | **Trạng Thái** | Selection | | draft → confirmed → in_progress → done / cancelled | `done` |
 
 ### 17.2 Công Đoạn Hoàn Thiện (Finishing Task)

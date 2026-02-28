@@ -36,7 +36,9 @@
                             <field name="scheduled_date"/>
                             <field name="completion_date"/>
                             <field name="downtime_hours"/>
+                            <field name="resolution_hours"/>
                             <field name="cost"/>
+                            <field name="is_overdue"/>
                         </group>
                     </group>
                     <notebook>
@@ -64,17 +66,23 @@
         <field name="model">garment.maintenance.request</field>
         <field name="arch" type="xml">
             <list string="Yêu Cầu Bảo Trì"
-                  decoration-danger="priority == '3'"
+                  decoration-danger="is_overdue == True"
                   decoration-warning="priority == '2'">
                 <field name="name"/>
                 <field name="machine_id"/>
                 <field name="request_type"/>
                 <field name="priority"/>
                 <field name="request_date"/>
+                <field name="scheduled_date"/>
                 <field name="technician_id"/>
                 <field name="downtime_hours" sum="Tổng"/>
+                <field name="resolution_hours"/>
                 <field name="cost" sum="Tổng"/>
-                <field name="state"/>
+                <field name="is_overdue" column_invisible="True"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'confirmed'"
+                       decoration-warning="state == 'in_progress'"
+                       decoration-success="state == 'done'"/>
             </list>
         </field>
     </record>
@@ -91,6 +99,9 @@
                         domain="[('request_type', '=', 'breakdown')]"/>
                 <filter string="Đang Xử Lý" name="in_progress"
                         domain="[('state', '=', 'in_progress')]"/>
+                <separator/>
+                <filter string="Quá Hạn" name="overdue"
+                        domain="[('is_overdue', '=', True)]"/>
                 <group>
                     <filter string="Loại" name="group_type"
                             context="{'group_by': 'request_type'}"/>
