@@ -42,18 +42,18 @@
                         </group>
                         <group>
                             <field name="passed_qty"/>
-                            <field name="failed_qty"/>
-                            <field name="pass_rate" widget="progressbar"/>
+                            <field name="failed_qty" readonly="1"/>
+                            <field name="pass_rate" widget="progressbar" readonly="1"/>
                         </group>
                     </group>
                     <group>
                         <group>
-                            <field name="total_defects"/>
+                            <field name="total_defects" readonly="1"/>
                         </group>
                         <group>
-                            <field name="minor_defects"/>
-                            <field name="major_defects"/>
-                            <field name="critical_defects"/>
+                            <field name="minor_defects" readonly="1"/>
+                            <field name="major_defects" readonly="1"/>
+                            <field name="critical_defects" readonly="1"/>
                         </group>
                     </group>
                     <notebook>
@@ -89,9 +89,9 @@
                   decoration-danger="result == 'fail'">
                 <field name="name"/>
                 <field name="inspection_type"/>
-                <field name="production_order_id"/>
-                <field name="style_id"/>
-                <field name="inspector_id"/>
+                <field name="production_order_id" optional="show"/>
+                <field name="style_id" optional="show"/>
+                <field name="inspector_id" optional="show"/>
                 <field name="inspection_date"/>
                 <field name="inspected_qty"/>
                 <field name="passed_qty"/>

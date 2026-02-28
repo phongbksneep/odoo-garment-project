@@ -26,9 +26,9 @@
                             <field name="working_hours"/>
                         </group>
                         <group>
-                            <field name="efficiency"/>
-                            <field name="defect_rate"/>
-                            <field name="pieces_per_hour"/>
+                            <field name="efficiency" readonly="1"/>
+                            <field name="defect_rate" readonly="1"/>
+                            <field name="pieces_per_hour" readonly="1"/>
                         </group>
                     </group>
                     <group>

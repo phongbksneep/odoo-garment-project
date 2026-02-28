@@ -70,15 +70,15 @@
                         </group>
                     </group>
                     <group string="Tổng Kết Hoàn Thiện" col="6">
-                        <field name="qty_thread_cut"/>
-                        <field name="qty_pressed"/>
-                        <field name="qty_tagged"/>
-                        <field name="qty_folded"/>
-                        <field name="qty_passed_qc"/>
-                        <field name="qty_defect"/>
-                        <field name="completion_rate" widget="progressbar"/>
-                        <field name="quality_pass_rate" widget="progressbar"/>
-                        <field name="is_overdue"/>
+                        <field name="qty_thread_cut" readonly="1"/>
+                        <field name="qty_pressed" readonly="1"/>
+                        <field name="qty_tagged" readonly="1"/>
+                        <field name="qty_folded" readonly="1"/>
+                        <field name="qty_passed_qc" readonly="1"/>
+                        <field name="qty_defect" readonly="1"/>
+                        <field name="completion_rate" widget="progressbar" readonly="1"/>
+                        <field name="quality_pass_rate" widget="progressbar" readonly="1"/>
+                        <field name="is_overdue" readonly="1"/>
                     </group>
                     <notebook>
                         <page string="Công Việc Hoàn Thiện" name="tasks">

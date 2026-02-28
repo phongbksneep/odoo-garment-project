@@ -87,7 +87,7 @@
                         <group string="Chi Phí">
                             <field name="currency_id"/>
                             <field name="unit_price"/>
-                            <field name="total_cost"/>
+                            <field name="total_cost" readonly="1"/>
                             <field name="payment_status"/>
                             <field name="amount_paid"/>
                         </group>
@@ -103,17 +103,17 @@
                                     <field name="qty_ordered"/>
                                     <field name="qty_received"/>
                                     <field name="qty_rejected"/>
-                                    <field name="qty_accepted"/>
+                                    <field name="qty_accepted" readonly="1"/>
                                     <field name="unit_price"/>
-                                    <field name="subtotal"/>
+                                    <field name="subtotal" readonly="1"/>
                                     <field name="notes"/>
                                 </list>
                             </field>
                             <group class="oe_subtotal_footer">
-                                <field name="total_qty"/>
-                                <field name="total_received"/>
-                                <field name="total_rejected"/>
-                                <field name="completion_rate" widget="progressbar"/>
+                                <field name="total_qty" readonly="1"/>
+                                <field name="total_received" readonly="1"/>
+                                <field name="total_rejected" readonly="1"/>
+                                <field name="completion_rate" widget="progressbar" readonly="1"/>
                             </group>
                         </page>
                         <page string="Nguyên Liệu">

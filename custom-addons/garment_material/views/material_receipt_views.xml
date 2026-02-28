@@ -155,9 +155,9 @@
                                 </list>
                             </field>
                             <group class="oe_subtotal_footer">
-                                <field name="total_lines"/>
-                                <field name="total_qty"/>
-                                <field name="total_value"/>
+                                <field name="total_lines" readonly="1"/>
+                                <field name="total_qty" readonly="1"/>
+                                <field name="total_value" readonly="1"/>
                             </group>
                         </page>
                         <page string="QC &amp; Kiểm Tra" name="qc">

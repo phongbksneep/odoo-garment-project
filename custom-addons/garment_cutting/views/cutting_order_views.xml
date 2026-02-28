@@ -120,14 +120,17 @@
                   decoration-warning="state in ('spreading', 'cutting')"
                   decoration-success="state == 'done'">
                 <field name="name"/>
-                <field name="production_order_id"/>
+                <field name="production_order_id" optional="show"/>
                 <field name="style_id"/>
-                <field name="fabric_id"/>
+                <field name="fabric_id" optional="show"/>
                 <field name="date"/>
-                <field name="total_layers"/>
-                <field name="total_pieces_cut"/>
-                <field name="marker_efficiency"/>
-                <field name="state"/>
+                <field name="total_layers" optional="show"/>
+                <field name="total_pieces_cut" sum="Tổng Cắt"/>
+                <field name="marker_efficiency" optional="show"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state in ('spreading', 'cutting')"
+                       decoration-success="state == 'done'"/>
             </list>
         </field>
     </record>

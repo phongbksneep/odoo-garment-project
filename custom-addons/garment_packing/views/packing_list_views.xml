@@ -87,13 +87,13 @@
                         <page string="Tổng Hợp">
                             <group>
                                 <group>
-                                    <field name="total_cartons"/>
-                                    <field name="total_pieces"/>
+                                    <field name="total_cartons" readonly="1"/>
+                                    <field name="total_pieces" readonly="1"/>
                                 </group>
                                 <group>
-                                    <field name="total_gross_weight"/>
-                                    <field name="total_net_weight"/>
-                                    <field name="total_cbm"/>
+                                    <field name="total_gross_weight" readonly="1"/>
+                                    <field name="total_net_weight" readonly="1"/>
+                                    <field name="total_cbm" readonly="1"/>
                                 </group>
                             </group>
                         </page>

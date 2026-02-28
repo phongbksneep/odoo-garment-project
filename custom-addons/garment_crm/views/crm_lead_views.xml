@@ -18,14 +18,14 @@
                 <field name="lead_type" widget="badge"/>
                 <field name="partner_id"/>
                 <field name="contact_name" optional="hide"/>
-                <field name="product_category"/>
+                <field name="product_category" optional="show"/>
                 <field name="expected_qty" sum="Total"/>
                 <field name="expected_revenue" sum="Total"/>
                 <field name="weighted_revenue" sum="Total" optional="show"/>
-                <field name="probability" widget="progressbar"/>
+                <field name="probability" widget="progressbar" optional="show"/>
                 <field name="days_in_pipeline" optional="hide"/>
                 <field name="stage" widget="badge"/>
-                <field name="salesperson_id"/>
+                <field name="salesperson_id" optional="show"/>
                 <field name="source" optional="hide"/>
                 <field name="priority" widget="priority"/>
             </list>
@@ -104,11 +104,11 @@
                             <field name="product_category"/>
                             <field name="expected_qty"/>
                             <field name="expected_revenue"/>
-                            <field name="weighted_revenue"/>
+                            <field name="weighted_revenue" readonly="1"/>
                             <field name="currency_id"/>
                             <field name="expected_close_date"/>
                             <field name="probability" widget="progressbar"/>
-                            <field name="days_in_pipeline"/>
+                            <field name="days_in_pipeline" readonly="1"/>
                             <field name="priority" widget="priority"/>
                         </group>
                     </group>

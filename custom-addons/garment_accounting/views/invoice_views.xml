@@ -88,9 +88,9 @@
                                 </list>
                             </field>
                             <group class="oe_subtotal_footer">
-                                <field name="subtotal"/>
-                                <field name="tax_amount"/>
-                                <field name="total_amount" class="oe_subtotal_footer_separator"/>
+                                <field name="subtotal" readonly="1"/>
+                                <field name="tax_amount" readonly="1"/>
+                                <field name="total_amount" class="oe_subtotal_footer_separator" readonly="1"/>
                             </group>
                         </page>
                         <page string="Thanh Toán" name="payments">
@@ -104,10 +104,10 @@
                                 </list>
                             </field>
                             <group>
-                                <field name="paid_amount"/>
-                                <field name="residual"/>
-                                <field name="payment_status"/>
-                                <field name="is_overdue" invisible="not is_overdue"/>
+                                <field name="paid_amount" readonly="1"/>
+                                <field name="residual" readonly="1"/>
+                                <field name="payment_status" readonly="1"/>
+                                <field name="is_overdue" invisible="not is_overdue" readonly="1"/>
                             </group>
                         </page>
                         <page string="Ghi Chú" name="notes">

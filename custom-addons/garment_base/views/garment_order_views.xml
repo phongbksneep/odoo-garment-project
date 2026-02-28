@@ -56,9 +56,9 @@
                             <field name="currency_id"/>
                             <field name="incoterm"/>
                             <field name="payment_term"/>
-                            <field name="total_qty"/>
-                            <field name="total_amount"/>
-                            <field name="days_remaining"
+                            <field name="total_qty" readonly="1"/>
+                            <field name="total_amount" readonly="1"/>
+                            <field name="days_remaining" readonly="1"
                                    decoration-danger="days_remaining &lt; 0"
                                    decoration-warning="days_remaining &gt;= 0 and days_remaining &lt;= 7"
                                    decoration-success="days_remaining &gt; 7"/>

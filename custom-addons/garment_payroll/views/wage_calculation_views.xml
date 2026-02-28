@@ -41,20 +41,20 @@
                         <page string="Chi Tiết Lương">
                             <group>
                                 <group string="Lương Cơ Bản">
-                                    <field name="base_amount"/>
+                                    <field name="base_amount" readonly="1"/>
                                     <field name="attendance_days"/>
                                     <field name="attendance_ot_hours"/>
                                 </group>
                                 <group string="Lương Khoán">
-                                    <field name="total_pieces"/>
-                                    <field name="piece_rate_amount"/>
+                                    <field name="total_pieces" readonly="1"/>
+                                    <field name="piece_rate_amount" readonly="1"/>
                                 </group>
                             </group>
                             <group>
                                 <group string="Tăng Ca">
-                                    <field name="total_ot_hours"/>
+                                    <field name="total_ot_hours" readonly="1"/>
                                     <field name="ot_rate"/>
-                                    <field name="ot_amount"/>
+                                    <field name="ot_amount" readonly="1"/>
                                 </group>
                                 <group string="Thưởng">
                                     <field name="bonus_amount"/>
@@ -71,7 +71,7 @@
                                 <group>
                                     <field name="allowance_phone"/>
                                     <field name="allowance"/>
-                                    <field name="total_allowance"/>
+                                    <field name="total_allowance" readonly="1"/>
                                 </group>
                             </group>
                         </page>
@@ -79,17 +79,17 @@
                             <group>
                                 <group string="Bảo Hiểm">
                                     <field name="insurance_base"/>
-                                    <field name="bhxh_employee"/>
-                                    <field name="bhyt_employee"/>
-                                    <field name="bhtn_employee"/>
-                                    <field name="total_insurance"/>
+                                    <field name="bhxh_employee" readonly="1"/>
+                                    <field name="bhyt_employee" readonly="1"/>
+                                    <field name="bhtn_employee" readonly="1"/>
+                                    <field name="total_insurance" readonly="1"/>
                                 </group>
                                 <group string="Thuế TNCN">
                                     <field name="personal_deduction"/>
                                     <field name="dependent_count"/>
-                                    <field name="dependent_deduction"/>
-                                    <field name="taxable_income"/>
-                                    <field name="pit_amount"/>
+                                    <field name="dependent_deduction" readonly="1"/>
+                                    <field name="taxable_income" readonly="1"/>
+                                    <field name="pit_amount" readonly="1"/>
                                 </group>
                             </group>
                             <group>
@@ -99,10 +99,10 @@
                     </notebook>
                     <group>
                         <group>
-                            <field name="total_wage" class="oe_subtotal_footer_separator"/>
+                            <field name="total_wage" class="oe_subtotal_footer_separator" readonly="1"/>
                         </group>
                         <group>
-                            <field name="net_pay" class="oe_subtotal_footer_separator"/>
+                            <field name="net_pay" class="oe_subtotal_footer_separator" readonly="1"/>
                         </group>
                     </group>
                 </sheet>
