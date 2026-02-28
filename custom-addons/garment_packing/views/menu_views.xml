@@ -5,4 +5,16 @@
               parent="garment_base.menu_garment_warehouse_main"
               action="action_packing_list"
               sequence="10"/>
+
+    <menuitem id="menu_shipping_instruction"
+              name="Shipping Instruction (SI)"
+              parent="garment_base.menu_garment_warehouse_main"
+              action="action_shipping_instruction"
+              sequence="11"/>
+
+    <menuitem id="menu_certificate_origin"
+              name="Certificate of Origin (C/O)"
+              parent="garment_base.menu_garment_warehouse_main"
+              action="action_certificate_origin"
+              sequence="12"/>
 </odoo>

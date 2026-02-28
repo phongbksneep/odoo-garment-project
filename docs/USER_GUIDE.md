@@ -836,6 +836,107 @@ stateDiagram-v2
 | **Tổng CBM** | 🔄 = Số Thùng × CBM/Thùng |
 | **Barcode** | Mã vạch thùng carton |
 
+### 9.3 Shipping Instruction — Chỉ Thị Giao Hàng (SI)
+
+**Đường dẫn:** `Công Ty May → Kho & Giao Hàng → Shipping Instruction (SI)`
+
+Shipping Instruction là chứng từ gửi cho hãng tàu/hãng hàng không, hướng dẫn cách vận chuyển lô hàng. Mỗi SI gắn với một Packing List cụ thể.
+
+#### Bảng giải thích trường — Shipping Instruction (garment.shipping.instruction):
+
+| Trường | Kiểu | Ý Nghĩa | Giá trị / Ví dụ |
+|--------|------|---------|-----------------|
+| **Số SI** | Char | Mã tự động SI/YYYY/XXXXX | `SI/2026/00001` |
+| **Packing List** | Many2one | Packing list liên kết | `PKL/2026/00001` |
+| **Đơn Hàng** | Many2one | Đơn hàng (auto) | `GO-2026-00001` |
+| **Buyer** | Many2one | Khách hàng (auto) | `H&M Vietnam` |
+| **Ngày Tạo SI** | Date | Ngày lập | `2026-03-01` |
+| **Shipper** | Char | Tên người gửi | `Garment Co. Ltd` |
+| **Địa Chỉ Shipper** | Text | Địa chỉ shipper | `KCN Tân Bình, HCMC` |
+| **Consignee** | Char | Tên người nhận | `H&M Sweden AB` |
+| **Địa Chỉ Consignee** | Text | Địa chỉ consignee | `Stockholm, Sweden` |
+| **Notify Party** | Text | Bên thông báo | `Same as consignee` |
+| **Cảng Xếp Hàng** | Char | Port of loading | `Cat Lai, HCMC` |
+| **Cảng Dỡ Hàng** | Char | Port of discharge (auto) | `Hamburg` |
+| **Phương Thức** | Selection | Đường biển/hàng không (auto) | `sea` |
+| **Tàu / Chuyến Bay** | Char | Tên phương tiện (auto) | `MAERSK SEALAND` |
+| **ETD / ETA** | Date | Ngày xuất / đến (auto) | `2026-03-05` |
+| **Mô Tả Hàng Hóa** | Text | Nội dung hàng hóa | `100% Cotton T-Shirts` |
+| **Tổng Thùng / SL / Trọng Lượng / CBM** | Computed | Auto từ packing list | |
+| **Điều Khoản Thanh Toán** | Selection | T/T, L/C, D/A, D/P | `lc` |
+| **Incoterm** | Selection | FOB, CIF, CFR, EXW, DAP, DDP | `fob` |
+| **Số L/C** | Char | Số thư tín dụng (nếu L/C) | `LC-2026-001` |
+| **Chứng Từ Yêu Cầu** | Boolean × 6 | Invoice, PL, B/L, C/O, Fumigation, Inspection | ✅ / ❌ |
+| **Trạng Thái** | Selection | draft → confirmed → sent → done / cancelled | `confirmed` |
+
+#### Workflow SI:
+
+```mermaid
+stateDiagram-v2
+    [*] --> Nháp
+    Nháp --> Đã_Xác_Nhận: Xác nhận
+    Đã_Xác_Nhận --> Đã_Gửi_Hãng_Tàu: Gửi SI
+    Đã_Gửi_Hãng_Tàu --> Hoàn_Thành: Done
+    Nháp --> Đã_Hủy: Hủy
+    Đã_Xác_Nhận --> Đã_Hủy: Hủy
+    Đã_Gửi_Hãng_Tàu --> Đã_Hủy: Hủy
+    Đã_Hủy --> Nháp: Đặt lại
+```
+
+### 9.4 Certificate of Origin — Chứng Nhận Xuất Xứ (C/O)
+
+**Đường dẫn:** `Công Ty May → Kho & Giao Hàng → Certificate of Origin (C/O)`
+
+Chứng nhận xuất xứ (C/O) là chứng từ xác nhận nguồn gốc xuất xứ hàng hóa, cần thiết để hưởng ưu đãi thuế quan theo các hiệp định thương mại tự do (FTA).
+
+#### Bảng giải thích trường — Certificate of Origin (garment.certificate.origin):
+
+| Trường | Kiểu | Ý Nghĩa | Giá trị / Ví dụ |
+|--------|------|---------|-----------------|
+| **Số C/O** | Char | Mã tự động CO/YYYY/XXXXX | `CO/2026/00001` |
+| **Packing List** | Many2one | Packing list liên kết | `PKL/2026/00001` |
+| **Đơn Hàng** | Many2one | Đơn hàng (auto) | `GO-2026-00001` |
+| **Buyer** | Many2one | Khách hàng (auto) | `H&M Vietnam` |
+| **Ngày Cấp** | Date | Ngày cấp C/O | `2026-03-02` |
+| **Loại C/O** | Selection | Form A, B, D, E, AK, AJ, AI, AANZ, VC, VK, EUR.1, CPTPP, RCEP, Non-Preferential | `form_d` |
+| **Nước Xuất Xứ** | Char | Country of origin | `Vietnam` |
+| **Nước Đến** | Char | Destination country | `Korea` |
+| **Người Xuất Khẩu** | Char | Exporter name | `Garment Co. Ltd` |
+| **Người Nhập Khẩu** | Char | Importer name | `Samsung SDS` |
+| **Cơ Quan Cấp** | Char | Issuing authority | `VCCI` |
+| **Số Tham Chiếu** | Char | Số tham chiếu VCCI | `REF-2026-001` |
+| **Số Invoice / Ngày** | Char + Date | Invoice liên quan | `INV-2026-100` |
+| **Cảng Xếp / Dỡ Hàng** | Char | Port of loading/discharge | `Cat Lai / Busan` |
+| **Trạng Thái** | Selection | draft → applied → approved → issued / cancelled | `applied` |
+
+#### Chi Tiết Hàng Hóa (C/O Line — garment.certificate.origin.line):
+
+| Trường | Ý Nghĩa |
+|--------|---------|
+| **Mô Tả Hàng Hóa** | Tên / mô tả sản phẩm |
+| **Mã HS** | Harmonized System code |
+| **Số Lượng** | Số lượng hàng |
+| **Đơn Vị** | Đơn vị tính (PCS, KG...) |
+| **Trọng Lượng (kg)** | Trọng lượng hàng |
+| **Trị Giá FOB (USD)** | Giá trị FOB |
+| **Tiêu Chí Xuất Xứ** | WO (Wholly Obtained), PE, RVC, CTC, SP |
+
+#### Workflow C/O:
+
+```mermaid
+stateDiagram-v2
+    [*] --> Nháp
+    Nháp --> Đã_Nộp_Hồ_Sơ: Nộp hồ sơ
+    Đã_Nộp_Hồ_Sơ --> Đã_Duyệt: Duyệt
+    Đã_Duyệt --> Đã_Cấp: Cấp C/O
+    Nháp --> Đã_Hủy: Hủy
+    Đã_Nộp_Hồ_Sơ --> Đã_Hủy: Hủy
+    Đã_Duyệt --> Đã_Hủy: Hủy
+    Đã_Hủy --> Nháp: Đặt lại
+```
+
+> 💡 **Mẹo:** Từ Packing List, nhấn nút thống kê **SI** hoặc **C/O** ở góc trên để nhanh chóng tạo hoặc xem các chứng từ liên quan.
+
 ---
 
 ## 10. Module Garment Planning — Kế Hoạch Sản Xuất

@@ -24,6 +24,8 @@
         'security/ir.model.access.csv',
         'data/packing_data.xml',
         'views/packing_list_views.xml',
+        'views/shipping_instruction_views.xml',
+        'views/certificate_origin_views.xml',
         'views/menu_views.xml',
     ],
     'installable': True,

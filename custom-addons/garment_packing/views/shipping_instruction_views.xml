@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Shipping Instruction Form View -->
+    <record id="view_shipping_instruction_form" model="ir.ui.view">
+        <field name="name">garment.shipping.instruction.form</field>
+        <field name="model">garment.shipping.instruction</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Xác Nhận"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_send" type="object" string="Gửi Hãng Tàu"
+                            class="btn-primary"
+                            invisible="state != 'confirmed'"/>
+                    <button name="action_done" type="object" string="Hoàn Thành"
+                            class="btn-primary"
+                            invisible="state != 'sent'"/>
+                    <button name="action_cancel" type="object" string="Hủy"
+                            invisible="state in ('done', 'cancelled')"/>
+                    <button name="action_reset" type="object" string="Đặt Lại Nháp"
+                            invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,sent,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="packing_list_id"/>
+                            <field name="garment_order_id"/>
+                            <field name="buyer_id"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="payment_term"/>
+                            <field name="incoterm"/>
+                            <field name="lc_number"
+                                   invisible="payment_term != 'lc'"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Shipper / Consignee">
+                            <group>
+                                <group string="Shipper (Người Gửi)">
+                                    <field name="shipper_name"/>
+                                    <field name="shipper_address"/>
+                                </group>
+                                <group string="Consignee (Người Nhận)">
+                                    <field name="consignee_name"/>
+                                    <field name="consignee_address"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="notify_party" colspan="2"/>
+                            </group>
+                        </page>
+                        <page string="Chi Tiết Vận Chuyển">
+                            <group>
+                                <group>
+                                    <field name="ship_mode"/>
+                                    <field name="vessel_name"/>
+                                    <field name="port_of_loading"/>
+                                    <field name="port_of_discharge"/>
+                                </group>
+                                <group>
+                                    <field name="etd"/>
+                                    <field name="eta"/>
+                                </group>
+                            </group>
+                            <group string="Thông Tin Hàng Hóa">
+                                <group>
+                                    <field name="total_cartons"/>
+                                    <field name="total_pieces"/>
+                                </group>
+                                <group>
+                                    <field name="total_gross_weight"/>
+                                    <field name="total_cbm"/>
+                                </group>
+                            </group>
+                            <field name="cargo_description" placeholder="Mô tả hàng hóa..."/>
+                        </page>
+                        <page string="Chứng Từ Yêu Cầu">
+                            <group>
+                                <group>
+                                    <field name="doc_commercial_invoice"/>
+                                    <field name="doc_packing_list"/>
+                                    <field name="doc_bill_of_lading"/>
+                                </group>
+                                <group>
+                                    <field name="doc_certificate_of_origin"/>
+                                    <field name="doc_fumigation"/>
+                                    <field name="doc_inspection"/>
+                                </group>
+                            </group>
+                            <field name="doc_others" placeholder="Chứng từ khác nếu có..."/>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="special_instructions"
+                                   placeholder="Hướng dẫn đặc biệt cho hãng tàu..."/>
+                            <field name="notes" placeholder="Ghi chú thêm..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Shipping Instruction List View -->
+    <record id="view_shipping_instruction_list" model="ir.ui.view">
+        <field name="name">garment.shipping.instruction.list</field>
+        <field name="model">garment.shipping.instruction</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="packing_list_id"/>
+                <field name="buyer_id"/>
+                <field name="date"/>
+                <field name="ship_mode"/>
+                <field name="vessel_name"/>
+                <field name="etd"/>
+                <field name="incoterm"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'confirmed'"
+                       decoration-primary="state == 'sent'"
+                       decoration-success="state == 'done'"
+                       decoration-danger="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Shipping Instruction Search View -->
+    <record id="view_shipping_instruction_search" model="ir.ui.view">
+        <field name="name">garment.shipping.instruction.search</field>
+        <field name="model">garment.shipping.instruction</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="packing_list_id"/>
+                <field name="buyer_id"/>
+                <field name="vessel_name"/>
+                <filter string="Nháp" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="Đã Xác Nhận" name="confirmed" domain="[('state','=','confirmed')]"/>
+                <filter string="Đã Gửi" name="sent" domain="[('state','=','sent')]"/>
+                <filter string="Hoàn Thành" name="done" domain="[('state','=','done')]"/>
+                <separator/>
+                <filter string="Đường Biển" name="sea" domain="[('ship_mode','=','sea')]"/>
+                <filter string="Đường Hàng Không" name="air" domain="[('ship_mode','=','air')]"/>
+                <group>
+                    <filter string="Buyer" name="group_buyer" context="{'group_by': 'buyer_id'}"/>
+                    <filter string="Trạng Thái" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Tháng" name="group_month" context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_shipping_instruction" model="ir.actions.act_window">
+        <field name="name">Shipping Instruction (SI)</field>
+        <field name="res_model">garment.shipping.instruction</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo Shipping Instruction đầu tiên
+            </p>
+            <p>Quản lý chỉ thị giao hàng cho hãng tàu / hãng hàng không.</p>
+        </field>
+    </record>
+</odoo>

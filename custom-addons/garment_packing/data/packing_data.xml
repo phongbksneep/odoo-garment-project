@@ -8,5 +8,20 @@
             <field name="padding">5</field>
             <field name="company_id" eval="False"/>
         </record>
+        <record id="seq_garment_shipping_instruction" model="ir.sequence">
+            <field name="name">Garment Shipping Instruction</field>
+            <field name="code">garment.shipping.instruction</field>
+            <field name="prefix">SI/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_garment_certificate_origin" model="ir.sequence">
+            <field name="name">Garment Certificate of Origin</field>
+            <field name="code">garment.certificate.origin</field>
+            <field name="prefix">CO/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
     </data>
 </odoo>

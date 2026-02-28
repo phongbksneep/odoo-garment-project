@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Certificate of Origin Form View -->
+    <record id="view_certificate_origin_form" model="ir.ui.view">
+        <field name="name">garment.certificate.origin.form</field>
+        <field name="model">garment.certificate.origin</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_apply" type="object" string="Nộp Hồ Sơ"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_approve" type="object" string="Duyệt"
+                            class="btn-primary"
+                            invisible="state != 'applied'"/>
+                    <button name="action_issue" type="object" string="Cấp C/O"
+                            class="btn-primary"
+                            invisible="state != 'approved'"/>
+                    <button name="action_cancel" type="object" string="Hủy"
+                            invisible="state in ('issued', 'cancelled')"/>
+                    <button name="action_reset" type="object" string="Đặt Lại Nháp"
+                            invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,applied,approved,issued"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="packing_list_id"/>
+                            <field name="garment_order_id"/>
+                            <field name="buyer_id"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="co_type"/>
+                            <field name="country_of_origin"/>
+                            <field name="destination_country"/>
+                            <field name="issuing_authority"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Exporter / Importer">
+                            <group>
+                                <group string="Người Xuất Khẩu (Exporter)">
+                                    <field name="exporter_name"/>
+                                    <field name="exporter_address"/>
+                                </group>
+                                <group string="Người Nhập Khẩu (Importer)">
+                                    <field name="importer_name"/>
+                                    <field name="importer_address"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Chi Tiết Hàng Hóa">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="description"/>
+                                    <field name="hs_code"/>
+                                    <field name="quantity"/>
+                                    <field name="uom"/>
+                                    <field name="weight"/>
+                                    <field name="fob_value"/>
+                                    <field name="origin_criteria"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Vận Chuyển &amp; Chứng Từ">
+                            <group>
+                                <group>
+                                    <field name="transport_means"/>
+                                    <field name="port_of_loading"/>
+                                    <field name="port_of_discharge"/>
+                                </group>
+                                <group>
+                                    <field name="reference_no"/>
+                                    <field name="invoice_number"/>
+                                    <field name="invoice_date"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="notes" placeholder="Ghi chú thêm..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Certificate of Origin List View -->
+    <record id="view_certificate_origin_list" model="ir.ui.view">
+        <field name="name">garment.certificate.origin.list</field>
+        <field name="model">garment.certificate.origin</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="packing_list_id"/>
+                <field name="buyer_id"/>
+                <field name="date"/>
+                <field name="co_type"/>
+                <field name="country_of_origin"/>
+                <field name="destination_country"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'applied'"
+                       decoration-primary="state == 'approved'"
+                       decoration-success="state == 'issued'"
+                       decoration-danger="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Certificate of Origin Search View -->
+    <record id="view_certificate_origin_search" model="ir.ui.view">
+        <field name="name">garment.certificate.origin.search</field>
+        <field name="model">garment.certificate.origin</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="packing_list_id"/>
+                <field name="buyer_id"/>
+                <filter string="Nháp" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="Đã Nộp" name="applied" domain="[('state','=','applied')]"/>
+                <filter string="Đã Duyệt" name="approved" domain="[('state','=','approved')]"/>
+                <filter string="Đã Cấp" name="issued" domain="[('state','=','issued')]"/>
+                <separator/>
+                <filter string="Form D (ATIGA)" name="form_d" domain="[('co_type','=','form_d')]"/>
+                <filter string="EUR.1 (EVFTA)" name="eur1" domain="[('co_type','=','eur1')]"/>
+                <filter string="RCEP" name="rcep" domain="[('co_type','=','rcep')]"/>
+                <group>
+                    <filter string="Loại C/O" name="group_type" context="{'group_by': 'co_type'}"/>
+                    <filter string="Buyer" name="group_buyer" context="{'group_by': 'buyer_id'}"/>
+                    <filter string="Trạng Thái" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Tháng" name="group_month" context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_certificate_origin" model="ir.actions.act_window">
+        <field name="name">Certificate of Origin (C/O)</field>
+        <field name="res_model">garment.certificate.origin</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo Certificate of Origin đầu tiên
+            </p>
+            <p>Quản lý chứng nhận xuất xứ hàng hóa (C/O) cho xuất khẩu.</p>
+        </field>
+    </record>
+</odoo>

@@ -62,6 +62,26 @@ class GarmentPackingList(models.Model):
         string='Cartons',
     )
 
+    # --- Related Shipping Documents ---
+    shipping_instruction_ids = fields.One2many(
+        'garment.shipping.instruction',
+        'packing_list_id',
+        string='Shipping Instructions',
+    )
+    certificate_origin_ids = fields.One2many(
+        'garment.certificate.origin',
+        'packing_list_id',
+        string='Certificates of Origin',
+    )
+    si_count = fields.Integer(
+        string='SI Count',
+        compute='_compute_doc_counts',
+    )
+    co_count = fields.Integer(
+        string='C/O Count',
+        compute='_compute_doc_counts',
+    )
+
     # --- Computed Totals ---
     total_cartons = fields.Integer(
         string='Total Cartons',
@@ -118,6 +138,11 @@ class GarmentPackingList(models.Model):
     # -------------------------------------------------------------------------
     # Compute
     # -------------------------------------------------------------------------
+    def _compute_doc_counts(self):
+        for rec in self:
+            rec.si_count = len(rec.shipping_instruction_ids)
+            rec.co_count = len(rec.certificate_origin_ids)
+
     @api.depends(
         'carton_ids.carton_count', 'carton_ids.total_pcs',
         'carton_ids.total_gross', 'carton_ids.total_net', 'carton_ids.total_cbm',
@@ -168,3 +193,25 @@ class GarmentPackingList(models.Model):
     def action_reset_draft(self):
         self.ensure_one()
         self.write({'state': 'draft'})
+
+    def action_view_shipping_instructions(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Shipping Instructions'),
+            'res_model': 'garment.shipping.instruction',
+            'view_mode': 'list,form',
+            'domain': [('packing_list_id', '=', self.id)],
+            'context': {'default_packing_list_id': self.id},
+        }
+
+    def action_view_certificates_origin(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Certificates of Origin'),
+            'res_model': 'garment.certificate.origin',
+            'view_mode': 'list,form',
+            'domain': [('packing_list_id', '=', self.id)],
+            'context': {'default_packing_list_id': self.id},
+        }
