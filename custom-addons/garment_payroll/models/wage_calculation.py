@@ -5,8 +5,12 @@ from odoo.exceptions import UserError
 class GarmentWageCalculation(models.Model):
     _name = 'garment.wage.calculation'
     _description = 'Monthly Wage Calculation'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'garment.audit.mixin']
     _order = 'month desc, employee_id'
+
+    def _audit_tracked_fields(self):
+        return ['state', 'base_salary', 'total_wage', 'net_pay',
+                'bonus_amount', 'deduction']
 
     name = fields.Char(
         string='Reference',

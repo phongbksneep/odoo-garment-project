@@ -4,8 +4,12 @@ from odoo import models, fields, api
 class GarmentQCInspection(models.Model):
     _name = 'garment.qc.inspection'
     _description = 'Kiểm Tra Chất Lượng'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'garment.audit.mixin']
     _order = 'create_date desc'
+
+    def _audit_tracked_fields(self):
+        return ['inspection_type', 'result', 'state', 'inspected_qty',
+                'passed_qty', 'failed_qty']
 
     name = fields.Char(
         string='Số Phiếu QC',

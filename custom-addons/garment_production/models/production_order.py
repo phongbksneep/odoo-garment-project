@@ -5,8 +5,11 @@ from odoo.exceptions import ValidationError
 class GarmentProductionOrder(models.Model):
     _name = 'garment.production.order'
     _description = 'Lệnh Sản Xuất May'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'garment.audit.mixin']
     _order = 'create_date desc'
+
+    def _audit_tracked_fields(self):
+        return ['garment_order_id', 'sewing_line_id', 'state', 'planned_qty']
 
     name = fields.Char(
         string='Số Lệnh SX',

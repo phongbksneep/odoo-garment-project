@@ -37,7 +37,8 @@
 27. [Module Garment Print — In Ấn, Xuất Excel & Cảnh Báo Tự Động](#27-module-garment-print--in-ấn-xuất-excel--cảnh-báo-tự-động)
 28. [Quản Lý Nhân Viên & Phân Quyền](#28-quản-lý-nhân-viên--phân-quyền)
 29. [Module Garment Mobile — Responsive & Phê Duyệt](#29-module-garment-mobile--responsive--phê-duyệt)
-30. [FAQ — Câu hỏi thường gặp](#30-faq--câu-hỏi-thường-gặp)
+30. [🔐 Nhật Ký Kiểm Soát (Audit Log)](#30-🔐-nhật-ký-kiểm-soát-audit-log)
+31. [FAQ — Câu hỏi thường gặp](#31-faq--câu-hỏi-thường-gặp)
 
 ---
 
@@ -2364,7 +2365,60 @@ Toàn bộ giao diện garment được tối ưu cho mobile:
 
 ---
 
-## 30. FAQ — Câu Hỏi Thường Gặp
+## 30. 🔐 Nhật Ký Kiểm Soát (Audit Log)
+
+**Đường dẫn:** `Công Ty May → Cấu Hình → 🔐 Nhật Ký Kiểm Soát`
+
+Tính năng Audit Log ghi nhận chi tiết mọi thay đổi trên dữ liệu quan trọng: **đơn hàng, lương, QC, lệnh sản xuất**. Giúp ban quản lý kiểm soát ai đã sửa/xóa dữ liệu, vào lúc nào, thay đổi gì.
+
+### 30.1 Tính Năng Chính
+
+| Tính Năng | Mô Tả |
+|---|---|
+| **Tự động ghi log** | Hệ thống tự ghi log khi tạo, sửa, xóa dữ liệu quan trọng |
+| **Theo dõi đổi trạng thái** | Ghi riêng khi đơn hàng đổi trạng thái (xác nhận, hủy, hoàn thành...) |
+| **Phân mức nghiêm trọng** | 3 mức: Thông tin (info), Cảnh báo (warning), Nghiêm trọng (critical) |
+| **Lưu giá trị cũ → mới** | Hiển thị rõ ràng giá trị trước và sau khi thay đổi |
+| **Ghi IP người dùng** | Lưu địa chỉ IP thực hiện thao tác |
+| **Chỉ đọc** | Log không thể sửa hoặc xóa bởi người dùng |
+
+### 30.2 Các Đối Tượng Được Theo Dõi
+
+| Đối Tượng | Trường Theo Dõi |
+|---|---|
+| **Đơn Hàng** (garment.order) | Khách hàng, PO, Mẫu may, Ngày giao, Đơn giá, Trạng thái, Tổng SL |
+| **Tính Lương** (garment.wage.calculation) | Trạng thái, Lương cơ bản, Tổng lương, Lương net, Thưởng, Khấu trừ |
+| **Kiểm Tra QC** (garment.qc.inspection) | Loại KT, Kết quả, Trạng thái, SL kiểm, SL đạt, SL lỗi |
+| **Lệnh Sản Xuất** (garment.production.order) | Đơn hàng, Chuyền may, Trạng thái, SL kế hoạch |
+
+### 30.3 Phân Mức Nghiêm Trọng
+
+| Mức | Màu | Khi Nào |
+|---|---|---|
+| 🔵 **Info** | Xanh | Tạo mới, sửa thông thường |
+| 🟡 **Warning** | Vàng | Đổi trạng thái sang hủy/thanh toán/xác nhận |
+| 🔴 **Critical** | Đỏ | Xóa bản ghi |
+
+### 30.4 Cách Sử Dụng
+
+1. **Xem log:** Vào `Cấu Hình → 🔐 Nhật Ký Kiểm Soát` — mặc định hiển thị log hôm nay
+2. **Lọc nhanh:** Dùng bộ lọc theo hành động (Tạo/Sửa/Xóa), đối tượng (Đơn hàng/Lương/QC), hoặc mức nghiêm trọng
+3. **Nhóm dữ liệu:** Nhóm theo Người dùng, Hành động, Đối tượng, hoặc Ngày
+4. **Xem chi tiết:** Click vào dòng log để xem form chi tiết — bao gồm giá trị JSON cũ/mới
+
+### 30.5 Phân Quyền
+
+| Vai Trò | Quyền |
+|---|---|
+| Nhân viên / Trưởng nhóm | Không thấy menu Audit Log |
+| Trưởng phòng (Dept Manager) | Xem log (chỉ đọc) |
+| Quản trị viên (Administrator) | Xem + toàn quyền quản lý |
+
+> 💡 **Mẹo:** Sử dụng bộ lọc **"Nghiêm Trọng"** để nhanh chóng phát hiện các thao tác xóa dữ liệu quan trọng. Kết hợp nhóm theo **"Người Dùng"** để kiểm soát ai thực hiện nhiều thay đổi nhất.
+
+---
+
+## 31. FAQ — Câu Hỏi Thường Gặp
 
 ### Q: Làm sao để thay đổi ngôn ngữ sang Tiếng Việt?
 **A:** Vào **Settings → Translations → Load a Translation** → Chọn `Vietnamese / Tiếng Việt` → Install.

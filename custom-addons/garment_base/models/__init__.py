@@ -1,3 +1,4 @@
+from . import audit_log
 from . import fabric
 from . import accessory
 from . import garment_style

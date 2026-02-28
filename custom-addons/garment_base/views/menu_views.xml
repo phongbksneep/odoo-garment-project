@@ -99,4 +99,11 @@
               parent="menu_garment_config"
               action="action_wash_symbol"
               sequence="30"/>
+
+    <menuitem id="menu_garment_audit_log"
+              name="🔐 Nhật Ký Kiểm Soát"
+              parent="menu_garment_config"
+              action="action_garment_audit_log"
+              groups="group_garment_dept_manager"
+              sequence="90"/>
 </odoo>

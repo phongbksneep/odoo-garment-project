@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================= AUDIT LOG LIST ================= -->
+    <record id="view_garment_audit_log_tree" model="ir.ui.view">
+        <field name="name">garment.audit.log.tree</field>
+        <field name="model">garment.audit.log</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="severity=='critical'"
+                  decoration-warning="severity=='warning'"
+                  decoration-info="severity=='info'"
+                  create="0" edit="0" delete="0">
+                <field name="create_date" string="Thời Gian"/>
+                <field name="user_id" widget="many2one_avatar"/>
+                <field name="action" widget="badge"
+                       decoration-info="action=='create'"
+                       decoration-warning="action=='write'"
+                       decoration-danger="action in ('unlink','state_change')"/>
+                <field name="model_description"/>
+                <field name="record_name"/>
+                <field name="field_changes" optional="show"/>
+                <field name="old_state" optional="hide"/>
+                <field name="new_state" optional="hide"/>
+                <field name="ip_address" optional="hide"/>
+                <field name="severity" widget="badge"
+                       decoration-info="severity=='info'"
+                       decoration-warning="severity=='warning'"
+                       decoration-danger="severity=='critical'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ================= AUDIT LOG FORM ================= -->
+    <record id="view_garment_audit_log_form" model="ir.ui.view">
+        <field name="name">garment.audit.log.form</field>
+        <field name="model">garment.audit.log</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="display_name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Thông Tin Chung">
+                            <field name="create_date" string="Thời Gian"/>
+                            <field name="user_id"/>
+                            <field name="action"/>
+                            <field name="severity"/>
+                            <field name="ip_address"/>
+                        </group>
+                        <group string="Bản Ghi">
+                            <field name="model_description"/>
+                            <field name="model_name"/>
+                            <field name="res_id"/>
+                            <field name="record_name"/>
+                        </group>
+                    </group>
+
+                    <group string="Thay Đổi Trạng Thái"
+                           invisible="action != 'state_change'">
+                        <group>
+                            <field name="old_state"/>
+                        </group>
+                        <group>
+                            <field name="new_state"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Chi Tiết Thay Đổi" name="changes">
+                            <group>
+                                <field name="field_changes"
+                                       widget="text" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Dữ Liệu JSON" name="json_data">
+                            <group>
+                                <field name="old_values"
+                                       widget="text" readonly="1"/>
+                                <field name="new_values"
+                                       widget="text" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Ghi Chú" name="notes"
+                              invisible="not note">
+                            <field name="note" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================= AUDIT LOG SEARCH ================= -->
+    <record id="view_garment_audit_log_search" model="ir.ui.view">
+        <field name="name">garment.audit.log.search</field>
+        <field name="model">garment.audit.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="user_id"/>
+                <field name="record_name"/>
+                <field name="model_description"/>
+                <field name="field_changes"/>
+                <filter name="filter_today" string="Hôm Nay"
+                        domain="[('create_date','>=',
+                            (context_today()).strftime('%Y-%m-%d 00:00:00'))]"/>
+                <filter name="filter_week" string="Tuần Này"
+                        domain="[('create_date','>=',
+                            (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+                <separator/>
+                <filter name="filter_create" string="Tạo Mới"
+                        domain="[('action','=','create')]"/>
+                <filter name="filter_write" string="Sửa"
+                        domain="[('action','=','write')]"/>
+                <filter name="filter_state_change" string="Đổi Trạng Thái"
+                        domain="[('action','=','state_change')]"/>
+                <filter name="filter_unlink" string="Xóa"
+                        domain="[('action','=','unlink')]"/>
+                <separator/>
+                <filter name="filter_critical" string="Nghiêm Trọng"
+                        domain="[('severity','=','critical')]"/>
+                <filter name="filter_warning" string="Cảnh Báo"
+                        domain="[('severity','=','warning')]"/>
+                <separator/>
+                <filter name="filter_order" string="Đơn Hàng"
+                        domain="[('model_name','=','garment.order')]"/>
+                <filter name="filter_wage" string="Lương"
+                        domain="[('model_name','=','garment.wage.calculation')]"/>
+                <filter name="filter_qc" string="QC"
+                        domain="[('model_name','=','garment.qc.inspection')]"/>
+                <filter name="filter_production" string="Sản Xuất"
+                        domain="[('model_name','=','garment.production.order')]"/>
+                <separator/>
+                <group>
+                    <filter name="group_user" string="Theo Người Dùng"
+                            context="{'group_by':'user_id'}"/>
+                    <filter name="group_action" string="Theo Hành Động"
+                            context="{'group_by':'action'}"/>
+                    <filter name="group_model" string="Theo Đối Tượng"
+                            context="{'group_by':'model_description'}"/>
+                    <filter name="group_severity" string="Theo Mức Độ"
+                            context="{'group_by':'severity'}"/>
+                    <filter name="group_date" string="Theo Ngày"
+                            context="{'group_by':'create_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ================= ACTIONS ================= -->
+    <record id="action_garment_audit_log" model="ir.actions.act_window">
+        <field name="name">🔐 Nhật Ký Kiểm Soát</field>
+        <field name="res_model">garment.audit.log</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_filter_today': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Chưa có log kiểm soát nào
+            </p>
+            <p>Hệ thống tự động ghi log khi có thay đổi trên dữ liệu quan trọng (đơn hàng, lương, QC, sản xuất).</p>
+        </field>
+    </record>
+
+    <record id="action_garment_audit_log_critical" model="ir.actions.act_window">
+        <field name="name">Cảnh Báo &amp; Nghiêm Trọng</field>
+        <field name="res_model">garment.audit.log</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('severity','in',['warning','critical'])]</field>
+    </record>
+</odoo>
