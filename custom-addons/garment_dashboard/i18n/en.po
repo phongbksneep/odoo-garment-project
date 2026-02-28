@@ -298,7 +298,7 @@ msgstr "Status"
 #: model:ir.model.fields,field_description:garment_dashboard.field_garment_order_overview__is_late
 #: model_terms:ir.ui.view,arch_db:garment_dashboard.view_order_overview_search
 msgid "Trễ Hạn"
-msgstr "Overdue"
+msgstr "Behind Schedule"
 
 #. module: garment_dashboard
 #: model:ir.model.fields,field_description:garment_dashboard.field_garment_dashboard__name

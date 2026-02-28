@@ -11,4 +11,10 @@
               parent="garment_base.menu_garment_production_main"
               action="action_line_loading"
               sequence="60"/>
+
+    <menuitem id="menu_capacity_planning"
+              name="🧮 Capacity Planning"
+              parent="garment_base.menu_garment_production_main"
+              action="action_capacity_planning"
+              sequence="55"/>
 </odoo>

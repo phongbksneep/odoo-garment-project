@@ -23,6 +23,7 @@ Garment Production Planning
         'data/planning_data.xml',
         'views/production_plan_views.xml',
         'views/line_loading_views.xml',
+        'views/capacity_planning_views.xml',
         'views/menu_views.xml',
     ],
     'installable': True,

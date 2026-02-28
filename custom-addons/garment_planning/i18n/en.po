@@ -278,7 +278,7 @@ msgstr "End Date"
 #. module: garment_planning
 #: model:ir.model.fields,field_description:garment_planning.field_garment_production_plan__ship_date
 msgid "Ngày Xuất Hàng"
-msgstr "Shipping Date"
+msgstr "Ship Date"
 
 #. module: garment_planning
 #. odoo-python

@@ -883,6 +883,82 @@ stateDiagram-v2
 | **SL Hoàn Thành** | Tự tính từ sản lượng ngày |
 | **Tiến Độ (%)** | Tự tính = Hoàn Thành / Phân Bổ × 100 |
 
+### 10.3 🧮 Capacity Planning Nâng Cao
+
+**Đường dẫn:** `Công Ty May → Sản Xuất → 🧮 Capacity Planning`
+
+Capacity Planning nâng cao cho phép **tính toán công suất chuyền tự động** dựa trên SAM (Standard Allowed Minutes), số lượng công nhân, và hiệu suất mục tiêu. Hỗ trợ lập kế hoạch trước khi tạo kế hoạch sản xuất chính thức.
+
+#### Công thức tính:
+
+```
+Năng suất / ngày = (Số CN × Phút khả dụng × Hiệu suất%) / SAM
+Phút khả dụng   = Phút làm việc - Phút nghỉ + Phút tăng ca
+Số ngày cần     = ceil(Tổng SL ÷ Tổng năng suất/ngày)
+```
+
+#### Luồng sử dụng:
+
+```mermaid
+graph LR
+    A[Nháp] --> B[Thêm Chuyền + Cấu hình]
+    B --> C[🔄 Tính Toán]
+    C --> D{Đạt tiến độ?}
+    D -- Có --> E[✅ Duyệt]
+    D -- Không --> F[Điều chỉnh CN/Ca/Hiệu suất]
+    F --> C
+    E --> G[📋 Tạo Kế Hoạch SX]
+```
+
+#### Bảng giải thích trường — Capacity Planning (garment.capacity.planning):
+
+| Trường | Kiểu | Bắt buộc | Ý Nghĩa | Giá trị / Ví dụ |
+|--------|------|----------|---------|-----------------|
+| **Mã Kế Hoạch** | Char | ✅ | Mã tự động (CAP/yyyy/xxxxx) | `CAP/2026/00001` |
+| **Đơn Hàng May** | Many2one | | Liên kết đơn hàng | `GO-2026-00001` |
+| **Mã Hàng** | Many2one | ✅ | Style sản xuất (tự load SAM) | `Áo Polo nam` |
+| **SAM (Phút)** | Float | ✅ | Thời gian tiêu chuẩn may 1 SP | `10.0` |
+| **Tổng SL Đặt Hàng** | Integer | ✅ | Số lượng cần sản xuất | `10,000` |
+| **Phút Làm Việc / Ngày** | Integer | ✅ | Giờ làm chính (mặc định 480 = 8h) | `480` |
+| **Phút Nghỉ / Ngày** | Integer | | Thời gian nghỉ giải lao | `60` |
+| **Phút Tăng Ca / Ngày** | Integer | | Thời gian OT | `120` |
+| **Phút Khả Dụng / Ngày** | Integer | 🔄 | = Làm việc - Nghỉ + Tăng ca | `540` |
+| **Ngày Xuất Hàng** | Date | | Ship date deadline | `2026-03-15` |
+| **Số Ngày Có Thể SX** | Integer | 🔄 | = Ship date - Hôm nay | `30` |
+| **Tổng Năng Suất / Ngày** | Integer | 🔄 | Tổng output tất cả chuyền | `1,974` |
+| **Tổng Năng Suất / Giờ** | Float | 🔄 | Tổng output / giờ | `294.0` |
+| **Tổng Số CN** | Integer | 🔄 | Tổng CN tất cả chuyền | `70` |
+| **Số Ngày Cần** | Float | 🔄 | = ceil(Tổng SL ÷ Năng suất/ngày) | `6.0` |
+| **Đạt Tiến Độ?** | Boolean | 🔄 | Ngày cần ≤ Ngày có thể? | `✅` |
+| **Tỷ Lệ Sử Dụng (%)** | Float | 🔄 | % tải công suất | `70.5` |
+| **SP / CN / Ngày** | Float | 🔄 | Năng suất bình quân | `28.2` |
+| **Chuyền Thắt Cổ Chai** | Many2one | 🔄 | Chuyền có NS/CN thấp nhất | `Chuyền May A` |
+| **Trạng Thái** | Selection | | Nháp → Đã Tính Toán → Đã Duyệt / Đã Hủy | `simulated` |
+
+#### Phân Bổ Chuyền (garment.capacity.line):
+
+| Trường | Ý Nghĩa |
+|--------|---------|
+| **Chuyền May** | Chuyền được phân bổ |
+| **Số CN** | Tự lấy từ chuyền, có thể sửa |
+| **Hiệu Suất Mục Tiêu (%)** | % hiệu suất kỳ vọng (mặc định 65%) |
+| **Năng Suất / Ngày** | 🔄 Tự tính = (CN × Phút KD × Hiệu suất) ÷ SAM |
+| **Năng Suất / Giờ** | 🔄 Tự tính |
+| **SP / CN / Ngày** | 🔄 Tự tính |
+| **Ngày Cần (riêng)** | 🔄 Nếu chỉ dùng chuyền này |
+| **Tỷ Trọng (%)** | 🔄 % đóng góp so với tổng |
+
+#### Hành động chính:
+
+| Nút | Mô tả |
+|-----|-------|
+| **🔄 Tính Toán Công Suất** | Kích hoạt tính toán tự động cho tất cả chuyền |
+| **✅ Duyệt** | Duyệt kế hoạch (cần tính toán trước) |
+| **📋 Tạo Kế Hoạch SX** | Tạo Production Plan + Line Loading từ kết quả |
+| **❌ Hủy** / **🔄 Về Nháp** | Quản lý trạng thái |
+
+> 💡 **Mẹo:** Sử dụng Capacity Planning để **mô phỏng** trước nhiều kịch bản (tăng ca, thêm CN, đổi hiệu suất) rồi chọn phương án tối ưu nhất trước khi tạo kế hoạch SX thực tế.
+
 ---
 
 ## 11. Module Garment Maintenance — Bảo Trì Máy

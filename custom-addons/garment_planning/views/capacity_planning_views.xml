@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================== -->
+    <!-- Capacity Planning Form -->
+    <!-- ================================================================== -->
+    <record id="view_capacity_planning_form" model="ir.ui.view">
+        <field name="name">garment.capacity.planning.form</field>
+        <field name="model">garment.capacity.planning</field>
+        <field name="arch" type="xml">
+            <form string="Capacity Planning Nâng Cao">
+                <header>
+                    <button name="action_simulate" string="🧮 Tính Toán Công Suất"
+                            type="object" class="btn-primary"
+                            invisible="state not in ('draft', 'simulated')"/>
+                    <button name="action_approve" string="✅ Duyệt"
+                            type="object" class="btn-success"
+                            invisible="state != 'simulated'"/>
+                    <button name="action_create_production_plan"
+                            string="📋 Tạo Kế Hoạch SX"
+                            type="object" class="btn-secondary"
+                            invisible="state != 'approved'"/>
+                    <button name="action_cancel" string="Hủy" type="object"
+                            invisible="state in ('approved', 'cancelled')"/>
+                    <button name="action_reset_draft" string="🔄 Đặt Lại"
+                            type="object"
+                            invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,simulated,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+
+                    <!-- Alert: Can meet deadline -->
+                    <div class="alert alert-success" role="alert"
+                         invisible="not can_meet_deadline or not ship_date or total_daily_output == 0">
+                        <strong>✅ Đạt Tiến Độ!</strong>
+                        Cần <field name="required_days" class="oe_inline"/> ngày —
+                        còn <field name="available_days" class="oe_inline"/> ngày trước hạn giao.
+                    </div>
+                    <div class="alert alert-danger" role="alert"
+                         invisible="can_meet_deadline or not ship_date or total_daily_output == 0">
+                        <strong>⚠️ Không Đạt Tiến Độ!</strong>
+                        Cần <field name="required_days" class="oe_inline"/> ngày
+                        nhưng chỉ còn <field name="available_days" class="oe_inline"/> ngày.
+                        Cần tăng ca hoặc thêm chuyền!
+                    </div>
+
+                    <group>
+                        <group string="Thông Tin Đơn Hàng">
+                            <field name="garment_order_id"/>
+                            <field name="style_id"/>
+                            <field name="sam"/>
+                            <field name="total_quantity"/>
+                            <field name="ship_date"/>
+                        </group>
+                        <group string="Cài Đặt Ca Làm Việc">
+                            <field name="working_minutes_per_day"/>
+                            <field name="break_minutes"/>
+                            <field name="overtime_minutes"/>
+                            <field name="available_minutes"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="📊 Phân Bổ &amp; Công Suất Chuyền">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sewing_line_id"/>
+                                    <field name="worker_count"/>
+                                    <field name="target_efficiency"/>
+                                    <field name="daily_output"
+                                           decoration-success="daily_output > 0"
+                                           decoration-danger="daily_output == 0"/>
+                                    <field name="hourly_output"/>
+                                    <field name="pieces_per_worker"/>
+                                    <field name="required_days"/>
+                                    <field name="line_share_pct" widget="progressbar"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="📈 Tổng Hợp Công Suất">
+                            <group>
+                                <group string="Kết Quả Tính Toán">
+                                    <field name="total_daily_output"/>
+                                    <field name="total_hourly_output"/>
+                                    <field name="total_workers"/>
+                                    <field name="pieces_per_worker_day"/>
+                                </group>
+                                <group string="Tiến Độ &amp; Hiệu Quả">
+                                    <field name="required_days"/>
+                                    <field name="available_days"/>
+                                    <field name="can_meet_deadline" widget="boolean_toggle"/>
+                                    <field name="utilization_rate" widget="progressbar"/>
+                                    <field name="bottleneck_line_id"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="notes" placeholder="Ghi chú thêm..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- List View -->
+    <!-- ================================================================== -->
+    <record id="view_capacity_planning_list" model="ir.ui.view">
+        <field name="name">garment.capacity.planning.list</field>
+        <field name="model">garment.capacity.planning</field>
+        <field name="arch" type="xml">
+            <list string="Capacity Planning"
+                  decoration-info="state == 'draft'"
+                  decoration-success="state == 'approved'"
+                  decoration-warning="state == 'simulated'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="style_id"/>
+                <field name="sam"/>
+                <field name="total_quantity"/>
+                <field name="total_workers"/>
+                <field name="total_daily_output"/>
+                <field name="required_days"/>
+                <field name="ship_date"/>
+                <field name="can_meet_deadline" widget="boolean"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- Search View -->
+    <!-- ================================================================== -->
+    <record id="view_capacity_planning_search" model="ir.ui.view">
+        <field name="name">garment.capacity.planning.search</field>
+        <field name="model">garment.capacity.planning</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Capacity Planning">
+                <field name="name"/>
+                <field name="style_id"/>
+                <field name="garment_order_id"/>
+                <filter string="Đạt Tiến Độ" name="on_track"
+                        domain="[('can_meet_deadline', '=', True)]"/>
+                <filter string="Trễ Hạn" name="behind"
+                        domain="[('can_meet_deadline', '=', False)]"/>
+                <separator/>
+                <filter string="Nháp" name="draft"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter string="Đã Tính Toán" name="simulated"
+                        domain="[('state', '=', 'simulated')]"/>
+                <filter string="Đã Duyệt" name="approved"
+                        domain="[('state', '=', 'approved')]"/>
+                <group>
+                    <filter string="Mã Hàng" name="group_style"
+                            context="{'group_by': 'style_id'}"/>
+                    <filter string="Trạng Thái" name="group_state"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ================================================================== -->
+    <!-- Action -->
+    <!-- ================================================================== -->
+    <record id="action_capacity_planning" model="ir.actions.act_window">
+        <field name="name">🧮 Capacity Planning</field>
+        <field name="res_model">garment.capacity.planning</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo kế hoạch công suất mới
+            </p>
+            <p>
+                Tính toán công suất chuyền tự động dựa trên SAM, số công nhân và hiệu suất mục tiêu.
+            </p>
+        </field>
+    </record>
+</odoo>

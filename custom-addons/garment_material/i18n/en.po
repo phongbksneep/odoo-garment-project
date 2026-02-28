@@ -813,7 +813,7 @@ msgstr "Status"
 #: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__is_late
 #: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
 msgid "Trễ Hạn"
-msgstr "Overdue"
+msgstr "Behind Schedule"
 
 #. module: garment_material
 #: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__weight_gsm

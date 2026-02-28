@@ -599,7 +599,7 @@ msgstr "Status"
 #: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_form
 #: model_terms:ir.ui.view,arch_db:garment_subcontract.view_subcontract_order_search
 msgid "Trễ Hạn"
-msgstr "Overdue"
+msgstr "Behind Schedule"
 
 #. module: garment_subcontract
 #: model:ir.model.fields,help:garment_subcontract.field_garment_subcontract_order__activity_exception_decoration
