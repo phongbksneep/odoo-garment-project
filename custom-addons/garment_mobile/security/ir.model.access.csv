@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mobile_dashboard_user,garment.mobile.dashboard.user,model_garment_mobile_dashboard,garment_base.group_garment_user,1,0,0,0
+access_rejection_wizard_user,garment.rejection.wizard.user,model_garment_rejection_wizard,garment_base.group_garment_user,1,1,1,0
+access_rejection_wizard_manager,garment.rejection.wizard.manager,model_garment_rejection_wizard,garment_base.group_garment_manager,1,1,1,1

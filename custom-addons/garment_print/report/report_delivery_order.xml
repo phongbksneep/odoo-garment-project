@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_delivery_order" model="ir.actions.report">
+        <field name="name">In Phiếu Giao Hàng</field>
+        <field name="model">garment.delivery.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">garment_print.report_delivery_order_document</field>
+        <field name="report_file">garment_print.report_delivery_order_document</field>
+        <field name="binding_model_id" ref="garment_delivery.model_garment_delivery_order"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'DeliveryOrder_%s' % object.name</field>
+    </record>
+
+    <!-- Report Template -->
+    <template id="report_delivery_order_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center mb-4">PHIẾU GIAO HÀNG / DELIVERY ORDER</h2>
+
+                        <!-- Header Info -->
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr><td><strong>Số phiếu / D.O. No:</strong></td><td><t t-esc="doc.name"/></td></tr>
+                                    <tr><td><strong>Loại / Type:</strong></td><td><t t-esc="dict(doc._fields['delivery_type'].selection).get(doc.delivery_type, '-')"/></td></tr>
+                                    <tr><td><strong>Khách hàng / Partner:</strong></td><td><t t-esc="doc.partner_id.name if doc.partner_id else '-'"/></td></tr>
+                                    <tr><td><strong>Đơn hàng / Order:</strong></td><td><t t-esc="doc.garment_order_id.name if doc.garment_order_id else '-'"/></td></tr>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr><td><strong>Ngày / Date:</strong></td><td><t t-esc="doc.date" t-options="{'widget': 'date'}"/></td></tr>
+                                    <tr><td><strong>Nơi gửi / From:</strong></td><td><t t-esc="doc.ship_from or '-'"/></td></tr>
+                                    <tr><td><strong>Nơi nhận / To:</strong></td><td><t t-esc="doc.ship_to or '-'"/></td></tr>
+                                    <tr><td><strong>Phương thức / Method:</strong></td><td><t t-esc="dict(doc._fields['shipping_method'].selection).get(doc.shipping_method, '-')"/></td></tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Shipping Info -->
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <table class="table table-sm table-borderless">
+                                    <tr>
+                                        <td><strong>Container No:</strong> <t t-esc="doc.container_no or '-'"/></td>
+                                        <td><strong>Seal No:</strong> <t t-esc="doc.seal_no or '-'"/></td>
+                                        <td><strong>B/L No:</strong> <t t-esc="doc.bl_number or '-'"/></td>
+                                        <td><strong>Invoice No:</strong> <t t-esc="doc.invoice_number or '-'"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Line Items -->
+                        <h5>Chi Tiết Giao Hàng / Delivery Details</h5>
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr style="background-color: #2196F3; color: white;">
+                                    <th>STT</th>
+                                    <th>Mã Hàng / Style</th>
+                                    <th>Màu / Color</th>
+                                    <th>Size</th>
+                                    <th class="text-end">Số Lượng / Qty</th>
+                                    <th class="text-end">Số Thùng / Ctns</th>
+                                    <th class="text-end">Pcs/Ctn</th>
+                                    <th class="text-end">G.W. (kg)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="stt" t-value="0"/>
+                                <t t-foreach="doc.line_ids" t-as="line">
+                                    <t t-set="stt" t-value="stt + 1"/>
+                                    <tr>
+                                        <td><t t-esc="stt"/></td>
+                                        <td><t t-esc="line.style_code or '-'"/></td>
+                                        <td><t t-esc="line.color or '-'"/></td>
+                                        <td><t t-esc="line.size or '-'"/></td>
+                                        <td class="text-end"><t t-esc="line.quantity"/></td>
+                                        <td class="text-end"><t t-esc="line.carton_qty"/></td>
+                                        <td class="text-end"><t t-esc="line.pcs_per_carton"/></td>
+                                        <td class="text-end"><t t-esc="'%.2f' % line.gross_weight"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                            <tfoot>
+                                <tr style="font-weight: bold; background-color: #E3F2FD;">
+                                    <td colspan="4" class="text-end">TỔNG CỘNG / TOTAL:</td>
+                                    <td class="text-end"><t t-esc="doc.total_pcs"/> pcs</td>
+                                    <td class="text-end"><t t-esc="doc.total_cartons"/> ctns</td>
+                                    <td></td>
+                                    <td class="text-end"><t t-esc="'%.2f' % doc.gross_weight"/> kg</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <!-- Vehicle Info -->
+                        <t t-if="doc.vehicle_id or doc.driver_id">
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <p t-if="doc.vehicle_id"><strong>Xe / Vehicle:</strong> <t t-esc="doc.vehicle_id.name"/></p>
+                                </div>
+                                <div class="col-6">
+                                    <p t-if="doc.driver_id"><strong>Tài xế / Driver:</strong> <t t-esc="doc.driver_id.name"/></p>
+                                </div>
+                            </div>
+                        </t>
+
+                        <!-- Signature -->
+                        <div class="row mt-5">
+                            <div class="col-3 text-center">
+                                <p>_________________________</p>
+                                <p><strong>Người Gửi</strong></p>
+                                <p>Sender</p>
+                            </div>
+                            <div class="col-3 text-center">
+                                <p>_________________________</p>
+                                <p><strong>Tài Xế</strong></p>
+                                <p>Driver</p>
+                            </div>
+                            <div class="col-3 text-center">
+                                <p>_________________________</p>
+                                <p><strong>Người Nhận</strong></p>
+                                <p>Receiver</p>
+                            </div>
+                            <div class="col-3 text-center">
+                                <p>_________________________</p>
+                                <p><strong>Kho</strong></p>
+                                <p>Warehouse</p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

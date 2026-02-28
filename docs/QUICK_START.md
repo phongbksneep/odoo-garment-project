@@ -1,6 +1,6 @@
 # 🚀 Hướng Dẫn Nhanh — Hệ Thống Quản Lý Công Ty May
 
-> **Phiên bản:** Odoo 19.0 | **Cập nhật:** Tháng 2/2026 | **25 module** | **230 tests passed**
+> **Phiên bản:** Odoo 19.0 | **Cập nhật:** Tháng 2/2026 | **27 module** | **291 tests passed**
 >
 > 📖 Xem [Hướng dẫn chi tiết đầy đủ](USER_GUIDE.md) để tra cứu từng trường dữ liệu.
 
@@ -122,13 +122,20 @@ graph TB
     INVENTORY[📋 garment_inventory\nKiểm kê kho] --> WAREHOUSE
     DASHBOARD[📊 garment_dashboard\nDashboard] -.-> PRODUCTION
     DASHBOARD -.-> REPORT
+    PRINT[🖨️ garment_print\nIn PDF, Excel, Cảnh báo] -.-> PAYROLL
+    PRINT -.-> PACKING
+    PRINT -.-> DELIVERY
+    MOBILE[📱 garment_mobile\nMobile, Phê duyệt] -.-> BASE
+    MOBILE -.-> DASHBOARD
 
     style BASE fill:#4CAF50,color:#fff
     style PRODUCTION fill:#2196F3,color:#fff
     style PAYROLL fill:#FF9800,color:#fff
     style ACCOUNTING fill:#F44336,color:#fff
     style DASHBOARD fill:#9C27B0,color:#fff
+    style PRINT fill:#FF5722,color:#fff
     style MATERIAL fill:#009688,color:#fff
+    style MOBILE fill:#E91E63,color:#fff
     style CRM fill:#E91E63,color:#fff
     style LABEL fill:#FF5722,color:#fff
 ```
@@ -526,6 +533,34 @@ stateDiagram-v2
 ![Form nhân viên](images/121_employee_form.png)
 ![Kỹ năng](images/126_employee_skills.png)
 
+### 5.15 In Ấn, Xuất Excel & Cảnh Báo (garment_print)
+
+| Chức Năng | Truy Cập | Mô Tả |
+|-----------|----------|-------|
+| In Packing List | Packing List → Print | PDF chi tiết carton, trọng lượng, CBM |
+| In Phiếu Giao Hàng | Phiếu Giao → Print | PDF giao hàng theo style/màu/size |
+| In Hóa Đơn | Hóa Đơn → Print | PDF hóa đơn bán/mua, thuế GTGT |
+| In Phiếu Lương | Bảng Lương → Print | PDF lương cá nhân đầy đủ |
+| In Phiếu QC | Phiếu QC → Print | PDF kiểm tra chất lượng |
+| Xuất Bảng Lương Excel | Nhân Sự → Xuất Bảng Lương | File .xlsx 14 cột, có tổng cộng |
+| Xuất Sản Lượng Excel | Sản Xuất → Xuất Sản Lượng | File .xlsx theo chuyền, theo ngày |
+| Cảnh báo trễ hạn | Tự động (hàng ngày) | Đơn hàng quá ngày giao |
+| Cảnh báo QC thấp | Tự động (hàng ngày) | Phiếu QC tỷ lệ đạt < 90% |
+| Cảnh báo giao hàng | Tự động (hàng ngày) | Đơn hàng giao trong 3 ngày tới |
+
+### 5.16 Mobile Responsive & Phê Duyệt (garment_mobile)
+
+| Chức Năng | Truy Cập | Mô Tả |
+|-----------|----------|-------|
+| Mobile Dashboard | Báo Cáo → 📱 Mobile Dashboard | OWL2 dashboard tối ưu phone: KPI cards, progress bar, quick actions |
+| Phê duyệt đơn hàng | Đơn Hàng → Form → Gửi Duyệt | Luồng: draft → pending → approved/rejected |
+| Duyệt đơn (Manager) | Đơn Hàng → Form → Duyệt | Manager duyệt/từ chối (nhập lý do) |
+| Filter chờ duyệt | Đơn Hàng → Filter → Chờ Duyệt | Lọc nhanh đơn cần duyệt |
+| Quick Actions | Mobile Dashboard → nút bấm | Truy cập 1-tap: Đơn Hàng, SX, QC, Giao Hàng, Kho, HR, Đóng Gói |
+| Cảnh báo trễ hạn | Mobile Dashboard | Top 5 đơn trễ hạn, số ngày trễ |
+| Giao hàng sắp tới | Mobile Dashboard | Đơn giao trong 3 ngày, đếm ngược |
+| Responsive CSS | Tự động | Touch targets 44px, 1-cột trên phone, dark mode |
+
 ---
 
 ## 6. Phân Quyền 4 Cấp
@@ -556,6 +591,6 @@ stateDiagram-v2
 
 ---
 
-> 📖 **Tài liệu đầy đủ:** [USER_GUIDE.md](USER_GUIDE.md) — bao gồm giải thích chi tiết từng trường dữ liệu của tất cả 25 module.
+> 📖 **Tài liệu đầy đủ:** [USER_GUIDE.md](USER_GUIDE.md) — bao gồm giải thích chi tiết từng trường dữ liệu của tất cả 27 module.
 >
 > 📞 **Hỗ trợ:** Liên hệ đội phát triển | 📚 [Odoo Docs](https://www.odoo.com/documentation/19.0/)

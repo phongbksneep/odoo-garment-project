@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="garment_mobile.MobileDashboard">
+        <div class="garment-mobile-dashboard">
+
+            <!-- Header -->
+            <div class="gmd-header">
+                <h2>📊 Bảng Điều Khiển</h2>
+                <button class="gmd-refresh-btn"
+                        t-att-class="{ spinning: state.loading }"
+                        t-on-click="onRefresh"
+                        title="Tải lại">
+                    🔄
+                </button>
+            </div>
+
+            <!-- Loading -->
+            <div t-if="state.loading" class="gmd-empty">
+                ⏳ Đang tải dữ liệu...
+            </div>
+
+            <div t-if="!state.loading">
+
+                <!-- KPI Cards -->
+                <div class="gmd-kpi-grid">
+                    <div class="gmd-kpi-card kpi-primary"
+                         t-on-click="() => this.openAction('garment_base.action_garment_order')">
+                        <div class="kpi-label">Tổng Đơn Hàng</div>
+                        <div class="kpi-number" t-out="state.data.order.total"/>
+                        <div class="kpi-sub">
+                            <t t-out="state.data.order.done"/> hoàn thành
+                        </div>
+                    </div>
+
+                    <div class="gmd-kpi-card kpi-info"
+                         t-on-click="() => this.openAction('garment_base.action_garment_order')">
+                        <div class="kpi-label">Đang Sản Xuất</div>
+                        <div class="kpi-number" t-out="state.data.order.active"/>
+                        <div class="kpi-sub">đơn hàng</div>
+                    </div>
+
+                    <div class="gmd-kpi-card kpi-danger"
+                         t-on-click="() => this.openAction('garment_base.action_garment_order')">
+                        <div class="kpi-label">Đơn Trễ Hạn</div>
+                        <div class="kpi-number" t-out="state.data.order.late"/>
+                        <div class="kpi-sub">cần xử lý</div>
+                    </div>
+
+                    <div class="gmd-kpi-card kpi-success">
+                        <div class="kpi-label">Tỉ Lệ Đạt QC</div>
+                        <div class="kpi-number">
+                            <t t-out="state.data.quality.pass_rate"/>%
+                        </div>
+                        <div class="kpi-sub">
+                            <t t-out="state.data.quality.total"/> kiểm tra
+                        </div>
+                    </div>
+
+                    <div class="gmd-kpi-card kpi-purple">
+                        <div class="kpi-label">SX Đang Chạy</div>
+                        <div class="kpi-number" t-out="state.data.production.active"/>
+                        <div class="kpi-sub">
+                            <t t-out="state.data.production.done"/> hoàn thành
+                        </div>
+                    </div>
+
+                    <div class="gmd-kpi-card kpi-warning">
+                        <div class="kpi-label">Chờ Duyệt</div>
+                        <div class="kpi-number" t-out="state.data.pending_approvals"/>
+                        <div class="kpi-sub">đơn hàng</div>
+                    </div>
+                </div>
+
+                <!-- Production Progress -->
+                <div class="gmd-progress-section">
+                    <div class="gmd-progress-header">
+                        <h4>📈 Tiến Độ Sản Xuất</h4>
+                        <span class="kpi-sub">
+                            <t t-out="state.data.production.completion_pct"/>%
+                        </span>
+                    </div>
+                    <div class="gmd-progress-bar-container">
+                        <div class="gmd-progress-bar-fill"
+                             t-attf-style="width: {{ state.data.production.completion_pct }}%"/>
+                    </div>
+                    <div class="gmd-progress-stats">
+                        <span>
+                            Đã hoàn thành: <t t-out="state.data.production.completed_qty"/>
+                        </span>
+                        <span>
+                            Tổng kế hoạch: <t t-out="state.data.production.planned_qty"/>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="gmd-quick-actions">
+                    <button class="gmd-action-btn"
+                            t-on-click="() => this.openAction('garment_base.action_garment_order')">
+                        <span class="action-icon">📋</span>
+                        <span class="action-label">Đơn Hàng</span>
+                    </button>
+                    <button class="gmd-action-btn"
+                            t-on-click="() => this.openAction('garment_production.action_production_order')">
+                        <span class="action-icon">🏭</span>
+                        <span class="action-label">Sản Xuất</span>
+                    </button>
+                    <button class="gmd-action-btn"
+                            t-on-click="() => this.openAction('garment_quality.action_qc_inspection')">
+                        <span class="action-icon">✅</span>
+                        <span class="action-label">Kiểm QC</span>
+                    </button>
+                    <button class="gmd-action-btn"
+                            t-on-click="() => this.openAction('garment_delivery.action_delivery_order')">
+                        <span class="action-icon">🚚</span>
+                        <span class="action-label">Giao Hàng</span>
+                    </button>
+                    <button class="gmd-action-btn"
+                            t-on-click="() => this.openAction('garment_inventory.action_fabric_inventory')">
+                        <span class="action-icon">📦</span>
+                        <span class="action-label">Kho</span>
+                    </button>
+                    <button class="gmd-action-btn"
+                            t-on-click="() => this.openAction('garment_hr.action_garment_employee')">
+                        <span class="action-icon">👷</span>
+                        <span class="action-label">Nhân Sự</span>
+                    </button>
+                    <button class="gmd-action-btn"
+                            t-on-click="() => this.openAction('garment_packing.action_packing_order')">
+                        <span class="action-icon">📦</span>
+                        <span class="action-label">Đóng Gói</span>
+                    </button>
+                    <button class="gmd-action-btn"
+                            t-on-click="() => this.openDashboard()">
+                        <span class="action-icon">📊</span>
+                        <span class="action-label">Dashboard</span>
+                    </button>
+                </div>
+
+                <!-- Late Orders Alert -->
+                <div t-if="state.data.late.length > 0" class="gmd-alert-section">
+                    <div class="gmd-alert-header danger">
+                        🚨 Đơn Hàng Trễ Hạn
+                    </div>
+                    <div t-foreach="state.data.late" t-as="item" t-key="item.name"
+                         class="gmd-alert-item"
+                         t-on-click="() => this.openOrder(item.name)">
+                        <div class="item-left">
+                            <div class="item-name" t-out="item.name"/>
+                            <div class="item-detail" t-out="item.customer"/>
+                        </div>
+                        <span class="item-badge badge-danger">
+                            Trễ <t t-out="item.days_late"/> ngày
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Upcoming Deliveries -->
+                <div t-if="state.data.upcoming.length > 0" class="gmd-alert-section">
+                    <div class="gmd-alert-header warning">
+                        📅 Giao Hàng Sắp Tới (3 Ngày)
+                    </div>
+                    <div t-foreach="state.data.upcoming" t-as="item" t-key="item.name"
+                         class="gmd-alert-item"
+                         t-on-click="() => this.openOrder(item.name)">
+                        <div class="item-left">
+                            <div class="item-name" t-out="item.name"/>
+                            <div class="item-detail" t-out="item.customer"/>
+                        </div>
+                        <span class="item-badge badge-warning">
+                            <t t-if="item.days === 0">Hôm nay</t>
+                            <t t-elif="item.days === 1">Ngày mai</t>
+                            <t t-else="">Còn <t t-out="item.days"/> ngày</t>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Delivery Stats -->
+                <div class="gmd-progress-section">
+                    <div class="gmd-progress-header">
+                        <h4>🚚 Tình Trạng Giao Hàng</h4>
+                    </div>
+                    <div class="gmd-kpi-grid" style="margin-bottom: 0;">
+                        <div class="gmd-kpi-card kpi-warning" style="border-left-width: 3px;">
+                            <div class="kpi-label">Chờ Giao</div>
+                            <div class="kpi-number" t-out="state.data.delivery.pending"/>
+                        </div>
+                        <div class="gmd-kpi-card kpi-success" style="border-left-width: 3px;">
+                            <div class="kpi-label">Đã Giao</div>
+                            <div class="kpi-number" t-out="state.data.delivery.done"/>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </t>
+
+</templates>

@@ -2,7 +2,7 @@
 
 > **Phiên bản:** Odoo 19.0 | **Ngày cập nhật:** Tháng 2/2026
 > **Đối tượng:** Quản lý, trưởng phòng, nhân viên sử dụng hệ thống ERP
-> **Tổng số module:** 25 module chuyên biệt | **230 test cases** — 0 failures
+> **Tổng số module:** 27 module chuyên biệt | **291 test cases** — 0 failures
 
 ---
 
@@ -34,8 +34,10 @@
 24. [Module Garment CRM — Quan Hệ Khách Hàng](#24-module-garment-crm--quan-hệ-khách-hàng)
 25. [Module Garment Label — In Tem & Quản Lý Pallet](#25-module-garment-label--in-tem--quản-lý-pallet)
 26. [Module Garment Inventory — Kiểm Kê Kho](#26-module-garment-inventory--kiểm-kê-kho)
-27. [Quản Lý Nhân Viên & Phân Quyền](#27-quản-lý-nhân-viên--phân-quyền)
-28. [FAQ — Câu hỏi thường gặp](#28-faq--câu-hỏi-thường-gặp)
+27. [Module Garment Print — In Ấn, Xuất Excel & Cảnh Báo Tự Động](#27-module-garment-print--in-ấn-xuất-excel--cảnh-báo-tự-động)
+28. [Quản Lý Nhân Viên & Phân Quyền](#28-quản-lý-nhân-viên--phân-quyền)
+29. [Module Garment Mobile — Responsive & Phê Duyệt](#29-module-garment-mobile--responsive--phê-duyệt)
+30. [FAQ — Câu hỏi thường gặp](#30-faq--câu-hỏi-thường-gặp)
 
 ---
 
@@ -43,7 +45,7 @@
 
 ### 1.1 Tổng quan hệ thống
 
-Hệ thống ERP Công Ty May được xây dựng trên nền tảng **Odoo 19.0**, bao gồm **25 module chuyên biệt** quản lý toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm nhập nguyên liệu, CRM quan hệ khách hàng, in tem QR code, quản lý pallet/thùng hàng, kiểm kê kho, quản lý nhân viên, phân quyền 4 cấp, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, giao hàng và dashboard tổng quan.
+Hệ thống ERP Công Ty May được xây dựng trên nền tảng **Odoo 19.0**, bao gồm **27 module chuyên biệt** quản lý toàn bộ quy trình từ nhận đơn hàng đến xuất hàng, bao gồm nhập nguyên liệu, CRM quan hệ khách hàng, in tem QR code, quản lý pallet/thùng hàng, kiểm kê kho, quản lý nhân viên, phân quyền 4 cấp, hoàn thiện, chấm công, kế toán, kho, giặt, gia công, giao hàng, in ấn PDF, xuất Excel, cảnh báo tự động, dashboard tổng quan, mobile-responsive UI và luồng phê duyệt đơn hàng.
 
 ### 1.2 Đăng nhập
 
@@ -2019,7 +2021,71 @@ Khi Manager xác nhận phiên kiểm kê:
 
 ---
 
-## 27. Quản Lý Nhân Viên & Phân Quyền
+## 27. Module Garment Print — In Ấn, Xuất Excel & Cảnh Báo Tự Động
+
+### 27.1 Tổng Quan
+
+Module `garment_print` cung cấp 3 tính năng ưu tiên cao:
+
+| Tính Năng | Mô Tả |
+|-----------|--------|
+| **Báo cáo PDF (QWeb)** | 5 báo cáo PDF chuyên nghiệp in trực tiếp từ hệ thống |
+| **Xuất Excel** | Bảng lương & Sản lượng xuất sang file .xlsx |
+| **Cảnh báo tự động** | 3 scheduled actions tự động cảnh báo qua Discuss |
+
+### 27.2 Báo Cáo PDF (QWeb Reports)
+
+> **Cách in:** Mở bản ghi → Nút **Print** → Chọn báo cáo tương ứng
+
+| Báo Cáo | Model | Mô Tả |
+|----------|-------|--------|
+| **Packing List** | `garment.packing.list` | Danh sách đóng gói với thùng carton, trọng lượng, CBM |
+| **Phiếu Giao Hàng** | `garment.delivery.order` | Phiếu giao hàng chi tiết theo style/màu/size |
+| **Hóa Đơn** | `garment.invoice` | Hóa đơn bán/mua hàng với thuế GTGT tự động |
+| **Phiếu Lương** | `garment.wage.calculation` | Phiếu lương cá nhân đầy đủ thu nhập/phụ cấp/khấu trừ |
+| **Phiếu Kiểm Tra QC** | `garment.qc.inspection` | Báo cáo kiểm tra chất lượng với tỷ lệ đạt/lỗi |
+
+Mỗi báo cáo được thiết kế song ngữ **Tiếng Việt / English**, có ô ký tên phù hợp quy trình thực tế.
+
+### 27.3 Xuất File Excel
+
+#### 27.3.1 Xuất Bảng Lương
+
+> **Menu:** Công Ty May → Nhân Sự → Xuất Bảng Lương Excel
+
+1. Chọn **Tháng** và **Năm**
+2. (Tùy chọn) Lọc theo **Phòng ban** — để trống = tất cả
+3. Nhấn **Xuất Excel**
+4. Tải file `.xlsx` về máy
+
+File Excel chứa 14 cột: STT, Mã NV, Họ Tên, Phòng Ban, Ngày Công, Lương CB, Lương Ngày Công, Tiền Khoán, Tiền Tăng Ca, Phụ Cấp, BHXH, Thuế TNCN, Tổng Thu Nhập, Thực Lĩnh. Có dòng tổng cộng cuối bảng.
+
+#### 27.3.2 Xuất Sản Lượng
+
+> **Menu:** Công Ty May → Sản Xuất → Xuất Sản Lượng Excel
+
+1. Chọn **Từ ngày** và **Đến ngày**
+2. (Tùy chọn) Lọc theo **Chuyền may** — để trống = tất cả
+3. Nhấn **Xuất Excel**
+4. Tải file `.xlsx` về máy
+
+### 27.4 Cảnh Báo Tự Động (Scheduled Actions)
+
+Hệ thống tự động kiểm tra và gửi cảnh báo qua kênh **Garment Alerts** trên Discuss:
+
+| Cảnh Báo | Tần Suất | Điều Kiện |
+|-----------|----------|-----------|
+| **Đơn hàng trễ hạn** | Hàng ngày | Đơn hàng quá ngày giao mà chưa hoàn thành |
+| **Tỷ lệ QC thấp** | Hàng ngày | Phiếu QC có tỷ lệ đạt < 90% trong 7 ngày qua |
+| **Giao hàng sắp đến** | Hàng ngày | Đơn hàng có ngày giao trong 3 ngày tới |
+
+Cảnh báo được gửi dạng bảng HTML chi tiết, dễ đọc trên cả desktop và mobile.
+
+> ⚙️ **Cấu hình:** Vào **Settings → Technical → Scheduled Actions** → Tìm "Garment" để điều chỉnh tần suất hoặc tắt/bật.
+
+---
+
+## 28. Quản Lý Nhân Viên & Phân Quyền
 
 ### 27.1 Quản Lý Nhân Viên May
 
@@ -2105,7 +2171,92 @@ Hệ thống phân quyền theo 4 cấp bậc, mỗi cấp kế thừa quyền t
 
 ---
 
-## 28. FAQ — Câu Hỏi Thường Gặp
+## 29. Module Garment Mobile — Responsive & Phê Duyệt
+
+> **Module:** `garment_mobile` | **Tests:** 32 ✅
+
+Module tối ưu giao diện cho **điện thoại và máy tính bảng**, đồng thời bổ sung **luồng phê duyệt đơn hàng** (Approval Workflow).
+
+### 29.1 Mobile Dashboard (OWL Component)
+
+Dashboard tối ưu cho mobile với công nghệ **OWL2** (Odoo Web Library):
+
+**Các KPI hiển thị:**
+- 📋 **Tổng đơn hàng** — tổng / hoàn thành
+- 🏭 **Đang sản xuất** — số đơn đang active
+- 🚨 **Đơn trễ hạn** — cần xử lý gấp
+- ✅ **Tỉ lệ đạt QC** — pass rate 7 ngày gần nhất
+- 📈 **Tiến độ SX** — thanh progress bar tổng thể
+- ⏳ **Chờ duyệt** — số đơn pending approval
+
+**Quick Actions (Hành Động Nhanh):**
+
+8 nút bấm nhanh cho phép truy cập 1-tap vào các chức năng chính:
+Đơn Hàng | Sản Xuất | Kiểm QC | Giao Hàng | Kho | Nhân Sự | Đóng Gói | Dashboard
+
+**Cảnh báo:**
+- 🚨 **Đơn hàng trễ hạn** — hiển thị top 5 đơn trễ nhất, số ngày trễ
+- 📅 **Giao hàng sắp tới** — đơn giao trong 3 ngày tới, đếm ngược
+
+**Truy cập:** Menu **Công Ty May → Báo Cáo → 📱 Mobile Dashboard**
+
+### 29.2 Luồng Phê Duyệt Đơn Hàng (Approval Workflow)
+
+Bổ sung luồng duyệt 4 trạng thái cho đơn hàng may:
+
+```
+Chưa Gửi Duyệt (draft) → Chờ Duyệt (pending) → Đã Duyệt (approved) ✅
+                                                 → Từ Chối (rejected) ❌ → Gửi lại
+```
+
+**Các nút thao tác:**
+| Nút | Trạng thái | Quyền |
+|-----|-----------|-------|
+| 📋 **Gửi Duyệt** | draft/rejected → pending | Tất cả user |
+| ✅ **Duyệt** | pending → approved (+ auto confirm đơn hàng) | Manager |
+| ❌ **Từ Chối** | pending → rejected (mở popup nhập lý do) | Manager |
+| 🔄 **Đặt Lại** | any → draft | Manager |
+
+**Wizard Từ Chối:**
+- Khi nhấn "Từ Chối", mở popup yêu cầu nhập lý do
+- Lý do từ chối hiển thị trong tab Phê Duyệt và chatter
+
+**Tab Phê Duyệt trên form Đơn Hàng:**
+- Trạng thái duyệt (badge màu)
+- Người gửi duyệt / Ngày gửi
+- Người duyệt / Ngày duyệt
+- Lý do từ chối (nếu bị từ chối)
+
+**Trên danh sách đơn hàng:**
+- Cột "Trạng Thái Duyệt" (badge)
+- Filter nhanh: Chờ Duyệt | Đã Duyệt | Từ Chối
+- Group by: Trạng Thái Duyệt
+
+### 29.3 Mobile Responsive CSS
+
+Toàn bộ giao diện garment được tối ưu cho mobile:
+
+| Tính năng | Chi tiết |
+|-----------|---------|
+| **Touch targets** | Tối thiểu 44px (theo Apple HIG) |
+| **Input font** | 16px trên input (ngăn iOS zoom) |
+| **Kanban** | 1 cột trên phone, 2 cột trên tablet |
+| **List view** | Ẩn cột ít quan trọng, cuộn ngang |
+| **Statusbar** | Cuộn ngang, overflow-x: auto |
+| **Dialogs** | Full-width trên phone, max-height 90vh |
+| **One2many** | Cuộn ngang, responsive |
+| **Dark mode** | Hỗ trợ prefers-color-scheme |
+| **Print** | Ẩn phần không cần khi in |
+
+**Breakpoints:**
+- 📱 Phone: < 767px (2 cột KPI, 1 cột kanban)
+- 📱 Small phone: < 374px (font nhỏ hơn)
+- 📋 Tablet: 768px - 1024px (3 cột KPI, 2 cột kanban)
+- 🖥️ Desktop: > 1024px (4 cột KPI, bố cục gốc)
+
+---
+
+## 30. FAQ — Câu Hỏi Thường Gặp
 
 ### Q: Làm sao để thay đổi ngôn ngữ sang Tiếng Việt?
 **A:** Vào **Settings → Translations → Load a Translation** → Chọn `Vietnamese / Tiếng Việt` → Install.

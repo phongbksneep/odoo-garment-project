@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_qc_inspection" model="ir.actions.report">
+        <field name="name">In Phiếu Kiểm Tra QC</field>
+        <field name="model">garment.qc.inspection</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">garment_print.report_qc_inspection_document</field>
+        <field name="report_file">garment_print.report_qc_inspection_document</field>
+        <field name="binding_model_id" ref="garment_quality.model_garment_qc_inspection"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'QCInspection_%s' % object.name</field>
+    </record>
+
+    <!-- Report Template -->
+    <template id="report_qc_inspection_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center mb-4">PHIẾU KIỂM TRA CHẤT LƯỢNG / QC INSPECTION REPORT</h2>
+
+                        <!-- Header Info -->
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr><td><strong>Mã phiếu / Report No:</strong></td><td><t t-esc="doc.name"/></td></tr>
+                                    <tr><td><strong>Loại kiểm tra / Type:</strong></td><td><t t-esc="dict(doc._fields['inspection_type'].selection).get(doc.inspection_type, '-')"/></td></tr>
+                                    <tr><td><strong>Đơn hàng / Order:</strong></td><td><t t-esc="doc.garment_order_id.name if doc.garment_order_id else '-'"/></td></tr>
+                                    <tr><td><strong>Mã hàng / Style:</strong></td><td><t t-esc="doc.style_id.name if doc.style_id else '-'"/></td></tr>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr><td><strong>Ngày kiểm / Date:</strong></td><td><t t-esc="doc.inspection_date" t-options="{'widget': 'date'}"/></td></tr>
+                                    <tr><td><strong>KCS / Inspector:</strong></td><td><t t-esc="doc.inspector_id.name if doc.inspector_id else '-'"/></td></tr>
+                                    <tr><td><strong>AQL Level:</strong></td><td><t t-esc="doc.aql_level or '-'"/></td></tr>
+                                    <tr><td><strong>LSX / Prod Order:</strong></td><td><t t-esc="doc.production_order_id.name if doc.production_order_id else '-'"/></td></tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Inspection Summary -->
+                        <h5>Kết Quả Kiểm Tra / Inspection Result</h5>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <table class="table table-sm table-bordered">
+                                    <thead>
+                                        <tr style="background-color: #9C27B0; color: white;">
+                                            <th class="text-center">SL Kiểm / Inspected</th>
+                                            <th class="text-center">Đạt / Passed</th>
+                                            <th class="text-center">Lỗi / Failed</th>
+                                            <th class="text-center">Tỷ Lệ Đạt / Pass Rate</th>
+                                            <th class="text-center">Kết Quả / Result</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center"><t t-esc="doc.inspected_qty"/></td>
+                                            <td class="text-center" style="color: green; font-weight: bold;"><t t-esc="doc.passed_qty"/></td>
+                                            <td class="text-center" style="color: red; font-weight: bold;"><t t-esc="doc.failed_qty"/></td>
+                                            <td class="text-center">
+                                                <t t-set="rate_color" t-value="'green' if doc.pass_rate >= 90 else ('orange' if doc.pass_rate >= 80 else 'red')"/>
+                                                <span t-attf-style="color: #{rate_color}; font-weight: bold; font-size: 1.2em;">
+                                                    <t t-esc="'%.1f' % doc.pass_rate"/>%
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-if="doc.result == 'pass'">
+                                                    <span style="color: green; font-weight: bold; font-size: 1.2em;">✅ ĐẠT / PASS</span>
+                                                </t>
+                                                <t t-elif="doc.result == 'fail'">
+                                                    <span style="color: red; font-weight: bold; font-size: 1.2em;">❌ KHÔNG ĐẠT / FAIL</span>
+                                                </t>
+                                                <t t-else="">
+                                                    <span style="color: orange; font-weight: bold;"><t t-esc="doc.result or '-'"/></span>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Defect Summary -->
+                        <div class="row mb-3">
+                            <div class="col-4 text-center">
+                                <div style="border: 2px solid #FFC107; padding: 10px; border-radius: 8px;">
+                                    <p style="font-size: 2em; font-weight: bold; color: #FFC107;"><t t-esc="doc.minor_defects"/></p>
+                                    <p><strong>Lỗi Nhẹ / Minor</strong></p>
+                                </div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div style="border: 2px solid #FF9800; padding: 10px; border-radius: 8px;">
+                                    <p style="font-size: 2em; font-weight: bold; color: #FF9800;"><t t-esc="doc.major_defects"/></p>
+                                    <p><strong>Lỗi Nặng / Major</strong></p>
+                                </div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div style="border: 2px solid #F44336; padding: 10px; border-radius: 8px;">
+                                    <p style="font-size: 2em; font-weight: bold; color: #F44336;"><t t-esc="doc.critical_defects"/></p>
+                                    <p><strong>Lỗi Nghiêm Trọng / Critical</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Defect Details -->
+                        <t t-if="doc.defect_line_ids">
+                            <h5>Chi Tiết Lỗi / Defect Details</h5>
+                            <table class="table table-sm table-bordered">
+                                <thead>
+                                    <tr style="background-color: #F44336; color: white;">
+                                        <th>STT</th>
+                                        <th>Loại Lỗi / Defect Type</th>
+                                        <th>Mức Độ / Severity</th>
+                                        <th class="text-end">Số Lượng / Qty</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="stt" t-value="0"/>
+                                    <t t-foreach="doc.defect_line_ids" t-as="defect">
+                                        <t t-set="stt" t-value="stt + 1"/>
+                                        <tr>
+                                            <td><t t-esc="stt"/></td>
+                                            <td><t t-esc="defect.defect_type_id.name if defect.defect_type_id else '-'"/></td>
+                                            <td>
+                                                <t t-if="defect.severity == 'minor'"><span style="color: #FFC107;">⚠ Nhẹ / Minor</span></t>
+                                                <t t-elif="defect.severity == 'major'"><span style="color: #FF9800;">⚠ Nặng / Major</span></t>
+                                                <t t-elif="defect.severity == 'critical'"><span style="color: #F44336;">🔴 Nghiêm trọng / Critical</span></t>
+                                                <t t-else=""><t t-esc="defect.severity or '-'"/></t>
+                                            </td>
+                                            <td class="text-end"><t t-esc="defect.quantity"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                                <tfoot>
+                                    <tr style="font-weight: bold; background-color: #FFEBEE;">
+                                        <td colspan="3" class="text-end">Tổng lỗi / Total Defects:</td>
+                                        <td class="text-end"><t t-esc="doc.total_defects"/></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </t>
+
+                        <!-- Signature -->
+                        <div class="row mt-5">
+                            <div class="col-4 text-center">
+                                <p>_________________________</p>
+                                <p><strong>KCS / Inspector</strong></p>
+                            </div>
+                            <div class="col-4 text-center">
+                                <p>_________________________</p>
+                                <p><strong>Trưởng QC</strong></p>
+                                <p>QC Manager</p>
+                            </div>
+                            <div class="col-4 text-center">
+                                <p>_________________________</p>
+                                <p><strong>Quản Đốc</strong></p>
+                                <p>Production Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

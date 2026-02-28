@@ -1,0 +1,462 @@
+/* ==============================================================
+   Garment Mobile Responsive CSS
+   Mobile-first design for garment manufacturing ERP
+   Target: phones (< 768px), tablets (768px-1024px)
+   ============================================================== */
+
+/* ---- INSTRUCTION / DESIGN NOTES ----
+   📱 Mobile-first approach:
+   - Min touch target: 44px × 44px (Apple HIG)
+   - Base font: 14px min on mobile
+   - Spacing: 8px grid system
+   - Cards over tables on small screens
+   - Horizontal scroll for unavoidable tables
+   - Sticky headers for scrollable lists
+   - Bottom action bars for primary actions
+   - Swipe-friendly navigation
+   ---- END NOTES ---- */
+
+/* ==========================================================
+   1. GLOBAL MOBILE OVERRIDES
+   ========================================================== */
+
+/* Make all garment form views more readable on mobile */
+@media screen and (max-width: 767px) {
+
+    /* Form view: full-width fields */
+    .o_form_view .o_group {
+        width: 100% !important;
+    }
+
+    .o_form_view .o_group .o_group {
+        width: 100% !important;
+    }
+
+    .o_form_view .o_inner_group {
+        width: 100% !important;
+    }
+
+    /* Make labels stack above fields on mobile */
+    .o_form_view .o_wrap_label {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .o_form_view .o_cell {
+        width: 100% !important;
+        display: block !important;
+        padding: 2px 0 !important;
+    }
+
+    /* Bigger form labels */
+    .o_form_view .o_form_label {
+        font-size: 12px !important;
+        color: #868e96;
+        margin-bottom: 2px !important;
+    }
+
+    /* Bigger input fields for touch */
+    .o_form_view .o_field_widget input,
+    .o_form_view .o_field_widget select,
+    .o_form_view .o_field_widget textarea {
+        font-size: 16px !important;  /* prevent iOS zoom */
+        min-height: 44px !important;
+        padding: 8px 12px !important;
+    }
+
+    /* Statusbar: horizontal scroll on mobile */
+    .o_form_view .o_statusbar_status {
+        overflow-x: auto !important;
+        flex-wrap: nowrap !important;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 4px;
+    }
+
+    .o_form_view .o_statusbar_status button {
+        white-space: nowrap !important;
+        min-width: auto !important;
+        font-size: 12px !important;
+        padding: 6px 12px !important;
+    }
+
+    /* Statusbar buttons - bigger touch targets */
+    .o_form_view .o_statusbar_buttons button {
+        min-height: 44px !important;
+        min-width: 44px !important;
+        font-size: 14px !important;
+        padding: 8px 16px !important;
+        margin: 4px 4px 4px 0 !important;
+    }
+
+    /* Sheet padding reduced on mobile */
+    .o_form_view .o_form_sheet_bg .o_form_sheet {
+        padding: 12px !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+
+    /* Notebook tabs: scrollable horizontally */
+    .o_form_view .o_notebook .nav-tabs {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .o_form_view .o_notebook .nav-link {
+        white-space: nowrap !important;
+        font-size: 13px !important;
+        padding: 10px 16px !important;
+    }
+
+    /* Chatter on mobile */
+    .o_form_view .o_chatter_header_container {
+        flex-direction: column !important;
+    }
+
+    .o_form_view .o_chatter_header_container .o_chatter_button_log_note,
+    .o_form_view .o_chatter_header_container .o_chatter_button_schedule_activity {
+        width: 100% !important;
+        margin: 4px 0 !important;
+    }
+}
+
+
+/* ==========================================================
+   2. LIST VIEW MOBILE
+   ========================================================== */
+
+@media screen and (max-width: 767px) {
+
+    /* Enable horizontal scroll for list views */
+    .o_list_view {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Smaller text in list */
+    .o_list_view .o_list_renderer td,
+    .o_list_view .o_list_renderer th {
+        font-size: 12px !important;
+        padding: 8px 6px !important;
+        white-space: nowrap !important;
+    }
+
+    /* Row height for touch targets */
+    .o_list_view .o_list_renderer tbody tr {
+        min-height: 44px !important;
+    }
+
+    /* Sticky first column */
+    .o_list_view .o_list_renderer th:first-child,
+    .o_list_view .o_list_renderer td:first-child {
+        position: sticky !important;
+        left: 0 !important;
+        z-index: 1 !important;
+        background: #fff !important;
+    }
+
+    .o_list_view .o_list_renderer thead th:first-child {
+        background: #f8f9fa !important;
+    }
+}
+
+
+/* ==========================================================
+   3. KANBAN VIEW MOBILE
+   ========================================================== */
+
+@media screen and (max-width: 767px) {
+
+    /* Single column kanban on phone */
+    .o_kanban_renderer .o_kanban_group {
+        min-width: 100% !important;
+    }
+
+    .o_kanban_renderer.o_kanban_ungrouped {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        padding: 8px !important;
+    }
+
+    .o_kanban_renderer.o_kanban_ungrouped .o_kanban_record {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* Kanban cards: full width, touch-friendly */
+    .o_kanban_record {
+        border-radius: 12px !important;
+        padding: 12px !important;
+        margin-bottom: 8px !important;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1) !important;
+    }
+
+    .o_kanban_record .o_kanban_details {
+        font-size: 14px !important;
+    }
+}
+
+
+/* ==========================================================
+   4. GARMENT-SPECIFIC MOBILE STYLES
+   ========================================================== */
+
+@media screen and (max-width: 767px) {
+
+    /* Order form: priority info first */
+    .garment-order-card {
+        padding: 12px;
+        margin-bottom: 8px;
+    }
+
+    /* Badge widgets bigger on mobile */
+    .o_field_badge .badge {
+        font-size: 13px !important;
+        padding: 6px 12px !important;
+        min-height: 30px !important;
+    }
+
+    /* Progress bar thicker on mobile */
+    .o_field_progressbar .o_progressbar {
+        height: 12px !important;
+    }
+
+    /* Many2one fields: bigger dropdown trigger */
+    .o_field_many2one input {
+        min-height: 44px !important;
+    }
+
+    /* One2many list in forms: horizontal scroll */
+    .o_field_one2many .o_list_renderer,
+    .o_field_many2many .o_list_renderer {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
+
+
+/* ==========================================================
+   5. APPROVAL WORKFLOW MOBILE STYLES
+   ========================================================== */
+
+/* Approval status banner */
+.garment-approval-banner {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    gap: 12px;
+}
+
+.garment-approval-banner.approval-pending {
+    background: #FFF3E0;
+    border: 1px solid #FFB74D;
+}
+
+.garment-approval-banner.approval-approved {
+    background: #E8F5E9;
+    border: 1px solid #81C784;
+}
+
+.garment-approval-banner.approval-rejected {
+    background: #FFEBEE;
+    border: 1px solid #E57373;
+}
+
+.garment-approval-banner .approval-icon {
+    font-size: 24px;
+}
+
+.garment-approval-banner .approval-text {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Approval action buttons — big touch targets */
+.garment-approval-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.garment-approval-actions .btn {
+    min-height: 48px !important;
+    min-width: 120px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+@media screen and (max-width: 767px) {
+    .garment-approval-actions {
+        flex-direction: column !important;
+    }
+
+    .garment-approval-actions .btn {
+        width: 100% !important;
+        min-height: 52px !important;
+        font-size: 16px !important;
+    }
+
+    .garment-approval-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+
+/* ==========================================================
+   6. BOTTOM FLOATING ACTION BAR (Mobile only)
+   ========================================================== */
+
+@media screen and (max-width: 767px) {
+
+    /* Add padding at bottom of forms to prevent FAB overlap */
+    .o_form_view .o_form_sheet_bg {
+        padding-bottom: 70px !important;
+    }
+}
+
+
+/* ==========================================================
+   7. SEARCH / FILTER ON MOBILE
+   ========================================================== */
+
+@media screen and (max-width: 767px) {
+
+    /* Search bar full width */
+    .o_searchview {
+        width: 100% !important;
+    }
+
+    .o_searchview input {
+        font-size: 16px !important;
+        min-height: 44px !important;
+    }
+
+    /* Filter buttons wrap */
+    .o_search_options {
+        flex-wrap: wrap !important;
+    }
+
+    .o_search_options button {
+        min-height: 40px !important;
+        font-size: 13px !important;
+    }
+}
+
+
+/* ==========================================================
+   8. DIALOG / MODAL ON MOBILE
+   ========================================================== */
+
+@media screen and (max-width: 767px) {
+
+    .modal-dialog {
+        margin: 8px !important;
+        max-width: calc(100% - 16px) !important;
+    }
+
+    .modal-body {
+        padding: 16px !important;
+    }
+
+    .modal-footer .btn {
+        min-height: 44px !important;
+        font-size: 15px !important;
+    }
+
+    /* Wizard forms full width */
+    .modal .o_form_view .o_group {
+        width: 100% !important;
+    }
+}
+
+
+/* ==========================================================
+   9. TABLET (768px - 1024px)
+   ========================================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    /* Two-column layout on tablet */
+    .o_form_view .o_group {
+        width: 50% !important;
+    }
+
+    /* Slightly bigger touch targets */
+    .o_form_view .o_field_widget input,
+    .o_form_view .o_field_widget select {
+        min-height: 40px !important;
+    }
+
+    .o_form_view .o_statusbar_buttons button {
+        min-height: 40px !important;
+        padding: 6px 14px !important;
+    }
+
+    /* Kanban: 2 columns */
+    .o_kanban_renderer.o_kanban_ungrouped .o_kanban_record {
+        width: 48% !important;
+    }
+}
+
+
+/* ==========================================================
+   10. PRINT / PDF — hide mobile-only elements
+   ========================================================== */
+
+@media print {
+    .garment-mobile-only,
+    .garment-approval-actions {
+        display: none !important;
+    }
+}
+
+
+/* ==========================================================
+   11. DARK MODE SUPPORT (prefers-color-scheme)
+   ========================================================== */
+
+@media (prefers-color-scheme: dark) {
+    .garment-approval-banner.approval-pending {
+        background: #3E2723;
+        border-color: #8D6E63;
+        color: #FFE0B2;
+    }
+
+    .garment-approval-banner.approval-approved {
+        background: #1B5E20;
+        border-color: #4CAF50;
+        color: #C8E6C9;
+    }
+
+    .garment-approval-banner.approval-rejected {
+        background: #B71C1C;
+        border-color: #EF5350;
+        color: #FFCDD2;
+    }
+}
+
+
+/* ==========================================================
+   12. TOUCH FEEDBACK
+   ========================================================== */
+
+.garment-touchable {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(113, 75, 103, 0.2);
+    user-select: none;
+}
+
+.garment-touchable:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+}

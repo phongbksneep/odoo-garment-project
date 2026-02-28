@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- =========================================================
+         Inherit garment.order FORM — add approval section
+         ========================================================= -->
+    <record id="view_garment_order_form_approval" model="ir.ui.view">
+        <field name="name">garment.order.form.approval</field>
+        <field name="model">garment.order</field>
+        <field name="inherit_id" ref="garment_base.view_garment_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add approval buttons to header (before the statusbar) -->
+            <xpath expr="//header/field[@name='state']" position="before">
+                <button name="action_request_approval"
+                        string="📋 Gửi Duyệt"
+                        type="object"
+                        class="btn-primary garment-approval-btn"
+                        invisible="approval_state not in ('draft', 'rejected')"/>
+                <button name="action_approve"
+                        string="✅ Duyệt"
+                        type="object"
+                        class="btn-success garment-approval-btn"
+                        invisible="approval_state != 'pending'"
+                        groups="garment_base.group_garment_manager"/>
+                <button name="action_reject"
+                        string="❌ Từ Chối"
+                        type="object"
+                        class="btn-danger garment-approval-btn"
+                        invisible="approval_state != 'pending'"
+                        groups="garment_base.group_garment_manager"/>
+                <button name="action_reset_approval"
+                        string="🔄 Đặt Lại"
+                        type="object"
+                        invisible="approval_state == 'draft'"
+                        groups="garment_base.group_garment_manager"/>
+            </xpath>
+
+            <!-- Approval status banner at the top of the sheet -->
+            <xpath expr="//sheet/div[hasclass('oe_title')]" position="before">
+                <div class="garment-approval-banner pending"
+                     invisible="approval_state != 'pending'">
+                    ⏳ Đơn hàng đang chờ duyệt
+                </div>
+                <div class="garment-approval-banner approved"
+                     invisible="approval_state != 'approved'">
+                    ✅ Đơn hàng đã được duyệt
+                </div>
+                <div class="garment-approval-banner rejected"
+                     invisible="approval_state != 'rejected'">
+                    ❌ Đơn hàng bị từ chối
+                </div>
+            </xpath>
+
+            <!-- Add approval tab at the end of the notebook -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Phê Duyệt" name="approval_tab">
+                    <group>
+                        <group string="Trạng Thái Duyệt">
+                            <field name="approval_state" readonly="1"
+                                   widget="badge"
+                                   decoration-info="approval_state == 'pending'"
+                                   decoration-success="approval_state == 'approved'"
+                                   decoration-danger="approval_state == 'rejected'"/>
+                            <field name="approval_requested_by"/>
+                            <field name="approval_requested_date"/>
+                        </group>
+                        <group string="Kết Quả Duyệt">
+                            <field name="approved_by"/>
+                            <field name="approval_date"/>
+                            <field name="rejection_reason"
+                                   invisible="approval_state != 'rejected'"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="approval_note" placeholder="Ghi chú phê duyệt..."/>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- =========================================================
+         Inherit garment.order LIST — add approval_state column
+         ========================================================= -->
+    <record id="view_garment_order_list_approval" model="ir.ui.view">
+        <field name="name">garment.order.list.approval</field>
+        <field name="model">garment.order</field>
+        <field name="inherit_id" ref="garment_base.view_garment_order_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="approval_state" widget="badge"
+                       decoration-info="approval_state == 'pending'"
+                       decoration-success="approval_state == 'approved'"
+                       decoration-danger="approval_state == 'rejected'"
+                       optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- =========================================================
+         Inherit garment.order SEARCH — add approval filter
+         ========================================================= -->
+    <record id="view_garment_order_search_approval" model="ir.ui.view">
+        <field name="name">garment.order.search.approval</field>
+        <field name="model">garment.order</field>
+        <field name="inherit_id" ref="garment_base.view_garment_order_search"/>
+        <field name="arch" type="xml">
+            <!-- Add approval filters after the existing 'done' filter -->
+            <xpath expr="//filter[@name='done']" position="after">
+                <separator/>
+                <filter name="pending_approval" string="Chờ Duyệt"
+                        domain="[('approval_state', '=', 'pending')]"/>
+                <filter name="approved" string="Đã Duyệt"
+                        domain="[('approval_state', '=', 'approved')]"/>
+                <filter name="rejected" string="Từ Chối"
+                        domain="[('approval_state', '=', 'rejected')]"/>
+            </xpath>
+            <!-- Add group-by option inside existing group element -->
+            <xpath expr="//group/filter[@name='group_state']" position="after">
+                <filter name="group_approval" string="Trạng Thái Duyệt"
+                        context="{'group_by': 'approval_state'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- =========================================================
+         Rejection Wizard Form
+         ========================================================= -->
+    <record id="view_rejection_wizard_form" model="ir.ui.view">
+        <field name="name">garment.rejection.wizard.form</field>
+        <field name="model">garment.rejection.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Từ Chối Đơn Hàng">
+                <group>
+                    <field name="order_id" readonly="1"/>
+                    <field name="reason" placeholder="Nhập lý do từ chối..."
+                           widget="text"/>
+                </group>
+                <footer>
+                    <button name="action_confirm_reject"
+                            string="Xác Nhận Từ Chối"
+                            type="object"
+                            class="btn-danger"/>
+                    <button string="Hủy" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
