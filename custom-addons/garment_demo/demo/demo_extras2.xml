@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ============================================================ -->
+        <!-- CHI TIẾT CHI PHÍ (garment.cost.line)                         -->
+        <!-- ============================================================ -->
+
+        <record id="cost_line_fabric_cj" model="garment.cost.line">
+            <field name="cost_sheet_id" ref="cost_polo"/>
+            <field name="cost_type">fabric</field>
+            <field name="sequence">1</field>
+            <field name="description">Cotton Jersey 180gsm (thân + tay)</field>
+            <field name="uom_id" ref="uom.product_uom_meter"/>
+            <field name="consumption">1.35</field>
+            <field name="unit_price">65000</field>
+            <field name="wastage_pct">3.0</field>
+            <field name="supplier_id" ref="partner_supplier_fabric"/>
+        </record>
+        <record id="cost_line_fabric_collar" model="garment.cost.line">
+            <field name="cost_sheet_id" ref="cost_polo"/>
+            <field name="cost_type">fabric</field>
+            <field name="sequence">2</field>
+            <field name="description">Rib cổ Polo (knit rib)</field>
+            <field name="uom_id" ref="uom.product_uom_meter"/>
+            <field name="consumption">0.15</field>
+            <field name="unit_price">45000</field>
+            <field name="wastage_pct">5.0</field>
+        </record>
+        <record id="cost_line_mex" model="garment.cost.line">
+            <field name="cost_sheet_id" ref="cost_polo"/>
+            <field name="cost_type">accessory</field>
+            <field name="sequence">3</field>
+            <field name="description">Mex ngực non-woven fusible</field>
+            <field name="uom_id" ref="uom.product_uom_meter"/>
+            <field name="consumption">0.12</field>
+            <field name="unit_price">15000</field>
+            <field name="wastage_pct">2.0</field>
+        </record>
+        <record id="cost_line_button" model="garment.cost.line">
+            <field name="cost_sheet_id" ref="cost_polo"/>
+            <field name="cost_type">accessory</field>
+            <field name="sequence">4</field>
+            <field name="description">Nút nhựa 2 lỗ 12mm (x3 nút/áo)</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="consumption">3.0</field>
+            <field name="unit_price">50</field>
+            <field name="wastage_pct">1.0</field>
+            <field name="supplier_id" ref="partner_supplier_acc"/>
+        </record>
+        <record id="cost_line_thread" model="garment.cost.line">
+            <field name="cost_sheet_id" ref="cost_polo"/>
+            <field name="cost_type">accessory</field>
+            <field name="sequence">5</field>
+            <field name="description">Chỉ Coats Epic 120/3 (các đường may)</field>
+            <field name="uom_id" ref="uom.product_uom_meter"/>
+            <field name="consumption">80.0</field>
+            <field name="unit_price">5</field>
+            <field name="wastage_pct">5.0</field>
+        </record>
+        <record id="cost_line_label" model="garment.cost.line">
+            <field name="cost_sheet_id" ref="cost_polo"/>
+            <field name="cost_type">accessory</field>
+            <field name="sequence">6</field>
+            <field name="description">Nhãn chính + Care label + Size label</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="consumption">3.0</field>
+            <field name="unit_price">600</field>
+            <field name="wastage_pct">1.0</field>
+        </record>
+        <record id="cost_line_polybag" model="garment.cost.line">
+            <field name="cost_sheet_id" ref="cost_polo"/>
+            <field name="cost_type">packing</field>
+            <field name="sequence">7</field>
+            <field name="description">Bao PE đựng sản phẩm + tissue paper</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="consumption">1.0</field>
+            <field name="unit_price">350</field>
+            <field name="wastage_pct">2.0</field>
+        </record>
+        <record id="cost_line_hangtag" model="garment.cost.line">
+            <field name="cost_sheet_id" ref="cost_polo"/>
+            <field name="cost_type">packing</field>
+            <field name="sequence">8</field>
+            <field name="description">Thẻ bài giá + barcode sticker</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="consumption">1.0</field>
+            <field name="unit_price">800</field>
+            <field name="wastage_pct">1.0</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- KẾT QUẢ AUDIT (garment.audit.finding)                       -->
+        <!-- ============================================================ -->
+
+        <record id="finding_fire_exit" model="garment.audit.finding">
+            <field name="audit_id" ref="audit_bsci"/>
+            <field name="category">fire_safety</field>
+            <field name="severity">major</field>
+            <field name="description">Lối thoát hiểm tầng 2 bị cản trở bởi thùng carton. Cần dọn dẹp và duy trì thông thoáng.</field>
+            <field name="evidence">Ảnh chụp lối thoát hiểm bị chắn ngày 15/02/2026. Nhân viên xác nhận hàng để từ ngày 10/02.</field>
+        </record>
+        <record id="finding_ot_hours" model="garment.audit.finding">
+            <field name="audit_id" ref="audit_bsci"/>
+            <field name="category">wages</field>
+            <field name="severity">minor</field>
+            <field name="description">3 công nhân chuyền 1 tăng ca vượt 60h/tháng (ghi nhận 65h) trong tháng 01/2026. Cần kiểm soát giờ OT.</field>
+            <field name="evidence">Bảng chấm công tháng 01/2026, dòng CN Nguyễn Thị A, Trần Văn B, Lê Thị C.</field>
+        </record>
+        <record id="finding_chemical" model="garment.audit.finding">
+            <field name="audit_id" ref="audit_bsci"/>
+            <field name="category">chemical</field>
+            <field name="severity">observation</field>
+            <field name="description">Kho hóa chất giặt có MSDS nhưng chưa dịch sang tiếng Việt. Đề nghị bổ sung bản dịch.</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- KẾ HOẠCH KHẮC PHỤC (garment.corrective.action)              -->
+        <!-- ============================================================ -->
+
+        <record id="cap_fire_exit" model="garment.corrective.action">
+            <field name="name">CAP-2026-00001</field>
+            <field name="audit_id" ref="audit_bsci"/>
+            <field name="finding_id" ref="finding_fire_exit"/>
+            <field name="severity">major</field>
+            <field name="description">Lối thoát hiểm tầng 2 bị cản trở bởi thùng carton.</field>
+            <field name="root_cause">Thiếu khu vực lưu trữ carton rỗng. Công nhân để tạm tại hành lang thoát hiểm.</field>
+            <field name="corrective_action">1. Dọn dẹp lối thoát hiểm ngay lập tức.
+2. Bố trí khu vực riêng để carton rỗng ở tầng 1.
+3. Dán biển cấm để đồ tại lối thoát hiểm.</field>
+            <field name="preventive_action">Kiểm tra hàng tuần lối thoát hiểm. Đào tạo PCCC cho toàn bộ CN mới.</field>
+            <field name="responsible_id" ref="emp_hr_manager"/>
+            <field name="deadline">2026-03-01</field>
+            <field name="completion_date">2026-02-25</field>
+            <field name="state">done</field>
+        </record>
+        <record id="cap_ot_hours" model="garment.corrective.action">
+            <field name="name">CAP-2026-00002</field>
+            <field name="audit_id" ref="audit_bsci"/>
+            <field name="finding_id" ref="finding_ot_hours"/>
+            <field name="severity">minor</field>
+            <field name="description">Vượt giờ tăng ca quy định 60h/tháng cho 3 công nhân.</field>
+            <field name="root_cause">Thiếu hệ thống cảnh báo tự động khi CN gần đạt giới hạn OT.</field>
+            <field name="corrective_action">Thiết lập cảnh báo tự động khi CN đạt 50h OT/tháng. Báo cáo OT hàng tuần cho quản lý.</field>
+            <field name="responsible_id" ref="emp_hr_manager"/>
+            <field name="deadline">2026-03-15</field>
+            <field name="state">in_progress</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- CHI TIẾT LỖI QC (garment.qc.defect.line)                    -->
+        <!-- ============================================================ -->
+
+        <record id="qc_defect_polo_1" model="garment.qc.defect.line">
+            <field name="inspection_id" ref="qc_inline_polo"/>
+            <field name="defect_type_id" ref="garment_quality.defect_broken_stitch"/>
+            <field name="quantity">3</field>
+            <field name="location">Đường may sườn bên trái</field>
+        </record>
+        <record id="qc_defect_polo_2" model="garment.qc.defect.line">
+            <field name="inspection_id" ref="qc_inline_polo"/>
+            <field name="defect_type_id" ref="garment_quality.defect_puckering"/>
+            <field name="quantity">2</field>
+            <field name="location">Cổ áo Polo</field>
+        </record>
+        <record id="qc_defect_polo_3" model="garment.qc.defect.line">
+            <field name="inspection_id" ref="qc_inline_polo"/>
+            <field name="defect_type_id" ref="garment_quality.defect_oil_stain"/>
+            <field name="quantity">1</field>
+            <field name="location">Thân trước, gần nẹp cúc</field>
+            <field name="notes">Dầu máy kim. Đã vệ sinh máy.</field>
+        </record>
+        <record id="qc_defect_endline_1" model="garment.qc.defect.line">
+            <field name="inspection_id" ref="qc_endline_polo"/>
+            <field name="defect_type_id" ref="garment_quality.defect_skip_stitch"/>
+            <field name="quantity">2</field>
+            <field name="location">Lai áo</field>
+        </record>
+        <record id="qc_defect_endline_2" model="garment.qc.defect.line">
+            <field name="inspection_id" ref="qc_endline_polo"/>
+            <field name="defect_type_id" ref="garment_quality.defect_measurement"/>
+            <field name="quantity">1</field>
+            <field name="location">Tay áo (dài hơn spec 1.5cm)</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- NHẬN XÉT MẪU (garment.sample.comment)                       -->
+        <!-- ============================================================ -->
+
+        <record id="comment_polo_buyer1" model="garment.sample.comment">
+            <field name="sample_id" ref="sample_polo_pp"/>
+            <field name="date">2026-01-20 09:30:00</field>
+            <field name="comment_type">buyer</field>
+            <field name="comment">PP sample received. Overall construction is good. Please adjust collar height from 7cm to 6.5cm. Button spacing needs to be more even. Please send revised sample.</field>
+        </record>
+        <record id="comment_polo_internal1" model="garment.sample.comment">
+            <field name="sample_id" ref="sample_polo_pp"/>
+            <field name="date">2026-01-21 14:00:00</field>
+            <field name="comment_type">internal</field>
+            <field name="comment">Đã nhận comment buyer. Chuyển tổ mẫu sửa cổ áo và khoảng cách nút. Dự kiến gửi lại mẫu sửa 25/01.</field>
+        </record>
+        <record id="comment_polo_correction" model="garment.sample.comment">
+            <field name="sample_id" ref="sample_polo_pp"/>
+            <field name="date">2026-01-22 08:00:00</field>
+            <field name="comment_type">correction</field>
+            <field name="comment">1. Hạ cổ áo từ 7cm → 6.5cm (đã sửa rập).
+2. Khoảng cách nút: 8cm đều từ nút trên cùng.
+3. Kiểm tra lại measurement chart trước khi may.</field>
+        </record>
+        <record id="comment_tshirt_buyer" model="garment.sample.comment">
+            <field name="sample_id" ref="sample_tshirt_fit"/>
+            <field name="date">2026-01-25 10:00:00</field>
+            <field name="comment_type">buyer</field>
+            <field name="comment">Fit sample approved with minor comments: shoulder seam position OK, body length OK. Hem could be 0.5cm shorter. Approved to proceed to size-set.</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- CHI TIẾT ĐƠN GIA CÔNG (garment.subcontract.order.line)      -->
+        <!-- ============================================================ -->
+
+        <record id="sub_line_emb_chest" model="garment.subcontract.order.line">
+            <field name="order_id" ref="subcontract_embroidery"/>
+            <field name="description">Thêu logo ngực trái 5x3cm (3 màu)</field>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="size_id" ref="garment_base.size_m"/>
+            <field name="qty_ordered">3000</field>
+            <field name="qty_received">2950</field>
+            <field name="qty_rejected">15</field>
+            <field name="unit_price">3500</field>
+            <field name="notes">Logo buyer theo file AI gửi kèm</field>
+        </record>
+        <record id="sub_line_emb_sleeve" model="garment.subcontract.order.line">
+            <field name="order_id" ref="subcontract_embroidery"/>
+            <field name="description">Thêu text tay phải 2x1cm (1 màu)</field>
+            <field name="qty_ordered">3000</field>
+            <field name="qty_received">3000</field>
+            <field name="qty_rejected">8</field>
+            <field name="unit_price">1500</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- PHÂN BỔ CHUYỀN (garment.line.loading)                        -->
+        <!-- ============================================================ -->
+
+        <record id="loading_polo_line1" model="garment.line.loading">
+            <field name="plan_id" ref="plan_polo"/>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="target_efficiency">70.0</field>
+            <field name="planned_qty">4000</field>
+            <field name="date_start">2026-02-15</field>
+            <field name="date_end">2026-03-05</field>
+            <field name="notes">Chuyền chính cho Polo GF. CN có kinh nghiệm Polo.</field>
+        </record>
+        <record id="loading_polo_line2" model="garment.line.loading">
+            <field name="plan_id" ref="plan_polo"/>
+            <field name="sewing_line_id" ref="line_sewing_2"/>
+            <field name="target_efficiency">65.0</field>
+            <field name="planned_qty">3000</field>
+            <field name="date_start">2026-02-20</field>
+            <field name="date_end">2026-03-10</field>
+            <field name="notes">Chuyền hỗ trợ. Cần đào tạo thêm về may cổ Polo.</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- CARTON LINE (garment.carton.line)                            -->
+        <!-- ============================================================ -->
+
+        <record id="carton_line_polo_s" model="garment.carton.line">
+            <field name="packing_list_id" ref="packing_polo"/>
+            <field name="carton_from">1</field>
+            <field name="carton_to">5</field>
+            <field name="size_id" ref="garment_base.size_s"/>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="pcs_per_carton">24</field>
+            <field name="length_cm">60</field>
+            <field name="width_cm">40</field>
+            <field name="height_cm">30</field>
+            <field name="gross_weight">12.5</field>
+            <field name="net_weight">11.0</field>
+        </record>
+        <record id="carton_line_polo_m" model="garment.carton.line">
+            <field name="packing_list_id" ref="packing_polo"/>
+            <field name="carton_from">6</field>
+            <field name="carton_to">12</field>
+            <field name="size_id" ref="garment_base.size_m"/>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="pcs_per_carton">24</field>
+            <field name="length_cm">60</field>
+            <field name="width_cm">40</field>
+            <field name="height_cm">30</field>
+            <field name="gross_weight">13.0</field>
+            <field name="net_weight">11.5</field>
+        </record>
+        <record id="carton_line_polo_l" model="garment.carton.line">
+            <field name="packing_list_id" ref="packing_polo"/>
+            <field name="carton_from">13</field>
+            <field name="carton_to">18</field>
+            <field name="size_id" ref="garment_base.size_l"/>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="pcs_per_carton">20</field>
+            <field name="length_cm">60</field>
+            <field name="width_cm">40</field>
+            <field name="height_cm">35</field>
+            <field name="gross_weight">13.5</field>
+            <field name="net_weight">12.0</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- TỔNG HỢP CÔNG THÁNG (garment.attendance.summary)            -->
+        <!-- ============================================================ -->
+
+        <record id="att_summary_huong_02" model="garment.attendance.summary">
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="month">02</field>
+            <field name="year">2026</field>
+            <field name="total_work_days">22.0</field>
+            <field name="present_days">21</field>
+            <field name="absent_days">1</field>
+            <field name="late_days">2</field>
+            <field name="half_days">0</field>
+            <field name="total_ot_hours">24.5</field>
+            <field name="total_work_hours">192.5</field>
+            <field name="state">confirmed</field>
+        </record>
+        <record id="att_summary_ngoc_02" model="garment.attendance.summary">
+            <field name="employee_id" ref="emp_sew1_worker2"/>
+            <field name="month">02</field>
+            <field name="year">2026</field>
+            <field name="total_work_days">23.0</field>
+            <field name="present_days">23</field>
+            <field name="absent_days">0</field>
+            <field name="late_days">1</field>
+            <field name="half_days">0</field>
+            <field name="total_ot_hours">30.0</field>
+            <field name="total_work_hours">214.0</field>
+            <field name="state">confirmed</field>
+        </record>
+        <record id="att_summary_cut_02" model="garment.attendance.summary">
+            <field name="employee_id" ref="emp_cut_leader"/>
+            <field name="month">02</field>
+            <field name="year">2026</field>
+            <field name="total_work_days">24.0</field>
+            <field name="present_days">24</field>
+            <field name="absent_days">0</field>
+            <field name="late_days">0</field>
+            <field name="half_days">0</field>
+            <field name="total_ot_hours">18.0</field>
+            <field name="total_work_hours">210.0</field>
+            <field name="state">confirmed</field>
+        </record>
+
+    </data>
+</odoo>

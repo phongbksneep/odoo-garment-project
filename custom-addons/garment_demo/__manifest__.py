@@ -42,6 +42,7 @@ Tạo dữ liệu mẫu cho tất cả module:
         'garment_crm',
         'garment_label',
         'garment_inventory',
+        'garment_material',
     ],
     'data': [
         'demo/demo_base.xml',
@@ -55,6 +56,8 @@ Tạo dữ liệu mẫu cho tất cả module:
         'demo/demo_label.xml',
         'demo/demo_inventory.xml',
         'demo/demo_hr_employee.xml',
+        'demo/demo_extras.xml',
+        'demo/demo_extras2.xml',
     ],
     'installable': True,
     'application': False,

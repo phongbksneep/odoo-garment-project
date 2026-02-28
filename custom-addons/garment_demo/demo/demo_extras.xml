@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ============================================================ -->
+        <!-- PHỤ LIỆU (garment.accessory)                                -->
+        <!-- ============================================================ -->
+
+        <record id="acc_button_metal" model="garment.accessory">
+            <field name="name">Nút Kim Loại 4 Lỗ 15mm</field>
+            <field name="code">BTN-M15</field>
+            <field name="accessory_type">button</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="size">15mm</field>
+            <field name="material">Kim loại</field>
+            <field name="unit_price">200</field>
+            <field name="min_order_qty">10000</field>
+            <field name="lead_time">14</field>
+        </record>
+        <record id="acc_button_plastic" model="garment.accessory">
+            <field name="name">Nút Nhựa 2 Lỗ 12mm</field>
+            <field name="code">BTN-P12</field>
+            <field name="accessory_type">button</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="size">12mm</field>
+            <field name="material">Nhựa ABS</field>
+            <field name="unit_price">50</field>
+            <field name="min_order_qty">20000</field>
+            <field name="lead_time">7</field>
+        </record>
+        <record id="acc_zipper_ykk" model="garment.accessory">
+            <field name="name">Khóa Kéo YKK #5 Kim Loại</field>
+            <field name="code">ZIP-YKK5M</field>
+            <field name="accessory_type">zipper</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="size">#5, 60cm</field>
+            <field name="material">Kim loại YKK</field>
+            <field name="unit_price">5000</field>
+            <field name="min_order_qty">5000</field>
+            <field name="lead_time">21</field>
+        </record>
+        <record id="acc_zipper_nylon" model="garment.accessory">
+            <field name="name">Khóa Kéo Nylon #3 Giấu</field>
+            <field name="code">ZIP-N3H</field>
+            <field name="accessory_type">zipper</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="size">#3, 20cm</field>
+            <field name="material">Nylon</field>
+            <field name="unit_price">1500</field>
+            <field name="min_order_qty">10000</field>
+            <field name="lead_time">14</field>
+        </record>
+        <record id="acc_thread_coats" model="garment.accessory">
+            <field name="name">Chỉ May Coats Epic 120/3</field>
+            <field name="code">THR-CE120</field>
+            <field name="accessory_type">thread</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="size">120/3, 5000m</field>
+            <field name="material">Polyester core-spun</field>
+            <field name="unit_price">25000</field>
+            <field name="min_order_qty">200</field>
+            <field name="lead_time">7</field>
+        </record>
+        <record id="acc_label_main" model="garment.accessory">
+            <field name="name">Nhãn Chính Woven Brand Label</field>
+            <field name="code">LBL-MAIN</field>
+            <field name="accessory_type">label</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="size">30x50mm</field>
+            <field name="material">Woven satin</field>
+            <field name="unit_price">500</field>
+            <field name="min_order_qty">10000</field>
+            <field name="lead_time">14</field>
+        </record>
+        <record id="acc_label_care" model="garment.accessory">
+            <field name="name">Nhãn Care Label Printed</field>
+            <field name="code">LBL-CARE</field>
+            <field name="accessory_type">label</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="size">25x80mm</field>
+            <field name="material">Nylon taffeta</field>
+            <field name="unit_price">300</field>
+            <field name="min_order_qty">10000</field>
+            <field name="lead_time">10</field>
+        </record>
+        <record id="acc_elastic_waist" model="garment.accessory">
+            <field name="name">Thun Lưng 25mm Dệt</field>
+            <field name="code">ELS-W25</field>
+            <field name="accessory_type">elastic</field>
+            <field name="uom_id" ref="uom.product_uom_meter"/>
+            <field name="size">25mm</field>
+            <field name="material">Polyester + Rubber</field>
+            <field name="unit_price">3000</field>
+            <field name="min_order_qty">500</field>
+            <field name="lead_time">10</field>
+        </record>
+        <record id="acc_mex_chest" model="garment.accessory">
+            <field name="name">Mex Ngực Non-Woven</field>
+            <field name="code">MEX-NW01</field>
+            <field name="accessory_type">padding</field>
+            <field name="uom_id" ref="uom.product_uom_meter"/>
+            <field name="size">90cm khổ</field>
+            <field name="material">Non-woven fusible</field>
+            <field name="unit_price">15000</field>
+            <field name="min_order_qty">200</field>
+            <field name="lead_time">14</field>
+        </record>
+        <record id="acc_hangtag" model="garment.accessory">
+            <field name="name">Thẻ Bài Bìa Cứng Giá</field>
+            <field name="code">TAG-PRICE</field>
+            <field name="accessory_type">tag</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="size">50x90mm</field>
+            <field name="material">Bìa cứng 350gsm</field>
+            <field name="unit_price">800</field>
+            <field name="min_order_qty">5000</field>
+            <field name="lead_time">7</field>
+        </record>
+        <record id="acc_polybag" model="garment.accessory">
+            <field name="name">Bao PE Đựng Sản Phẩm</field>
+            <field name="code">PKG-PE01</field>
+            <field name="accessory_type">packaging</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="size">30x45cm</field>
+            <field name="material">PE 0.04mm</field>
+            <field name="unit_price">200</field>
+            <field name="min_order_qty">50000</field>
+            <field name="lead_time">5</field>
+        </record>
+        <record id="acc_hanger" model="garment.accessory">
+            <field name="name">Móc Treo Nhựa Đen</field>
+            <field name="code">HNG-BLK</field>
+            <field name="accessory_type">hanger</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="size">42cm</field>
+            <field name="material">PP tái chế</field>
+            <field name="unit_price">1200</field>
+            <field name="min_order_qty">5000</field>
+            <field name="lead_time">7</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- LỆNH CẮT (garment.cutting.order.adv)                        -->
+        <!-- ============================================================ -->
+
+        <record id="cut_order_polo" model="garment.cutting.order.adv">
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="date">2026-02-10</field>
+            <field name="marker_length">5.2</field>
+            <field name="marker_width">150</field>
+            <field name="marker_efficiency">88.5</field>
+            <field name="fabric_id" ref="fabric_cotton_jersey"/>
+            <field name="fabric_color">Trắng + Navy</field>
+            <field name="defective_pieces">12</field>
+            <field name="wastage_kg">8.5</field>
+            <field name="cutter_id" ref="emp_cut_leader"/>
+            <field name="table_no">Bàn Cắt 01</field>
+            <field name="state">done</field>
+            <field name="notes">Cắt đơn Polo GF-2026-01. Hiệu suất marker tốt. Lỗi cắt 0.5%.</field>
+        </record>
+
+        <!-- Lớp trải vải cho lệnh cắt Polo -->
+        <record id="cut_layer_polo_1" model="garment.cutting.layer">
+            <field name="cutting_order_id" ref="cut_order_polo"/>
+            <field name="sequence">1</field>
+            <field name="fabric_roll_no">ROLL-CJ-001</field>
+            <field name="length">78.0</field>
+            <field name="shade">Trắng - Lot A</field>
+            <field name="defects_found">0</field>
+        </record>
+        <record id="cut_layer_polo_2" model="garment.cutting.layer">
+            <field name="cutting_order_id" ref="cut_order_polo"/>
+            <field name="sequence">2</field>
+            <field name="fabric_roll_no">ROLL-CJ-002</field>
+            <field name="length">78.0</field>
+            <field name="shade">Trắng - Lot A</field>
+            <field name="defects_found">1</field>
+        </record>
+        <record id="cut_layer_polo_3" model="garment.cutting.layer">
+            <field name="cutting_order_id" ref="cut_order_polo"/>
+            <field name="sequence">3</field>
+            <field name="fabric_roll_no">ROLL-CJ-003</field>
+            <field name="length">78.0</field>
+            <field name="shade">Navy - Lot B</field>
+            <field name="defects_found">0</field>
+        </record>
+        <record id="cut_layer_polo_4" model="garment.cutting.layer">
+            <field name="cutting_order_id" ref="cut_order_polo"/>
+            <field name="sequence">4</field>
+            <field name="fabric_roll_no">ROLL-CJ-004</field>
+            <field name="length">78.0</field>
+            <field name="shade">Navy - Lot B</field>
+            <field name="defects_found">2</field>
+        </record>
+
+        <!-- Bó hàng cắt cho Polo -->
+        <record id="cut_bundle_polo_1" model="garment.cutting.bundle">
+            <field name="cutting_order_id" ref="cut_order_polo"/>
+            <field name="sequence">1</field>
+            <field name="bundle_no">B-POLO-001</field>
+            <field name="size_id" ref="garment_base.size_s"/>
+            <field name="quantity">50</field>
+            <field name="layer_from">1</field>
+            <field name="layer_to">4</field>
+            <field name="is_issued">True</field>
+            <field name="issued_date">2026-02-11</field>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+        </record>
+        <record id="cut_bundle_polo_2" model="garment.cutting.bundle">
+            <field name="cutting_order_id" ref="cut_order_polo"/>
+            <field name="sequence">2</field>
+            <field name="bundle_no">B-POLO-002</field>
+            <field name="size_id" ref="garment_base.size_m"/>
+            <field name="quantity">50</field>
+            <field name="layer_from">1</field>
+            <field name="layer_to">4</field>
+            <field name="is_issued">True</field>
+            <field name="issued_date">2026-02-11</field>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+        </record>
+        <record id="cut_bundle_polo_3" model="garment.cutting.bundle">
+            <field name="cutting_order_id" ref="cut_order_polo"/>
+            <field name="sequence">3</field>
+            <field name="bundle_no">B-POLO-003</field>
+            <field name="size_id" ref="garment_base.size_l"/>
+            <field name="quantity">50</field>
+            <field name="layer_from">1</field>
+            <field name="layer_to">4</field>
+            <field name="is_issued">False</field>
+        </record>
+
+        <record id="cut_order_tshirt" model="garment.cutting.order.adv">
+            <field name="production_order_id" ref="prod_order_tshirt"/>
+            <field name="date">2026-02-15</field>
+            <field name="marker_length">4.8</field>
+            <field name="marker_width">150</field>
+            <field name="marker_efficiency">91.2</field>
+            <field name="fabric_id" ref="fabric_poly_cotton"/>
+            <field name="fabric_color">Đen + Xám</field>
+            <field name="defective_pieces">8</field>
+            <field name="wastage_kg">5.2</field>
+            <field name="cutter_id" ref="emp_cut_1"/>
+            <field name="table_no">Bàn Cắt 02</field>
+            <field name="state">cutting</field>
+            <field name="notes">Đang cắt T-shirt EU. Vải poly/cotton dễ cắt.</field>
+        </record>
+        <!-- Lớp trải vải cho T-shirt -->
+        <record id="cut_layer_tshirt_1" model="garment.cutting.layer">
+            <field name="cutting_order_id" ref="cut_order_tshirt"/>
+            <field name="sequence">1</field>
+            <field name="fabric_roll_no">ROLL-PC-001</field>
+            <field name="length">84.0</field>
+            <field name="shade">Đen - Lot C</field>
+            <field name="defects_found">0</field>
+        </record>
+        <record id="cut_layer_tshirt_2" model="garment.cutting.layer">
+            <field name="cutting_order_id" ref="cut_order_tshirt"/>
+            <field name="sequence">2</field>
+            <field name="fabric_roll_no">ROLL-PC-002</field>
+            <field name="length">84.0</field>
+            <field name="shade">Xám - Lot D</field>
+            <field name="defects_found">1</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- ĐƠN GIÁ KHOÁN (garment.piece.rate)                          -->
+        <!-- ============================================================ -->
+
+        <record id="rate_polo_sewing" model="garment.piece.rate">
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="operation">sewing</field>
+            <field name="operation_detail">May hoàn chỉnh áo Polo (tất cả công đoạn)</field>
+            <field name="rate_per_piece">3500</field>
+            <field name="smv">12.5</field>
+        </record>
+        <record id="rate_polo_finishing" model="garment.piece.rate">
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="operation">finishing</field>
+            <field name="operation_detail">Cắt chỉ, ủi, gấp, đóng tag</field>
+            <field name="rate_per_piece">800</field>
+            <field name="smv">3.5</field>
+        </record>
+        <record id="rate_polo_packing" model="garment.piece.rate">
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="operation">packing</field>
+            <field name="operation_detail">Đóng bao PE, xếp thùng, dán nhãn</field>
+            <field name="rate_per_piece">500</field>
+            <field name="smv">2.0</field>
+        </record>
+        <record id="rate_tshirt_sewing" model="garment.piece.rate">
+            <field name="style_id" ref="style_tshirt_basic"/>
+            <field name="operation">sewing</field>
+            <field name="operation_detail">May T-shirt basic (cổ tròn, tay ngắn)</field>
+            <field name="rate_per_piece">2500</field>
+            <field name="smv">8.0</field>
+        </record>
+        <record id="rate_tshirt_finishing" model="garment.piece.rate">
+            <field name="style_id" ref="style_tshirt_basic"/>
+            <field name="operation">finishing</field>
+            <field name="operation_detail">Cắt chỉ, ủi, gấp</field>
+            <field name="rate_per_piece">600</field>
+            <field name="smv">2.5</field>
+        </record>
+        <record id="rate_jacket_sewing" model="garment.piece.rate">
+            <field name="style_id" ref="style_jacket_winter"/>
+            <field name="operation">sewing</field>
+            <field name="operation_detail">May áo khoác mùa đông (khóa kéo, lót, mũ)</field>
+            <field name="rate_per_piece">8000</field>
+            <field name="smv">25.0</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- SẢN LƯỢNG CÔNG NHÂN (garment.worker.output)                  -->
+        <!-- ============================================================ -->
+
+        <!-- Thợ may chuyền 1 - Nguyễn Thị Hương -->
+        <record id="wo_huong_d1" model="garment.worker.output">
+            <field name="date">2026-02-20</field>
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="piece_rate_id" ref="rate_polo_sewing"/>
+            <field name="quantity">45</field>
+        </record>
+        <record id="wo_huong_d2" model="garment.worker.output">
+            <field name="date">2026-02-21</field>
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="piece_rate_id" ref="rate_polo_sewing"/>
+            <field name="quantity">48</field>
+        </record>
+        <record id="wo_huong_d3" model="garment.worker.output">
+            <field name="date">2026-02-22</field>
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="piece_rate_id" ref="rate_polo_sewing"/>
+            <field name="quantity">42</field>
+            <field name="overtime_hours">1.5</field>
+        </record>
+
+        <!-- Thợ may chuyền 1 - Trần Thị Ngọc -->
+        <record id="wo_ngoc_d1" model="garment.worker.output">
+            <field name="date">2026-02-20</field>
+            <field name="employee_id" ref="emp_sew1_worker2"/>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="piece_rate_id" ref="rate_polo_sewing"/>
+            <field name="quantity">38</field>
+        </record>
+        <record id="wo_ngoc_d2" model="garment.worker.output">
+            <field name="date">2026-02-21</field>
+            <field name="employee_id" ref="emp_sew1_worker2"/>
+            <field name="sewing_line_id" ref="line_sewing_1"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="piece_rate_id" ref="rate_polo_sewing"/>
+            <field name="quantity">41</field>
+        </record>
+
+        <!-- Thợ may chuyền 2 -->
+        <record id="wo_sew2_d1" model="garment.worker.output">
+            <field name="date">2026-02-20</field>
+            <field name="employee_id" ref="emp_sew2_worker1"/>
+            <field name="sewing_line_id" ref="line_sewing_2"/>
+            <field name="style_id" ref="style_tshirt_basic"/>
+            <field name="piece_rate_id" ref="rate_tshirt_sewing"/>
+            <field name="quantity">55</field>
+        </record>
+
+        <!-- Hoàn thiện -->
+        <record id="wo_finish_d1" model="garment.worker.output">
+            <field name="date">2026-02-20</field>
+            <field name="employee_id" ref="emp_finish_1"/>
+            <field name="sewing_line_id" ref="line_finishing"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="piece_rate_id" ref="rate_polo_finishing"/>
+            <field name="quantity">80</field>
+        </record>
+
+        <!-- Đóng gói -->
+        <record id="wo_pack_d1" model="garment.worker.output">
+            <field name="date">2026-02-20</field>
+            <field name="employee_id" ref="emp_pack_leader"/>
+            <field name="sewing_line_id" ref="line_packing"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="piece_rate_id" ref="rate_polo_packing"/>
+            <field name="quantity">120</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- PHIẾU NHẬP NGUYÊN LIỆU MUA HÀNG (garment.material.receipt)  -->
+        <!-- ============================================================ -->
+
+        <record id="receipt_fabric_polo" model="garment.material.receipt">
+            <field name="name">NL-2026-00001</field>
+            <field name="receipt_type">purchase</field>
+            <field name="supplier_id" ref="partner_supplier_fabric"/>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="date">2026-02-05</field>
+            <field name="expected_date">2026-02-03</field>
+            <field name="po_number">PO-2026-0012</field>
+            <field name="invoice_number">INV-VN-20260205</field>
+            <field name="transport_info">Xe tải 5T, BKS 51C-12345</field>
+            <field name="warehouse_type">material</field>
+            <field name="qc_status">pass</field>
+            <field name="qc_notes">Vải đạt chuẩn, không lỗi dệt, màu đúng lab-dip.</field>
+            <field name="state">done</field>
+            <field name="responsible_id" ref="emp_warehouse"/>
+            <field name="notes">&lt;p&gt;Nhập vải Cotton Jersey cho đơn Polo GF-2026-01. Kiểm 100% cuộn, đạt yêu cầu.&lt;/p&gt;</field>
+        </record>
+        <record id="receipt_fabric_polo_line1" model="garment.material.receipt.line">
+            <field name="receipt_id" ref="receipt_fabric_polo"/>
+            <field name="material_type">fabric</field>
+            <field name="fabric_id" ref="fabric_cotton_jersey"/>
+            <field name="description">Cotton Jersey 180gsm - Trắng</field>
+            <field name="unit">m</field>
+            <field name="quantity_ordered">1500</field>
+            <field name="quantity">1520</field>
+            <field name="quantity_accepted">1520</field>
+            <field name="unit_price">65000</field>
+            <field name="lot_number">LOT-CJ-2026-001</field>
+        </record>
+        <record id="receipt_fabric_polo_line2" model="garment.material.receipt.line">
+            <field name="receipt_id" ref="receipt_fabric_polo"/>
+            <field name="material_type">fabric</field>
+            <field name="fabric_id" ref="fabric_cotton_jersey"/>
+            <field name="description">Cotton Jersey 180gsm - Navy</field>
+            <field name="unit">m</field>
+            <field name="quantity_ordered">1500</field>
+            <field name="quantity">1485</field>
+            <field name="quantity_accepted">1485</field>
+            <field name="unit_price">68000</field>
+            <field name="lot_number">LOT-CJ-2026-002</field>
+        </record>
+
+        <!-- Phiếu nhập phụ liệu -->
+        <record id="receipt_acc_polo" model="garment.material.receipt">
+            <field name="name">NL-2026-00002</field>
+            <field name="receipt_type">purchase</field>
+            <field name="supplier_id" ref="partner_supplier_acc"/>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="style_id" ref="style_polo_classic"/>
+            <field name="date">2026-02-07</field>
+            <field name="expected_date">2026-02-06</field>
+            <field name="po_number">PO-2026-0013</field>
+            <field name="warehouse_type">accessory</field>
+            <field name="qc_status">pass</field>
+            <field name="state">done</field>
+            <field name="responsible_id" ref="emp_warehouse"/>
+        </record>
+        <record id="receipt_acc_polo_line1" model="garment.material.receipt.line">
+            <field name="receipt_id" ref="receipt_acc_polo"/>
+            <field name="material_type">button</field>
+            <field name="description">Nút nhựa 2 lỗ 12mm - Trắng</field>
+            <field name="unit">pcs</field>
+            <field name="quantity_ordered">20000</field>
+            <field name="quantity">20500</field>
+            <field name="quantity_accepted">20500</field>
+            <field name="unit_price">50</field>
+        </record>
+        <record id="receipt_acc_polo_line2" model="garment.material.receipt.line">
+            <field name="receipt_id" ref="receipt_acc_polo"/>
+            <field name="material_type">label</field>
+            <field name="description">Nhãn chính Woven + Care Label</field>
+            <field name="unit">pcs</field>
+            <field name="quantity_ordered">14000</field>
+            <field name="quantity">14000</field>
+            <field name="quantity_accepted">14000</field>
+            <field name="unit_price">800</field>
+        </record>
+        <record id="receipt_acc_polo_line3" model="garment.material.receipt.line">
+            <field name="receipt_id" ref="receipt_acc_polo"/>
+            <field name="material_type">thread</field>
+            <field name="description">Chỉ Coats Epic 120 Trắng + Navy</field>
+            <field name="unit">cone</field>
+            <field name="quantity_ordered">100</field>
+            <field name="quantity">100</field>
+            <field name="quantity_accepted">100</field>
+            <field name="unit_price">25000</field>
+        </record>
+
+        <!-- Phiếu nhập NL khách gửi (CMT) -->
+        <record id="receipt_buyer_supplied" model="garment.material.receipt">
+            <field name="name">CMT-2026-00001</field>
+            <field name="receipt_type">buyer_supplied</field>
+            <field name="buyer_id" ref="partner_buyer_eu"/>
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+            <field name="style_id" ref="style_tshirt_basic"/>
+            <field name="date">2026-02-12</field>
+            <field name="expected_date">2026-02-10</field>
+            <field name="invoice_number">PL-EU-20260210</field>
+            <field name="transport_info">Container 20ft, BL# MAEU2026012345</field>
+            <field name="warehouse_type">both</field>
+            <field name="qc_status">partial</field>
+            <field name="qc_notes">2 cuộn vải bị lỗi dệt nhẹ, đã trừ phần lỗi. Phụ liệu OK.</field>
+            <field name="state">done</field>
+            <field name="responsible_id" ref="emp_warehouse"/>
+        </record>
+        <record id="receipt_buyer_line1" model="garment.material.receipt.line">
+            <field name="receipt_id" ref="receipt_buyer_supplied"/>
+            <field name="material_type">fabric</field>
+            <field name="fabric_id" ref="fabric_poly_cotton"/>
+            <field name="description">Poly/Cotton 65/35 - Đen</field>
+            <field name="unit">m</field>
+            <field name="quantity_ordered">1000</field>
+            <field name="quantity">1005</field>
+            <field name="quantity_accepted">985</field>
+            <field name="lot_number">LOT-PC-EU-001</field>
+        </record>
+        <record id="receipt_buyer_line2" model="garment.material.receipt.line">
+            <field name="receipt_id" ref="receipt_buyer_supplied"/>
+            <field name="material_type">fabric</field>
+            <field name="fabric_id" ref="fabric_poly_cotton"/>
+            <field name="description">Poly/Cotton 65/35 - Xám</field>
+            <field name="unit">m</field>
+            <field name="quantity_ordered">1000</field>
+            <field name="quantity">1000</field>
+            <field name="quantity_accepted">1000</field>
+            <field name="lot_number">LOT-PC-EU-002</field>
+        </record>
+
+        <!-- Phiếu đang kiểm tra -->
+        <record id="receipt_inspecting" model="garment.material.receipt">
+            <field name="name">NL-2026-00003</field>
+            <field name="receipt_type">purchase</field>
+            <field name="supplier_id" ref="partner_supplier_fabric"/>
+            <field name="style_id" ref="style_jacket_winter"/>
+            <field name="date">2026-02-25</field>
+            <field name="expected_date">2026-02-24</field>
+            <field name="po_number">PO-2026-0020</field>
+            <field name="warehouse_type">material</field>
+            <field name="qc_status">pending</field>
+            <field name="state">inspecting</field>
+            <field name="responsible_id" ref="emp_warehouse"/>
+            <field name="notes">&lt;p&gt;Nhập vải denim cho Jacket Winter. Đang kiểm tra chất lượng.&lt;/p&gt;</field>
+        </record>
+        <record id="receipt_inspecting_line1" model="garment.material.receipt.line">
+            <field name="receipt_id" ref="receipt_inspecting"/>
+            <field name="material_type">fabric</field>
+            <field name="fabric_id" ref="fabric_denim"/>
+            <field name="description">Denim 12oz Indigo</field>
+            <field name="unit">m</field>
+            <field name="quantity_ordered">2000</field>
+            <field name="quantity">2010</field>
+            <field name="lot_number">LOT-DN-2026-001</field>
+            <field name="unit_price">120000</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- PHÂN BỔ NGUYÊN LIỆU (garment.material.allocation)           -->
+        <!-- ============================================================ -->
+
+        <record id="alloc_polo" model="garment.material.allocation">
+            <field name="name">PB-2026-00001</field>
+            <field name="date">2026-02-08</field>
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="state">issued</field>
+            <field name="issued_by" ref="emp_warehouse"/>
+            <field name="received_by" ref="emp_cut_leader"/>
+            <field name="notes">Phân bổ NL cho LSX Polo. Tổ cắt đã nhận đủ.</field>
+        </record>
+        <record id="alloc_polo_line1" model="garment.material.allocation.line">
+            <field name="allocation_id" ref="alloc_polo"/>
+            <field name="material_type">fabric</field>
+            <field name="description">Cotton Jersey 180gsm - Trắng</field>
+            <field name="fabric_id" ref="fabric_cotton_jersey"/>
+            <field name="unit">m</field>
+            <field name="quantity_required">750</field>
+            <field name="quantity_issued">760</field>
+            <field name="lot_number">LOT-CJ-2026-001</field>
+            <field name="receipt_id" ref="receipt_fabric_polo"/>
+        </record>
+        <record id="alloc_polo_line2" model="garment.material.allocation.line">
+            <field name="allocation_id" ref="alloc_polo"/>
+            <field name="material_type">fabric</field>
+            <field name="description">Cotton Jersey 180gsm - Navy</field>
+            <field name="fabric_id" ref="fabric_cotton_jersey"/>
+            <field name="unit">m</field>
+            <field name="quantity_required">750</field>
+            <field name="quantity_issued">740</field>
+            <field name="lot_number">LOT-CJ-2026-002</field>
+            <field name="receipt_id" ref="receipt_fabric_polo"/>
+        </record>
+        <record id="alloc_polo_line3" model="garment.material.allocation.line">
+            <field name="allocation_id" ref="alloc_polo"/>
+            <field name="material_type">thread</field>
+            <field name="description">Chỉ Coats Epic 120 Trắng</field>
+            <field name="unit">cone</field>
+            <field name="quantity_required">30</field>
+            <field name="quantity_issued">30</field>
+        </record>
+
+        <!-- Phân bổ đang chờ -->
+        <record id="alloc_tshirt" model="garment.material.allocation">
+            <field name="name">PB-2026-00002</field>
+            <field name="date">2026-02-14</field>
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+            <field name="production_order_id" ref="prod_order_tshirt"/>
+            <field name="state">confirmed</field>
+            <field name="issued_by" ref="emp_warehouse"/>
+            <field name="notes">Chờ tổ cắt xác nhận nhận NL.</field>
+        </record>
+        <record id="alloc_tshirt_line1" model="garment.material.allocation.line">
+            <field name="allocation_id" ref="alloc_tshirt"/>
+            <field name="material_type">fabric</field>
+            <field name="description">Poly/Cotton 65/35 - Đen</field>
+            <field name="fabric_id" ref="fabric_poly_cotton"/>
+            <field name="unit">m</field>
+            <field name="quantity_required">500</field>
+            <field name="quantity_issued">500</field>
+            <field name="lot_number">LOT-PC-EU-001</field>
+            <field name="receipt_id" ref="receipt_buyer_supplied"/>
+        </record>
+        <record id="alloc_tshirt_line2" model="garment.material.allocation.line">
+            <field name="allocation_id" ref="alloc_tshirt"/>
+            <field name="material_type">fabric</field>
+            <field name="description">Poly/Cotton 65/35 - Xám</field>
+            <field name="fabric_id" ref="fabric_poly_cotton"/>
+            <field name="unit">m</field>
+            <field name="quantity_required">500</field>
+            <field name="quantity_issued">500</field>
+            <field name="lot_number">LOT-PC-EU-002</field>
+            <field name="receipt_id" ref="receipt_buyer_supplied"/>
+        </record>
+
+    </data>
+</odoo>
