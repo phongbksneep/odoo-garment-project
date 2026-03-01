@@ -1,8 +1,8 @@
 # 📖 Tài Liệu Hướng Dẫn Sử Dụng - Hệ Thống Quản Lý Công Ty May
 
-> **Phiên bản:** Odoo 19.0 | **Ngày cập nhật:** Tháng 2/2026
+> **Phiên bản:** Odoo 19.0 | **Ngày cập nhật:** Tháng 3/2026
 > **Đối tượng:** Quản lý, trưởng phòng, nhân viên sử dụng hệ thống ERP
-> **Tổng số module:** 27 module chuyên biệt | **291 test cases** — 0 failures
+> **Tổng số module:** 27 module chuyên biệt | **539 test cases** — 0 failures
 
 ---
 
