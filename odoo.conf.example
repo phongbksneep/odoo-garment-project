@@ -31,3 +31,6 @@ limit_time_real = 1200
 
 ; Cron
 ; limit_time_real_cron = 1800
+
+; Ngôn ngữ mặc định (Tiếng Việt cho công ty may VN)
+load_language = vi_VN

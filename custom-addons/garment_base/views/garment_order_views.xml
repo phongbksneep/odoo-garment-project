@@ -181,14 +181,8 @@
                         <strong><field name="name"/></strong>
                         <div><field name="customer_id"/></div>
                         <div><field name="style_id"/></div>
-                        <div>
-                            <span><field name="total_qty"/> sp</span>
-                            <span t-if="record.delivery_date.raw_value">
-                                — giao <field name="delivery_date"/>
-                            </span>
-                        </div>
-                        <span t-if="record.is_late.raw_value"
-                              class="badge text-bg-danger">Trễ hạn</span>
+                        <div><field name="total_qty"/> sp</div>
+                        <div><field name="delivery_date"/></div>
                     </t>
                 </templates>
             </kanban>

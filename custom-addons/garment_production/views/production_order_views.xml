@@ -151,8 +151,6 @@
                             <field name="completed_qty"/>/<field name="planned_qty"/> sp
                         </div>
                         <field name="completion_rate" widget="progressbar"/>
-                        <span t-if="record.is_overdue.raw_value"
-                              class="badge text-bg-danger">Quá hạn</span>
                     </t>
                 </templates>
             </kanban>
