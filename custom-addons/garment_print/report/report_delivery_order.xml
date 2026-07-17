@@ -24,18 +24,18 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <table class="table table-sm table-borderless">
-                                    <tr><td><strong>Số phiếu / D.O. No:</strong></td><td><t t-esc="doc.name"/></td></tr>
-                                    <tr><td><strong>Loại / Type:</strong></td><td><t t-esc="dict(doc._fields['delivery_type'].selection).get(doc.delivery_type, '-')"/></td></tr>
-                                    <tr><td><strong>Khách hàng / Partner:</strong></td><td><t t-esc="doc.partner_id.name if doc.partner_id else '-'"/></td></tr>
-                                    <tr><td><strong>Đơn hàng / Order:</strong></td><td><t t-esc="doc.garment_order_id.name if doc.garment_order_id else '-'"/></td></tr>
+                                    <tr><td><strong>Số phiếu / D.O. No:</strong></td><td><t t-out="doc.name"/></td></tr>
+                                    <tr><td><strong>Loại / Type:</strong></td><td><t t-out="dict(doc._fields['delivery_type'].selection).get(doc.delivery_type, '-')"/></td></tr>
+                                    <tr><td><strong>Khách hàng / Partner:</strong></td><td><t t-out="doc.partner_id.name if doc.partner_id else '-'"/></td></tr>
+                                    <tr><td><strong>Đơn hàng / Order:</strong></td><td><t t-out="doc.garment_order_id.name if doc.garment_order_id else '-'"/></td></tr>
                                 </table>
                             </div>
                             <div class="col-6">
                                 <table class="table table-sm table-borderless">
-                                    <tr><td><strong>Ngày / Date:</strong></td><td><t t-esc="doc.date" t-options="{'widget': 'date'}"/></td></tr>
-                                    <tr><td><strong>Nơi gửi / From:</strong></td><td><t t-esc="doc.ship_from or '-'"/></td></tr>
-                                    <tr><td><strong>Nơi nhận / To:</strong></td><td><t t-esc="doc.ship_to or '-'"/></td></tr>
-                                    <tr><td><strong>Phương thức / Method:</strong></td><td><t t-esc="dict(doc._fields['shipping_method'].selection).get(doc.shipping_method, '-')"/></td></tr>
+                                    <tr><td><strong>Ngày / Date:</strong></td><td><t t-out="doc.date" t-options="{'widget': 'date'}"/></td></tr>
+                                    <tr><td><strong>Nơi gửi / From:</strong></td><td><t t-out="doc.ship_from or '-'"/></td></tr>
+                                    <tr><td><strong>Nơi nhận / To:</strong></td><td><t t-out="doc.ship_to or '-'"/></td></tr>
+                                    <tr><td><strong>Phương thức / Method:</strong></td><td><t t-out="dict(doc._fields['shipping_method'].selection).get(doc.shipping_method, '-')"/></td></tr>
                                 </table>
                             </div>
                         </div>
@@ -45,10 +45,10 @@
                             <div class="col-12">
                                 <table class="table table-sm table-borderless">
                                     <tr>
-                                        <td><strong>Container No:</strong> <t t-esc="doc.container_no or '-'"/></td>
-                                        <td><strong>Seal No:</strong> <t t-esc="doc.seal_no or '-'"/></td>
-                                        <td><strong>B/L No:</strong> <t t-esc="doc.bl_number or '-'"/></td>
-                                        <td><strong>Invoice No:</strong> <t t-esc="doc.invoice_number or '-'"/></td>
+                                        <td><strong>Container No:</strong> <t t-out="doc.container_no or '-'"/></td>
+                                        <td><strong>Seal No:</strong> <t t-out="doc.seal_no or '-'"/></td>
+                                        <td><strong>B/L No:</strong> <t t-out="doc.bl_number or '-'"/></td>
+                                        <td><strong>Invoice No:</strong> <t t-out="doc.invoice_number or '-'"/></td>
                                     </tr>
                                 </table>
                             </div>
@@ -74,24 +74,24 @@
                                 <t t-foreach="doc.line_ids" t-as="line">
                                     <t t-set="stt" t-value="stt + 1"/>
                                     <tr>
-                                        <td><t t-esc="stt"/></td>
-                                        <td><t t-esc="line.style_code or '-'"/></td>
-                                        <td><t t-esc="line.color or '-'"/></td>
-                                        <td><t t-esc="line.size or '-'"/></td>
-                                        <td class="text-end"><t t-esc="line.quantity"/></td>
-                                        <td class="text-end"><t t-esc="line.carton_qty"/></td>
-                                        <td class="text-end"><t t-esc="line.pcs_per_carton"/></td>
-                                        <td class="text-end"><t t-esc="'%.2f' % line.gross_weight"/></td>
+                                        <td><t t-out="stt"/></td>
+                                        <td><t t-out="line.style_code or '-'"/></td>
+                                        <td><t t-out="line.color or '-'"/></td>
+                                        <td><t t-out="line.size or '-'"/></td>
+                                        <td class="text-end"><t t-out="line.quantity"/></td>
+                                        <td class="text-end"><t t-out="line.carton_qty"/></td>
+                                        <td class="text-end"><t t-out="line.pcs_per_carton"/></td>
+                                        <td class="text-end"><t t-out="'%.2f' % line.gross_weight"/></td>
                                     </tr>
                                 </t>
                             </tbody>
                             <tfoot>
                                 <tr style="font-weight: bold; background-color: #E3F2FD;">
                                     <td colspan="4" class="text-end">TỔNG CỘNG / TOTAL:</td>
-                                    <td class="text-end"><t t-esc="doc.total_pcs"/> pcs</td>
-                                    <td class="text-end"><t t-esc="doc.total_cartons"/> ctns</td>
+                                    <td class="text-end"><t t-out="doc.total_pcs"/> pcs</td>
+                                    <td class="text-end"><t t-out="doc.total_cartons"/> ctns</td>
                                     <td></td>
-                                    <td class="text-end"><t t-esc="'%.2f' % doc.gross_weight"/> kg</td>
+                                    <td class="text-end"><t t-out="'%.2f' % doc.gross_weight"/> kg</td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -100,10 +100,10 @@
                         <t t-if="doc.vehicle_id or doc.driver_id">
                             <div class="row mb-3">
                                 <div class="col-6">
-                                    <p t-if="doc.vehicle_id"><strong>Xe / Vehicle:</strong> <t t-esc="doc.vehicle_id.name"/></p>
+                                    <p t-if="doc.vehicle_id"><strong>Xe / Vehicle:</strong> <t t-out="doc.vehicle_id.name"/></p>
                                 </div>
                                 <div class="col-6">
-                                    <p t-if="doc.driver_id"><strong>Tài xế / Driver:</strong> <t t-esc="doc.driver_id.name"/></p>
+                                    <p t-if="doc.driver_id"><strong>Tài xế / Driver:</strong> <t t-out="doc.driver_id.name"/></p>
                                 </div>
                             </div>
                         </t>

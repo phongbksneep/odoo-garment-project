@@ -24,21 +24,21 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <table class="table table-sm table-borderless">
-                                    <tr><td><strong>Packing List No:</strong></td><td><t t-esc="doc.name"/></td></tr>
-                                    <tr><td><strong>Buyer:</strong></td><td><t t-esc="doc.buyer_id.name"/></td></tr>
-                                    <tr><td><strong>PO Number:</strong></td><td><t t-esc="doc.po_number or '-'"/></td></tr>
-                                    <tr><td><strong>Style:</strong></td><td><t t-esc="doc.style_id.name if doc.style_id else '-'"/></td></tr>
-                                    <tr><td><strong>Order Ref:</strong></td><td><t t-esc="doc.garment_order_id.name if doc.garment_order_id else '-'"/></td></tr>
+                                    <tr><td><strong>Packing List No:</strong></td><td><t t-out="doc.name"/></td></tr>
+                                    <tr><td><strong>Buyer:</strong></td><td><t t-out="doc.buyer_id.name"/></td></tr>
+                                    <tr><td><strong>PO Number:</strong></td><td><t t-out="doc.po_number or '-'"/></td></tr>
+                                    <tr><td><strong>Style:</strong></td><td><t t-out="doc.style_id.name if doc.style_id else '-'"/></td></tr>
+                                    <tr><td><strong>Order Ref:</strong></td><td><t t-out="doc.garment_order_id.name if doc.garment_order_id else '-'"/></td></tr>
                                 </table>
                             </div>
                             <div class="col-6">
                                 <table class="table table-sm table-borderless">
-                                    <tr><td><strong>Packing Date:</strong></td><td><t t-esc="doc.date" t-options="{'widget': 'date'}"/></td></tr>
-                                    <tr><td><strong>Ship Mode:</strong></td><td><t t-esc="dict(doc._fields['ship_mode'].selection).get(doc.ship_mode, '-')"/></td></tr>
-                                    <tr><td><strong>ETD:</strong></td><td><t t-esc="doc.etd" t-options="{'widget': 'date'}"/></td></tr>
-                                    <tr><td><strong>Destination:</strong></td><td><t t-esc="doc.destination_port or '-'"/></td></tr>
-                                    <tr><td><strong>Container No:</strong></td><td><t t-esc="doc.container_no or '-'"/></td></tr>
-                                    <tr><td><strong>B/L No:</strong></td><td><t t-esc="doc.bl_number or '-'"/></td></tr>
+                                    <tr><td><strong>Packing Date:</strong></td><td><t t-out="doc.date" t-options="{'widget': 'date'}"/></td></tr>
+                                    <tr><td><strong>Ship Mode:</strong></td><td><t t-out="dict(doc._fields['ship_mode'].selection).get(doc.ship_mode, '-')"/></td></tr>
+                                    <tr><td><strong>ETD:</strong></td><td><t t-out="doc.etd" t-options="{'widget': 'date'}"/></td></tr>
+                                    <tr><td><strong>Destination:</strong></td><td><t t-out="doc.destination_port or '-'"/></td></tr>
+                                    <tr><td><strong>Container No:</strong></td><td><t t-out="doc.container_no or '-'"/></td></tr>
+                                    <tr><td><strong>B/L No:</strong></td><td><t t-out="doc.bl_number or '-'"/></td></tr>
                                 </table>
                             </div>
                         </div>
@@ -62,33 +62,33 @@
                             <tbody>
                                 <t t-foreach="doc.carton_ids" t-as="line">
                                     <tr>
-                                        <td><t t-esc="line.carton_from"/> - <t t-esc="line.carton_to"/></td>
-                                        <td><t t-esc="line.size_id.name if line.size_id else '-'"/></td>
-                                        <td><t t-esc="line.color_id.name if line.color_id else '-'"/></td>
-                                        <td class="text-end"><t t-esc="line.pcs_per_carton"/></td>
-                                        <td class="text-end"><t t-esc="line.carton_count"/></td>
-                                        <td class="text-end"><t t-esc="line.total_pcs"/></td>
-                                        <td class="text-end"><t t-esc="'%.2f' % line.gross_weight"/></td>
-                                        <td class="text-end"><t t-esc="'%.2f' % line.net_weight"/></td>
-                                        <td class="text-end"><t t-esc="'%.4f' % line.cbm_per_carton"/></td>
+                                        <td><t t-out="line.carton_from"/> - <t t-out="line.carton_to"/></td>
+                                        <td><t t-out="line.size_id.name if line.size_id else '-'"/></td>
+                                        <td><t t-out="line.color_id.name if line.color_id else '-'"/></td>
+                                        <td class="text-end"><t t-out="line.pcs_per_carton"/></td>
+                                        <td class="text-end"><t t-out="line.carton_count"/></td>
+                                        <td class="text-end"><t t-out="line.total_pcs"/></td>
+                                        <td class="text-end"><t t-out="'%.2f' % line.gross_weight"/></td>
+                                        <td class="text-end"><t t-out="'%.2f' % line.net_weight"/></td>
+                                        <td class="text-end"><t t-out="'%.4f' % line.cbm_per_carton"/></td>
                                     </tr>
                                 </t>
                             </tbody>
                             <tfoot>
                                 <tr style="font-weight: bold; background-color: #E8F5E9;">
                                     <td colspan="4" class="text-end">TOTAL:</td>
-                                    <td class="text-end"><t t-esc="doc.total_cartons"/> ctns</td>
-                                    <td class="text-end"><t t-esc="doc.total_pieces"/> pcs</td>
-                                    <td class="text-end"><t t-esc="'%.2f' % doc.total_gross_weight"/> kg</td>
-                                    <td class="text-end"><t t-esc="'%.2f' % doc.total_net_weight"/> kg</td>
-                                    <td class="text-end"><t t-esc="'%.3f' % doc.total_cbm"/> m³</td>
+                                    <td class="text-end"><t t-out="doc.total_cartons"/> ctns</td>
+                                    <td class="text-end"><t t-out="doc.total_pieces"/> pcs</td>
+                                    <td class="text-end"><t t-out="'%.2f' % doc.total_gross_weight"/> kg</td>
+                                    <td class="text-end"><t t-out="'%.2f' % doc.total_net_weight"/> kg</td>
+                                    <td class="text-end"><t t-out="'%.3f' % doc.total_cbm"/> m³</td>
                                 </tr>
                             </tfoot>
                         </table>
 
                         <!-- Notes -->
                         <t t-if="doc.notes">
-                            <p><strong>Notes:</strong> <t t-esc="doc.notes"/></p>
+                            <p><strong>Notes:</strong> <t t-out="doc.notes"/></p>
                         </t>
 
                         <!-- Signature -->

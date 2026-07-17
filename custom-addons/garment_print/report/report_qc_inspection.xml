@@ -24,18 +24,18 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <table class="table table-sm table-borderless">
-                                    <tr><td><strong>Mã phiếu / Report No:</strong></td><td><t t-esc="doc.name"/></td></tr>
-                                    <tr><td><strong>Loại kiểm tra / Type:</strong></td><td><t t-esc="dict(doc._fields['inspection_type'].selection).get(doc.inspection_type, '-')"/></td></tr>
-                                    <tr><td><strong>Đơn hàng / Order:</strong></td><td><t t-esc="doc.garment_order_id.name if doc.garment_order_id else '-'"/></td></tr>
-                                    <tr><td><strong>Mã hàng / Style:</strong></td><td><t t-esc="doc.style_id.name if doc.style_id else '-'"/></td></tr>
+                                    <tr><td><strong>Mã phiếu / Report No:</strong></td><td><t t-out="doc.name"/></td></tr>
+                                    <tr><td><strong>Loại kiểm tra / Type:</strong></td><td><t t-out="dict(doc._fields['inspection_type'].selection).get(doc.inspection_type, '-')"/></td></tr>
+                                    <tr><td><strong>Đơn hàng / Order:</strong></td><td><t t-out="doc.garment_order_id.name if doc.garment_order_id else '-'"/></td></tr>
+                                    <tr><td><strong>Mã hàng / Style:</strong></td><td><t t-out="doc.style_id.name if doc.style_id else '-'"/></td></tr>
                                 </table>
                             </div>
                             <div class="col-6">
                                 <table class="table table-sm table-borderless">
-                                    <tr><td><strong>Ngày kiểm / Date:</strong></td><td><t t-esc="doc.inspection_date" t-options="{'widget': 'date'}"/></td></tr>
-                                    <tr><td><strong>KCS / Inspector:</strong></td><td><t t-esc="doc.inspector_id.name if doc.inspector_id else '-'"/></td></tr>
-                                    <tr><td><strong>AQL Level:</strong></td><td><t t-esc="doc.aql_level or '-'"/></td></tr>
-                                    <tr><td><strong>LSX / Prod Order:</strong></td><td><t t-esc="doc.production_order_id.name if doc.production_order_id else '-'"/></td></tr>
+                                    <tr><td><strong>Ngày kiểm / Date:</strong></td><td><t t-out="doc.inspection_date" t-options="{'widget': 'date'}"/></td></tr>
+                                    <tr><td><strong>KCS / Inspector:</strong></td><td><t t-out="doc.inspector_id.name if doc.inspector_id else '-'"/></td></tr>
+                                    <tr><td><strong>AQL Level:</strong></td><td><t t-out="doc.aql_level or '-'"/></td></tr>
+                                    <tr><td><strong>LSX / Prod Order:</strong></td><td><t t-out="doc.production_order_id.name if doc.production_order_id else '-'"/></td></tr>
                                 </table>
                             </div>
                         </div>
@@ -56,13 +56,13 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="text-center"><t t-esc="doc.inspected_qty"/></td>
-                                            <td class="text-center" style="color: green; font-weight: bold;"><t t-esc="doc.passed_qty"/></td>
-                                            <td class="text-center" style="color: red; font-weight: bold;"><t t-esc="doc.failed_qty"/></td>
+                                            <td class="text-center"><t t-out="doc.inspected_qty"/></td>
+                                            <td class="text-center" style="color: green; font-weight: bold;"><t t-out="doc.passed_qty"/></td>
+                                            <td class="text-center" style="color: red; font-weight: bold;"><t t-out="doc.failed_qty"/></td>
                                             <td class="text-center">
                                                 <t t-set="rate_color" t-value="'green' if doc.pass_rate >= 90 else ('orange' if doc.pass_rate >= 80 else 'red')"/>
                                                 <span t-attf-style="color: #{rate_color}; font-weight: bold; font-size: 1.2em;">
-                                                    <t t-esc="'%.1f' % doc.pass_rate"/>%
+                                                    <t t-out="'%.1f' % doc.pass_rate"/>%
                                                 </span>
                                             </td>
                                             <td class="text-center">
@@ -73,7 +73,7 @@
                                                     <span style="color: red; font-weight: bold; font-size: 1.2em;">❌ KHÔNG ĐẠT / FAIL</span>
                                                 </t>
                                                 <t t-else="">
-                                                    <span style="color: orange; font-weight: bold;"><t t-esc="doc.result or '-'"/></span>
+                                                    <span style="color: orange; font-weight: bold;"><t t-out="doc.result or '-'"/></span>
                                                 </t>
                                             </td>
                                         </tr>
@@ -86,19 +86,19 @@
                         <div class="row mb-3">
                             <div class="col-4 text-center">
                                 <div style="border: 2px solid #FFC107; padding: 10px; border-radius: 8px;">
-                                    <p style="font-size: 2em; font-weight: bold; color: #FFC107;"><t t-esc="doc.minor_defects"/></p>
+                                    <p style="font-size: 2em; font-weight: bold; color: #FFC107;"><t t-out="doc.minor_defects"/></p>
                                     <p><strong>Lỗi Nhẹ / Minor</strong></p>
                                 </div>
                             </div>
                             <div class="col-4 text-center">
                                 <div style="border: 2px solid #FF9800; padding: 10px; border-radius: 8px;">
-                                    <p style="font-size: 2em; font-weight: bold; color: #FF9800;"><t t-esc="doc.major_defects"/></p>
+                                    <p style="font-size: 2em; font-weight: bold; color: #FF9800;"><t t-out="doc.major_defects"/></p>
                                     <p><strong>Lỗi Nặng / Major</strong></p>
                                 </div>
                             </div>
                             <div class="col-4 text-center">
                                 <div style="border: 2px solid #F44336; padding: 10px; border-radius: 8px;">
-                                    <p style="font-size: 2em; font-weight: bold; color: #F44336;"><t t-esc="doc.critical_defects"/></p>
+                                    <p style="font-size: 2em; font-weight: bold; color: #F44336;"><t t-out="doc.critical_defects"/></p>
                                     <p><strong>Lỗi Nghiêm Trọng / Critical</strong></p>
                                 </div>
                             </div>
@@ -121,22 +121,22 @@
                                     <t t-foreach="doc.defect_line_ids" t-as="defect">
                                         <t t-set="stt" t-value="stt + 1"/>
                                         <tr>
-                                            <td><t t-esc="stt"/></td>
-                                            <td><t t-esc="defect.defect_type_id.name if defect.defect_type_id else '-'"/></td>
+                                            <td><t t-out="stt"/></td>
+                                            <td><t t-out="defect.defect_type_id.name if defect.defect_type_id else '-'"/></td>
                                             <td>
                                                 <t t-if="defect.severity == 'minor'"><span style="color: #FFC107;">⚠ Nhẹ / Minor</span></t>
                                                 <t t-elif="defect.severity == 'major'"><span style="color: #FF9800;">⚠ Nặng / Major</span></t>
                                                 <t t-elif="defect.severity == 'critical'"><span style="color: #F44336;">🔴 Nghiêm trọng / Critical</span></t>
-                                                <t t-else=""><t t-esc="defect.severity or '-'"/></t>
+                                                <t t-else=""><t t-out="defect.severity or '-'"/></t>
                                             </td>
-                                            <td class="text-end"><t t-esc="defect.quantity"/></td>
+                                            <td class="text-end"><t t-out="defect.quantity"/></td>
                                         </tr>
                                     </t>
                                 </tbody>
                                 <tfoot>
                                     <tr style="font-weight: bold; background-color: #FFEBEE;">
                                         <td colspan="3" class="text-end">Tổng lỗi / Total Defects:</td>
-                                        <td class="text-end"><t t-esc="doc.total_defects"/></td>
+                                        <td class="text-end"><t t-out="doc.total_defects"/></td>
                                     </tr>
                                 </tfoot>
                             </table>

@@ -28,22 +28,22 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <table class="table table-sm table-borderless">
-                                    <tr><td><strong>Số HĐ / Invoice No:</strong></td><td><t t-esc="doc.name"/></td></tr>
+                                    <tr><td><strong>Số HĐ / Invoice No:</strong></td><td><t t-out="doc.name"/></td></tr>
                                     <tr>
                                         <td><strong><t t-if="is_sale">Khách hàng</t><t t-else="">Nhà cung cấp</t>:</strong></td>
-                                        <td><t t-esc="doc.partner_id.name if doc.partner_id else '-'"/></td>
+                                        <td><t t-out="doc.partner_id.name if doc.partner_id else '-'"/></td>
                                     </tr>
                                     <tr t-if="doc.garment_order_id">
                                         <td><strong>Đơn hàng / Order:</strong></td>
-                                        <td><t t-esc="doc.garment_order_id.name"/></td>
+                                        <td><t t-out="doc.garment_order_id.name"/></td>
                                     </tr>
                                 </table>
                             </div>
                             <div class="col-6">
                                 <table class="table table-sm table-borderless">
-                                    <tr><td><strong>Ngày / Date:</strong></td><td><t t-esc="doc.date" t-options="{'widget': 'date'}"/></td></tr>
-                                    <tr><td><strong>Hạn TT / Due Date:</strong></td><td><t t-esc="doc.due_date" t-options="{'widget': 'date'}"/></td></tr>
-                                    <tr><td><strong>Tiền tệ / Currency:</strong></td><td><t t-esc="doc.currency_id.name if doc.currency_id else 'VND'"/></td></tr>
+                                    <tr><td><strong>Ngày / Date:</strong></td><td><t t-out="doc.date" t-options="{'widget': 'date'}"/></td></tr>
+                                    <tr><td><strong>Hạn TT / Due Date:</strong></td><td><t t-out="doc.due_date" t-options="{'widget': 'date'}"/></td></tr>
+                                    <tr><td><strong>Tiền tệ / Currency:</strong></td><td><t t-out="doc.currency_id.name if doc.currency_id else 'VND'"/></td></tr>
                                 </table>
                             </div>
                         </div>
@@ -65,12 +65,12 @@
                                 <t t-foreach="doc.line_ids" t-as="line">
                                     <t t-set="stt" t-value="stt + 1"/>
                                     <tr>
-                                        <td><t t-esc="stt"/></td>
-                                        <td><t t-esc="line.description or '-'"/></td>
-                                        <td class="text-end"><t t-esc="'%g' % line.quantity"/></td>
-                                        <td><t t-esc="dict(line._fields['unit'].selection).get(line.unit, '-')"/></td>
-                                        <td class="text-end"><t t-esc="'{:,.0f}'.format(line.unit_price)"/></td>
-                                        <td class="text-end"><t t-esc="'{:,.0f}'.format(line.subtotal)"/></td>
+                                        <td><t t-out="stt"/></td>
+                                        <td><t t-out="line.description or '-'"/></td>
+                                        <td class="text-end"><t t-out="'%g' % line.quantity"/></td>
+                                        <td><t t-out="dict(line._fields['unit'].selection).get(line.unit, '-')"/></td>
+                                        <td class="text-end"><t t-out="'{:,.0f}'.format(line.unit_price)"/></td>
+                                        <td class="text-end"><t t-out="'{:,.0f}'.format(line.subtotal)"/></td>
                                     </tr>
                                 </t>
                             </tbody>
@@ -83,24 +83,24 @@
                                 <table class="table table-sm table-bordered">
                                     <tr>
                                         <td><strong>Cộng tiền hàng / Subtotal:</strong></td>
-                                        <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.subtotal)"/></td>
+                                        <td class="text-end"><t t-out="'{:,.0f}'.format(doc.subtotal)"/></td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Thuế / Tax (<t t-esc="dict(doc._fields['tax_type'].selection).get(doc.tax_type, '-')"/>):</strong></td>
-                                        <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.tax_amount)"/></td>
+                                        <td><strong>Thuế / Tax (<t t-out="dict(doc._fields['tax_type'].selection).get(doc.tax_type, '-')"/>):</strong></td>
+                                        <td class="text-end"><t t-out="'{:,.0f}'.format(doc.tax_amount)"/></td>
                                     </tr>
                                     <tr style="background-color: #FFF3E0; font-weight: bold; font-size: 1.1em;">
                                         <td><strong>Tổng cộng / Total:</strong></td>
-                                        <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.total_amount)"/></td>
+                                        <td class="text-end"><t t-out="'{:,.0f}'.format(doc.total_amount)"/></td>
                                     </tr>
                                     <t t-if="doc.paid_amount > 0">
                                         <tr>
                                             <td><strong>Đã thanh toán / Paid:</strong></td>
-                                            <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.paid_amount)"/></td>
+                                            <td class="text-end"><t t-out="'{:,.0f}'.format(doc.paid_amount)"/></td>
                                         </tr>
                                         <tr style="color: red; font-weight: bold;">
                                             <td><strong>Còn lại / Balance:</strong></td>
-                                            <td class="text-end"><t t-esc="'{:,.0f}'.format(doc.residual)"/></td>
+                                            <td class="text-end"><t t-out="'{:,.0f}'.format(doc.residual)"/></td>
                                         </tr>
                                     </t>
                                 </table>
