@@ -3,6 +3,13 @@ from odoo.exceptions import UserError, ValidationError
 
 
 class GarmentCuttingOrderAdv(models.Model):
+    """Lệnh cắt NÂNG CAO: quản lý sơ đồ (marker), bàn trải vải và bó hàng.
+
+    Dùng khi cần theo dõi hiệu suất marker, từng lớp trải và chia bó cho
+    chuyền may. Với nhu cầu ghi nhận cắt ở mức tổng trong luồng sản xuất,
+    dùng ``garment.cutting.order`` trong module ``garment_production`` —
+    hai model tồn tại song song có chủ đích, không phải trùng lặp.
+    """
     _name = 'garment.cutting.order.adv'
     _description = 'Lệnh Cắt Nâng Cao'
     _inherit = ['mail.thread', 'mail.activity.mixin']

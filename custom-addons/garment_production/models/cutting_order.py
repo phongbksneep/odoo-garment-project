@@ -2,6 +2,13 @@ from odoo import models, fields, api
 
 
 class GarmentCuttingOrder(models.Model):
+    """Lệnh cắt ĐƠN GIẢN trong luồng sản xuất.
+
+    Ghi nhận một lần cắt ở mức tổng: vải, số lớp, định mức, hao hụt.
+    Nếu cần quản lý chi tiết sơ đồ (marker), từng bàn trải vải và bó hàng,
+    dùng ``garment.cutting.order.adv`` trong module ``garment_cutting`` —
+    hai model tồn tại song song có chủ đích, không phải trùng lặp.
+    """
     _name = 'garment.cutting.order'
     _description = 'Lệnh Cắt'
     _inherit = ['mail.thread', 'mail.activity.mixin']

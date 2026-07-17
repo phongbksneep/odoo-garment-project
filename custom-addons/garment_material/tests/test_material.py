@@ -279,3 +279,145 @@ class TestAllocationGuards(TransactionCase):
         alloc.action_issue()
         with self.assertRaises(UserError):
             alloc.unlink()
+
+
+@tagged('post_install', '-at_install')
+class TestFabricAvailability(TransactionCase):
+    """Chặn xuất kho vượt tồn khả dụng theo (vải, đơn vị)."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.supplier = cls.env['res.partner'].create({
+            'name': 'NCC Avail Test',
+        })
+        cls.buyer = cls.env['res.partner'].create({
+            'name': 'Buyer Avail Test',
+            'customer_rank': 1,
+        })
+        cls.style = cls.env['garment.style'].create({
+            'name': 'Style Avail',
+            'code': 'ST-AVL-01',
+            'category': 'shirt',
+        })
+        cls.order = cls.env['garment.order'].create({
+            'customer_id': cls.buyer.id,
+            'style_id': cls.style.id,
+        })
+        cls.fabric = cls.env['garment.fabric'].create({
+            'name': 'Vải Avail Cotton',
+            'code': 'FAB-AVL-01',
+            'fabric_type': 'cotton',
+        })
+        # Nhập kho 100m (done)
+        receipt = cls.env['garment.material.receipt'].create({
+            'receipt_type': 'purchase',
+            'supplier_id': cls.supplier.id,
+            'date': '2026-02-01',
+            'warehouse_type': 'material',
+        })
+        cls.env['garment.material.receipt.line'].create({
+            'receipt_id': receipt.id,
+            'material_type': 'fabric',
+            'description': 'Vải avail',
+            'fabric_id': cls.fabric.id,
+            'unit': 'm',
+            'quantity': 100,
+        })
+        receipt.action_confirm()
+        receipt.action_inspect()
+        receipt.action_pass_qc()
+        receipt.action_done()
+
+    def _create_allocation(self, qty):
+        alloc = self.env['garment.material.allocation'].create({
+            'garment_order_id': self.order.id,
+            'date': '2026-02-10',
+        })
+        self.env['garment.material.allocation.line'].create({
+            'allocation_id': alloc.id,
+            'material_type': 'fabric',
+            'description': 'Vải avail',
+            'fabric_id': self.fabric.id,
+            'unit': 'm',
+            'quantity_required': qty,
+            'quantity_issued': qty,
+        })
+        alloc.action_confirm()
+        return alloc
+
+    def test_issue_within_stock_ok(self):
+        alloc = self._create_allocation(60)
+        alloc.action_issue()
+        self.assertEqual(alloc.state, 'issued')
+
+    def test_issue_over_stock_rejected(self):
+        with self.assertRaises(UserError):
+            self._create_allocation(150).action_issue()
+
+    def test_issue_counts_previous_issues(self):
+        self._create_allocation(60).action_issue()
+        # Còn 40m khả dụng — xuất 50m phải bị chặn
+        with self.assertRaises(UserError):
+            self._create_allocation(50).action_issue()
+        # 30m thì được
+        alloc = self._create_allocation(30)
+        alloc.action_issue()
+        self.assertEqual(alloc.state, 'issued')
+
+    def test_free_text_line_not_checked(self):
+        alloc = self.env['garment.material.allocation'].create({
+            'garment_order_id': self.order.id,
+            'date': '2026-02-10',
+        })
+        self.env['garment.material.allocation.line'].create({
+            'allocation_id': alloc.id,
+            'material_type': 'thread',
+            'description': 'Chỉ may tự do',
+            'unit': 'cone',
+            'quantity_required': 99999,
+            'quantity_issued': 99999,
+        })
+        alloc.action_confirm()
+        alloc.action_issue()
+        self.assertEqual(alloc.state, 'issued')
+
+
+@tagged('post_install', '-at_install')
+class TestReceiptGuards(TransactionCase):
+    """Guard phiếu nhập kho đã hoàn tất."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.supplier = cls.env['res.partner'].create({'name': 'NCC Grd'})
+
+    def _create_done_receipt(self):
+        receipt = self.env['garment.material.receipt'].create({
+            'receipt_type': 'purchase',
+            'supplier_id': self.supplier.id,
+            'date': '2026-02-01',
+            'warehouse_type': 'material',
+        })
+        self.env['garment.material.receipt.line'].create({
+            'receipt_id': receipt.id,
+            'material_type': 'fabric',
+            'description': 'Vải guard receipt',
+            'unit': 'm',
+            'quantity': 10,
+        })
+        receipt.action_confirm()
+        receipt.action_inspect()
+        receipt.action_pass_qc()
+        receipt.action_done()
+        return receipt
+
+    def test_cannot_reset_done(self):
+        receipt = self._create_done_receipt()
+        with self.assertRaises(UserError):
+            receipt.action_reset_draft()
+
+    def test_cannot_delete_done(self):
+        receipt = self._create_done_receipt()
+        with self.assertRaises(UserError):
+            receipt.unlink()

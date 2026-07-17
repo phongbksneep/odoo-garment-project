@@ -1,5 +1,6 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
+from odoo.tools import float_compare
 
 
 class GarmentMaterialAllocation(models.Model):
@@ -101,7 +102,53 @@ class GarmentMaterialAllocation(models.Model):
             if rec.state != 'confirmed':
                 raise UserError(_(
                     'Phiếu phân bổ phải Đã Xác Nhận mới được xuất kho.'))
+        self._check_fabric_availability()
         self.write({'state': 'issued'})
+
+    def _check_fabric_availability(self):
+        """Chặn xuất vượt tồn cho các dòng có liên kết vải.
+
+        Tồn khả dụng theo (vải, đơn vị) = tổng nhập từ phiếu Đã Nhập Kho
+        (trừ SL lỗi QC) − tổng đã xuất từ phiếu Đã Xuất Kho. Dòng chỉ nhập
+        mô tả tự do (không chọn vải) không kiểm tra được nên bỏ qua.
+        """
+        lines = self.line_ids.filtered('fabric_id')
+        if not lines:
+            return
+        fabric_ids = lines.fabric_id.ids
+        received = {}
+        for fabric, unit, qty, rejected in self.env[
+                'garment.material.receipt.line']._read_group(
+                [('fabric_id', 'in', fabric_ids),
+                 ('receipt_id.state', '=', 'done')],
+                ['fabric_id', 'unit'],
+                ['quantity:sum', 'quantity_rejected:sum']):
+            received[(fabric.id, unit)] = (qty or 0) - (rejected or 0)
+        issued = {}
+        for fabric, unit, qty in self.env[
+                'garment.material.allocation.line']._read_group(
+                [('fabric_id', 'in', fabric_ids),
+                 ('allocation_id.state', '=', 'issued')],
+                ['fabric_id', 'unit'],
+                ['quantity_issued:sum']):
+            issued[(fabric.id, unit)] = qty or 0
+        shortages = []
+        demand = {}
+        for line in lines:
+            key = (line.fabric_id.id, line.unit)
+            demand[key] = demand.get(key, 0) + line.quantity_issued
+        for (fabric_id, unit), qty in demand.items():
+            available = (received.get((fabric_id, unit), 0)
+                         - issued.get((fabric_id, unit), 0))
+            if float_compare(qty, available, precision_digits=2) > 0:
+                fabric = self.env['garment.fabric'].browse(fabric_id)
+                shortages.append(_(
+                    '- %s: cần %.2f %s, tồn khả dụng %.2f %s',
+                    fabric.display_name, qty, unit, available, unit))
+        if shortages:
+            raise UserError(_(
+                'Không đủ tồn kho vải để xuất:\n%s',
+                '\n'.join(shortages)))
 
     def action_cancel(self):
         for rec in self:

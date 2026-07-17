@@ -231,7 +231,18 @@ class GarmentMaterialReceipt(models.Model):
         self.write({'state': 'cancelled'})
 
     def action_reset_draft(self):
+        for rec in self:
+            if rec.state == 'done':
+                raise UserError(_(
+                    'Không thể đưa phiếu đã nhập kho về Nháp.'))
         self.write({'state': 'draft'})
+
+    def unlink(self):
+        for rec in self:
+            if rec.state == 'done':
+                raise UserError(_(
+                    'Không thể xóa phiếu nhập %s đã nhập kho.', rec.name))
+        return super().unlink()
 
     def action_pass_qc(self):
         self.write({'qc_status': 'pass'})
