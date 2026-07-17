@@ -326,14 +326,28 @@ class GarmentOrderLine(models.Model):
 
     @api.constrains('order_id', 'color_id', 'size_id')
     def _check_unique_color_size(self):
+        # Một truy vấn gộp cho cả batch thay vì search_count theo từng dòng
+        seen = set()
         for line in self:
-            duplicate = self.search_count([
-                ('order_id', '=', line.order_id.id),
-                ('color_id', '=', line.color_id.id),
-                ('size_id', '=', line.size_id.id),
-                ('id', '!=', line.id),
-            ])
-            if duplicate:
+            key = (line.order_id.id, line.color_id.id, line.size_id.id)
+            if key in seen:
+                raise ValidationError(
+                    _('Màu %s / Size %s đã tồn tại trong đơn hàng.',
+                      line.color_id.name, line.size_id.name)
+                )
+            seen.add(key)
+        others = self.search_read(
+            [('order_id', 'in', self.order_id.ids),
+             ('id', 'not in', self.ids)],
+            ['order_id', 'color_id', 'size_id'],
+        )
+        existing = {
+            (o['order_id'][0], o['color_id'][0], o['size_id'][0])
+            for o in others
+        }
+        for line in self:
+            key = (line.order_id.id, line.color_id.id, line.size_id.id)
+            if key in existing:
                 raise ValidationError(
                     _('Màu %s / Size %s đã tồn tại trong đơn hàng.',
                       line.color_id.name, line.size_id.name)
