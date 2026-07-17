@@ -1,4 +1,5 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 
 class GarmentQCInspection(models.Model):
@@ -167,12 +168,25 @@ class GarmentQCInspection(models.Model):
             )
 
     def action_start(self):
+        for rec in self:
+            if rec.state != 'draft':
+                raise UserError(_(
+                    'Chỉ phiếu kiểm Nháp mới được bắt đầu kiểm tra.'))
         self.write({'state': 'in_progress'})
 
     def action_done(self):
+        for rec in self:
+            if rec.state != 'in_progress':
+                raise UserError(_(
+                    'Phiếu kiểm phải ở trạng thái Đang Kiểm mới được '
+                    'hoàn thành.'))
         self.write({'state': 'done'})
 
     def action_cancel(self):
+        for rec in self:
+            if rec.state == 'done':
+                raise UserError(_(
+                    'Không thể hủy phiếu kiểm đã hoàn thành.'))
         self.write({'state': 'cancelled'})
 
 
