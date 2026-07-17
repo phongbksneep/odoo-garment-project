@@ -91,6 +91,13 @@ class GarmentLeave(models.Model):
             if rec.state != 'submitted':
                 raise ValidationError(
                     _('Chỉ đơn nghỉ Đã Gửi mới được duyệt.'))
+            if rec.leave_type == 'annual':
+                remaining = rec.employee_id.annual_leave_remaining
+                if rec.days > remaining:
+                    raise ValidationError(_(
+                        'Nhân viên %s chỉ còn %.1f ngày phép năm, '
+                        'không thể duyệt đơn nghỉ %.1f ngày.',
+                        rec.employee_id.name, remaining, rec.days))
         self.write({
             'state': 'approved',
             'approved_by': self.env.user.employee_id.id,

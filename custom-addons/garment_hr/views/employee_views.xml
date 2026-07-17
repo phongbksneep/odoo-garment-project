@@ -29,6 +29,11 @@
                             <field name="emergency_contact"/>
                             <field name="emergency_phone"/>
                         </group>
+                        <group string="Phép Năm">
+                            <field name="annual_leave_entitlement"/>
+                            <field name="annual_leave_used"/>
+                            <field name="annual_leave_remaining"/>
+                        </group>
                     </group>
                     <group string="Tay Nghề">
                         <field name="skill_ids" nolabel="1">

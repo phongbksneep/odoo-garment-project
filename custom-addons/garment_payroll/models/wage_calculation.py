@@ -305,6 +305,29 @@ class GarmentWageCalculation(models.Model):
              'tự động lấy khi Tính Lương, được cộng vào ngày hưởng lương.',
     )
 
+    # --- Chế độ BHXH chi trả (ốm đau / thai sản) ---
+    sick_leave_days = fields.Float(
+        string='Ngày Nghỉ Ốm (BHXH)',
+        digits=(5, 1),
+        help='Nghỉ ốm đã duyệt trong tháng — BHXH chi trả 75% mức đóng.',
+    )
+    maternity_leave_days = fields.Float(
+        string='Ngày Nghỉ Thai Sản (BHXH)',
+        digits=(5, 1),
+        help='Nghỉ thai sản đã duyệt trong tháng — BHXH chi trả 100% '
+             'bình quân mức đóng (ước tính theo mức đóng hiện tại).',
+    )
+    bhxh_benefit_amount = fields.Float(
+        string='Trợ Cấp BHXH',
+        compute='_compute_bhxh_benefit',
+        store=True,
+        digits=(10, 0),
+        help='Ốm đau: 75% × (mức đóng/24 ngày) × số ngày. '
+             'Thai sản: 100% × (mức đóng/24 ngày) × số ngày. '
+             'Khoản này do quỹ BHXH chi trả (DN chi hộ), miễn thuế TNCN '
+             'và không tính vào chi phí doanh nghiệp.',
+    )
+
     # --- Net Pay ---
     total_wage = fields.Float(
         string='Tổng Thu Nhập',
@@ -477,7 +500,7 @@ class GarmentWageCalculation(models.Model):
         'total_allowance', 'bonus_amount',
         'total_insurance', 'pit_amount', 'deduction',
         'bhxh_employer', 'bhyt_employer', 'bhtn_employer',
-        'union_fee_employer',
+        'union_fee_employer', 'bhxh_benefit_amount',
     )
     def _compute_total_wage(self):
         for record in self:
@@ -489,8 +512,11 @@ class GarmentWageCalculation(models.Model):
                 + record.bonus_amount
             )
             record.total_wage = gross
+            # Trợ cấp BHXH: DN chi hộ quỹ BHXH — cộng vào thực lĩnh,
+            # miễn thuế, không tính vào thu nhập chịu thuế/chi phí DN
             record.net_pay = (gross - record.total_insurance
-                              - record.pit_amount - record.deduction)
+                              - record.pit_amount - record.deduction
+                              + record.bhxh_benefit_amount)
             record.total_employer_cost = (
                 gross
                 + record.bhxh_employer
@@ -602,15 +628,15 @@ class GarmentWageCalculation(models.Model):
     # việc riêng/không lương không hưởng)
     _PAID_LEAVE_TYPES = ('annual', 'marriage', 'funeral')
 
-    def _get_paid_leave_days(self):
-        """Số ngày nghỉ hưởng lương đã duyệt nằm trong tháng tính lương."""
+    def _get_leave_days(self, leave_types):
+        """Số ngày nghỉ đã duyệt (theo loại) nằm trong tháng tính lương."""
         self.ensure_one()
         date_from = self._period_start()
         date_to = self._period_end()
         leaves = self.env['garment.leave'].search([
             ('employee_id', '=', self.employee_id.id),
             ('state', '=', 'approved'),
-            ('leave_type', 'in', self._PAID_LEAVE_TYPES),
+            ('leave_type', 'in', list(leave_types)),
             ('date_from', '<', date_to),
             ('date_to', '>=', date_from),
         ])
@@ -623,6 +649,19 @@ class GarmentWageCalculation(models.Model):
             if overlap_days > 0:
                 total += overlap_days
         return total
+
+    def _get_paid_leave_days(self):
+        return self._get_leave_days(self._PAID_LEAVE_TYPES)
+
+    @api.depends('insurance_base', 'sick_leave_days',
+                 'maternity_leave_days')
+    def _compute_bhxh_benefit(self):
+        for record in self:
+            daily_base = record.insurance_base / 24
+            record.bhxh_benefit_amount = daily_base * (
+                0.75 * record.sick_leave_days
+                + 1.0 * record.maternity_leave_days
+            )
 
     def action_calculate(self):
         """Trigger recalculation — also pull attendance data."""
@@ -642,6 +681,8 @@ class GarmentWageCalculation(models.Model):
             if not self.actual_days:
                 self.actual_days = int(summary.total_work_days)
         self.paid_leave_days = self._get_paid_leave_days()
+        self.sick_leave_days = self._get_leave_days(('sick',))
+        self.maternity_leave_days = self._get_leave_days(('maternity',))
         self._compute_piece_totals()
         self._compute_base_amount()
         self._compute_ot_amount()

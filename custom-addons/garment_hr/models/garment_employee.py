@@ -66,6 +66,53 @@ class GarmentEmployee(models.Model):
         'employee_id',
         string='Chấm Công',
     )
+    # --- Số dư phép năm (Điều 113-114 BLLĐ 2019) ---
+    annual_leave_entitlement = fields.Float(
+        string='Phép Năm Được Hưởng',
+        compute='_compute_annual_leave',
+        digits=(5, 1),
+        help='12 ngày/năm điều kiện bình thường + 1 ngày cho mỗi 5 năm '
+             'thâm niên; nhân viên vào giữa năm tính tỷ lệ theo tháng.',
+    )
+    annual_leave_used = fields.Float(
+        string='Phép Năm Đã Dùng',
+        compute='_compute_annual_leave',
+        digits=(5, 1),
+    )
+    annual_leave_remaining = fields.Float(
+        string='Phép Năm Còn Lại',
+        compute='_compute_annual_leave',
+        digits=(5, 1),
+    )
+
+    @api.depends('join_date', 'leave_ids.state', 'leave_ids.days',
+                 'leave_ids.leave_type')
+    def _compute_annual_leave(self):
+        today = fields.Date.today()
+        year_start = today.replace(month=1, day=1)
+        # Một truy vấn gộp: tổng phép năm đã duyệt trong năm hiện tại
+        used_map = {}
+        for employee, days in self.env['garment.leave']._read_group(
+                [('employee_id', 'in', self.ids),
+                 ('leave_type', '=', 'annual'),
+                 ('state', '=', 'approved'),
+                 ('date_from', '>=', year_start)],
+                ['employee_id'], ['days:sum']):
+            used_map[employee.id] = days or 0
+        for emp in self:
+            base = 12.0
+            if emp.join_date:
+                years = (today - emp.join_date).days // 365
+                base += years // 5  # +1 ngày mỗi 5 năm thâm niên
+                if emp.join_date > year_start:
+                    # Vào làm giữa năm: tính tỷ lệ theo số tháng còn lại
+                    months = 12 - emp.join_date.month + 1
+                    base = base * months / 12
+            emp.annual_leave_entitlement = round(base, 1)
+            emp.annual_leave_used = used_map.get(emp.id, 0)
+            emp.annual_leave_remaining = (
+                emp.annual_leave_entitlement - emp.annual_leave_used)
+
     leave_ids = fields.One2many(
         'garment.leave',
         'employee_id',

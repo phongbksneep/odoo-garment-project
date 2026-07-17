@@ -65,6 +65,11 @@
                                 <group string="Thưởng">
                                     <field name="bonus_amount"/>
                                 </group>
+                                <group string="Chế Độ BHXH Chi Trả">
+                                    <field name="sick_leave_days"/>
+                                    <field name="maternity_leave_days"/>
+                                    <field name="bhxh_benefit_amount" readonly="1"/>
+                                </group>
                             </group>
                         </page>
                         <page string="Phụ Cấp">

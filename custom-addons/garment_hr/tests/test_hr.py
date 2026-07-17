@@ -272,3 +272,60 @@ class TestLeaveGuards(TransactionCase):
         leave.action_submit()
         leave.action_approve()
         self.assertEqual(leave.state, 'approved')
+
+
+@tagged('post_install', '-at_install')
+class TestAnnualLeaveBalance(TransactionCase):
+    """Số dư phép năm: 12 ngày + thâm niên, chặn duyệt vượt số dư."""
+
+    def _create_employee(self, join_date):
+        return self.env['hr.employee'].create({
+            'name': f'Emp Balance {join_date}',
+            'join_date': join_date,
+        })
+
+    def _approved_leave(self, employee, date_from, date_to):
+        leave = self.env['garment.leave'].create({
+            'employee_id': employee.id,
+            'leave_type': 'annual',
+            'date_from': date_from,
+            'date_to': date_to,
+        })
+        leave.action_submit()
+        leave.action_approve()
+        return leave
+
+    def test_base_entitlement(self):
+        emp = self._create_employee('2024-01-15')
+        self.assertAlmostEqual(emp.annual_leave_entitlement, 12.0, places=1)
+
+    def test_seniority_bonus(self):
+        """+1 ngày cho mỗi 5 năm thâm niên (Điều 114 BLLĐ)."""
+        emp = self._create_employee('2015-06-01')  # ~11 năm → +2
+        self.assertAlmostEqual(emp.annual_leave_entitlement, 14.0, places=1)
+
+    def test_mid_year_prorata(self):
+        """Vào làm 01/07 năm nay → 6/12 tháng → 6 ngày."""
+        emp = self._create_employee('2026-07-01')
+        self.assertAlmostEqual(emp.annual_leave_entitlement, 6.0, places=1)
+
+    def test_used_and_remaining(self):
+        emp = self._create_employee('2024-01-15')
+        self._approved_leave(emp, '2026-03-02', '2026-03-04')  # 3 ngày
+        self.assertAlmostEqual(emp.annual_leave_used, 3.0, places=1)
+        self.assertAlmostEqual(emp.annual_leave_remaining, 9.0, places=1)
+
+    def test_cannot_approve_over_balance(self):
+        emp = self._create_employee('2024-01-15')
+        # Dùng 10 ngày
+        self._approved_leave(emp, '2026-02-02', '2026-02-11')
+        # Xin thêm 5 ngày — vượt số dư 2 ngày
+        leave = self.env['garment.leave'].create({
+            'employee_id': emp.id,
+            'leave_type': 'annual',
+            'date_from': '2026-09-07',
+            'date_to': '2026-09-11',
+        })
+        leave.action_submit()
+        with self.assertRaises(ValidationError):
+            leave.action_approve()

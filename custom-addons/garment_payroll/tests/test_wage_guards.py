@@ -274,3 +274,58 @@ class TestPayrollVietnamRules(TransactionCase):
         wage = self._create_wage()
         wage.action_calculate()
         self.assertEqual(wage.paid_leave_days, 0)
+
+
+@tagged('post_install', '-at_install')
+class TestBhxhBenefit(TransactionCase):
+    """Trợ cấp BHXH: ốm 75%, thai sản 100% mức đóng/24 ngày."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.employee = cls.env['hr.employee'].create({'name': 'Emp BHXH Ben'})
+
+    def _create_wage(self, **kwargs):
+        vals = {
+            'employee_id': self.employee.id,
+            'month': '06',
+            'year': 2026,
+            'base_salary': 7200000,  # mức đóng/ngày = 300.000
+            'working_days': 26,
+        }
+        vals.update(kwargs)
+        return self.env['garment.wage.calculation'].create(vals)
+
+    def test_sick_benefit_75_percent(self):
+        wage = self._create_wage(sick_leave_days=4)
+        # 7.200.000/24 × 75% × 4 = 900.000
+        self.assertAlmostEqual(wage.bhxh_benefit_amount, 900000, places=0)
+
+    def test_maternity_benefit_100_percent(self):
+        wage = self._create_wage(maternity_leave_days=24)
+        # 7.200.000/24 × 100% × 24 = 7.200.000
+        self.assertAlmostEqual(wage.bhxh_benefit_amount, 7200000, places=0)
+
+    def test_benefit_added_to_net_not_taxed(self):
+        wage = self._create_wage(sick_leave_days=4, actual_days=22)
+        base_net_wo_benefit = (wage.total_wage - wage.total_insurance
+                               - wage.pit_amount - wage.deduction)
+        self.assertAlmostEqual(
+            wage.net_pay, base_net_wo_benefit + 900000, places=0)
+        # Không nằm trong thu nhập chịu thuế
+        self.assertNotIn(wage.bhxh_benefit_amount, [wage.taxable_income])
+
+    def test_sick_leave_pulled_on_calculate(self):
+        leave = self.env['garment.leave'].create({
+            'employee_id': self.employee.id,
+            'leave_type': 'sick',
+            'date_from': '2026-06-08',
+            'date_to': '2026-06-09',
+        })
+        leave.action_submit()
+        leave.action_approve()
+        wage = self._create_wage(actual_days=24)
+        wage.action_calculate()
+        self.assertAlmostEqual(wage.sick_leave_days, 2, places=1)
+        # Nghỉ ốm KHÔNG cộng vào ngày hưởng lương công ty
+        self.assertEqual(wage.paid_leave_days, 0)
