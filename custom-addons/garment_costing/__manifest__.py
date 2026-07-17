@@ -20,7 +20,7 @@
     'website': 'https://www.garment-company.com',
     'license': 'LGPL-3',
     'depends': [
-        'garment_production',
+        'garment_base',
         'purchase',
     ],
     'data': [
