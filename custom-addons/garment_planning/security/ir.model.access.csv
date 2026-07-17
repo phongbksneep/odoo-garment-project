@@ -1,9 +1,13 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_garment_production_plan_user,garment.production.plan.user,model_garment_production_plan,garment_base.group_garment_user,1,1,1,0
+access_garment_production_plan_user,garment.production.plan.user,model_garment_production_plan,garment_base.group_garment_user,1,0,0,0
+access_garment_production_plan_user_tl,garment.production.plan.user.tl,model_garment_production_plan,garment_base.group_garment_team_leader,1,1,1,0
 access_garment_production_plan_manager,garment.production.plan.manager,model_garment_production_plan,garment_base.group_garment_manager,1,1,1,1
-access_garment_line_loading_user,garment.line.loading.user,model_garment_line_loading,garment_base.group_garment_user,1,1,1,0
+access_garment_line_loading_user,garment.line.loading.user,model_garment_line_loading,garment_base.group_garment_user,1,0,0,0
+access_garment_line_loading_user_tl,garment.line.loading.user.tl,model_garment_line_loading,garment_base.group_garment_team_leader,1,1,1,0
 access_garment_line_loading_manager,garment.line.loading.manager,model_garment_line_loading,garment_base.group_garment_manager,1,1,1,1
-access_garment_capacity_planning_user,garment.capacity.planning.user,model_garment_capacity_planning,garment_base.group_garment_user,1,1,1,0
+access_garment_capacity_planning_user,garment.capacity.planning.user,model_garment_capacity_planning,garment_base.group_garment_user,1,0,0,0
+access_garment_capacity_planning_user_tl,garment.capacity.planning.user.tl,model_garment_capacity_planning,garment_base.group_garment_team_leader,1,1,1,0
 access_garment_capacity_planning_manager,garment.capacity.planning.manager,model_garment_capacity_planning,garment_base.group_garment_manager,1,1,1,1
-access_garment_capacity_line_user,garment.capacity.line.user,model_garment_capacity_line,garment_base.group_garment_user,1,1,1,0
+access_garment_capacity_line_user,garment.capacity.line.user,model_garment_capacity_line,garment_base.group_garment_user,1,0,0,0
+access_garment_capacity_line_user_tl,garment.capacity.line.user.tl,model_garment_capacity_line,garment_base.group_garment_team_leader,1,1,1,0
 access_garment_capacity_line_manager,garment.capacity.line.manager,model_garment_capacity_line,garment_base.group_garment_manager,1,1,1,1

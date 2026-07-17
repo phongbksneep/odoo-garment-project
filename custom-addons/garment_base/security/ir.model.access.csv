@@ -9,9 +9,11 @@ access_garment_size_user,garment.size.user,model_garment_size,group_garment_user
 access_garment_size_manager,garment.size.manager,model_garment_size,group_garment_manager,1,1,1,1
 access_garment_style_user,garment.style.user,model_garment_style,group_garment_user,1,0,0,0
 access_garment_style_manager,garment.style.manager,model_garment_style,group_garment_manager,1,1,1,1
-access_garment_order_user,garment.order.user,model_garment_order,group_garment_user,1,1,1,0
+access_garment_order_user,garment.order.user,model_garment_order,group_garment_user,1,0,0,0
+access_garment_order_tl,garment.order.tl,model_garment_order,group_garment_team_leader,1,1,1,0
 access_garment_order_manager,garment.order.manager,model_garment_order,group_garment_manager,1,1,1,1
-access_garment_order_line_user,garment.order.line.user,model_garment_order_line,group_garment_user,1,1,1,0
+access_garment_order_line_user,garment.order.line.user,model_garment_order_line,group_garment_user,1,0,0,0
+access_garment_order_line_tl,garment.order.line.tl,model_garment_order_line,group_garment_team_leader,1,1,1,0
 access_garment_order_line_manager,garment.order.line.manager,model_garment_order_line,group_garment_manager,1,1,1,1
 access_garment_wash_symbol_user,garment.wash.symbol.user,model_garment_wash_symbol,group_garment_user,1,0,0,0
 access_garment_wash_symbol_manager,garment.wash.symbol.manager,model_garment_wash_symbol,group_garment_manager,1,1,1,1
