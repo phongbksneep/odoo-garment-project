@@ -161,14 +161,16 @@
             <field name="buyer_id" ref="partner_buyer_us"/>
             <field name="sample_type">pp</field>
             <field name="quantity">4</field>
-            <field name="required_date">2026-02-20</field>
+            <field name="request_date" eval="(DateTime.today() - timedelta(days=30)).strftime('%Y-%m-%d')"/>
+            <field name="required_date" eval="(DateTime.today() - timedelta(days=15)).strftime('%Y-%m-%d')"/>
         </record>
         <record id="sample_tshirt_fit" model="garment.sample">
             <field name="style_id" ref="style_tshirt_basic"/>
             <field name="buyer_id" ref="partner_buyer_eu"/>
             <field name="sample_type">fit</field>
             <field name="quantity">3</field>
-            <field name="required_date">2026-03-01</field>
+            <field name="request_date" eval="(DateTime.today() - timedelta(days=25)).strftime('%Y-%m-%d')"/>
+            <field name="required_date" eval="(DateTime.today() - timedelta(days=10)).strftime('%Y-%m-%d')"/>
         </record>
 
         <!-- ========================================= -->
