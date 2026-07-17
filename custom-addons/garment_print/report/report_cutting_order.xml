@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_report_cutting_order" model="ir.actions.report">
+        <field name="name">In Lệnh Cắt</field>
+        <field name="model">garment.cutting.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">garment_print.report_cutting_order_document</field>
+        <field name="report_file">garment_print.report_cutting_order_document</field>
+        <field name="binding_model_id" ref="garment_production.model_garment_cutting_order"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'LenhCat_%s' % object.name</field>
+    </record>
+
+    <template id="report_cutting_order_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center mb-2">LỆNH CẮT</h2>
+                        <h4 class="text-center mb-4"><t t-out="doc.name"/></h4>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr><td><strong>Lệnh sản xuất:</strong></td><td><t t-out="doc.production_order_id.name or '-'"/></td></tr>
+                                    <tr><td><strong>Đơn hàng:</strong></td><td><t t-out="doc.garment_order_id.name or '-'"/></td></tr>
+                                    <tr><td><strong>Vải:</strong></td><td><t t-out="doc.fabric_id.display_name or '-'"/></td></tr>
+                                    <tr><td><strong>Màu:</strong></td><td><t t-out="doc.color_id.name or '-'"/></td></tr>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr><td><strong>Ngày cắt:</strong></td><td><t t-out="doc.cutting_date or '-'"/></td></tr>
+                                    <tr><td><strong>SL kế hoạch:</strong></td><td><t t-out="'{:,}'.format(doc.planned_qty)"/> sp</td></tr>
+                                    <tr><td><strong>Số lớp trải:</strong></td><td><t t-out="doc.layers"/></td></tr>
+                                    <tr><td><strong>Người cắt:</strong></td><td><t t-out="doc.cutter_id.name or '-'"/></td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <table class="table table-sm table-bordered mb-4">
+                            <thead>
+                                <tr class="table-light">
+                                    <th>Dài Vải (m)</th><th>Khổ Vải (m)</th>
+                                    <th>Định Mức (m/sp)</th><th>Tổng Vải (m)</th>
+                                    <th>Hao Hụt (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><t t-out="doc.fabric_length"/></td>
+                                    <td><t t-out="doc.fabric_width"/></td>
+                                    <td><t t-out="doc.fabric_consumption"/></td>
+                                    <td><t t-out="doc.total_fabric"/></td>
+                                    <td><t t-out="doc.waste_percentage"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row mt-5">
+                            <div class="col-4 text-center"><strong>Người Lập</strong><br/><br/><br/>(Ký, họ tên)</div>
+                            <div class="col-4 text-center"><strong>Tổ Trưởng Cắt</strong><br/><br/><br/>(Ký, họ tên)</div>
+                            <div class="col-4 text-center"><strong>Thủ Kho Vải</strong><br/><br/><br/>(Ký, họ tên)</div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

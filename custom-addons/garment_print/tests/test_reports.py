@@ -207,3 +207,73 @@ class TestReportActions(TransactionCase):
             report = self.env.ref(ref)
             self.assertTrue(report.binding_model_id, f"Report {ref} should have binding_model_id")
             self.assertEqual(report.binding_type, 'report', f"Report {ref} should have binding_type='report'")
+
+
+@tagged('post_install', '-at_install')
+class TestFloorReports(TransactionCase):
+    """4 mẫu in đi xưởng: lệnh SX, lệnh cắt, bảng lương ký nhận, phiếu NPL."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].create({
+            'name': 'Buyer FloorRpt', 'customer_rank': 1})
+        cls.style = cls.env['garment.style'].create({
+            'name': 'STYLE-FRP-001', 'code': 'ST-FRP-001',
+            'category': 'shirt'})
+        cls.color = cls.env['garment.color'].create({
+            'name': 'Đen FRP', 'code': 'BLK-FRP'})
+        cls.size = cls.env['garment.size'].create({
+            'name': 'M-FRP', 'code': 'M-FRP', 'size_type': 'letter'})
+        cls.order = cls.env['garment.order'].create({
+            'customer_id': cls.partner.id, 'style_id': cls.style.id,
+            'unit_price': 5.0})
+        cls.env['garment.order.line'].create({
+            'order_id': cls.order.id, 'color_id': cls.color.id,
+            'size_id': cls.size.id, 'quantity': 500})
+        cls.order.action_confirm()
+
+    def _render(self, xmlid, records):
+        report = self.env.ref(xmlid)
+        pdf, ctype = self.env['ir.actions.report']._render_qweb_pdf(
+            report.id, records.ids)
+        self.assertTrue(pdf)
+
+    def test_production_order_report(self):
+        po = self.env['garment.production.order'].create({
+            'garment_order_id': self.order.id, 'planned_qty': 500})
+        self._render('garment_print.action_report_production_order', po)
+
+    def test_cutting_order_report(self):
+        fabric = self.env['garment.fabric'].create({
+            'name': 'Vải FRP', 'code': 'FAB-FRP-01',
+            'fabric_type': 'cotton'})
+        cut = self.env['garment.cutting.order'].create({
+            'production_order_id': self.env[
+                'garment.production.order'].create({
+                    'garment_order_id': self.order.id,
+                    'planned_qty': 500}).id,
+            'fabric_id': fabric.id,
+            'fabric_length': 100, 'fabric_width': 1.5,
+            'planned_qty': 500, 'layers': 50,
+        })
+        self._render('garment_print.action_report_cutting_order', cut)
+
+    def test_wage_summary_report(self):
+        employees = self.env['hr.employee'].create([
+            {'name': f'Emp FRP {i}'} for i in range(3)])
+        wages = self.env['garment.wage.calculation'].create([{
+            'employee_id': emp.id, 'month': '06', 'year': 2026,
+            'base_salary': 5200000, 'actual_days': 26,
+        } for emp in employees])
+        wages.action_calculate()
+        self._render('garment_print.action_report_wage_summary', wages)
+
+    def test_material_allocation_report(self):
+        alloc = self.env['garment.material.allocation'].create({
+            'garment_order_id': self.order.id, 'date': '2026-07-01'})
+        self.env['garment.material.allocation.line'].create({
+            'allocation_id': alloc.id, 'material_type': 'fabric',
+            'description': 'Vải FRP', 'unit': 'm',
+            'quantity_required': 100, 'quantity_issued': 100})
+        self._render('garment_print.action_report_material_allocation', alloc)

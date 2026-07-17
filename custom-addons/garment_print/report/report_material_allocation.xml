@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_report_material_allocation" model="ir.actions.report">
+        <field name="name">In Phiếu Xuất Kho NPL</field>
+        <field name="model">garment.material.allocation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">garment_print.report_material_allocation_document</field>
+        <field name="report_file">garment_print.report_material_allocation_document</field>
+        <field name="binding_model_id" ref="garment_material.model_garment_material_allocation"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'PhieuXuatNPL_%s' % object.name</field>
+    </record>
+
+    <template id="report_material_allocation_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center mb-2">PHIẾU XUẤT KHO NGUYÊN PHỤ LIỆU</h2>
+                        <h4 class="text-center mb-4"><t t-out="doc.name"/></h4>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr><td><strong>Đơn hàng:</strong></td><td><t t-out="doc.garment_order_id.name"/></td></tr>
+                                    <tr><td><strong>Mã hàng:</strong></td><td><t t-out="doc.style_id.display_name or '-'"/></td></tr>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr><td><strong>Ngày:</strong></td><td><t t-out="doc.date"/></td></tr>
+                                    <tr><td><strong>Người xuất:</strong></td><td><t t-out="doc.issued_by.name or '-'"/></td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <table class="table table-sm table-bordered mb-4">
+                            <thead>
+                                <tr class="table-light">
+                                    <th>STT</th><th>Loại NL</th><th>Mô Tả</th>
+                                    <th>Màu</th><th>ĐVT</th>
+                                    <th class="text-end">SL Yêu Cầu</th>
+                                    <th class="text-end">SL Thực Xuất</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="doc.line_ids" t-as="line">
+                                    <td><t t-out="line_index + 1"/></td>
+                                    <td><t t-out="dict(line._fields['material_type'].selection).get(line.material_type, '-')"/></td>
+                                    <td><t t-out="line.description"/></td>
+                                    <td><t t-out="line.color_id.name or '-'"/></td>
+                                    <td><t t-out="dict(line._fields['unit'].selection).get(line.unit, '-')"/></td>
+                                    <td class="text-end"><t t-out="line.quantity_required"/></td>
+                                    <td class="text-end"><t t-out="line.quantity_issued"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row mt-5">
+                            <div class="col-4 text-center"><strong>Người Lập</strong><br/><br/><br/>(Ký, họ tên)</div>
+                            <div class="col-4 text-center"><strong>Thủ Kho</strong><br/><br/><br/>(Ký, họ tên)</div>
+                            <div class="col-4 text-center"><strong>Người Nhận</strong><br/><br/><br/>(Ký, họ tên)</div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

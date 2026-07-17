@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_report_wage_summary" model="ir.actions.report">
+        <field name="name">In Bảng Lương Ký Nhận</field>
+        <field name="model">garment.wage.calculation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">garment_print.report_wage_summary_document</field>
+        <field name="report_file">garment_print.report_wage_summary_document</field>
+        <field name="binding_model_id" ref="garment_payroll.model_garment_wage_calculation"/>
+        <field name="binding_type">report</field>
+        <field name="group_ids" eval="[(4, ref('garment_base.group_garment_dept_manager'))]"/>
+        <field name="print_report_name">'BangLuongKyNhan'</field>
+    </record>
+
+    <!-- Bảng lương tổng hợp: chọn nhiều phiếu trên danh sách rồi In -->
+    <template id="report_wage_summary_document">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h3 class="text-center mb-1">BẢNG LƯƠNG KÝ NHẬN</h3>
+                    <p class="text-center mb-4">
+                        Tháng <t t-out="docs[0].month if docs else ''"/>/<t t-out="docs[0].year if docs else ''"/>
+                    </p>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr class="table-light">
+                                <th>STT</th>
+                                <th>Họ Tên</th>
+                                <th>Phòng Ban</th>
+                                <th class="text-end">Ngày Công</th>
+                                <th class="text-end">Lương + Khoán</th>
+                                <th class="text-end">Tăng Ca</th>
+                                <th class="text-end">Phụ Cấp + Thưởng</th>
+                                <th class="text-end">Khấu Trừ</th>
+                                <th class="text-end">Thực Lĩnh</th>
+                                <th style="width: 12%">Ký Nhận</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="docs" t-as="doc">
+                                <td><t t-out="doc_index + 1"/></td>
+                                <td><t t-out="doc.employee_id.name"/></td>
+                                <td><t t-out="doc.department_id.name or '-'"/></td>
+                                <td class="text-end"><t t-out="doc.actual_days + doc.paid_leave_days"/></td>
+                                <td class="text-end"><t t-out="'{:,.0f}'.format(doc.base_amount + doc.piece_rate_amount)"/></td>
+                                <td class="text-end"><t t-out="'{:,.0f}'.format(doc.ot_amount)"/></td>
+                                <td class="text-end"><t t-out="'{:,.0f}'.format(doc.total_allowance + doc.bonus_amount + doc.bhxh_benefit_amount)"/></td>
+                                <td class="text-end"><t t-out="'{:,.0f}'.format(doc.total_insurance + doc.pit_amount + doc.deduction)"/></td>
+                                <td class="text-end"><strong><t t-out="'{:,.0f}'.format(doc.net_pay)"/></strong></td>
+                                <td/>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="table-light">
+                                <td colspan="8" class="text-end"><strong>TỔNG CỘNG</strong></td>
+                                <td class="text-end"><strong><t t-out="'{:,.0f}'.format(sum(docs.mapped('net_pay')))"/></strong></td>
+                                <td/>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="row mt-5">
+                        <div class="col-4 text-center"><strong>Người Lập Bảng</strong><br/><br/><br/>(Ký, họ tên)</div>
+                        <div class="col-4 text-center"><strong>Kế Toán</strong><br/><br/><br/>(Ký, họ tên)</div>
+                        <div class="col-4 text-center"><strong>Giám Đốc</strong><br/><br/><br/>(Ký, họ tên)</div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
