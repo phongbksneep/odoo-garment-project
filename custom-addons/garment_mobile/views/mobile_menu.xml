@@ -8,12 +8,23 @@
     </record>
 
 
-    <!-- Mobile Dashboard menu — under Report section -->
+    <!-- Menu cấp 1 ở ĐẦU app — chỉ hiện với Trưởng phòng trở lên.
+         Nhờ sequence=5 (< Đơn Hàng=10), quản lý vào app sẽ thấy màn hình
+         Tổng Quan trước tiên; công nhân/tổ trưởng không có nhóm này nên
+         vào thẳng Đơn Hàng như cũ. -->
+    <menuitem id="menu_dashboard_home"
+              name="📊 Tổng Quan"
+              parent="garment_base.menu_garment_root"
+              action="action_mobile_dashboard"
+              groups="garment_base.group_garment_dept_manager"
+              sequence="5"/>
+
+    <!-- Bảng điều khiển trong nhóm Báo Cáo — cho mọi người truy cập -->
     <menuitem id="menu_mobile_dashboard"
-              name="📱 Mobile Dashboard"
+              name="📱 Bảng Điều Khiển"
               parent="garment_base.menu_garment_report_main"
               action="action_mobile_dashboard"
-              sequence="100"/>
+              sequence="5"/>
 
     <!-- Pending Approvals quick menu -->
     <menuitem id="menu_pending_approvals"
