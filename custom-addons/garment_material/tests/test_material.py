@@ -223,3 +223,59 @@ class TestMaterialAllocation(TransactionCase):
         alloc = self._create_allocation()
         with self.assertRaises(UserError):
             alloc.action_confirm()
+
+
+@tagged('post_install', '-at_install')
+class TestAllocationGuards(TransactionCase):
+    """Guard trạng thái phiếu phân bổ nguyên liệu."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.buyer = cls.env['res.partner'].create({
+            'name': 'Buyer Alloc Guard',
+            'customer_rank': 1,
+        })
+        cls.style = cls.env['garment.style'].create({
+            'name': 'Style Guard MA',
+            'code': 'ST-MAGRD-01',
+            'category': 'shirt',
+        })
+        cls.order = cls.env['garment.order'].create({
+            'customer_id': cls.buyer.id,
+            'style_id': cls.style.id,
+        })
+
+    def _create_allocation(self):
+        alloc = self.env['garment.material.allocation'].create({
+            'garment_order_id': self.order.id,
+            'date': '2026-02-10',
+        })
+        self.env['garment.material.allocation.line'].create({
+            'allocation_id': alloc.id,
+            'material_type': 'fabric',
+            'description': 'Vải guard',
+            'unit': 'm',
+            'quantity_required': 100,
+            'quantity_issued': 100,
+        })
+        return alloc
+
+    def test_cannot_issue_from_draft(self):
+        alloc = self._create_allocation()
+        with self.assertRaises(UserError):
+            alloc.action_issue()
+
+    def test_cannot_reset_issued(self):
+        alloc = self._create_allocation()
+        alloc.action_confirm()
+        alloc.action_issue()
+        with self.assertRaises(UserError):
+            alloc.action_reset_draft()
+
+    def test_cannot_delete_issued(self):
+        alloc = self._create_allocation()
+        alloc.action_confirm()
+        alloc.action_issue()
+        with self.assertRaises(UserError):
+            alloc.unlink()

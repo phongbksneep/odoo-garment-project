@@ -155,3 +155,41 @@ class TestStockMoveLineValidation(TransactionCase):
                     'quantity': -5,
                 })],
             })
+
+
+@tagged('post_install', '-at_install')
+class TestStockMoveGuards(TransactionCase):
+    """Guard trạng thái phiếu kho."""
+
+    def _create_move(self):
+        return self.env['garment.stock.move'].create({
+            'move_type': 'in',
+            'warehouse_type': 'material',
+            'reason': 'purchase',
+            'line_ids': [(0, 0, {
+                'product_type': 'fabric',
+                'description': 'Vải guard test',
+                'unit': 'm',
+                'quantity': 10,
+                'unit_price': 1000,
+            })],
+        })
+
+    def test_cannot_done_from_draft(self):
+        move = self._create_move()
+        with self.assertRaises(UserError):
+            move.action_done()
+
+    def test_cannot_reset_done(self):
+        move = self._create_move()
+        move.action_confirm()
+        move.action_done()
+        with self.assertRaises(UserError):
+            move.action_reset_draft()
+
+    def test_cannot_delete_done(self):
+        move = self._create_move()
+        move.action_confirm()
+        move.action_done()
+        with self.assertRaises(UserError):
+            move.unlink()

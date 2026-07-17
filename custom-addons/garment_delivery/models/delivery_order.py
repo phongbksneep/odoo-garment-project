@@ -121,17 +121,31 @@ class GarmentDeliveryOrder(models.Model):
 
     def action_confirm(self):
         for rec in self:
+            if rec.state != 'draft':
+                raise UserError(_('Chỉ phiếu giao Nháp mới được xác nhận.'))
             if not rec.line_ids:
                 raise UserError(_('Phải có ít nhất 1 dòng chi tiết hàng giao!'))
         self.write({'state': 'confirmed'})
 
     def action_loading(self):
+        for rec in self:
+            if rec.state != 'confirmed':
+                raise UserError(_(
+                    'Phiếu giao phải Đã Xác Nhận mới được xếp hàng.'))
         self.write({'state': 'loading'})
 
     def action_in_transit(self):
+        for rec in self:
+            if rec.state != 'loading':
+                raise UserError(_(
+                    'Phiếu giao phải Đang Xếp Hàng mới được vận chuyển.'))
         self.write({'state': 'in_transit'})
 
     def action_delivered(self):
+        for rec in self:
+            if rec.state != 'in_transit':
+                raise UserError(_(
+                    'Phiếu giao phải Đang Vận Chuyển mới được xác nhận giao.'))
         self.write({'state': 'delivered'})
 
     def action_cancel(self):
@@ -141,7 +155,18 @@ class GarmentDeliveryOrder(models.Model):
         self.write({'state': 'cancelled'})
 
     def action_reset_draft(self):
+        for rec in self:
+            if rec.state == 'delivered':
+                raise UserError(_(
+                    'Không thể đưa phiếu đã giao hàng về Nháp.'))
         self.write({'state': 'draft'})
+
+    def unlink(self):
+        for rec in self:
+            if rec.state not in ('draft', 'cancelled'):
+                raise UserError(_(
+                    'Không thể xóa phiếu giao %s chưa hủy.', rec.name))
+        return super().unlink()
 
 
 class GarmentDeliveryLine(models.Model):

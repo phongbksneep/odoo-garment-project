@@ -90,11 +90,17 @@ class GarmentMaterialAllocation(models.Model):
     # -------------------------------------------------------------------------
     def action_confirm(self):
         for rec in self:
+            if rec.state != 'draft':
+                raise UserError(_('Chỉ phiếu Nháp mới được xác nhận.'))
             if not rec.line_ids:
                 raise UserError(_('Phải có ít nhất 1 dòng phân bổ!'))
         self.write({'state': 'confirmed'})
 
     def action_issue(self):
+        for rec in self:
+            if rec.state != 'confirmed':
+                raise UserError(_(
+                    'Phiếu phân bổ phải Đã Xác Nhận mới được xuất kho.'))
         self.write({'state': 'issued'})
 
     def action_cancel(self):
@@ -104,7 +110,18 @@ class GarmentMaterialAllocation(models.Model):
         self.write({'state': 'cancelled'})
 
     def action_reset_draft(self):
+        for rec in self:
+            if rec.state == 'issued':
+                raise UserError(_(
+                    'Không thể đưa phiếu đã xuất kho về Nháp.'))
         self.write({'state': 'draft'})
+
+    def unlink(self):
+        for rec in self:
+            if rec.state == 'issued':
+                raise UserError(_(
+                    'Không thể xóa phiếu phân bổ %s đã xuất kho.', rec.name))
+        return super().unlink()
 
 
 class GarmentMaterialAllocationLine(models.Model):

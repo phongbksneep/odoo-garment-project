@@ -222,34 +222,50 @@ class SubcontractOrder(models.Model):
             ('date_expected', '=', False),
         ]
 
+    def _check_states(self, allowed, action_label):
+        for order in self:
+            if order.state not in allowed:
+                raise UserError(
+                    'Đơn gia công %s không thể %s ở trạng thái hiện tại.'
+                    % (order.name, action_label))
+
     def action_confirm(self):
+        self._check_states(('draft',), 'xác nhận')
         for order in self:
             if not order.line_ids:
                 raise UserError('Phải có ít nhất một dòng chi tiết gia công!')
         self.write({'state': 'confirmed'})
 
     def action_send(self):
+        self._check_states(('confirmed',), 'gửi hàng')
         self.write({
             'state': 'sent',
             'date_sent': fields.Date.today(),
         })
 
     def action_in_progress(self):
+        self._check_states(('sent',), 'bắt đầu gia công')
         self.write({'state': 'in_progress'})
 
     def action_partial_received(self):
+        self._check_states(
+            ('sent', 'in_progress', 'partial_received'), 'nhận một phần')
         self.write({'state': 'partial_received'})
 
     def action_received(self):
+        self._check_states(
+            ('sent', 'in_progress', 'partial_received'), 'nhận hàng')
         self.write({
             'state': 'received',
             'date_received': fields.Date.today(),
         })
 
     def action_qc(self):
+        self._check_states(('received',), 'kiểm tra')
         self.write({'state': 'qc'})
 
     def action_done(self):
+        self._check_states(('received', 'qc'), 'hoàn thành')
         self.write({'state': 'done'})
 
     def action_cancel(self):
@@ -259,7 +275,19 @@ class SubcontractOrder(models.Model):
         self.write({'state': 'cancelled'})
 
     def action_reset_draft(self):
+        for order in self:
+            if order.state in ('done', 'received', 'qc'):
+                raise UserError(
+                    'Không thể đưa đơn gia công đã nhận hàng về Nháp.')
         self.write({'state': 'draft'})
+
+    def unlink(self):
+        for order in self:
+            if order.state == 'done':
+                raise UserError(
+                    'Không thể xóa đơn gia công %s đã hoàn thành.'
+                    % order.name)
+        return super().unlink()
 
 
 class SubcontractOrderLine(models.Model):

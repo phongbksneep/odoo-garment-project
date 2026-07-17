@@ -108,11 +108,17 @@ class GarmentStockMove(models.Model):
 
     def action_confirm(self):
         for rec in self:
+            if rec.state != 'draft':
+                raise UserError(_('Chỉ phiếu kho Nháp mới được xác nhận.'))
             if not rec.line_ids:
                 raise UserError(_('Phải có ít nhất 1 dòng chi tiết!'))
         self.write({'state': 'confirmed'})
 
     def action_done(self):
+        for rec in self:
+            if rec.state != 'confirmed':
+                raise UserError(_(
+                    'Phiếu kho phải Đã Xác Nhận mới được hoàn thành.'))
         self.write({'state': 'done'})
 
     def action_cancel(self):
@@ -122,7 +128,18 @@ class GarmentStockMove(models.Model):
         self.write({'state': 'cancelled'})
 
     def action_reset_draft(self):
+        for rec in self:
+            if rec.state == 'done':
+                raise UserError(_(
+                    'Không thể đưa phiếu kho đã hoàn thành về Nháp.'))
         self.write({'state': 'draft'})
+
+    def unlink(self):
+        for rec in self:
+            if rec.state == 'done':
+                raise UserError(_(
+                    'Không thể xóa phiếu kho %s đã hoàn thành.', rec.name))
+        return super().unlink()
 
 
 class GarmentStockMoveLine(models.Model):

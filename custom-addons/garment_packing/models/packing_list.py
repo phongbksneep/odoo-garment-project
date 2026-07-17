@@ -192,7 +192,17 @@ class GarmentPackingList(models.Model):
 
     def action_reset_draft(self):
         self.ensure_one()
+        if self.state in ('shipped', 'delivered'):
+            raise UserError(_(
+                'Không thể đưa packing list đã xuất/giao về Nháp.'))
         self.write({'state': 'draft'})
+
+    def unlink(self):
+        for rec in self:
+            if rec.state in ('shipped', 'delivered'):
+                raise UserError(_(
+                    'Không thể xóa packing list %s đã xuất/giao.', rec.name))
+        return super().unlink()
 
     def action_view_shipping_instructions(self):
         self.ensure_one()

@@ -95,6 +95,9 @@ class GarmentPallet(models.Model):
             pallet.total_weight = sum(boxes.mapped('gross_weight'))
 
     def action_open(self):
+        for pallet in self:
+            if pallet.state != 'draft':
+                raise UserError(_('Chỉ pallet Nháp mới được mở xếp hàng.'))
         self.write({'state': 'open'})
 
     def action_close(self):
@@ -116,7 +119,18 @@ class GarmentPallet(models.Model):
         self.write({'state': 'cancelled'})
 
     def action_reset_draft(self):
+        for pallet in self:
+            if pallet.state == 'shipped':
+                raise UserError(_(
+                    'Không thể đưa pallet đã xuất về Nháp.'))
         self.write({'state': 'draft'})
+
+    def unlink(self):
+        for pallet in self:
+            if pallet.state == 'shipped':
+                raise UserError(_(
+                    'Không thể xóa pallet %s đã xuất.', pallet.name))
+        return super().unlink()
 
     def action_merge_pallets(self):
         """Merge multiple pallets into one (self must have at least 2)."""

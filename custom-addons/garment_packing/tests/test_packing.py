@@ -155,3 +155,49 @@ class TestPackingList(TransactionCase):
         # Step 6: Delivered
         pl.action_delivered()
         self.assertEqual(pl.state, 'delivered')
+
+
+@tagged('post_install', '-at_install')
+class TestPackingGuards(TransactionCase):
+    """Guard reset/unlink packing list đã xuất."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].create({
+            'name': 'Buyer Packing Guard',
+            'customer_rank': 1,
+        })
+        cls.style = cls.env['garment.style'].create({
+            'name': 'STYLE-PKGRD-001',
+            'code': 'ST-PKGRD-001',
+            'category': 'shirt',
+        })
+
+    def _create_shipped_packing(self):
+        pl = self.env['garment.packing.list'].create({
+            'buyer_id': self.partner.id,
+            'style_id': self.style.id,
+            'ship_mode': 'sea',
+            'packing_type': 'ratio',
+        })
+        pl.action_start_packing()
+        self.env['garment.carton.line'].create({
+            'packing_list_id': pl.id,
+            'carton_from': 1,
+            'carton_to': 10,
+            'pcs_per_carton': 20,
+        })
+        pl.action_packed()
+        pl.action_shipped()
+        return pl
+
+    def test_cannot_reset_shipped(self):
+        pl = self._create_shipped_packing()
+        with self.assertRaises(UserError):
+            pl.action_reset_draft()
+
+    def test_cannot_delete_shipped(self):
+        pl = self._create_shipped_packing()
+        with self.assertRaises(UserError):
+            pl.unlink()

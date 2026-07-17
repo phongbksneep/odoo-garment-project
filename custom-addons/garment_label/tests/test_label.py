@@ -332,3 +332,66 @@ class TestCartonBox(TransactionCase):
         box.action_generate_label()
         with self.assertRaises(UserError):
             box.action_generate_label()
+
+
+@tagged('post_install', '-at_install')
+class TestPalletGuards(TransactionCase):
+    """Guard trạng thái pallet."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.style = cls.env['garment.style'].create({
+            'name': 'Style Pallet Guard',
+            'code': 'ST-PLTGRD-01',
+            'category': 'shirt',
+        })
+        cls.buyer = cls.env['res.partner'].create({
+            'name': 'Buyer Pallet Guard',
+            'customer_rank': 1,
+        })
+        cls.order = cls.env['garment.order'].create({
+            'customer_id': cls.buyer.id,
+            'style_id': cls.style.id,
+        })
+
+    def _create_pallet_with_box(self):
+        pallet = self.env['garment.pallet'].create({
+            'garment_order_id': self.order.id,
+        })
+        self.env['garment.carton.box'].create({
+            'garment_order_id': self.order.id,
+            'style_code': 'ST-PLTGRD-01',
+            'quantity': 50,
+            'gross_weight': 10.0,
+            'pallet_id': pallet.id,
+        })
+        return pallet
+
+    def test_cannot_open_twice(self):
+        pallet = self._create_pallet_with_box()
+        pallet.action_open()
+        with self.assertRaises(UserError):
+            pallet.action_open()
+
+    def test_cannot_ship_unclosed(self):
+        pallet = self._create_pallet_with_box()
+        pallet.action_open()
+        with self.assertRaises(UserError):
+            pallet.action_ship()
+
+    def test_cannot_reset_shipped(self):
+        pallet = self._create_pallet_with_box()
+        pallet.action_open()
+        pallet.action_close()
+        pallet.action_ship()
+        with self.assertRaises(UserError):
+            pallet.action_reset_draft()
+
+    def test_cannot_delete_shipped(self):
+        pallet = self._create_pallet_with_box()
+        pallet.action_open()
+        pallet.action_close()
+        pallet.action_ship()
+        with self.assertRaises(UserError):
+            pallet.unlink()

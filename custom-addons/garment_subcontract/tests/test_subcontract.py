@@ -184,3 +184,66 @@ class TestSubcontractOrder(TransactionCase):
         order.action_qc()
         order.action_done()
         self.assertFalse(order.is_overdue)
+
+
+@tagged('post_install', '-at_install')
+class TestSubcontractGuards(TransactionCase):
+    """Guard trạng thái đơn gia công."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].create({
+            'name': 'GC Guard Co',
+            'is_subcontractor': True,
+            'subcontract_type': 'sewing',
+        })
+        cls.style = cls.env['garment.style'].create({
+            'name': 'STYLE-SUBGRD-001',
+            'code': 'ST-SUBGRD-001',
+            'category': 'shirt',
+        })
+
+    def _create_order(self):
+        order = self.env['garment.subcontract.order'].create({
+            'direction': 'outgoing',
+            'work_type': 'sewing',
+            'partner_id': self.partner.id,
+            'style_id': self.style.id,
+            'unit_price': 5000,
+            'date_expected': '2026-03-15',
+        })
+        self.env['garment.subcontract.order.line'].create({
+            'order_id': order.id,
+            'description': 'Áo guard test',
+            'qty_ordered': 100,
+            'unit_price': 5000,
+        })
+        return order
+
+    def test_cannot_done_from_draft(self):
+        order = self._create_order()
+        with self.assertRaises(UserError):
+            order.action_done()
+
+    def test_cannot_send_before_confirm(self):
+        order = self._create_order()
+        with self.assertRaises(UserError):
+            order.action_send()
+
+    def test_cannot_reset_received(self):
+        order = self._create_order()
+        order.action_confirm()
+        order.action_send()
+        order.action_received()
+        with self.assertRaises(UserError):
+            order.action_reset_draft()
+
+    def test_cannot_delete_done(self):
+        order = self._create_order()
+        order.action_confirm()
+        order.action_send()
+        order.action_received()
+        order.action_done()
+        with self.assertRaises(UserError):
+            order.unlink()

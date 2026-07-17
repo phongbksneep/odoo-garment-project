@@ -173,3 +173,60 @@ class TestDeliveryOrder(TransactionCase):
         self.assertEqual(delivery.state, 'cancelled')
         delivery.action_reset_draft()
         self.assertEqual(delivery.state, 'draft')
+
+
+@tagged('post_install', '-at_install')
+class TestDeliveryGuards(TransactionCase):
+    """Guard trạng thái phiếu giao hàng."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].create({'name': 'KH Guard GH'})
+
+    def _create_delivery(self):
+        return self.env['garment.delivery.order'].create({
+            'delivery_type': 'customer',
+            'partner_id': self.partner.id,
+            'ship_to': 'Da Nang',
+            'line_ids': [(0, 0, {
+                'style_code': 'POLO-GRD',
+                'color': 'Black',
+                'size': 'L',
+                'quantity': 100,
+            })],
+        })
+
+    def _walk_to_delivered(self, delivery):
+        delivery.action_confirm()
+        delivery.action_loading()
+        delivery.action_in_transit()
+        delivery.action_delivered()
+
+    def test_cannot_deliver_from_draft(self):
+        delivery = self._create_delivery()
+        with self.assertRaises(UserError):
+            delivery.action_delivered()
+
+    def test_cannot_confirm_twice(self):
+        delivery = self._create_delivery()
+        delivery.action_confirm()
+        with self.assertRaises(UserError):
+            delivery.action_confirm()
+
+    def test_cannot_reset_delivered(self):
+        delivery = self._create_delivery()
+        self._walk_to_delivered(delivery)
+        with self.assertRaises(UserError):
+            delivery.action_reset_draft()
+
+    def test_cannot_delete_confirmed(self):
+        delivery = self._create_delivery()
+        delivery.action_confirm()
+        with self.assertRaises(UserError):
+            delivery.unlink()
+
+    def test_delete_draft_ok(self):
+        delivery = self._create_delivery()
+        delivery.unlink()
+        self.assertFalse(delivery.exists())
