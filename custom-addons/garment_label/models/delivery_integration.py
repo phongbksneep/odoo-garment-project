@@ -28,13 +28,16 @@ class GarmentDeliveryOrderLabel(models.Model):
 
     @api.depends('garment_order_id')
     def _compute_label_count(self):
+        # Một truy vấn gộp thay vì search_count theo từng bản ghi
+        counts = {}
+        order_ids = self.garment_order_id.ids
+        if order_ids:
+            for order, count in self.env['garment.label']._read_group(
+                    [('garment_order_id', 'in', order_ids)],
+                    ['garment_order_id'], ['__count']):
+                counts[order.id] = count
         for rec in self:
-            if rec.garment_order_id:
-                rec.label_count = self.env['garment.label'].search_count([
-                    ('garment_order_id', '=', rec.garment_order_id.id),
-                ])
-            else:
-                rec.label_count = 0
+            rec.label_count = counts.get(rec.garment_order_id.id, 0)
 
     def action_view_labels(self):
         """View labels for this delivery's order."""

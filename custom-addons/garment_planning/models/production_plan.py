@@ -213,15 +213,16 @@ class GarmentProductionPlan(models.Model):
         ])
 
         model_id = self.env['ir.model']._get_id(self._name)
+        # Một truy vấn gộp cho mọi kế hoạch thay vì search theo từng plan
+        existing_ids = set(self.env['mail.activity'].search([
+            ('res_model_id', '=', model_id),
+            ('res_id', 'in', plans.ids),
+            ('activity_type_id', '=', activity_type.id),
+            ('date_deadline', '=', today),
+        ]).mapped('res_id'))
         for plan in plans:
             # Skip if activity already exists for this plan today
-            existing = self.env['mail.activity'].search([
-                ('res_model_id', '=', model_id),
-                ('res_id', '=', plan.id),
-                ('activity_type_id', '=', activity_type.id),
-                ('date_deadline', '=', today),
-            ], limit=1)
-            if existing:
+            if plan.id in existing_ids:
                 continue
 
             days_left = (plan.ship_date - today).days
