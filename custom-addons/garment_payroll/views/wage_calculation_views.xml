@@ -44,6 +44,7 @@
                                     <field name="base_amount" readonly="1"/>
                                     <field name="attendance_days"/>
                                     <field name="attendance_ot_hours"/>
+                                    <field name="paid_leave_days"/>
                                 </group>
                                 <group string="Lương Khoán">
                                     <field name="total_pieces" readonly="1"/>
@@ -53,8 +54,13 @@
                             <group>
                                 <group string="Tăng Ca">
                                     <field name="total_ot_hours" readonly="1"/>
+                                    <field name="hourly_rate"/>
+                                    <field name="ot_hours_weekday" readonly="1"/>
+                                    <field name="ot_hours_weekend"/>
+                                    <field name="ot_hours_holiday"/>
                                     <field name="ot_rate"/>
                                     <field name="ot_amount" readonly="1"/>
+                                    <field name="ot_exempt_amount" readonly="1"/>
                                 </group>
                                 <group string="Thưởng">
                                     <field name="bonus_amount"/>
@@ -77,7 +83,7 @@
                         </page>
                         <page string="BHXH &amp; Thuế TNCN">
                             <group>
-                                <group string="Bảo Hiểm">
+                                <group string="Bảo Hiểm (NLĐ Đóng)">
                                     <field name="insurance_base"/>
                                     <field name="bhxh_employee" readonly="1"/>
                                     <field name="bhyt_employee" readonly="1"/>
@@ -88,8 +94,18 @@
                                     <field name="personal_deduction"/>
                                     <field name="dependent_count"/>
                                     <field name="dependent_deduction" readonly="1"/>
+                                    <field name="tax_exempt_allowance" readonly="1"/>
                                     <field name="taxable_income" readonly="1"/>
                                     <field name="pit_amount" readonly="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Doanh Nghiệp Đóng (Chi Phí)">
+                                    <field name="bhxh_employer" readonly="1"/>
+                                    <field name="bhyt_employer" readonly="1"/>
+                                    <field name="bhtn_employer" readonly="1"/>
+                                    <field name="union_fee_employer" readonly="1"/>
+                                    <field name="total_employer_cost" readonly="1"/>
                                 </group>
                             </group>
                             <group>

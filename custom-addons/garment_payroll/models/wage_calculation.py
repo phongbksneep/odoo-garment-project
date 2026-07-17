@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 
@@ -78,21 +80,60 @@ class GarmentWageCalculation(models.Model):
     )
 
     # --- Overtime ---
+    # Hai chế độ tính tăng ca:
+    # 1. Theo luật (mặc định, ot_rate = 0): đơn giá giờ chuẩn × hệ số
+    #    150% ngày thường / 200% ngày nghỉ tuần / 300% ngày lễ
+    #    (Điều 98 Bộ luật Lao động 2019).
+    # 2. Đơn giá thỏa thuận (ot_rate > 0): tiền OT = ot_rate × tổng giờ,
+    #    giữ tương thích với cách trả khoán phổ biến ở xưởng may.
     total_ot_hours = fields.Float(
         string='Tổng Giờ Tăng Ca',
         compute='_compute_piece_totals',
         store=True,
         digits=(10, 1),
     )
-    ot_rate = fields.Float(
-        string='Đơn Giá OT (VNĐ/h)',
+    hourly_rate = fields.Float(
+        string='Đơn Giá Giờ Chuẩn (VNĐ/h)',
+        compute='_compute_hourly_rate',
+        store=True,
+        readonly=False,
         digits=(10, 0),
+        help='Mặc định = lương cơ bản / ngày công / 8 giờ. '
+             'Dùng để tính tăng ca theo hệ số luật định.',
+    )
+    ot_hours_weekend = fields.Float(
+        string='Giờ TC Ngày Nghỉ Tuần (200%)',
+        digits=(10, 1),
+    )
+    ot_hours_holiday = fields.Float(
+        string='Giờ TC Ngày Lễ (300%)',
+        digits=(10, 1),
+    )
+    ot_hours_weekday = fields.Float(
+        string='Giờ TC Ngày Thường (150%)',
+        compute='_compute_ot_hours_weekday',
+        store=True,
+        digits=(10, 1),
+    )
+    ot_rate = fields.Float(
+        string='Đơn Giá OT Thỏa Thuận (VNĐ/h)',
+        digits=(10, 0),
+        help='Nếu > 0: tiền tăng ca = đơn giá này × tổng giờ (chế độ khoán). '
+             'Nếu = 0: tính theo hệ số 150/200/300% trên đơn giá giờ chuẩn.',
     )
     ot_amount = fields.Float(
         string='Tiền Tăng Ca',
         compute='_compute_ot_amount',
         store=True,
         digits=(10, 0),
+    )
+    ot_exempt_amount = fields.Float(
+        string='TC Miễn Thuế (Phần Phụ Trội)',
+        compute='_compute_ot_amount',
+        store=True,
+        digits=(10, 0),
+        help='Phần trả cao hơn đơn giá giờ làm việc bình thường được miễn '
+             'thuế TNCN (Điều 4 Luật thuế TNCN).',
     )
 
     # --- Allowances & Deductions ---
@@ -127,8 +168,13 @@ class GarmentWageCalculation(models.Model):
     # --- Social Insurance ---
     insurance_base = fields.Float(
         string='Mức Đóng BHXH',
+        compute='_compute_insurance_base',
+        store=True,
+        readonly=False,
         digits=(10, 0),
-        help='Mức lương đóng BHXH (thường = lương cơ bản)',
+        help='Mức lương đóng BHXH (mặc định = lương cơ bản). '
+             'BHXH/BHYT áp trần 20 lần lương cơ sở; BHTN áp trần '
+             '20 lần lương tối thiểu vùng.',
     )
     bhxh_employee = fields.Float(
         string='BHXH (8%)',
@@ -154,13 +200,50 @@ class GarmentWageCalculation(models.Model):
         store=True,
         digits=(10, 0),
     )
+    # Phần người sử dụng lao động đóng (không trừ vào lương,
+    # dùng cho báo cáo chi phí nhân công)
+    bhxh_employer = fields.Float(
+        string='BHXH DN Đóng (17.5%)',
+        compute='_compute_insurance',
+        store=True,
+        digits=(10, 0),
+    )
+    bhyt_employer = fields.Float(
+        string='BHYT DN Đóng (3%)',
+        compute='_compute_insurance',
+        store=True,
+        digits=(10, 0),
+    )
+    bhtn_employer = fields.Float(
+        string='BHTN DN Đóng (1%)',
+        compute='_compute_insurance',
+        store=True,
+        digits=(10, 0),
+    )
+    union_fee_employer = fields.Float(
+        string='Kinh Phí Công Đoàn (2%)',
+        compute='_compute_insurance',
+        store=True,
+        digits=(10, 0),
+    )
+    total_employer_cost = fields.Float(
+        string='Tổng Chi Phí Doanh Nghiệp',
+        compute='_compute_total_wage',
+        store=True,
+        digits=(10, 0),
+        help='Tổng thu nhập người lao động + các khoản DN đóng '
+             '(BHXH/BHYT/BHTN + kinh phí công đoàn).',
+    )
 
     # --- Tax ---
     personal_deduction = fields.Float(
         string='Giảm Trừ Bản Thân',
         digits=(10, 0),
-        default=11000000,
-        help='11 triệu VNĐ/tháng theo quy định',
+        default=lambda self: self._param_float(
+            'garment_payroll.personal_deduction', 15500000),
+        help='15,5 triệu VNĐ/tháng từ kỳ tính thuế 2026 '
+             '(Nghị quyết UBTVQH 10/2025). Cấu hình qua tham số hệ thống '
+             'garment_payroll.personal_deduction.',
     )
     dependent_count = fields.Integer(
         string='Số Người Phụ Thuộc',
@@ -171,6 +254,15 @@ class GarmentWageCalculation(models.Model):
         compute='_compute_tax',
         store=True,
         digits=(10, 0),
+        help='6,2 triệu VNĐ/người/tháng từ kỳ tính thuế 2026.',
+    )
+    tax_exempt_allowance = fields.Float(
+        string='Phụ Cấp Miễn Thuế',
+        compute='_compute_tax',
+        store=True,
+        digits=(10, 0),
+        help='Ăn trưa (tối đa mức trần, mặc định 730.000đ/tháng) '
+             'và khoán điện thoại được miễn thuế TNCN.',
     )
     taxable_income = fields.Float(
         string='Thu Nhập Chịu Thuế',
@@ -206,6 +298,12 @@ class GarmentWageCalculation(models.Model):
         string='Giờ TC (Chấm Công)',
         digits=(5, 1),
     )
+    paid_leave_days = fields.Float(
+        string='Ngày Nghỉ Hưởng Lương',
+        digits=(5, 1),
+        help='Phép năm, kết hôn, tang lễ đã duyệt trong tháng — '
+             'tự động lấy khi Tính Lương, được cộng vào ngày hưởng lương.',
+    )
 
     # --- Net Pay ---
     total_wage = fields.Float(
@@ -227,6 +325,18 @@ class GarmentWageCalculation(models.Model):
         ('confirmed', 'Đã Xác Nhận'),
         ('paid', 'Đã Trả'),
     ], string='Trạng Thái', default='draft', tracking=True)
+
+    # -------------------------------------------------------------------------
+    # Helpers
+    # -------------------------------------------------------------------------
+    @api.model
+    def _param_float(self, key, default):
+        """Đọc tham số hệ thống dạng số, có giá trị mặc định."""
+        raw = self.env['ir.config_parameter'].sudo().get_param(key)
+        try:
+            return float(raw) if raw else default
+        except (TypeError, ValueError):
+            return default
 
     # -------------------------------------------------------------------------
     # CRUD
@@ -259,15 +369,39 @@ class GarmentWageCalculation(models.Model):
     # -------------------------------------------------------------------------
     # Compute
     # -------------------------------------------------------------------------
-    @api.depends('base_salary', 'working_days', 'actual_days')
+    @api.depends('base_salary', 'working_days', 'actual_days',
+                 'paid_leave_days')
     def _compute_base_amount(self):
         for record in self:
             if record.working_days > 0:
+                paid_days = record.actual_days + record.paid_leave_days
                 record.base_amount = (
-                    record.base_salary / record.working_days * record.actual_days
+                    record.base_salary / record.working_days * paid_days
                 )
             else:
                 record.base_amount = 0
+
+    @api.depends('base_salary', 'working_days')
+    def _compute_hourly_rate(self):
+        for record in self:
+            if record.working_days > 0:
+                record.hourly_rate = record.base_salary / record.working_days / 8
+            else:
+                record.hourly_rate = 0
+
+    @api.depends('total_ot_hours', 'ot_hours_weekend', 'ot_hours_holiday')
+    def _compute_ot_hours_weekday(self):
+        for record in self:
+            record.ot_hours_weekday = max(
+                record.total_ot_hours
+                - record.ot_hours_weekend
+                - record.ot_hours_holiday, 0)
+
+    @api.depends('base_salary')
+    def _compute_insurance_base(self):
+        # Editable computed: mặc định theo lương cơ bản, cho phép sửa tay
+        for record in self:
+            record.insurance_base = record.insurance_base or record.base_salary
 
     def _period_start(self):
         self.ensure_one()
@@ -313,15 +447,37 @@ class GarmentWageCalculation(models.Model):
             record.piece_rate_amount = amount
             record.total_ot_hours = ot
 
-    @api.depends('total_ot_hours', 'ot_rate')
+    @api.depends('total_ot_hours', 'ot_rate', 'hourly_rate',
+                 'ot_hours_weekday', 'ot_hours_weekend', 'ot_hours_holiday')
     def _compute_ot_amount(self):
         for record in self:
-            record.ot_amount = record.total_ot_hours * record.ot_rate
+            hourly = record.hourly_rate
+            if record.ot_rate:
+                # Chế độ đơn giá thỏa thuận (khoán)
+                record.ot_amount = record.total_ot_hours * record.ot_rate
+                # Phần vượt trên đơn giá giờ chuẩn được miễn thuế
+                record.ot_exempt_amount = max(
+                    record.ot_amount - hourly * record.total_ot_hours, 0)
+            else:
+                # Chế độ luật định: 150% / 200% / 300% (Điều 98 BLLĐ 2019)
+                record.ot_amount = hourly * (
+                    1.5 * record.ot_hours_weekday
+                    + 2.0 * record.ot_hours_weekend
+                    + 3.0 * record.ot_hours_holiday
+                )
+                # Phần phụ trội so với đơn giá giờ chuẩn miễn thuế TNCN
+                record.ot_exempt_amount = hourly * (
+                    0.5 * record.ot_hours_weekday
+                    + 1.0 * record.ot_hours_weekend
+                    + 2.0 * record.ot_hours_holiday
+                )
 
     @api.depends(
         'base_amount', 'piece_rate_amount', 'ot_amount',
         'total_allowance', 'bonus_amount',
         'total_insurance', 'pit_amount', 'deduction',
+        'bhxh_employer', 'bhyt_employer', 'bhtn_employer',
+        'union_fee_employer',
     )
     def _compute_total_wage(self):
         for record in self:
@@ -333,7 +489,15 @@ class GarmentWageCalculation(models.Model):
                 + record.bonus_amount
             )
             record.total_wage = gross
-            record.net_pay = gross - record.total_insurance - record.pit_amount - record.deduction
+            record.net_pay = (gross - record.total_insurance
+                              - record.pit_amount - record.deduction)
+            record.total_employer_cost = (
+                gross
+                + record.bhxh_employer
+                + record.bhyt_employer
+                + record.bhtn_employer
+                + record.union_fee_employer
+            )
 
     @api.depends(
         'allowance_attendance', 'allowance_lunch',
@@ -351,28 +515,60 @@ class GarmentWageCalculation(models.Model):
 
     @api.depends('insurance_base')
     def _compute_insurance(self):
+        # Trần đóng: BHXH/BHYT = 20 lần lương cơ sở;
+        # BHTN = 20 lần lương tối thiểu vùng.
+        luong_co_so = self._param_float(
+            'garment_payroll.luong_co_so', 2340000)
+        luong_toi_thieu_vung = self._param_float(
+            'garment_payroll.luong_toi_thieu_vung', 4960000)
+        cap_bhxh = 20 * luong_co_so
+        cap_bhtn = 20 * luong_toi_thieu_vung
         for record in self:
-            base = record.insurance_base
-            record.bhxh_employee = base * 0.08
-            record.bhyt_employee = base * 0.015
-            record.bhtn_employee = base * 0.01
-            record.total_insurance = base * 0.105
+            base_bhxh = min(record.insurance_base, cap_bhxh)
+            base_bhtn = min(record.insurance_base, cap_bhtn)
+            # Người lao động đóng: 8% + 1.5% + 1%
+            record.bhxh_employee = base_bhxh * 0.08
+            record.bhyt_employee = base_bhxh * 0.015
+            record.bhtn_employee = base_bhtn * 0.01
+            record.total_insurance = (
+                record.bhxh_employee
+                + record.bhyt_employee
+                + record.bhtn_employee
+            )
+            # Doanh nghiệp đóng: 17.5% + 3% + 1% + 2% công đoàn
+            record.bhxh_employer = base_bhxh * 0.175
+            record.bhyt_employer = base_bhxh * 0.03
+            record.bhtn_employer = base_bhtn * 0.01
+            record.union_fee_employer = base_bhxh * 0.02
 
     @api.depends(
         'total_wage', 'total_insurance',
         'personal_deduction', 'dependent_count',
+        'allowance_lunch', 'allowance_phone', 'ot_exempt_amount',
     )
     def _compute_tax(self):
+        per_dependent = self._param_float(
+            'garment_payroll.dependent_deduction', 6200000)
+        lunch_cap = self._param_float(
+            'garment_payroll.lunch_allowance_cap', 730000)
         for record in self:
-            record.dependent_deduction = record.dependent_count * 4400000
+            record.dependent_deduction = (
+                record.dependent_count * per_dependent)
+            # Miễn thuế: ăn trưa tới mức trần + khoán điện thoại
+            # + phần phụ trội tăng ca
+            record.tax_exempt_allowance = (
+                min(record.allowance_lunch, lunch_cap)
+                + record.allowance_phone
+            )
             taxable = (
                 record.total_wage
                 - record.total_insurance
+                - record.tax_exempt_allowance
+                - record.ot_exempt_amount
                 - record.personal_deduction
                 - record.dependent_deduction
             )
             record.taxable_income = max(taxable, 0)
-            # Simplified PIT: 5% for first 5M, 10% for 5-10M, etc.
             record.pit_amount = record._calc_pit(record.taxable_income)
 
     @staticmethod
@@ -402,6 +598,32 @@ class GarmentWageCalculation(models.Model):
     # -------------------------------------------------------------------------
     # Actions
     # -------------------------------------------------------------------------
+    # Loại nghỉ doanh nghiệp trả lương (ốm/thai sản do BHXH chi trả,
+    # việc riêng/không lương không hưởng)
+    _PAID_LEAVE_TYPES = ('annual', 'marriage', 'funeral')
+
+    def _get_paid_leave_days(self):
+        """Số ngày nghỉ hưởng lương đã duyệt nằm trong tháng tính lương."""
+        self.ensure_one()
+        date_from = self._period_start()
+        date_to = self._period_end()
+        leaves = self.env['garment.leave'].search([
+            ('employee_id', '=', self.employee_id.id),
+            ('state', '=', 'approved'),
+            ('leave_type', 'in', self._PAID_LEAVE_TYPES),
+            ('date_from', '<', date_to),
+            ('date_to', '>=', date_from),
+        ])
+        total = 0.0
+        one_day = timedelta(days=1)
+        for leave in leaves:
+            start = max(leave.date_from, date_from)
+            end = min(leave.date_to, date_to - one_day)
+            overlap_days = (end - start).days + 1
+            if overlap_days > 0:
+                total += overlap_days
+        return total
+
     def action_calculate(self):
         """Trigger recalculation — also pull attendance data."""
         self.ensure_one()
@@ -419,6 +641,7 @@ class GarmentWageCalculation(models.Model):
             self.attendance_ot_hours = summary.total_ot_hours
             if not self.actual_days:
                 self.actual_days = int(summary.total_work_days)
+        self.paid_leave_days = self._get_paid_leave_days()
         self._compute_piece_totals()
         self._compute_base_amount()
         self._compute_ot_amount()

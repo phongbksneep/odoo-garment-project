@@ -237,3 +237,38 @@ class TestSecurityGroups(TransactionCase):
         # Admin implies dept_manager which implies team_leader which implies user
         all_implied = admin_group.all_implied_ids
         self.assertIn(user_group, all_implied)
+
+
+@tagged('post_install', '-at_install')
+class TestLeaveGuards(TransactionCase):
+    """Guard trạng thái đơn nghỉ phép."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.employee = cls.env['hr.employee'].create({'name': 'Emp LeaveGrd'})
+
+    def _create_leave(self):
+        return self.env['garment.leave'].create({
+            'employee_id': self.employee.id,
+            'leave_type': 'annual',
+            'date_from': '2026-08-03',
+            'date_to': '2026-08-04',
+        })
+
+    def test_cannot_approve_draft(self):
+        leave = self._create_leave()
+        with self.assertRaises(ValidationError):
+            leave.action_approve()
+
+    def test_cannot_submit_twice(self):
+        leave = self._create_leave()
+        leave.action_submit()
+        with self.assertRaises(ValidationError):
+            leave.action_submit()
+
+    def test_happy_path(self):
+        leave = self._create_leave()
+        leave.action_submit()
+        leave.action_approve()
+        self.assertEqual(leave.state, 'approved')

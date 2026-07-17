@@ -80,15 +80,27 @@ class GarmentLeave(models.Model):
                 raise ValidationError(_('Ngày kết thúc phải >= ngày bắt đầu!'))
 
     def action_submit(self):
+        for rec in self:
+            if rec.state != 'draft':
+                raise ValidationError(
+                    _('Chỉ đơn nghỉ Nháp mới được gửi duyệt.'))
         self.write({'state': 'submitted'})
 
     def action_approve(self):
+        for rec in self:
+            if rec.state != 'submitted':
+                raise ValidationError(
+                    _('Chỉ đơn nghỉ Đã Gửi mới được duyệt.'))
         self.write({
             'state': 'approved',
             'approved_by': self.env.user.employee_id.id,
         })
 
     def action_refuse(self):
+        for rec in self:
+            if rec.state not in ('submitted', 'approved'):
+                raise ValidationError(
+                    _('Chỉ đơn nghỉ Đã Gửi hoặc Đã Duyệt mới được từ chối.'))
         self.write({'state': 'refused'})
 
     def action_reset_draft(self):

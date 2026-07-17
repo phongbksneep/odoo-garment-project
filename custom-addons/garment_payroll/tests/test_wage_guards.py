@@ -152,3 +152,125 @@ class TestWageBounds(TransactionCase):
         })
         with self.assertRaises(ValidationError):
             wage.write({'ot_rate': -5})
+
+
+@tagged('post_install', '-at_install')
+class TestPayrollVietnamRules(TransactionCase):
+    """Tính lương theo quy định Việt Nam: OT 150/200/300, trần BHXH,
+    miễn thuế phụ cấp/phụ trội OT, giảm trừ gia cảnh 2026."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.employee = cls.env['hr.employee'].create({'name': 'Emp VN Rules'})
+
+    def _create_wage(self, **kwargs):
+        vals = {
+            'employee_id': self.employee.id,
+            'month': '06',
+            'year': 2026,
+            'base_salary': 6240000,  # → 240.000đ/ngày, 30.000đ/giờ
+            'working_days': 26,
+            'actual_days': 26,
+        }
+        vals.update(kwargs)
+        return self.env['garment.wage.calculation'].create(vals)
+
+    def test_hourly_rate_default(self):
+        wage = self._create_wage()
+        # 6.240.000 / 26 / 8 = 30.000
+        self.assertAlmostEqual(wage.hourly_rate, 30000, places=0)
+
+    def test_statutory_ot_multipliers(self):
+        """ot_rate=0 → tính 150/200/300% trên đơn giá giờ chuẩn."""
+        wage = self._create_wage(
+            ot_hours_weekend=4, ot_hours_holiday=2)
+        # total_ot_hours = 0 (không có output) → weekday = 0
+        # OT = 30.000 × (2.0×4 + 3.0×2) = 30.000 × 14 = 420.000
+        self.assertAlmostEqual(wage.ot_amount, 420000, places=0)
+        # Miễn thuế = 30.000 × (1.0×4 + 2.0×2) = 240.000
+        self.assertAlmostEqual(wage.ot_exempt_amount, 240000, places=0)
+
+    def test_legacy_flat_ot_rate(self):
+        """ot_rate>0 → giữ cách tính khoán cũ."""
+        wage = self._create_wage(ot_rate=50000)
+        self.assertEqual(wage.ot_amount, 0)  # chưa có giờ OT
+
+    def test_insurance_default_base_and_rates(self):
+        wage = self._create_wage()
+        self.assertAlmostEqual(wage.insurance_base, 6240000, places=0)
+        self.assertAlmostEqual(wage.bhxh_employee, 6240000 * 0.08, places=0)
+        self.assertAlmostEqual(wage.bhyt_employee, 6240000 * 0.015, places=0)
+        self.assertAlmostEqual(wage.bhtn_employee, 6240000 * 0.01, places=0)
+
+    def test_insurance_cap(self):
+        """BHXH/BHYT trần 20 lần lương cơ sở (46,8tr với LCS 2,34tr)."""
+        wage = self._create_wage(
+            base_salary=60000000, insurance_base=60000000)
+        cap = 20 * 2340000
+        self.assertAlmostEqual(wage.bhxh_employee, cap * 0.08, places=0)
+        self.assertAlmostEqual(wage.bhyt_employee, cap * 0.015, places=0)
+        # BHTN trần 20 lần lương tối thiểu vùng (99,2tr) — 60tr chưa chạm
+        self.assertAlmostEqual(
+            wage.bhtn_employee, 60000000 * 0.01, places=0)
+
+    def test_employer_contributions(self):
+        wage = self._create_wage()
+        base = 6240000
+        self.assertAlmostEqual(wage.bhxh_employer, base * 0.175, places=0)
+        self.assertAlmostEqual(wage.bhyt_employer, base * 0.03, places=0)
+        self.assertAlmostEqual(wage.bhtn_employer, base * 0.01, places=0)
+        self.assertAlmostEqual(
+            wage.union_fee_employer, base * 0.02, places=0)
+        self.assertAlmostEqual(
+            wage.total_employer_cost,
+            wage.total_wage + base * (0.175 + 0.03 + 0.01 + 0.02),
+            places=0)
+
+    def test_personal_deduction_2026(self):
+        wage = self._create_wage(dependent_count=2)
+        self.assertAlmostEqual(wage.personal_deduction, 15500000, places=0)
+        self.assertAlmostEqual(
+            wage.dependent_deduction, 2 * 6200000, places=0)
+
+    def test_lunch_allowance_exempt_capped(self):
+        wage = self._create_wage(
+            allowance_lunch=1000000, allowance_phone=200000)
+        # Ăn trưa miễn tới 730k, điện thoại miễn toàn bộ
+        self.assertAlmostEqual(
+            wage.tax_exempt_allowance, 730000 + 200000, places=0)
+
+    def test_low_wage_no_pit(self):
+        """Công nhân lương 6,24tr — dưới giảm trừ 15,5tr → không chịu thuế."""
+        wage = self._create_wage()
+        self.assertEqual(wage.taxable_income, 0)
+        self.assertEqual(wage.pit_amount, 0)
+
+    def test_paid_leave_pulled_into_wage(self):
+        """Phép năm đã duyệt trong tháng được cộng vào ngày hưởng lương."""
+        leave = self.env['garment.leave'].create({
+            'employee_id': self.employee.id,
+            'leave_type': 'annual',
+            'date_from': '2026-06-10',
+            'date_to': '2026-06-12',
+        })
+        leave.action_submit()
+        leave.action_approve()
+        wage = self._create_wage(actual_days=23)
+        wage.action_calculate()
+        self.assertAlmostEqual(wage.paid_leave_days, 3, places=1)
+        # base = 6.240.000/26 × (23 + 3) = 6.240.000
+        self.assertAlmostEqual(wage.base_amount, 6240000, places=0)
+
+    def test_unpaid_leave_not_counted(self):
+        leave = self.env['garment.leave'].create({
+            'employee_id': self.employee.id,
+            'leave_type': 'unpaid',
+            'date_from': '2026-06-15',
+            'date_to': '2026-06-16',
+        })
+        leave.action_submit()
+        leave.action_approve()
+        wage = self._create_wage()
+        wage.action_calculate()
+        self.assertEqual(wage.paid_leave_days, 0)
