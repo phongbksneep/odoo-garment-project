@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_revenue_analysis_pivot" model="ir.ui.view">
+        <field name="name">garment.revenue.analysis.pivot</field>
+        <field name="model">garment.revenue.analysis</field>
+        <field name="arch" type="xml">
+            <pivot string="Doanh Thu">
+                <field name="customer_id" type="row"/>
+                <field name="order_month" interval="month" type="col"/>
+                <field name="total_amount" type="measure"/>
+                <field name="total_qty" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_revenue_analysis_graph" model="ir.ui.view">
+        <field name="name">garment.revenue.analysis.graph</field>
+        <field name="model">garment.revenue.analysis</field>
+        <field name="arch" type="xml">
+            <graph string="Doanh Thu Theo Tháng" type="bar" stacked="1">
+                <field name="order_month" interval="month"/>
+                <field name="customer_id"/>
+                <field name="total_amount" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_revenue_analysis_list" model="ir.ui.view">
+        <field name="name">garment.revenue.analysis.list</field>
+        <field name="model">garment.revenue.analysis</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="order_month"/>
+                <field name="customer_id"/>
+                <field name="style_id"/>
+                <field name="state"/>
+                <field name="order_count" sum="Tổng"/>
+                <field name="total_qty" sum="Tổng"/>
+                <field name="total_amount" sum="Tổng"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_revenue_analysis" model="ir.actions.act_window">
+        <field name="name">Doanh Thu</field>
+        <field name="res_model">garment.revenue.analysis</field>
+        <field name="view_mode">graph,pivot,list</field>
+    </record>
+
+    <!-- Các góc nhìn phân tích dùng lại view của model gốc -->
+    <record id="action_labor_cost_analysis" model="ir.actions.act_window">
+        <field name="name">Chi Phí Nhân Công</field>
+        <field name="res_model">garment.wage.calculation</field>
+        <field name="view_mode">pivot,list</field>
+    </record>
+
+    <record id="action_line_output_analysis" model="ir.actions.act_window">
+        <field name="name">Sản Lượng Theo Chuyền</field>
+        <field name="res_model">garment.worker.output</field>
+        <field name="view_mode">graph,pivot,list</field>
+    </record>
+
+    <menuitem id="menu_revenue_analysis"
+              name="Doanh Thu"
+              parent="garment_base.menu_garment_report_main"
+              action="action_revenue_analysis"
+              groups="garment_base.group_garment_dept_manager"
+              sequence="15"/>
+
+    <menuitem id="menu_labor_cost_analysis"
+              name="Chi Phí Nhân Công"
+              parent="garment_base.menu_garment_report_main"
+              action="action_labor_cost_analysis"
+              groups="garment_base.group_garment_dept_manager"
+              sequence="16"/>
+
+    <menuitem id="menu_line_output_analysis"
+              name="Sản Lượng Theo Chuyền"
+              parent="garment_base.menu_garment_report_main"
+              action="action_line_output_analysis"
+              groups="garment_base.group_garment_team_leader"
+              sequence="17"/>
+</odoo>

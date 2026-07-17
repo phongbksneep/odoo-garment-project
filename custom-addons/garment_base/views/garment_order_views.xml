@@ -133,6 +133,8 @@
                 <field name="customer_id"/>
                 <field name="customer_po"/>
                 <field name="style_id"/>
+                <filter name="open_orders" string="Đang Mở"
+                        domain="[('state', 'not in', ('done', 'cancelled'))]"/>
                 <filter string="Nháp" name="draft" domain="[('state', '=', 'draft')]"/>
                 <filter string="Đã Xác Nhận" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
                 <filter string="Đang Sản Xuất" name="production"
@@ -161,10 +163,59 @@
     </record>
 
     <!-- Action -->
+    <!-- Kanban: bảng theo trạng thái (pipeline) -->
+    <record id="view_garment_order_kanban" model="ir.ui.view">
+        <field name="name">garment.order.kanban</field>
+        <field name="model">garment.order</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="style_id"/>
+                <field name="total_qty"/>
+                <field name="delivery_date"/>
+                <field name="is_late"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <strong><field name="name"/></strong>
+                        <div><field name="customer_id"/></div>
+                        <div><field name="style_id"/></div>
+                        <div>
+                            <span><field name="total_qty"/> sp</span>
+                            <span t-if="record.delivery_date.raw_value">
+                                — giao <field name="delivery_date"/>
+                            </span>
+                        </div>
+                        <span t-if="record.is_late.raw_value"
+                              class="badge text-bg-danger">Trễ hạn</span>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Lịch giao hàng -->
+    <record id="view_garment_order_calendar" model="ir.ui.view">
+        <field name="name">garment.order.calendar</field>
+        <field name="model">garment.order</field>
+        <field name="arch" type="xml">
+            <calendar date_start="delivery_date" color="customer_id"
+                      string="Lịch Giao Hàng" event_open_popup="1"
+                      quick_create="0">
+                <field name="customer_id"/>
+                <field name="style_id"/>
+                <field name="total_qty"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
     <record id="action_garment_order" model="ir.actions.act_window">
         <field name="name">Đơn Hàng May</field>
         <field name="res_model">garment.order</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,kanban,calendar,form</field>
+        <field name="context">{'search_default_open_orders': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Tạo đơn hàng may mới

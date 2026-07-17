@@ -159,10 +159,24 @@
         </field>
     </record>
 
+    <record id="view_delivery_order_calendar" model="ir.ui.view">
+        <field name="name">garment.delivery.order.calendar</field>
+        <field name="model">garment.delivery.order</field>
+        <field name="arch" type="xml">
+            <calendar date_start="date" color="vehicle_id"
+                      string="Lịch Giao Hàng" event_open_popup="1"
+                      quick_create="0">
+                <field name="partner_id"/>
+                <field name="total_pcs"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
     <record id="action_delivery_order" model="ir.actions.act_window">
         <field name="name">Phiếu Giao Hàng</field>
         <field name="res_model">garment.delivery.order</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,calendar,form</field>
         <field name="search_view_id" ref="view_delivery_order_search"/>
     </record>
 

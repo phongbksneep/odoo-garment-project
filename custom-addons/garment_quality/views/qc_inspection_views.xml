@@ -126,10 +126,35 @@
         </field>
     </record>
 
+    <record id="view_qc_inspection_pivot" model="ir.ui.view">
+        <field name="name">garment.qc.inspection.pivot</field>
+        <field name="model">garment.qc.inspection</field>
+        <field name="arch" type="xml">
+            <pivot string="Phân Tích QC">
+                <field name="sewing_line_id" type="row"/>
+                <field name="inspection_type" type="col"/>
+                <field name="inspected_qty" type="measure"/>
+                <field name="failed_qty" type="measure"/>
+                <field name="total_defects" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_qc_inspection_graph" model="ir.ui.view">
+        <field name="name">garment.qc.inspection.graph</field>
+        <field name="model">garment.qc.inspection</field>
+        <field name="arch" type="xml">
+            <graph string="Tỷ Lệ Lỗi Theo Ngày" type="line">
+                <field name="inspection_date" interval="day"/>
+                <field name="failed_qty" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
     <record id="action_qc_inspection" model="ir.actions.act_window">
         <field name="name">Kiểm Tra Chất Lượng</field>
         <field name="res_model">garment.qc.inspection</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,pivot,graph,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Tạo phiếu QC mới</p>
         </field>

@@ -16,6 +16,7 @@ Bảng điều khiển tổng quan cho quản lý nhà máy may:
     """,
     'author': 'Garment ERP Team',
     'depends': [
+        'garment_payroll',
         'garment_base',
         'garment_production',
         'garment_quality',
@@ -23,6 +24,7 @@ Bảng điều khiển tổng quan cho quản lý nhà máy may:
         'garment_material',
     ],
     'data': [
+        'views/revenue_analysis_views.xml',
         'security/ir.model.access.csv',
         'views/dashboard_views.xml',
         'views/menu_views.xml',
