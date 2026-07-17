@@ -17,6 +17,7 @@
                             <field name="sewing_line_id"/>
                         </group>
                         <group string="Giấy Tờ &amp; Ngân Hàng">
+                            <field name="has_social_insurance"/>
                             <field name="id_number"/>
                             <field name="insurance_number"/>
                             <field name="tax_code"/>

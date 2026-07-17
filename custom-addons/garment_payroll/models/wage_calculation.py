@@ -166,6 +166,14 @@ class GarmentWageCalculation(models.Model):
     )
 
     # --- Social Insurance ---
+    apply_insurance = fields.Boolean(
+        string='Có Đóng BHXH',
+        compute='_compute_apply_insurance',
+        store=True,
+        readonly=False,
+        help='Mặc định theo thiết lập "Tham Gia BHXH" của nhân viên. '
+             'Tắt → không trừ bảo hiểm, không trợ cấp BHXH.',
+    )
     insurance_base = fields.Float(
         string='Mức Đóng BHXH',
         compute='_compute_insurance_base',
@@ -361,6 +369,14 @@ class GarmentWageCalculation(models.Model):
         except (TypeError, ValueError):
             return default
 
+    @api.model
+    def _param_bool(self, key, default):
+        """Đọc tham số hệ thống dạng bật/tắt, có giá trị mặc định."""
+        raw = self.env['ir.config_parameter'].sudo().get_param(key)
+        if raw in (False, None, ''):
+            return default
+        return raw not in ('False', '0', 'false')
+
     # -------------------------------------------------------------------------
     # CRUD
     # -------------------------------------------------------------------------
@@ -426,6 +442,11 @@ class GarmentWageCalculation(models.Model):
         for record in self:
             record.insurance_base = record.insurance_base or record.base_salary
 
+    @api.depends('employee_id')
+    def _compute_apply_insurance(self):
+        for record in self:
+            record.apply_insurance = record.employee_id.has_social_insurance
+
     def _period_start(self):
         self.ensure_one()
         return fields.Date.to_date(f'{self.year}-{self.month}-01')
@@ -473,6 +494,10 @@ class GarmentWageCalculation(models.Model):
     @api.depends('total_ot_hours', 'ot_rate', 'hourly_rate',
                  'ot_hours_weekday', 'ot_hours_weekend', 'ot_hours_holiday')
     def _compute_ot_amount(self):
+        # Hệ số cấu hình được (mặc định theo Điều 98 BLLĐ 2019)
+        m_wd = self._param_float('garment_payroll.ot_mult_weekday', 1.5)
+        m_we = self._param_float('garment_payroll.ot_mult_weekend', 2.0)
+        m_hol = self._param_float('garment_payroll.ot_mult_holiday', 3.0)
         for record in self:
             hourly = record.hourly_rate
             if record.ot_rate:
@@ -482,17 +507,16 @@ class GarmentWageCalculation(models.Model):
                 record.ot_exempt_amount = max(
                     record.ot_amount - hourly * record.total_ot_hours, 0)
             else:
-                # Chế độ luật định: 150% / 200% / 300% (Điều 98 BLLĐ 2019)
                 record.ot_amount = hourly * (
-                    1.5 * record.ot_hours_weekday
-                    + 2.0 * record.ot_hours_weekend
-                    + 3.0 * record.ot_hours_holiday
+                    m_wd * record.ot_hours_weekday
+                    + m_we * record.ot_hours_weekend
+                    + m_hol * record.ot_hours_holiday
                 )
                 # Phần phụ trội so với đơn giá giờ chuẩn miễn thuế TNCN
                 record.ot_exempt_amount = hourly * (
-                    0.5 * record.ot_hours_weekday
-                    + 1.0 * record.ot_hours_weekend
-                    + 2.0 * record.ot_hours_holiday
+                    max(m_wd - 1, 0) * record.ot_hours_weekday
+                    + max(m_we - 1, 0) * record.ot_hours_weekend
+                    + max(m_hol - 1, 0) * record.ot_hours_holiday
                 )
 
     @api.depends(
@@ -539,7 +563,7 @@ class GarmentWageCalculation(models.Model):
                 + record.allowance
             )
 
-    @api.depends('insurance_base')
+    @api.depends('insurance_base', 'apply_insurance')
     def _compute_insurance(self):
         # Trần đóng: BHXH/BHYT = 20 lần lương cơ sở;
         # BHTN = 20 lần lương tối thiểu vùng.
@@ -550,6 +574,16 @@ class GarmentWageCalculation(models.Model):
         cap_bhxh = 20 * luong_co_so
         cap_bhtn = 20 * luong_toi_thieu_vung
         for record in self:
+            if not record.apply_insurance:
+                record.bhxh_employee = 0
+                record.bhyt_employee = 0
+                record.bhtn_employee = 0
+                record.total_insurance = 0
+                record.bhxh_employer = 0
+                record.bhyt_employer = 0
+                record.bhtn_employer = 0
+                record.union_fee_employer = 0
+                continue
             base_bhxh = min(record.insurance_base, cap_bhxh)
             base_bhtn = min(record.insurance_base, cap_bhtn)
             # Người lao động đóng: 8% + 1.5% + 1%
@@ -577,6 +611,8 @@ class GarmentWageCalculation(models.Model):
             'garment_payroll.dependent_deduction', 6200000)
         lunch_cap = self._param_float(
             'garment_payroll.lunch_allowance_cap', 730000)
+        pit_enabled = self._param_bool(
+            'garment_payroll.pit_enabled', True)
         for record in self:
             record.dependent_deduction = (
                 record.dependent_count * per_dependent)
@@ -595,7 +631,9 @@ class GarmentWageCalculation(models.Model):
                 - record.dependent_deduction
             )
             record.taxable_income = max(taxable, 0)
-            record.pit_amount = record._calc_pit(record.taxable_income)
+            record.pit_amount = (
+                record._calc_pit(record.taxable_income)
+                if pit_enabled else 0)
 
     @staticmethod
     def _calc_pit(taxable):
@@ -654,9 +692,12 @@ class GarmentWageCalculation(models.Model):
         return self._get_leave_days(self._PAID_LEAVE_TYPES)
 
     @api.depends('insurance_base', 'sick_leave_days',
-                 'maternity_leave_days')
+                 'maternity_leave_days', 'apply_insurance')
     def _compute_bhxh_benefit(self):
         for record in self:
+            if not record.apply_insurance:
+                record.bhxh_benefit_amount = 0
+                continue
             daily_base = record.insurance_base / 24
             record.bhxh_benefit_amount = daily_base * (
                 0.75 * record.sick_leave_days

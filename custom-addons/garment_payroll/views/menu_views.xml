@@ -23,4 +23,18 @@
               parent="garment_base.menu_garment_hr_main"
               action="action_bonus"
               sequence="60"/>
+
+    <menuitem id="menu_bhxh_report"
+              name="Bảng Kê BHXH Tháng"
+              parent="garment_base.menu_garment_hr_main"
+              action="action_bhxh_report_wizard"
+              groups="garment_base.group_garment_dept_manager"
+              sequence="70"/>
+
+    <menuitem id="menu_pit_annual"
+              name="Tổng Hợp Thuế TNCN Năm"
+              parent="garment_base.menu_garment_hr_main"
+              action="action_pit_annual_wizard"
+              groups="garment_base.group_garment_dept_manager"
+              sequence="80"/>
 </odoo>

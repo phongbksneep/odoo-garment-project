@@ -41,6 +41,12 @@ class GarmentEmployee(models.Model):
         ondelete='set null',
     )
 
+    has_social_insurance = fields.Boolean(
+        string='Tham Gia BHXH',
+        default=True,
+        help='Bỏ chọn với lao động thời vụ / thử việc chưa tham gia BHXH — '
+             'bảng lương sẽ không trừ bảo hiểm và không tính trợ cấp BHXH.',
+    )
     id_number = fields.Char(string='Số CCCD/CMND', groups='hr.group_hr_user')
     insurance_number = fields.Char(string='Số Sổ BHXH', groups='hr.group_hr_user')
     tax_code = fields.Char(string='Mã Số Thuế', groups='hr.group_hr_user')
@@ -99,11 +105,21 @@ class GarmentEmployee(models.Model):
                  ('date_from', '>=', year_start)],
                 ['employee_id'], ['days:sum']):
             used_map[employee.id] = days or 0
+        icp = self.env['ir.config_parameter'].sudo()
+        try:
+            base_days = float(
+                icp.get_param('garment_hr.annual_leave_base_days') or 12)
+        except (TypeError, ValueError):
+            base_days = 12.0
+        seniority_bonus = icp.get_param(
+            'garment_hr.leave_seniority_bonus') not in (
+            'False', '0', 'false')
         for emp in self:
-            base = 12.0
+            base = base_days
             if emp.join_date:
-                years = (today - emp.join_date).days // 365
-                base += years // 5  # +1 ngày mỗi 5 năm thâm niên
+                if seniority_bonus:
+                    years = (today - emp.join_date).days // 365
+                    base += years // 5  # +1 ngày mỗi 5 năm thâm niên
                 if emp.join_date > year_start:
                     # Vào làm giữa năm: tính tỷ lệ theo số tháng còn lại
                     months = 12 - emp.join_date.month + 1

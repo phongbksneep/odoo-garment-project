@@ -329,3 +329,101 @@ class TestBhxhBenefit(TransactionCase):
         self.assertAlmostEqual(wage.sick_leave_days, 2, places=1)
         # Nghỉ ốm KHÔNG cộng vào ngày hưởng lương công ty
         self.assertEqual(wage.paid_leave_days, 0)
+
+
+@tagged('post_install', '-at_install')
+class TestFlexOptions(TransactionCase):
+    """Tùy chọn giảm/tắt phúc lợi: hệ số OT, thuế, BHXH per-employee."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.emp_bhxh = cls.env['hr.employee'].create({
+            'name': 'Emp Flex BHXH'})
+        cls.emp_no_bhxh = cls.env['hr.employee'].create({
+            'name': 'Emp Flex NoBHXH', 'has_social_insurance': False})
+        cls.icp = cls.env['ir.config_parameter'].sudo()
+
+    def _create_wage(self, employee, **kwargs):
+        vals = {
+            'employee_id': employee.id,
+            'month': '06',
+            'year': 2026,
+            'base_salary': 6240000,
+            'working_days': 26,
+            'actual_days': 26,
+        }
+        vals.update(kwargs)
+        return self.env['garment.wage.calculation'].create(vals)
+
+    def test_employee_without_insurance(self):
+        wage = self._create_wage(self.emp_no_bhxh, sick_leave_days=3)
+        self.assertFalse(wage.apply_insurance)
+        self.assertEqual(wage.total_insurance, 0)
+        self.assertEqual(wage.bhxh_employer, 0)
+        self.assertEqual(wage.bhxh_benefit_amount, 0)
+
+    def test_custom_ot_multipliers(self):
+        """Công ty giảm hệ số OT xuống 1.2/1.5/2.0."""
+        self.icp.set_param('garment_payroll.ot_mult_weekday', '1.2')
+        self.icp.set_param('garment_payroll.ot_mult_weekend', '1.5')
+        self.icp.set_param('garment_payroll.ot_mult_holiday', '2.0')
+        wage = self._create_wage(
+            self.emp_bhxh, ot_hours_weekend=4, ot_hours_holiday=2)
+        # hourly = 30.000; OT = 30.000 × (1.5×4 + 2.0×2) = 300.000
+        self.assertAlmostEqual(wage.ot_amount, 300000, places=0)
+        # Miễn thuế = 30.000 × (0.5×4 + 1.0×2) = 120.000
+        self.assertAlmostEqual(wage.ot_exempt_amount, 120000, places=0)
+
+    def test_pit_disabled(self):
+        self.icp.set_param('garment_payroll.pit_enabled', 'False')
+        wage = self._create_wage(
+            self.emp_bhxh, base_salary=40000000, insurance_base=40000000)
+        self.assertGreater(wage.taxable_income, 0)
+        self.assertEqual(wage.pit_amount, 0)
+
+    def test_pit_enabled_default(self):
+        wage = self._create_wage(
+            self.emp_bhxh, base_salary=40000000, insurance_base=40000000)
+        self.assertGreater(wage.pit_amount, 0)
+
+
+@tagged('post_install', '-at_install')
+class TestPayrollReportWizards(TransactionCase):
+    """Wizard xuất bảng kê BHXH và tổng hợp TNCN."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.employee = cls.env['hr.employee'].create({
+            'name': 'Emp Report Wiz'})
+        cls.wage = cls.env['garment.wage.calculation'].create({
+            'employee_id': cls.employee.id,
+            'month': '05',
+            'year': 2026,
+            'base_salary': 8000000,
+            'working_days': 26,
+            'actual_days': 26,
+        })
+        cls.wage.action_calculate()
+
+    def test_bhxh_export(self):
+        wizard = self.env['garment.bhxh.report.wizard'].create({
+            'month': '05', 'year': 2026})
+        wizard.action_export()
+        self.assertTrue(wizard.file_data)
+        self.assertEqual(wizard.file_name, 'BHXH_05_2026.xlsx')
+
+    def test_bhxh_export_no_data_raises(self):
+        from odoo.exceptions import UserError
+        wizard = self.env['garment.bhxh.report.wizard'].create({
+            'month': '01', 'year': 2020})
+        with self.assertRaises(UserError):
+            wizard.action_export()
+
+    def test_pit_annual_export(self):
+        wizard = self.env['garment.pit.annual.wizard'].create({
+            'year': 2026})
+        wizard.action_export()
+        self.assertTrue(wizard.file_data)
+        self.assertEqual(wizard.file_name, 'TNCN_2026.xlsx')

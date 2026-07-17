@@ -89,6 +89,7 @@
                         <page string="BHXH &amp; Thuế TNCN">
                             <group>
                                 <group string="Bảo Hiểm (NLĐ Đóng)">
+                                    <field name="apply_insurance"/>
                                     <field name="insurance_base"/>
                                     <field name="bhxh_employee" readonly="1"/>
                                     <field name="bhyt_employee" readonly="1"/>

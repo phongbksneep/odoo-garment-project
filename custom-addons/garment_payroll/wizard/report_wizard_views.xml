@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- BHXH monthly report wizard -->
+    <record id="view_bhxh_report_wizard_form" model="ir.ui.view">
+        <field name="name">garment.bhxh.report.wizard.form</field>
+        <field name="model">garment.bhxh.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Bảng Kê BHXH Tháng">
+                <group>
+                    <field name="month"/>
+                    <field name="year"/>
+                </group>
+                <group invisible="not file_data">
+                    <field name="file_name" invisible="1"/>
+                    <field name="file_data" filename="file_name"/>
+                </group>
+                <footer>
+                    <button name="action_export" string="Xuất Excel" type="object" class="btn-primary"/>
+                    <button string="Đóng" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bhxh_report_wizard" model="ir.actions.act_window">
+        <field name="name">Bảng Kê BHXH Tháng</field>
+        <field name="res_model">garment.bhxh.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- PIT annual report wizard -->
+    <record id="view_pit_annual_wizard_form" model="ir.ui.view">
+        <field name="name">garment.pit.annual.wizard.form</field>
+        <field name="model">garment.pit.annual.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Tổng Hợp Thuế TNCN Năm">
+                <group>
+                    <field name="year"/>
+                </group>
+                <group invisible="not file_data">
+                    <field name="file_name" invisible="1"/>
+                    <field name="file_data" filename="file_name"/>
+                </group>
+                <footer>
+                    <button name="action_export" string="Xuất Excel" type="object" class="btn-primary"/>
+                    <button string="Đóng" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pit_annual_wizard" model="ir.actions.act_window">
+        <field name="name">Tổng Hợp Thuế TNCN Năm</field>
+        <field name="res_model">garment.pit.annual.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

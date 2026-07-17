@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_payroll" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.garment.payroll</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Lương &amp; Phúc Lợi" string="Lương &amp; Phúc Lợi" data-key="garment_payroll">
+                    <block title="Bảo Hiểm Xã Hội" name="payroll_insurance_settings">
+                        <setting string="Mức Nhà Nước" help="Lương cơ sở và lương tối thiểu vùng — dùng tính trần đóng BHXH/BHYT/BHTN">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="payroll_luong_co_so" class="col-lg-5 o_light_label"/>
+                                    <field name="payroll_luong_co_so" class="col-lg-3"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="payroll_luong_toi_thieu_vung" class="col-lg-5 o_light_label"/>
+                                    <field name="payroll_luong_toi_thieu_vung" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="Thuế Thu Nhập Cá Nhân" name="payroll_tax_settings">
+                        <setting string="Khấu Trừ Thuế TNCN" help="Tắt nếu doanh nghiệp không khấu trừ thuế tại nguồn">
+                            <field name="payroll_pit_enabled"/>
+                        </setting>
+                        <setting string="Giảm Trừ &amp; Miễn Thuế" help="Mức giảm trừ gia cảnh và trần miễn thuế phụ cấp ăn trưa">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="payroll_personal_deduction" class="col-lg-5 o_light_label"/>
+                                    <field name="payroll_personal_deduction" class="col-lg-3"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="payroll_dependent_deduction" class="col-lg-5 o_light_label"/>
+                                    <field name="payroll_dependent_deduction" class="col-lg-3"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="payroll_lunch_cap" class="col-lg-5 o_light_label"/>
+                                    <field name="payroll_lunch_cap" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="Tăng Ca" name="payroll_ot_settings">
+                        <setting string="Hệ Số Tăng Ca" help="Luật định tối thiểu: 150% ngày thường / 200% ngày nghỉ tuần / 300% ngày lễ. Chỉ áp dụng khi không dùng đơn giá OT thỏa thuận.">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="payroll_ot_mult_weekday" class="col-lg-5 o_light_label"/>
+                                    <field name="payroll_ot_mult_weekday" class="col-lg-2"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="payroll_ot_mult_weekend" class="col-lg-5 o_light_label"/>
+                                    <field name="payroll_ot_mult_weekend" class="col-lg-2"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="payroll_ot_mult_holiday" class="col-lg-5 o_light_label"/>
+                                    <field name="payroll_ot_mult_holiday" class="col-lg-2"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="Phép Năm" name="payroll_leave_settings">
+                        <setting string="Chính Sách Phép Năm" help="Số ngày phép cơ bản mỗi năm và cộng thâm niên">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="payroll_leave_base_days" class="col-lg-5 o_light_label"/>
+                                    <field name="payroll_leave_base_days" class="col-lg-2"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="payroll_leave_seniority_bonus" class="col-lg-5 o_light_label"/>
+                                    <field name="payroll_leave_seniority_bonus" class="col-lg-2"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

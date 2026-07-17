@@ -10,3 +10,5 @@ access_garment_bonus_user,garment.bonus.user,model_garment_bonus,garment_base.gr
 access_garment_bonus_manager,garment.bonus.manager,model_garment_bonus,garment_base.group_garment_manager,1,1,1,1
 access_garment_bonus_line_user,garment.bonus.line.user,model_garment_bonus_line,garment_base.group_garment_user,1,0,0,0
 access_garment_bonus_line_manager,garment.bonus.line.manager,model_garment_bonus_line,garment_base.group_garment_manager,1,1,1,1
+access_bhxh_report_wizard,garment.bhxh.report.wizard,model_garment_bhxh_report_wizard,garment_base.group_garment_dept_manager,1,1,1,0
+access_pit_annual_wizard,garment.pit.annual.wizard,model_garment_pit_annual_wizard,garment_base.group_garment_dept_manager,1,1,1,0

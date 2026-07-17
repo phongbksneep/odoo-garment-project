@@ -329,3 +329,23 @@ class TestAnnualLeaveBalance(TransactionCase):
         leave.action_submit()
         with self.assertRaises(ValidationError):
             leave.action_approve()
+
+
+@tagged('post_install', '-at_install')
+class TestLeavePolicyOptions(TransactionCase):
+    """Chính sách phép năm cấu hình được: số ngày cơ bản, thâm niên."""
+
+    def test_reduced_base_days(self):
+        self.env['ir.config_parameter'].sudo().set_param(
+            'garment_hr.annual_leave_base_days', '10')
+        emp = self.env['hr.employee'].create({
+            'name': 'Emp Policy 10d', 'join_date': '2024-01-15'})
+        self.assertAlmostEqual(emp.annual_leave_entitlement, 10.0, places=1)
+
+    def test_seniority_bonus_disabled(self):
+        icp = self.env['ir.config_parameter'].sudo()
+        icp.set_param('garment_hr.annual_leave_base_days', '12')
+        icp.set_param('garment_hr.leave_seniority_bonus', 'False')
+        emp = self.env['hr.employee'].create({
+            'name': 'Emp Policy NoSen', 'join_date': '2015-06-01'})
+        self.assertAlmostEqual(emp.annual_leave_entitlement, 12.0, places=1)
