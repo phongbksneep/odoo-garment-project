@@ -553,3 +553,66 @@ class TestLeaveWageLock(TransactionCase):
         leave.action_submit()
         with self.assertRaises(ValidationError):
             leave.action_approve()
+
+
+@tagged('post_install', '-at_install')
+class TestWageBatchWizard(TransactionCase):
+    """Tạo bảng lương hàng loạt + tính lương theo batch."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.dept = cls.env['hr.department'].create({'name': 'Chuyền Batch W'})
+        cls.employees = cls.env['hr.employee'].create([
+            {'name': f'Emp BatchW {i}', 'department_id': cls.dept.id}
+            for i in range(5)
+        ])
+        # Nhân viên 0 có phiếu tháng trước để test chép số liệu
+        cls.env['garment.wage.calculation'].create({
+            'employee_id': cls.employees[0].id,
+            'month': '06', 'year': 2026,
+            'base_salary': 6500000,
+            'dependent_count': 2,
+            'allowance_lunch': 700000,
+        })
+
+    def test_batch_generate_and_calculate(self):
+        wizard = self.env['garment.wage.batch.wizard'].create({
+            'month': '07', 'year': 2026,
+            'department_ids': [(6, 0, [self.dept.id])],
+            'auto_calculate': True,
+        })
+        result = wizard.action_generate()
+        wages = self.env['garment.wage.calculation'].search(
+            result['domain'])
+        self.assertEqual(len(wages), 5)
+        self.assertTrue(all(w.state == 'calculated' for w in wages))
+        # Số liệu chép từ tháng trước
+        w0 = wages.filtered(lambda w: w.employee_id == self.employees[0])
+        self.assertAlmostEqual(w0.base_salary, 6500000, places=0)
+        self.assertEqual(w0.dependent_count, 2)
+        self.assertAlmostEqual(w0.allowance_lunch, 700000, places=0)
+
+    def test_batch_skips_existing(self):
+        self.env['garment.wage.calculation'].create({
+            'employee_id': self.employees[1].id,
+            'month': '08', 'year': 2026,
+        })
+        wizard = self.env['garment.wage.batch.wizard'].create({
+            'month': '08', 'year': 2026,
+            'department_ids': [(6, 0, [self.dept.id])],
+            'auto_calculate': False,
+        })
+        result = wizard.action_generate()
+        wages = self.env['garment.wage.calculation'].search(result['domain'])
+        self.assertEqual(len(wages), 4)  # bỏ qua người đã có
+
+    def test_multi_record_action_calculate(self):
+        wages = self.env['garment.wage.calculation'].create([
+            {'employee_id': emp.id, 'month': '09', 'year': 2026,
+             'base_salary': 5200000, 'actual_days': 26}
+            for emp in self.employees
+        ])
+        wages.action_calculate()  # batch, không còn ensure_one
+        self.assertTrue(all(w.state == 'calculated' for w in wages))
+        self.assertTrue(all(w.base_amount > 0 for w in wages))

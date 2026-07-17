@@ -24,6 +24,13 @@
               action="action_bonus"
               sequence="60"/>
 
+    <menuitem id="menu_wage_batch"
+              name="Tạo Bảng Lương Hàng Loạt"
+              parent="garment_base.menu_garment_hr_main"
+              action="action_wage_batch_wizard"
+              groups="garment_base.group_garment_dept_manager"
+              sequence="49"/>
+
     <menuitem id="menu_bhxh_report"
               name="Bảng Kê BHXH Tháng"
               parent="garment_base.menu_garment_hr_main"

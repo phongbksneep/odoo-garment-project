@@ -716,34 +716,35 @@ class GarmentWageCalculation(models.Model):
             )
 
     def action_calculate(self):
-        """Trigger recalculation — also pull attendance data."""
-        self.ensure_one()
-        if self.state not in ('draft', 'calculated'):
-            raise UserError(_(
-                'Chỉ phiếu lương Nháp hoặc Đã Tính mới được tính lại.'))
-        # Pull attendance summary if available
-        summary = self.env['garment.attendance.summary'].search([
-            ('employee_id', '=', self.employee_id.id),
-            ('month', '=', self.month),
-            ('year', '=', self.year),
-        ], limit=1)
-        if summary:
-            self.attendance_days = summary.total_work_days
-            self.attendance_ot_hours = summary.total_ot_hours
-            if not self.actual_days:
-                self.actual_days = int(summary.total_work_days)
-        self.paid_leave_days = self._get_paid_leave_days()
-        self.sick_leave_days = self._get_leave_days(('sick',))
-        self.maternity_leave_days = self._get_leave_days(('maternity',))
-        # Kéo thưởng đã xác nhận/trả có ngày chi nằm trong tháng lương
-        bonus_lines = self.env['garment.bonus.line'].search([
-            ('employee_id', '=', self.employee_id.id),
-            ('bonus_id.state', 'in', ('confirmed', 'paid')),
-            ('bonus_id.date', '>=', self._period_start()),
-            ('bonus_id.date', '<', self._period_end()),
-        ])
-        if bonus_lines:
-            self.bonus_amount = sum(bonus_lines.mapped('amount'))
+        """Tính lương — chạy được theo batch (chọn nhiều phiếu cùng lúc)."""
+        for wage in self:
+            if wage.state not in ('draft', 'calculated'):
+                raise UserError(_(
+                    'Phiếu %s: chỉ phiếu lương Nháp hoặc Đã Tính mới được '
+                    'tính lại.', wage.name))
+            # Pull attendance summary if available
+            summary = self.env['garment.attendance.summary'].search([
+                ('employee_id', '=', wage.employee_id.id),
+                ('month', '=', wage.month),
+                ('year', '=', wage.year),
+            ], limit=1)
+            if summary:
+                wage.attendance_days = summary.total_work_days
+                wage.attendance_ot_hours = summary.total_ot_hours
+                if not wage.actual_days:
+                    wage.actual_days = int(summary.total_work_days)
+            wage.paid_leave_days = wage._get_paid_leave_days()
+            wage.sick_leave_days = wage._get_leave_days(('sick',))
+            wage.maternity_leave_days = wage._get_leave_days(('maternity',))
+            # Kéo thưởng đã xác nhận/trả có ngày chi nằm trong tháng lương
+            bonus_lines = self.env['garment.bonus.line'].search([
+                ('employee_id', '=', wage.employee_id.id),
+                ('bonus_id.state', 'in', ('confirmed', 'paid')),
+                ('bonus_id.date', '>=', wage._period_start()),
+                ('bonus_id.date', '<', wage._period_end()),
+            ])
+            if bonus_lines:
+                wage.bonus_amount = sum(bonus_lines.mapped('amount'))
         self._compute_piece_totals()
         self._compute_base_amount()
         self._compute_ot_amount()

@@ -27,6 +27,7 @@
         'views/attendance_views.xml',
         'views/employee_skill_views.xml',
         'views/leave_views.xml',
+        'wizard/attendance_batch_views.xml',
         'views/menu_views.xml',
     ],
     'installable': True,

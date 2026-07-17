@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_attendance_summary_batch_wizard_form" model="ir.ui.view">
+        <field name="name">garment.attendance.summary.batch.wizard.form</field>
+        <field name="model">garment.attendance.summary.batch.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Tổng Hợp Công Hàng Loạt">
+                <group>
+                    <field name="month"/>
+                    <field name="year"/>
+                    <field name="department_ids" widget="many2many_tags"/>
+                </group>
+                <footer>
+                    <button name="action_generate" string="Tổng Hợp Cả Xưởng" type="object" class="btn-primary"/>
+                    <button string="Đóng" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_attendance_summary_batch_wizard" model="ir.actions.act_window">
+        <field name="name">Tổng Hợp Công Hàng Loạt</field>
+        <field name="res_model">garment.attendance.summary.batch.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Server action: Tổng Hợp Công trên danh sách -->
+    <record id="server_action_summary_calculate" model="ir.actions.server">
+        <field name="name">Tổng Hợp Công (Đã Chọn)</field>
+        <field name="model_id" ref="model_garment_attendance_summary"/>
+        <field name="binding_model_id" ref="model_garment_attendance_summary"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">records.action_calculate()</field>
+    </record>
+</odoo>

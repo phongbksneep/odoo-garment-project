@@ -350,3 +350,32 @@ class TestLeavePolicyOptions(TransactionCase):
             'name': 'Emp Policy NoSen', 'join_date': '2015-06-01'})
         self.assertAlmostEqual(emp.annual_leave_entitlement, 12.0, places=1)
 
+
+
+@tagged('post_install', '-at_install')
+class TestAttendanceSummaryBatch(TransactionCase):
+    """Tổng hợp công hàng loạt theo tháng/phòng ban."""
+
+    def test_batch_generate(self):
+        dept = self.env['hr.department'].create({'name': 'Chuyền Batch A'})
+        employees = self.env['hr.employee'].create([
+            {'name': f'Emp BatchA {i}', 'department_id': dept.id}
+            for i in range(4)
+        ])
+        for emp in employees:
+            self.env['garment.attendance'].create({
+                'employee_id': emp.id,
+                'date': '2026-06-10',
+                'status': 'present',
+                'work_hours': 8,
+            })
+        wizard = self.env[
+            'garment.attendance.summary.batch.wizard'].create({
+                'month': '06', 'year': 2026,
+                'department_ids': [(6, 0, [dept.id])],
+            })
+        result = wizard.action_generate()
+        summaries = self.env['garment.attendance.summary'].search(
+            result['domain'])
+        self.assertEqual(len(summaries), 4)
+        self.assertTrue(all(s.present_days == 1 for s in summaries))

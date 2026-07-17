@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_wage_batch_wizard_form" model="ir.ui.view">
+        <field name="name">garment.wage.batch.wizard.form</field>
+        <field name="model">garment.wage.batch.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Tạo Bảng Lương Hàng Loạt">
+                <group>
+                    <field name="month"/>
+                    <field name="year"/>
+                    <field name="department_ids" widget="many2many_tags"/>
+                    <field name="auto_calculate"/>
+                </group>
+                <footer>
+                    <button name="action_generate" string="Tạo Bảng Lương" type="object" class="btn-primary"/>
+                    <button string="Đóng" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wage_batch_wizard" model="ir.actions.act_window">
+        <field name="name">Tạo Bảng Lương Hàng Loạt</field>
+        <field name="res_model">garment.wage.batch.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Server action: Tính Lương trên danh sách -->
+    <record id="server_action_wage_calculate" model="ir.actions.server">
+        <field name="name">Tính Lương (Đã Chọn)</field>
+        <field name="model_id" ref="model_garment_wage_calculation"/>
+        <field name="binding_model_id" ref="model_garment_wage_calculation"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">records.action_calculate()</field>
+    </record>
+</odoo>
