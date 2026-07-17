@@ -53,3 +53,48 @@ class AttendanceSummaryBatchWizard(models.TransientModel):
             'view_mode': 'list,form',
             'domain': [('id', 'in', all_summaries.ids)],
         }
+
+
+class AttendanceDailyBatchWizard(models.TransientModel):
+    """Tạo chấm công một ngày cho cả chuyền/phòng ban — mặc định Đi Làm,
+    thống kê chỉ sửa vài người vắng/muộn."""
+    _name = 'garment.attendance.daily.batch.wizard'
+    _description = 'Chấm Công Cả Chuyền'
+
+    date = fields.Date(
+        string='Ngày', required=True, default=fields.Date.today)
+    department_ids = fields.Many2many(
+        'hr.department', string='Phòng Ban',
+        help='Để trống = toàn bộ nhân viên đang làm việc',
+    )
+    work_hours = fields.Float(
+        string='Giờ Công Mặc Định', default=8.0, digits=(4, 1))
+
+    def action_generate(self):
+        self.ensure_one()
+        Attendance = self.env['garment.attendance']
+        employees = self.env['hr.employee'].search(
+            [('department_id', 'in', self.department_ids.ids)]
+            if self.department_ids else [])
+        if not employees:
+            raise UserError(_('Không có nhân viên nào phù hợp.'))
+        existing = Attendance.search([
+            ('date', '=', self.date),
+            ('employee_id', 'in', employees.ids),
+        ])
+        todo = employees - existing.employee_id
+        new_rows = Attendance.create([{
+            'employee_id': emp.id,
+            'date': self.date,
+            'status': 'present',
+            'work_hours': self.work_hours,
+        } for emp in todo])
+        all_rows = existing | new_rows
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Chấm Công %s') % self.date,
+            'res_model': 'garment.attendance',
+            'view_mode': 'list,form',
+            'domain': [('id', 'in', all_rows.ids)],
+            'context': {'search_default_group_department': 1},
+        }

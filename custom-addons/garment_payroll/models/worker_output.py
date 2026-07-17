@@ -61,6 +61,16 @@ class GarmentWorkerOutput(models.Model):
         digits=(10, 0),
     )
 
+    @api.onchange('style_id')
+    def _onchange_style_id(self):
+        """Tự chọn đơn giá khi mã hàng chỉ có đúng 1 đơn giá khoán."""
+        if self.style_id and not self.piece_rate_id:
+            rates = self.env['garment.piece.rate'].search([
+                ('style_id', '=', self.style_id.id),
+            ])
+            if len(rates) == 1:
+                self.piece_rate_id = rates
+
     @api.depends('piece_rate_id')
     def _compute_from_piece_rate(self):
         for record in self:

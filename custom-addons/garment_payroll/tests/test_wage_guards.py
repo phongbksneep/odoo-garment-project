@@ -616,3 +616,34 @@ class TestWageBatchWizard(TransactionCase):
         wages.action_calculate()  # batch, không còn ensure_one
         self.assertTrue(all(w.state == 'calculated' for w in wages))
         self.assertTrue(all(w.base_amount > 0 for w in wages))
+
+
+@tagged('post_install', '-at_install')
+class TestWorkerOutputCopy(TransactionCase):
+    """Chép sản lượng hôm trước với SL=0."""
+
+    def test_copy_previous_day(self):
+        style = self.env['garment.style'].create({
+            'name': 'STYLE-CPY-001', 'code': 'ST-CPY-001',
+            'category': 'shirt'})
+        rate = self.env['garment.piece.rate'].create({
+            'style_id': style.id, 'operation': 'sewing',
+            'operation_detail': 'Copy test', 'rate_per_piece': 4000,
+            'smv': 10.0})
+        line = self.env['garment.sewing.line'].create({
+            'name': 'Line Copy', 'code': 'LCPY'})
+        employees = self.env['hr.employee'].create([
+            {'name': f'Emp Copy {i}'} for i in range(3)])
+        self.env['garment.worker.output'].create([{
+            'employee_id': emp.id, 'date': '2026-07-01',
+            'sewing_line_id': line.id, 'style_id': style.id,
+            'piece_rate_id': rate.id, 'quantity': 50,
+        } for emp in employees])
+        wizard = self.env['garment.worker.output.copy.wizard'].create({
+            'date': '2026-07-02', 'sewing_line_id': line.id})
+        result = wizard.action_copy()
+        rows = self.env['garment.worker.output'].search(result['domain'])
+        self.assertEqual(len(rows), 3)
+        self.assertTrue(all(r.quantity == 0 for r in rows))
+        self.assertTrue(all(r.piece_rate_id == rate for r in rows))
+        self.assertTrue(all(r.rate_per_piece == 4000 for r in rows))

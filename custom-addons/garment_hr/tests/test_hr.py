@@ -379,3 +379,33 @@ class TestAttendanceSummaryBatch(TransactionCase):
             result['domain'])
         self.assertEqual(len(summaries), 4)
         self.assertTrue(all(s.present_days == 1 for s in summaries))
+
+
+@tagged('post_install', '-at_install')
+class TestAttendanceDailyBatch(TransactionCase):
+    """Chấm công cả chuyền một cú bấm."""
+
+    def test_generate_daily(self):
+        dept = self.env['hr.department'].create({'name': 'Chuyền Daily A'})
+        employees = self.env['hr.employee'].create([
+            {'name': f'Emp Daily {i}', 'department_id': dept.id}
+            for i in range(6)
+        ])
+        # 1 người đã chấm trước (vắng) — không bị ghi đè
+        self.env['garment.attendance'].create({
+            'employee_id': employees[0].id,
+            'date': '2026-07-01',
+            'status': 'absent',
+        })
+        wizard = self.env[
+            'garment.attendance.daily.batch.wizard'].create({
+                'date': '2026-07-01',
+                'department_ids': [(6, 0, [dept.id])],
+            })
+        result = wizard.action_generate()
+        rows = self.env['garment.attendance'].search(result['domain'])
+        self.assertEqual(len(rows), 6)
+        absent = rows.filtered(lambda r: r.employee_id == employees[0])
+        self.assertEqual(absent.status, 'absent')
+        self.assertEqual(
+            len(rows.filtered(lambda r: r.status == 'present')), 5)

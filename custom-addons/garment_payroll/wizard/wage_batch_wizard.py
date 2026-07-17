@@ -86,3 +86,52 @@ class WageBatchWizard(models.TransientModel):
             'view_mode': 'list,form',
             'domain': [('id', 'in', wages.ids)],
         }
+
+
+class WorkerOutputCopyWizard(models.TransientModel):
+    """Chép danh sách sản lượng của ngày làm việc trước sang ngày mới
+    (SL = 0) — thống kê chỉ điền số lượng, khỏi chọn lại người/mã/đơn giá."""
+    _name = 'garment.worker.output.copy.wizard'
+    _description = 'Chép Sản Lượng Ngày Trước'
+
+    date = fields.Date(
+        string='Ngày Mới', required=True, default=fields.Date.today)
+    sewing_line_id = fields.Many2one(
+        'garment.sewing.line', string='Chuyền May',
+        help='Để trống = tất cả các chuyền',
+    )
+
+    def action_copy(self):
+        self.ensure_one()
+        Output = self.env['garment.worker.output']
+        domain = [('date', '<', self.date)]
+        if self.sewing_line_id:
+            domain.append(('sewing_line_id', '=', self.sewing_line_id.id))
+        last = Output.search(domain, order='date desc', limit=1)
+        if not last:
+            raise UserError(_('Không tìm thấy sản lượng ngày trước để chép.'))
+        source_domain = [('date', '=', last.date)]
+        if self.sewing_line_id:
+            source_domain.append(
+                ('sewing_line_id', '=', self.sewing_line_id.id))
+        sources = Output.search(source_domain)
+        # Bỏ người đã có dòng trong ngày mới
+        existing = Output.search([
+            ('date', '=', self.date),
+            ('employee_id', 'in', sources.employee_id.ids),
+        ]).employee_id
+        new_rows = Output.create([{
+            'date': self.date,
+            'employee_id': src.employee_id.id,
+            'sewing_line_id': src.sewing_line_id.id,
+            'style_id': src.style_id.id,
+            'piece_rate_id': src.piece_rate_id.id,
+            'quantity': 0,
+        } for src in sources if src.employee_id not in existing])
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Sản Lượng %s') % self.date,
+            'res_model': 'garment.worker.output',
+            'view_mode': 'list,form',
+            'domain': [('id', 'in', new_rows.ids)],
+        }

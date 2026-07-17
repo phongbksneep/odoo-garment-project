@@ -34,4 +34,28 @@
         <field name="state">code</field>
         <field name="code">records.action_calculate()</field>
     </record>
+    <record id="view_attendance_daily_batch_wizard_form" model="ir.ui.view">
+        <field name="name">garment.attendance.daily.batch.wizard.form</field>
+        <field name="model">garment.attendance.daily.batch.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Chấm Công Cả Chuyền">
+                <group>
+                    <field name="date"/>
+                    <field name="department_ids" widget="many2many_tags"/>
+                    <field name="work_hours"/>
+                </group>
+                <footer>
+                    <button name="action_generate" string="Tạo Chấm Công" type="object" class="btn-primary"/>
+                    <button string="Đóng" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_attendance_daily_batch_wizard" model="ir.actions.act_window">
+        <field name="name">Chấm Công Cả Chuyền</field>
+        <field name="res_model">garment.attendance.daily.batch.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 </odoo>
