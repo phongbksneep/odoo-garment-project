@@ -29,7 +29,7 @@ pip install -r requirements.txt
 python odoo-bin -c ../odoo.conf
 ```
 
-## 📦 Custom Modules (27 Module) — 664 Tests ✅
+## 📦 Custom Modules (27 Module) — 690 Tests ✅
 
 ### Pha 1 — Nền Tảng Cơ Sở
 
@@ -113,7 +113,7 @@ python odoo-bin -c ../odoo.conf
 |--------|--------|
 | `garment_demo` | Dữ liệu mẫu cho toàn bộ hệ thống |
 
-> **Tổng cộng: 664 tests ✅ — 0 failed, 0 errors — 27 module**
+> **Tổng cộng: 690 tests ✅ — 0 failed, 0 errors — 27 module**
 
 ## 🔐 Phân Quyền 4 Cấp
 
