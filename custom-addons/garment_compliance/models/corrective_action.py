@@ -5,7 +5,10 @@ from odoo.exceptions import UserError
 class GarmentCorrectiveAction(models.Model):
     _name = 'garment.corrective.action'
     _description = 'Corrective Action Plan (CAP)'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin',
+                'garment.deadline.mixin']
+    _deadline_field = 'deadline'
+    _deadline_done_states = ('done', 'cancelled')
     _order = 'deadline'
 
     name = fields.Char(
@@ -57,10 +60,7 @@ class GarmentCorrectiveAction(models.Model):
         ('cancelled', 'Đã Hủy'),
     ], string='Trạng Thái', default='open', tracking=True)
 
-    is_overdue = fields.Boolean(
-        string='Quá Hạn',
-        compute='_compute_is_overdue',
-    )
+    # is_overdue / overdue_days kế thừa từ garment.deadline.mixin
 
     # -------------------------------------------------------------------------
     # CRUD
@@ -77,15 +77,6 @@ class GarmentCorrectiveAction(models.Model):
     # -------------------------------------------------------------------------
     # Compute
     # -------------------------------------------------------------------------
-    def _compute_is_overdue(self):
-        today = fields.Date.today()
-        for record in self:
-            record.is_overdue = (
-                record.deadline
-                and record.deadline < today
-                and record.state not in ('done', 'cancelled')
-            )
-
     # -------------------------------------------------------------------------
     # Actions
     # -------------------------------------------------------------------------

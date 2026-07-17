@@ -5,7 +5,10 @@ from odoo.exceptions import UserError, ValidationError
 class SubcontractOrder(models.Model):
     _name = 'garment.subcontract.order'
     _description = 'Đơn Hàng Gia Công'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin',
+                'garment.deadline.mixin']
+    _deadline_field = 'date_expected'
+    _deadline_done_states = ('done', 'cancelled')
     _order = 'create_date desc'
 
     name = fields.Char(
@@ -169,12 +172,7 @@ class SubcontractOrder(models.Model):
 
     notes = fields.Html(string='Ghi Chú')
 
-    # Computed
-    is_overdue = fields.Boolean(
-        string='Trễ Hạn',
-        compute='_compute_is_overdue',
-        search='_search_is_overdue',
-    )
+    # is_overdue / overdue_days kế thừa từ garment.deadline.mixin
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -200,27 +198,6 @@ class SubcontractOrder(models.Model):
     def _compute_total_cost(self):
         for order in self:
             order.total_cost = order.total_qty * order.unit_price
-
-    def _compute_is_overdue(self):
-        today = fields.Date.today()
-        for order in self:
-            if order.date_expected and order.state not in ('done', 'cancelled'):
-                order.is_overdue = today > order.date_expected
-            else:
-                order.is_overdue = False
-
-    def _search_is_overdue(self, operator, value):
-        today = fields.Date.today()
-        if (operator == '=' and value) or (operator == '!=' and not value):
-            return [
-                ('date_expected', '<', today),
-                ('state', 'not in', ['done', 'cancelled']),
-            ]
-        return [
-            '|',
-            ('date_expected', '>=', today),
-            ('date_expected', '=', False),
-        ]
 
     def _check_states(self, allowed, action_label):
         for order in self:
