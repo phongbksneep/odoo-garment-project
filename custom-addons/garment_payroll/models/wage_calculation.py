@@ -249,35 +249,49 @@ class GarmentWageCalculation(models.Model):
             else:
                 record.base_amount = 0
 
+    def _period_start(self):
+        self.ensure_one()
+        return fields.Date.to_date(f'{self.year}-{self.month}-01')
+
+    def _period_end(self):
+        self.ensure_one()
+        if int(self.month) == 12:
+            return fields.Date.to_date(f'{self.year + 1}-01-01')
+        next_month = str(int(self.month) + 1).zfill(2)
+        return fields.Date.to_date(f'{self.year}-{next_month}-01')
+
     @api.depends('employee_id', 'month', 'year')
     def _compute_piece_totals(self):
-        for record in self:
-            if not record.employee_id or not record.month or not record.year:
-                record.total_pieces = 0
-                record.piece_rate_amount = 0
-                record.total_ot_hours = 0
-                continue
-            # Compute date range for the month
-            date_from = fields.Date.to_date(
-                f'{record.year}-{record.month}-01'
-            )
-            if int(record.month) == 12:
-                date_to = fields.Date.to_date(
-                    f'{record.year + 1}-01-01'
-                )
-            else:
-                next_month = str(int(record.month) + 1).zfill(2)
-                date_to = fields.Date.to_date(
-                    f'{record.year}-{next_month}-01'
-                )
-            outputs = self.env['garment.worker.output'].search([
-                ('employee_id', '=', record.employee_id.id),
+        valid = self.filtered(
+            lambda r: r.employee_id and r.month and r.year)
+        for record in self - valid:
+            record.total_pieces = 0
+            record.piece_rate_amount = 0
+            record.total_ot_hours = 0
+        if not valid:
+            return
+        # Một truy vấn gộp cho cả batch thay vì search theo từng nhân viên
+        date_from = min(rec._period_start() for rec in valid)
+        date_to = max(rec._period_end() for rec in valid)
+        groups = self.env['garment.worker.output']._read_group(
+            domain=[
+                ('employee_id', 'in', valid.employee_id.ids),
                 ('date', '>=', date_from),
                 ('date', '<', date_to),
-            ])
-            record.total_pieces = sum(outputs.mapped('quantity'))
-            record.piece_rate_amount = sum(outputs.mapped('amount'))
-            record.total_ot_hours = sum(outputs.mapped('overtime_hours'))
+            ],
+            groupby=['employee_id', 'date:month'],
+            aggregates=['quantity:sum', 'amount:sum', 'overtime_hours:sum'],
+        )
+        data = {}
+        for employee, month_start, qty, amount, ot in groups:
+            data[(employee.id, month_start.year, month_start.month)] = (
+                qty or 0, amount or 0, ot or 0)
+        for record in valid:
+            key = (record.employee_id.id, record.year, int(record.month))
+            qty, amount, ot = data.get(key, (0, 0, 0))
+            record.total_pieces = qty
+            record.piece_rate_amount = amount
+            record.total_ot_hours = ot
 
     @api.depends('total_ot_hours', 'ot_rate')
     def _compute_ot_amount(self):
