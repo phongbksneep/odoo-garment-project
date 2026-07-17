@@ -29,7 +29,7 @@ pip install -r requirements.txt
 python odoo-bin -c ../odoo.conf
 ```
 
-## 📦 Custom Modules (27 Module) — 539 Tests ✅
+## 📦 Custom Modules (27 Module) — 601 Tests ✅
 
 ### Pha 1 — Nền Tảng Cơ Sở
 
@@ -113,14 +113,14 @@ python odoo-bin -c ../odoo.conf
 |--------|--------|
 | `garment_demo` | Dữ liệu mẫu cho toàn bộ hệ thống |
 
-> **Tổng cộng: 539 tests ✅ — 0 failed, 0 errors — 27 module**
+> **Tổng cộng: 601 tests ✅ — 0 failed, 0 errors — 27 module**
 
 ## 🔐 Phân Quyền 4 Cấp
 
 | Cấp | Nhóm | Quyền |
 |-----|------|-------|
-| 1 | **Nhân Viên (User)** | Xem tất cả, tạo/sửa dữ liệu liên quan |
-| 2 | **Tổ Trưởng (Team Leader)** | + Quản lý nhóm/tổ, duyệt sản lượng |
+| 1 | **Nhân Viên (User)** | Chỉ đọc chứng từ vận hành; tự xem phiếu lương/thưởng của mình; tự tạo chấm công, nghỉ phép |
+| 2 | **Tổ Trưởng (Team Leader)** | + Tạo/sửa chứng từ vận hành (đơn hàng, sản xuất, QC, kho, sản lượng...) |
 | 3 | **Trưởng Phòng (Dept Manager)** | + Quản lý phòng ban, duyệt nghỉ phép |
 | 4 | **Quản Lý (Manager)** | Toàn quyền: tạo, sửa, xóa tất cả |
 
