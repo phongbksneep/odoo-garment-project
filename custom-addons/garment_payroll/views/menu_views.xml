@@ -4,12 +4,14 @@
               name="Đơn Giá Khoán"
               parent="garment_base.menu_garment_hr_main"
               action="action_piece_rate"
+              groups="garment_base.group_garment_team_leader"
               sequence="30"/>
 
     <menuitem id="menu_worker_output"
               name="Sản Lượng Công Nhân"
               parent="garment_base.menu_garment_hr_main"
               action="action_worker_output"
+              groups="garment_base.group_garment_team_leader"
               sequence="40"/>
 
     <menuitem id="menu_wage_calculation"

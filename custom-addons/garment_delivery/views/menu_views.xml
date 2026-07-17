@@ -2,19 +2,19 @@
 <odoo>
     <menuitem id="menu_delivery_order"
               name="Phiếu Giao Hàng"
-              parent="garment_base.menu_garment_warehouse_main"
+              parent="garment_base.menu_wh_delivery"
               action="action_delivery_order"
               sequence="50"/>
 
     <menuitem id="menu_delivery_customer"
               name="Giao Khách Hàng"
-              parent="garment_base.menu_garment_warehouse_main"
+              parent="garment_base.menu_wh_delivery"
               action="action_delivery_customer"
               sequence="60"/>
 
     <menuitem id="menu_vehicle"
               name="Phương Tiện"
-              parent="garment_base.menu_garment_warehouse_main"
+              parent="garment_base.menu_wh_delivery"
               action="action_vehicle"
               sequence="70"/>
 </odoo>

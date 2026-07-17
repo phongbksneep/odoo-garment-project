@@ -4,17 +4,17 @@
               name="Kế Hoạch Sản Xuất"
               parent="garment_base.menu_garment_production_main"
               action="action_production_plan"
-              sequence="50"/>
+              sequence="4"/>
 
     <menuitem id="menu_line_loading"
-              name="Line Loading"
+              name="Xếp Chuyền"
               parent="garment_base.menu_garment_production_main"
               action="action_line_loading"
-              sequence="60"/>
+              sequence="6"/>
 
     <menuitem id="menu_capacity_planning"
-              name="🧮 Capacity Planning"
+              name="Hoạch Định Năng Lực"
               parent="garment_base.menu_garment_production_main"
               action="action_capacity_planning"
-              sequence="55"/>
+              sequence="5"/>
 </odoo>

@@ -3,7 +3,7 @@
 
     <!-- Dashboard menu items under Báo Cáo -->
     <menuitem id="menu_dashboard_section"
-              name="Dashboard"
+              name="Bảng Điều Khiển"
               parent="garment_base.menu_garment_report_main"
               sequence="1"/>
 

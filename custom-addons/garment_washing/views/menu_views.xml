@@ -4,7 +4,7 @@
     <menuitem id="menu_wash_orders"
               name="Lệnh Giặt"
               parent="garment_base.menu_garment_production_main"
-              sequence="90"/>
+              sequence="85"/>
 
     <menuitem id="menu_wash_order_all"
               name="Tất Cả Lệnh Giặt"

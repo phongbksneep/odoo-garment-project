@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem id="menu_compliance_audit"
-              name="Audits"
+              name="Đánh Giá Tuân Thủ"
               parent="garment_base.menu_garment_quality_main"
               action="action_compliance_audit"
               sequence="30"/>

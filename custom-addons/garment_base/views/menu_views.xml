@@ -35,10 +35,28 @@
     <!-- 5. Kế Toán -->
     <menuitem id="menu_garment_accounting_main"
               name="Kế Toán"
+              groups="group_garment_dept_manager"
               parent="menu_garment_root"
               sequence="50"/>
 
     <!-- 6. Nhân Sự & Lương -->
+    <menuitem id="menu_wh_material"
+              name="Nguyên Phụ Liệu"
+              parent="menu_garment_warehouse_main"
+              sequence="10"/>
+    <menuitem id="menu_wh_stock"
+              name="Kho"
+              parent="menu_garment_warehouse_main"
+              sequence="20"/>
+    <menuitem id="menu_wh_packing"
+              name="Đóng Gói &amp; Tem"
+              parent="menu_garment_warehouse_main"
+              sequence="30"/>
+    <menuitem id="menu_wh_delivery"
+              name="Giao Hàng"
+              parent="menu_garment_warehouse_main"
+              sequence="40"/>
+
     <menuitem id="menu_garment_hr_main"
               name="Nhân Sự &amp; Lương"
               parent="menu_garment_root"
