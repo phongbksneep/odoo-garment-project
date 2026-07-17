@@ -22,6 +22,7 @@
         'purchase',
     ],
     'data': [
+        'views/garment_order_link_views.xml',
         'security/ir.model.access.csv',
         'data/accounting_data.xml',
         'views/invoice_views.xml',

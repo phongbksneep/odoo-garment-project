@@ -170,6 +170,24 @@ class GarmentInvoice(models.Model):
         if self.partner_id and self.partner_id.vat:
             self.partner_tax_code = self.partner_id.vat
 
+    @api.onchange('garment_order_id')
+    def _onchange_garment_order_id(self):
+        """Chọn đơn hàng → tự điền khách và sinh dòng từ chi tiết đơn."""
+        order = self.garment_order_id
+        if not order:
+            return
+        self.partner_id = order.customer_id
+        if not self.line_ids:
+            self.line_ids = [(0, 0, {
+                'description': '%s - %s - %s' % (
+                    order.style_id.name or '',
+                    line.color_id.name or '',
+                    line.size_id.name or ''),
+                'quantity': line.quantity,
+                'unit': 'pcs',
+                'unit_price': order.unit_price,
+            }) for line in order.line_ids]
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:

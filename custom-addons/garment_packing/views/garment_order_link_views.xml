@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_garment_order_form_packing" model="ir.ui.view">
+        <field name="name">garment.order.form.packing.link</field>
+        <field name="model">garment.order</field>
+        <field name="inherit_id" ref="garment_base.view_garment_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_packing_lists" type="object"
+                        class="oe_stat_button" icon="fa-archive">
+                    <field name="packing_list_count" widget="statinfo"
+                           string="Packing"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

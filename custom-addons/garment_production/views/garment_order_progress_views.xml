@@ -6,6 +6,13 @@
         <field name="model">garment.order</field>
         <field name="inherit_id" ref="garment_base.view_garment_order_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_production_orders" type="object"
+                        class="oe_stat_button" icon="fa-cogs">
+                    <field name="production_order_count" widget="statinfo"
+                           string="Lệnh SX"/>
+                </button>
+            </xpath>
             <xpath expr="//field[@name='total_amount']" position="after">
                 <field name="produced_qty"/>
                 <field name="progress" widget="progressbar"/>

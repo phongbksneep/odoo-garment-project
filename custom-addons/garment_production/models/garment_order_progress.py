@@ -29,3 +29,35 @@ class GarmentOrderProgress(models.Model):
                 order.progress = (order.produced_qty / order.total_qty) * 100
             else:
                 order.progress = 0.0
+
+    production_order_count = fields.Integer(
+        compute='_compute_production_order_count',
+        string='Số Lệnh SX',
+    )
+
+    def _compute_production_order_count(self):
+        counts = {}
+        if self.ids:
+            for order, count in self.env[
+                    'garment.production.order']._read_group(
+                    [('garment_order_id', 'in', self.ids)],
+                    ['garment_order_id'], ['__count']):
+                counts[order.id] = count
+        for record in self:
+            record.production_order_count = counts.get(record.id, 0)
+
+    def action_view_production_orders(self):
+        self.ensure_one()
+        planned = sum(self.production_order_ids.filtered(
+            lambda p: p.state != 'cancelled').mapped('planned_qty'))
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Lệnh Sản Xuất — %s' % self.name,
+            'res_model': 'garment.production.order',
+            'view_mode': 'list,form',
+            'domain': [('garment_order_id', '=', self.id)],
+            'context': {
+                'default_garment_order_id': self.id,
+                'default_planned_qty': max(self.total_qty - planned, 0),
+            },
+        }

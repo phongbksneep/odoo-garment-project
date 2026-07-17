@@ -19,6 +19,7 @@ Garment Delivery Management - Quản Lý Giao Hàng Vận Chuyển
         'garment_warehouse',
     ],
     'data': [
+        'views/garment_order_link_views.xml',
         'security/ir.model.access.csv',
         'data/delivery_data.xml',
         'views/vehicle_views.xml',

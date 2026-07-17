@@ -342,3 +342,64 @@ class GarmentPaymentAccountIntegration(models.Model):
             'view_mode': 'form',
             'target': 'current',
         }
+
+
+class GarmentOrderInvoiceLink(models.Model):
+    _inherit = 'garment.order'
+
+    invoice_count = fields.Integer(
+        compute='_compute_invoice_count',
+        string='Số Hóa Đơn',
+    )
+
+    def _compute_invoice_count(self):
+        counts = {}
+        if self.ids:
+            for order, count in self.env['garment.invoice']._read_group(
+                    [('garment_order_id', 'in', self.ids)],
+                    ['garment_order_id'], ['__count']):
+                counts[order.id] = count
+        for record in self:
+            record.invoice_count = counts.get(record.id, 0)
+
+    def action_view_invoices(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Hóa Đơn — %s') % self.name,
+            'res_model': 'garment.invoice',
+            'view_mode': 'list,form',
+            'domain': [('garment_order_id', '=', self.id)],
+            'context': {
+                'default_garment_order_id': self.id,
+                'default_partner_id': self.customer_id.id,
+                'default_invoice_type': 'sale',
+            },
+        }
+
+    def action_create_invoice(self):
+        """Tạo hóa đơn bán với dòng sinh sẵn từ chi tiết đơn hàng."""
+        self.ensure_one()
+        if self.state in ('draft', 'cancelled'):
+            raise UserError(_(
+                'Chỉ tạo hóa đơn từ đơn hàng đã xác nhận.'))
+        invoice = self.env['garment.invoice'].create({
+            'invoice_type': 'sale',
+            'partner_id': self.customer_id.id,
+            'garment_order_id': self.id,
+            'line_ids': [(0, 0, {
+                'description': '%s - %s - %s' % (
+                    self.style_id.name or '',
+                    line.color_id.name or '',
+                    line.size_id.name or ''),
+                'quantity': line.quantity,
+                'unit': 'pcs',
+                'unit_price': self.unit_price,
+            }) for line in self.line_ids],
+        })
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'garment.invoice',
+            'res_id': invoice.id,
+            'view_mode': 'form',
+        }

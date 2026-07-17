@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_garment_order_form_material" model="ir.ui.view">
+        <field name="name">garment.order.form.material.link</field>
+        <field name="model">garment.order</field>
+        <field name="inherit_id" ref="garment_base.view_garment_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_allocations" type="object"
+                        class="oe_stat_button" icon="fa-cubes">
+                    <field name="allocation_count" widget="statinfo"
+                           string="Phân Bổ NL"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

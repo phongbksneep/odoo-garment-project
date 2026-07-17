@@ -21,6 +21,7 @@
         'stock',
     ],
     'data': [
+        'views/garment_order_link_views.xml',
         'security/ir.model.access.csv',
         'data/packing_data.xml',
         'views/packing_list_views.xml',

@@ -20,6 +20,7 @@ Quản lý quy trình nhận nguyên phụ liệu cho sản xuất may:
         'garment_production',
     ],
     'data': [
+        'views/garment_order_link_views.xml',
         'security/ir.model.access.csv',
         'data/material_data.xml',
         'views/material_receipt_views.xml',

@@ -122,3 +122,54 @@ class TestIntegrationGates(TransactionCase):
         inv.action_reset_draft()
         line.write({'quantity': 20})
         self.assertEqual(line.quantity, 20)
+
+
+class TestInvoiceFromOrder(TransactionCase):
+    """Tạo hóa đơn từ đơn hàng — dòng sinh tự động."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].create({
+            'name': 'KH InvGen', 'customer_rank': 1})
+        cls.style = cls.env['garment.style'].create({
+            'name': 'STYLE-IVG-001', 'code': 'ST-IVG-001',
+            'category': 'shirt'})
+        cls.color = cls.env['garment.color'].create({
+            'name': 'Đen IVG', 'code': 'BLK-IVG'})
+        cls.size = cls.env['garment.size'].create({
+            'name': 'M-IVG', 'code': 'M-IVG', 'size_type': 'letter'})
+
+    def _confirmed_order(self):
+        order = self.env['garment.order'].create({
+            'customer_id': self.partner.id,
+            'style_id': self.style.id,
+            'unit_price': 7.5,
+        })
+        self.env['garment.order.line'].create({
+            'order_id': order.id,
+            'color_id': self.color.id,
+            'size_id': self.size.id,
+            'quantity': 400,
+        })
+        order.action_confirm()
+        return order
+
+    def test_create_invoice_from_order(self):
+        order = self._confirmed_order()
+        result = order.action_create_invoice()
+        invoice = self.env['garment.invoice'].browse(result['res_id'])
+        self.assertEqual(invoice.partner_id, self.partner)
+        self.assertEqual(invoice.garment_order_id, order)
+        self.assertEqual(len(invoice.line_ids), 1)
+        self.assertEqual(invoice.line_ids.quantity, 400)
+        self.assertAlmostEqual(invoice.line_ids.unit_price, 7.5, places=2)
+        self.assertEqual(order.invoice_count, 1)
+
+    def test_cannot_create_invoice_from_draft(self):
+        order = self.env['garment.order'].create({
+            'customer_id': self.partner.id,
+            'style_id': self.style.id,
+        })
+        with self.assertRaises(UserError):
+            order.action_create_invoice()

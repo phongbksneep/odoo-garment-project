@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_garment_order_form_accounting" model="ir.ui.view">
+        <field name="name">garment.order.form.accounting.link</field>
+        <field name="model">garment.order</field>
+        <field name="inherit_id" ref="garment_base.view_garment_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_invoices" type="object"
+                        class="oe_stat_button" icon="fa-file-text-o"
+                        groups="garment_base.group_garment_dept_manager">
+                    <field name="invoice_count" widget="statinfo"
+                           string="Hóa Đơn"/>
+                </button>
+            </xpath>
+            <xpath expr="//button[@name='action_reset_draft']" position="after">
+                <button name="action_create_invoice" string="Tạo Hóa Đơn"
+                        type="object"
+                        invisible="state in ('draft', 'cancelled')"
+                        groups="garment_base.group_garment_dept_manager"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
