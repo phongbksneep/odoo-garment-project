@@ -697,3 +697,50 @@ class TestDailyOutputFill(TransactionCase):
         daily.action_fill_from_worker_output()
         self.assertEqual(daily.output_qty, 120)
         self.assertEqual(daily.worker_count, 3)
+
+
+@tagged('post_install', '-at_install')
+class TestWorkerOutputPaste(TransactionCase):
+    """Dán sản lượng cuối ca từ Excel."""
+
+    def test_paste_outputs(self):
+        style = self.env['garment.style'].create({
+            'name': 'STYLE-PST-001', 'code': 'ST-PST-001',
+            'category': 'shirt'})
+        rate = self.env['garment.piece.rate'].create({
+            'style_id': style.id, 'operation': 'sewing',
+            'operation_detail': 'Paste', 'rate_per_piece': 3500,
+            'smv': 10.0})
+        e1 = self.env['hr.employee'].create({
+            'name': 'Emp Paste 1', 'employee_code': 'PST01'})
+        e2 = self.env['hr.employee'].create({'name': 'Emp Paste 2'})
+        wizard = self.env['garment.worker.output.paste.wizard'].create({
+            'date': '2026-07-05',
+            'style_id': style.id,
+            'piece_rate_id': rate.id,
+            'paste_text': "PST01\t120\nEmp Paste 2\t95\n",
+        })
+        result = wizard.action_import()
+        rows = self.env['garment.worker.output'].search(result['domain'])
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(
+            rows.filtered(lambda r: r.employee_id == e1).quantity, 120)
+        self.assertEqual(
+            rows.filtered(lambda r: r.employee_id == e2).quantity, 95)
+
+    def test_paste_unknown_employee_rejected(self):
+        style = self.env['garment.style'].create({
+            'name': 'STYLE-PST-002', 'code': 'ST-PST-002',
+            'category': 'shirt'})
+        rate = self.env['garment.piece.rate'].create({
+            'style_id': style.id, 'operation': 'sewing',
+            'operation_detail': 'Paste2', 'rate_per_piece': 3500,
+            'smv': 10.0})
+        wizard = self.env['garment.worker.output.paste.wizard'].create({
+            'date': '2026-07-05',
+            'style_id': style.id,
+            'piece_rate_id': rate.id,
+            'paste_text': "KHONGCO99\t50\n",
+        })
+        with self.assertRaises(UserError):
+            wizard.action_import()

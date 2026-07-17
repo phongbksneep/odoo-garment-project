@@ -135,3 +135,71 @@ class WorkerOutputCopyWizard(models.TransientModel):
             'view_mode': 'list,form',
             'domain': [('id', 'in', new_rows.ids)],
         }
+
+
+class WorkerOutputPasteWizard(models.TransientModel):
+    """Dán sản lượng cuối ca từ Excel: mỗi dòng "Mã NV (hoặc tên) <tab> SL"."""
+    _name = 'garment.worker.output.paste.wizard'
+    _description = 'Dán Sản Lượng Từ Excel'
+
+    date = fields.Date(
+        string='Ngày', required=True, default=fields.Date.today)
+    sewing_line_id = fields.Many2one(
+        'garment.sewing.line', string='Chuyền May')
+    style_id = fields.Many2one(
+        'garment.style', string='Mã Hàng', required=True)
+    piece_rate_id = fields.Many2one(
+        'garment.piece.rate', string='Đơn Giá', required=True,
+        domain="[('style_id', '=', style_id)]")
+    paste_text = fields.Text(
+        string='Dán Từ Excel', required=True,
+        help='Mỗi dòng: Mã nhân viên (hoặc tên) [tab] số lượng.',
+    )
+
+    def action_import(self):
+        self.ensure_one()
+        Employee = self.env['hr.employee']
+        vals_list = []
+        errors = []
+        for raw in self.paste_text.splitlines():
+            if not raw.strip():
+                continue
+            sep = '\t' if '\t' in raw else ';'
+            cells = [c.strip() for c in raw.split(sep)]
+            if len(cells) < 2:
+                errors.append(_('Dòng "%s" thiếu số lượng.') % raw)
+                continue
+            emp = Employee.search(
+                ['|', ('employee_code', '=ilike', cells[0]),
+                 ('name', '=ilike', cells[0])], limit=1)
+            if not emp:
+                errors.append(
+                    _('Không tìm thấy nhân viên "%s".') % cells[0])
+                continue
+            try:
+                qty = int(float(cells[1].replace(',', '')))
+            except ValueError:
+                errors.append(
+                    _('SL "%s" của %s không phải là số.')
+                    % (cells[1], cells[0]))
+                continue
+            vals_list.append({
+                'date': self.date,
+                'employee_id': emp.id,
+                'sewing_line_id': self.sewing_line_id.id,
+                'style_id': self.style_id.id,
+                'piece_rate_id': self.piece_rate_id.id,
+                'quantity': qty,
+            })
+        if errors:
+            raise UserError('\n'.join(errors))
+        if not vals_list:
+            raise UserError(_('Không có dòng hợp lệ nào để nhập.'))
+        rows = self.env['garment.worker.output'].create(vals_list)
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Sản Lượng %s') % self.date,
+            'res_model': 'garment.worker.output',
+            'view_mode': 'list,form',
+            'domain': [('id', 'in', rows.ids)],
+        }

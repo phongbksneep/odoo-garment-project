@@ -58,4 +58,35 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
+    <record id="view_worker_output_paste_wizard_form" model="ir.ui.view">
+        <field name="name">garment.worker.output.paste.wizard.form</field>
+        <field name="model">garment.worker.output.paste.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Dán Sản Lượng Từ Excel">
+                <group>
+                    <group>
+                        <field name="date"/>
+                        <field name="sewing_line_id"/>
+                    </group>
+                    <group>
+                        <field name="style_id"/>
+                        <field name="piece_rate_id"/>
+                    </group>
+                </group>
+                <field name="paste_text" placeholder="NV001	120
+NV002	95"/>
+                <footer>
+                    <button name="action_import" string="Nhập Sản Lượng" type="object" class="btn-primary"/>
+                    <button string="Đóng" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_worker_output_paste_wizard" model="ir.actions.act_window">
+        <field name="name">Dán Sản Lượng Từ Excel</field>
+        <field name="res_model">garment.worker.output.paste.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 </odoo>

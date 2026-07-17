@@ -19,3 +19,4 @@ access_garment_wash_symbol_user,garment.wash.symbol.user,model_garment_wash_symb
 access_garment_wash_symbol_manager,garment.wash.symbol.manager,model_garment_wash_symbol,group_garment_manager,1,1,1,1
 access_garment_audit_log_user,garment.audit.log.user,model_garment_audit_log,group_garment_dept_manager,1,0,0,0
 access_garment_audit_log_manager,garment.audit.log.manager,model_garment_audit_log,group_garment_manager,1,1,1,1
+access_order_matrix_import_wizard,garment.order.matrix.import.wizard,model_garment_order_matrix_import_wizard,group_garment_team_leader,1,1,1,0

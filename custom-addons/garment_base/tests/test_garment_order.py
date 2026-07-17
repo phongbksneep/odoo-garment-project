@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 from odoo.tests import TransactionCase, tagged
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 @tagged('post_install', '-at_install')
@@ -239,3 +239,59 @@ class TestGarmentOrder(TransactionCase):
         self.assertEqual(order.state, 'cancelled')
         order.action_reset_draft()
         self.assertEqual(order.state, 'draft')
+
+
+@tagged('post_install', '-at_install')
+class TestOrderMatrixImport(TransactionCase):
+    """Dán ma trận size/màu từ Excel vào đơn hàng."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].create({
+            'name': 'Buyer Matrix', 'customer_rank': 1})
+        cls.style = cls.env['garment.style'].create({
+            'name': 'STYLE-MTX-001', 'code': 'ST-MTX-001',
+            'category': 'shirt'})
+        cls.order = cls.env['garment.order'].create({
+            'customer_id': cls.partner.id, 'style_id': cls.style.id,
+            'unit_price': 5.0})
+
+    def test_paste_matrix(self):
+        wizard = self.env['garment.order.matrix.import.wizard'].create({
+            'order_id': self.order.id,
+            'matrix_text': "\tS-MT\tM-MT\tL-MT\n"
+                           "Đen MT\t100\t200\t100\n"
+                           "Trắng MT\t50\t150\t0\n",
+            'create_missing': True,
+        })
+        wizard.action_import()
+        # 5 ô > 0 → 5 dòng
+        self.assertEqual(len(self.order.line_ids), 5)
+        self.assertEqual(self.order.total_qty, 600)
+
+    def test_paste_bad_number_rejected(self):
+        wizard = self.env['garment.order.matrix.import.wizard'].create({
+            'order_id': self.order.id,
+            'matrix_text': "\tS-MT2\nĐen MT2\tabc\n",
+            'create_missing': True,
+        })
+        with self.assertRaises(UserError):
+            wizard.action_import()
+
+    def test_paste_into_confirmed_rejected(self):
+        self.env['garment.order.line'].create({
+            'order_id': self.order.id,
+            'color_id': self.env['garment.color'].create(
+                {'name': 'C MTX', 'code': 'C-MTX'}).id,
+            'size_id': self.env['garment.size'].create(
+                {'name': 'S MTX', 'code': 'S-MTX',
+                 'size_type': 'letter'}).id,
+            'quantity': 10})
+        self.order.action_confirm()
+        wizard = self.env['garment.order.matrix.import.wizard'].create({
+            'order_id': self.order.id,
+            'matrix_text': "\tM-MT3\nXanh MT3\t5\n",
+        })
+        with self.assertRaises(UserError):
+            wizard.action_import()

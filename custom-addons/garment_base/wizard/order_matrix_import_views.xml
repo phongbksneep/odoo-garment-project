@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_order_matrix_import_wizard_form" model="ir.ui.view">
+        <field name="name">garment.order.matrix.import.wizard.form</field>
+        <field name="model">garment.order.matrix.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Nhập Bảng Size/Màu Từ Excel">
+                <group>
+                    <field name="order_id" readonly="1"/>
+                    <field name="create_missing"/>
+                </group>
+                <field name="matrix_text" placeholder="	S	M	L	XL
+Đen	100	200	200	100
+Trắng	50	150	150	50"/>
+                <footer>
+                    <button name="action_import" string="Nhập Vào Đơn" type="object" class="btn-primary"/>
+                    <button string="Đóng" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_order_matrix_import_wizard" model="ir.actions.act_window">
+        <field name="name">Nhập Bảng Size/Màu</field>
+        <field name="res_model">garment.order.matrix.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_garment_order"/>
+        <field name="binding_view_types">form</field>
+    </record>
+</odoo>
