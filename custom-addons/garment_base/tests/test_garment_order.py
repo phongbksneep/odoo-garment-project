@@ -161,11 +161,14 @@ class TestGarmentOrder(TransactionCase):
             self._add_line(order, qty=-10)
 
     def test_duplicate_color_size_rejected(self):
-        """Duplicate color+size in same order should be rejected."""
+        """Duplicate color+size in same order should be rejected (DB unique)."""
+        from odoo.tools import mute_logger
         order = self._create_order()
         self._add_line(order, color=self.color, size=self.size, qty=100)
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(Exception), \
+                self.env.cr.savepoint(), mute_logger('odoo.sql_db'):
             self._add_line(order, color=self.color, size=self.size, qty=50)
+            self.env.flush_all()
 
     def test_different_color_same_size_ok(self):
         """Different colors with same size is valid."""

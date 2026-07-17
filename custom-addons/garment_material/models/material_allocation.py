@@ -23,6 +23,7 @@ class GarmentMaterialAllocation(models.Model):
     )
     garment_order_id = fields.Many2one(
         'garment.order',
+        ondelete='restrict',
         string='Đơn Hàng May',
         required=True,
         tracking=True,

@@ -10,9 +10,11 @@ class GarmentWageCalculation(models.Model):
     _inherit = ['mail.thread', 'garment.audit.mixin']
     _order = 'month desc, employee_id'
 
-    _sql_constraints = [
-        ('name_uniq', 'unique(name)', 'Số phiếu lương phải là duy nhất!'),
-    ]
+    _name_uniq = models.Constraint(
+        'UNIQUE(name)', 'Số phiếu lương phải là duy nhất!')
+    _emp_period_uniq = models.Constraint(
+        'UNIQUE(employee_id, month, year)',
+        'Mỗi nhân viên chỉ có 1 phiếu lương/tháng!')
 
     def _audit_tracked_fields(self):
         return ['state', 'base_salary', 'total_wage', 'net_pay',
@@ -31,10 +33,19 @@ class GarmentWageCalculation(models.Model):
         required=True,
     )
     department_id = fields.Many2one(
-        related='employee_id.department_id',
+        'hr.department',
+        string='Phòng Ban',
+        compute='_compute_department_snapshot',
         store=True,
-        readonly=True,
+        readonly=False,
+        help='Chốt theo phòng ban của nhân viên tại thời điểm ghi nhận — '
+             'chuyển phòng ban sau này không viết lại lịch sử.',
     )
+
+    @api.depends('employee_id')
+    def _compute_department_snapshot(self):
+        for record in self:
+            record.department_id = record.employee_id.department_id
     month = fields.Selection([
         ('01', 'Tháng 1'), ('02', 'Tháng 2'), ('03', 'Tháng 3'),
         ('04', 'Tháng 4'), ('05', 'Tháng 5'), ('06', 'Tháng 6'),
@@ -724,6 +735,15 @@ class GarmentWageCalculation(models.Model):
         self.paid_leave_days = self._get_paid_leave_days()
         self.sick_leave_days = self._get_leave_days(('sick',))
         self.maternity_leave_days = self._get_leave_days(('maternity',))
+        # Kéo thưởng đã xác nhận/trả có ngày chi nằm trong tháng lương
+        bonus_lines = self.env['garment.bonus.line'].search([
+            ('employee_id', '=', self.employee_id.id),
+            ('bonus_id.state', 'in', ('confirmed', 'paid')),
+            ('bonus_id.date', '>=', self._period_start()),
+            ('bonus_id.date', '<', self._period_end()),
+        ])
+        if bonus_lines:
+            self.bonus_amount = sum(bonus_lines.mapped('amount'))
         self._compute_piece_totals()
         self._compute_base_amount()
         self._compute_ot_amount()

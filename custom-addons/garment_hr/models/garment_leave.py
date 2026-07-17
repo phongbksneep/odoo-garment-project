@@ -21,10 +21,19 @@ class GarmentLeave(models.Model):
         required=True,
     )
     department_id = fields.Many2one(
-        related='employee_id.department_id',
+        'hr.department',
+        string='Phòng Ban',
+        compute='_compute_department_snapshot',
         store=True,
-        readonly=True,
+        readonly=False,
+        help='Chốt theo phòng ban của nhân viên tại thời điểm ghi nhận — '
+             'chuyển phòng ban sau này không viết lại lịch sử.',
     )
+
+    @api.depends('employee_id')
+    def _compute_department_snapshot(self):
+        for record in self:
+            record.department_id = record.employee_id.department_id
     leave_type = fields.Selection([
         ('annual', 'Phép Năm'),
         ('sick', 'Nghỉ Ốm'),
@@ -86,6 +95,28 @@ class GarmentLeave(models.Model):
                     _('Chỉ đơn nghỉ Nháp mới được gửi duyệt.'))
         self.write({'state': 'submitted'})
 
+    def _check_wage_not_locked(self):
+        """Chặn duyệt/từ chối phép khi lương tháng liên quan đã chốt —
+        ngày nghỉ hưởng lương đã được tính vào phiếu lương."""
+        if 'garment.wage.calculation' not in self.env:
+            return  # garment_payroll chưa cài
+        Wage = self.env['garment.wage.calculation']
+        for rec in self:
+            for d in {rec.date_from, rec.date_to}:
+                if not d:
+                    continue
+                locked = Wage.search_count([
+                    ('employee_id', '=', rec.employee_id.id),
+                    ('month', '=', '%02d' % d.month),
+                    ('year', '=', d.year),
+                    ('state', 'in', ('confirmed', 'paid')),
+                ])
+                if locked:
+                    raise ValidationError(_(
+                        'Không thể thay đổi đơn nghỉ: phiếu lương tháng '
+                        '%02d/%d của %s đã được xác nhận/trả.',
+                        d.month, d.year, rec.employee_id.name))
+
     def action_approve(self):
         for rec in self:
             if rec.state != 'submitted':
@@ -98,6 +129,7 @@ class GarmentLeave(models.Model):
                         'Nhân viên %s chỉ còn %.1f ngày phép năm, '
                         'không thể duyệt đơn nghỉ %.1f ngày.',
                         rec.employee_id.name, remaining, rec.days))
+        self._check_wage_not_locked()
         self.write({
             'state': 'approved',
             'approved_by': self.env.user.employee_id.id,
@@ -108,6 +140,9 @@ class GarmentLeave(models.Model):
             if rec.state not in ('submitted', 'approved'):
                 raise ValidationError(
                     _('Chỉ đơn nghỉ Đã Gửi hoặc Đã Duyệt mới được từ chối.'))
+        # Từ chối đơn ĐÃ DUYỆT sau khi lương chốt → lương sai — chặn
+        self.filtered(
+            lambda r: r.state == 'approved')._check_wage_not_locked()
         self.write({'state': 'refused'})
 
     def action_reset_draft(self):

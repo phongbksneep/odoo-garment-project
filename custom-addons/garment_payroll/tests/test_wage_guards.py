@@ -1,4 +1,4 @@
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import TransactionCase, tagged
 
 
@@ -427,3 +427,129 @@ class TestPayrollReportWizards(TransactionCase):
         wizard.action_export()
         self.assertTrue(wizard.file_data)
         self.assertEqual(wizard.file_name, 'TNCN_2026.xlsx')
+
+
+@tagged('post_install', '-at_install')
+class TestPayrollDataLocks(TransactionCase):
+    """Snapshot đơn giá + khóa dữ liệu khi lương đã chốt."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.employee = cls.env['hr.employee'].create({'name': 'Emp Lock'})
+        cls.style = cls.env['garment.style'].create({
+            'name': 'STYLE-LOCK-001', 'code': 'ST-LOCK-001',
+            'category': 'shirt'})
+        cls.rate = cls.env['garment.piece.rate'].create({
+            'style_id': cls.style.id,
+            'operation': 'sewing',
+            'operation_detail': 'Lock test',
+            'rate_per_piece': 5000,
+            'smv': 10.0,
+        })
+
+    def _create_output(self, date='2026-04-05', qty=100):
+        return self.env['garment.worker.output'].create({
+            'employee_id': self.employee.id,
+            'date': date,
+            'style_id': self.style.id,
+            'piece_rate_id': self.rate.id,
+            'quantity': qty,
+        })
+
+    def test_rate_edit_does_not_rewrite_history(self):
+        """Sửa đơn giá gốc KHÔNG được viết lại sản lượng đã ghi nhận."""
+        output = self._create_output()
+        self.assertAlmostEqual(output.amount, 500000, places=0)
+        self.rate.write({'rate_per_piece': 9000})
+        self.assertAlmostEqual(output.rate_per_piece, 5000, places=0)
+        self.assertAlmostEqual(output.amount, 500000, places=0)
+        # Sản lượng MỚI lấy đơn giá mới
+        new_output = self._create_output(date='2026-04-06')
+        self.assertAlmostEqual(new_output.rate_per_piece, 9000, places=0)
+
+    def test_output_locked_after_wage_confirmed(self):
+        output = self._create_output()
+        wage = self.env['garment.wage.calculation'].create({
+            'employee_id': self.employee.id,
+            'month': '04', 'year': 2026,
+            'base_salary': 5200000,
+        })
+        wage.action_calculate()
+        wage.action_confirm()
+        with self.assertRaises(UserError):
+            output.write({'quantity': 999})
+        with self.assertRaises(UserError):
+            output.unlink()
+        with self.assertRaises(UserError):
+            self._create_output(date='2026-04-20')
+
+    def test_wage_unique_per_period(self):
+        from odoo.tools import mute_logger
+        self.env['garment.wage.calculation'].create({
+            'employee_id': self.employee.id, 'month': '03', 'year': 2026})
+        with self.assertRaises(Exception), \
+                self.env.cr.savepoint(), mute_logger('odoo.sql_db'):
+            self.env['garment.wage.calculation'].create({
+                'employee_id': self.employee.id,
+                'month': '03', 'year': 2026})
+            self.env.flush_all()
+
+    def test_bonus_flows_into_wage(self):
+        bonus = self.env['garment.bonus'].create({
+            'bonus_type': 'productivity',
+            'date': '2026-04-15',
+            'year': 2026,
+            'line_ids': [(0, 0, {
+                'employee_id': self.employee.id,
+                'amount': 1500000,
+            })],
+        })
+        bonus.action_confirm()
+        wage = self.env['garment.wage.calculation'].create({
+            'employee_id': self.employee.id,
+            'month': '04', 'year': 2026,
+            'base_salary': 5200000,
+        })
+        wage.action_calculate()
+        self.assertAlmostEqual(wage.bonus_amount, 1500000, places=0)
+
+    def test_department_snapshot(self):
+        """Chuyển phòng ban không viết lại phiếu lương cũ."""
+        dept_a = self.env['hr.department'].create({'name': 'Chuyền A Lock'})
+        dept_b = self.env['hr.department'].create({'name': 'Chuyền B Lock'})
+        self.employee.department_id = dept_a
+        wage = self.env['garment.wage.calculation'].create({
+            'employee_id': self.employee.id, 'month': '02', 'year': 2026})
+        self.assertEqual(wage.department_id, dept_a)
+        self.employee.department_id = dept_b
+        self.assertEqual(wage.department_id, dept_a)
+
+
+@tagged('post_install', '-at_install')
+class TestLeaveWageLock(TransactionCase):
+    """Không duyệt/từ chối phép khi lương tháng đó đã chốt."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.employee = cls.env['hr.employee'].create({
+            'name': 'Emp LeaveLock', 'join_date': '2024-01-01'})
+
+    def test_cannot_approve_leave_after_wage_confirmed(self):
+        wage = self.env['garment.wage.calculation'].create({
+            'employee_id': self.employee.id,
+            'month': '05', 'year': 2026,
+            'base_salary': 5200000,
+        })
+        wage.action_calculate()
+        wage.action_confirm()
+        leave = self.env['garment.leave'].create({
+            'employee_id': self.employee.id,
+            'leave_type': 'annual',
+            'date_from': '2026-05-11',
+            'date_to': '2026-05-12',
+        })
+        leave.action_submit()
+        with self.assertRaises(ValidationError):
+            leave.action_approve()

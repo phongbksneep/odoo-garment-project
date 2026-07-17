@@ -206,8 +206,15 @@ class GarmentCuttingOrderAdv(models.Model):
         self.ensure_one()
         if self.state == 'done':
             raise UserError(_('Cannot cancel a completed cutting order.'))
+        if self.bundle_ids.filtered('is_issued'):
+            raise UserError(_(
+                'Không thể hủy lệnh cắt đã có bó hàng giao cho chuyền may.'))
         self.write({'state': 'cancelled'})
 
     def action_reset_draft(self):
         self.ensure_one()
+        if self.bundle_ids.filtered('is_issued'):
+            raise UserError(_(
+                'Không thể đưa về Nháp: lệnh cắt đã có bó hàng giao cho '
+                'chuyền may.'))
         self.write({'state': 'draft'})

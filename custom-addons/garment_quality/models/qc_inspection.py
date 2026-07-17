@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class GarmentQCInspection(models.Model):
@@ -8,9 +8,8 @@ class GarmentQCInspection(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin', 'garment.audit.mixin']
     _order = 'create_date desc'
 
-    _sql_constraints = [
-        ('name_uniq', 'unique(name)', 'Số phiếu kiểm phải là duy nhất!'),
-    ]
+    _name_uniq = models.Constraint(
+        'UNIQUE(name)', 'Số phiếu kiểm phải là duy nhất!')
 
     def _audit_tracked_fields(self):
         return ['inspection_type', 'result', 'state', 'inspected_qty',
@@ -38,6 +37,7 @@ class GarmentQCInspection(models.Model):
     )
     garment_order_id = fields.Many2one(
         'garment.order',
+        ondelete='restrict',
         string='Đơn Hàng',
     )
     style_id = fields.Many2one(
@@ -170,6 +170,17 @@ class GarmentQCInspection(models.Model):
             rec.critical_defects = sum(
                 rec.defect_line_ids.filtered(lambda l: l.severity == 'critical').mapped('quantity')
             )
+
+    @api.constrains('inspected_qty', 'passed_qty')
+    def _check_qc_quantities(self):
+        for rec in self:
+            if rec.passed_qty < 0 or rec.inspected_qty < 0:
+                raise ValidationError(_(
+                    'Số lượng kiểm/đạt không được âm.'))
+            if rec.passed_qty > rec.inspected_qty:
+                raise ValidationError(_(
+                    'SL đạt (%d) không thể lớn hơn SL kiểm (%d).',
+                    rec.passed_qty, rec.inspected_qty))
 
     def action_start(self):
         for rec in self:

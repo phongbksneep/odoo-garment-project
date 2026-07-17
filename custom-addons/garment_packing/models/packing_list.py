@@ -17,6 +17,7 @@ class GarmentPackingList(models.Model):
     )
     garment_order_id = fields.Many2one(
         'garment.order',
+        ondelete='restrict',
         string='Garment Order',
     )
     buyer_id = fields.Many2one(

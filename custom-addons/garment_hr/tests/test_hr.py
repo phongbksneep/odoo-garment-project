@@ -349,3 +349,4 @@ class TestLeavePolicyOptions(TransactionCase):
         emp = self.env['hr.employee'].create({
             'name': 'Emp Policy NoSen', 'join_date': '2015-06-01'})
         self.assertAlmostEqual(emp.annual_leave_entitlement, 12.0, places=1)
+

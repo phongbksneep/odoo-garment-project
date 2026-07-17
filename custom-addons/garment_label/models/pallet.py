@@ -23,7 +23,8 @@ class GarmentPallet(models.Model):
     ], string='Loại Pallet', default='standard')
 
     garment_order_id = fields.Many2one(
-        'garment.order', string='Đơn Hàng May')
+        'garment.order',
+        ondelete='restrict', string='Đơn Hàng May')
     packing_list_id = fields.Many2one(
         'garment.packing.list', string='Packing List')
 

@@ -85,6 +85,28 @@ class GarmentDailyOutput(models.Model):
             if record.rework_qty < 0:
                 raise ValidationError('Số lượng sửa lại không được âm.')
 
+    @api.constrains('output_qty', 'production_order_id')
+    def _check_total_vs_planned(self):
+        """Tổng sản lượng không vượt SL kế hoạch của lệnh SX
+        (+ dung sai cấu hình, mặc định 5%)."""
+        icp = self.env['ir.config_parameter'].sudo()
+        try:
+            tolerance = float(
+                icp.get_param('garment_base.qty_tolerance_pct') or 5.0)
+        except (TypeError, ValueError):
+            tolerance = 5.0
+        for prod_order in self.production_order_id:
+            if not prod_order.planned_qty:
+                continue
+            total = sum(prod_order.daily_output_ids.mapped('output_qty'))
+            cap = prod_order.planned_qty * (1 + tolerance / 100)
+            if total > cap:
+                raise ValidationError(
+                    'Tổng sản lượng (%d) vượt SL kế hoạch của lệnh %s '
+                    '(%d, dung sai %.0f%%).'
+                    % (total, prod_order.name, prod_order.planned_qty,
+                       tolerance))
+
     @api.depends('target_qty', 'output_qty')
     def _compute_efficiency(self):
         for record in self:

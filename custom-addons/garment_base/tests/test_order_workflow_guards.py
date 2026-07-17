@@ -132,3 +132,63 @@ class TestOrderWorkflowGuards(TransactionCase):
         order.action_cancel()
         order.unlink()
         self.assertFalse(order.exists())
+
+
+@tagged('post_install', '-at_install')
+class TestOrderLinkGuards(TransactionCase):
+    """Liên kết hub: chặn hủy khi còn chứng từ con, khóa dòng sau xác nhận."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].create({
+            'name': 'Buyer Link Test', 'customer_rank': 1})
+        cls.style = cls.env['garment.style'].create({
+            'name': 'STYLE-LNK-001', 'code': 'ST-LNK-001',
+            'category': 'shirt'})
+        cls.color = cls.env['garment.color'].create({
+            'name': 'Đen Link', 'code': 'BLK-LNK'})
+        cls.size = cls.env['garment.size'].create({
+            'name': 'M-LNK', 'code': 'M-LNK', 'size_type': 'letter'})
+
+    def _create_confirmed_order(self):
+        order = self.env['garment.order'].create({
+            'customer_id': self.partner.id,
+            'style_id': self.style.id,
+            'unit_price': 5.0,
+        })
+        self.env['garment.order.line'].create({
+            'order_id': order.id,
+            'color_id': self.color.id,
+            'size_id': self.size.id,
+            'quantity': 1000,
+        })
+        order.action_confirm()
+        return order
+
+    def test_cannot_edit_lines_after_confirm(self):
+        order = self._create_confirmed_order()
+        with self.assertRaises(UserError):
+            self.env['garment.order.line'].create({
+                'order_id': order.id,
+                'color_id': self.color.id,
+                'size_id': self.env['garment.size'].create({
+                    'name': 'L-LNK', 'code': 'L-LNK',
+                    'size_type': 'letter'}).id,
+                'quantity': 500,
+            })
+        with self.assertRaises(UserError):
+            order.line_ids[0].write({'quantity': 1})
+        with self.assertRaises(UserError):
+            order.line_ids[0].unlink()
+
+    def test_cannot_edit_unit_price_after_confirm(self):
+        order = self._create_confirmed_order()
+        with self.assertRaises(UserError):
+            order.write({'unit_price': 99})
+
+    def test_edit_lines_in_draft_ok(self):
+        order = self._create_confirmed_order()
+        order.action_reset_draft()
+        order.line_ids[0].write({'quantity': 900})
+        self.assertEqual(order.total_qty, 900)

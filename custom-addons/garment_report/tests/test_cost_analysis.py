@@ -54,6 +54,16 @@ class TestCostAnalysis(TransactionCase):
             'customer_id': cls.partner.id,
             'style_id': cls.style.id,
         })
+        cls.env['garment.order.line'].create({
+            'order_id': cls.garment_order.id,
+            'color_id': cls.env['garment.color'].create(
+                {'name': 'Cost Red', 'code': 'CRED-T'}).id,
+            'size_id': cls.env['garment.size'].create(
+                {'name': 'Cost M', 'code': 'CM-T',
+                 'size_type': 'letter'}).id,
+            'quantity': 5000,
+        })
+        cls.garment_order.action_confirm()
 
         # Create production order
         cls.prod_order = cls.env['garment.production.order'].create({

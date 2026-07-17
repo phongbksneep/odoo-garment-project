@@ -8,9 +8,8 @@ class GarmentOrder(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin', 'garment.audit.mixin']
     _order = 'create_date desc'
 
-    _sql_constraints = [
-        ('name_uniq', 'unique(name)', 'Số đơn hàng phải là duy nhất!'),
-    ]
+    _name_uniq = models.Constraint(
+        'UNIQUE(name)', 'Số đơn hàng phải là duy nhất!')
 
     def _audit_tracked_fields(self):
         return ['customer_id', 'customer_po', 'style_id', 'delivery_date',
@@ -260,12 +259,50 @@ class GarmentOrder(models.Model):
     def action_done(self):
         self._check_forward('done')
 
+    # Trạng thái coi là "đã kết thúc" ở chứng từ con — không chặn hủy đơn
+    _CHILD_TERMINAL_STATES = ('done', 'cancelled', 'delivered', 'shipped',
+                              'paid')
+
+    def _get_open_child_documents(self):
+        """Liệt kê chứng từ con đang mở tham chiếu đơn hàng này.
+
+        Quét mọi model thường có trường ``garment_order_id`` (Many2one tới
+        garment.order) kèm trường ``state`` — module mới thêm sau sẽ tự
+        được bảo vệ mà không cần đăng ký gì thêm.
+        """
+        self.ensure_one()
+        blocking = []
+        for model_name in self.env.registry:
+            model = self.env[model_name]
+            if model._transient or not model._auto or model._abstract:
+                continue
+            field = model._fields.get('garment_order_id')
+            state = model._fields.get('state')
+            if (not field or field.type != 'many2one'
+                    or field.comodel_name != 'garment.order'
+                    or field.related
+                    or not state or state.type != 'selection'):
+                continue
+            count = model.sudo().search_count([
+                ('garment_order_id', '=', self.id),
+                ('state', 'not in', list(self._CHILD_TERMINAL_STATES)),
+            ])
+            if count:
+                blocking.append('- %s: %d' % (model._description, count))
+        return blocking
+
     def action_cancel(self):
         for order in self:
             if order.state in ('shipped', 'done'):
                 raise UserError(_(
                     'Không thể hủy đơn hàng %s đã giao/hoàn thành.',
                     order.name))
+            blocking = order._get_open_child_documents()
+            if blocking:
+                raise UserError(_(
+                    'Không thể hủy đơn hàng %s khi còn chứng từ liên quan '
+                    'đang mở. Hãy hủy/hoàn tất các chứng từ sau trước:\n%s',
+                    order.name, '\n'.join(blocking)))
         self.write({'state': 'cancelled'})
 
     def action_reset_draft(self):
@@ -283,6 +320,18 @@ class GarmentOrder(models.Model):
                     'Không thể xóa đơn hàng %s ở trạng thái hiện tại. '
                     'Hãy hủy đơn trước khi xóa.', order.name))
         return super().unlink()
+
+    def write(self, vals):
+        # Khóa dòng chi tiết và đơn giá sau khi rời trạng thái Nháp —
+        # chứng từ con (sản xuất, cắt, phân bổ...) đã lấy số theo bản Nháp
+        guarded = {'line_ids', 'unit_price'}
+        if (guarded & set(vals)
+                and not self.env.context.get('install_mode')
+                and any(order.state != 'draft' for order in self)):
+            raise UserError(_(
+                'Chỉ đơn hàng Nháp mới được sửa chi tiết size/màu hoặc '
+                'đơn giá. Hãy đưa đơn về Nháp trước khi sửa.'))
+        return super().write(vals)
 
 
 class GarmentOrderLine(models.Model):
@@ -324,40 +373,9 @@ class GarmentOrderLine(models.Model):
         digits='Product Price',
     )
 
-    _sql_constraints = [
-        ('unique_order_color_size',
-         'UNIQUE(order_id, color_id, size_id)',
-         'Mỗi kết hợp Màu/Size chỉ được nhập 1 lần trong đơn hàng.'),
-    ]
-
-    @api.constrains('order_id', 'color_id', 'size_id')
-    def _check_unique_color_size(self):
-        # Một truy vấn gộp cho cả batch thay vì search_count theo từng dòng
-        seen = set()
-        for line in self:
-            key = (line.order_id.id, line.color_id.id, line.size_id.id)
-            if key in seen:
-                raise ValidationError(
-                    _('Màu %s / Size %s đã tồn tại trong đơn hàng.',
-                      line.color_id.name, line.size_id.name)
-                )
-            seen.add(key)
-        others = self.search_read(
-            [('order_id', 'in', self.order_id.ids),
-             ('id', 'not in', self.ids)],
-            ['order_id', 'color_id', 'size_id'],
-        )
-        existing = {
-            (o['order_id'][0], o['color_id'][0], o['size_id'][0])
-            for o in others
-        }
-        for line in self:
-            key = (line.order_id.id, line.color_id.id, line.size_id.id)
-            if key in existing:
-                raise ValidationError(
-                    _('Màu %s / Size %s đã tồn tại trong đơn hàng.',
-                      line.color_id.name, line.size_id.name)
-                )
+    _unique_order_color_size = models.Constraint(
+        'UNIQUE(order_id, color_id, size_id)',
+        'Mỗi kết hợp Màu/Size chỉ được nhập 1 lần trong đơn hàng.')
 
     @api.constrains('quantity')
     def _check_quantity(self):
@@ -372,3 +390,28 @@ class GarmentOrderLine(models.Model):
     def _compute_subtotal(self):
         for line in self:
             line.subtotal = line.quantity * line.unit_price
+
+    def _check_order_editable(self):
+        if self.env.context.get('install_mode'):
+            return  # nạp dữ liệu demo/module
+        for line in self:
+            if line.order_id.state != 'draft':
+                raise UserError(_(
+                    'Không thể thêm/sửa/xóa dòng của đơn hàng %s đã xác '
+                    'nhận. Hãy đưa đơn về Nháp trước.', line.order_id.name))
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        lines = super().create(vals_list)
+        lines._check_order_editable()
+        return lines
+
+    def write(self, vals):
+        # Cho phép hệ thống cập nhật trường liên quan (unit_price related)
+        if not set(vals) <= {'subtotal', 'unit_price'}:
+            self._check_order_editable()
+        return super().write(vals)
+
+    def unlink(self):
+        self._check_order_editable()
+        return super().unlink()

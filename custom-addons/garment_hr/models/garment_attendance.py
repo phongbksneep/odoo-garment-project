@@ -14,10 +14,19 @@ class GarmentAttendance(models.Model):
         required=True,
     )
     department_id = fields.Many2one(
-        related='employee_id.department_id',
+        'hr.department',
+        string='Phòng Ban',
+        compute='_compute_department_snapshot',
         store=True,
-        readonly=True,
+        readonly=False,
+        help='Chốt theo phòng ban của nhân viên tại thời điểm ghi nhận — '
+             'chuyển phòng ban sau này không viết lại lịch sử.',
     )
+
+    @api.depends('employee_id')
+    def _compute_department_snapshot(self):
+        for record in self:
+            record.department_id = record.employee_id.department_id
     date = fields.Date(
         string='Ngày',
         required=True,
@@ -89,10 +98,19 @@ class GarmentAttendanceSummary(models.Model):
         required=True,
     )
     department_id = fields.Many2one(
-        related='employee_id.department_id',
+        'hr.department',
+        string='Phòng Ban',
+        compute='_compute_department_snapshot',
         store=True,
-        readonly=True,
+        readonly=False,
+        help='Chốt theo phòng ban của nhân viên tại thời điểm ghi nhận — '
+             'chuyển phòng ban sau này không viết lại lịch sử.',
     )
+
+    @api.depends('employee_id')
+    def _compute_department_snapshot(self):
+        for record in self:
+            record.department_id = record.employee_id.department_id
     month = fields.Selection([
         ('01', 'Tháng 1'), ('02', 'Tháng 2'), ('03', 'Tháng 3'),
         ('04', 'Tháng 4'), ('05', 'Tháng 5'), ('06', 'Tháng 6'),

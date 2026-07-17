@@ -20,6 +20,7 @@ class GarmentProductionOrder(models.Model):
     )
     garment_order_id = fields.Many2one(
         'garment.order',
+        ondelete='restrict',
         string='Đơn Hàng May',
         required=True,
         index=True,
@@ -102,6 +103,33 @@ class GarmentProductionOrder(models.Model):
 
     notes = fields.Html(string='Ghi Chú')
 
+    @api.constrains('planned_qty', 'garment_order_id')
+    def _check_planned_vs_order(self):
+        """Tổng SL kế hoạch các lệnh SX không vượt SL đơn hàng
+        (+ dung sai cấu hình, mặc định 5%)."""
+        icp = self.env['ir.config_parameter'].sudo()
+        try:
+            tolerance = float(
+                icp.get_param('garment_base.qty_tolerance_pct') or 5.0)
+        except (TypeError, ValueError):
+            tolerance = 5.0
+        for order in self:
+            g_order = order.garment_order_id
+            if not g_order or not g_order.total_qty:
+                continue
+            siblings = self.search([
+                ('garment_order_id', '=', g_order.id),
+                ('state', '!=', 'cancelled'),
+            ])
+            total_planned = sum(siblings.mapped('planned_qty'))
+            cap = g_order.total_qty * (1 + tolerance / 100)
+            if total_planned > cap:
+                raise ValidationError(
+                    'Tổng SL kế hoạch (%d) vượt SL đơn hàng %s (%d, dung '
+                    'sai %.0f%%). Kiểm tra lại các lệnh sản xuất.'
+                    % (total_planned, g_order.name, g_order.total_qty,
+                       tolerance))
+
     @api.constrains('planned_qty')
     def _check_planned_qty(self):
         for order in self:
@@ -156,6 +184,14 @@ class GarmentProductionOrder(models.Model):
                 order.delay_days = 0
 
     def action_confirm(self):
+        for order in self:
+            if order.state != 'draft':
+                raise UserError('Chỉ lệnh sản xuất Nháp mới được xác nhận.')
+            if order.garment_order_id.state in ('draft', 'cancelled'):
+                raise UserError(
+                    'Không thể xác nhận lệnh sản xuất cho đơn hàng %s '
+                    'chưa xác nhận hoặc đã hủy.'
+                    % order.garment_order_id.name)
         self.write({'state': 'confirmed'})
 
     def action_start(self):
@@ -166,6 +202,11 @@ class GarmentProductionOrder(models.Model):
             order.write(vals)
 
     def action_done(self):
+        for order in self:
+            if order.completed_qty <= 0:
+                raise UserError(
+                    'Lệnh sản xuất %s chưa có sản lượng — không thể '
+                    'hoàn thành.' % order.name)
         self.write({
             'state': 'done',
             'actual_end_date': fields.Date.today(),

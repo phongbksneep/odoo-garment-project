@@ -54,6 +54,9 @@ class TestDefectAnalysis(TransactionCase):
             'defect_type_id': cls.defect_type.id,
             'quantity': 5,
         })
+        # View chỉ tổng hợp phiếu kiểm đã hoàn thành
+        cls.inspection.action_start()
+        cls.inspection.action_done()
 
     def _refresh_view(self):
         self.env.flush_all()

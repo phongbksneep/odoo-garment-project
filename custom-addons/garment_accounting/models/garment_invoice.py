@@ -8,9 +8,8 @@ class GarmentInvoice(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'date desc'
 
-    _sql_constraints = [
-        ('name_uniq', 'unique(name)', 'Số hóa đơn phải là duy nhất!'),
-    ]
+    _name_uniq = models.Constraint(
+        'UNIQUE(name)', 'Số hóa đơn phải là duy nhất!')
 
     name = fields.Char(
         string='Số Hóa Đơn',
@@ -35,6 +34,7 @@ class GarmentInvoice(models.Model):
     )
     garment_order_id = fields.Many2one(
         'garment.order',
+        ondelete='restrict',
         string='Đơn Hàng May',
         help='Liên kết đơn hàng may (nếu có)',
     )

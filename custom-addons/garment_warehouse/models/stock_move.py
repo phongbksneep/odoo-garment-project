@@ -49,6 +49,7 @@ class GarmentStockMove(models.Model):
     )
     garment_order_id = fields.Many2one(
         'garment.order',
+        ondelete='restrict',
         string='Đơn Hàng May',
     )
     production_order_id = fields.Many2one(

@@ -98,10 +98,19 @@ class GarmentBonusLine(models.Model):
         required=True,
     )
     department_id = fields.Many2one(
-        related='employee_id.department_id',
+        'hr.department',
+        string='Phòng Ban',
+        compute='_compute_department_snapshot',
         store=True,
-        readonly=True,
+        readonly=False,
+        help='Chốt theo phòng ban của nhân viên tại thời điểm ghi nhận — '
+             'chuyển phòng ban sau này không viết lại lịch sử.',
     )
+
+    @api.depends('employee_id')
+    def _compute_department_snapshot(self):
+        for record in self:
+            record.department_id = record.employee_id.department_id
     amount = fields.Float(
         string='Số Tiền Thưởng (VNĐ)',
         required=True,

@@ -55,6 +55,7 @@ class GarmentDefectAnalysis(models.Model):
                 FROM garment_qc_defect_line dl
                 LEFT JOIN garment_qc_inspection qi
                     ON dl.inspection_id = qi.id
+                WHERE qi.state = 'done'
                 GROUP BY
                     qi.inspection_date,
                     qi.style_id,

@@ -37,6 +37,7 @@ class GarmentCostSheet(models.Model):
     )
     garment_order_id = fields.Many2one(
         'garment.order',
+        ondelete='restrict',
         string='Garment Order',
     )
     bom_id = fields.Many2one(

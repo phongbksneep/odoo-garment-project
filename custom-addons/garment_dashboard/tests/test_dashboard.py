@@ -33,7 +33,7 @@ class TestGarmentDashboard(TransactionCase):
             'order_id': cls.order.id,
             'color_id': cls.color.id,
             'size_id': cls.size.id,
-            'quantity': 100,
+            'quantity': 2000,
         })
         cls.order.action_confirm()
 

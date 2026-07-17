@@ -60,5 +60,6 @@ class GarmentEfficiencyAnalysis(models.Model):
                     ON po.style_id = gs.id
                 LEFT JOIN garment_sewing_line sl
                     ON dout.sewing_line_id = sl.id
+                WHERE COALESCE(po.state, '') != 'cancelled'
             )
         """ % self._table)

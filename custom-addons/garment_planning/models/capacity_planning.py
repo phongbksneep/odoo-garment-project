@@ -19,6 +19,7 @@ class GarmentCapacityPlanning(models.Model):
     )
     garment_order_id = fields.Many2one(
         'garment.order',
+        ondelete='restrict',
         string='Đơn Hàng May',
     )
     style_id = fields.Many2one(

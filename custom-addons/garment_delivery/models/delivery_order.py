@@ -42,12 +42,25 @@ class GarmentDeliveryOrder(models.Model):
     )
     garment_order_id = fields.Many2one(
         'garment.order',
+        ondelete='restrict',
         string='Đơn Hàng May',
     )
     packing_list_id = fields.Many2one(
         'garment.packing.list',
         string='Packing List',
     )
+
+    @api.onchange('packing_list_id')
+    def _onchange_packing_list_id(self):
+        """Điền số liệu hàng hóa theo packing list — tránh gõ tay lệch."""
+        pl = self.packing_list_id
+        if pl:
+            self.garment_order_id = pl.garment_order_id
+            self.total_cartons = pl.total_cartons
+            self.total_pcs = pl.total_pieces
+            self.gross_weight = pl.total_gross_weight
+            self.net_weight = pl.total_net_weight
+            self.volume_cbm = pl.total_cbm
     vehicle_id = fields.Many2one(
         'garment.vehicle',
         string='Phương Tiện',

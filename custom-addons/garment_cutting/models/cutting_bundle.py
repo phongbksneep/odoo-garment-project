@@ -66,3 +66,11 @@ class GarmentCuttingBundle(models.Model):
                 'is_issued': True,
                 'issued_date': fields.Date.today(),
             })
+
+    def unlink(self):
+        for bundle in self:
+            if bundle.is_issued:
+                raise UserError(_(
+                    'Không thể xóa bó hàng %s đã giao cho chuyền may.',
+                    bundle.bundle_no))
+        return super().unlink()

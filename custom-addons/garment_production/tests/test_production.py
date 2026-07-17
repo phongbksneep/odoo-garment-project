@@ -55,6 +55,14 @@ class TestProductionOrder(TransactionCase):
         vals.update(kwargs)
         return self.env['garment.production.order'].create(vals)
 
+    def _add_output(self, po, qty=100):
+        return self.env['garment.daily.output'].create({
+            'production_order_id': po.id,
+            'output_qty': qty,
+            'target_qty': qty,
+            'shift': 'morning',
+        })
+
     # --- Sequence ---
     def test_name_auto_generated(self):
         po = self._create_production_order()
@@ -85,6 +93,7 @@ class TestProductionOrder(TransactionCase):
         po.action_start()
         self.assertEqual(po.state, 'in_progress')
         self.assertEqual(po.start_date, fields.Date.today())
+        self._add_output(po)
         po.action_done()
         self.assertEqual(po.state, 'done')
         self.assertEqual(po.actual_end_date, fields.Date.today())
@@ -93,6 +102,7 @@ class TestProductionOrder(TransactionCase):
         po = self._create_production_order()
         po.action_confirm()
         po.action_start()
+        self._add_output(po)
         po.action_done()
         with self.assertRaises(UserError):
             po.action_cancel()
@@ -165,6 +175,7 @@ class TestProductionOrder(TransactionCase):
         )
         po.action_confirm()
         po.action_start()
+        self._add_output(po)
         po.action_done()
         self.assertFalse(po.is_overdue)
         self.assertEqual(po.delay_days, 0)
@@ -176,6 +187,7 @@ class TestProductionOrder(TransactionCase):
         )
         po.action_confirm()
         po.write({'state': 'in_progress'})
+        self._add_output(po)
         po.action_done()
         # actual_end_date = today, end_date = 5 days ago => 5 days late
         self.assertTrue(po.is_overdue)
@@ -273,3 +285,92 @@ class TestDailyOutput(TransactionCase):
     def test_pieces_per_hour_no_workers(self):
         do = self._create_output(output_qty=80, worker_count=0)
         self.assertAlmostEqual(do.pieces_per_hour, 0.0)
+
+
+@tagged('post_install', '-at_install')
+class TestProductionLinkGuards(TransactionCase):
+    """Liên kết SX ↔ đơn hàng: trần số lượng, trạng thái đơn."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].create({
+            'name': 'Buyer ProdLink', 'customer_rank': 1})
+        cls.style = cls.env['garment.style'].create({
+            'name': 'STYLE-PLNK-001', 'code': 'ST-PLNK-001',
+            'category': 'shirt'})
+        cls.color = cls.env['garment.color'].create({
+            'name': 'Đen PLnk', 'code': 'BLK-PLNK'})
+        cls.size = cls.env['garment.size'].create({
+            'name': 'M-PLNK', 'code': 'M-PLNK', 'size_type': 'letter'})
+
+    def _create_order(self, qty=1000, confirm=True):
+        order = self.env['garment.order'].create({
+            'customer_id': self.partner.id,
+            'style_id': self.style.id,
+            'unit_price': 5.0,
+        })
+        self.env['garment.order.line'].create({
+            'order_id': order.id,
+            'color_id': self.color.id,
+            'size_id': self.size.id,
+            'quantity': qty,
+        })
+        if confirm:
+            order.action_confirm()
+        return order
+
+    def _create_po(self, order, qty):
+        return self.env['garment.production.order'].create({
+            'garment_order_id': order.id,
+            'planned_qty': qty,
+        })
+
+    def test_planned_qty_over_order_rejected(self):
+        order = self._create_order(qty=1000)
+        self._create_po(order, 800)
+        # 800 + 800 = 1600 > 1050 (dung sai 5%)
+        with self.assertRaises(ValidationError):
+            self._create_po(order, 800)
+
+    def test_planned_qty_within_tolerance_ok(self):
+        order = self._create_order(qty=1000)
+        po = self._create_po(order, 1050)  # đúng mức dung sai 5%
+        self.assertTrue(po)
+
+    def test_cannot_confirm_po_for_draft_order(self):
+        order = self._create_order(confirm=False)
+        po = self._create_po(order, 100)
+        with self.assertRaises(UserError):
+            po.action_confirm()
+
+    def test_cannot_cancel_order_with_open_po(self):
+        order = self._create_order(qty=1000)
+        po = self._create_po(order, 500)
+        po.action_confirm()
+        with self.assertRaises(UserError):
+            order.action_cancel()
+        po.action_cancel()
+        order.action_cancel()
+        self.assertEqual(order.state, 'cancelled')
+
+    def test_output_over_planned_rejected(self):
+        order = self._create_order(qty=1000)
+        po = self._create_po(order, 100)
+        po.action_confirm()
+        self.env['garment.daily.output'].create({
+            'production_order_id': po.id,
+            'output_qty': 80, 'target_qty': 80, 'shift': 'morning'})
+        # 80 + 40 = 120 > 105 (dung sai 5%)
+        with self.assertRaises(ValidationError):
+            self.env['garment.daily.output'].create({
+                'production_order_id': po.id,
+                'output_qty': 40, 'target_qty': 40, 'shift': 'afternoon'})
+
+    def test_cannot_done_without_output(self):
+        order = self._create_order(qty=1000)
+        po = self._create_po(order, 100)
+        po.action_confirm()
+        po.action_start()
+        with self.assertRaises(UserError):
+            po.action_done()

@@ -49,6 +49,7 @@ class SubcontractOrder(models.Model):
     # Internal references
     garment_order_id = fields.Many2one(
         'garment.order',
+        ondelete='restrict',
         string='Đơn Hàng May Gốc',
         tracking=True,
         help='Đơn hàng may nội bộ liên quan',
