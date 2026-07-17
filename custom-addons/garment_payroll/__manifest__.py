@@ -22,6 +22,7 @@ Garment Piece-Rate Payroll
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/payroll_security.xml',
         'data/payroll_data.xml',
         'views/piece_rate_views.xml',
         'views/worker_output_views.xml',

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Công nhân chỉ xem được phiếu lương của chính mình -->
+    <record id="rule_wage_calculation_user_own" model="ir.rule">
+        <field name="name">Wage: User Sees Own Only</field>
+        <field name="model_id" ref="model_garment_wage_calculation"/>
+        <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('garment_base.group_garment_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- Tổ trưởng trở lên: xem tất cả phiếu lương -->
+    <record id="rule_wage_calculation_tl_all" model="ir.rule">
+        <field name="name">Wage: Team Leader+ Sees All</field>
+        <field name="model_id" ref="model_garment_wage_calculation"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('garment_base.group_garment_team_leader'))]"/>
+    </record>
+
+    <!-- Công nhân chỉ xem được dòng thưởng của chính mình -->
+    <record id="rule_bonus_line_user_own" model="ir.rule">
+        <field name="name">Bonus Line: User Sees Own Only</field>
+        <field name="model_id" ref="model_garment_bonus_line"/>
+        <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('garment_base.group_garment_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_bonus_line_tl_all" model="ir.rule">
+        <field name="name">Bonus Line: Team Leader+ Sees All</field>
+        <field name="model_id" ref="model_garment_bonus_line"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('garment_base.group_garment_team_leader'))]"/>
+    </record>
+</odoo>
