@@ -1,0 +1,437 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_mobile
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"Language: vi_VN\n"
+
+#. module: garment_mobile
+#: model:ir.actions.client,name:garment_mobile.action_mobile_dashboard
+msgid "Bảng Điều Khiển Mobile"
+msgstr "Bảng Điều Khiển Mobile"
+
+#. module: garment_mobile
+#: model:ir.model.fields.selection,name:garment_mobile.selection__garment_order__approval_state__draft
+msgid "Chưa Gửi Duyệt"
+msgstr "Chưa Gửi Duyệt"
+
+#. module: garment_mobile
+#. odoo-python
+#: code:addons/garment_mobile/models/garment_approval.py:0
+msgid "Chỉ có thể duyệt đơn hàng đang ở trạng thái Chờ Duyệt."
+msgstr "Chỉ có thể duyệt đơn hàng đang ở trạng thái Chờ Duyệt."
+
+#. module: garment_mobile
+#. odoo-python
+#: code:addons/garment_mobile/models/garment_approval.py:0
+msgid "Chỉ có thể gửi duyệt đơn hàng ở trạng thái Nháp hoặc Từ Chối."
+msgstr "Chỉ có thể gửi duyệt đơn hàng ở trạng thái Nháp hoặc Từ Chối."
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+#: model:ir.model.fields.selection,name:garment_mobile.selection__garment_order__approval_state__pending
+#: model:ir.ui.menu,name:garment_mobile.menu_pending_approvals
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_search_approval
+msgid "Chờ Duyệt"
+msgstr "Chờ Duyệt"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Chờ Giao"
+msgstr "Chờ Giao"
+
+#. module: garment_mobile
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_rejection_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_mobile
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_rejection_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Còn"
+msgstr "Còn"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Dashboard"
+msgstr ""
+
+#. module: garment_mobile
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_mobile_dashboard__display_name
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_order__display_name
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_rejection_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_mobile
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_order__approval_note
+msgid "Ghi Chú Duyệt"
+msgstr "Ghi Chú Duyệt"
+
+#. module: garment_mobile
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_form_approval
+msgid "Ghi chú phê duyệt..."
+msgstr "Ghi chú phê duyệt..."
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Giao Hàng"
+msgstr "Giao Hàng"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Hôm nay"
+msgstr "Hôm nay"
+
+#. module: garment_mobile
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_rejection_wizard_form
+msgid "Hủy"
+msgstr "Hủy"
+
+#. module: garment_mobile
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_mobile_dashboard__id
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_order__id
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_rejection_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Kho"
+msgstr ""
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Kiểm QC"
+msgstr "Kiểm QC"
+
+#. module: garment_mobile
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_form_approval
+msgid "Kết Quả Duyệt"
+msgstr "Kết Quả Duyệt"
+
+#. module: garment_mobile
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_rejection_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_mobile
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_rejection_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_mobile
+#. odoo-python
+#: code:addons/garment_mobile/models/garment_approval.py:0
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_order__rejection_reason
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_rejection_wizard__reason
+msgid "Lý Do Từ Chối"
+msgstr "Lý Do Từ Chối"
+
+#. module: garment_mobile
+#: model:ir.model,name:garment_mobile.model_garment_mobile_dashboard
+msgid "Mobile Dashboard Data Provider"
+msgstr ""
+
+#. module: garment_mobile
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_order__approval_date
+msgid "Ngày Duyệt"
+msgstr "Ngày Duyệt"
+
+#. module: garment_mobile
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_order__approval_requested_date
+msgid "Ngày Gửi Duyệt"
+msgstr "Ngày Gửi Duyệt"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Ngày mai"
+msgstr "Ngày mai"
+
+#. module: garment_mobile
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_order__approved_by
+msgid "Người Duyệt"
+msgstr "Người Duyệt"
+
+#. module: garment_mobile
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_order__approval_requested_by
+msgid "Người Gửi Duyệt"
+msgstr "Người Gửi Duyệt"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Nhân Sự"
+msgstr "Nhân Sự"
+
+#. module: garment_mobile
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_rejection_wizard_form
+msgid "Nhập lý do từ chối..."
+msgstr "Nhập lý do từ chối..."
+
+#. module: garment_mobile
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_form_approval
+msgid "Phê Duyệt"
+msgstr "Phê Duyệt"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "SX Đang Chạy"
+msgstr "SX Đang Chạy"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Sản Xuất"
+msgstr "Sản Xuất"
+
+#. module: garment_mobile
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_order__approval_state
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_form_approval
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_search_approval
+msgid "Trạng Thái Duyệt"
+msgstr "Trạng Thái Duyệt"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Trễ"
+msgstr "Trễ"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Tải lại"
+msgstr "Tải lại"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Tỉ Lệ Đạt QC"
+msgstr "Tỉ Lệ Đạt QC"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Tổng kế hoạch:"
+msgstr "Tổng kế hoạch:"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Tổng Đơn Hàng"
+msgstr "Tổng Đơn Hàng"
+
+#. module: garment_mobile
+#: model:ir.model.fields.selection,name:garment_mobile.selection__garment_order__approval_state__rejected
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_search_approval
+msgid "Từ Chối"
+msgstr "Từ Chối"
+
+#. module: garment_mobile
+#: model:ir.model,name:garment_mobile.model_garment_rejection_wizard
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_rejection_wizard_form
+msgid "Từ Chối Đơn Hàng"
+msgstr "Từ Chối Đơn Hàng"
+
+#. module: garment_mobile
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_rejection_wizard_form
+msgid "Xác Nhận Từ Chối"
+msgstr "Xác Nhận Từ Chối"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "cần xử lý"
+msgstr "cần xử lý"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "hoàn thành"
+msgstr "hoàn thành"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "kiểm tra"
+msgstr "kiểm tra"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "ngày"
+msgstr "ngày"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Đang Sản Xuất"
+msgstr "Đang Sản Xuất"
+
+#. module: garment_mobile
+#: model:ir.model.fields.selection,name:garment_mobile.selection__garment_order__approval_state__approved
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_search_approval
+msgid "Đã Duyệt"
+msgstr "Đã Duyệt"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Đã Giao"
+msgstr "Đã Giao"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Đã hoàn thành:"
+msgstr "Đã hoàn thành:"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Đóng Gói"
+msgstr "Đóng Gói"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+#: model:ir.model.fields,field_description:garment_mobile.field_garment_rejection_wizard__order_id
+msgid "Đơn Hàng"
+msgstr "Đơn Hàng"
+
+#. module: garment_mobile
+#: model:ir.model,name:garment_mobile.model_garment_order
+msgid "Đơn Hàng May"
+msgstr "Đơn Hàng May"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "Đơn Trễ Hạn"
+msgstr "Đơn Trễ Hạn"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "đơn hàng"
+msgstr "đơn hàng"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "⏳ Đang tải dữ liệu..."
+msgstr "⏳ Đang tải dữ liệu..."
+
+#. module: garment_mobile
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_form_approval
+msgid "⏳ Đơn hàng đang chờ duyệt"
+msgstr "⏳ Đơn hàng đang chờ duyệt"
+
+#. module: garment_mobile
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_form_approval
+msgid "✅ Duyệt"
+msgstr "✅ Duyệt"
+
+#. module: garment_mobile
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_form_approval
+msgid "✅ Đơn hàng đã được duyệt"
+msgstr "✅ Đơn hàng đã được duyệt"
+
+#. module: garment_mobile
+#. odoo-python
+#: code:addons/garment_mobile/models/garment_approval.py:0
+msgid "✅ Đơn hàng đã được duyệt bởi %s"
+msgstr "✅ Đơn hàng đã được duyệt bởi %s"
+
+#. module: garment_mobile
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_form_approval
+msgid "❌ Từ Chối"
+msgstr "❌ Từ Chối"
+
+#. module: garment_mobile
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_form_approval
+msgid "❌ Đơn hàng bị từ chối"
+msgstr "❌ Đơn hàng bị từ chối"
+
+#. module: garment_mobile
+#. odoo-python
+#: code:addons/garment_mobile/models/garment_approval.py:0
+msgid "❌ Đơn hàng bị từ chối bởi %s<br/>Lý do: %s"
+msgstr "❌ Đơn hàng bị từ chối bởi %s<br/>Lý do: %s"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "📅 Giao Hàng Sắp Tới (3 Ngày)"
+msgstr "📅 Giao Hàng Sắp Tới (3 Ngày)"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "📈 Tiến Độ Sản Xuất"
+msgstr "📈 Tiến Độ Sản Xuất"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "📊 Bảng Điều Khiển"
+msgstr "📊 Bảng Điều Khiển"
+
+#. module: garment_mobile
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_form_approval
+msgid "📋 Gửi Duyệt"
+msgstr "📋 Gửi Duyệt"
+
+#. module: garment_mobile
+#. odoo-python
+#: code:addons/garment_mobile/models/garment_approval.py:0
+msgid "📋 Đơn hàng được gửi duyệt bởi %s"
+msgstr "📋 Đơn hàng được gửi duyệt bởi %s"
+
+#. module: garment_mobile
+#: model:ir.ui.menu,name:garment_mobile.menu_mobile_dashboard
+msgid "📱 Mobile Dashboard"
+msgstr "📱 Mobile Dashboard"
+
+#. module: garment_mobile
+#: model_terms:ir.ui.view,arch_db:garment_mobile.view_garment_order_form_approval
+msgid "🔄 Đặt Lại"
+msgstr "🔄 Đặt Lại"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "🚚 Tình Trạng Giao Hàng"
+msgstr "🚚 Tình Trạng Giao Hàng"
+
+#. module: garment_mobile
+#. odoo-javascript
+#: code:addons/garment_mobile/static/src/xml/mobile_dashboard.xml:0
+msgid "🚨 Đơn Hàng Trễ Hạn"
+msgstr "🚨 Đơn Hàng Trễ Hạn"

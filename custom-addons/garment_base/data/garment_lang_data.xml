@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Mặc định tiếng Việt cho người dùng / đối tác mới.
+         Tiếng Việt được kích hoạt qua load_language=vi_VN trong odoo.conf. -->
+    <function model="ir.default" name="set">
+        <value>res.partner</value>
+        <value>lang</value>
+        <value>vi_VN</value>
+    </function>
+</odoo>

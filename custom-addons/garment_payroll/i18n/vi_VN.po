@@ -1,0 +1,940 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_payroll
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"Language: vi_VN\n"
+
+#. module: garment_payroll
+#: model:ir.model.fields,help:garment_payroll.field_garment_wage_calculation__personal_deduction
+msgid "11 triệu VNĐ/tháng theo quy định"
+msgstr "11 triệu VNĐ/tháng theo quy định"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus_line__rating__a
+msgid "A - Xuất Sắc"
+msgstr "A - Xuất Sắc"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__message_needaction
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__active
+msgid "Active"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__message_attachment_count
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus_line__rating__b
+msgid "B - Tốt"
+msgstr "B - Tốt"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__bhtn_employee
+msgid "BHTN (1%)"
+msgstr ""
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_form
+msgid "BHXH & Thuế TNCN"
+msgstr "BHXH & Thuế TNCN"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__bhxh_employee
+msgid "BHXH (8%)"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__bhyt_employee
+msgid "BHYT (1.5%)"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.actions.act_window,name:garment_payroll.action_wage_calculation
+#: model:ir.ui.menu,name:garment_payroll.menu_wage_calculation
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_list
+msgid "Bảng Lương"
+msgstr "Bảng Lương"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_piece_rate_list
+msgid "Bảng Đơn Giá Khoán"
+msgstr "Bảng Đơn Giá Khoán"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_form
+msgid "Bảo Hiểm"
+msgstr "Bảo Hiểm"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus_line__rating__c
+msgid "C - Trung Bình"
+msgstr "C - Trung Bình"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__operation_detail
+msgid "Chi Tiết Công Đoạn"
+msgstr "Chi Tiết Công Đoạn"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_form
+msgid "Chi Tiết Lương"
+msgstr "Chi Tiết Lương"
+
+#. module: garment_payroll
+#: model:ir.model,name:garment_payroll.model_garment_bonus_line
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__line_ids
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_bonus_form
+msgid "Chi Tiết Thưởng"
+msgstr "Chi Tiết Thưởng"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_bonus_search
+msgid "Chuyên Cần"
+msgstr "Chuyên Cần"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_worker_output_search
+msgid "Chuyền"
+msgstr "Chuyền"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__sewing_line_id
+msgid "Chuyền May"
+msgstr "Chuyền May"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__create_uid
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus_line__create_uid
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__create_uid
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__create_uid
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__create_date
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus_line__create_date
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__create_date
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__create_date
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__employee_id
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__employee_id
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_worker_output_search
+msgid "Công Nhân"
+msgstr "Công Nhân"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__operation
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__operation
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_piece_rate_search
+msgid "Công Đoạn"
+msgstr "Công Đoạn"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_piece_rate__operation__cutting
+msgid "Cắt"
+msgstr "Cắt"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus_line__rating__d
+msgid "D - Yếu"
+msgstr "D - Yếu"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus_line__department_id
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__department_id
+msgid "Department"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__display_name
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus_line__display_name
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__display_name
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__display_name
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__message_follower_ids
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__message_partner_ids
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus_line__notes
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__notes
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__notes
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_bonus_form
+msgid "Ghi Chú"
+msgstr "Ghi Chú"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__personal_deduction
+msgid "Giảm Trừ Bản Thân"
+msgstr "Giảm Trừ Bản Thân"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__dependent_deduction
+msgid "Giảm Trừ Phụ Thuộc"
+msgstr "Giảm Trừ Phụ Thuộc"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__attendance_ot_hours
+msgid "Giờ TC (Chấm Công)"
+msgstr "Giờ TC (Chấm Công)"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__overtime_hours
+msgid "Giờ Tăng Ca"
+msgstr "Giờ Tăng Ca"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__has_message
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_piece_rate__operation__finishing
+msgid "Hoàn Tất"
+msgstr "Hoàn Tất"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_worker_output_search
+msgid "Hôm Nay"
+msgstr "Hôm Nay"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__id
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus_line__id
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__id
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__id
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,help:garment_payroll.field_garment_bonus__message_needaction
+#: model:ir.model.fields,help:garment_payroll.field_garment_wage_calculation__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,help:garment_payroll.field_garment_bonus__message_has_error
+#: model:ir.model.fields,help:garment_payroll.field_garment_bonus__message_has_sms_error
+#: model:ir.model.fields,help:garment_payroll.field_garment_wage_calculation__message_has_error
+#: model:ir.model.fields,help:garment_payroll.field_garment_wage_calculation__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__message_is_follower
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_piece_rate__operation__other
+msgid "Khác"
+msgstr "Khác"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__deduction
+msgid "Khấu Trừ Khác"
+msgstr "Khấu Trừ Khác"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_piece_rate__operation__qc
+msgid "Kiểm Hàng"
+msgstr "Kiểm Hàng"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__write_uid
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus_line__write_uid
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__write_uid
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__write_uid
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__write_date
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus_line__write_date
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__write_date
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__write_date
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__bonus_type
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_bonus_search
+msgid "Loại Thưởng"
+msgstr "Loại Thưởng"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__reason
+msgid "Lý Do / Ghi Chú"
+msgstr "Lý Do / Ghi Chú"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_form
+msgid "Lương Cơ Bản"
+msgstr "Lương Cơ Bản"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__base_salary
+msgid "Lương Cơ Bản (VNĐ)"
+msgstr "Lương Cơ Bản (VNĐ)"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_form
+msgid "Lương Khoán"
+msgstr "Lương Khoán"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__base_amount
+msgid "Lương Ngày Công"
+msgstr "Lương Ngày Công"
+
+#. module: garment_payroll
+#: model:ir.model.fields,help:garment_payroll.field_garment_wage_calculation__attendance_days
+msgid "Lấy từ Tổng Hợp Công Tháng"
+msgstr "Lấy từ Tổng Hợp Công Tháng"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_piece_rate__operation__sewing
+msgid "May"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__message_has_error
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__message_ids
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model,name:garment_payroll.model_garment_wage_calculation
+msgid "Monthly Wage Calculation"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__style_id
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__style_id
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_piece_rate_search
+msgid "Mã Hàng"
+msgstr "Mã Hàng"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__name
+msgid "Mã Phiếu Thưởng"
+msgstr "Mã Phiếu Thưởng"
+
+#. module: garment_payroll
+#: model:ir.model.fields,help:garment_payroll.field_garment_wage_calculation__insurance_base
+msgid "Mức lương đóng BHXH (thường = lương cơ bản)"
+msgstr "Mức lương đóng BHXH (thường = lương cơ bản)"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__insurance_base
+msgid "Mức Đóng BHXH"
+msgstr "Mức Đóng BHXH"
+
+#. module: garment_payroll
+#. odoo-python
+#: code:addons/garment_payroll/models/bonus.py:0
+#: code:addons/garment_payroll/models/wage_calculation.py:0
+msgid "New"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__date
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__date
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_worker_output_search
+msgid "Ngày"
+msgstr "Ngày"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__working_days
+msgid "Ngày Công"
+msgstr "Ngày Công"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__attendance_days
+msgid "Ngày Công (Chấm Công)"
+msgstr "Ngày Công (Chấm Công)"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__actual_days
+msgid "Ngày Thực Tế"
+msgstr "Ngày Thực Tế"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__state__draft
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__state__draft
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_search
+msgid "Nháp"
+msgstr "Nháp"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus_line__employee_id
+msgid "Nhân Viên"
+msgstr "Nhân Viên"
+
+#. module: garment_payroll
+#: model_terms:ir.actions.act_window,help:garment_payroll.action_worker_output
+msgid "Nhập sản lượng công nhân hàng ngày"
+msgstr "Nhập sản lượng công nhân hàng ngày"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__message_needaction_counter
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__message_has_error_counter
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,help:garment_payroll.field_garment_bonus__message_needaction_counter
+#: model:ir.model.fields,help:garment_payroll.field_garment_wage_calculation__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,help:garment_payroll.field_garment_bonus__message_has_error_counter
+#: model:ir.model.fields,help:garment_payroll.field_garment_wage_calculation__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__year
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__year
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_bonus_search
+msgid "Năm"
+msgstr "Năm"
+
+#. module: garment_payroll
+#: model:ir.actions.act_window,name:garment_payroll.action_bonus
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus_line__bonus_id
+#: model:ir.ui.menu,name:garment_payroll.menu_bonus
+msgid "Phiếu Thưởng"
+msgstr "Phiếu Thưởng"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_search
+msgid "Phòng Ban"
+msgstr "Phòng Ban"
+
+#. module: garment_payroll
+#. odoo-python
+#: code:addons/garment_payroll/models/wage_calculation.py:0
+msgid "Phải xác nhận trước khi trả lương."
+msgstr "Phải xác nhận trước khi trả lương."
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_form
+msgid "Phụ Cấp"
+msgstr "Phụ Cấp"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__allowance_attendance
+msgid "Phụ Cấp Chuyên Cần"
+msgstr "Phụ Cấp Chuyên Cần"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__allowance
+msgid "Phụ Cấp Khác"
+msgstr "Phụ Cấp Khác"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__allowance_transport
+msgid "Phụ Cấp Xăng Xe"
+msgstr "Phụ Cấp Xăng Xe"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__allowance_lunch
+msgid "Phụ Cấp Ăn Trưa"
+msgstr "Phụ Cấp Ăn Trưa"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__allowance_phone
+msgid "Phụ Cấp Điện Thoại"
+msgstr "Phụ Cấp Điện Thoại"
+
+#. module: garment_payroll
+#: model:ir.model,name:garment_payroll.model_garment_piece_rate
+msgid "Piece Rate Configuration"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__quarter
+msgid "Quý"
+msgstr "Quý"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__quarter__q1
+msgid "Quý 1"
+msgstr "Quý 1"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__quarter__q2
+msgid "Quý 2"
+msgstr "Quý 2"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__quarter__q3
+msgid "Quý 3"
+msgstr "Quý 3"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__quarter__q4
+msgid "Quý 4"
+msgstr "Quý 4"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__name
+msgid "Reference"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__message_has_sms_error
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__smv
+msgid "SMV"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.actions.act_window,name:garment_payroll.action_worker_output
+#: model:ir.ui.menu,name:garment_payroll.menu_worker_output
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_worker_output_form
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_worker_output_list
+msgid "Sản Lượng Công Nhân"
+msgstr "Sản Lượng Công Nhân"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__quantity
+msgid "Số Lượng"
+msgstr "Số Lượng"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__dependent_count
+msgid "Số Người Phụ Thuộc"
+msgstr "Số Người Phụ Thuộc"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus_line__amount
+msgid "Số Tiền Thưởng (VNĐ)"
+msgstr "Số Tiền Thưởng (VNĐ)"
+
+#. module: garment_payroll
+#: model_terms:ir.actions.act_window,help:garment_payroll.action_piece_rate
+msgid "Thiết lập đơn giá khoán cho từng mã hàng"
+msgstr "Thiết lập đơn giá khoán cho từng mã hàng"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__taxable_income
+msgid "Thu Nhập Chịu Thuế"
+msgstr "Thu Nhập Chịu Thuế"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__pit_amount
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_form
+msgid "Thuế TNCN"
+msgstr "Thuế TNCN"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__amount
+msgid "Thành Tiền (VNĐ)"
+msgstr "Thành Tiền (VNĐ)"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__month
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_search
+msgid "Tháng"
+msgstr "Tháng"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__month__01
+msgid "Tháng 1"
+msgstr "Tháng 1"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__month__10
+msgid "Tháng 10"
+msgstr "Tháng 10"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__month__11
+msgid "Tháng 11"
+msgstr "Tháng 11"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__month__12
+msgid "Tháng 12"
+msgstr "Tháng 12"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__month__02
+msgid "Tháng 2"
+msgstr "Tháng 2"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__month__03
+msgid "Tháng 3"
+msgstr "Tháng 3"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__month__04
+msgid "Tháng 4"
+msgstr "Tháng 4"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__month__05
+msgid "Tháng 5"
+msgstr "Tháng 5"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__month__06
+msgid "Tháng 6"
+msgstr "Tháng 6"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__month__07
+msgid "Tháng 7"
+msgstr "Tháng 7"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__month__08
+msgid "Tháng 8"
+msgstr "Tháng 8"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__month__09
+msgid "Tháng 9"
+msgstr "Tháng 9"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_form
+msgid "Thưởng"
+msgstr "Thưởng"
+
+#. module: garment_payroll
+#: model:ir.model,name:garment_payroll.model_garment_bonus
+msgid "Thưởng (Quý / Năm / Đột Xuất)"
+msgstr "Thưởng (Quý / Năm / Đột Xuất)"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__bonus_type__attendance
+msgid "Thưởng Chuyên Cần"
+msgstr "Thưởng Chuyên Cần"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__bonus_type__quality
+msgid "Thưởng Chất Lượng"
+msgstr "Thưởng Chất Lượng"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__bonus_type__other
+msgid "Thưởng Khác"
+msgstr "Thưởng Khác"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_bonus_search
+msgid "Thưởng Năm"
+msgstr "Thưởng Năm"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__bonus_type__yearly
+msgid "Thưởng Năm (Tết)"
+msgstr "Thưởng Năm (Tết)"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__bonus_type__productivity
+msgid "Thưởng Năng Suất"
+msgstr "Thưởng Năng Suất"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__bonus_type__quarterly
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_bonus_search
+msgid "Thưởng Quý"
+msgstr "Thưởng Quý"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__bonus_type__seniority
+msgid "Thưởng Thâm Niên"
+msgstr "Thưởng Thâm Niên"
+
+#. module: garment_payroll
+#: model:ir.model.fields,help:garment_payroll.field_garment_wage_calculation__allowance_attendance
+msgid "Thưởng đi làm đầy đủ trong tháng"
+msgstr "Thưởng đi làm đầy đủ trong tháng"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__net_pay
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_list
+msgid "Thực Lĩnh"
+msgstr "Thực Lĩnh"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__piece_rate_amount
+msgid "Tiền Khoán (VNĐ)"
+msgstr "Tiền Khoán (VNĐ)"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__bonus_amount
+msgid "Tiền Thưởng Tháng"
+msgstr "Tiền Thưởng Tháng"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__ot_amount
+msgid "Tiền Tăng Ca"
+msgstr "Tiền Tăng Ca"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__currency_id
+msgid "Tiền Tệ"
+msgstr "Tiền Tệ"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__state
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__state
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_search
+msgid "Trạng Thái"
+msgstr "Trạng Thái"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_search
+msgid "Tìm Bảng Lương"
+msgstr "Tìm Bảng Lương"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_worker_output_search
+msgid "Tìm Sản Lượng"
+msgstr "Tìm Sản Lượng"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_piece_rate_search
+msgid "Tìm Đơn Giá"
+msgstr "Tìm Đơn Giá"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_form
+msgid "Tính Lương"
+msgstr "Tính Lương"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_form
+msgid "Tăng Ca"
+msgstr "Tăng Ca"
+
+#. module: garment_payroll
+#: model_terms:ir.actions.act_window,help:garment_payroll.action_wage_calculation
+msgid "Tạo bảng tính lương mới"
+msgstr "Tạo bảng tính lương mới"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_bonus_form
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_bonus_tree
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_list
+msgid "Tổng"
+msgstr "Tổng"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__total_insurance
+msgid "Tổng BHXH-BHYT-BHTN (10.5%)"
+msgstr "Tổng BHXH-BHYT-BHTN (10.5%)"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__total_ot_hours
+msgid "Tổng Giờ Tăng Ca"
+msgstr "Tổng Giờ Tăng Ca"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_worker_output_list
+msgid "Tổng OT"
+msgstr "Tổng OT"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__total_allowance
+msgid "Tổng Phụ Cấp"
+msgstr "Tổng Phụ Cấp"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_worker_output_list
+msgid "Tổng SL"
+msgstr "Tổng SL"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__total_pieces
+msgid "Tổng SL Sản Phẩm"
+msgstr "Tổng SL Sản Phẩm"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__total_wage
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_list
+msgid "Tổng Thu Nhập"
+msgstr "Tổng Thu Nhập"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_worker_output_list
+msgid "Tổng Tiền"
+msgstr "Tổng Tiền"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__total_amount
+msgid "Tổng Tiền Thưởng"
+msgstr "Tổng Tiền Thưởng"
+
+#. module: garment_payroll
+#: model:ir.model.fields,help:garment_payroll.field_garment_piece_rate__operation_detail
+msgid "VD: May cổ, may tay, may thân..."
+msgstr "VD: May cổ, may tay, may thân..."
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_bonus_form
+msgid "Về Nháp"
+msgstr "Về Nháp"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus__website_message_ids
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model.fields,help:garment_payroll.field_garment_bonus__website_message_ids
+#: model:ir.model.fields,help:garment_payroll.field_garment_wage_calculation__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_payroll
+#: model:ir.model,name:garment_payroll.model_garment_worker_output
+msgid "Worker Daily Output"
+msgstr ""
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_bonus_form
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_form
+msgid "Xác Nhận"
+msgstr "Xác Nhận"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_bonus_line__rating
+msgid "Xếp Loại"
+msgstr "Xếp Loại"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__state__paid
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_bonus_form
+msgid "Đã Chi"
+msgstr "Đã Chi"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__state__paid
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_form
+msgid "Đã Trả"
+msgstr "Đã Trả"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__state__calculated
+msgid "Đã Tính"
+msgstr "Đã Tính"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_bonus__state__confirmed
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_wage_calculation__state__confirmed
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_search
+msgid "Đã Xác Nhận"
+msgstr "Đã Xác Nhận"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_piece_rate__operation__packing
+msgid "Đóng Gói"
+msgstr "Đóng Gói"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__piece_rate_id
+msgid "Đơn Giá"
+msgstr "Đơn Giá"
+
+#. module: garment_payroll
+#: model:ir.actions.act_window,name:garment_payroll.action_piece_rate
+#: model:ir.ui.menu,name:garment_payroll.menu_piece_rate
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_piece_rate_form
+msgid "Đơn Giá Khoán"
+msgstr "Đơn Giá Khoán"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_wage_calculation__ot_rate
+msgid "Đơn Giá OT (VNĐ/h)"
+msgstr "Đơn Giá OT (VNĐ/h)"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_worker_output__rate_per_piece
+msgid "Đơn Giá/SP"
+msgstr "Đơn Giá/SP"
+
+#. module: garment_payroll
+#: model:ir.model.fields,field_description:garment_payroll.field_garment_piece_rate__rate_per_piece
+msgid "Đơn Giá/Sản Phẩm (VNĐ)"
+msgstr "Đơn Giá/Sản Phẩm (VNĐ)"
+
+#. module: garment_payroll
+#: model:ir.model.constraint,message:garment_payroll.constraint_garment_piece_rate_rate_positive
+msgid "Đơn giá phải >= 0!"
+msgstr "Đơn giá phải >= 0!"
+
+#. module: garment_payroll
+#: model_terms:ir.ui.view,arch_db:garment_payroll.view_wage_calculation_form
+msgid "Đặt Lại"
+msgstr "Đặt Lại"
+
+#. module: garment_payroll
+#: model:ir.model.fields.selection,name:garment_payroll.selection__garment_piece_rate__operation__pressing
+msgid "Ủi"
+msgstr "Ủi"

@@ -1,0 +1,986 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_material
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"Language: vi_VN\n"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__message_needaction
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__message_attachment_count
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__material_type__packaging
+msgid "Bao Bì"
+msgstr "Bao Bì"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_form
+msgid "Bắt Đầu Kiểm Tra"
+msgstr "Bắt Đầu Kiểm Tra"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__unit__set
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__unit__set
+msgid "Bộ"
+msgstr "Bộ"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__line_ids
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_form
+msgid "Chi Tiết Nguyên Liệu"
+msgstr "Chi Tiết Nguyên Liệu"
+
+#. module: garment_material
+#: model:ir.model,name:garment_material.model_garment_material_receipt_line
+msgid "Chi Tiết Phiếu Nhập Nguyên Liệu"
+msgstr "Chi Tiết Phiếu Nhập Nguyên Liệu"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__line_ids
+msgid "Chi Tiết Phân Bổ"
+msgstr "Chi Tiết Phân Bổ"
+
+#. module: garment_material
+#: model:ir.model,name:garment_material.model_garment_material_allocation_line
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_allocation_form
+msgid "Chi Tiết Phân Bổ NL"
+msgstr "Chi Tiết Phân Bổ NL"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__qc_status__pending
+msgid "Chưa Kiểm"
+msgstr "Chưa Kiểm"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
+msgid "Chưa Kiểm QC"
+msgstr "Chưa Kiểm QC"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__material_type__thread
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__material_type__thread
+msgid "Chỉ"
+msgstr "Chỉ"
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__buyer_id
+msgid "Chỉ dùng cho loại \"Khách Gửi\" — buyer gửi nguyên liệu để gia công"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__create_uid
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__create_uid
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__create_uid
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__create_date
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__create_date
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__create_date
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__unit__roll
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__unit__roll
+msgid "Cuộn"
+msgstr "Cuộn"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__unit__cone
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__unit__cone
+msgid "Cuộn Chỉ"
+msgstr "Cuộn Chỉ"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__unit__pcs
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__unit__pcs
+msgid "Cái"
+msgstr "Cái"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__company_id
+msgid "Công Ty"
+msgstr "Công Ty"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__display_name
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__display_name
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__display_name
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__message_follower_ids
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__message_partner_ids
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__notes
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__notes
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__notes
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__notes
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_allocation_form
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_form
+msgid "Ghi Chú"
+msgstr "Ghi Chú"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__qc_notes
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__qc_notes
+msgid "Ghi Chú QC"
+msgstr "Ghi Chú QC"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__value
+msgid "Giá Trị"
+msgstr "Giá Trị"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__has_message
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__unit__box
+msgid "Hộp"
+msgstr "Hộp"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_allocation_form
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_form
+msgid "Hủy"
+msgstr "Hủy"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__id
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__id
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__id
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_allocation__message_needaction
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_allocation__message_has_error
+#: model:ir.model.fields,help:garment_material.field_garment_material_allocation__message_has_sms_error
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__message_has_error
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__message_is_follower
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__qc_result
+msgid "KQ Kiểm"
+msgstr "KQ Kiểm"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__unit__kg
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__unit__kg
+msgid "Kg"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__warehouse_type__material
+msgid "Kho Nguyên Liệu"
+msgstr "Kho Nguyên Liệu"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__warehouse_type
+msgid "Kho Nhập"
+msgstr "Kho Nhập"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__warehouse_type__accessory
+msgid "Kho Phụ Liệu"
+msgstr "Kho Phụ Liệu"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__material_type__other
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__unit__other
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__material_type__other
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__unit__other
+msgid "Khác"
+msgstr "Khác"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__receipt_type__buyer_supplied
+msgid "Khách Gửi (Buyer-Supplied / CMT)"
+msgstr "Khách Gửi (Buyer-Supplied / CMT)"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
+msgid "Khách Gửi (CMT)"
+msgstr "Khách Gửi (CMT)"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
+msgid "Khách Hàng"
+msgstr "Khách Hàng"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__buyer_id
+msgid "Khách Hàng Gửi NL"
+msgstr "Khách Hàng Gửi NL"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__material_type__zipper
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__material_type__zipper
+msgid "Khóa Kéo"
+msgstr "Khóa Kéo"
+
+#. module: garment_material
+#. odoo-python
+#: code:addons/garment_material/models/material_receipt.py:0
+msgid "Không thể hủy phiếu đã nhập kho!"
+msgstr "Không thể hủy phiếu đã nhập kho!"
+
+#. module: garment_material
+#. odoo-python
+#: code:addons/garment_material/models/material_allocation.py:0
+msgid "Không thể hủy phiếu đã xuất kho!"
+msgstr "Không thể hủy phiếu đã xuất kho!"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__qc_status__fail
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__qc_result__fail
+msgid "Không Đạt"
+msgstr "Không Đạt"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__width
+msgid "Khổ Vải (cm)"
+msgstr "Khổ Vải (cm)"
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt_line__width
+msgid "Khổ vải thực tế đo được"
+msgstr "Khổ vải thực tế đo được"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__qc_status
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
+msgid "Kết Quả QC"
+msgstr "Kết Quả QC"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__write_uid
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__write_uid
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__write_uid
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__write_date
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__write_date
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__write_date
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt_line__fabric_id
+msgid "Liên kết vải từ danh mục (nếu là vải)"
+msgstr "Liên kết vải từ danh mục (nếu là vải)"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__material_type
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__material_type
+msgid "Loại NL"
+msgstr "Loại NL"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__receipt_type
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
+msgid "Loại Nhập"
+msgstr "Loại Nhập"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__production_order_id
+msgid "Lệnh Sản Xuất"
+msgstr "Lệnh Sản Xuất"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__message_has_error
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__message_ids
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__material_type__interlining
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__material_type__interlining
+msgid "Mex / Keo"
+msgstr ""
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
+msgid "Mua Hàng"
+msgstr "Mua Hàng"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__receipt_type__purchase
+msgid "Mua Hàng (Purchase)"
+msgstr "Mua Hàng (Purchase)"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__color_id
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__color_id
+msgid "Màu"
+msgstr "Màu"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__unit__m
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__unit__m
+msgid "Mét"
+msgstr "Mét"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__description
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__description
+msgid "Mô Tả"
+msgstr "Mô Tả"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__style_id
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__style_id
+msgid "Mẫu May"
+msgstr "Mẫu May"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
+msgid "NCC"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__warehouse_type__both
+msgid "NL + PL"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.actions.act_window,name:garment_material.action_material_receipt_buyer
+#: model:ir.ui.menu,name:garment_material.menu_material_receipt_buyer
+msgid "NL Khách Gửi (CMT)"
+msgstr "NL Khách Gửi (CMT)"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__receipt_type__return
+msgid "NL Trả Về Từ SX"
+msgstr "NL Trả Về Từ SX"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__receipt_type__subcontract
+msgid "NL Từ Gia Công"
+msgstr "NL Từ Gia Công"
+
+#. module: garment_material
+#. odoo-python
+#: code:addons/garment_material/models/material_allocation.py:0
+#: code:addons/garment_material/models/material_receipt.py:0
+msgid "New"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_allocation_search
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
+msgid "Ngày"
+msgstr "Ngày"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__expected_date
+msgid "Ngày Dự Kiến"
+msgstr "Ngày Dự Kiến"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__date
+msgid "Ngày Nhập"
+msgstr "Ngày Nhập"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__date
+msgid "Ngày Phân Bổ"
+msgstr "Ngày Phân Bổ"
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__expected_date
+msgid "Ngày dự kiến NL về theo PO / buyer thông báo"
+msgstr "Ngày dự kiến NL về theo PO / buyer thông báo"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__received_by
+msgid "Người Nhận"
+msgstr "Người Nhận"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_allocation_form
+msgid "Người Thực Hiện"
+msgstr "Người Thực Hiện"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__supplier_id
+msgid "Nhà Cung Cấp"
+msgstr "Nhà Cung Cấp"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation__state__draft
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__state__draft
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_allocation_search
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
+msgid "Nháp"
+msgstr "Nháp"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__material_type__label
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__material_type__label
+msgid "Nhãn / Tag"
+msgstr "Nhãn / Tag"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_form
+msgid "Nhập Kho"
+msgstr "Nhập Kho"
+
+#. module: garment_material
+#: model:ir.actions.act_window,name:garment_material.action_material_receipt_purchase
+#: model:ir.ui.menu,name:garment_material.menu_material_receipt_purchase
+msgid "Nhập NL Mua Hàng"
+msgstr "Nhập NL Mua Hàng"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__message_needaction_counter
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__message_has_error_counter
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_allocation__message_needaction_counter
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_allocation__message_has_error_counter
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__material_type__button
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__material_type__button
+msgid "Nút / Cúc"
+msgstr "Nút / Cúc"
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__po_number
+msgid "PO cho NCC hoặc số chứng từ buyer gửi"
+msgstr "PO cho NCC hoặc số chứng từ buyer gửi"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__receipt_id
+msgid "Phiếu Nhập"
+msgstr "Phiếu Nhập"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__receipt_id
+msgid "Phiếu Nhập Gốc"
+msgstr "Phiếu Nhập Gốc"
+
+#. module: garment_material
+#: model:ir.model,name:garment_material.model_garment_material_receipt
+msgid "Phiếu Nhập Nguyên Liệu"
+msgstr "Phiếu Nhập Nguyên Liệu"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__allocation_id
+msgid "Phiếu Phân Bổ"
+msgstr "Phiếu Phân Bổ"
+
+#. module: garment_material
+#. odoo-python
+#: code:addons/garment_material/models/material_receipt.py:0
+msgid "Phiếu nhập \"Khách Gửi\" phải có Khách Hàng!"
+msgstr ""
+
+#. module: garment_material
+#. odoo-python
+#: code:addons/garment_material/models/material_receipt.py:0
+msgid "Phiếu nhập \"Mua Hàng\" phải có Nhà Cung Cấp!"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_allocation_line__receipt_id
+msgid "Phiếu nhập NL nguồn gốc"
+msgstr "Phiếu nhập NL nguồn gốc"
+
+#. module: garment_material
+#: model:ir.ui.menu,name:garment_material.menu_material_allocation
+msgid "Phân Bổ NL Cho SX"
+msgstr "Phân Bổ NL Cho SX"
+
+#. module: garment_material
+#: model:ir.actions.act_window,name:garment_material.action_material_allocation
+msgid "Phân Bổ NL Cho Đơn Hàng"
+msgstr "Phân Bổ NL Cho Đơn Hàng"
+
+#. module: garment_material
+#: model:ir.model,name:garment_material.model_garment_material_allocation
+msgid "Phân Bổ Nguyên Liệu Cho Đơn Hàng"
+msgstr "Phân Bổ Nguyên Liệu Cho Đơn Hàng"
+
+#. module: garment_material
+#. odoo-python
+#: code:addons/garment_material/models/material_receipt.py:0
+msgid "Phải có ít nhất 1 dòng nguyên liệu!"
+msgstr "Phải có ít nhất 1 dòng nguyên liệu!"
+
+#. module: garment_material
+#. odoo-python
+#: code:addons/garment_material/models/material_allocation.py:0
+msgid "Phải có ít nhất 1 dòng phân bổ!"
+msgstr "Phải có ít nhất 1 dòng phân bổ!"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_form
+msgid "QC & Kiểm Tra"
+msgstr "QC & Kiểm Tra"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_form
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
+msgid "QC Không Đạt"
+msgstr "QC Không Đạt"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_form
+msgid "QC Đạt"
+msgstr "QC Đạt"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__quantity_rejected
+msgid "SL Lỗi"
+msgstr "SL Lỗi"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__quantity
+msgid "SL Nhận Thực Tế"
+msgstr "SL Nhận Thực Tế"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__quantity_issued
+msgid "SL Xuất"
+msgstr "SL Xuất"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__quantity_required
+msgid "SL Yêu Cầu"
+msgstr "SL Yêu Cầu"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__quantity_accepted
+msgid "SL Đạt QC"
+msgstr "SL Đạt QC"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__quantity_ordered
+msgid "SL Đặt"
+msgstr "SL Đặt"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__message_has_sms_error
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__sequence
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__total_lines
+msgid "Số Dòng"
+msgstr "Số Dòng"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__invoice_number
+msgid "Số Hóa Đơn / Packing List"
+msgstr "Số Hóa Đơn / Packing List"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__lot_number
+msgid "Số Lô"
+msgstr "Số Lô"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__lot_number
+msgid "Số Lô / Roll No."
+msgstr "Số Lô / Roll No."
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__total_items
+msgid "Số Mục"
+msgstr "Số Mục"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__po_number
+msgid "Số PO Mua Hàng"
+msgstr "Số PO Mua Hàng"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__name
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__name
+msgid "Số Phiếu"
+msgstr "Số Phiếu"
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__transport_info
+msgid "Số cont, BL, xe, courier..."
+msgstr "Số cont, BL, xe, courier..."
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_allocation_line__quantity_required
+msgid "Số lượng cần theo BOM / định mức"
+msgstr "Số lượng cần theo BOM / định mức"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__shortage
+msgid "Thiếu Hụt"
+msgstr "Thiếu Hụt"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__material_type__elastic
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__material_type__elastic
+msgid "Thun / Dây"
+msgstr "Thun / Dây"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_form
+msgid "Thông Tin Chung"
+msgstr "Thông Tin Chung"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__transport_info
+msgid "Thông Tin Vận Chuyển"
+msgstr "Thông Tin Vận Chuyển"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__responsible_id
+msgid "Thủ Kho Nhận"
+msgstr "Thủ Kho Nhận"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__issued_by
+msgid "Thủ Kho Xuất"
+msgstr "Thủ Kho Xuất"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_list
+msgid "Total"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__state
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__state
+msgid "Trạng Thái"
+msgstr "Trạng Thái"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__is_late
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
+msgid "Trễ Hạn"
+msgstr "Trễ Hạn"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__weight_gsm
+msgid "Trọng Lượng (GSM)"
+msgstr "Trọng Lượng (GSM)"
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: garment_material
+#: model_terms:ir.actions.act_window,help:garment_material.action_material_receipt_all
+msgid "Tạo phiếu nhập nguyên liệu đầu tiên"
+msgstr "Tạo phiếu nhập nguyên liệu đầu tiên"
+
+#. module: garment_material
+#: model_terms:ir.actions.act_window,help:garment_material.action_material_allocation
+msgid "Tạo phiếu phân bổ nguyên liệu cho sản xuất"
+msgstr "Tạo phiếu phân bổ nguyên liệu cho sản xuất"
+
+#. module: garment_material
+#: model:ir.actions.act_window,name:garment_material.action_material_receipt_all
+#: model:ir.ui.menu,name:garment_material.menu_material_receipt_all
+msgid "Tất Cả Phiếu Nhập NL"
+msgstr "Tất Cả Phiếu Nhập NL"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_form
+msgid "Tổng"
+msgstr "Tổng"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__total_value
+msgid "Tổng Giá Trị"
+msgstr "Tổng Giá Trị"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__total_qty
+msgid "Tổng SL"
+msgstr "Tổng SL"
+
+#. module: garment_material
+#. odoo-python
+#: code:addons/garment_material/models/material_receipt.py:0
+msgid "Vui lòng cập nhật Kết Quả QC trước khi hoàn thành!"
+msgstr "Vui lòng cập nhật Kết Quả QC trước khi hoàn thành!"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__fabric_id
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__fabric_id
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__material_type__fabric
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__material_type__fabric
+msgid "Vải"
+msgstr "Vải"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__material_type__lining
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__material_type__lining
+msgid "Vải Lót"
+msgstr "Vải Lót"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_allocation_form
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_form
+msgid "Về Nháp"
+msgstr "Về Nháp"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__website_message_ids
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields,help:garment_material.field_garment_material_allocation__website_message_ids
+#: model:ir.model.fields,help:garment_material.field_garment_material_receipt__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_allocation_form
+msgid "Xuất Kho"
+msgstr "Xuất Kho"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_allocation_form
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_form
+msgid "Xác Nhận"
+msgstr "Xác Nhận"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation_line__unit__yard
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__unit__yard
+msgid "Yard"
+msgstr ""
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__state__inspecting
+msgid "Đang Kiểm Tra"
+msgstr "Đang Kiểm Tra"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation__state__cancelled
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__state__cancelled
+msgid "Đã Hủy"
+msgstr "Đã Hủy"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__state__done
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
+msgid "Đã Nhập Kho"
+msgstr "Đã Nhập Kho"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation__state__issued
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_allocation_search
+msgid "Đã Xuất Kho"
+msgstr "Đã Xuất Kho"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_allocation__state__confirmed
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__state__confirmed
+msgid "Đã Xác Nhận"
+msgstr "Đã Xác Nhận"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__unit_price
+msgid "Đơn Giá"
+msgstr "Đơn Giá"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_allocation_form
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_allocation_search
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_search
+msgid "Đơn Hàng"
+msgstr "Đơn Hàng"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation__garment_order_id
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt__garment_order_id
+msgid "Đơn Hàng May"
+msgstr "Đơn Hàng May"
+
+#. module: garment_material
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_allocation_line__unit
+#: model:ir.model.fields,field_description:garment_material.field_garment_material_receipt_line__unit
+msgid "Đơn Vị"
+msgstr "Đơn Vị"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__qc_status__pass
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__qc_result__pass
+msgid "Đạt"
+msgstr "Đạt"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt_line__qc_result__conditional
+msgid "Đạt Có Điều Kiện"
+msgstr "Đạt Có Điều Kiện"
+
+#. module: garment_material
+#: model:ir.model.fields.selection,name:garment_material.selection__garment_material_receipt__qc_status__partial
+msgid "Đạt Một Phần"
+msgstr "Đạt Một Phần"
+
+#. module: garment_material
+#: model_terms:ir.ui.view,arch_db:garment_material.view_material_receipt_form
+msgid "Đối Tác & Đơn Hàng"
+msgstr "Đối Tác & Đơn Hàng"

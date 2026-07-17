@@ -1,0 +1,1184 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* garment_crm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 16:53+0000\n"
+"PO-Revision-Date: 2026-02-28 16:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"Language: vi_VN\n"
+
+#. module: garment_crm
+#: model:ir.model.fields,help:garment_crm.field_res_partner__quality_standard
+#: model:ir.model.fields,help:garment_crm.field_res_users__quality_standard
+msgid "AQL level, testing requirements, etc."
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__message_needaction
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__activity_ids
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__activity_exception_decoration
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__activity_state
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__activity_type_icon
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__message_attachment_count
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,help:garment_crm.field_res_partner__compliance_requirements
+#: model:ir.model.fields,help:garment_crm.field_res_users__compliance_requirements
+msgid "BSCI, WRAP, Oeko-Tex, GOTS, etc."
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__resolution
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_form
+msgid "Biện Pháp Xử Lý"
+msgstr "Biện Pháp Xử Lý"
+
+#. module: garment_crm
+#: model:ir.ui.menu,name:garment_crm.menu_crm_buyers
+msgid "Buyer / Khách Hàng"
+msgstr "Buyer / Khách Hàng"
+
+#. module: garment_crm
+#: model:ir.actions.act_window,name:garment_crm.action_garment_buyers
+msgid "Buyer Ngành May"
+msgstr "Buyer Ngành May"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__buyer_type__wholesaler
+msgid "Bán Sỉ"
+msgstr "Bán Sỉ"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__priority__1
+msgid "Bình Thường"
+msgstr "Bình Thường"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_form
+msgid "Bắt Đầu Xử Lý"
+msgstr "Bắt Đầu Xử Lý"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__preferred_incoterm__cfr
+msgid "CFR"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__preferred_incoterm__cif
+msgid "CIF"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__team__cmt
+msgid "CMT"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.ui.menu,name:garment_crm.menu_garment_crm_main
+msgid "CRM"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__severity__high
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__priority__2
+msgid "Cao"
+msgstr ""
+
+#. module: garment_crm
+#. odoo-python
+#: code:addons/garment_crm/models/crm_lead.py:0
+msgid "Chưa có mẫu may nào, vui lòng tạo mẫu may trước!"
+msgstr "Chưa có mẫu may nào, vui lòng tạo mẫu may trước!"
+
+#. module: garment_crm
+#: model_terms:ir.actions.act_window,help:garment_crm.action_crm_feedback_all
+msgid "Chưa có phản hồi nào!"
+msgstr "Chưa có phản hồi nào!"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__category__quality
+msgid "Chất Lượng"
+msgstr "Chất Lượng"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__lost_reason__quality
+msgid "Chất Lượng Không Phù Hợp"
+msgstr "Chất Lượng Không Phù Hợp"
+
+#. module: garment_crm
+#. odoo-python
+#: code:addons/garment_crm/models/crm_lead.py:0
+msgid "Chỉ tạo đơn hàng từ cơ hội Thành Công!"
+msgstr "Chỉ tạo đơn hàng từ cơ hội Thành Công!"
+
+#. module: garment_crm
+#: model:ir.model,name:garment_crm.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__create_uid
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__create_date
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__lead_type__opportunity
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_search
+msgid "Cơ Hội"
+msgstr "Cơ Hội"
+
+#. module: garment_crm
+#: model:ir.actions.act_window,name:garment_crm.action_crm_lead_opportunities
+#: model:ir.ui.menu,name:garment_crm.menu_crm_opportunities
+msgid "Cơ Hội Kinh Doanh"
+msgstr "Cơ Hội Kinh Doanh"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__category
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_search
+msgid "Danh Mục"
+msgstr "Danh Mục"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__display_name
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__display_name
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__expected_revenue
+msgid "Doanh Thu Dự Kiến"
+msgstr "Doanh Thu Dự Kiến"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__annual_revenue
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__annual_revenue
+msgid "Doanh Thu/Năm ($)"
+msgstr "Doanh Thu/Năm ($)"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__category__service
+msgid "Dịch Vụ"
+msgstr "Dịch Vụ"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__preferred_incoterm__exw
+msgid "EXW"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__contact_email
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__source__email
+msgid "Email"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__preferred_incoterm__fob
+msgid "FOB"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__message_follower_ids
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__message_partner_ids
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_feedback__activity_type_icon
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_lead__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__notes
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "Ghi Chú"
+msgstr "Ghi Chú"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__follow_up_notes
+msgid "Ghi Chú Theo Dõi"
+msgstr "Ghi Chú Theo Dõi"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__stage
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_search
+msgid "Giai Đoạn"
+msgstr "Giai Đoạn"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__category__delivery
+msgid "Giao Hàng"
+msgstr "Giao Hàng"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__category__communication
+msgid "Giao Tiếp"
+msgstr "Giao Tiếp"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__lost_reason__price
+msgid "Giá Cao"
+msgstr "Giá Cao"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__category__price
+msgid "Giá Cả"
+msgstr "Giá Cả"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__source__referral
+msgid "Giới Thiệu"
+msgstr "Giới Thiệu"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "Gửi Báo Giá"
+msgstr "Gửi Báo Giá"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__has_message
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_partner_garment_buyer
+msgid "Hồ Sơ Buyer May Mặc"
+msgstr "Hồ Sơ Buyer May Mặc"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__id
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__id
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__activity_exception_icon
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_feedback__activity_exception_icon
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_lead__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_feedback__message_needaction
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_lead__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_feedback__message_has_error
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_feedback__message_has_sms_error
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_lead__message_has_error
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_lead__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__preferred_incoterm
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__preferred_incoterm
+msgid "Incoterm Ưa Thích"
+msgstr "Incoterm Ưa Thích"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__message_is_follower
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__feedback_type__praise
+msgid "Khen Ngợi"
+msgstr "Khen Ngợi"
+
+#. module: garment_crm
+#: model:ir.actions.act_window,name:garment_crm.action_crm_complaint
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__feedback_type__complaint
+#: model:ir.ui.menu,name:garment_crm.menu_crm_complaint
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_search
+msgid "Khiếu Nại"
+msgstr "Khiếu Nại"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__category__other
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__lost_reason__other
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__product_category__other
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__source__other
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__buyer_type__other
+msgid "Khác"
+msgstr "Khác"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__partner_id
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__partner_id
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_search
+msgid "Khách Hàng"
+msgstr "Khách Hàng"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__lost_reason__capacity
+msgid "Không Đủ Năng Lực SX"
+msgstr "Không Đủ Năng Lực SX"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "Kết Quả"
+msgstr "Kết Quả"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__write_uid
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__write_date
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_search
+msgid "Lead"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.actions.act_window,name:garment_crm.action_crm_lead_leads
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__lead_type__lead
+#: model:ir.ui.menu,name:garment_crm.menu_crm_leads
+msgid "Lead (Đầu Mối)"
+msgstr "Lead (Đầu Mối)"
+
+#. module: garment_crm
+#: model:ir.ui.menu,name:garment_crm.menu_crm_lead_all
+msgid "Lead / Cơ Hội"
+msgstr "Lead / Cơ Hội"
+
+#. module: garment_crm
+#: model:ir.model,name:garment_crm.model_garment_crm_lead
+msgid "Lead / Cơ Hội Kinh Doanh"
+msgstr "Lead / Cơ Hội Kinh Doanh"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_partner_garment_buyer
+msgid "Lead/CH"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__source__direct
+msgid "Liên Hệ Trực Tiếp"
+msgstr "Liên Hệ Trực Tiếp"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__feedback_type
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__lead_type
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_search
+msgid "Loại"
+msgstr "Loại"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__buyer_type
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__buyer_type
+msgid "Loại Buyer"
+msgstr "Loại Buyer"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__product_category
+msgid "Loại Sản Phẩm Quan Tâm"
+msgstr "Loại Sản Phẩm Quan Tâm"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__is_garment_buyer
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__is_garment_buyer
+msgid "Là Buyer Ngành May"
+msgstr "Là Buyer Ngành May"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__lost_reason
+msgid "Lý Do Thất Bại"
+msgstr "Lý Do Thất Bại"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__message_has_error
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__message_ids
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__my_activity_date_deadline
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__buyer_code
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__buyer_code
+msgid "Mã Buyer"
+msgstr "Mã Buyer"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__code
+msgid "Mã Lead"
+msgstr "Mã Lead"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__code
+msgid "Mã Phản Hồi"
+msgstr "Mã Phản Hồi"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__source__social
+msgid "Mạng Xã Hội"
+msgstr "Mạng Xã Hội"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__state__draft
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__stage__new
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_search
+msgid "Mới"
+msgstr "Mới"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_form
+msgid "Mở Lại"
+msgstr "Mở Lại"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__severity
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_search
+msgid "Mức Độ"
+msgstr "Mức Độ"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__activity_date_deadline
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__activity_summary
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__activity_type_id
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__severity__critical
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_form
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_search
+msgid "Nghiêm Trọng"
+msgstr "Nghiêm Trọng"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__source
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_search
+msgid "Nguồn"
+msgstr "Nguồn"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__expected_close_date
+msgid "Ngày Dự Kiến Chốt"
+msgstr "Ngày Dự Kiến Chốt"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__resolution_date
+msgid "Ngày Giải Quyết"
+msgstr "Ngày Giải Quyết"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__date
+msgid "Ngày Nhận"
+msgstr "Ngày Nhận"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__follow_up_date
+msgid "Ngày Theo Dõi Tiếp"
+msgstr "Ngày Theo Dõi Tiếp"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__last_order_date
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__last_order_date
+msgid "Ngày Đơn Hàng Gần Nhất"
+msgstr "Ngày Đơn Hàng Gần Nhất"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__first_order_date
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__first_order_date
+msgid "Ngày Đơn Hàng Đầu Tiên"
+msgstr "Ngày Đơn Hàng Đầu Tiên"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__contact_name
+msgid "Người Liên Hệ"
+msgstr "Người Liên Hệ"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__assigned_to
+msgid "Người Xử Lý"
+msgstr "Người Xử Lý"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__buyer_type__retailer
+msgid "Nhà Bán Lẻ"
+msgstr "Nhà Bán Lẻ"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__buyer_type__importer
+msgid "Nhà Nhập Khẩu"
+msgstr "Nhà Nhập Khẩu"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_search
+msgid "Nhân Viên"
+msgstr "Nhân Viên"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__salesperson_id
+msgid "Nhân Viên Phụ Trách"
+msgstr "Nhân Viên Phụ Trách"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__team
+msgid "Nhóm Kinh Doanh"
+msgstr "Nhóm Kinh Doanh"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__message_needaction_counter
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__message_has_error_counter
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_feedback__message_needaction_counter
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_lead__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_feedback__message_has_error_counter
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_lead__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__description
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_form
+msgid "Nội Dung Chi Tiết"
+msgstr "Nội Dung Chi Tiết"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__team__domestic
+msgid "Nội Địa"
+msgstr "Nội Địa"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "Phân Bổ"
+msgstr "Phân Bổ"
+
+#. module: garment_crm
+#. odoo-python
+#: code:addons/garment_crm/models/crm_lead.py:0
+msgid "Phải có khách hàng trước khi tạo đơn hàng!"
+msgstr "Phải có khách hàng trước khi tạo đơn hàng!"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__feedback_type__feedback
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_partner_garment_buyer
+msgid "Phản Hồi"
+msgstr "Phản Hồi"
+
+#. module: garment_crm
+#: model:ir.model,name:garment_crm.model_garment_crm_feedback
+msgid "Phản Hồi / Khiếu Nại Khách Hàng"
+msgstr "Phản Hồi / Khiếu Nại Khách Hàng"
+
+#. module: garment_crm
+#: model:ir.ui.menu,name:garment_crm.menu_crm_feedback
+msgid "Phản Hồi Khách Hàng"
+msgstr "Phản Hồi Khách Hàng"
+
+#. module: garment_crm
+#: model:ir.actions.act_window,name:garment_crm.action_crm_feedback_open
+msgid "Phản Hồi Đang Mở"
+msgstr "Phản Hồi Đang Mở"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_partner_garment_buyer
+msgid "Quy Mô & Doanh Thu"
+msgstr "Quy Mô & Doanh Thu"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__product_category__pants
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__product_interest__pants
+msgid "Quần"
+msgstr "Quần"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__country_id
+msgid "Quốc Gia"
+msgstr "Quốc Gia"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__activity_user_id
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__priority__3
+msgid "Rất Cao"
+msgstr "Rất Cao"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__annual_volume
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__annual_volume
+msgid "SL Đặt Hàng/Năm (Cái)"
+msgstr "SL Đặt Hàng/Năm (Cái)"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__message_has_sms_error
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_feedback__activity_state
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_lead__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__product_interest
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__product_interest
+msgid "Sản Phẩm Quan Tâm"
+msgstr "Sản Phẩm Quan Tâm"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__crm_lead_count
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__crm_lead_count
+msgid "Số Lead/Cơ Hội"
+msgstr "Số Lead/Cơ Hội"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__expected_qty
+msgid "Số Lượng Dự Kiến"
+msgstr "Số Lượng Dự Kiến"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__feedback_count
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__feedback_count
+msgid "Số Phản Hồi"
+msgstr "Số Phản Hồi"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__garment_order_count
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__garment_order_count
+msgid "Số Đơn Hàng"
+msgstr "Số Đơn Hàng"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_form
+msgid "Theo Dõi"
+msgstr "Theo Dõi"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__stage__won
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_search
+msgid "Thành Công"
+msgstr "Thành Công"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_partner_garment_buyer
+msgid "Thông Tin Buyer"
+msgstr "Thông Tin Buyer"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "Thông Tin Chung"
+msgstr "Thông Tin Chung"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "Thông Tin Kinh Doanh"
+msgstr "Thông Tin Kinh Doanh"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_form
+msgid "Thông Tin Phản Hồi"
+msgstr "Thông Tin Phản Hồi"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__buyer_type__brand
+msgid "Thương Hiệu (Brand)"
+msgstr "Thương Hiệu (Brand)"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "Thương Lượng"
+msgstr "Thương Lượng"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__severity__low
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__priority__0
+msgid "Thấp"
+msgstr "Thấp"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__stage__lost
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_search
+msgid "Thất Bại"
+msgstr "Thất Bại"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__lost_reason__delivery
+msgid "Thời Gian Giao Hàng"
+msgstr "Thời Gian Giao Hàng"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__quality_standard
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__quality_standard
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_partner_garment_buyer
+msgid "Tiêu Chuẩn Chất Lượng"
+msgstr "Tiêu Chuẩn Chất Lượng"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__name
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__name
+msgid "Tiêu Đề"
+msgstr "Tiêu Đề"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "Tiêu đề lead / cơ hội..."
+msgstr "Tiêu đề lead / cơ hội..."
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_form
+msgid "Tiêu đề phản hồi..."
+msgstr "Tiêu đề phản hồi..."
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__currency_id
+msgid "Tiền Tệ"
+msgstr "Tiền Tệ"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_list
+msgid "Total"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__source__exhibition
+msgid "Triển Lãm"
+msgstr "Triển Lãm"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__severity__medium
+msgid "Trung Bình"
+msgstr "Trung Bình"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__state
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_search
+msgid "Trạng Thái"
+msgstr "Trạng Thái"
+
+#. module: garment_crm
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_feedback__activity_exception_decoration
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_lead__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__company_name
+msgid "Tên Công Ty"
+msgstr "Tên Công Ty"
+
+#. module: garment_crm
+#: model_terms:ir.actions.act_window,help:garment_crm.action_crm_lead_all
+msgid "Tạo Lead / Cơ Hội đầu tiên!"
+msgstr "Tạo Lead / Cơ Hội đầu tiên!"
+
+#. module: garment_crm
+#. odoo-python
+#: code:addons/garment_crm/models/crm_lead.py:0
+msgid "Tạo từ CRM: %s"
+msgstr "Tạo từ CRM: %s"
+
+#. module: garment_crm
+#: model:ir.actions.act_window,name:garment_crm.action_crm_lead_all
+msgid "Tất Cả Lead / Cơ Hội"
+msgstr "Tất Cả Lead / Cơ Hội"
+
+#. module: garment_crm
+#: model:ir.actions.act_window,name:garment_crm.action_crm_feedback_all
+msgid "Tất Cả Phản Hồi"
+msgstr "Tất Cả Phản Hồi"
+
+#. module: garment_crm
+#. odoo-python
+#: code:addons/garment_crm/models/crm_feedback.py:0
+msgid "Vui lòng chọn người xử lý trước!"
+msgstr "Vui lòng chọn người xử lý trước!"
+
+#. module: garment_crm
+#. odoo-python
+#: code:addons/garment_crm/models/crm_feedback.py:0
+msgid "Vui lòng nhập biện pháp xử lý!"
+msgstr "Vui lòng nhập biện pháp xử lý!"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__source__website
+msgid "Website"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__website_message_ids
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_feedback__website_message_ids
+#: model:ir.model.fields,help:garment_crm.field_garment_crm_lead__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__team__export
+msgid "Xuất Khẩu"
+msgstr "Xuất Khẩu"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__probability
+msgid "Xác Suất (%)"
+msgstr "Xác Suất (%)"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_form
+msgid "Xử Lý"
+msgstr "Xử Lý"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__compliance_requirements
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__compliance_requirements
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_partner_garment_buyer
+msgid "Yêu Cầu Tuân Thủ"
+msgstr "Yêu Cầu Tuân Thủ"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__product_interest__jacket
+msgid "Áo Khoác"
+msgstr "Áo Khoác"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__product_category__jacket
+msgid "Áo Khoác / Jacket"
+msgstr "Áo Khoác / Jacket"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__product_category__polo
+msgid "Áo Polo"
+msgstr "Áo Polo"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__product_category__shirt
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__product_interest__shirt
+msgid "Áo Sơ Mi"
+msgstr "Áo Sơ Mi"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__product_interest__tshirt
+msgid "Áo Thun"
+msgstr "Áo Thun"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__product_category__tshirt
+msgid "Áo Thun / T-Shirt"
+msgstr "Áo Thun / T-Shirt"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__product_interest__mixed
+msgid "Đa Dạng"
+msgstr "Đa Dạng"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_search
+msgid "Đang Mở"
+msgstr "Đang Mở"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__stage__negotiation
+msgid "Đang Thương Lượng"
+msgstr "Đang Thương Lượng"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__state__processing
+msgid "Đang Xử Lý"
+msgstr "Đang Xử Lý"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_res_partner__payment_term_note
+#: model:ir.model.fields,field_description:garment_crm.field_res_users__payment_term_note
+msgid "Điều Kiện Thanh Toán"
+msgstr "Điều Kiện Thanh Toán"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__contact_phone
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__source__phone
+msgid "Điện Thoại"
+msgstr "Điện Thoại"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "Đánh Giá"
+msgstr "Đánh Giá"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__satisfaction_rating
+msgid "Đánh Giá Hài Lòng"
+msgstr "Đánh Giá Hài Lòng"
+
+#. module: garment_crm
+#. odoo-python
+#: code:addons/garment_crm/models/crm_lead.py:0
+msgid "Đây đã là Cơ Hội!"
+msgstr "Đây đã là Cơ Hội!"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__state__resolved
+msgid "Đã Giải Quyết"
+msgstr "Đã Giải Quyết"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__stage__proposal
+msgid "Đã Gửi Báo Giá"
+msgstr "Đã Gửi Báo Giá"
+
+#. module: garment_crm
+#. odoo-python
+#: code:addons/garment_crm/models/crm_lead.py:0
+msgid "Đã tạo đơn hàng cho cơ hội này!"
+msgstr "Đã tạo đơn hàng cho cơ hội này!"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__stage__qualified
+msgid "Đã Đánh Giá"
+msgstr "Đã Đánh Giá"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__state__closed
+msgid "Đã Đóng"
+msgstr "Đã Đóng"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_form
+msgid "Đóng"
+msgstr "Đóng"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__category__packaging
+msgid "Đóng Gói"
+msgstr "Đóng Gói"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_partner_garment_buyer
+msgid "Đơn Hàng"
+msgstr "Đơn Hàng"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_feedback__garment_order_id
+msgid "Đơn Hàng Liên Quan"
+msgstr "Đơn Hàng Liên Quan"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__garment_order_id
+msgid "Đơn Hàng Tạo Từ CRM"
+msgstr "Đơn Hàng Tạo Từ CRM"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__source__agent
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__buyer_type__agent
+msgid "Đại Lý / Agent"
+msgstr "Đại Lý / Agent"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__product_category__dress
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__product_interest__dress
+msgid "Đầm / Váy"
+msgstr "Đầm / Váy"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__feedback_type__suggestion
+msgid "Đề Xuất"
+msgstr "Đề Xuất"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__lost_reason__competitor
+msgid "Đối Thủ Cạnh Tranh"
+msgstr "Đối Thủ Cạnh Tranh"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__product_category__sportswear
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__product_interest__sportswear
+msgid "Đồ Thể Thao"
+msgstr "Đồ Thể Thao"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__product_category__childwear
+msgid "Đồ Trẻ Em"
+msgstr "Đồ Trẻ Em"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_lead__product_category__uniform
+#: model:ir.model.fields.selection,name:garment_crm.selection__res_partner__product_interest__uniform
+msgid "Đồng Phục"
+msgstr "Đồng Phục"
+
+#. module: garment_crm
+#: model:ir.model.fields,field_description:garment_crm.field_garment_crm_lead__priority
+msgid "Ưu Tiên"
+msgstr "Ưu Tiên"
+
+#. module: garment_crm
+#: model:ir.model.fields,help:garment_crm.field_res_partner__annual_volume
+#: model:ir.model.fields,help:garment_crm.field_res_users__annual_volume
+msgid "Ước tính sản lượng đặt hàng hàng năm"
+msgstr "Ước tính sản lượng đặt hàng hàng năm"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "→ Chuyển Cơ Hội"
+msgstr "→ Chuyển Cơ Hội"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "↩ Quay Lại"
+msgstr "↩ Quay Lại"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__satisfaction_rating__1
+msgid "★ Rất Không Hài Lòng"
+msgstr "★ Rất Không Hài Lòng"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__satisfaction_rating__2
+msgid "★★ Không Hài Lòng"
+msgstr "★★ Không Hài Lòng"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__satisfaction_rating__3
+msgid "★★★ Bình Thường"
+msgstr "★★★ Bình Thường"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__satisfaction_rating__4
+msgid "★★★★ Hài Lòng"
+msgstr "★★★★ Hài Lòng"
+
+#. module: garment_crm
+#: model:ir.model.fields.selection,name:garment_crm.selection__garment_crm_feedback__satisfaction_rating__5
+msgid "★★★★★ Rất Hài Lòng"
+msgstr "★★★★★ Rất Hài Lòng"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "✓ Thành Công"
+msgstr "✓ Thành Công"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_feedback_form
+msgid "✓ Đã Giải Quyết"
+msgstr "✓ Đã Giải Quyết"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "✗ Thất Bại"
+msgstr "✗ Thất Bại"
+
+#. module: garment_crm
+#: model_terms:ir.ui.view,arch_db:garment_crm.view_crm_lead_form
+msgid "📋 Tạo Đơn Hàng"
+msgstr "📋 Tạo Đơn Hàng"

@@ -27,6 +27,7 @@
         'hr',
     ],
     'data': [
+        'data/garment_lang_data.xml',
         'wizard/order_matrix_import_views.xml',
         'security/garment_security.xml',
         'security/ir.model.access.csv',
