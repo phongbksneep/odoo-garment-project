@@ -41,12 +41,12 @@ class GarmentEmployee(models.Model):
         ondelete='set null',
     )
 
-    id_number = fields.Char(string='Số CCCD/CMND')
-    insurance_number = fields.Char(string='Số Sổ BHXH')
-    tax_code = fields.Char(string='Mã Số Thuế')
+    id_number = fields.Char(string='Số CCCD/CMND', groups='hr.group_hr_user')
+    insurance_number = fields.Char(string='Số Sổ BHXH', groups='hr.group_hr_user')
+    tax_code = fields.Char(string='Mã Số Thuế', groups='hr.group_hr_user')
 
-    bank_name = fields.Char(string='Ngân Hàng')
-    bank_account = fields.Char(string='Số Tài Khoản')
+    bank_name = fields.Char(string='Ngân Hàng', groups='hr.group_hr_user')
+    bank_account = fields.Char(string='Số Tài Khoản', groups='hr.group_hr_user')
 
     emergency_contact = fields.Char(string='Liên Hệ Khẩn Cấp')
     emergency_phone = fields.Char(string='SĐT Khẩn Cấp')
