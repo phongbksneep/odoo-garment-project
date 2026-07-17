@@ -211,11 +211,17 @@ class GarmentInvoice(models.Model):
 
     def action_confirm(self):
         for rec in self:
+            if rec.state != 'draft':
+                raise UserError(_('Chỉ hóa đơn Nháp mới được xác nhận.'))
             if not rec.line_ids:
                 raise UserError(_('Phải có ít nhất 1 dòng chi tiết!'))
         self.write({'state': 'confirmed'})
 
     def action_paid(self):
+        for rec in self:
+            if rec.state != 'confirmed':
+                raise UserError(_(
+                    'Chỉ hóa đơn Đã Xác Nhận mới được ghi nhận thanh toán.'))
         self.write({'state': 'paid'})
 
     def action_cancel(self):
@@ -225,7 +231,19 @@ class GarmentInvoice(models.Model):
         self.write({'state': 'cancelled'})
 
     def action_reset_draft(self):
+        for rec in self:
+            if rec.state == 'paid':
+                raise UserError(_(
+                    'Không thể đưa hóa đơn đã thanh toán về Nháp.'))
         self.write({'state': 'draft'})
+
+    def unlink(self):
+        for rec in self:
+            if rec.state in ('confirmed', 'paid'):
+                raise UserError(_(
+                    'Không thể xóa hóa đơn %s đã xác nhận/thanh toán. '
+                    'Hãy hủy hóa đơn trước.', rec.name))
+        return super().unlink()
 
 
 class GarmentInvoiceLine(models.Model):
