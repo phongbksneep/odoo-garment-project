@@ -28,6 +28,7 @@ class GarmentOrder(models.Model):
         string='Khách Hàng',
         required=True,
         index=True,
+        ondelete='restrict',
         tracking=True,
         domain=[('customer_rank', '>', 0)],
     )
@@ -40,6 +41,7 @@ class GarmentOrder(models.Model):
         string='Mẫu May',
         required=True,
         index=True,
+        ondelete='restrict',
         tracking=True,
     )
     order_date = fields.Date(
