@@ -23,6 +23,7 @@ class GarmentOrder(models.Model):
         'res.partner',
         string='Khách Hàng',
         required=True,
+        index=True,
         tracking=True,
         domain=[('customer_rank', '>', 0)],
     )
@@ -34,6 +35,7 @@ class GarmentOrder(models.Model):
         'garment.style',
         string='Mẫu May',
         required=True,
+        index=True,
         tracking=True,
     )
     order_date = fields.Date(
@@ -43,6 +45,7 @@ class GarmentOrder(models.Model):
     )
     delivery_date = fields.Date(
         string='Ngày Giao Hàng',
+        index=True,
         tracking=True,
     )
     line_ids = fields.One2many(
@@ -83,7 +86,7 @@ class GarmentOrder(models.Model):
         ('shipped', 'Đã Giao'),
         ('done', 'Hoàn Thành'),
         ('cancelled', 'Đã Hủy'),
-    ], string='Trạng Thái', default='draft', tracking=True)
+    ], string='Trạng Thái', default='draft', index=True, tracking=True)
 
     payment_term = fields.Selection([
         ('tt', 'T/T (Chuyển Khoản)'),

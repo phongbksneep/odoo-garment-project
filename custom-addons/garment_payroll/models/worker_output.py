@@ -9,12 +9,14 @@ class GarmentWorkerOutput(models.Model):
     date = fields.Date(
         string='Ngày',
         required=True,
+        index=True,
         default=fields.Date.today,
     )
     employee_id = fields.Many2one(
         'hr.employee',
         string='Công Nhân',
         required=True,
+        index=True,
     )
     sewing_line_id = fields.Many2one(
         'garment.sewing.line',

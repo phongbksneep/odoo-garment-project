@@ -11,6 +11,7 @@ class GarmentDailyOutput(models.Model):
         'garment.production.order',
         string='Lệnh Sản Xuất',
         required=True,
+        index=True,
         ondelete='cascade',
     )
     sewing_line_id = fields.Many2one(

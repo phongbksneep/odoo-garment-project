@@ -22,6 +22,7 @@ class GarmentProductionOrder(models.Model):
         'garment.order',
         string='Đơn Hàng May',
         required=True,
+        index=True,
         tracking=True,
     )
     style_id = fields.Many2one(
@@ -39,6 +40,7 @@ class GarmentProductionOrder(models.Model):
     sewing_line_id = fields.Many2one(
         'garment.sewing.line',
         string='Chuyền May',
+        index=True,
         tracking=True,
     )
     planned_qty = fields.Integer(

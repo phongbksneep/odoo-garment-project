@@ -199,6 +199,7 @@ class GarmentQCDefectLine(models.Model):
         'garment.qc.inspection',
         string='Phiếu QC',
         required=True,
+        index=True,
         ondelete='cascade',
     )
     defect_type_id = fields.Many2one(
