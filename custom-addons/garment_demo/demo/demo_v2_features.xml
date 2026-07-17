@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <data>
+        <!-- =========================================================== -->
+        <!-- BỔ SUNG TRƯỜNG MỚI CHO NHÂN VIÊN: thâm niên, BHXH            -->
+        <!-- =========================================================== -->
+        <!-- Lao động thời vụ chưa tham gia BHXH -->
+
+        <!-- =========================================================== -->
+        <!-- PHIẾU GIAO NHẬN BÁN THÀNH PHẨM (garment.wip.transfer)       -->
+        <!-- =========================================================== -->
+        <record id="wip_cut_sew_1" model="garment.wip.transfer">
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="from_stage">cutting</field>
+            <field name="to_stage">sewing</field>
+            <field name="quantity">600</field>
+            <field name="bundle_note">Bó 01-12, màu Trắng size M-L</field>
+            <field name="giver_id" ref="emp_cut_leader"/>
+            <field name="receiver_id" ref="emp_sew1_leader"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=6)).strftime('%Y-%m-%d')"/>
+            <field name="state">received</field>
+        </record>
+        <record id="wip_cut_sew_2" model="garment.wip.transfer">
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="from_stage">cutting</field>
+            <field name="to_stage">sewing</field>
+            <field name="quantity">450</field>
+            <field name="bundle_note">Bó 13-21, màu Navy size S-M</field>
+            <field name="giver_id" ref="emp_cut_leader"/>
+            <field name="receiver_id" ref="emp_sew1_leader"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=3)).strftime('%Y-%m-%d')"/>
+            <field name="state">received</field>
+        </record>
+        <record id="wip_sew_finish_1" model="garment.wip.transfer">
+            <field name="garment_order_id" ref="order_polo_gf"/>
+            <field name="production_order_id" ref="prod_order_polo"/>
+            <field name="from_stage">sewing</field>
+            <field name="to_stage">finishing</field>
+            <field name="quantity">380</field>
+            <field name="bundle_note">Bó 01-08 đã may xong</field>
+            <field name="giver_id" ref="emp_sew1_leader"/>
+            <field name="receiver_id" ref="emp_finish_leader"/>
+            <field name="date" eval="(DateTime.today() - timedelta(days=1)).strftime('%Y-%m-%d')"/>
+            <field name="state">transferred</field>
+        </record>
+        <record id="wip_cut_sew_tshirt" model="garment.wip.transfer">
+            <field name="garment_order_id" ref="order_tshirt_eu"/>
+            <field name="production_order_id" ref="prod_order_tshirt"/>
+            <field name="from_stage">cutting</field>
+            <field name="to_stage">sewing</field>
+            <field name="quantity">800</field>
+            <field name="bundle_note">Bó 01-16, Đen size M</field>
+            <field name="giver_id" ref="emp_cut_leader"/>
+            <field name="date" eval="DateTime.today().strftime('%Y-%m-%d')"/>
+            <field name="state">draft</field>
+        </record>
+
+        <!-- =========================================================== -->
+        <!-- BẢNG LƯƠNG THÁNG TRƯỚC: đủ trường OT luật định, BHXH, thuế   -->
+        <!-- (tháng trước để không đụng unique với bảng lương tháng này) -->
+        <!-- =========================================================== -->
+        <record id="wage_v2_sew1_w2" model="garment.wage.calculation">
+            <field name="employee_id" ref="emp_sew1_worker2"/>
+            <field name="month" eval="'%02d' % ((DateTime.today().month - 2) % 12 + 1)"/>
+            <field name="year" eval="DateTime.today().year if DateTime.today().month > 1 else DateTime.today().year - 1"/>
+            <field name="base_salary">5850000</field>
+            <field name="working_days">26</field>
+            <field name="actual_days">25</field>
+            <field name="paid_leave_days">1</field>
+            <field name="ot_hours_weekend">8</field>
+            <field name="ot_hours_holiday">0</field>
+            <field name="allowance_attendance">300000</field>
+            <field name="allowance_lunch">660000</field>
+            <field name="allowance_transport">200000</field>
+            <field name="dependent_count">1</field>
+            <field name="state">calculated</field>
+        </record>
+        <record id="wage_v2_sew2_leader" model="garment.wage.calculation">
+            <field name="employee_id" ref="emp_sew2_leader"/>
+            <field name="month" eval="'%02d' % ((DateTime.today().month - 2) % 12 + 1)"/>
+            <field name="year" eval="DateTime.today().year if DateTime.today().month > 1 else DateTime.today().year - 1"/>
+            <field name="base_salary">7800000</field>
+            <field name="working_days">26</field>
+            <field name="actual_days">26</field>
+            <field name="ot_hours_weekend">4</field>
+            <field name="ot_hours_holiday">8</field>
+            <field name="allowance_attendance">300000</field>
+            <field name="allowance_lunch">660000</field>
+            <field name="allowance_phone">150000</field>
+            <field name="dependent_count">2</field>
+            <field name="state">calculated</field>
+        </record>
+        <!-- Thời vụ không BHXH -->
+        <record id="wage_v2_seasonal" model="garment.wage.calculation">
+            <field name="employee_id" ref="emp_sew2_worker1"/>
+            <field name="month" eval="'%02d' % ((DateTime.today().month - 2) % 12 + 1)"/>
+            <field name="year" eval="DateTime.today().year if DateTime.today().month > 1 else DateTime.today().year - 1"/>
+            <field name="base_salary">5200000</field>
+            <field name="working_days">26</field>
+            <field name="actual_days">22</field>
+            <field name="apply_insurance" eval="False"/>
+            <field name="allowance_lunch">560000</field>
+            <field name="state">calculated</field>
+        </record>
+
+        <!-- Nghỉ ốm đã duyệt (BHXH chi trả) -->
+        <record id="leave_v2_sick" model="garment.leave">
+            <field name="employee_id" ref="emp_sew1_worker2"/>
+            <field name="leave_type">sick</field>
+            <field name="date_from" eval="(DateTime.today() - timedelta(days=40)).strftime('%Y-%m-%d')"/>
+            <field name="date_to" eval="(DateTime.today() - timedelta(days=38)).strftime('%Y-%m-%d')"/>
+            <field name="reason">Sốt xuất huyết, có giấy bệnh viện</field>
+            <field name="state">approved</field>
+        </record>
+
+        <!-- Thưởng năng suất đã xác nhận, chi trong tháng này -->
+        <record id="bonus_v2_productivity" model="garment.bonus">
+            <field name="bonus_type">productivity</field>
+            <field name="date" eval="DateTime.today().strftime('%Y-%m-%d')"/>
+            <field name="year" eval="DateTime.today().year"/>
+            <field name="state">confirmed</field>
+        </record>
+        <record id="bonus_v2_line1" model="garment.bonus.line">
+            <field name="bonus_id" ref="bonus_v2_productivity"/>
+            <field name="employee_id" ref="emp_sew1_worker1"/>
+            <field name="amount">800000</field>
+            <field name="rating">a</field>
+        </record>
+        <record id="bonus_v2_line2" model="garment.bonus.line">
+            <field name="bonus_id" ref="bonus_v2_productivity"/>
+            <field name="employee_id" ref="emp_sew1_worker2"/>
+            <field name="amount">500000</field>
+            <field name="rating">b</field>
+        </record>
+
+        <!-- =========================================================== -->
+        <!-- TRẠNG THÁI ĐƠN HÀNG + ĐƠN LỊCH SỬ CHO BÁO CÁO DOANH THU     -->
+        <!-- =========================================================== -->
+
+        <!-- Đơn đã hoàn thành 2 tháng trước (khách Nhật) -->
+        <record id="order_v2_jp_done" model="garment.order">
+            <field name="customer_id" ref="partner_buyer_jp"/>
+            <field name="customer_po">YM-PO-0088</field>
+            <field name="style_id" ref="style_shirt_dress"/>
+            <field name="unit_price">6.20</field>
+            <field name="order_date" eval="(DateTime.today() - timedelta(days=65)).strftime('%Y-%m-%d')"/>
+            <field name="delivery_date" eval="(DateTime.today() - timedelta(days=20)).strftime('%Y-%m-%d')"/>
+            <field name="payment_term">lc</field>
+            <field name="incoterm">fob</field>
+            <field name="destination_port">Tokyo, Japan</field>
+        </record>
+        <record id="ol_v2_jp_m" model="garment.order.line">
+            <field name="order_id" ref="order_v2_jp_done"/>
+            <field name="color_id" ref="garment_base.color_white"/>
+            <field name="size_id" ref="garment_base.size_m"/>
+            <field name="quantity">1200</field>
+        </record>
+        <record id="ol_v2_jp_l" model="garment.order.line">
+            <field name="order_id" ref="order_v2_jp_done"/>
+            <field name="color_id" ref="garment_base.color_black"/>
+            <field name="size_id" ref="garment_base.size_l"/>
+            <field name="quantity">800</field>
+        </record>
+        <!-- chuyển done sau khi đã có dòng (guard chỉ cho sửa dòng ở Nháp) -->
+
+        <!-- Đơn đang giao tháng trước (khách EU) -->
+        <record id="order_v2_eu_shipped" model="garment.order">
+            <field name="customer_id" ref="partner_buyer_eu"/>
+            <field name="customer_po">EF-PO-0142</field>
+            <field name="style_id" ref="style_tshirt_basic"/>
+            <field name="unit_price">3.10</field>
+            <field name="order_date" eval="(DateTime.today() - timedelta(days=35)).strftime('%Y-%m-%d')"/>
+            <field name="delivery_date" eval="(DateTime.today() + timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="incoterm">fob</field>
+            <field name="destination_port">Hamburg, Germany</field>
+        </record>
+        <record id="ol_v2_eu_m" model="garment.order.line">
+            <field name="order_id" ref="order_v2_eu_shipped"/>
+            <field name="color_id" ref="garment_base.color_black"/>
+            <field name="size_id" ref="garment_base.size_m"/>
+            <field name="quantity">2500</field>
+        </record>
+    </data>
+</odoo>

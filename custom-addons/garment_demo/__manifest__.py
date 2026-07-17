@@ -61,6 +61,8 @@ Tạo dữ liệu mẫu cho tất cả module:
         'demo/demo_bom.xml',
         'demo/demo_washing_capacity.xml',
         'demo/demo_packing_shipping.xml',
+        'demo/demo_v2_features.xml',
+        'demo/demo_v2_updates.xml',
     ],
     'installable': True,
     'application': False,

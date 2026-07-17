@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <data>
+        <!-- Bản ghi gốc nằm trong file noupdate=1 nên phải cập nhật
+             qua function write -->
+        <function model="hr.employee" name="write">
+            <value eval="[ref('emp_sew1_leader')]"/>
+            <value eval="{'join_date': '2015-03-02', 'has_social_insurance': True}"/>
+        </function>
+        <function model="hr.employee" name="write">
+            <value eval="[ref('emp_sew1_worker1')]"/>
+            <value eval="{'join_date': '2021-06-15', 'has_social_insurance': True}"/>
+        </function>
+        <function model="hr.employee" name="write">
+            <value eval="[ref('emp_sew1_worker2')]"/>
+            <value eval="{'join_date': '2024-02-19', 'has_social_insurance': True}"/>
+        </function>
+        <function model="hr.employee" name="write">
+            <value eval="[ref('emp_sew2_leader')]"/>
+            <value eval="{'join_date': '2018-08-01', 'has_social_insurance': True}"/>
+        </function>
+        <function model="hr.employee" name="write">
+            <value eval="[ref('emp_sew2_worker1')]"/>
+            <value eval="{'join_date': (DateTime.today().replace(day=1)).strftime('%Y-%m-%d'), 'has_social_insurance': False}"/>
+        </function>
+        <function model="hr.employee" name="write">
+            <value eval="[ref('emp_cut_leader')]"/>
+            <value eval="{'join_date': '2016-11-10'}"/>
+        </function>
+
+        <!-- Trạng thái đơn hàng cho pipeline/kanban + báo cáo doanh thu -->
+        <function model="garment.order" name="write">
+            <value eval="[ref('order_polo_gf')]"/>
+            <value eval="{'state': 'sewing'}"/>
+        </function>
+        <function model="garment.order" name="write">
+            <value eval="[ref('order_tshirt_eu')]"/>
+            <value eval="{'state': 'cutting'}"/>
+        </function>
+        <function model="garment.order" name="write">
+            <value eval="[ref('order_v2_jp_done')]"/>
+            <value eval="{'state': 'done'}"/>
+        </function>
+        <function model="garment.order" name="write">
+            <value eval="[ref('order_v2_eu_shipped')]"/>
+            <value eval="{'state': 'shipped'}"/>
+        </function>
+    </data>
+</odoo>
