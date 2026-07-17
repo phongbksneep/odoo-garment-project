@@ -277,3 +277,12 @@ class TestFloorReports(TransactionCase):
             'description': 'Vải FRP', 'unit': 'm',
             'quantity_required': 100, 'quantity_issued': 100})
         self._render('garment_print.action_report_material_allocation', alloc)
+
+    def test_wip_transfer_report(self):
+        giver = self.env['hr.employee'].create({'name': 'Giao FRP'})
+        transfer = self.env['garment.wip.transfer'].create({
+            'garment_order_id': self.order.id,
+            'from_stage': 'cutting', 'to_stage': 'sewing',
+            'quantity': 300, 'giver_id': giver.id,
+        })
+        self._render('garment_print.action_report_wip_transfer', transfer)

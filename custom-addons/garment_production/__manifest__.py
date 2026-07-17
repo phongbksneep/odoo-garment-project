@@ -23,6 +23,8 @@
         'hr',
     ],
     'data': [
+        'data/wip_transfer_data.xml',
+        'views/wip_transfer_views.xml',
         'security/ir.model.access.csv',
         'data/production_data.xml',
         'views/sewing_line_views.xml',

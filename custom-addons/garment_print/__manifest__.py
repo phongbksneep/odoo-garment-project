@@ -31,6 +31,7 @@ Garment Print & Export
         'report/report_cutting_order.xml',
         'report/report_wage_summary.xml',
         'report/report_material_allocation.xml',
+        'report/report_wip_transfer.xml',
         'report/report_invoice.xml',
         'report/report_payslip.xml',
         'report/report_qc_inspection.xml',

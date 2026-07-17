@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_report_wip_transfer" model="ir.actions.report">
+        <field name="name">In Phiếu Giao Nhận BTP</field>
+        <field name="model">garment.wip.transfer</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">garment_print.report_wip_transfer_document</field>
+        <field name="report_file">garment_print.report_wip_transfer_document</field>
+        <field name="binding_model_id" ref="garment_production.model_garment_wip_transfer"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'GiaoNhanBTP_%s' % object.name</field>
+    </record>
+
+    <template id="report_wip_transfer_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center mb-2">PHIẾU GIAO NHẬN BÁN THÀNH PHẨM</h2>
+                        <h4 class="text-center mb-4"><t t-out="doc.name"/></h4>
+                        <table class="table table-sm table-borderless mb-3">
+                            <tr>
+                                <td style="width:50%"><strong>Đơn hàng:</strong> <t t-out="doc.garment_order_id.name"/></td>
+                                <td><strong>Ngày giao:</strong> <t t-out="doc.date"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mã hàng:</strong> <t t-out="doc.style_id.display_name or '-'"/></td>
+                                <td><strong>Lệnh SX:</strong> <t t-out="doc.production_order_id.name or '-'"/></td>
+                            </tr>
+                        </table>
+                        <table class="table table-sm table-bordered mb-4">
+                            <thead>
+                                <tr class="table-light">
+                                    <th>Từ Công Đoạn</th><th>Đến Công Đoạn</th>
+                                    <th class="text-end">Số Lượng (sp)</th><th>Số Bó / Ghi Chú</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><t t-out="dict(doc._fields['from_stage'].selection).get(doc.from_stage)"/></td>
+                                    <td><t t-out="dict(doc._fields['to_stage'].selection).get(doc.to_stage)"/></td>
+                                    <td class="text-end"><t t-out="'{:,}'.format(doc.quantity)"/></td>
+                                    <td><t t-out="doc.bundle_note or '-'"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row mt-5">
+                            <div class="col-6 text-center">
+                                <strong>Người Giao</strong><br/>
+                                <t t-out="doc.giver_id.name"/><br/><br/><br/>(Ký, họ tên)
+                            </div>
+                            <div class="col-6 text-center">
+                                <strong>Người Nhận</strong><br/>
+                                <t t-out="doc.receiver_id.name or ''"/><br/><br/><br/>(Ký, họ tên)
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

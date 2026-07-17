@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wip_transfer_list" model="ir.ui.view">
+        <field name="name">garment.wip.transfer.list</field>
+        <field name="model">garment.wip.transfer</field>
+        <field name="arch" type="xml">
+            <list decoration-info="state == 'transferred'"
+                  decoration-success="state == 'received'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="garment_order_id"/>
+                <field name="style_id"/>
+                <field name="from_stage"/>
+                <field name="to_stage"/>
+                <field name="quantity" sum="Tổng"/>
+                <field name="giver_id"/>
+                <field name="receiver_id"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'transferred'"
+                       decoration-success="state == 'received'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_wip_transfer_form" model="ir.ui.view">
+        <field name="name">garment.wip.transfer.form</field>
+        <field name="model">garment.wip.transfer</field>
+        <field name="arch" type="xml">
+            <form string="Phiếu Giao Nhận BTP">
+                <header>
+                    <button name="action_transfer" string="Giao Hàng" type="object"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_receive" string="Xác Nhận Nhận" type="object"
+                            class="btn-primary" invisible="state != 'transferred'"/>
+                    <button name="action_cancel" string="Hủy" type="object"
+                            invisible="state in ('received', 'cancelled')"/>
+                    <button name="action_reset_draft" string="Đặt Lại Nháp" type="object"
+                            invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,transferred,received"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name" readonly="1"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="garment_order_id"/>
+                            <field name="production_order_id"/>
+                            <field name="style_id"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="from_stage"/>
+                            <field name="to_stage"/>
+                            <field name="quantity"/>
+                            <field name="bundle_note"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="giver_id"/>
+                            <field name="receiver_id"/>
+                        </group>
+                        <group>
+                            <field name="note"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_wip_transfer_search" model="ir.ui.view">
+        <field name="name">garment.wip.transfer.search</field>
+        <field name="model">garment.wip.transfer</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="garment_order_id"/>
+                <field name="style_id"/>
+                <filter name="today" string="Hôm Nay"
+                        domain="[('date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter name="pending_receive" string="Chờ Nhận"
+                        domain="[('state', '=', 'transferred')]"/>
+                <group>
+                    <filter name="group_order" string="Đơn Hàng"
+                            context="{'group_by': 'garment_order_id'}"/>
+                    <filter name="group_to_stage" string="Công Đoạn Nhận"
+                            context="{'group_by': 'to_stage'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_wip_transfer" model="ir.actions.act_window">
+        <field name="name">Giao Nhận BTP</field>
+        <field name="res_model">garment.wip.transfer</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_pending_receive': 1}</field>
+    </record>
+
+    <menuitem id="menu_wip_transfer"
+              name="Giao Nhận BTP"
+              parent="garment_base.menu_garment_production_main"
+              action="action_wip_transfer"
+              sequence="35"/>
+</odoo>

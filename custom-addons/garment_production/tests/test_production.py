@@ -375,3 +375,67 @@ class TestProductionLinkGuards(TransactionCase):
         with self.assertRaises(UserError):
             po.action_done()
 
+
+
+@tagged('post_install', '-at_install')
+class TestWipTransfer(TransactionCase):
+    """Phiếu giao nhận bán thành phẩm giữa các công đoạn."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].create({
+            'name': 'Buyer WIP', 'customer_rank': 1})
+        cls.style = cls.env['garment.style'].create({
+            'name': 'STYLE-WIP-001', 'code': 'ST-WIP-001',
+            'category': 'shirt'})
+        cls.order = cls.env['garment.order'].create({
+            'customer_id': cls.partner.id, 'style_id': cls.style.id})
+        cls.giver = cls.env['hr.employee'].create({'name': 'Giao WIP'})
+        cls.receiver = cls.env['hr.employee'].create({'name': 'Nhận WIP'})
+
+    def _create_transfer(self, **kwargs):
+        vals = {
+            'garment_order_id': self.order.id,
+            'from_stage': 'cutting',
+            'to_stage': 'sewing',
+            'quantity': 500,
+            'giver_id': self.giver.id,
+        }
+        vals.update(kwargs)
+        return self.env['garment.wip.transfer'].create(vals)
+
+    def test_wip_sequence_generated(self):
+        transfer = self._create_transfer()
+        self.assertTrue(transfer.name.startswith('BTP-'))
+
+    def test_happy_path(self):
+        transfer = self._create_transfer()
+        transfer.action_transfer()
+        self.assertEqual(transfer.state, 'transferred')
+        transfer.receiver_id = self.receiver
+        transfer.action_receive()
+        self.assertEqual(transfer.state, 'received')
+
+    def test_receive_requires_receiver(self):
+        transfer = self._create_transfer()
+        transfer.action_transfer()
+        with self.assertRaises(UserError):
+            transfer.action_receive()
+
+    def test_same_stage_rejected(self):
+        with self.assertRaises(ValidationError):
+            self._create_transfer(to_stage='cutting')
+
+    def test_zero_qty_rejected(self):
+        with self.assertRaises(ValidationError):
+            self._create_transfer(quantity=0)
+
+    def test_received_locked(self):
+        transfer = self._create_transfer(receiver_id=self.receiver.id)
+        transfer.action_transfer()
+        transfer.action_receive()
+        with self.assertRaises(UserError):
+            transfer.action_cancel()
+        with self.assertRaises(UserError):
+            transfer.unlink()
