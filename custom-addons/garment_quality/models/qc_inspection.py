@@ -8,6 +8,10 @@ class GarmentQCInspection(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin', 'garment.audit.mixin']
     _order = 'create_date desc'
 
+    _sql_constraints = [
+        ('name_uniq', 'unique(name)', 'Số phiếu kiểm phải là duy nhất!'),
+    ]
+
     def _audit_tracked_fields(self):
         return ['inspection_type', 'result', 'state', 'inspected_qty',
                 'passed_qty', 'failed_qty']

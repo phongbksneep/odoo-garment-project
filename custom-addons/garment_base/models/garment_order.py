@@ -8,6 +8,10 @@ class GarmentOrder(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin', 'garment.audit.mixin']
     _order = 'create_date desc'
 
+    _sql_constraints = [
+        ('name_uniq', 'unique(name)', 'Số đơn hàng phải là duy nhất!'),
+    ]
+
     def _audit_tracked_fields(self):
         return ['customer_id', 'customer_po', 'style_id', 'delivery_date',
                 'unit_price', 'state', 'total_qty']

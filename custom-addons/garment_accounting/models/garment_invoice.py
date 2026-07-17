@@ -8,6 +8,10 @@ class GarmentInvoice(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'date desc'
 
+    _sql_constraints = [
+        ('name_uniq', 'unique(name)', 'Số hóa đơn phải là duy nhất!'),
+    ]
+
     name = fields.Char(
         string='Số Hóa Đơn',
         required=True,

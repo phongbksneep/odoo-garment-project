@@ -8,6 +8,10 @@ class GarmentWageCalculation(models.Model):
     _inherit = ['mail.thread', 'garment.audit.mixin']
     _order = 'month desc, employee_id'
 
+    _sql_constraints = [
+        ('name_uniq', 'unique(name)', 'Số phiếu lương phải là duy nhất!'),
+    ]
+
     def _audit_tracked_fields(self):
         return ['state', 'base_salary', 'total_wage', 'net_pay',
                 'bonus_amount', 'deduction']
