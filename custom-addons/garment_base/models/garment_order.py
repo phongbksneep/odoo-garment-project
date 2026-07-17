@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class GarmentOrder(models.Model):
@@ -189,8 +189,32 @@ class GarmentOrder(models.Model):
     # -------------------------------------------------------------------------
     # Actions
     # -------------------------------------------------------------------------
+    # Thứ tự pipeline; cancel/reset xử lý riêng. Cho phép đi tới (kể cả bỏ
+    # qua giai đoạn — không phải đơn nào cũng qua đủ các bước), cấm đi lùi.
+    _STATE_FLOW = ['draft', 'confirmed', 'material', 'cutting', 'sewing',
+                   'finishing', 'qc', 'packing', 'shipped', 'done']
+
+    def _check_forward(self, new_state):
+        flow = self._STATE_FLOW
+        for order in self:
+            if order.state in ('done', 'cancelled'):
+                raise UserError(_(
+                    'Đơn hàng %s đã kết thúc, không thể chuyển trạng thái.',
+                    order.name))
+            if order.state == 'draft':
+                raise UserError(_(
+                    'Đơn hàng %s phải được xác nhận trước.', order.name))
+            if flow.index(new_state) <= flow.index(order.state):
+                raise UserError(_(
+                    'Không thể chuyển đơn hàng %s lùi về trạng thái trước đó.',
+                    order.name))
+        self.write({'state': new_state})
+
     def action_confirm(self):
         for order in self:
+            if order.state != 'draft':
+                raise UserError(
+                    _('Chỉ đơn hàng Nháp mới được xác nhận.'))
             if not order.line_ids:
                 raise ValidationError(
                     _('Đơn hàng %s chưa có chi tiết size/màu. '
@@ -204,34 +228,52 @@ class GarmentOrder(models.Model):
         self.write({'state': 'confirmed'})
 
     def action_material(self):
-        self.write({'state': 'material'})
+        self._check_forward('material')
 
     def action_cutting(self):
-        self.write({'state': 'cutting'})
+        self._check_forward('cutting')
 
     def action_sewing(self):
-        self.write({'state': 'sewing'})
+        self._check_forward('sewing')
 
     def action_finishing(self):
-        self.write({'state': 'finishing'})
+        self._check_forward('finishing')
 
     def action_qc(self):
-        self.write({'state': 'qc'})
+        self._check_forward('qc')
 
     def action_packing(self):
-        self.write({'state': 'packing'})
+        self._check_forward('packing')
 
     def action_shipped(self):
-        self.write({'state': 'shipped'})
+        self._check_forward('shipped')
 
     def action_done(self):
-        self.write({'state': 'done'})
+        self._check_forward('done')
 
     def action_cancel(self):
+        for order in self:
+            if order.state in ('shipped', 'done'):
+                raise UserError(_(
+                    'Không thể hủy đơn hàng %s đã giao/hoàn thành.',
+                    order.name))
         self.write({'state': 'cancelled'})
 
     def action_reset_draft(self):
+        for order in self:
+            if order.state not in ('confirmed', 'cancelled'):
+                raise UserError(_(
+                    'Chỉ đơn hàng Đã Xác Nhận hoặc Đã Hủy mới được đưa về '
+                    'Nháp.'))
         self.write({'state': 'draft'})
+
+    def unlink(self):
+        for order in self:
+            if order.state not in ('draft', 'cancelled'):
+                raise UserError(_(
+                    'Không thể xóa đơn hàng %s ở trạng thái hiện tại. '
+                    'Hãy hủy đơn trước khi xóa.', order.name))
+        return super().unlink()
 
 
 class GarmentOrderLine(models.Model):
