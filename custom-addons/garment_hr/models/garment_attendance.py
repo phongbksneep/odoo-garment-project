@@ -123,21 +123,32 @@ class GarmentAttendanceSummary(models.Model):
         'Mỗi nhân viên chỉ có 1 bản tổng hợp/tháng!',
     )
 
+    def _period_range(self):
+        self.ensure_one()
+        date_from = fields.Date.to_date(f'{self.year}-{self.month}-01')
+        if int(self.month) == 12:
+            date_to = fields.Date.to_date(f'{self.year + 1}-01-01')
+        else:
+            next_m = str(int(self.month) + 1).zfill(2)
+            date_to = fields.Date.to_date(f'{self.year}-{next_m}-01')
+        return date_from, date_to
+
     def action_calculate(self):
         """Tổng hợp chấm công từ dữ liệu hàng ngày."""
+        if not self:
+            return
+        # Một truy vấn gộp cho cả batch thay vì search theo từng bản ghi
+        ranges = {rec.id: rec._period_range() for rec in self}
+        all_attendances = self.env['garment.attendance'].search([
+            ('employee_id', 'in', self.employee_id.ids),
+            ('date', '>=', min(r[0] for r in ranges.values())),
+            ('date', '<', max(r[1] for r in ranges.values())),
+        ])
         for rec in self:
-            date_from = fields.Date.to_date(f'{rec.year}-{rec.month}-01')
-            if int(rec.month) == 12:
-                date_to = fields.Date.to_date(f'{rec.year + 1}-01-01')
-            else:
-                next_m = str(int(rec.month) + 1).zfill(2)
-                date_to = fields.Date.to_date(f'{rec.year}-{next_m}-01')
-
-            attendances = self.env['garment.attendance'].search([
-                ('employee_id', '=', rec.employee_id.id),
-                ('date', '>=', date_from),
-                ('date', '<', date_to),
-            ])
+            date_from, date_to = ranges[rec.id]
+            attendances = all_attendances.filtered(
+                lambda a: a.employee_id == rec.employee_id
+                and date_from <= a.date < date_to)
             rec.present_days = len(attendances.filtered(
                 lambda a: a.status in ('present', 'late', 'early_leave', 'business_trip')))
             rec.absent_days = len(attendances.filtered(
