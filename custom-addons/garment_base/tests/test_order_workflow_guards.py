@@ -192,3 +192,48 @@ class TestOrderLinkGuards(TransactionCase):
         order.action_reset_draft()
         order.line_ids[0].write({'quantity': 900})
         self.assertEqual(order.total_qty, 900)
+
+
+@tagged('post_install', '-at_install')
+class TestOrderDuplicate(TransactionCase):
+    """Nhân bản đơn hàng lặp lại — thao tác phổ biến nhất ngành may."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].create({
+            'name': 'Buyer Dup Test', 'customer_rank': 1})
+        cls.style = cls.env['garment.style'].create({
+            'name': 'STYLE-DUP-001', 'code': 'ST-DUP-001',
+            'category': 'shirt'})
+        cls.color = cls.env['garment.color'].create({
+            'name': 'Đen Dup', 'code': 'BLK-DUP'})
+        cls.size = cls.env['garment.size'].create({
+            'name': 'M-DUP', 'code': 'M-DUP', 'size_type': 'letter'})
+
+    def test_duplicate_done_order_is_editable_draft(self):
+        order = self.env['garment.order'].create({
+            'customer_id': self.partner.id,
+            'style_id': self.style.id,
+            'customer_po': 'PO-ORIG-001',
+            'unit_price': 5.0,
+        })
+        self.env['garment.order.line'].create({
+            'order_id': order.id,
+            'color_id': self.color.id,
+            'size_id': self.size.id,
+            'quantity': 500,
+        })
+        order.action_confirm()
+        for action in ('action_material', 'action_cutting', 'action_sewing',
+                       'action_finishing', 'action_qc', 'action_packing',
+                       'action_shipped', 'action_done'):
+            getattr(order, action)()
+        copy = order.copy()
+        self.assertEqual(copy.state, 'draft')
+        self.assertFalse(copy.customer_po)
+        self.assertEqual(len(copy.line_ids), 1)
+        # Đơn mới sửa được và chạy lại workflow bình thường
+        copy.line_ids[0].write({'quantity': 300})
+        copy.action_confirm()
+        self.assertEqual(copy.state, 'confirmed')

@@ -33,6 +33,7 @@ class GarmentOrder(models.Model):
     )
     customer_po = fields.Char(
         string='PO Khách Hàng',
+        copy=False,
         tracking=True,
     )
     style_id = fields.Many2one(
@@ -91,7 +92,8 @@ class GarmentOrder(models.Model):
         ('shipped', 'Đã Giao'),
         ('done', 'Hoàn Thành'),
         ('cancelled', 'Đã Hủy'),
-    ], string='Trạng Thái', default='draft', index=True, tracking=True)
+    ], string='Trạng Thái', default='draft', index=True, copy=False,
+        tracking=True)
 
     payment_term = fields.Selection([
         ('tt', 'T/T (Chuyển Khoản)'),
