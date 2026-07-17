@@ -37,6 +37,10 @@ class GarmentOrderSaleIntegration(models.Model):
         self.ensure_one()
         if self.sale_order_id:
             raise UserError(_('Đơn hàng này đã có Sale Order: %s') % self.sale_order_id.name)
+        if self.state in ('draft', 'cancelled'):
+            raise UserError(_(
+                'Chỉ tạo được Sale Order từ đơn hàng đã xác nhận — '
+                'đơn %s đang ở trạng thái Nháp/Đã Hủy.') % self.name)
 
         product = _get_garment_product(self.env, price=self.unit_price or 0)
 

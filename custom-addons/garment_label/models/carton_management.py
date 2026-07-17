@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class GarmentCartonBox(models.Model):
@@ -78,6 +78,21 @@ class GarmentCartonBox(models.Model):
             box.cbm = (
                 box.length_cm * box.width_cm * box.height_cm
             ) / 1_000_000
+
+    @api.constrains('quantity', 'packing_list_id')
+    def _check_palletized_vs_packing(self):
+        """Tổng SL thùng lên pallet không vượt SL của packing list."""
+        for pl in self.packing_list_id:
+            if not pl.total_pieces:
+                continue
+            palletized = sum(self.env['garment.carton.box'].search([
+                ('packing_list_id', '=', pl.id),
+                ('state', '!=', 'cancelled'),
+            ]).mapped('quantity'))
+            if palletized > pl.total_pieces:
+                raise ValidationError(_(
+                    'Tổng SL thùng trên pallet (%d) vượt SL packing list '
+                    '%s (%d).', palletized, pl.name, pl.total_pieces))
 
     def action_pack(self):
         self.write({'state': 'packed'})
@@ -191,3 +206,33 @@ class GarmentCartonBox(models.Model):
             'view_mode': 'form',
             'target': 'current',
         }
+
+
+class GarmentPackingListPalletized(models.Model):
+    """Đối soát thùng đã lên pallet (garment.carton.box) với packing list."""
+    _inherit = 'garment.packing.list'
+
+    carton_box_ids = fields.One2many(
+        'garment.carton.box',
+        'packing_list_id',
+        string='Thùng Trên Pallet',
+    )
+    palletized_pcs = fields.Integer(
+        string='SL Đã Lên Pallet (Cái)',
+        compute='_compute_palletized',
+    )
+    palletized_variance = fields.Integer(
+        string='Chênh Lệch Pallet vs Packing',
+        compute='_compute_palletized',
+        help='SL packing list − SL đã lên pallet. Khác 0 = chưa xếp đủ '
+             'hoặc xếp thừa.',
+    )
+
+    @api.depends('carton_box_ids.quantity', 'carton_box_ids.state',
+                 'total_pieces')
+    def _compute_palletized(self):
+        for pl in self:
+            palletized = sum(pl.carton_box_ids.filtered(
+                lambda b: b.state != 'cancelled').mapped('quantity'))
+            pl.palletized_pcs = palletized
+            pl.palletized_variance = pl.total_pieces - palletized

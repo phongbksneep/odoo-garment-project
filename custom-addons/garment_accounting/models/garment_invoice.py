@@ -309,3 +309,28 @@ class GarmentInvoiceLine(models.Model):
     def _compute_subtotal(self):
         for line in self:
             line.subtotal = line.quantity * line.unit_price
+
+    def _check_invoice_editable(self):
+        if self.env.context.get('install_mode'):
+            return
+        for line in self:
+            if line.invoice_id.state != 'draft':
+                raise UserError(_(
+                    'Không thể thêm/sửa/xóa dòng của hóa đơn %s đã xác '
+                    'nhận. Hãy đưa hóa đơn về Nháp trước.',
+                    line.invoice_id.name))
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        lines = super().create(vals_list)
+        lines._check_invoice_editable()
+        return lines
+
+    def write(self, vals):
+        if not set(vals) <= {'subtotal'}:
+            self._check_invoice_editable()
+        return super().write(vals)
+
+    def unlink(self):
+        self._check_invoice_editable()
+        return super().unlink()

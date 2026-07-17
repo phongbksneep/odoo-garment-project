@@ -1,5 +1,5 @@
 from odoo.tests import TransactionCase, tagged
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 @tagged('post_install', '-at_install')
@@ -395,3 +395,53 @@ class TestPalletGuards(TransactionCase):
         pallet.action_ship()
         with self.assertRaises(UserError):
             pallet.unlink()
+
+
+@tagged('post_install', '-at_install')
+class TestPalletPackingReconciliation(TransactionCase):
+    """Đối soát thùng lên pallet với packing list."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.buyer = cls.env['res.partner'].create({
+            'name': 'Buyer Recon', 'customer_rank': 1})
+        cls.style = cls.env['garment.style'].create({
+            'name': 'STYLE-RCN-001', 'code': 'ST-RCN-001',
+            'category': 'shirt'})
+        cls.pl = cls.env['garment.packing.list'].create({
+            'buyer_id': cls.buyer.id,
+            'style_id': cls.style.id,
+            'ship_mode': 'sea',
+            'packing_type': 'ratio',
+        })
+        cls.pl.action_start_packing()
+        # 10 thùng × 20 cái = 200 cái
+        cls.env['garment.carton.line'].create({
+            'packing_list_id': cls.pl.id,
+            'carton_from': 1, 'carton_to': 10,
+            'pcs_per_carton': 20,
+        })
+
+    def _box(self, qty):
+        return self.env['garment.carton.box'].create({
+            'packing_list_id': self.pl.id,
+            'style_code': 'ST-RCN-001',
+            'quantity': qty,
+            'gross_weight': 10.0,
+        })
+
+    def test_palletized_within_packing_ok(self):
+        self._box(120)
+        self._box(80)
+        self.assertEqual(self.pl.palletized_pcs, 200)
+        self.assertEqual(self.pl.palletized_variance, 0)
+
+    def test_palletized_over_packing_rejected(self):
+        self._box(150)
+        with self.assertRaises(ValidationError):
+            self._box(100)  # 250 > 200
+
+    def test_variance_shown(self):
+        self._box(120)
+        self.assertEqual(self.pl.palletized_variance, 80)

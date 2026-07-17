@@ -22,6 +22,21 @@ class TestOdooIntegration(TransactionCase):
             'code': 'INT-001',
             'category': 'shirt',
         })
+        cls.color = cls.env['garment.color'].create({
+            'name': 'Int Red', 'code': 'IRED-T'})
+        cls.size = cls.env['garment.size'].create({
+            'name': 'Int M', 'code': 'IM-T', 'size_type': 'letter'})
+
+    def _confirm_order(self, order, qty=100):
+        """Gate mới: chỉ tạo SO từ đơn đã xác nhận."""
+        self.env['garment.order.line'].create({
+            'order_id': order.id,
+            'color_id': self.color.id,
+            'size_id': self.size.id,
+            'quantity': qty,
+        })
+        order.action_confirm()
+        return order
 
     # -------------------------------------------------------------------------
     # Sale Order Integration
@@ -42,6 +57,7 @@ class TestOdooIntegration(TransactionCase):
             'style_id': self.style.id,
             'unit_price': 8.50,
         })
+        self._confirm_order(order)
         result = order.action_create_sale_order()
         self.assertTrue(order.sale_order_id)
         self.assertEqual(order.sale_order_id.partner_id, self.customer)
@@ -54,6 +70,7 @@ class TestOdooIntegration(TransactionCase):
             'style_id': self.style.id,
             'unit_price': 5.0,
         })
+        self._confirm_order(order)
         order.action_create_sale_order()
         with self.assertRaises(UserError):
             order.action_create_sale_order()
@@ -65,6 +82,7 @@ class TestOdooIntegration(TransactionCase):
             'style_id': self.style.id,
             'unit_price': 5.0,
         })
+        self._confirm_order(order)
         order.action_create_sale_order()
         result = order.action_view_sale_order()
         self.assertEqual(result['res_id'], order.sale_order_id.id)
@@ -269,6 +287,7 @@ class TestOdooIntegration(TransactionCase):
             'style_id': self.style.id,
             'unit_price': 10.0,
         })
+        self._confirm_order(order)
         order.action_create_sale_order()
         self.assertTrue(order.sale_order_id)
         so = order.sale_order_id
