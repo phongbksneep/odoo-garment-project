@@ -5,6 +5,11 @@
         <field name="model">garment.daily.output</field>
         <field name="arch" type="xml">
             <form string="Sản Lượng Ngày">
+                <header>
+                    <button name="action_fill_from_worker_output"
+                            string="Lấy Từ Sản Lượng CN &amp; Chấm Công"
+                            type="object" class="btn-secondary"/>
+                </header>
                 <sheet>
                     <group>
                         <group>

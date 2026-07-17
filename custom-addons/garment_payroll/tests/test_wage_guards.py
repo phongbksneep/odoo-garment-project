@@ -647,3 +647,53 @@ class TestWorkerOutputCopy(TransactionCase):
         self.assertTrue(all(r.quantity == 0 for r in rows))
         self.assertTrue(all(r.piece_rate_id == rate for r in rows))
         self.assertTrue(all(r.rate_per_piece == 4000 for r in rows))
+
+
+@tagged('post_install', '-at_install')
+class TestDailyOutputFill(TransactionCase):
+    """Lấy tổng sản lượng chuyền từ sản lượng công nhân."""
+
+    def test_fill_from_worker_output(self):
+        partner = self.env['res.partner'].create({
+            'name': 'Buyer Fill', 'customer_rank': 1})
+        style = self.env['garment.style'].create({
+            'name': 'STYLE-FILL-001', 'code': 'ST-FILL-001',
+            'category': 'shirt'})
+        color = self.env['garment.color'].create({
+            'name': 'Đen Fill', 'code': 'BLK-FILL'})
+        size = self.env['garment.size'].create({
+            'name': 'M-FILL', 'code': 'M-FILL', 'size_type': 'letter'})
+        order = self.env['garment.order'].create({
+            'customer_id': partner.id, 'style_id': style.id,
+            'unit_price': 5.0})
+        self.env['garment.order.line'].create({
+            'order_id': order.id, 'color_id': color.id,
+            'size_id': size.id, 'quantity': 1000})
+        order.action_confirm()
+        line = self.env['garment.sewing.line'].create({
+            'name': 'Line Fill', 'code': 'LFIL'})
+        po = self.env['garment.production.order'].create({
+            'garment_order_id': order.id,
+            'sewing_line_id': line.id,
+            'planned_qty': 500})
+        rate = self.env['garment.piece.rate'].create({
+            'style_id': style.id, 'operation': 'sewing',
+            'operation_detail': 'Fill', 'rate_per_piece': 3000,
+            'smv': 10.0})
+        for i in range(3):
+            emp = self.env['hr.employee'].create({
+                'name': f'Emp Fill {i}', 'sewing_line_id': line.id})
+            self.env['garment.worker.output'].create({
+                'employee_id': emp.id, 'date': '2026-07-03',
+                'sewing_line_id': line.id, 'style_id': style.id,
+                'piece_rate_id': rate.id, 'quantity': 40})
+            self.env['garment.attendance'].create({
+                'employee_id': emp.id, 'date': '2026-07-03',
+                'status': 'present', 'work_hours': 8})
+        daily = self.env['garment.daily.output'].create({
+            'production_order_id': po.id,
+            'date': '2026-07-03',
+            'output_qty': 0, 'shift': 'morning'})
+        daily.action_fill_from_worker_output()
+        self.assertEqual(daily.output_qty, 120)
+        self.assertEqual(daily.worker_count, 3)

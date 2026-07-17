@@ -374,3 +374,4 @@ class TestProductionLinkGuards(TransactionCase):
         po.action_start()
         with self.assertRaises(UserError):
             po.action_done()
+

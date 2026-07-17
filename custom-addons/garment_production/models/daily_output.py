@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class GarmentDailyOutput(models.Model):
@@ -74,6 +74,32 @@ class GarmentDailyOutput(models.Model):
     notes = fields.Text(
         string='Ghi Chú / Nguyên Nhân',
     )
+
+    def action_fill_from_worker_output(self):
+        """Lấy tổng sản lượng chuyền từ sản lượng công nhân (payroll) và
+        số công nhân từ chấm công — khỏi nhập lại lần 2/lần 3."""
+        for record in self:
+            line = record.sewing_line_id
+            if not line or not record.date:
+                raise UserError(
+                    'Cần có chuyền may và ngày để lấy số liệu.')
+            if 'garment.worker.output' in self.env:
+                outputs = self.env['garment.worker.output'].search([
+                    ('sewing_line_id', '=', line.id),
+                    ('date', '=', record.date),
+                ])
+                if outputs:
+                    record.output_qty = sum(outputs.mapped('quantity'))
+            if 'garment.attendance' in self.env:
+                present = self.env['garment.attendance'].search_count([
+                    ('date', '=', record.date),
+                    ('status', 'in', ('present', 'late', 'early_leave',
+                                      'half_day')),
+                    ('employee_id.sewing_line_id', '=', line.id),
+                ])
+                if present:
+                    record.worker_count = present
+        return True
 
     @api.constrains('output_qty', 'defect_qty', 'rework_qty')
     def _check_quantities(self):
