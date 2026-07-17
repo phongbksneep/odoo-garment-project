@@ -371,6 +371,9 @@ class GarmentWageCalculation(models.Model):
     def action_calculate(self):
         """Trigger recalculation — also pull attendance data."""
         self.ensure_one()
+        if self.state not in ('draft', 'calculated'):
+            raise UserError(_(
+                'Chỉ phiếu lương Nháp hoặc Đã Tính mới được tính lại.'))
         # Pull attendance summary if available
         summary = self.env['garment.attendance.summary'].search([
             ('employee_id', '=', self.employee_id.id),
@@ -393,6 +396,8 @@ class GarmentWageCalculation(models.Model):
 
     def action_confirm(self):
         self.ensure_one()
+        if self.state != 'calculated':
+            raise UserError(_('Phải tính lương trước khi xác nhận.'))
         self.write({'state': 'confirmed'})
 
     def action_pay(self):
@@ -403,4 +408,14 @@ class GarmentWageCalculation(models.Model):
 
     def action_reset_draft(self):
         self.ensure_one()
+        if self.state == 'paid':
+            raise UserError(_(
+                'Không thể đưa phiếu lương đã trả về Nháp.'))
         self.write({'state': 'draft'})
+
+    def unlink(self):
+        for rec in self:
+            if rec.state == 'paid':
+                raise UserError(_(
+                    'Không thể xóa phiếu lương %s đã trả.', rec.name))
+        return super().unlink()
