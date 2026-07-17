@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class GarmentWageCalculation(models.Model):
@@ -239,6 +239,22 @@ class GarmentWageCalculation(models.Model):
                     'garment.wage.calculation'
                 ) or _('New')
         return super().create(vals_list)
+
+    @api.constrains('base_salary', 'ot_rate', 'deduction', 'bonus_amount',
+                    'actual_days', 'working_days')
+    def _check_non_negative(self):
+        for record in self:
+            for field_name, label in [
+                ('base_salary', 'Lương cơ bản'),
+                ('ot_rate', 'Đơn giá tăng ca'),
+                ('deduction', 'Khấu trừ'),
+                ('bonus_amount', 'Thưởng'),
+                ('actual_days', 'Ngày thực tế'),
+                ('working_days', 'Ngày công'),
+            ]:
+                if record[field_name] < 0:
+                    raise ValidationError(
+                        _('%s không được âm.', label))
 
     # -------------------------------------------------------------------------
     # Compute

@@ -122,3 +122,33 @@ class TestWageBatchCompute(TransactionCase):
         self.assertEqual(w2.total_pieces, 70)
         self.assertAlmostEqual(w2.piece_rate_amount, 210000)
         self.assertAlmostEqual(w2.total_ot_hours, 2.0)
+
+
+@tagged('post_install', '-at_install')
+class TestWageBounds(TransactionCase):
+    """Các trường nhập của phiếu lương không được âm."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.employee = cls.env['hr.employee'].create({'name': 'Emp Bounds'})
+
+    def test_negative_base_salary_rejected(self):
+        from odoo.exceptions import ValidationError
+        with self.assertRaises(ValidationError):
+            self.env['garment.wage.calculation'].create({
+                'employee_id': self.employee.id,
+                'month': '05',
+                'year': 2026,
+                'base_salary': -1000,
+            })
+
+    def test_negative_ot_rate_rejected(self):
+        from odoo.exceptions import ValidationError
+        wage = self.env['garment.wage.calculation'].create({
+            'employee_id': self.employee.id,
+            'month': '05',
+            'year': 2026,
+        })
+        with self.assertRaises(ValidationError):
+            wage.write({'ot_rate': -5})
