@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class GarmentMaintenanceRequest(models.Model):
@@ -100,6 +100,14 @@ class GarmentMaintenanceRequest(models.Model):
                 req.resolution_hours = delta.total_seconds() / 3600.0
             else:
                 req.resolution_hours = 0.0
+
+    @api.constrains('request_date', 'completion_date')
+    def _check_dates(self):
+        for req in self:
+            if (req.request_date and req.completion_date
+                    and req.completion_date < req.request_date):
+                raise ValidationError(
+                    _('Ngày hoàn thành không thể trước ngày yêu cầu!'))
 
     # -------------------------------------------------------------------------
     # CRUD

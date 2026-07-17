@@ -233,3 +233,27 @@ class TestWashOrder(TransactionCase):
         order = self._create_order(qty_received=200)
         order.qty_rewash = 10
         self.assertAlmostEqual(order.rewash_rate, 5.0, places=1)
+
+
+@tagged('post_install', '-at_install')
+class TestWashDates(TransactionCase):
+    """Ràng buộc thứ tự ngày trên lệnh giặt."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.recipe = cls.env['garment.wash.recipe'].create({
+            'name': 'Date Wash Recipe',
+            'code': 'TWR-DATE',
+            'wash_type': 'normal',
+        })
+
+    def test_delivered_before_received_rejected(self):
+        with self.assertRaises(ValidationError):
+            self.env['garment.wash.order'].create({
+                'order_type': 'internal',
+                'recipe_id': self.recipe.id,
+                'qty_received': 100,
+                'date_received': '2026-03-10',
+                'date_delivered': '2026-03-05',
+            })

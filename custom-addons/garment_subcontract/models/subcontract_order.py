@@ -199,6 +199,14 @@ class SubcontractOrder(models.Model):
         for order in self:
             order.total_cost = order.total_qty * order.unit_price
 
+    @api.constrains('date_sent', 'date_received')
+    def _check_dates(self):
+        for order in self:
+            if (order.date_sent and order.date_received
+                    and order.date_received < order.date_sent):
+                raise ValidationError(
+                    'Ngày nhận hàng không thể trước ngày gửi hàng!')
+
     def _check_states(self, allowed, action_label):
         for order in self:
             if order.state not in allowed:

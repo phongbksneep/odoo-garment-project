@@ -247,3 +247,36 @@ class TestSubcontractGuards(TransactionCase):
         order.action_done()
         with self.assertRaises(UserError):
             order.unlink()
+
+
+@tagged('post_install', '-at_install')
+class TestSubcontractDates(TransactionCase):
+    """Ràng buộc thứ tự ngày trên đơn gia công."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].create({
+            'name': 'GC Dates Co',
+            'is_subcontractor': True,
+            'subcontract_type': 'sewing',
+        })
+        cls.style = cls.env['garment.style'].create({
+            'name': 'STYLE-SUBDT-001',
+            'code': 'ST-SUBDT-001',
+            'category': 'shirt',
+        })
+
+    def test_received_before_sent_rejected(self):
+        order = self.env['garment.subcontract.order'].create({
+            'direction': 'outgoing',
+            'work_type': 'sewing',
+            'partner_id': self.partner.id,
+            'style_id': self.style.id,
+            'date_expected': '2026-03-15',
+        })
+        with self.assertRaises(ValidationError):
+            order.write({
+                'date_sent': '2026-03-10',
+                'date_received': '2026-03-05',
+            })

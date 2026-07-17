@@ -219,6 +219,19 @@ class WashOrder(models.Model):
             if order.qty_washed > order.qty_received:
                 raise ValidationError('Số lượng giặt xong không thể lớn hơn số lượng nhận!')
 
+    @api.constrains('date_received', 'date_delivered', 'date_start',
+                    'date_end')
+    def _check_dates(self):
+        for order in self:
+            if (order.date_received and order.date_delivered
+                    and order.date_delivered < order.date_received):
+                raise ValidationError(
+                    'Ngày giao lại không thể trước ngày nhận hàng!')
+            if (order.date_start and order.date_end
+                    and order.date_end < order.date_start):
+                raise ValidationError(
+                    'Thời điểm kết thúc giặt không thể trước lúc bắt đầu!')
+
     def action_confirm(self):
         for order in self:
             if order.order_type == 'external_in' and not order.client_id:

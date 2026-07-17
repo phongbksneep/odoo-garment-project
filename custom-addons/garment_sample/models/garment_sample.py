@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class GarmentSample(models.Model):
@@ -109,6 +109,14 @@ class GarmentSample(models.Model):
     revision = fields.Integer(string='Revision', default=0, copy=False)
     courier_info = fields.Char(string='Courier / Tracking')
     notes = fields.Html(string='Notes')
+
+    @api.constrains('request_date', 'required_date')
+    def _check_dates(self):
+        for sample in self:
+            if (sample.request_date and sample.required_date
+                    and sample.required_date < sample.request_date):
+                raise ValidationError(
+                    _('Ngày yêu cầu hoàn thành không thể trước ngày đề nghị!'))
 
     # -------------------------------------------------------------------------
     # CRUD

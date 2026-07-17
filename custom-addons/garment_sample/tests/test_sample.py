@@ -133,3 +133,33 @@ class TestSample(TransactionCase):
             'user_id': self.env.user.id,
         })
         self.assertEqual(len(sample.comment_ids), 1)
+
+
+@tagged('post_install', '-at_install')
+class TestSampleDates(TransactionCase):
+    """Ràng buộc thứ tự ngày trên mẫu may."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].create({
+            'name': 'Buyer Sample Dates',
+            'customer_rank': 1,
+        })
+        cls.style = cls.env['garment.style'].create({
+            'name': 'STYLE-SMPDT-001',
+            'code': 'ST-SMPDT-001',
+            'category': 'shirt',
+        })
+
+    def test_required_before_request_rejected(self):
+        from odoo.exceptions import ValidationError
+        with self.assertRaises(ValidationError):
+            self.env['garment.sample'].create({
+                'buyer_id': self.partner.id,
+                'style_id': self.style.id,
+                'sample_type': 'proto',
+                'quantity': 3,
+                'request_date': '2026-03-10',
+                'required_date': '2026-03-05',
+            })
