@@ -58,6 +58,7 @@ class GarmentOrder(models.Model):
         'garment.order.line',
         'order_id',
         string='Chi Tiết Đơn Hàng',
+        copy=True,
     )
     total_qty = fields.Integer(
         string='Tổng Số Lượng',
