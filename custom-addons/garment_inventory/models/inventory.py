@@ -1,5 +1,6 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
+from odoo.tools import float_is_zero
 
 
 class GarmentInventory(models.Model):
@@ -104,7 +105,7 @@ class GarmentInventory(models.Model):
             rec.total_actual_qty = sum(lines.mapped('actual_qty'))
             rec.total_diff_qty = sum(lines.mapped('diff_qty'))
             rec.diff_count = len(lines.filtered(
-                lambda l: l.diff_qty != 0
+                lambda l: not float_is_zero(l.diff_qty, precision_digits=2)
             ))
 
     def action_start(self):
@@ -240,7 +241,8 @@ class GarmentInventory(models.Model):
     def _create_adjustment_move(self):
         """Create a stock adjustment move for differences found."""
         self.ensure_one()
-        diff_lines = self.line_ids.filtered(lambda l: l.diff_qty != 0)
+        diff_lines = self.line_ids.filtered(
+            lambda l: not float_is_zero(l.diff_qty, precision_digits=2))
         if not diff_lines:
             return
 
